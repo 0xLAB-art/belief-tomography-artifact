@@ -142,7 +142,7 @@ it through IEEE. Validation does not require it: the
 
 | File | Purpose |
 |---|---|
-| `verify.sh` | Checks both manifests (395 + 46,767) |
+| `verify.sh` | Checks both manifests (395 + 46,501) |
 | `checks/quick_counts.sh` | Asserts the 230-flag decomposition and blocked-turn table |
 | `REDACTIONS.md` | Every substitution with original/public hashes |
 | `CITATION.cff` | Citation metadata |
