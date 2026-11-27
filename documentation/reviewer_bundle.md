@@ -9,7 +9,7 @@ table.
 ./verify.sh
 ```
 
-Expected: `384 frozen + 46,469 supplementary files OK`.
+Expected: `395 frozen + 46,481 supplementary files OK`.
 
 ## 2 · Recompute the open-weight table (5 min)
 

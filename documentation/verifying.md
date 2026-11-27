@@ -4,13 +4,13 @@ Two SHA-256 manifests cover the repository, both rooted at the repository root:
 
 | Manifest | Scope |
 |---|---|
-| `docs/paper/belief_tomography/ARTIFACT_MANIFEST.sha256` | The **384 frozen experiment artifacts** — registrations hashed *as frozen, post-hoc edits included* |
-| `SUPPLEMENTARY_ASSETS.sha256` | Every other deposit file (**46,469** entries; excludes the manifests and policy documents themselves) |
+| `docs/paper/belief_tomography/ARTIFACT_MANIFEST.sha256` | The **395 frozen experiment artifacts** — registrations hashed *as frozen, post-hoc edits included* |
+| `SUPPLEMENTARY_ASSETS.sha256` | Every other deposit file (**46,481** entries; excludes the manifests and policy documents themselves) |
 
 ## Run the checks
 
 ```bash
-./verify.sh                    # → 384 frozen + 46,469 supplementary files OK
+./verify.sh                    # → 395 frozen + 46,481 supplementary files OK
 ```
 
 or the raw commands:

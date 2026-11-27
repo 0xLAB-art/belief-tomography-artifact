@@ -2,7 +2,7 @@
 
 **Artifact-repository ledger for the manuscript "Measuring the Belief–Claim Gap: Disentangling Autonomous-Agent Beliefs from Security Certification" (IEEE TDSC build `paper/tdsc_tomo/`, section files revised 2026-11-27; ACM TOPS mirror at `paper/tops/`).**
 
-**Generated:** 2026-11-24 UTC; revised 2026-11-27 (Round 21). **Companion manifest:** `ARTIFACT_MANIFEST.sha256` (same directory), 381 SHA–256 entries (375 frozen + the Round-21 E32 package); verification line `sha256sum -c ARTIFACT_MANIFEST.sha256` from repository root.
+**Generated:** 2026-11-24 UTC; revised 2026-11-28 (Round 21 completion). **Companion manifest:** `ARTIFACT_MANIFEST.sha256` (same directory), 395 SHA–256 entries (375 frozen + the Round-21 E32 package + 20 OpenTimestamps registration proofs); verification line `sha256sum -c ARTIFACT_MANIFEST.sha256` from repository root.
 
 ## Round-21 additions (2026-11-27)
 
@@ -274,3 +274,8 @@ Semantic corrections applied to the manuscript and synced to the IEEEtran twin
    TDSC venue via paper/tdsc_tomo, six diagnostics including E23).
 6. **Ledger-side residues:** stale frozen-audit numbers annotated in this
    note; round-16 trail: review 541e649, tops frozen md5 7e50f90de02deec9ae64a8f6af0d2f27.
+
+## Round-21 completion (2026-11-28)
+
+1. **Registration-layer anchoring completed.** All 24 frozen registration files (12 under `gauntlet/demo/`, 12 under `docs/paper/belief_tomography/`) now carry OpenTimestamps proofs (`.ots` beside each file; pending Bitcoin confirmation, refreshable with `ots upgrade`), joining the E32 preregistration and deviation sidecar stamped earlier in the round (25 proofs total). Per item 4's convention this anchors the frozen bytes **as they stand** and rewrites no history; from the next registration onward stamps are created at registration time, before data.
+2. **Manuscript formal layer scoped (manuscript-side, 14pp build).** The main text now scopes its own formal layer ("Two observations are explicit arithmetic and several bounds are standard tools made explicit; what is new is what these mechanisms buy for measurement rather than deeper inequalities"), mirroring this supplement's preamble, and the two arithmetic propositions (Certificate half-life, Tomographic reactivity) are retyped as **Observations** in main and supplement with every cross-reference updated — the identity cases were already self-labeled (the L=1 identity lives in a Remark titled "is an identity"). A headline-measurements table was added to the main text for self-containedness, moving the build to 14pp (+$220 overage; reversible by dropping that one table). An editing accident during the insertion swallowed the open-weight table and flag-audit paragraph; both were restored the same session — the paragraph byte-exact from the session's own edit, the table with every number cross-verified against `supp_field` Table `tab:openweight:supp` and this ledger (caption prose reconstructed). The battery caught the loss before any build shipped (undefined `tab:openweight`).

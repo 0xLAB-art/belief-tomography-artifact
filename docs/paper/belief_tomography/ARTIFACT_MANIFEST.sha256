@@ -1,11 +1,11 @@
-# claims-evidence manifest, generated 2026-11-27T22:01:00Z
+# claims-evidence manifest, generated 2026-11-27T22:42:57Z
 # verify with: sha256sum -c ARTIFACT_MANIFEST.sha256 from repo root
 # companion of docs/paper/belief_tomography/CLAIMS_EVIDENCE_LEDGER.md; covers the frozen evidence scope:
 # (1) all files under gauntlet/demo/ (recursive; __pycache__/ derived bytecode excluded);
 # (2) docs/paper/belief_tomography/PREREGISTRATION_*.md, hashed as frozen (post-hoc edits included);
 # (3) data/field/**. Round-19 addition: (5) docs/paper/belief_tomography/independent_reaudit/ (13 files).
 # Experiment dates are UTC (manuscript Data Availability); git-tracked artifacts additionally carry last-commit hashes in the ledger.
-# --- scope: all files under gauntlet/demo/ (recursive, sorted; __pycache__/ derived bytecode excluded) (346 files)
+# --- scope: all files under gauntlet/demo/ (recursive, sorted; __pycache__/ derived bytecode excluded) (357 files)
 # --- scope reduction, 2026-11-27 ---
 # Group (4) paper/tops/figs/figdata/*.dat (20 entries) was removed from this
 # public deposit together with the manuscript builds (distributed via IEEE).
@@ -13,8 +13,10 @@
 # the 20 dropped figure-data files are retained in the author's frozen
 # archive and their removal is recorded in REDACTIONS.md.
 # Round-21 addition, 2026-11-27: scope (1) grows by the E32 transcript-retained
-# rerun package (now 9 files incl. the dated deviation sidecar and two
-# OpenTimestamps proofs); 384 active entries. The E32 preregistration is pinned
+# rerun package (now 9 files incl. the dated deviation sidecar);
+# Round-21 completion, 2026-11-28: +11 OpenTimestamps proofs for the gauntlet/demo
+# registration files (the 12 docs/paper/belief_tomography/*.ots proofs live in the
+# supplementary manifest); 395 active entries. The E32 preregistration is pinned
 # at its REGISTERED bytes (sha256 e082633d43d53f0d614dcbbbaef56fa29bd0350358566ba8e0e327aba1ad5ed1),
 # restored byte-exact after a post-data editing mistake and externally
 # timestamped — deviations live in the sidecar, never in the registration
@@ -220,15 +222,26 @@ fd0a80f6db3e7e9894c0a099dac4ccb3757421e8a48032a796744150c11ba3da  gauntlet/demo/
 1124a274b2a957dbbff3418fed500f1ef81ce6a261ad2bbe3c5812cc7b7d2828  gauntlet/demo/ORACLE_AUDIT_CONSTRUCTED.md
 80e2c5677c58ffca663fe9d3c9d58bc29723007f1ffa55cc66673bdb63208b28  gauntlet/demo/POLICY_BENCHMARK.md
 bceccf5b57ba7e25610df9605175d22091d58cac7f8e3593e3a1ff4d6b2d53bc  gauntlet/demo/PREREGISTRATION_E21_GAMMA_FIELD.md
+89cf161d868ac3f10532f3248a014ae4f0f2d4f0e416d4eae2f622fbb8dc5a74  gauntlet/demo/PREREGISTRATION_E21_GAMMA_FIELD.md.ots
 49ab93b1316590cf9172bbdd189003671254f0f7143b8768bfb339b8f557a8c1  gauntlet/demo/PREREGISTRATION_E22_LIBRARYV1.md
+243d69f1c9588b3881f37524da4ec632188697f95f2af07a31f8a14e579c2c00  gauntlet/demo/PREREGISTRATION_E22_LIBRARYV1.md.ots
 d6f783867a225fbd8034fdc09c739cbccc92740b160252b4af554ee3cf01233a  gauntlet/demo/PREREGISTRATION_E23_DEEP_DRAFT.md
+f511d9ff65d780a609e536dcfa0e33dc1612a4cf21082f72c8ab01651db1bf7d  gauntlet/demo/PREREGISTRATION_E23_DEEP_DRAFT.md.ots
 90ecdd8b81535a9a1437e4395fe85358562553d57bd81337890936a6d687be2b  gauntlet/demo/PREREGISTRATION_E25_DRIFT_CONTROL.md
+6a6bc18624fadaa99c6ee96f04bb640e1305a0a78538815c1165314ae8306287  gauntlet/demo/PREREGISTRATION_E25_DRIFT_CONTROL.md.ots
 bcc8ca4f62b5d80cc2122d1da1422357a42b28ee68340d2cea00f013b6244b6f  gauntlet/demo/PREREGISTRATION_E26_LSENSITIVITY.md
+da9cfcf737e4972d51fa7e77f02d47d5ce50dffbdac879665e396e2833f48e02  gauntlet/demo/PREREGISTRATION_E26_LSENSITIVITY.md.ots
 a7af6bb1c96a80ea40d76da2427c98a5b37b6d815c21bd66c9bf40b3197d2c00  gauntlet/demo/PREREGISTRATION_E27_GAMMA_SCALEUP.md
+36b290adc5e62c81a74967b4b5d03d1c6ea86be011bf5d75372b80907f0f448f  gauntlet/demo/PREREGISTRATION_E27_GAMMA_SCALEUP.md.ots
 7ed4c1cbcfb237b70062b1ea90d995061e9f169b392e95804960eef1cfc862d3  gauntlet/demo/PREREGISTRATION_E28_BUDGET_DECOMPOSITION.md
+26c6e9f9af59beb714454efaa75e3897f5e92938adcda5c7084d10fdff973a0d  gauntlet/demo/PREREGISTRATION_E28_BUDGET_DECOMPOSITION.md.ots
 0ba68e21545958e7bec0b21bffd7266c86ec0132afba4aab95c9011bb288f53d  gauntlet/demo/PREREGISTRATION_E29_REPAIRED_PANEL.md
+ce77df47c76df6420c137367a743bb0d86c309ce70ea8ce043be20e33ba06227  gauntlet/demo/PREREGISTRATION_E29_REPAIRED_PANEL.md.ots
+b2811b38031bcd295384b0450b8765885d3269f535f7d67940ecfe79c0cf06d3  gauntlet/demo/PREREGISTRATION_E2V1B.md.ots
 e49cdbf5133c81c4cf54cf447f326b6181f3b34fbd339b8969dd176409345739  gauntlet/demo/PREREGISTRATION_E30_OPENWEIGHT_PANEL.md
+9a132b312a142b966839bfaadaaeb71e7f5074d4a17d0a7be3e08a4df184139f  gauntlet/demo/PREREGISTRATION_E30_OPENWEIGHT_PANEL.md.ots
 a50229f1b0f45436e99dea185504cd667700a4be86eb77efaea2c940d20e4e79  gauntlet/demo/PREREGISTRATION_E31_OPENWEIGHT_REPAIRED.md
+64d1d209e4573596c2c24e3dcde558456646e170ce8af7bc8c9987af1bbae5d1  gauntlet/demo/PREREGISTRATION_E31_OPENWEIGHT_REPAIRED.md.ots
 e082633d43d53f0d614dcbbbaef56fa29bd0350358566ba8e0e327aba1ad5ed1  gauntlet/demo/PREREGISTRATION_E32_TRANSCRIPT_RERUN.md
 a76972d60a8a32d810d1bd775d9131d1d9b72260c8cfe7667f259f9558aa3396  gauntlet/demo/PREREGISTRATION_E32_TRANSCRIPT_RERUN.md.ots
 032c2f16a92da3695c0848c9383491080005fae2cfbb2ee2f18a55c28b82d22c  gauntlet/demo/PROFILE.md
