@@ -9,7 +9,7 @@ table.
 ./verify.sh
 ```
 
-Expected: `395 frozen + 46,501 supplementary files OK`.
+Expected: `375 frozen + 46,491 supplementary files OK`.
 
 ## 2 · Recompute the open-weight table (5 min)
 
@@ -43,14 +43,14 @@ Prints, from the frozen verdicts and transcripts:
 - Manuscript §Limitations and Supplement Table S2 — the same record, printed.
 - `REDACTIONS.md` — every substitution made for publication.
 
-## 5 · Regenerate the figures (2 min, optional)
+## 5 · Regenerate the journal figures (2 min, optional)
 
 ```bash
-python3 paper/tops/figs/make_tikz_data.py                                # 20 pinned .dat files
 python3 docs/paper/belief_tomography/figures/make_figures.py             # F1–F9
 ```
 
-The manuscript itself is distributed via IEEE and is not part of the deposit.
+The manuscript and its build artifacts are distributed via IEEE and are not
+part of the deposit.
 
 ## Key numbers to cross-check against the manuscript
 

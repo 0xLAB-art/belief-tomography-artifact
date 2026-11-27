@@ -83,3 +83,15 @@ attacker command text flowing through experiment artifacts). Before deposit:
   involved (the honeypot serves only fictional canaries).
 
 `./verify.sh` verifies all 46,498 manifest entries against the scrubbed bytes.
+
+## Manuscript and figure-data removal (2026-11-27)
+
+The manuscript builds (`paper/tdsc_tomo/`, `paper/tops/` sources and PDFs),
+the TOPS submission snapshot (`docs/paper/belief_tomography/tops_submission/`),
+the platform-paper builds (`paper/sp2027/`, `paper/tdsc/`), and the figure
+data (`paper/tops/figs/figdata/`, 20 manifest-pinned files) were **released
+from the deposit** — the manuscript is distributed via IEEE, so the artifact
+repository no longer hosts it. The frozen manifest was reduced accordingly
+from 395 to **375 entries**, and the reduction is documented in the manifest
+header. The removed files are retained in the author's frozen archive and can
+be made available to the editor on request.

@@ -4,13 +4,13 @@ Two SHA-256 manifests cover the repository, both rooted at the repository root:
 
 | Manifest | Scope |
 |---|---|
-| `docs/paper/belief_tomography/ARTIFACT_MANIFEST.sha256` | The **395 frozen experiment artifacts** — registrations hashed *as frozen, post-hoc edits included* |
-| `SUPPLEMENTARY_ASSETS.sha256` | Every other deposit file (**46,501** entries; excludes the manifests and policy documents themselves) |
+| `docs/paper/belief_tomography/ARTIFACT_MANIFEST.sha256` | The **375 frozen experiment artifacts** — registrations hashed *as frozen, post-hoc edits included* |
+| `SUPPLEMENTARY_ASSETS.sha256` | Every other deposit file (**46,469** entries; excludes the manifests and policy documents themselves) |
 
 ## Run the checks
 
 ```bash
-./verify.sh                    # → 395 frozen + 46,501 supplementary files OK
+./verify.sh                    # → 375 frozen + 46,491 supplementary files OK
 ```
 
 or the raw commands:
@@ -25,8 +25,11 @@ sha256sum -c SUPPLEMENTARY_ASSETS.sha256
 ## What is pinned
 
 - **The frozen scope** covers `gauntlet/demo/` (recursive), the day-0
-  registration files under `docs/paper/belief_tomography/`, `data/field/`,
-  `paper/tops/figs/figdata/*.dat`, and `docs/paper/belief_tomography/independent_reaudit/`.
+  registration files under `docs/paper/belief_tomography/`, `data/field/`, and
+  `docs/paper/belief_tomography/independent_reaudit/`. The original 395-entry
+  scope also pinned `paper/tops/figs/figdata/*.dat`; those 20 figure-data
+  files were released from the deposit on 2026-11-27 together with the
+  manuscript builds (manifest header documents the reduction).
 - **The supplementary scope** covers everything else: manuscripts, platform
   mirror, live-fleet VPS export, review records, figure sources, producer
   scripts.

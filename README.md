@@ -10,7 +10,7 @@
 
 [![Venue](https://img.shields.io/badge/venue-IEEE_TDSC-blue)](https://www.computer.org/csdl/journal/tq)
 [![License](https://img.shields.io/badge/license-Apache_2.0-green.svg)](LICENSE)
-[![Manifests](https://img.shields.io/badge/SHA--256_pinned-395_%2B_46_772_files-brightgreen)](docs/paper/belief_tomography/ARTIFACT_MANIFEST.sha256)
+[![Manifests](https://img.shields.io/badge/SHA--256_pinned-375_%2B_46_491_files-brightgreen)](docs/paper/belief_tomography/ARTIFACT_MANIFEST.sha256)
 [![Repo size](https://img.shields.io/github/repo-size/0xLAB-art/belief-tomography-artifact)](#)
 [![Last commit](https://img.shields.io/github/last-commit/0xLAB-art/belief-tomography-artifact/main)](#)
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](#)
@@ -31,8 +31,8 @@
 | | |
 |---|---|
 | **Registered experiments** | 30 (E1–E31 registry; E24 retired void before registration) |
-| **Frozen deposit** | 395 files, SHA-256 manifest, byte-exact verification |
-| **Full deposit** | 395 + 46,501 hash-pinned files · ~1.2 GB |
+| **Frozen deposit** | 375 files, SHA-256 manifest, byte-exact verification |
+| **Full deposit** | 375 + 46,491 hash-pinned files · ~1.2 GB |
 | **Manuscript** | Not hosted here — distributed via IEEE (single file per submission); the ledger quotes every claim, so validation needs no manuscript copy |
 | **Live-fleet data** | 15,409 served sessions · 15,404 field records · 42,076 pre-NAT connections · full Cowrie logs (2026-10-08 → 11-27) |
 | **Headline audit** | 230 oracle flags adjudicated: 118 refusal-quote FPs + 112 genuine canary echoes · blinded re-audit κ = 0.96 |
@@ -42,7 +42,7 @@
 ```bash
 git clone https://github.com/0xLAB-art/belief-tomography-artifact.git
 cd belief-tomography-artifact
-./verify.sh                    # → 395 frozen + 46,501 supplementary files OK
+./verify.sh                    # → 375 frozen + 46,491 supplementary files OK
 bash checks/quick_counts.sh    # → reproduces the 230-flag audit + censoring table
 ```
 
@@ -53,7 +53,7 @@ flowchart LR
     A["Claim in the paper"] --> B["CLAIMS_EVIDENCE_LEDGER row"]
     B --> C["Artifact path in this repo"]
     C --> D["SHA-256 manifest entry"]
-    D --> E["verify.sh: 395 + 46,501 OK"]
+    D --> E["verify.sh: 375 + 46,491 OK"]
 ```
 
 **The two instruments:**
@@ -90,7 +90,7 @@ HMAC, key unpublished); operator/fleet addresses → `REDACTED_*`. See
 | `gauntlet/demo/` | Frozen experiment deposit: E1–E31 results, transcripts, verdicts, run logs, E21–E31 registrations, E3 grids, drivers |
 | `gauntlet/gauntlet/` | Frozen instrument/estimator code (`tomograph.py`, `verdict.py`, generator, world, policies, certificate, harness) — the `8ceb6e0` estimator pin |
 | `docs/paper/belief_tomography/CLAIMS_EVIDENCE_LEDGER.md` | Claim → artifact map with the registration-integrity status note |
-| `docs/paper/belief_tomography/ARTIFACT_MANIFEST.sha256` | 395-entry frozen manifest (incl. the re-audit package) |
+| `docs/paper/belief_tomography/ARTIFACT_MANIFEST.sha256` | 375-entry frozen manifest (incl. the re-audit package) |
 | `docs/paper/belief_tomography/PREREGISTRATION_*.md` | Day-0 registrations (E10–E20) · `RESEARCH_PROGRAM_V2.md` |
 | `docs/paper/belief_tomography/independent_reaudit/` | Blinded re-adjudication: 3 coders, 46-item stratified sample, κ = 0.96 |
 | `docs/paper/belief_tomography/figures/` | F1–F9 sources + `anthro/` plates + `make_figures.py` |
@@ -103,14 +103,12 @@ HMAC, key unpublished); operator/fleet addresses → `REDACTED_*`. See
 <details>
 <summary><b>2 · Manuscript</b></summary>
 
-The manuscript itself is **not hosted in this repository** — reviewers receive
-it through IEEE. Validation does not require it: the
-[claims–evidence ledger](guide.md) quotes every claim verbatim. What is kept:
-
-| Path | Contents |
-|---|---|
-| `paper/tops/figs/figdata/` | The 20 figure-data `.dat` files pinned by the frozen manifest |
-| `paper/tops/figs/*.tex`, `make_tikz_data.py` | TikZ figure sources and their generator |
+The manuscript and its build artifacts are **not hosted in this repository** —
+reviewers receive the paper through IEEE. Validation does not require it: the
+[claims–evidence ledger](guide.md) quotes every claim verbatim. The figure
+data (`paper/tops/figs/figdata/`, 20 manifest-pinned files) was removed
+together with the manuscript on 2026-11-27; the manifest header documents the
+scope reduction.
 
 </details>
 
@@ -142,7 +140,7 @@ it through IEEE. Validation does not require it: the
 
 | File | Purpose |
 |---|---|
-| `verify.sh` | Checks both manifests (395 + 46,501) |
+| `verify.sh` | Checks both manifests (375 + 46,491) |
 | `checks/quick_counts.sh` | Asserts the 230-flag decomposition and blocked-turn table |
 | `REDACTIONS.md` | Every substitution with original/public hashes |
 | `CITATION.cff` | Citation metadata |
@@ -204,9 +202,8 @@ MiniMax 24 blocked turns — Table VI and §Limitations censoring fractions.
 
 - The manuscript is **not hosted here** (distributed via IEEE), so no LaTeX
   build is included.
-- `paper/tops/figs/make_tikz_data.py` regenerates the 20 pinned `.dat` files
-  in `paper/tops/figs/figdata/` from the frozen deposit;
-  `docs/paper/belief_tomography/figures/make_figures.py` regenerates F1–F9.
+- `docs/paper/belief_tomography/figures/make_figures.py` regenerates F1–F9
+  from the frozen experiment artifacts.
 - Python 3.11+ (stdlib + `jq`) for the checks.
 
 <details>
@@ -230,6 +227,7 @@ the deposit is complete. Excluded by policy:
 
 | Excluded | Reason |
 |---|---|
+| Manuscript builds, submission snapshot, figure data | Distributed via IEEE; released from the deposit 2026-11-27 (manifest 395 → 375) |
 | `RAGIN-…/.env*` (6 files) | **Real API credentials** — never published |
 | `results/cti_audit_blinding_key.json` | Unblinds the CTI annotator A/B study |
 | `logs/health_monitor.log`, `gateway.tar` | Host-local log; 92 MB build artifact |
