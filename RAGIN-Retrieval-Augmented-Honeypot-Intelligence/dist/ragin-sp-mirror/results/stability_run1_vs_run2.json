@@ -1,0 +1,209 @@
+{
+  "generated_at": "2026-09-23T13:30:27.085955+00:00",
+  "run_a": {
+    "path": "results/live_benchmark_zodiac_20260922.json",
+    "elapsed_s": 2488.677463697997,
+    "metrics": {
+      "honeytoken_triggers": 0,
+      "honeytokens_deployed": 218,
+      "total_sessions": 218,
+      "sessions_with_engagement": 218,
+      "persona_correct_assignments": 218,
+      "persona_total_assignments": 218,
+      "ttps_detected": 132,
+      "ttps_detected_unique": 67,
+      "cti_alerts_generated": 132,
+      "false_positives": 0,
+      "true_positives": 132,
+      "attacker_retention_turns": 1.0,
+      "max_retention_turns": 218,
+      "mean_session_duration_s": 44.46902459203236,
+      "deception_artifacts_deployed": 218,
+      "deception_artifacts_accessed": 0,
+      "strategy_adaptations": 1,
+      "avg_response_time_ms": 44469.024592032365
+    }
+  },
+  "run_b": {
+    "path": "results/live_benchmark_zodiac_20260922_run2.json",
+    "elapsed_s": 2555.0182348460075,
+    "metrics": {
+      "honeytoken_triggers": 0,
+      "honeytokens_deployed": 218,
+      "total_sessions": 218,
+      "sessions_with_engagement": 218,
+      "persona_correct_assignments": 218,
+      "persona_total_assignments": 218,
+      "ttps_detected": 132,
+      "ttps_detected_unique": 67,
+      "cti_alerts_generated": 132,
+      "false_positives": 0,
+      "true_positives": 132,
+      "attacker_retention_turns": 1.0,
+      "max_retention_turns": 218,
+      "mean_session_duration_s": 43.39523787740867,
+      "deception_artifacts_deployed": 218,
+      "deception_artifacts_accessed": 0,
+      "strategy_adaptations": 1,
+      "avg_response_time_ms": 43395.23787740867
+    }
+  },
+  "suites": [
+    {
+      "suite": "cti_technique",
+      "paired_rows": 123,
+      "unpaired_run_a": 0,
+      "unpaired_run_b": 0,
+      "mean_run_a": 0.9598,
+      "mean_run_b": 0.9598,
+      "delta": 0.0,
+      "mean_abs_row_diff": 0.0,
+      "max_abs_row_diff": 0.0,
+      "pass_agreement": 1.0,
+      "pass_agree_count": 123
+    },
+    {
+      "suite": "cti_actor",
+      "paired_rows": 35,
+      "unpaired_run_a": 0,
+      "unpaired_run_b": 0,
+      "mean_run_a": 0.85,
+      "mean_run_b": 0.85,
+      "delta": 0.0,
+      "mean_abs_row_diff": 0.0,
+      "max_abs_row_diff": 0.0,
+      "pass_agreement": 1.0,
+      "pass_agree_count": 35
+    },
+    {
+      "suite": "deception",
+      "paired_rows": 60,
+      "unpaired_run_a": 0,
+      "unpaired_run_b": 0,
+      "mean_run_a": 0.7325,
+      "mean_run_b": 0.7504,
+      "delta": 0.0179,
+      "mean_abs_row_diff": 0.0962,
+      "max_abs_row_diff": 1.0,
+      "pass_agreement": 0.9667,
+      "pass_agree_count": 58
+    }
+  ],
+  "composite": {
+    "paired_rows": 218,
+    "composite_run_a": 0.8796,
+    "composite_run_b": 0.8845,
+    "delta": 0.0049,
+    "mean_abs_row_diff": 0.0265,
+    "pass_agreement": 0.9908,
+    "verdict": "stable"
+  },
+  "headline_metric_deltas": {
+    "ttps_detected": {
+      "run_a": 132,
+      "run_b": 132
+    },
+    "ttps_detected_unique": {
+      "run_a": 67,
+      "run_b": 67
+    },
+    "sessions_with_engagement": {
+      "run_a": 218,
+      "run_b": 218
+    },
+    "persona_correct_assignments": {
+      "run_a": 218,
+      "run_b": 218
+    }
+  },
+  "audited_panel": {
+    "what": "comparison recomputed on the judge-audited rows (harness artifacts reclassified, bait deployments credited, floats rounded); technique/actor rows are unchanged and spliced from the raw runs. Suite means retain the reclassified harness row at its recorded 0.0 (it is a row of the campaign); the deception-only means excluding harness artifacts are in corrections.per_run",
+    "sources": {
+      "run_a": "results/live_benchmark_zodiac_20260922_judgescored.json",
+      "run_b": "results/live_benchmark_zodiac_20260922_run2_judgescored.json"
+    },
+    "suites": [
+      {
+        "suite": "cti_technique",
+        "paired_rows": 123,
+        "unpaired_run_a": 0,
+        "unpaired_run_b": 0,
+        "mean_run_a": 0.9598,
+        "mean_run_b": 0.9598,
+        "delta": 0.0,
+        "mean_abs_row_diff": 0.0,
+        "max_abs_row_diff": 0.0,
+        "pass_agreement": 1.0,
+        "pass_agree_count": 123
+      },
+      {
+        "suite": "cti_actor",
+        "paired_rows": 35,
+        "unpaired_run_a": 0,
+        "unpaired_run_b": 0,
+        "mean_run_a": 0.85,
+        "mean_run_b": 0.85,
+        "delta": 0.0,
+        "mean_abs_row_diff": 0.0,
+        "max_abs_row_diff": 0.0,
+        "pass_agreement": 1.0,
+        "pass_agree_count": 35
+      },
+      {
+        "suite": "deception",
+        "paired_rows": 60,
+        "unpaired_run_a": 0,
+        "unpaired_run_b": 0,
+        "mean_run_a": 0.7433,
+        "mean_run_b": 0.7621,
+        "delta": 0.0187,
+        "mean_abs_row_diff": 0.0971,
+        "max_abs_row_diff": 1.0,
+        "pass_agreement": 0.9667,
+        "pass_agree_count": 58
+      }
+    ],
+    "composite": {
+      "paired_rows": 218,
+      "composite_run_a": 0.8826,
+      "composite_run_b": 0.8877,
+      "delta": 0.0052,
+      "mean_abs_row_diff": 0.0267,
+      "pass_agreement": 0.9908,
+      "verdict": "stable"
+    },
+    "corrections": {
+      "canary_bias_magnitude": 2.1,
+      "per_run": [
+        {
+          "source": "live_benchmark_audited.json",
+          "mean_raw": 0.19,
+          "mean_corrected": 0.4,
+          "bait_credit_rows": 0,
+          "reclassified_harness": 46
+        },
+        {
+          "source": "live_benchmark_full.json",
+          "mean_raw": 0.6446,
+          "mean_corrected": 0.6571,
+          "bait_credit_rows": 1,
+          "reclassified_harness": 0
+        },
+        {
+          "source": "live_benchmark_zodiac_20260922.json",
+          "mean_raw": 0.7325,
+          "mean_corrected": 0.7559,
+          "bait_credit_rows": 1,
+          "reclassified_harness": 1
+        },
+        {
+          "source": "live_benchmark_zodiac_20260922_run2.json",
+          "mean_raw": 0.7504,
+          "mean_corrected": 0.7621,
+          "bait_credit_rows": 1,
+          "reclassified_harness": 0
+        }
+      ]
+    }
+  }
+}

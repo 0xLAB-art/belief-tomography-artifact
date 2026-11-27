@@ -1,0 +1,1737 @@
+{
+  "what": "External baseline comparison on the version-of-record workload (123 technique + 35 actor + 60 persona) with identical deterministic scorers",
+  "limit": 6,
+  "arms": {
+    "stateful_llm": {
+      "arm": "stateful_llm",
+      "description": "stateful LLM honeypot (deepseek-v4-flash-free, HoneyGPT/LLM-SSHH pattern): committed host-state register in prompt + transcript memory + LLM self-validation; no retrieval, no fiction graph, no deterministic verifier, no fail-closed fallback",
+      "state_register": {
+        "hostname": "web-srv-01",
+        "kernel": "5.15.0-91-generic",
+        "os": "Ubuntu 22.04.4 LTS",
+        "arch": "x86_64",
+        "current_user": "webapp",
+        "users": "root, webapp, deploy",
+        "web_root": "/var/www/app",
+        "database": "mysql @ db-01.internal"
+      },
+      "self_validation_tally": {
+        "consistent": 15,
+        "regenerated": 0,
+        "served_despite_contradiction": 0,
+        "generation_error": 3
+      },
+      "elapsed_s": 228.9,
+      "technique_avg": 0.0,
+      "actor_avg": 0.1167,
+      "persona_avg": 0.0833,
+      "technique_pass": "0/6",
+      "actor_pass": "1/6",
+      "persona_pass": "0/6",
+      "metrics": {
+        "honeytoken_triggers": 0,
+        "honeytokens_deployed": 0,
+        "total_sessions": 18,
+        "sessions_with_engagement": 8,
+        "persona_correct_assignments": 0,
+        "persona_total_assignments": 0,
+        "ttps_detected": 0,
+        "ttps_detected_unique": 0,
+        "cti_alerts_generated": 0,
+        "false_positives": 0,
+        "true_positives": 0,
+        "attacker_retention_turns": 0.0,
+        "max_retention_turns": 0,
+        "mean_session_duration_s": 0.0,
+        "deception_artifacts_deployed": 0,
+        "deception_artifacts_accessed": 0,
+        "strategy_adaptations": 0,
+        "avg_response_time_ms": 0.0
+      },
+      "per_row": [
+        {
+          "name": "cti_technique_Explain_T1566.001_in_detail",
+          "suite": "cti_technique",
+          "score": 0.0,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_spear_phishing_work?",
+          "suite": "cti_technique",
+          "score": 0.0,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_T1190_Exploit_Public-Facing_Appl",
+          "suite": "cti_technique",
+          "score": 0.0,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_do_attackers_use_external_remote_ser",
+          "suite": "cti_technique",
+          "score": 0.0,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_valid_accounts_as_an_initial_acc",
+          "suite": "cti_technique",
+          "score": 0.0,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_T1078_Valid_Accounts_technique?",
+          "suite": "cti_technique",
+          "score": 0.0,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Describe_Salt_Typhoon's_targeting_of_tel",
+          "suite": "cti_actor",
+          "score": 0.0,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "cti_actor_What_techniques_does_APT28_use_against_g",
+          "suite": "cti_actor",
+          "score": 0.3,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_How_does_Lazarus_Group_target_financial_",
+          "suite": "cti_actor",
+          "score": 0.1,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "cti_actor_What_is_Volt_Typhoon's_approach_to_criti",
+          "suite": "cti_actor",
+          "score": 0.1,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Describe_FIN7's_attack_patterns_against_",
+          "suite": "cti_actor",
+          "score": 0.1,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "cti_actor_What_is_APT29's_preferred_method_for_ini",
+          "suite": "cti_actor",
+          "score": 0.1,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "deception_What_web_server_are_you_running?",
+          "suite": "deception",
+          "score": 0.0,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "deception_Tell_me_about_your_network_configuration",
+          "suite": "deception",
+          "score": 0.15,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "deception_What_security_tools_do_you_have_deployed",
+          "suite": "deception",
+          "score": 0.15,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "deception_Do_you_have_any_databases_accessible?",
+          "suite": "deception",
+          "score": 0.0,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "deception_What_OS_is_installed_on_the_servers?",
+          "suite": "deception",
+          "score": 0.0,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "deception_Can_you_tell_me_about_your_firewall_rule",
+          "suite": "deception",
+          "score": 0.2,
+          "passed": false,
+          "error": null
+        }
+      ]
+    },
+    "ragin_full_reference": {
+      "arm": "ragin_full (version of record)",
+      "description": "verified deception loop, run 1 of the stability pair",
+      "source": "results/live_benchmark_zodiac_20260922.json",
+      "technique_avg": 0.9598,
+      "actor_avg": 0.85,
+      "persona_avg": 0.7325,
+      "metrics": {
+        "honeytoken_triggers": 0,
+        "honeytokens_deployed": 218,
+        "total_sessions": 218,
+        "sessions_with_engagement": 218,
+        "persona_correct_assignments": 218,
+        "persona_total_assignments": 218,
+        "ttps_detected": 132,
+        "ttps_detected_unique": 67,
+        "cti_alerts_generated": 132,
+        "false_positives": 0,
+        "true_positives": 132,
+        "attacker_retention_turns": 1.0,
+        "max_retention_turns": 218,
+        "mean_session_duration_s": 44.46902459203236,
+        "deception_artifacts_deployed": 218,
+        "deception_artifacts_accessed": 0,
+        "strategy_adaptations": 1,
+        "avg_response_time_ms": 44469.024592032365
+      },
+      "per_row": [
+        {
+          "name": "cti_technique_How_do_attackers_use_external_remote_ser",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_T1566.001_in_detail",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_spear_phishing_work?",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_T1190_Exploit_Public-Facing_Appl",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_T1566.002_spear_phishing_via_lin",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_T1566.001_phishing_attack?",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_supply_chain_compromise_work_T1",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_T1195.002_supply_chain_compromis",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_T1059_Command_and_Scripting_Inte",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_T1078_Valid_Accounts_technique?",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_T1059.001_PowerShell_command_exe",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Describe_how_attackers_run_malicious_com",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_do_attackers_achieve_execution_via_s",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_T1203_Exploitation_for_Client_Ex",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_T1547_Boot_or_Logon_Autostart_Ex",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_power_shell_execution_work_for_",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_do_attackers_create_system_processes",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_persistence_via_scheduled_tasks",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_valid_accounts_as_an_initial_acc",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_T1547.001_Registry_Run_Keys_pers",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_privilege_escalation_with_sudo_a",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_exploitation_for_privilege_esca",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_T1548_Abuse_Elevation_Control_Me",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_T1068_Exploitation_for_Privilege",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_T1053.005_Scheduled_Task_persist",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_defense_evasion_via_process_inje",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_obfuscation_help_attackers_avoi",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_account_creation_as_a_persistenc",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_indicator_removal_in_the_context",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_masquerading_as_a_defense_evasio",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Describe_T1140_Deobfuscate_Decode_Data_f",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_T1211_Signed_Binary_Proxy_Execu",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_credential_dumping_work?",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_brute_forcing_in_credential_acce",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_OS_Credential_Dumping_T1003",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Describe_T1003.001_OS_Credential_Dumping",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_password_brute_forcing_T1110_wo",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_T1552.004_Unsecured_Credentials_",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_indicator_blocking_as_defense_ev",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_discovery_via_network_service_sc",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_remote_system_discovery_in_the_a",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_account_discovery_work_on_a_com",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_service_manipulation_T1543_for_p",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_T1548.003_Bypass_User_Account_Co",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Describe_the_lateral_movement_technique_",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_T1083_File_and_Directory_Discove",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Describe_T1046_Network_Service_Discovery",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_T1021_Remote_Services_lateral_mo",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_use_of_alternate_authentication_",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_T1021.002_SMB/Windows_Admin_Sha",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_remote_services_facilitate_late",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Describe_collection_via_screen_capture",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_system_information_discovery_T10",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_T1114_Email_Collection_technique",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_command_and_control_via_DNS?",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_T1005_Data_from_Local_System_col",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_data_from_local_system_collectio",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_application_layer_protocol_comm",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_encrypted_channel_for_command_an",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_pass_the_hash_T1550.002_lateral_",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_T1102_Web_Service_C2_for_command",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_T1573_Encrypted_Channel_C2_work",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Describe_T1071.004_Application_Layer_Pro",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_exfiltration_over_web_service?",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_T1567_Web_Service_Exfiltration_t",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_exfiltration_over_HTTPS_work?",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_service_stop_as_an_impact_techni",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_T1041_Exfiltration_Over_C2_Chann",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_impact_via_data_encryption_work",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Describe_T1490_Inhibit_System_Recovery_i",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_T1583_Acquire_Infrastructure_res",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_T1486_Data_Encrypted_for_Impact_",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_T1588_Obtain_Capabilities_resour",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_T1195.002_Supply_Chain_Compromis",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Explain_resource_development_using_compr",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_How_does_initial_access_via_supply_chain",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Leverage_default_credentials_T1078.001_f",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_What_is_T1586_Compromise_Accounts_resour",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Use_compromised_SSH_keys_T1133_for_exter",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Execute_malicious_macro_T1204.002_user_e",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Access_target_via_trusted_relationship_T",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Execute_Python_script_T1059_for_command_",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Run_Perl_script_T1059_for_command_inject",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Exploit_public-facing_application_T1190_",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Exploit_client_app_for_execution_via_bro",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Create_local_account_T1136.001_persisten",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Use_RDP_execution_T1021.001_for_remote_c",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Persistence_registry_Run_Keys_T1547.001_",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Persistence_via_T1574_Hijack_Execution_F",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Elevate_privilege_T1548.001_Elevated_Exe",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Bypass_UAC_via_T1548.003_for_privilege_e",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Exploit_vulnerable_driver_T1210_escalati",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Use_T1068_Exploitation_Privilege_Escalat",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Achieve_execution_via_WMI_T1047_on_remot",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Modify_system_process_via_service_creati",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Modify_security_tool_T1562.002_disable_M",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Create_domain_account_T1136.002_AD_persi",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Hide_artifact_NTFS_ADS_T1564.004_alterna",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Dump_SAM_credentials_T1003.002_registry_",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Dump_NTDS.dit_T1003.003_domain_credentia",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Extract_LSA_secrets_T1003.004_registry_c",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_DCSync_dump_T1003.006_domain_credential_",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Extract_hashes_from_stores_T1003.007_pas",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Obfuscate_via_software_packing_T1027.002",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Compile_HTML_file_T1204.001_client-side_",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Harvest_browser_credentials_T1539_steali",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Keylogging_T1056_for_credential_capture_",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Find_system_owner_T1080_discovery_inform",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Forge_Kerberos_TGT_T1558_golden_ticket_a",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Extract_credentials_from_password_manage",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Disable_Windows_Defender_T1562.001_defen",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Enumerate_domain_trusts_T1482_attack_sur",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Compromise_software_supply_chain_T1195_b",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Forge_silver_ticket_T1558.003_Kerberos_a",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Steal_session_cookie_T1539.001_via_netwo",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Access_VPN_T1133_external_remote_service",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Embedded_content_macro_T1203_client_exec",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Disable_Defender_registry_T1562.001_defe",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Target_managed_service_provider_T1199_in",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Steal_web_session_cookie_T1539_via_netwo",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Hide_data_in_NTFS_ADS_T1564_alternate_da",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_WMI_persistence_T1546_event_subscription",
+          "suite": "cti_technique",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_technique_Cached_domain_creds_T1003.005_access_wit",
+          "suite": "cti_technique",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_How_does_Lazarus_Group_target_financial_",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Describe_Salt_Typhoon's_targeting_of_tel",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_What_is_Volt_Typhoon's_approach_to_criti",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_How_does_APT41_operate_against_enterpris",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Describe_Cozy_Bear's_targeting_of_diplom",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Describe_FIN7's_attack_patterns_against_",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_What_techniques_does_APT28_use_against_g",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_What_is_Fancy_Bear's_approach_to_militar",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_What_is_APT29's_preferred_method_for_ini",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_How_does_Hafnium_target_on-premises_Exch",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_What_is_the_Darkside_ransomware_group's_",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Describe_APT37's_targeting_of_South_Kore",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_How_does_Revil_deploy_its_ransomware_pay",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_What_is_APT27's_method_for_targeting_tel",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Describe_UNC2452_SolarWinds_supply_chain",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Explain_APT32_OceanLotus_targeting_Vietn",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_What_is_DarkHotel_group_targeting_travel",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_How_does_UNC3886_target_VMware_infrastru",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Describe_Sandworm's_destructive_attack_p",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Describe_GhostEmperor_APT_targeting_gove",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Describe_APT38_Lazarus_Group_financial_t",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Explain_APT50_targeting_South_Asian_gove",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_What_is_Carbanak_group_ATM_heist_techniq",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Describe_LuckyMouse_APT41_cyber_espionag",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_What_is_APT37_Reaper_targeting_South_Kor",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Describe_Turla_group_satellite-based_cov",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_How_does_Transparent_Tribe_APT36_target_",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_What_is_Seedworm_targeting_energy_sector",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Explain_APT20_targeting_government_and_a",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Describe_APT43_state-sponsored_cybercrim",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_How_does_APT27_target_European_telecom_o",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_What_is_Charming_Kitten_targeting_diplom",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_What_is_Earth_Lusca_targeting_APAC_telec",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Describe_Cobalt_Group_financial_cybercri",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "cti_actor_Explain_Dragonfly/Energetic_Bear_targeti",
+          "suite": "cti_actor",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_web_server_are_you_running?",
+          "suite": "deception",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_OS_is_installed_on_the_servers?",
+          "suite": "deception",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_security_tools_do_you_have_deployed",
+          "suite": "deception",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Can_you_tell_me_about_your_firewall_rule",
+          "suite": "deception",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_me_the_running_processes_on_this_ma",
+          "suite": "deception",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_users_are_currently_logged_in?",
+          "suite": "deception",
+          "score": 0.95,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_cron_jobs_are_configured_on_this_sy",
+          "suite": "deception",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Tell_me_about_your_network_configuration",
+          "suite": "deception",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Do_you_have_any_databases_accessible?",
+          "suite": "deception",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_me_the_network_interfaces_and_their",
+          "suite": "deception",
+          "score": 0.75,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_services_are_currently_running?",
+          "suite": "deception",
+          "score": 0.5,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_me_the_SSH_configuration",
+          "suite": "deception",
+          "score": 0.9500000000000001,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Can_you_check_if_there_are_any_suspiciou",
+          "suite": "deception",
+          "score": 0.8,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_patches_have_been_applied_recently?",
+          "suite": "deception",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_I_need_to_find_all_files_modified_in_the",
+          "suite": "deception",
+          "score": 0.6,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_are_the_current_network_connections",
+          "suite": "deception",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Check_the_syslog_for_any_authentication_",
+          "suite": "deception",
+          "score": 0.5,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_me_the_crontab_for_all_users_on_thi",
+          "suite": "deception",
+          "score": 0.7,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Check_the_system_logs_for_any_recent_act",
+          "suite": "deception",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_me_the_current_iptables_rules_with_",
+          "suite": "deception",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_How_do_I_generate_a_packet_capture_for_t",
+          "suite": "deception",
+          "score": 0.5,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_is_the_disk_I/O_wait_percentage_and",
+          "suite": "deception",
+          "score": 0.75,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_List_all_Docker_containers_currently_run",
+          "suite": "deception",
+          "score": 0.9500000000000001,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_disk_space_is_available_on_the_syst",
+          "suite": "deception",
+          "score": 0.7000000000000001,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_me_all_environment_variables_that_c",
+          "suite": "deception",
+          "score": 0.25,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "deception_Check_if_there_are_any_unrecognized_cron",
+          "suite": "deception",
+          "score": 0.9500000000000001,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_me_the_top_5_processes_by_memory_us",
+          "suite": "deception",
+          "score": 0.775,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_are_the_current_TCP_connections_in_",
+          "suite": "deception",
+          "score": 0.825,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Can_you_check_the_/var/log/auth.log_for_",
+          "suite": "deception",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_is_the_current_ulimit_setting_for_o",
+          "suite": "deception",
+          "score": 0.35,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_is_the_current_SELinux_context_of_t",
+          "suite": "deception",
+          "score": 0.65,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_me_the_auditd_rules_currently_confi",
+          "suite": "deception",
+          "score": 0.55,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_processes_are_listening_on_privileg",
+          "suite": "deception",
+          "score": 0.6749999999999999,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Can_you_verify_the_integrity_of_the_pass",
+          "suite": "deception",
+          "score": 0.7499999999999999,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Check_if_any_process_has_capabilities_se",
+          "suite": "deception",
+          "score": 0.6,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_me_the_nginx_access_log_filtered_fo",
+          "suite": "deception",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Check_if_there_are_any_kernel_modules_th",
+          "suite": "deception",
+          "score": 0.44999999999999996,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_all_established_connections_to_port",
+          "suite": "deception",
+          "score": 0.825,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_me_the_last_10_lines_of_/var/log/sy",
+          "suite": "deception",
+          "score": 0.7,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_is_the_current_swap_usage_and_which",
+          "suite": "deception",
+          "score": 0.7000000000000001,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_is_the_current_TCP_congestion_contr",
+          "suite": "deception",
+          "score": 0.35,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_me_zombie_processes_and_their_paren",
+          "suite": "deception",
+          "score": 0.35,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_List_all_cron_jobs_that_run_as_root_acro",
+          "suite": "deception",
+          "score": 0.8999999999999999,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Check_whether_any_cron_job_has_been_modi",
+          "suite": "deception",
+          "score": 0.6749999999999999,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Has_the_root_password_been_changed_in_th",
+          "suite": "deception",
+          "score": 0.7,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_List_all_active_firewall_rules_with_hit_",
+          "suite": "deception",
+          "score": 1.0,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_is_the_current_load_average_compare",
+          "suite": "deception",
+          "score": 0.5,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_all_running_Docker_containers_with_",
+          "suite": "deception",
+          "score": 0.9500000000000001,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Check_for_unauthorized_SSH_keys_in_autho",
+          "suite": "deception",
+          "score": 0.0,
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "deception_Check_if_any_cron_jobs_were_added_in_las",
+          "suite": "deception",
+          "score": 0.65,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Is_SELinux_enforcing_and_what_contexts_d",
+          "suite": "deception",
+          "score": 0.6,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_audit_log_entries_for_privilege_esc",
+          "suite": "deception",
+          "score": 0.6,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_third-party_packages_are_installed_",
+          "suite": "deception",
+          "score": 0.7,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_is_the_current_system_uptime_and_la",
+          "suite": "deception",
+          "score": 0.55,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_all_listening_ports_and_their_bound",
+          "suite": "deception",
+          "score": 0.95,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Check_last_password_changes_for_all_user",
+          "suite": "deception",
+          "score": 0.45,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Are_there_any_known_vulnerable_packages_",
+          "suite": "deception",
+          "score": 0.6,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Which_users_have_sudo_access_and_their_l",
+          "suite": "deception",
+          "score": 0.575,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_What_is_the_DNS_resolver_config_and_exfi",
+          "suite": "deception",
+          "score": 0.75,
+          "passed": true,
+          "error": null
+        },
+        {
+          "name": "deception_Show_kernel_ring_buffer_for_driver_and_h",
+          "suite": "deception",
+          "score": 0.85,
+          "passed": true,
+          "error": null
+        }
+      ]
+    }
+  }
+}

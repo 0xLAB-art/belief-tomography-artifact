@@ -1,0 +1,164 @@
+{
+  "schema": "ragin.laya_v12.balanced_allrows_redesign.datasets_manifest.v1",
+  "status": "FROZEN_BEFORE_TRAINING_CALLS",
+  "date": "2026-10-17",
+  "study": "laya_v12_balanced_allrows_gpu_redesign_v1",
+  "seed": 20261022,
+  "builder": {
+    "path": "scripts/laya_v11_matched_coverage_gpu_build_sets_v1.py",
+    "sha256": "96d5988d446398ff3391cd723921cff37f1642b0f5aab4880c9e77d96bb31118"
+  },
+  "contract": {
+    "path": "results/laya_decision_v3/laya_v3_task_adaptation_candidate_freeze_v1.json",
+    "sha256": "c3fea3c979ed33b8831fcecee7e4ed8eea16bd9bf57bc23690071700c0feca9b"
+  },
+  "files": {
+    "training_set": {
+      "path": "results/laya_decision_v4/laya_v12_balanced_allrows_gpu_redesign_v1_training_set_freeze_v1.json",
+      "sha256": "e20f527719cc359403f4ea07281d566093f08af790d237ca8f659fa5eaa1b6cb",
+      "cases": 423
+    },
+    "development_set": {
+      "path": "results/laya_decision_v4/laya_v6_selective_encoder_gpu_redesign_v1_development_set_freeze_v1.json",
+      "sha256": "7278c3bb0c90d22d9756bd19f26ac0adf4de75bf79f078591521e7ca65192491",
+      "cases": 60,
+      "note": "reused byte-identical from the frozen v6 set"
+    },
+    "evaluation_set": {
+      "path": "results/laya_decision_v4/laya_v6_selective_encoder_gpu_redesign_v1_evaluation_set_freeze_v1.json",
+      "sha256": "dd6c6dbcda9050dea7ad68cc417f97d1a28e33613f88e96bfbb28e30dfebe4a3",
+      "cases": 60,
+      "note": "reused byte-identical from the frozen v6 set"
+    },
+    "injection_set": {
+      "path": "results/laya_decision_v4/laya_v6_selective_encoder_gpu_redesign_v1_injection_set_freeze_v1.json",
+      "sha256": "166117d37a05972e9b97d85795a7e1c2eb6168fec3f23f8926c29d5c175ced7d",
+      "cases": 24,
+      "note": "reused byte-identical from the frozen v6 set"
+    },
+    "training_rows": {
+      "path": "results/laya_decision_v4/laya_v12_balanced_allrows_gpu_redesign_v1_training_rows_v1.jsonl",
+      "sha256": "3b12552b6e7ea5d266440fd6f15a272777354710217d4c38ca11425abc160815",
+      "rows": 423,
+      "items_expected": 423,
+      "note": "evidence-state-only supervision: one item per row; laya's class-agnostic x3 evidence-state oversampling applies at training time"
+    }
+  },
+  "checks": {
+    "structural": {
+      "verdict": "PASS",
+      "problems": [],
+      "problem_count_truncated": false,
+      "tr": {
+        "tr_case_count": 423,
+        "archetype_counts": {
+          "required_conflict": 27,
+          "required_contradiction": 27,
+          "required_ioc_only": 36,
+          "required_missing": 36,
+          "required_partial": 72,
+          "required_weak": 36,
+          "sufficient": 189
+        },
+        "per_archetype_scenario_coverage": {
+          "required_conflict": {
+            "identity": 3,
+            "artifact": 3,
+            "scheduler": 3,
+            "archive": 3,
+            "topology2": 3,
+            "config": 3,
+            "repository": 3,
+            "service": 3,
+            "database": 3
+          },
+          "required_contradiction": {
+            "identity": 3,
+            "artifact": 3,
+            "scheduler": 3,
+            "archive": 3,
+            "topology2": 3,
+            "config": 3,
+            "repository": 3,
+            "service": 3,
+            "database": 3
+          },
+          "required_ioc_only": {
+            "identity": 4,
+            "artifact": 4,
+            "scheduler": 4,
+            "archive": 4,
+            "topology2": 4,
+            "config": 4,
+            "repository": 4,
+            "service": 4,
+            "database": 4
+          },
+          "required_missing": {
+            "identity": 4,
+            "artifact": 4,
+            "scheduler": 4,
+            "archive": 4,
+            "topology2": 4,
+            "config": 4,
+            "repository": 4,
+            "service": 4,
+            "database": 4
+          },
+          "required_partial": {
+            "identity": 8,
+            "artifact": 8,
+            "scheduler": 8,
+            "archive": 8,
+            "topology2": 8,
+            "config": 8,
+            "repository": 8,
+            "service": 8,
+            "database": 8
+          },
+          "required_weak": {
+            "identity": 4,
+            "artifact": 4,
+            "scheduler": 4,
+            "archive": 4,
+            "topology2": 4,
+            "config": 4,
+            "repository": 4,
+            "service": 4,
+            "database": 4
+          },
+          "sufficient": {
+            "identity": 21,
+            "artifact": 21,
+            "scheduler": 21,
+            "archive": 21,
+            "topology2": 21,
+            "config": 21,
+            "repository": 21,
+            "service": 21,
+            "database": 21
+          }
+        },
+        "class_counts": {
+          "SUFFICIENT": 189,
+          "INSUFFICIENT": 180,
+          "CONFLICTING": 54
+        },
+        "evidence_state_only_rows": true,
+        "distinct_states": 423
+      }
+    },
+    "injection_construction": {
+      "note": "INJ is reused byte-identical from the frozen v6 set (laya_v6_selective_encoder_gpu_redesign_v1); construction checks are the ones pinned in the v6 datasets manifest.",
+      "verdict": "PASS",
+      "source": "v6_datasets_manifest_checks"
+    },
+    "disjointness": {
+      "tr_stream_seed": 20261022,
+      "prior_files_scanned_total": 152,
+      "collisions_with_prior_sets": [],
+      "verdict": "PASS"
+    },
+    "verdict": "PASS"
+  }
+}

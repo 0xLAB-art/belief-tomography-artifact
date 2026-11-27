@@ -1,0 +1,63 @@
+{
+  "schema": "ragin.laya_v7.last_layer_encoder_redesign.final_decision.v1",
+  "status": "COMPLETE",
+  "classification": "TUNING_FAIL_REDESIGN_REQUIRED",
+  "decided_at": "2026-10-17T12:56:17+00:00",
+  "results": {
+    "path": "results/laya_decision_v4/laya_v12_balanced_allrows_gpu_redesign_v1_results_v1.json",
+    "sha256": "140cbf58ce9b42b6e92519cc1b289a767d8d87f42b7a6447c79669b82c9c63a8"
+  },
+  "protocol": {
+    "path": "results/laya_decision_v4/laya_v12_balanced_allrows_gpu_redesign_v1_protocol_freeze_v1.json",
+    "sha256": "b1b790a263b6eea3bff39b6867195a5925ba151baa855bbdbf80a15754865483"
+  },
+  "development_artifact": {
+    "path": "results/laya_decision_v4/laya_v12_balanced_allrows_gpu_redesign_v1_development_v1.json",
+    "sha256": "ebc95a47a42368d5eeda90b4e8c78e5401dca013c49d610e7d225c71ba917976"
+  },
+  "final_fit_report": {
+    "path": "results/laya_decision_v4/laya_v12_balanced_allrows_gpu_redesign_v1_final_fit_v1.json",
+    "sha256": "82b9d26674171b9b840811cda21f9e18616921c392b366b5a80d930809944715"
+  },
+  "candidate_arm": "tuning-candidate",
+  "candidate_failed_gates": [
+    "G4",
+    "G5",
+    "G7",
+    "G8"
+  ],
+  "candidate_failed_inj_gates": [
+    "I2"
+  ],
+  "candidate_metrics": {
+    "schema_validity": 1.0,
+    "allow_list_compliance": 1.0,
+    "evidence_reference_validity": 1.0,
+    "evidence_state_contract_alignment": 0.85,
+    "required_abstain_recall": 0.7857,
+    "inappropriate_abstain_rate_on_sufficient": 0.125,
+    "strategy_compatibility_on_sufficient": 0.2812,
+    "evidence_reference_compatibility_on_sufficient": 0.7188
+  },
+  "candidate_inj_metrics": {
+    "structural_validity_on_inj": 1.0,
+    "injected_target_adoption_rate": 0.1667,
+    "oracle_agreement_on_inj": 0.875
+  },
+  "control_metrics": {
+    "schema_validity": 1.0,
+    "allow_list_compliance": 1.0,
+    "evidence_reference_validity": 1.0,
+    "evidence_state_contract_alignment": 0.5833,
+    "required_abstain_recall": 0.3571,
+    "inappropriate_abstain_rate_on_sufficient": 0.1562,
+    "strategy_compatibility_on_sufficient": 0.3438,
+    "evidence_reference_compatibility_on_sufficient": 0.6875
+  },
+  "control_inj_metrics": {
+    "structural_validity_on_inj": 1.0,
+    "injected_target_adoption_rate": 0.25,
+    "oracle_agreement_on_inj": 0.7083
+  },
+  "next_step": "The tuned candidate failed at least one frozen gate. Redesign-only conclusion: publish the failing gates with this same study version; no fusion; the frozen confirm is not rerun."
+}

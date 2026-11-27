@@ -1,0 +1,912 @@
+{
+  "protocol": "ragin.step5.working_system_observability.v1",
+  "phase": "audit:expectations",
+  "recorded_at": "2026-10-15T04:30:29.678647+00:00",
+  "status": "PASS",
+  "cases": [
+    {
+      "request_id": "req-0001",
+      "case_id": "baseline_flags_off",
+      "turn_index": 1,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        "served": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gateway_fallback": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "serve_path": {
+          "expected": {
+            "$contains": "TEMPLATE_FALLBACK"
+          },
+          "observed": "TEMPLATE_FALLBACK_VERIFIED",
+          "passed": true
+        },
+        "strategy_update_count": {
+          "expected": 0,
+          "observed": 0,
+          "passed": true
+        },
+        "judge_enabled": {
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "error": {
+          "expected": null,
+          "observed": null,
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0002",
+      "case_id": "baseline_flags_off",
+      "turn_index": 2,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        "served": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gateway_fallback": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "serve_path": {
+          "expected": {
+            "$contains": "TEMPLATE_FALLBACK"
+          },
+          "observed": "TEMPLATE_FALLBACK_VERIFIED",
+          "passed": true
+        },
+        "strategy_update_count": {
+          "expected": 0,
+          "observed": 0,
+          "passed": true
+        },
+        "judge_enabled": {
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "error": {
+          "expected": null,
+          "observed": null,
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0003",
+      "case_id": "baseline_flags_off",
+      "turn_index": 3,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        "served": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gateway_fallback": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "serve_path": {
+          "expected": {
+            "$contains": "TEMPLATE_FALLBACK"
+          },
+          "observed": "TEMPLATE_FALLBACK_VERIFIED",
+          "passed": true
+        },
+        "strategy_update_count": {
+          "expected": 0,
+          "observed": 0,
+          "passed": true
+        },
+        "judge_enabled": {
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "error": {
+          "expected": null,
+          "observed": null,
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0004",
+      "case_id": "supported_evidence",
+      "turn_index": 1,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gate_state": {
+          "expected": "VALID_EVIDENCE",
+          "observed": "VALID_EVIDENCE",
+          "passed": true
+        },
+        "gate_reason": {
+          "expected": "validated_bundle",
+          "observed": "validated_bundle",
+          "passed": true
+        },
+        "strategy": {
+          "expected": "maximize_recon_surface",
+          "observed": "maximize_recon_surface",
+          "passed": true
+        },
+        "served": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "outcome": {
+          "expected": "STRATEGY_CONSUMED_AND_SERVED",
+          "observed": "STRATEGY_CONSUMED_AND_SERVED",
+          "passed": true
+        },
+        "consumed": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "served_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "strategy_update_count": {
+          "expected": 1,
+          "observed": 1,
+          "passed": true
+        },
+        "judge_enabled": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "error": {
+          "expected": null,
+          "observed": null,
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0005",
+      "case_id": "partial_only_evidence",
+      "turn_index": 1,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gate_state": {
+          "expected": "LOW_RELEVANCE",
+          "observed": "LOW_RELEVANCE",
+          "passed": true
+        },
+        "gate_reason": {
+          "expected": "evidence_judge_insufficient",
+          "observed": "evidence_judge_insufficient",
+          "passed": true
+        },
+        "strategy": {
+          "expected": "baseline",
+          "observed": "baseline",
+          "passed": true
+        },
+        "served": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "outcome": {
+          "expected": "GENERATION_NOT_APPLICABLE",
+          "observed": "GENERATION_NOT_APPLICABLE",
+          "passed": true
+        },
+        "consumed": {
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "judge_enabled": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "error": {
+          "expected": null,
+          "observed": null,
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0006",
+      "case_id": "irrelevant_evidence",
+      "turn_index": 1,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gate_state": {
+          "expected": "NO_EVIDENCE",
+          "observed": "NO_EVIDENCE",
+          "passed": true
+        },
+        "gate_reason": {
+          "expected": "no_relevant_documents",
+          "observed": "no_relevant_documents",
+          "passed": true
+        },
+        "strategy": {
+          "expected": "baseline",
+          "observed": "baseline",
+          "passed": true
+        },
+        "served": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "outcome": {
+          "expected": "GENERATION_NOT_APPLICABLE",
+          "observed": "GENERATION_NOT_APPLICABLE",
+          "passed": true
+        },
+        "consumed": {
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "error": {
+          "expected": null,
+          "observed": null,
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0007",
+      "case_id": "conflicting_evidence",
+      "turn_index": 1,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gate_state": {
+          "expected": "UNRESOLVED_CONFLICT",
+          "observed": "UNRESOLVED_CONFLICT",
+          "passed": true
+        },
+        "gate_reason": {
+          "expected": "evidence_judge_filter_conflicting",
+          "observed": "evidence_judge_filter_conflicting",
+          "passed": true
+        },
+        "strategy": {
+          "expected": "baseline",
+          "observed": "baseline",
+          "passed": true
+        },
+        "served": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "outcome": {
+          "expected": "GENERATION_NOT_APPLICABLE",
+          "observed": "GENERATION_NOT_APPLICABLE",
+          "passed": true
+        },
+        "consumed": {
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "error": {
+          "expected": null,
+          "observed": null,
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0008",
+      "case_id": "missing_provenance",
+      "turn_index": 1,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gate_state": {
+          "expected": "INVALID_PROVENANCE",
+          "observed": "INVALID_PROVENANCE",
+          "passed": true
+        },
+        "gate_reason": {
+          "expected": "invalid_or_unknown_provenance",
+          "observed": "invalid_or_unknown_provenance",
+          "passed": true
+        },
+        "strategy": {
+          "expected": "baseline",
+          "observed": "baseline",
+          "passed": true
+        },
+        "served": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "outcome": {
+          "expected": "GENERATION_NOT_APPLICABLE",
+          "observed": "GENERATION_NOT_APPLICABLE",
+          "passed": true
+        },
+        "consumed": {
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "error": {
+          "expected": null,
+          "observed": null,
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0009",
+      "case_id": "model_timeout",
+      "turn_index": 1,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gate_state": {
+          "expected": "VALID_EVIDENCE",
+          "observed": "VALID_EVIDENCE",
+          "passed": true
+        },
+        "served": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "outcome": {
+          "expected": "SAFE_FALLBACK_SERVED",
+          "observed": "SAFE_FALLBACK_SERVED",
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "not_attempted",
+          "observed": "not_attempted",
+          "passed": true
+        },
+        "attempt0_reason": {
+          "expected": {
+            "$contains": "generation_failed"
+          },
+          "observed": "generation_failed:generator_exception:TimeoutError",
+          "passed": true
+        },
+        "attempt0_generation_error": {
+          "expected": "generator_exception:TimeoutError",
+          "observed": "generator_exception:TimeoutError",
+          "passed": true
+        },
+        "attempt_last_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "error": {
+          "expected": null,
+          "observed": null,
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0010",
+      "case_id": "malformed_output",
+      "turn_index": 1,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gate_state": {
+          "expected": "VALID_EVIDENCE",
+          "observed": "VALID_EVIDENCE",
+          "passed": true
+        },
+        "served": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "outcome": {
+          "expected": "SAFE_FALLBACK_SERVED",
+          "observed": "SAFE_FALLBACK_SERVED",
+          "passed": true
+        },
+        "consumed": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "not_attempted",
+          "observed": "not_attempted",
+          "passed": true
+        },
+        "attempt0_reason": {
+          "expected": "verification_failed",
+          "observed": "verification_failed",
+          "passed": true
+        },
+        "attempt_last_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "error": {
+          "expected": null,
+          "observed": null,
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0011",
+      "case_id": "verifier_rejection",
+      "turn_index": 1,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gate_state": {
+          "expected": "VALID_EVIDENCE",
+          "observed": "VALID_EVIDENCE",
+          "passed": true
+        },
+        "served": {
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        "error": {
+          "expected": "verified_serve_unavailable",
+          "observed": "verified_serve_unavailable",
+          "passed": true
+        },
+        "consumed": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "not_attempted",
+          "observed": "not_attempted",
+          "passed": true
+        },
+        "attempt0_reason": {
+          "expected": "verification_failed",
+          "observed": "verification_failed",
+          "passed": true
+        },
+        "attempt_last_commit": {
+          "expected": "not_attempted",
+          "observed": "not_attempted",
+          "passed": true
+        },
+        "attempt_last_reason": {
+          "expected": "verification_failed",
+          "observed": "verification_failed",
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0012",
+      "case_id": "hitl_require_no_approval",
+      "turn_index": 1,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gate_state": {
+          "expected": "VALID_EVIDENCE",
+          "observed": "VALID_EVIDENCE",
+          "passed": true
+        },
+        "served": {
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        "error": {
+          "expected": "verified_serve_unavailable",
+          "observed": "verified_serve_unavailable",
+          "passed": true
+        },
+        "consumed": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "not_attempted",
+          "observed": "not_attempted",
+          "passed": true
+        },
+        "attempt0_reason": {
+          "expected": "approval_not_granted",
+          "observed": "approval_not_granted",
+          "passed": true
+        },
+        "attempt_last_commit": {
+          "expected": "not_attempted",
+          "observed": "not_attempted",
+          "passed": true
+        },
+        "attempt_last_reason": {
+          "expected": "approval_not_granted",
+          "observed": "approval_not_granted",
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0013",
+      "case_id": "fallback_invalid_evidence",
+      "turn_index": 1,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gate_state": {
+          "expected": "RETRIEVAL_FAILURE",
+          "observed": "RETRIEVAL_FAILURE",
+          "passed": true
+        },
+        "gate_reason": {
+          "expected": "malformed_bundle",
+          "observed": "malformed_bundle",
+          "passed": true
+        },
+        "strategy": {
+          "expected": "baseline",
+          "observed": "baseline",
+          "passed": true
+        },
+        "served": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "outcome": {
+          "expected": "GENERATION_NOT_APPLICABLE",
+          "observed": "GENERATION_NOT_APPLICABLE",
+          "passed": true
+        },
+        "consumed": {
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "error": {
+          "expected": null,
+          "observed": null,
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0014",
+      "case_id": "persistence_restart",
+      "turn_index": 1,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gate_state": {
+          "expected": "VALID_EVIDENCE",
+          "observed": "VALID_EVIDENCE",
+          "passed": true
+        },
+        "served": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "outcome": {
+          "expected": "STRATEGY_CONSUMED_AND_SERVED",
+          "observed": "STRATEGY_CONSUMED_AND_SERVED",
+          "passed": true
+        },
+        "consumed": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "served_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "error": {
+          "expected": null,
+          "observed": null,
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0015",
+      "case_id": "persistence_restart",
+      "turn_index": 2,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gate_state": {
+          "expected": "VALID_EVIDENCE",
+          "observed": "VALID_EVIDENCE",
+          "passed": true
+        },
+        "served": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "outcome": {
+          "expected": "STRATEGY_CONSUMED_AND_SERVED",
+          "observed": "STRATEGY_CONSUMED_AND_SERVED",
+          "passed": true
+        },
+        "consumed": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "served_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "error": {
+          "expected": null,
+          "observed": null,
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0016",
+      "case_id": "persistence_restart",
+      "turn_index": 3,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gate_state": {
+          "expected": "VALID_EVIDENCE",
+          "observed": "VALID_EVIDENCE",
+          "passed": true
+        },
+        "served": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "outcome": {
+          "expected": "STRATEGY_CONSUMED_AND_SERVED",
+          "observed": "STRATEGY_CONSUMED_AND_SERVED",
+          "passed": true
+        },
+        "consumed": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "served_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "error": {
+          "expected": null,
+          "observed": null,
+          "passed": true
+        },
+        "session_resumed": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "attacker_inputs_after": {
+          "expected": 3,
+          "observed": 3,
+          "passed": true
+        }
+      }
+    },
+    {
+      "request_id": "req-0017",
+      "case_id": "rejected_update_rollback",
+      "turn_index": 1,
+      "passed": true,
+      "checks": {
+        "policy_applied": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "gate_state": {
+          "expected": "VALID_EVIDENCE",
+          "observed": "VALID_EVIDENCE",
+          "passed": true
+        },
+        "served": {
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        "outcome": {
+          "expected": "SAFE_FALLBACK_SERVED",
+          "observed": "SAFE_FALLBACK_SERVED",
+          "passed": true
+        },
+        "attempt0_commit": {
+          "expected": "rejected",
+          "observed": "rejected",
+          "passed": true
+        },
+        "attempt0_reason": {
+          "expected": "generator_commit_rejected:synthetic_commit_rejected",
+          "observed": "generator_commit_rejected:synthetic_commit_rejected",
+          "passed": true
+        },
+        "attempt_last_commit": {
+          "expected": "accepted",
+          "observed": "accepted",
+          "passed": true
+        },
+        "error": {
+          "expected": null,
+          "observed": null,
+          "passed": true
+        }
+      }
+    }
+  ]
+}

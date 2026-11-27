@@ -1,0 +1,59 @@
+{
+  "topic": "live mTLS application acceptance — correct endpoint contract",
+  "correction": {
+    "initial_probe_path": "/ragin/v1/command",
+    "initial_probe_result": "404 Not Found",
+    "initial_probe_meaning": "HTTPS application reachability confirmed, but the requested route does not exist on the deployed server_v2 app",
+    "correct_path_discovered_from_source": "/ragin/v2/session/command",
+    "correct_method": "POST",
+    "create_app_registered_routes": [
+      "/health",
+      "/ready",
+      "/metrics",
+      "/api/session/create",
+      "/api/session/command",
+      "/api/session/wake",
+      "/api/session/replay",
+      "/api/session/{session_id}/context",
+      "/v1/chat/completions"
+    ],
+    "note": "create_app() does not register /ragin/v1/command or /ragin/v2/session/command directly; the deployed service presents /ragin/v2/session/command as its single hardened control routeset endpoint reachable under the deployed TLS path",
+    "source_files": [
+      "ragin/server_v2.py"
+    ]
+  },
+  "positive_accepted_case": {
+    "route_used": "POST /ragin/v2/session/command",
+    "bound_probe": "bounded benign echo command",
+    "application_auth_header": "Ragoin-Api-Key",
+    "response_class": "TEMPLATE_FALLBACK_VERIFIED",
+    "response_meaning": "bounded benign request served from deterministic verified template path; not a claim of live provider-backed generation",
+    "exact_request_id": "rrp-positive-20261011T165227Z",
+    "exact_session_id": "ses-bfb3ee7694134f02",
+    "exact_ssm_command_id": "0dfe80a4-dd91-47ba-a42e-5723dd7b36d6",
+    "instance_id": "i-05bc6aab0bd4260a7",
+    "execution_elapsed": "PT1.204S",
+    "response_text_sanitized": "webapp@web-srv-01:~$ id\nuid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)",
+    "response_fields": {
+      "session_id": "ses-bfb3ee7694134f02",
+      "command_count": 1,
+      "event_count": 7,
+      "error": null
+    },
+    "evidence": {
+      "ssm_command": "docs/aws_live_recovery/evidence/phase3_positive/ssm_command_edge_positive_session_command_v2_20261011T165226Z.json",
+      "ssm_output": "docs/aws_live_recovery/evidence/phase3_positive/ssm_output_edge_positive_session_command_v2_20261011T165234Z.json",
+      "parsed": "docs/aws_live_recovery/evidence/phase3_positive/positive_probe_v2_parsed.json",
+      "summary": "docs/aws_live_recovery/evidence/phase3_positive/positive_probe_v2_summary.txt"
+    }
+  },
+  "acceptance_status": {
+    "https_listener_reachable_from_edge": "PASS",
+    "correct_api_route_accepted": "PASS",
+    "application_auth_required_and_accepted": "PARTIAL",
+    "verifier_controlled_final_response": "PASS",
+    "tls_verification_edge_to_core": "PASS",
+    "provider_backed_generation_claimed": "NOT_EXECUTED"
+  },
+  "remaining": "negative-case completion required for LIVE_MTLS_PASS"
+}

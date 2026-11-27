@@ -1,0 +1,874 @@
+{
+  "review": "adversarial_interpretation_review",
+  "role": "F",
+  "scope": {
+    "inputs_read": [
+      "results/laya_research/blind_annotation_confirmatory.json",
+      "docs/laya_integration/INDEPENDENT_LABELING_PROTOCOL.md"
+    ],
+    "cases_in_packet": 120,
+    "ground_truth_status": "Exploratory security interpretation only; no human ground truth is assigned here.",
+    "severity_definition": "Severity is the risk that a superficial label would materially misinterpret the recorded behavior, not a claim about attacker severity."
+  },
+  "case_findings": [
+    {
+      "case_id": "00dbac0794ca",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "UNCERTAIN or BENIGN knowledge request; not observed remote access",
+      "reason": "The line names compromised SSH keys and an ATT&CK technique but contains no key use, connection, or result. Treating the named technique as an executed attack would overlabel it."
+    },
+    {
+      "case_id": "019b4481c760",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "single-command-insufficient"],
+      "review_interpretation": "BENIGN administrative diagnostic or weak RECON; context is insufficient to choose attack intent",
+      "reason": "Congestion-control and queue-discipline inspection is a normal performance/debugging task. A single system-state query does not establish reconnaissance."
+    },
+    {
+      "case_id": "073ee5a7d918",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "The text asks about an actor and target; it does not perform targeting, access, or collection."
+    },
+    {
+      "case_id": "0a1631f174eb",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "shell-query-recon"],
+      "review_interpretation": "BENIGN security administration or RECON, not exploitation",
+      "reason": "Listening-process enumeration is observable discovery only. The same query supports incident response and service inventory, so a binary attack label requires more sequence or intent evidence."
+    },
+    {
+      "case_id": "0cefcd8a03b7",
+      "severity": "medium",
+      "finding_type": ["package-inspection-persistence", "admin-recon-overlap"],
+      "review_interpretation": "BENIGN audit or RECON; not PERSISTENCE",
+      "reason": "Listing all crontabs inspects possible persistence but does not create or modify a job."
+    },
+    {
+      "case_id": "0d67d1113703",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "The line explains a defense-evasion concept and shows no indicator blocking or tampering."
+    },
+    {
+      "case_id": "0e27da0444c0",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Explaining masquerading is not masquerading activity."
+    },
+    {
+      "case_id": "0f7315251b4f",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "The evidence discusses alternate authentication material but contains no credential use or lateral movement."
+    },
+    {
+      "case_id": "16cb0880a2cb",
+      "severity": "low",
+      "finding_type": ["admin-recon-overlap", "single-command-insufficient"],
+      "review_interpretation": "BENIGN administration",
+      "reason": "Docker inventory plus resource usage is explicitly consistent with operations monitoring; container enumeration alone is not an attack."
+    },
+    {
+      "case_id": "177f12fec88d",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "file-access-intent"],
+      "review_interpretation": "BENIGN firewall audit or weak RECON; not firewall manipulation",
+      "reason": "Reading rules and counters observes state. No rule change or evasion is shown."
+    },
+    {
+      "case_id": "19595b9defea",
+      "severity": "high",
+      "finding_type": ["single-command-insufficient", "automation-testing"],
+      "review_interpretation": "UNCERTAIN; no Python script or execution is present",
+      "reason": "The imperative says to execute a script and names T1059, but the script, interpreter invocation, output, and effect are absent. Calling this command execution from the wording alone is unsupported."
+    },
+    {
+      "case_id": "19a0830d246e",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "shell-query-recon"],
+      "review_interpretation": "BENIGN hardening check or RECON",
+      "reason": "Capability enumeration can support security auditing or privilege-escalation reconnaissance; the single query does not show abuse."
+    },
+    {
+      "case_id": "1bb93b1e99a7",
+      "severity": "high",
+      "finding_type": ["sequence-level", "automation-testing", "single-command-insufficient"],
+      "review_interpretation": "UNCERTAIN or BENIGN test/noise",
+      "reason": "Repeated malformed tokens have no observable target, effect, or attack semantics. The four-command context should prevent a confident malicious label."
+    },
+    {
+      "case_id": "1c7b5a587634",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Asking how exploitation for privilege escalation works is not an exploit attempt."
+    },
+    {
+      "case_id": "1e9777872e77",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "The text describes an actor and target but provides no operation against a system."
+    },
+    {
+      "case_id": "1ffe88405d1f",
+      "severity": "critical",
+      "finding_type": ["sequence-level", "file-access-intent", "shell-query-recon"],
+      "review_interpretation": "DATA_ACCESS plus RECON; retain the multi-step attack interpretation",
+      "reason": "The sequence combines root SSH access, copying /etc/passwd to another host, and SSH host-key scanning. Do not reduce it to a harmless single command or classify it only as generic remote login. The successful-login context does not erase the observable copy and scan actions."
+    },
+    {
+      "case_id": "23a0bb12e4c1",
+      "severity": "high",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "UNCERTAIN; no client exploit or execution is observed",
+      "reason": "The line describes an exploit concept but includes no application, payload, delivery, result, or effect."
+    },
+    {
+      "case_id": "284c37e21b6f",
+      "severity": "high",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "UNCERTAIN; no WMI execution is observed",
+      "reason": "Naming WMI and remote execution is not evidence that either occurred."
+    },
+    {
+      "case_id": "2d09a05767ec",
+      "severity": "high",
+      "finding_type": ["file-access-intent", "single-command-insufficient"],
+      "review_interpretation": "UNCERTAIN or SUSPICIOUS requested DATA_ACCESS; not observed file read",
+      "reason": "The wording requests a shadow dump, but it supplies no command output, access result, or actor privilege. Do not silently promote requested intent to completed credential access."
+    },
+    {
+      "case_id": "2d28266233d7",
+      "severity": "high",
+      "finding_type": ["sequence-level", "automation-testing"],
+      "review_interpretation": "UNCERTAIN or BENIGN session/connectivity test",
+      "reason": "Two true commands followed by exit show no sensitive access, discovery, or state change. The sequence is insufficient for an attack label."
+    },
+    {
+      "case_id": "2db67bf4fb9c",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "file-access-intent"],
+      "review_interpretation": "BENIGN defensive log review or weak RECON",
+      "reason": "Searching authentication errors is a common audit/incident-response action. It reads logs but does not show credential attack or evasion."
+    },
+    {
+      "case_id": "2ebc1972a455",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "The evidence explains LSASS credential dumping and contains no memory access or dump."
+    },
+    {
+      "case_id": "2f7c1524ec52",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "shell-query-recon"],
+      "review_interpretation": "BENIGN security administration or RECON",
+      "reason": "Inspecting a web process SELinux context is a hardening/debugging check; no policy bypass or process manipulation is shown."
+    },
+    {
+      "case_id": "332171c6a243",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "package-inspection-persistence"],
+      "review_interpretation": "BENIGN knowledge query; not PERSISTENCE",
+      "reason": "The line explains service manipulation and shows no service creation, enablement, or modification."
+    },
+    {
+      "case_id": "336d301ccde5",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Threat-group discussion is not an ICS intrusion."
+    },
+    {
+      "case_id": "3375d0a90c00",
+      "severity": "medium",
+      "finding_type": ["sequence-level", "admin-recon-overlap"],
+      "review_interpretation": "BENIGN session/status check or low-confidence RECON",
+      "reason": "uptime, who, and w together provide host and user-session visibility, but remain ordinary administration absent follow-on access or abuse."
+    },
+    {
+      "case_id": "3382fcf5cfed",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query; no scan observed",
+      "reason": "The text describes T1046 rather than performing network service discovery."
+    },
+    {
+      "case_id": "33a06fdd0a8a",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "single-command-insufficient"],
+      "review_interpretation": "BENIGN diagnostic/forensic query or UNCERTAIN",
+      "reason": "DNS configuration and exfiltration indicators are topics for troubleshooting or defense. No resolver read, exfiltration, or C2 is shown."
+    },
+    {
+      "case_id": "354fe72ef404",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "The question defines local collection rather than collecting data."
+    },
+    {
+      "case_id": "373c9362c061",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "No recovery inhibition or destructive action is present."
+    },
+    {
+      "case_id": "40b66d4845e6",
+      "severity": "high",
+      "finding_type": ["automation-testing", "single-command-insufficient", "file-access-intent"],
+      "review_interpretation": "UNCERTAIN or SUSPICIOUS prompt-injection text; not observed id execution",
+      "reason": "The evidence is an embedded instruction to a completion backend, followed by id -un. It is not a shell result and does not prove command execution or user discovery."
+    },
+    {
+      "case_id": "422a70b58a94",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "The line names UAC bypass but records no bypass attempt."
+    },
+    {
+      "case_id": "4645c7741708",
+      "severity": "high",
+      "finding_type": ["shell-query-recon", "single-command-insufficient"],
+      "review_interpretation": "UNCERTAIN or BENIGN identity check; not confidently RECON",
+      "reason": "A bare id can be routine shell diagnosis. The protocol's RECON example requires a burst from a fresh context; this isolated command lacks that support."
+    },
+    {
+      "case_id": "479cad54e6ab",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "PowerShell execution is discussed but not performed."
+    },
+    {
+      "case_id": "49a5fa7eb75a",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "The question explains account discovery and contains no account enumeration."
+    },
+    {
+      "case_id": "4bdf100460aa",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Resource-development discussion is not compromised-account use."
+    },
+    {
+      "case_id": "4cdf05db8008",
+      "severity": "high",
+      "finding_type": ["automation-testing", "single-command-insufficient"],
+      "review_interpretation": "BENIGN test/probe output",
+      "reason": "An echo of a probe marker has no target, data access, or system effect beyond printing text. Do not infer an attack from the word pipeline."
+    },
+    {
+      "case_id": "4ead15e5c85b",
+      "severity": "medium",
+      "finding_type": ["package-inspection-persistence", "admin-recon-overlap"],
+      "review_interpretation": "BENIGN package inventory or RECON; not exploitation",
+      "reason": "Package/version inspection is common maintenance and may also precede vulnerability research. The single query does not establish either intent."
+    },
+    {
+      "case_id": "4ec7e323a02a",
+      "severity": "high",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "UNCERTAIN; no vulnerable-driver exploit is observed",
+      "reason": "The line names an escalation vector but supplies no driver, exploit, payload, or result."
+    },
+    {
+      "case_id": "512ddf4316a8",
+      "severity": "critical",
+      "finding_type": ["file-access-intent", "admin-recon-overlap"],
+      "review_interpretation": "SUSPICIOUS attempted DATA_ACCESS; PRIVILEGE_ESCALATION is not proven",
+      "reason": "sudo cat /etc/shadow is a concrete privileged read request, but the current identity, sudo success, output, and purpose are absent. Do not call it completed access or definite escalation solely from the command string."
+    },
+    {
+      "case_id": "528850ef9193",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "shell-query-recon"],
+      "review_interpretation": "BENIGN service inventory or RECON",
+      "reason": "Identifying the web server is an observation step with ordinary administrative uses and no exploit evidence."
+    },
+    {
+      "case_id": "559ab1a4daf8",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Ransomware-group discussion is not ransomware impact."
+    },
+    {
+      "case_id": "598ff01ec9e2",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "shell-query-recon"],
+      "review_interpretation": "BENIGN performance monitoring or weak RECON",
+      "reason": "Process listing sorted by RSS is standard operations monitoring; no process manipulation or credential access is shown."
+    },
+    {
+      "case_id": "5a6878345104",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "shell-query-recon"],
+      "review_interpretation": "BENIGN network administration or RECON",
+      "reason": "Interface inspection is dual-use observation and lacks a scan, connection, or follow-on action."
+    },
+    {
+      "case_id": "5f17c2687a7f",
+      "severity": "critical",
+      "finding_type": ["sequence-level", "automation-testing", "file-access-intent"],
+      "review_interpretation": "SUSPICIOUS prompt-injection attempt; not observed DATA_ACCESS",
+      "reason": "Repeated instructions to execute cat /etc/shadow are adversarial text, but no shell execution or file output is recorded. A superficial label may either wrongly call it completed credential access or wrongly ignore the injection attempt."
+    },
+    {
+      "case_id": "60bdaa22319d",
+      "severity": "high",
+      "finding_type": ["shell-query-recon", "single-command-insufficient"],
+      "review_interpretation": "UNCERTAIN or BENIGN identity check",
+      "reason": "id -un alone is not enough to distinguish routine shell diagnosis from user discovery."
+    },
+    {
+      "case_id": "62040fe764aa",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "file-access-intent"],
+      "review_interpretation": "BENIGN diagnostic administration or RECON",
+      "reason": "Reading kernel errors supports troubleshooting and defense; no driver tampering or exploitation is shown."
+    },
+    {
+      "case_id": "62858210e1be",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "file-access-intent"],
+      "review_interpretation": "BENIGN firewall audit or RECON; not defense evasion",
+      "reason": "iptables counters are read-only state inspection."
+    },
+    {
+      "case_id": "640c9f3e5397",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "The question discusses APT37 and organizations but performs no operation."
+    },
+    {
+      "case_id": "67c3bd27aa0b",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Explaining encryption impact is not encrypting data."
+    },
+    {
+      "case_id": "68b30c867f30",
+      "severity": "high",
+      "finding_type": ["shell-query-recon", "single-command-insufficient"],
+      "review_interpretation": "UNCERTAIN or BENIGN identity check",
+      "reason": "whoami alone is compatible with ordinary shell setup and does not meet the protocol's burst-of-discovery example."
+    },
+    {
+      "case_id": "696bc28d12ab",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "file-access-intent"],
+      "review_interpretation": "BENIGN access review or RECON; not privilege escalation",
+      "reason": "Auditing sudo grants and timestamps observes authorization state; it does not abuse sudo."
+    },
+    {
+      "case_id": "6c00b30b5087",
+      "severity": "low",
+      "finding_type": ["admin-recon-overlap"],
+      "review_interpretation": "BENIGN administration",
+      "reason": "Disk-space inspection is routine monitoring and has no attack effect."
+    },
+    {
+      "case_id": "71f70f1d5dab",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Screen-capture collection is described but not performed."
+    },
+    {
+      "case_id": "74b29152648a",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "The ATT&CK PowerShell label is explanatory only."
+    },
+    {
+      "case_id": "765e19b0f3b7",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Acquiring infrastructure is discussed, not carried out."
+    },
+    {
+      "case_id": "7d2bcafd66ac",
+      "severity": "medium",
+      "finding_type": ["package-inspection-persistence", "admin-recon-overlap"],
+      "review_interpretation": "BENIGN patch/compliance audit or RECON",
+      "reason": "Reviewing applied patches is routine maintenance and may inform vulnerability research, but no exploitation is shown."
+    },
+    {
+      "case_id": "7e590931dfa8",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Default-credential use is described but no login attempt or success is recorded."
+    },
+    {
+      "case_id": "811c7b5fbb9d",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Remote-services discussion does not demonstrate lateral movement."
+    },
+    {
+      "case_id": "8245368604cb",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "APT28 technique discussion is not government-targeting activity."
+    },
+    {
+      "case_id": "85e362153fb9",
+      "severity": "critical",
+      "finding_type": ["shell-query-recon", "single-command-insufficient", "file-access-intent"],
+      "review_interpretation": "SUSPICIOUS or UNCERTAIN injection-like query; exploitation is not observed",
+      "reason": "The SQL tautology resembles an injection payload, but the packet gives no database target, client context, request boundary, or result. Do not label confirmed EXPLOITATION from a standalone SQL string."
+    },
+    {
+      "case_id": "86fe89f70bcd",
+      "severity": "high",
+      "finding_type": ["sequence-level", "shell-query-recon", "automation-testing"],
+      "review_interpretation": "UNCERTAIN or low-confidence RECON",
+      "reason": "The visible evidence is only two id commands while context reports seven commands. Repetition can be automation, shell validation, or identity discovery; the omitted sequence prevents a confident label."
+    },
+    {
+      "case_id": "88837c8a2ebc",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query; no public-facing exploit is observed",
+      "reason": "T1190 is named but no target, request, vulnerability, or result is present."
+    },
+    {
+      "case_id": "8b333b619d4a",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "file-access-intent"],
+      "review_interpretation": "BENIGN log troubleshooting or RECON",
+      "reason": "Filtering an Nginx error log is read-only diagnostics; it is not evidence of web exploitation or log tampering."
+    },
+    {
+      "case_id": "8e10e4b8fe7a",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "State-sponsored-operation discussion is not an operation against this host."
+    },
+    {
+      "case_id": "8f3c0d1ec6fa",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Compromise-account resource development is described but not performed."
+    },
+    {
+      "case_id": "92ffefebee47",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "The question explains remote-system discovery and contains no discovery result."
+    },
+    {
+      "case_id": "953d5fd89d4a",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "T1059 is explained rather than executed."
+    },
+    {
+      "case_id": "9b5b74642287",
+      "severity": "critical",
+      "finding_type": ["sequence-level", "file-access-intent", "shell-query-recon", "context-sensitive"],
+      "review_interpretation": "DATA_ACCESS plus RECON; privilege escalation is not established",
+      "reason": "The sequence reads /etc/shadow and then searches for configuration files. The successful admin/root login context is relevant to whether escalation occurred, but does not make the shadow read benign or erase the reconnaissance step."
+    },
+    {
+      "case_id": "9dbba61c9951",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "file-access-intent"],
+      "review_interpretation": "BENIGN hardening audit or RECON",
+      "reason": "SELinux enforcement and web-file contexts are dual-use checks. No bypass or file modification is shown."
+    },
+    {
+      "case_id": "9e1df2b190ae",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "The line describes Turla's C2 method but does not establish C2 activity."
+    },
+    {
+      "case_id": "9e79b8ddf98c",
+      "severity": "critical",
+      "finding_type": ["sequence-level", "package-inspection-persistence", "file-access-intent"],
+      "review_interpretation": "PERSISTENCE, with explicit authorized-key and cron footholds",
+      "reason": "The sequence appends an SSH key, installs a recurring backdoor cron entry, and enables a backdoor service. Do not dilute this as mere cron inspection because read-only crontab listing appears between modifications."
+    },
+    {
+      "case_id": "a3b5b234a552",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "shell-query-recon"],
+      "review_interpretation": "BENIGN process monitoring or RECON",
+      "reason": "Running-process inventory is read-only and has ordinary administrative uses."
+    },
+    {
+      "case_id": "a4c188007f97",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "T1068 is explained but no exploit is attempted."
+    },
+    {
+      "case_id": "a8117b72f624",
+      "severity": "high",
+      "finding_type": ["sequence-level", "automation-testing"],
+      "review_interpretation": "BENIGN test/noise",
+      "reason": "Repeated echo hello has no target or system effect beyond output. The sequence should not be promoted to attack behavior."
+    },
+    {
+      "case_id": "aa86cb62b82e",
+      "severity": "high",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "UNCERTAIN or BENIGN knowledge request; no web exploit is observed",
+      "reason": "The phrase names T1190 and an unpatched server but contains no request, payload, target, or outcome."
+    },
+    {
+      "case_id": "aab6757e6cfa",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "shell-query-recon"],
+      "review_interpretation": "BENIGN performance monitoring or RECON",
+      "reason": "I/O wait and top-I/O-process inspection is ordinary diagnostics; it does not demonstrate process discovery for an attack."
+    },
+    {
+      "case_id": "ab4bf1e35049",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "file-access-intent"],
+      "review_interpretation": "BENIGN kernel-log troubleshooting",
+      "reason": "A read-only syslog filter is consistent with administration and incident response."
+    },
+    {
+      "case_id": "ad7b7844b156",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Silver-ticket forging is described, not performed."
+    },
+    {
+      "case_id": "b1cd89b984ab",
+      "severity": "low",
+      "finding_type": ["context-sensitive", "admin-recon-overlap"],
+      "review_interpretation": "BENIGN administration",
+      "reason": "The explicit sysadmin prompt and returned identity, hostname, and kernel version make this a coherent administrative transcript. Discovery-like commands should not be relabeled as attack activity merely because they reveal host state."
+    },
+    {
+      "case_id": "b27ea577421f",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Threat-group targeting is discussed without an operation."
+    },
+    {
+      "case_id": "b67c56f26222",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "shell-query-recon"],
+      "review_interpretation": "BENIGN database/network administration or RECON",
+      "reason": "Connection/source-IP inspection is observational and useful for troubleshooting and monitoring; no MySQL access or exfiltration is shown."
+    },
+    {
+      "case_id": "b68bc5cbd284",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "C2 communication is explained but not established."
+    },
+    {
+      "case_id": "b8b12778c351",
+      "severity": "medium",
+      "finding_type": ["package-inspection-persistence", "admin-recon-overlap"],
+      "review_interpretation": "BENIGN persistence audit or RECON; not PERSISTENCE",
+      "reason": "Checking whether cron jobs changed is read-only detection of persistence, not persistence creation."
+    },
+    {
+      "case_id": "b9dd5abbf6c3",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Financial-theft history is not a theft action."
+    },
+    {
+      "case_id": "bb0fbc2eedfd",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "shell-query-recon"],
+      "review_interpretation": "BENIGN administration or weak RECON",
+      "reason": "Uptime and last-reboot inspection is routine host health checking."
+    },
+    {
+      "case_id": "bdda74133169",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Salt Typhoon targeting is discussed without telecommunications access."
+    },
+    {
+      "case_id": "bf9b2ed37d81",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "T1082 is defined but no system-information command or result appears."
+    },
+    {
+      "case_id": "c2f9e8c4c74e",
+      "severity": "critical",
+      "finding_type": ["file-access-intent", "admin-recon-overlap", "single-command-insufficient"],
+      "review_interpretation": "SUSPICIOUS requested sensitive-file access; administrative audit remains plausible",
+      "reason": "Password-change inspection in /etc/shadow is sensitive and can support credential harvesting, but the evidence is a request with no output, privilege context, or purpose. Do not assert completed credential access."
+    },
+    {
+      "case_id": "c4c35d67c3f1",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Exchange-server targeting is discussed but no exploit or access is recorded."
+    },
+    {
+      "case_id": "c964654a00a5",
+      "severity": "high",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query or UNCERTAIN; no DCSync is observed",
+      "reason": "The line names credential extraction but contains no domain target, replication request, or dump result."
+    },
+    {
+      "case_id": "ca6359d28cfb",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "APT27 activity is discussed without telecom targeting."
+    },
+    {
+      "case_id": "caca3b699de2",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "shell-query-recon"],
+      "review_interpretation": "BENIGN process debugging or RECON",
+      "reason": "Zombie-process and parent-ID inspection is observational troubleshooting; no process injection or kill action is shown."
+    },
+    {
+      "case_id": "cb906fc3e370",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "APT41 operations are described without an operation against the host."
+    },
+    {
+      "case_id": "ccfaad6d6465",
+      "severity": "high",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring", "file-access-intent"],
+      "review_interpretation": "BENIGN knowledge query or UNCERTAIN; no SAM access is observed",
+      "reason": "The line names SAM credential dumping but provides no registry read, dump, or result."
+    },
+    {
+      "case_id": "cd05ba19d2bb",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Keylogging is mentioned as a technique, not performed."
+    },
+    {
+      "case_id": "cd7fdaf628ee",
+      "severity": "high",
+      "finding_type": ["sequence-level", "automation-testing", "shell-query-recon"],
+      "review_interpretation": "UNCERTAIN or low-confidence RECON; not DATA_ACCESS or exfiltration",
+      "reason": "Repeated aws s3 ls shows bucket/listing activity if executed, but no object read, download, upload, or exfiltration is present. Ten-command context raises automation/retry as an alternative explanation."
+    },
+    {
+      "case_id": "d0353508a5b0",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "DNS C2 is described but not established."
+    },
+    {
+      "case_id": "d35ac996d465",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Process injection is explained but no process is touched."
+    },
+    {
+      "case_id": "d4a592328440",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Web-service exfiltration is discussed without transfer activity."
+    },
+    {
+      "case_id": "d7374cc4ee37",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Sudo abuse is explained but not attempted."
+    },
+    {
+      "case_id": "d7d84bbb10f8",
+      "severity": "high",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "UNCERTAIN; no Perl execution or injection result is observed",
+      "reason": "The wording combines Perl, T1059, and command injection, but no script, target, payload, or effect is recorded."
+    },
+    {
+      "case_id": "dae7556fc3f4",
+      "severity": "medium",
+      "finding_type": ["context-sensitive", "sequence-level", "admin-recon-overlap", "file-access-intent"],
+      "review_interpretation": "BENIGN administration",
+      "reason": "The returned log listing, SSH configuration listing, and explicit sysadmin prompt are coherent maintenance evidence. Listing a directory containing key filenames is not reading private keys or establishing persistence."
+    },
+    {
+      "case_id": "db50b8dbbf3c",
+      "severity": "high",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring", "file-access-intent"],
+      "review_interpretation": "BENIGN knowledge query or UNCERTAIN; no NTDS access is observed",
+      "reason": "The line names NTDS credential extraction but shows no domain-controller access, file read, or extracted material."
+    },
+    {
+      "case_id": "de020058d388",
+      "severity": "high",
+      "finding_type": ["single-command-insufficient", "file-access-intent"],
+      "review_interpretation": "UNCERTAIN or SUSPICIOUS requested C2 setup; no reverse shell is observed",
+      "reason": "Deploying a reverse shell is stated, but there is no command, listener, connection, payload, or result."
+    },
+    {
+      "case_id": "e3a8981929e6",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "package-inspection-persistence", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query; no DLL side-load or persistence is observed",
+      "reason": "The line explains an execution-flow hijack technique rather than performing one."
+    },
+    {
+      "case_id": "e4e12ed202b2",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Macro execution is described without a document, payload, or client execution result."
+    },
+    {
+      "case_id": "e5c50508dac0",
+      "severity": "high",
+      "finding_type": ["sequence-level", "shell-query-recon", "automation-testing"],
+      "review_interpretation": "UNCERTAIN or BENIGN identity check",
+      "reason": "Two id -un commands are not enough to establish malicious discovery; repetition may reflect shell validation or automation."
+    },
+    {
+      "case_id": "e8412c576f38",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring", "file-access-intent"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Unsecured-credential access is explained, not performed."
+    },
+    {
+      "case_id": "e9d7fd684ef2",
+      "severity": "medium",
+      "finding_type": ["context-sensitive", "sequence-level", "admin-recon-overlap", "file-access-intent"],
+      "review_interpretation": "BENIGN administration or RECON",
+      "reason": "The real-admin transcript combines configuration inventory with kernel-version inspection. It does not show credential reading, persistence, or exploitation; the administrative context matters."
+    },
+    {
+      "case_id": "ecd0e072249a",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "External-remote-service access is discussed without an access attempt."
+    },
+    {
+      "case_id": "edb3b3b9ce8e",
+      "severity": "medium",
+      "finding_type": ["admin-recon-overlap", "single-command-insufficient"],
+      "review_interpretation": "BENIGN administration or weak RECON",
+      "reason": "Asking which OS is installed is ordinary inventory; no exploit or targeting is shown."
+    },
+    {
+      "case_id": "f1aae1c198d1",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "VPN initial access is described without a VPN connection or credential use."
+    },
+    {
+      "case_id": "f2135da32462",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring"],
+      "review_interpretation": "BENIGN knowledge query",
+      "reason": "Trusted-relationship access is described but not exercised."
+    },
+    {
+      "case_id": "f2f3f6256b28",
+      "severity": "medium",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring", "shell-query-recon"],
+      "review_interpretation": "BENIGN knowledge query; no trust enumeration is observed",
+      "reason": "The ATT&CK technique is named in an explanatory phrase, not demonstrated by a domain query or result."
+    },
+    {
+      "case_id": "fd10535f4e89",
+      "severity": "high",
+      "finding_type": ["single-command-insufficient", "technique-name-anchoring", "file-access-intent"],
+      "review_interpretation": "BENIGN knowledge query or UNCERTAIN; no hash extraction is observed",
+      "reason": "The line names password-store extraction but contains no store, command, output, or effect."
+    },
+    {
+      "case_id": "fd65c582c594",
+      "severity": "medium",
+      "finding_type": ["package-inspection-persistence", "admin-recon-overlap"],
+      "review_interpretation": "BENIGN persistence audit or RECON; not PERSISTENCE",
+      "reason": "Checking cron modification history is defensive/read-only observation and does not add or alter a scheduled task."
+    },
+    {
+      "case_id": "fe534a40cd31",
+      "severity": "high",
+      "finding_type": ["automation-testing", "single-command-insufficient"],
+      "review_interpretation": "BENIGN test/noise",
+      "reason": "echo test has no sensitive target, attack semantics, or state-changing effect."
+    }
+  ],
+  "summary": {
+    "cases_with_findings": 118,
+    "cases_without_findings": 2,
+    "findings_by_severity": {
+      "critical": 7,
+      "high": 24,
+      "medium": 84,
+      "low": 3
+    },
+    "finding_type_counts": {
+      "context-sensitive": 4,
+      "sequence-level": 13,
+      "single-command-insufficient": 79,
+      "admin-recon-overlap": 35,
+      "package-inspection-persistence": 8,
+      "shell-query-recon": 21,
+      "file-access-intent": 24,
+      "automation-testing": 11,
+      "technique-name-anchoring": 62
+    },
+    "key_adversarial_patterns": [
+      "ATT&CK technique names and threat-group names are frequently presented as questions or descriptions; they are not observed execution.",
+      "Read-only inventory and troubleshooting commands overlap with reconnaissance, so a single observation should not be promoted to malicious intent without sequence evidence.",
+      "Sensitive-file wording can show requested intent without proving access, successful privilege escalation, output, or exfiltration.",
+      "Repeated identity checks, echo markers, malformed tokens, true/exit, and repeated cloud listing are compatible with automation or testing and require sequence-aware interpretation.",
+      "The explicit persistence sequence and the root-SSH plus copy/scan sequence are materially different from the single-line knowledge and administration cases and should not be flattened into the same label rationale."
+    ],
+    "limitations": [
+      "This review uses only the blinded evidence and the labeling protocol; it does not recover source provenance or consult predictions, frozen manifests, model output, rater labels, or red-team output.",
+      "Recommended interpretations are adversarial review guidance, not human labels or ground truth.",
+      "Where a transcript omits command output or preceding/following actions, the review preserves UNCERTAIN rather than inferring success or intent."
+    ]
+  }
+}

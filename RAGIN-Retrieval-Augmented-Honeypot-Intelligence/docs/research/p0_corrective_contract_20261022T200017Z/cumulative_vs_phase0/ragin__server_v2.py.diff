@@ -1,0 +1,184 @@
+--- a/ragin/server_v2.py (Phase 0)
++++ b/ragin/server_v2.py (current)
+@@ -348,11 +348,20 @@
+         session_id=session_id,
+     )
+     if resp.error:
++        # Fail closed: the served text is empty and the transport error is
++        # explicit. Observability fields are echoed so a caller can audit WHY
++        # nothing was served; they never turn this into a success.
+         return web.json_response(
+             {
+                 "error": "verified_serve_unavailable",
++                "status": resp.status,
+                 "session_id": resp.session_id,
+                 "command_count": resp.command_count,
++                "response_text": "",
++                "serve_path": resp.serve_path,
++                "candidate_sha256": resp.candidate_sha256,
++                "served_response_sha256": resp.served_response_sha256,
++                "verification": resp.verification,
+             },
+             status=503,
+         )
+@@ -363,6 +372,11 @@
+             "response_text": resp.response_text,
+             "command_count": resp.command_count,
+             "event_count": resp.event_count,
++            "status": resp.status,
++            "serve_path": resp.serve_path,
++            "candidate_sha256": resp.candidate_sha256,
++            "served_response_sha256": resp.served_response_sha256,
++            "verification": resp.verification,
+             "error": resp.error,
+         }
+     )
+@@ -459,8 +473,14 @@
+       * the attacker's command is the last user message; cowrie's own system
+         prompt is dropped (the pipeline has its own identity);
+       * each response sets X-Session-Id so the frontend pins the session;
+-      * on sandbox error we fail SAFE: a generic shell error is served (never
+-        an unverified draft) and the failure is logged loudly.
++      * on sandbox error (or a pipeline crash) this endpoint FAILS CLOSED with
++        HTTP 503 ``{"error": "verified_serve_unavailable"}``: no unverified
++        draft is ever served, and the failure is logged loudly. It does NOT
++        synthesize a shell error body — the Cowrie front-end's reaction to a
++        503 is a transport-layer behaviour that must be OBSERVED, not assumed.
++        If a synthetic shell error is ever served, it must be a fixed,
++        pre-approved string carrying no verification claim (empty
++        ``served_response_sha256``, ``verification.passed = false``).
+ 
+     Session transcripts export to RAGIN_FIELD_EXPORT_DIR as JSONL so
+     collect_field_data.py can pull them without touching live session state.
+@@ -783,6 +803,28 @@
+     return os.environ.get(name, "").strip().lower() in {"1", "true", "yes", "on"}
+ 
+ 
++def _safe_endpoint(url: str) -> str:
++    """Credential-free endpoint representation for logs and errors.
++
++    Provider URLs may carry userinfo (``user:pass@host``) or query tokens.
++    Neither is safe to interpolate into an exception, a log message, or the
++    unauthenticated health payload. Scheme, host, port, and path are retained;
++    userinfo, query, and fragment are dropped.
++    """
++    try:
++        parsed = urlparse(str(url))
++    except Exception:
++        return "[unparseable-endpoint]"
++    if not parsed.scheme or not parsed.hostname:
++        return "[invalid-endpoint]"
++    host = parsed.hostname
++    try:
++        port = f":{parsed.port}" if parsed.port is not None else ""
++    except ValueError:
++        port = ""
++    return f"{parsed.scheme}://{host}{port}{parsed.path or ''}"
++
++
+ def _resolve_provider_config(
+     gateway_url: str | None = None,
+     api_key: str | None = None,
+@@ -837,7 +879,7 @@
+     parsed = urlparse(url)
+     if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+         raise RuntimeError(
+-            f"invalid inference endpoint {url!r} (from {url_source}); expected an http(s) URL"
++            f"invalid inference endpoint {_safe_endpoint(url)!r} (from {url_source}); expected an http(s) URL"
+         )
+ 
+     return {
+@@ -860,11 +902,61 @@
+         )
+     logger.info(
+         "Inference endpoint resolved: url=%s (source=%s) auth=%s (source=%s)",
+-        config.get("gateway_url"),
++        _safe_endpoint(str(config.get("gateway_url") or "")),
+         config.get("url_source"),
+         "configured" if config.get("api_key_configured") else "MISSING",
+         config.get("key_source"),
+     )
++
++
++_LOOPBACK_HOSTS = frozenset({"127.0.0.1", "localhost", "::1", "0.0.0.0", "::", ""})
++
++
++def _is_self_endpoint(url: str, bind_host: str, port: int) -> bool:
++    """True when ``url`` resolves to the server's own listening endpoint.
++
++    Loopback aliases (``localhost`` / ``127.0.0.1`` / ``::1``) and wildcard
++    binds (``0.0.0.0`` / ``::``) are treated as the same endpoint when the
++    ports match. Static only — never resolves DNS or opens a socket.
++    """
++    parsed = urlparse(url)
++    if parsed.scheme not in {"http", "https"} or not parsed.hostname:
++        return False
++    bind = (bind_host or "").strip().lower()
++    url_host = parsed.hostname.strip().lower()
++    same_host = url_host == bind or (bind in _LOOPBACK_HOSTS and url_host in _LOOPBACK_HOSTS)
++    if not same_host:
++        return False
++    try:
++        url_port = int(parsed.port) if parsed.port is not None else (443 if parsed.scheme == "https" else 80)
++    except ValueError:
++        return False
++    return url_port == int(port)
++
++
++def _assert_provider_not_self(config: dict[str, Any], bind_host: str, port: int) -> None:
++    """Refuse a provider endpoint that is this server's own listener.
++
++    A self-call would re-enter ``/v1/chat/completions`` while the same thread
++    holds the sandbox lock and block until ``RAGIN_HISOKA_TIMEOUT``. The check
++    applies to the CLI's actual bind host/port, including the built-in
++    ``http://localhost:8080`` default; offline/deterministic users can set a
++    non-colliding loopback endpoint (for example ``http://127.0.0.1:9``).
++
++    This is a static equality check only: it does not resolve DNS, follow
++    redirects, probe the endpoint, or detect aliases/container hostnames. The
++    guard message never interpolates the URL, which may contain userinfo or a
++    query token. ``create_app`` callers that have no actual listen port are not
++    checked here.
++    """
++    url = str(config.get("gateway_url") or "")
++    if _is_self_endpoint(url, bind_host, int(port)):
++        raise RuntimeError(
++            f"configured inference endpoint (source={config.get('url_source')}) "
++            f"resolves to this server's own listener {bind_host}:{port}. Refusing a "
++            "self-call that would deadlock on the sandbox lock. Set a distinct "
++            "provider endpoint or a non-colliding loopback endpoint for deterministic mode."
++        )
+ 
+ 
+ def _provider_health() -> dict[str, Any]:
+@@ -872,7 +964,7 @@
+         return {"configured": False}
+     return {
+         "configured": True,
+-        "gateway_url": _PROVIDER_INFO.get("gateway_url"),
++        "gateway_url": _safe_endpoint(str(_PROVIDER_INFO.get("gateway_url") or "")),
+         "url_source": _PROVIDER_INFO.get("url_source"),
+         "api_key_configured": bool(_PROVIDER_INFO.get("api_key_configured")),
+         "api_key_source": _PROVIDER_INFO.get("key_source"),
+@@ -952,7 +1044,7 @@
+         "(%s, arm=%s, verification=mandatory, provider=%s auth=%s)%s",
+         runtime_mode,
+         decision_arm,
+-        provider["gateway_url"],
++        _safe_endpoint(provider["gateway_url"]),
+         "configured" if provider["api_key_configured"] else "MISSING",
+         " + Laya decision" if laya_enabled() else "",
+     )
+@@ -1063,8 +1155,11 @@
+         format="%(asctime)s %(name)s %(levelname)s %(message)s",
+     )
+ 
++    bind_host = os.environ.get("RAGIN_BIND_HOST", "127.0.0.1")
++    # Static self-endpoint guard BEFORE the pipeline builds any HTTP client.
++    # Uses the actual listening port; exempts the unconfigured default.
++    _assert_provider_not_self(_resolve_provider_config(), bind_host, args.port)
+     app = create_app(mode=args.mode, component=args.component)
+-    bind_host = os.environ.get("RAGIN_BIND_HOST", "127.0.0.1")
+     _validate_security_config()
+     ssl_context = build_server_context_from_env()
+     if os.environ.get("RAGIN_MTLS_REQUIRED", "0").strip().lower() in {"1", "true", "yes", "on"} and ssl_context is None:

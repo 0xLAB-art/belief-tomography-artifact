@@ -1,0 +1,36 @@
+{
+  "audit": "RAGIN_FROZEN_PREDICTION_EXECUTION_AUTHENTICITY_AUDIT_V1",
+  "classification_basis": {
+    "laya": "INFERENCE_PROVENANCE_UNVERIFIED",
+    "chrollo": "INFERENCE_PROVENANCE_UNVERIFIED",
+    "latency": "FIXTURE_EXECUTION_LATENCY",
+    "complete_artifact": "INFERENCE_PROVENANCE_UNVERIFIED"
+  },
+  "safe_laya_claims": [
+    "A separate, independently documented local Laya integration path exists in ragin/decision/laya_runtime.py and related real-inference artifacts.",
+    "The frozen_predictions.jsonl file is a 307-row, hash-verified, reference-free descriptive artifact with non-null typed fields.",
+    "The current named frozen runner contains a typed placeholder/stub path; this is provenance evidence, not model-performance evidence.",
+    "The frozen artifact cannot be used for model-behavior, coverage, or latency claims until its historical generator provenance is resolved."
+  ],
+  "prohibited_laya_claims": [
+    "Do not report frozen_predictions.jsonl as verified model-backed Laya performance.",
+    "Do not report 100% SIGNAL as real Laya coverage.",
+    "Do not report 0.0001-0.0002 seconds as Laya model-inference latency.",
+    "Do not report the frozen Laya answer distribution as real inference behavior.",
+    "Do not claim Laya outperforms Chrollo or provides statistically significant correction benefit."
+  ],
+  "safe_chrollo_claims": [
+    "The frozen artifact contains a constant novice/0.5 pair across 307 rows.",
+    "The current named runner returns novice/0.5 as a hard-coded placeholder and does not call the real Chrollo classifier.",
+    "Chrollo model behavior is not attributable to the frozen artifact because historical generator identity is unverified."
+  ],
+  "prohibited_chrollo_claims": [
+    "Do not present the novice/0.5 distribution as measured trained-Chrollo behavior.",
+    "Do not report 100% of cases activating a 0.65 confidence gate as a substantive Chrollo finding.",
+    "Do not attribute the observed pair to missing-model fallback without a historical execution record."
+  ],
+  "general_rule": "Non-null output is not verified real model inference.",
+  "manuscript_edit_performed": false,
+  "reference_join_performed": false,
+  "models_rerun": false
+}

@@ -1,0 +1,564 @@
+# local generative model inventory (read-only; no downloads/loading/external probes)
+generated_utc=2026-10-23T03:06:32Z
+
+## hardware
+### lscpu
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           39 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  12
+On-line CPU(s) list:                     0-11
+Vendor ID:                               GenuineIntel
+Model name:                              Intel(R) Core(TM) i7-9850H CPU @ 2.60GHz
+CPU family:                              6
+Model:                                   158
+Thread(s) per core:                      2
+Core(s) per socket:                      6
+Socket(s):                               1
+Stepping:                                13
+CPU(s) scaling MHz:                      100%
+CPU max MHz:                             2600.0000
+CPU min MHz:                             800.0000
+BogoMIPS:                                5199.98
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp vnmi md_clear flush_l1d arch_capabilities
+Virtualization:                          VT-x
+L1d cache:                               192 KiB (6 instances)
+L1i cache:                               192 KiB (6 instances)
+L2 cache:                                1.5 MiB (6 instances)
+L3 cache:                                12 MiB (1 instance)
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0-11
+Vulnerability Gather data sampling:      Vulnerable
+Vulnerability Ghostwrite:                Not affected
+Vulnerability Indirect target selection: Mitigation; Aligned branch/return thunks
+Vulnerability Itlb multihit:             KVM: Mitigation: Split huge pages
+### free
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       7.9Gi       361Mi       711Mi       8.2Gi       7.5Gi
+Swap:          4.3Gi       2.5Gi       1.8Gi
+### nvidia-smi
+Fri Oct 23 06:06:32 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.99.02              Driver Version: 595.99.02      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Quadro RTX 4000                Off |   00000000:01:00.0 Off |                  N/A |
+| N/A   47C    P8              6W /  110W |       4MiB /   8192MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A            4338      G   /usr/bin/gnome-shell                      2MiB |
++-----------------------------------------------------------------------------------------+
+
+## runtime servers/processes (names only; no env/args secrets)
+ollama_binary=/usr/local/bin/ollama
+vllm_binary=absent
+llama_server_binary=absent
+   2672 ollama          /usr/local/bin/ollama serve
+### loopback listeners (port/process only)
+LISTEN 0 511 127.0.0.1:6379 0.0.0.0:* 
+LISTEN 0 200 127.0.0.1:5432 0.0.0.0:* 
+LISTEN 0 4096 127.0.0.1:11434 0.0.0.0:* 
+LISTEN 0 128 127.0.0.1:43235 0.0.0.0:* users:(("codex",pid=525289,fd=36)) 
+LISTEN 0 4096 127.0.0.1:631 0.0.0.0:* 
+LISTEN 0 4096 127.0.0.1:9051 0.0.0.0:* 
+LISTEN 0 4096 127.0.0.1:9050 0.0.0.0:* 
+LISTEN 0 512 127.0.0.1:49374 0.0.0.0:* users:(("opencode",pid=158806,fd=12))
+LISTEN 0 4096 [::1]:631 [::]:* 
+LISTEN 0 200 [::1]:5432 [::]:* 
+LISTEN 0 511 [::1]:6379 [::]:* 
+
+## ollama local models (list only; no pull/run)
+NAME                       ID              SIZE    MODIFIED     
+kimi-k3:cloud              630e737485bd    -       2 months ago    
+kimi-k2.7-code:cloud       eda07a659237    -       3 months ago    
+glm-5.2:cloud              ce8fd6f94793    -       4 months ago    
+nemotron-3-ultra:cloud     6d55374b63bb    -       4 months ago    
+minimax-m3:cloud           d03a959f45c0    -       4 months ago    
+deepseek-v4-flash:cloud    ea027821675c    -       5 months ago    
+gpt-oss:120b-cloud         569662207105    -       6 months ago    
+nemotron-3-super:cloud     be3943c5a818    -       6 months ago    
+qwen3.5:397b-cloud         a7bf6f7891c3    -       6 months ago    
+minimax-m2.7:cloud         06daa293c105    -       6 months ago    
+gemma4:31b-cloud           c382fbfbc73b    -       6 months ago    
+glm-5.1:cloud              59472abf9d0a    -       6 months ago    
+
+## model file candidates (>100MiB, metadata only)
+### /home/elaref/.cache/huggingface/hub
+2.6G	/home/elaref/.cache/huggingface/hub
+842609220	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/4fa56de72383a9d3efa9cfa78955733c81b9fc8067a587ca4beb82c78107a24e
+842609210	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c
+643835514	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/9d628fd971b700382ac6f65920a86f149777b2e748e0c955fb3b19695aa8f204
+274049435	/home/elaref/.cache/huggingface/hub/blobs/a5/a5594920eea4086c43e1cc2ca304ac5f61f8b73a35253f5dc9f86c1cbeec009e
+### /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/models
+1.7G	/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/models
+842609220	/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/models/laya_v3_calibration_tuning_dev_softce_v1/model.safetensors
+842609220	/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/models/laya_v3_calibration_tuning_dev_rlcd_v1/model.safetensors
+
+## repo model references (names only)
+ragin/don/vector_store.py:44:            from sentence_transformers import SentenceTransformer
+ragin/don/vector_store.py:60:                "faiss/sentence-transformers not installed — falling back to "
+ragin/don/vector_store.py:61:                "numpy brute-force. Install: pip install faiss-cpu sentence-transformers (%s)",
+ragin/don/lightrag_adapter.py:157:        """Embed texts using sentence-transformers (same model as original VectorStore)."""
+ragin/don/lightrag_adapter.py:159:            from sentence_transformers import SentenceTransformer
+ragin/don/lightrag_adapter.py:551:            from sentence_transformers import SentenceTransformer
+ragin/don/lightrag_adapter.py:570:        """Dense vector retrieval using sentence-transformers if available.
+ragin/don/lightrag_adapter.py:573:        sentence-transformers is not installed or embedding fails.
+ragin/don/lightrag_adapter.py:579:            from sentence_transformers import SentenceTransformer
+ragin/don/threat_mapper.py:91:# reference techniques by their canonical ID; the text classifier must
+ragin/don/rag_engine.py:168:            encoder_binding = "NOT_APPLICABLE"
+ragin/don/rag_engine.py:169:            encoder_binding_note = "no dense channel is configured"
+ragin/don/rag_engine.py:188:                # no encoder was loaded or queried in this process. That is a
+ragin/don/rag_engine.py:190:                encoder_binding = "EXPLICIT_VALIDATED_MODEL_DIR_NOT_RUNTIME_VERIFIED"
+ragin/don/rag_engine.py:191:                encoder_binding_note = (
+ragin/don/rag_engine.py:193:                    "VectorStore; encoder load and embedding inference were not executed"
+ragin/don/rag_engine.py:206:                encoder_binding = "MODULE_IMPORT_ENCODER_CONSTANT_NOT_VERIFIED"
+ragin/don/rag_engine.py:207:                encoder_binding_note = (
+ragin/don/rag_engine.py:208:                    "VectorStore resolves its encoder from the module-import constant; "
+ragin/don/rag_engine.py:242:                "encoder_binding": encoder_binding,
+ragin/don/rag_engine.py:243:                "encoder_binding_note": encoder_binding_note,
+ragin/don/rag_engine.py:278:        relying on the module-import encoder constant.
+ragin/don/rag_engine.py:293:            import sentence_transformers  # noqa: F401
+ragin/don/rag_engine.py:296:                "RAGIN_RAG_MODE=dense requires faiss and sentence-transformers to be installed"
+ragin/don/__init__.py:33:    LayaScoringAdapter,
+ragin/don/__init__.py:109:    "LayaScoringAdapter",
+ragin/don/evidence_judge.py:116:class LayaScoringAdapter:
+ragin/don/evidence_judge.py:117:    kind = "laya_fixed_choice"
+ragin/don/evidence_judge.py:122:        raise RuntimeError("Laya scoring adapter is disabled")
+ragin/don/evidence_judge.py:341:    "LayaScoringAdapter",
+ragin/chrollo/pipeline.py:11:from ragin.chrollo.classifier import ChrolloClassifier, ClassificationResult
+ragin/chrollo/pipeline.py:35:        classifier: ChrolloClassifier,
+ragin/chrollo/pipeline.py:42:        self.classifier = classifier
+ragin/chrollo/pipeline.py:61:        return self.classifier.classify(session_log)
+ragin/chrollo/pipeline.py:66:        return self.classifier.classify(session)
+ragin/chrollo/pipeline.py:71:        return self.classifier.classify(session)
+ragin/chrollo/pipeline.py:83:        the local Laya runtime instead of the remote Jev endpoint (same
+ragin/chrollo/pipeline.py:84:        typed contract, provider recorded as ``laya``). Jev remains the
+ragin/chrollo/pipeline.py:85:        default provider while Laya is disabled.
+ragin/chrollo/pipeline.py:87:        result = self.classifier.classify(session_log)
+ragin/chrollo/pipeline.py:89:        # Optional Laya path (research ablation B/D). Never bypasses the
+ragin/chrollo/pipeline.py:92:        from ragin.decision.laya_runtime import laya_enabled
+ragin/chrollo/pipeline.py:94:        if laya_enabled():
+ragin/chrollo/pipeline.py:96:                from ragin.decision.laya_runtime import get_shared_runtime
+ragin/chrollo/pipeline.py:97:                from ragin.decision.optional import LayaAssessmentAdapter
+ragin/chrollo/pipeline.py:99:                adapter = LayaAssessmentAdapter(
+ragin/chrollo/pipeline.py:101:                    model=f"laya/english",
+ragin/chrollo/pipeline.py:108:                    payload["provider"] = "laya"
+ragin/chrollo/pipeline.py:112:                        "provider": "laya",
+ragin/chrollo/pipeline.py:118:                logger.warning("Laya assessment skipped for %s: %s", session_log.session_id, exc)
+ragin/chrollo/pipeline.py:192:        return self.classifier.classify(session_log)
+ragin/chrollo/__init__.py:3:Random Forest classifier that assesses attacker skill level from honeypot
+ragin/chrollo/__init__.py:8:from ragin.chrollo.classifier import (
+ragin/chrollo/classifier.py:1:"""Random Forest behavioral classifier for attacker skill level assessment."""
+ragin/chrollo/classifier.py:25:_DEFAULT_MODEL_PATH = _MODEL_DIR / "rf_classifier.joblib"
+ragin/chrollo/classifier.py:65:    """Random Forest classifier for honeypot session skill-level assessment.
+ragin/chrollo/classifier.py:115:        """Train the classifier on labeled session logs.
+ragin/cycle/sandbox.py:312:            harness=Harness(classifier=..., cti_engine=..., deceiver=...),
+ragin/cycle/adapters.py:25:def laya_assessment_mapper(payload: dict[str, Any], session_id: str, attacker_input: str) -> None:
+ragin/cycle/adapters.py:26:    """Attach the optional Laya laya assessment to a Chrollo classification payload.
+ragin/cycle/adapters.py:33:        from ragin.decision.laya_runtime import laya_enabled
+ragin/cycle/adapters.py:35:        if not laya_enabled():
+ragin/cycle/adapters.py:37:        from ragin.decision.laya_runtime import get_shared_runtime
+ragin/cycle/adapters.py:38:        from ragin.decision.optional import LayaAssessmentAdapter
+ragin/cycle/adapters.py:40:        adapter = LayaAssessmentAdapter(
+ragin/cycle/adapters.py:42:            model="laya/english",
+ragin/cycle/adapters.py:49:            d["provider"] = "laya"
+ragin/cycle/adapters.py:52:            payload["laya_assessment"] = d
+ragin/cycle/adapters.py:54:            payload["laya_assessment"] = {
+ragin/cycle/adapters.py:55:                "provider": "laya",
+ragin/cycle/adapters.py:61:        payload["laya_assessment"] = {
+ragin/cycle/adapters.py:62:            "provider": "laya",
+ragin/cycle/adapters.py:68:def laya_decision_mapper(
+ragin/cycle/adapters.py:74:    """Attach the V2 real-Laya decision event and its bounded strategy branch."""
+ragin/cycle/adapters.py:75:    from ragin.decision.laya_runtime import eval_requires_real_model, laya_enabled
+ragin/cycle/adapters.py:77:    if not laya_enabled():
+ragin/cycle/adapters.py:81:            from ragin.decision.laya_decision import LayaDecisionAdapter
+ragin/cycle/adapters.py:82:            from ragin.decision.laya_runtime import get_shared_runtime
+ragin/cycle/adapters.py:87:            adapter = LayaDecisionAdapter(
+ragin/cycle/adapters.py:89:                model=f"laya/{runtime.model}",
+ragin/cycle/adapters.py:94:        payload["laya_decision"] = event
+ragin/cycle/adapters.py:95:        payload["laya_assessment"] = {
+ragin/cycle/adapters.py:96:            "provider": "laya",
+ragin/cycle/adapters.py:103:        payload["laya_decision"] = {
+ragin/cycle/adapters.py:104:            "schema": "ragin.laya_decision_v2.decision_event.v2",
+ragin/cycle/adapters.py:106:            "laya_enabled": True,
+ragin/cycle/adapters.py:108:            "model": "laya/english",
+ragin/cycle/adapters.py:121:                "provenance": {"provider": "laya", "real_model_verified": False},
+ragin/cycle/adapters.py:136:        payload["laya_assessment"] = {
+ragin/cycle/adapters.py:137:            "provider": "laya",
+ragin/cycle/adapters.py:150:    def __init__(self, classifier: Any = None, decision_arm: str | None = None) -> None:
+ragin/cycle/adapters.py:151:        if classifier is None:
+ragin/cycle/adapters.py:152:            from ragin.chrollo.classifier import ChrolloClassifier
+ragin/cycle/adapters.py:154:            classifier = ChrolloClassifier()
+ragin/cycle/adapters.py:155:        self._classifier = classifier
+ragin/cycle/adapters.py:157:        self._laya_adapter: Any | None = None
+ragin/cycle/adapters.py:163:            from ragin.decision.laya_runtime import eval_requires_real_model, get_shared_runtime, laya_enabled
+ragin/cycle/adapters.py:165:            if eval_requires_real_model() and not laya_enabled():
+ragin/cycle/adapters.py:167:            if laya_enabled():
+ragin/cycle/adapters.py:168:                from ragin.decision.laya_decision import LayaDecisionAdapter
+ragin/cycle/adapters.py:173:                self._laya_adapter = LayaDecisionAdapter(
+ragin/cycle/adapters.py:175:                    model=f"laya/{runtime.model}",
+ragin/cycle/adapters.py:182:            logger.warning("Laya adapter unavailable at startup: %s", exc)
+ragin/cycle/adapters.py:220:            result = self._classifier.classify(session_log)
+ragin/cycle/adapters.py:232:            if self._laya_adapter is not None and resolve_arm(self._decision_arm) == "RAGIN_BASELINE":
+ragin/cycle/adapters.py:233:                laya_decision_mapper(payload, session_id, attacker_input, self._laya_adapter)
+ragin/cycle/metrics.py:121:            result = classifier.classify(input)
+ragin/cycle/metrics.py:175:            classifier.classify(input)
+ragin/cycle/graph.py:3:Re-implements the stateless Harness loop as a checkpointed, replayable LangGraph
+ragin/cycle/graph.py:105:        classifier: Any = None,
+ragin/cycle/graph.py:115:        self._classifier = classifier
+ragin/cycle/graph.py:178:        if not self._classifier:
+ragin/cycle/graph.py:180:        out = self._classifier.classify(state["attacker_input"], state.get("context", {}) or {})
+ragin/cycle/graph.py:591:        classifier: Any = None,
+ragin/cycle/graph.py:602:        self._classifier = classifier if classifier is not None else ChrolloAdapter(decision_arm=decision_arm)
+ragin/cycle/graph.py:607:            classifier=self._classifier,
+ragin/cycle/coordination.py:288:            classification: Output from Chrollo classifier
+ragin/cycle/coordination.py:387:        # the (ngram) classifier says "apt" with high confidence, the
+ragin/cycle/harness.py:110:    """Interface for the Chrollo classifier."""
+ragin/cycle/harness.py:211:            classifier=ChrolloClassifier(),
+## local model directories (metadata only)
+### models
+d	4096	models/chrollo
+d	4096	models/chrollo/_pre_scale_backup
+d	4096	models/laya_v3_calibration_tuning_aborted_server_restart_20261016
+d	4096	models/laya_v3_calibration_tuning_aborted_server_restart_20261016/laya_v3_calibration_tuning_dev_rlcd_v1
+d	4096	models/laya_v3_calibration_tuning_aborted_server_restart_20261016/laya_v3_calibration_tuning_dev_softce_v1
+d	4096	models/laya_v3_calibration_tuning_dev_rlcd_v1
+d	4096	models/laya_v3_calibration_tuning_dev_rlcd_v1/encoder
+d	4096	models/laya_v3_calibration_tuning_dev_rlcd_v1/tokenizer
+d	4096	models/laya_v3_calibration_tuning_dev_softce_v1
+d	4096	models/laya_v3_calibration_tuning_dev_softce_v1/encoder
+d	4096	models/laya_v3_calibration_tuning_dev_softce_v1/tokenizer
+d	4096	models/laya_v3_calibration_tuning_failed_finalization_20261016
+d	4096	models/laya_v3_calibration_tuning_failed_finalization_20261016/laya_v3_calibration_tuning_dev_softce_v1
+d	4096	models/laya_v4_targeted_gpu_redesign_v1_dev_rlcd_v1
+d	4096	models/laya_v4_targeted_gpu_redesign_v1_dev_rlcd_v1/encoder
+d	4096	models/laya_v4_targeted_gpu_redesign_v1_dev_rlcd_v1/tokenizer
+d	4096	models/laya_v4_targeted_gpu_redesign_v1_dev_softce_v1
+d	4096	models/laya_v4_targeted_gpu_redesign_v1_dev_softce_v1/encoder
+d	4096	models/laya_v4_targeted_gpu_redesign_v1_dev_softce_v1/tokenizer
+d	4096	models/laya_v5_extended_gpu_redesign_v1_dev_rlcd_v1
+d	4096	models/laya_v5_extended_gpu_redesign_v1_dev_rlcd_v1/encoder
+d	4096	models/laya_v5_extended_gpu_redesign_v1_dev_rlcd_v1/tokenizer
+d	4096	models/laya_v5_extended_gpu_redesign_v1_dev_softce_v1
+d	4096	models/laya_v5_extended_gpu_redesign_v1_dev_softce_v1/encoder
+d	4096	models/laya_v5_extended_gpu_redesign_v1_dev_softce_v1/tokenizer
+d	4096	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_rlcd_v1
+d	4096	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_rlcd_v1/encoder
+d	4096	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_rlcd_v1/tokenizer
+d	4096	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_softce_v1
+d	4096	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_softce_v1/encoder
+d	4096	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_softce_v1/tokenizer
+d	4096	models/laya_v8_weighted_evidence_gpu_redesign_v1_aborted_no_space_20261016
+d	4096	models/laya_v8_weighted_evidence_gpu_redesign_v1_aborted_no_space_20261016/laya_v8_weighted_evidence_gpu_redesign_v1_dev_softce_v1
+f	14557865	models/chrollo/rf_classifier_pre_ngram.joblib
+f	1553	models/laya_v4_targeted_gpu_redesign_v1_dev_rlcd_v1/questions.json
+f	1553	models/laya_v4_targeted_gpu_redesign_v1_dev_softce_v1/questions.json
+f	1589	models/laya_v3_calibration_tuning_dev_rlcd_v1/questions.json
+f	1589	models/laya_v3_calibration_tuning_dev_softce_v1/questions.json
+f	1589	models/laya_v5_extended_gpu_redesign_v1_dev_rlcd_v1/questions.json
+f	1589	models/laya_v5_extended_gpu_redesign_v1_dev_softce_v1/questions.json
+f	1589	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_rlcd_v1/questions.json
+f	1589	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_softce_v1/questions.json
+f	1591	models/chrollo/rf_classifier.scaler.joblib
+f	1844	models/chrollo/training_manifest.json
+f	1931545	models/chrollo/rf_classifier_single_class_backup.joblib
+f	25586	models/chrollo/tuning_manifest.json
+f	2608	models/laya_v4_targeted_gpu_redesign_v1_dev_softce_v1/train_report.json
+f	2610	models/laya_v3_calibration_tuning_dev_rlcd_v1/train_report.json
+f	2610	models/laya_v3_calibration_tuning_dev_softce_v1/train_report.json
+f	2610	models/laya_v4_targeted_gpu_redesign_v1_dev_rlcd_v1/train_report.json
+f	2616	models/laya_v5_extended_gpu_redesign_v1_dev_rlcd_v1/train_report.json
+f	2623	models/laya_v5_extended_gpu_redesign_v1_dev_softce_v1/train_report.json
+f	2645	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_rlcd_v1/train_report.json
+f	2651	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_softce_v1/train_report.json
+f	5034	models/laya_v4_targeted_gpu_redesign_v1_dev_softce_v1/rl_agent_config.json
+f	5043	models/laya_v4_targeted_gpu_redesign_v1_dev_rlcd_v1/rl_agent_config.json
+f	5044	models/laya_v3_calibration_tuning_dev_softce_v1/rl_agent_config.json
+f	5045	models/laya_v3_calibration_tuning_dev_rlcd_v1/rl_agent_config.json
+f	5051	models/laya_v5_extended_gpu_redesign_v1_dev_rlcd_v1/rl_agent_config.json
+f	5063	models/laya_v5_extended_gpu_redesign_v1_dev_softce_v1/rl_agent_config.json
+f	5115	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_rlcd_v1/rl_agent_config.json
+f	5126	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_softce_v1/rl_agent_config.json
+f	5837401	models/chrollo/rf_classifier_pre_tune.joblib
+f	610	models/chrollo/rf_classifier.features.joblib
+f	8077193	models/chrollo/rf_classifier.joblib
+f	823	models/chrollo/rf_classifier_pre_tune.scaler.joblib
+f	842609220	models/laya_v3_calibration_tuning_dev_rlcd_v1/model.safetensors
+f	842609220	models/laya_v3_calibration_tuning_dev_softce_v1/model.safetensors
+l	100	models/laya_v10_state_pretrain_gpu_redesign_v1_dev_rlcd_v1
+l	102	models/laya_v10_state_pretrain_gpu_redesign_v1_dev_softce_v1
+l	102	models/laya_v11_matched_coverage_gpu_redesign_v1_dev_rlcd_v1
+l	102	models/laya_v12_balanced_allrows_gpu_redesign_v1_dev_rlcd_v1
+l	102	models/laya_v8_weighted_evidence_gpu_redesign_v1_dev_rlcd_v1
+l	104	models/laya_v11_matched_coverage_gpu_redesign_v1_dev_softce_v1
+l	104	models/laya_v12_balanced_allrows_gpu_redesign_v1_dev_softce_v1
+l	104	models/laya_v8_weighted_evidence_gpu_redesign_v1_dev_softce_v1
+l	96	models/laya_v9_mount_retry_gpu_redesign_v1_dev_rlcd_v1
+l	98	models/laya_v9_mount_retry_gpu_redesign_v1_dev_softce_v1
+l	99	models/laya_v11_matched_coverage_gpu_redesign_v1_final_v1
+l	99	models/laya_v12_balanced_allrows_gpu_redesign_v1_final_v1
+### /home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya
+d	4096	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs
+d	4096	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/snapshots
+d	4096	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/snapshots/55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851
+d	4096	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/trees
+f	1608	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/99340c1099ebe7139cb33acab5f57735626ce7f2
+f	19139	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/d90d564964bcdc77586a257b0acccb5b7b19d6cf
+f	1938	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/0de0e2d30638873790cf962def52e2acf4db3eef
+f	2083	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/5881ba831f2db5ce0f606bbaa1f2668e1e6cb706
+f	2084	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/d4be4829750fb04c0aa8b9897c3ea827f76c0109
+f	23187	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/ac11a565c217959d0cb062748a2f83e05da446a5
+f	2976	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/db4219c92927e0c5d3f44daca3133eb3d179b836
+f	308	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/9fd800115c5c92353220aa66addfce67a9135f32
+f	337	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/ed1ffabc2ce11120754705709569e365e46da71a
+f	34363188	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/609d8f4c067cd3950f88594c5a802616cea245823836ef5848ee4fc40aab5b6f
+f	3583228	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/2f4d8583e507b7466d2490e2d6c045647a822698
+f	3937	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/7fad36ed6e631fb3fb62c7ad26cc440923efca27
+f	472	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/00e35f88bb731bb9126a914666ab1cdac8a204c8
+f	4732	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/51b0c3b899d2f6b45c1ffe5a57522f75a686f2bc
+f	524	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/c255ac0c8cb34a37d066cd0dafe313fd769d27ae
+f	6088	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/trees/55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851.json
+f	643835514	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/9d628fd971b700382ac6f65920a86f149777b2e748e0c955fb3b19695aa8f204
+f	745	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/3e4fcbf12cf36164ce18a1398aa9f35f58375ae0
+f	842609210	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c
+f	842609220	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/4fa56de72383a9d3efa9cfa78955733c81b9fc8067a587ca4beb82c78107a24e
+f	847	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs/5f0e1d5f2366fe8ba2ff330dffaeed53b469e97e
+### /home/elaref/.cache/huggingface/hub
+d	4096	/home/elaref/.cache/huggingface/hub/.locks
+d	4096	/home/elaref/.cache/huggingface/hub/.locks/models--answerdotai--ModernBERT-base
+d	4096	/home/elaref/.cache/huggingface/hub/.locks/models--chopratejas--kompress-v2-base
+d	4096	/home/elaref/.cache/huggingface/hub/.locks/models--convaiinnovations--laya
+d	4096	/home/elaref/.cache/huggingface/hub/.locks/models--sentence-transformers--all-MiniLM-L6-v2
+d	4096	/home/elaref/.cache/huggingface/hub/blobs
+d	4096	/home/elaref/.cache/huggingface/hub/blobs/a5
+d	4096	/home/elaref/.cache/huggingface/hub/models--answerdotai--ModernBERT-base
+d	4096	/home/elaref/.cache/huggingface/hub/models--answerdotai--ModernBERT-base/.no_exist
+d	4096	/home/elaref/.cache/huggingface/hub/models--answerdotai--ModernBERT-base/blobs
+d	4096	/home/elaref/.cache/huggingface/hub/models--answerdotai--ModernBERT-base/refs
+d	4096	/home/elaref/.cache/huggingface/hub/models--answerdotai--ModernBERT-base/snapshots
+d	4096	/home/elaref/.cache/huggingface/hub/models--chopratejas--kompress-v2-base
+d	4096	/home/elaref/.cache/huggingface/hub/models--chopratejas--kompress-v2-base/blobs
+d	4096	/home/elaref/.cache/huggingface/hub/models--chopratejas--kompress-v2-base/snapshots
+d	4096	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya
+d	4096	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/blobs
+d	4096	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/snapshots
+d	4096	/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/trees
+d	4096	/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2
+d	4096	/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist
+d	4096	/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs
+d	4096	/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/refs
+d	4096	/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots
+f	191	/home/elaref/.cache/huggingface/hub/CACHEDIR.TAG
+f	2	/home/elaref/.cache/huggingface/hub/blobs/.huggingface-shared-blobs
+
+## classifier model files
+842609220	./models/laya_v3_calibration_tuning_dev_softce_v1/model.safetensors
+842609220	./models/laya_v3_calibration_tuning_dev_rlcd_v1/model.safetensors
+29946461	./llm-gateway/target/debug/incremental/llm_gateway-32jkpgxixpfqr/s-hn12vyfxlw-1m0l6wk-b22fnozvonnfl2v8kin7emwfl/dep-graph.bin
+15643354	./llm-gateway/target/debug/incremental/llm_gateway-32jkpgxixpfqr/s-hn12vyfxlw-1m0l6wk-b22fnozvonnfl2v8kin7emwfl/query-cache.bin
+15208858	./llm-gateway/target/debug/incremental/llm_gateway-36rcg9xmbc59b/s-hmm2s6tfiw-0det12w-7bhi74pu6nptjxp68wa442g0w/dep-graph.bin
+15208036	./llm-gateway/target/debug/incremental/llm_gateway-03fwif4by1zoh/s-hmm2uytkh6-0aesbu9-3ri6e5jx8nigqb5oovg54ugw6/dep-graph.bin
+15203255	./llm-gateway/target/debug/incremental/llm_gateway-36rcg9xmbc59b/s-hmm2rhq7oi-0dy475o-dvevbtakwb3ftzgdrdgsevy8b/dep-graph.bin
+14557865	./models/chrollo/rf_classifier_pre_ngram.joblib
+8077193	./models/chrollo/rf_classifier.joblib
+5837401	./models/chrollo/rf_classifier_pre_tune.joblib
+5417000	./llm-gateway/target/debug/incremental/llm_gateway-36rcg9xmbc59b/s-hmm2s6tfiw-0det12w-7bhi74pu6nptjxp68wa442g0w/query-cache.bin
+5408056	./llm-gateway/target/debug/incremental/llm_gateway-36rcg9xmbc59b/s-hmm2rhq7oi-0dy475o-dvevbtakwb3ftzgdrdgsevy8b/query-cache.bin
+5173960	./llm-gateway/target/debug/incremental/llm_gateway-03fwif4by1zoh/s-hmm2uytkh6-0aesbu9-3ri6e5jx8nigqb5oovg54ugw6/query-cache.bin
+5060201	./models/chrollo/_pre_scale_backup/rf_classifier.joblib
+3118556	./llm-gateway/target/debug/incremental/llm_gateway-2zdxoz6lua8vr/s-hn12w2rxr8-0tx9g6m-0zyxxec435zd379jzhtfcy1ju/dep-graph.bin
+2929797	./llm-gateway/target/debug/incremental/llm_gateway-3gqeeq4rgx3xv/s-hmm2s8gi8t-0b3muzy-6hvlbk9gowwxwqhth7yr0hkou/dep-graph.bin
+1931545	./models/chrollo/rf_classifier_single_class_backup.joblib
+958553	./llm-gateway/target/debug/incremental/llm_gateway-2zdxoz6lua8vr/s-hn12w2rxr8-0tx9g6m-0zyxxec435zd379jzhtfcy1ju/query-cache.bin
+947462	./llm-gateway/target/debug/incremental/llm_gateway-3gqeeq4rgx3xv/s-hmm2s8gi8t-0b3muzy-6hvlbk9gowwxwqhth7yr0hkou/query-cache.bin
+16821	./llm-gateway/target/debug/incremental/llm_gateway-32jkpgxixpfqr/s-hn12vyfxlw-1m0l6wk-b22fnozvonnfl2v8kin7emwfl/work-products.bin
+3081	./results/decision_fusion_v4/v4_selected_logistic_policy.joblib
+3081	./results/decision_fusion_v4/v4_dev_logistic_policy.joblib
+1591	./models/chrollo/rf_classifier.scaler.joblib
+823	./models/chrollo/rf_classifier_pre_tune.scaler.joblib
+823	./models/chrollo/_pre_scale_backup/rf_classifier.scaler.joblib
+716	./.venv-gpu/lib/python3.12/site-packages/numpy/_core/tests/data/astype_copy.pkl
+658	./llm-gateway/target/debug/incremental/llm_gateway-03fwif4by1zoh/s-hmm2uytkh6-0aesbu9-3ri6e5jx8nigqb5oovg54ugw6/work-products.bin
+610	./models/chrollo/rf_classifier.features.joblib
+430	./llm-gateway/target/debug/incremental/llm_gateway-2zdxoz6lua8vr/s-hn12w2rxr8-0tx9g6m-0zyxxec435zd379jzhtfcy1ju/work-products.bin
+100	./llm-gateway/target/debug/incremental/llm_gateway-36rcg9xmbc59b/s-hmm2s6tfiw-0det12w-7bhi74pu6nptjxp68wa442g0w/work-products.bin
+100	./llm-gateway/target/debug/incremental/llm_gateway-36rcg9xmbc59b/s-hmm2rhq7oi-0dy475o-dvevbtakwb3ftzgdrdgsevy8b/work-products.bin
+50	./llm-gateway/target/debug/incremental/llm_gateway-3gqeeq4rgx3xv/s-hmm2s8gi8t-0b3muzy-6hvlbk9gowwxwqhth7yr0hkou/work-products.bin
+
+## ollama manifests/blobs (names+sizes only)
+
+## python packages relevant to generative inference (installed metadata only)
+torch: present
+transformers: present
+sentence_transformers: present
+vllm: absent
+llama_cpp: absent
+ollama: absent
+accelerate: absent
+bitsandbytes: absent
+## laya config/readme metadata (names only, small files)
+1844	models/chrollo/training_manifest.json
+2084	models/laya_v3_calibration_tuning_dev_rlcd_v1/encoder/config.json
+2084	models/laya_v3_calibration_tuning_dev_softce_v1/encoder/config.json
+2084	models/laya_v4_targeted_gpu_redesign_v1_dev_rlcd_v1/encoder/config.json
+2084	models/laya_v4_targeted_gpu_redesign_v1_dev_softce_v1/encoder/config.json
+2084	models/laya_v5_extended_gpu_redesign_v1_dev_rlcd_v1/encoder/config.json
+2084	models/laya_v5_extended_gpu_redesign_v1_dev_softce_v1/encoder/config.json
+2084	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_rlcd_v1/encoder/config.json
+2084	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_softce_v1/encoder/config.json
+2608	models/laya_v4_targeted_gpu_redesign_v1_dev_softce_v1/train_report.json
+2610	models/laya_v3_calibration_tuning_aborted_server_restart_20261016/laya_v3_calibration_tuning_dev_softce_v1/train_report.json
+2610	models/laya_v3_calibration_tuning_dev_rlcd_v1/train_report.json
+2610	models/laya_v3_calibration_tuning_dev_softce_v1/train_report.json
+2610	models/laya_v4_targeted_gpu_redesign_v1_dev_rlcd_v1/train_report.json
+2616	models/laya_v5_extended_gpu_redesign_v1_dev_rlcd_v1/train_report.json
+2623	models/laya_v5_extended_gpu_redesign_v1_dev_softce_v1/train_report.json
+2645	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_rlcd_v1/train_report.json
+2651	models/laya_v7_last_layer_encoder_gpu_redesign_v1_dev_softce_v1/train_report.json
+
+## ollama model store
+total 16
+drwx------   2 elaref elaref  4096 May 24 19:17 .
+drwxr-xr-x 131 elaref elaref 12288 Oct 22 13:49 ..
+ls: cannot access '/home/elaref/.ollama/models': No such file or directory
+
+## HF cached model refs/snapshots (names only)
+### models--answerdotai--ModernBERT-base
+8949b909ec900327062f0ebf497f51aef5e6f0c8
+### models--chopratejas--kompress-v2-base
+b1563631b35bfdcee37587ad530147497d820d4c
+### models--convaiinnovations--laya
+55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851
+### models--sentence-transformers--all-MiniLM-L6-v2
+1110a243fdf4706b3f48f1d95db1a4f5529b4d41
+
+## small config excerpts (no weights)
+### models/laya_v3_calibration_tuning_dev_softce_v1/encoder/config.json
+{
+  "architectures": [
+    "ModernBertForMaskedLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 50281,
+  "classifier_activation": "gelu",
+  "classifier_bias": false,
+  "classifier_dropout": 0.0,
+  "classifier_pooling": "mean",
+  "cls_token_id": 50281,
+  "decoder_bias": true,
+  "deterministic_flash_attn": false,
+  "dtype": "float32",
+  "embedding_dropout": 0.0,
+  "eos_token_id": 50282,
+  "global_attn_every_n_layers": 3,
+  "gradient_checkpointing": false,
+  "hidden_activation": "gelu",
+  "hidden_size": 1024,
+  "initializer_cutoff_factor": 2.0,
+  "initializer_range": 0.02,
+  "intermediate_size": 2624,
+  "layer_norm_eps": 1e-05,
+  "layer_types": [
+    "full_attention",
+    "sliding_attention",
+    "sliding_attention",
+    "full_attention",
+    "sliding_attention",
+    "sliding_attention",
+    "full_attention",
+    "sliding_attention",
+    "sliding_attention",
+    "full_attention",
+    "sliding_attention",
+    "sliding_attention",
+    "full_attention",
+    "sliding_attention",
+### models/chrollo/training_manifest.json
+{
+  "retrained_at": "2026-09-20T15:40:25.625150+00:00",
+  "feature_set": "baseline+ngram",
+  "n_features": 42,
+  "dataset": {
+    "source": "data/training/sessions.jsonl",
+    "total": 2000,
+    "class_counts": {
+      "apt": 500,
+      "expert": 500,
+      "intermediate": 500,
+      "novice": 500
+    }
+  },
+  "split": {
+    "train": 1600,
+    "test": 400,
+    "seed": 42
+  },
+  "hyperparameters": {
+    "n_estimators": 300,
+    "max_depth": 16,
+    "min_samples_leaf": 2,
+    "class_weight": null,
+    "random_state": 42,
+    "selected_by": "5-fold CV on train split (grid mirroring scripts/benchmark_seq_features.py)"
+  },
+  "metrics": {
+    "heldout_accuracy": 0.955,
+    "cv_accuracy": 0.9444,
+    "cv_std": 0.0126,
+    "per_tier_recall": {
+      "novice": 0.97,
+      "intermediate": 0.95,
+      "expert": 0.94,
+      "apt": 0.96
+    },
+    "confusion_matrix": {
+      "novice": {
+        "novice": 97,
+## ollama process owner + system model dirs (metadata only)
+ollama      2672 ollama          /usr/local/bin/ollama serve
+### /usr/share/ollama
+196K	/usr/share/ollama
+3771	/usr/share/ollama/.bashrc
+807	/usr/share/ollama/.profile
+389	/usr/share/ollama/.ollama/models/blobs/sha256-fdf5d5de5b1ca09004fba39d1ecddb4d7bfee9f1580b86e713ad1aeae4dc9bd0
+388	/usr/share/ollama/.ollama/models/blobs/sha256-c49aea1df6fc3079f76e23b66326897a31a650053fb194a353674e0c6776c026
+387	/usr/share/ollama/.ollama/id_ed25519
+384	/usr/share/ollama/.ollama/models/blobs/sha256-923426e76b183456b6aaca2c0538ae96f2de390cddc543278de025f714f79a03
+375	/usr/share/ollama/.ollama/models/blobs/sha256-87a587d206ac44872f1f41ed59244868f68c17d4d68e9f5f94c02ebaae7ee2a6
+362	/usr/share/ollama/.ollama/models/blobs/sha256-c10dbdfc0f01c382f70a5484226396c3504dce5b4cfb95cfea508e27ecefd0e2
+348	/usr/share/ollama/.ollama/models/blobs/sha256-1281b5e5cffc83208591388af031e4ae88cc93c34a7a6d1fbe6e63a922974e7a
+346	/usr/share/ollama/.ollama/models/blobs/sha256-3fe4a928e671bb681182d00614a6794a1aa43e3000696c6f691be04c2c65b03e
+345	/usr/share/ollama/.ollama/models/blobs/sha256-eddb1e2169b8af96edd292983731f20a996cb2485a113336e7400d8540495797
+342	/usr/share/ollama/.ollama/models/blobs/sha256-5eb7ea60f4a370bc4c4e42bc50639d200502a38f93c40109e4aedc0487f3da2b
+338	/usr/share/ollama/.ollama/models/blobs/sha256-6528273d19b7782323aa7d710126e395f3117ba6f1691b04c086031468aa2240
+327	/usr/share/ollama/.ollama/models/blobs/sha256-faeda286bd34b998935b1415ac15dd94128929f11ee53d8942b1b9b5043d1308
+308	/usr/share/ollama/.ollama/models/blobs/sha256-717e619d909ba685a830ad18585c04b0c75f96c1544825089636f803430e6776
+220	/usr/share/ollama/.bash_logout
+81	/usr/share/ollama/.ollama/id_ed25519.pub
+### /usr/share/ollama/.ollama/models
+164K	/usr/share/ollama/.ollama/models
+389	/usr/share/ollama/.ollama/models/blobs/sha256-fdf5d5de5b1ca09004fba39d1ecddb4d7bfee9f1580b86e713ad1aeae4dc9bd0
+388	/usr/share/ollama/.ollama/models/blobs/sha256-c49aea1df6fc3079f76e23b66326897a31a650053fb194a353674e0c6776c026
+384	/usr/share/ollama/.ollama/models/blobs/sha256-923426e76b183456b6aaca2c0538ae96f2de390cddc543278de025f714f79a03
+375	/usr/share/ollama/.ollama/models/blobs/sha256-87a587d206ac44872f1f41ed59244868f68c17d4d68e9f5f94c02ebaae7ee2a6
+362	/usr/share/ollama/.ollama/models/blobs/sha256-c10dbdfc0f01c382f70a5484226396c3504dce5b4cfb95cfea508e27ecefd0e2
+348	/usr/share/ollama/.ollama/models/blobs/sha256-1281b5e5cffc83208591388af031e4ae88cc93c34a7a6d1fbe6e63a922974e7a
+346	/usr/share/ollama/.ollama/models/blobs/sha256-3fe4a928e671bb681182d00614a6794a1aa43e3000696c6f691be04c2c65b03e
+345	/usr/share/ollama/.ollama/models/blobs/sha256-eddb1e2169b8af96edd292983731f20a996cb2485a113336e7400d8540495797
+342	/usr/share/ollama/.ollama/models/blobs/sha256-5eb7ea60f4a370bc4c4e42bc50639d200502a38f93c40109e4aedc0487f3da2b
+338	/usr/share/ollama/.ollama/models/blobs/sha256-6528273d19b7782323aa7d710126e395f3117ba6f1691b04c086031468aa2240
+327	/usr/share/ollama/.ollama/models/blobs/sha256-faeda286bd34b998935b1415ac15dd94128929f11ee53d8942b1b9b5043d1308
+308	/usr/share/ollama/.ollama/models/blobs/sha256-717e619d909ba685a830ad18585c04b0c75f96c1544825089636f803430e6776
+
+## extra open-weight formats outside repo (metadata names/sizes only; maxdepth 5)

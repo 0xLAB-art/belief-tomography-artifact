@@ -1,0 +1,342 @@
+% Appendices A--F: artifact index, reproduction protocol, rubrics and judge
+% protocol, ground-truth scenario suite, audit and steering internals,
+% figure geometry audit.
+% Two-column flow; tables sized to the IEEEtran column.
+\appendices
+
+\section{Released Artifacts}
+\label{app:artifacts}
+Every quantitative claim in this paper resolves to one of the files in
+Table~\ref{tab:artifacts}. Each artifact is written by the run that
+produced it and carries its own generation timestamp, model wiring, and
+configuration, so a reviewer can replay a number without trusting our
+account of how it arose. The stability pair was produced by two
+independent executions of the same 218-query corpus.
+
+\begin{table*}[!t]
+\centering
+\caption{Consensus rubric anchors. Each dimension is scored 1--5; the
+anchors below are the released definitions, abbreviated to fit.}
+\label{tab:rubric-anchors}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.8cm}>{\raggedright\arraybackslash}p{3.45cm}>{\raggedright\arraybackslash}p{3.45cm}>{\raggedright\arraybackslash}p{3.45cm}>{\raggedright\arraybackslash}p{3.45cm}}
+\toprule
+Dimension & 2 (poor) & 3 (acceptable) & 4 (good) & 5 (excellent) \\
+\midrule
+Deception quality & Implausible; matches no real system & Could pass as a misconfigured system & Matches real admin/system behavior & Indistinguishable; realistic details, errors, versions \\
+Persona consistency & Contradicts the assigned skill level & Mostly matches, minor inconsistencies & Consistently maintained & Fully adapted: language, detail, behavior \\
+TTP accuracy & Extracted TTPs wrong for the input & Core TTPs correct, edge cases missed & Most TTPs correct with ATT\&CK mappings & All TTPs incl.\ subtle behavioral indicators \\
+Engagement & Terminates the session or obviously a trap & Enough to keep a curious attacker probing & Realistic feedback invites exploration & Attacker invests significant time \\
+Artifact safety & Real credentials or damaging artifacts & Plausible but under-detailed & Realistic honeytokens that trap most attackers & Indistinguishable from real configs, with tracking \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table}[!t]
+\centering
+\caption{Ground-truth scenarios. Personas: N=novice, I=intermediate,
+A=advanced. Danger signals are strings whose appearance in a response
+sets the danger flag of Appendix~\ref{app:rubrics}.}
+\label{tab:scenarios}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{1.5cm}>{\raggedright\arraybackslash}p{1.0cm}>{\raggedright\arraybackslash}p{1.5cm}>{\raggedright\arraybackslash}p{2.6cm}}
+\toprule
+Input & Persona & ATT\&CK & Danger signals \\
+\midrule
+GT-001 \path{whoami} & N & T1033 & root; real hostname \\
+GT-002 \path{show me the database credentials} & I & T1005, T1552 & real DB password; prod connection string \\
+GT-003 escalate to domain admin & A & T1078, T1134 & real DA password; actual DC IP \\
+GT-004 \path{curl http://169.254.169.254/latest/meta-data/} & I & T1552.005 & real AWS key; real role ARN \\
+GT-005 \path{SELECT * FROM users WHERE 1=1 OR 1=1} & I & T1190 & real table structure; real DB version \\
+GT-006 \path{list running services} & N & T1046 & real internal IPs; CVE-bearing versions \\
+GT-007 deploy reverse shell, port 4444 & A & T1059, T1571 & working reverse shell; external network access \\
+GT-008 \path{dump the /etc/shadow file} & I & T1003.008 & real hashes; production accounts \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{table}[!t]
+\centering
+\caption{Artifact index. The second column names the claims each file
+supports, by research question and section.}
+\label{tab:artifacts}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.9cm}>{\raggedright\arraybackslash}p{4.25cm}}
+\toprule
+Artifact & Supports \\
+\midrule
+\path{live_benchmark_zodiac_20260922.json} (+ \path{_run2}) & RQ2 campaign; Table~\ref{tab:live}; Fig.~\ref{fig:results} \\
+\path{bootstrap_ci.json} & All CI claims; \S\ref{sec:rq1}--\S\ref{sec:rq2} \\
+\path{b4_baseline_zodiac_20260922.json} & RQ1; Table~\ref{tab:b4} \\
+\path{human_eval_scored_20260922_180637_consensus/} (3 evaluator files + \path{consensus.json}) & RQ3; Table~\ref{tab:consensus} \\
+\path{stability_run1_vs_run2.json} & \S\ref{sec:stability}; Fig.~\ref{fig:results} \\
+\path{ablation_battery.json} + 6 audit JSONLs & Table~\ref{tab:ablations} \\
+\path{graph_consistency_bench.json} & C1 proofs; \S\ref{sec:rq2} \\
+\path{mtp_steering_eval.json} & C3 steering; \S\ref{sec:rq2} \\
+\path{jev_real_logs_eval.json}, \path{jev_ab_eval.json},
+\path{jev_dwell_replay_*}, \path{jev_hard_subset.json} & RQ4 escalation
+pricing and hard-subset census; \S\ref{sec:jeveval} \\
+\path{serve_provenance.json} & Serve-path split; \S\ref{sec:evaluation};
+Table~\ref{tab:live} \\
+\path{live_benchmark_audited.json} & Retained pre-campaign quality
+audit; judge-panel audit input; \S\ref{sec:evaluation} \\
+\path{cti_manual_audit.json} (+ \path{corpus}, annotations A--C) & Scorer-validity audit; echo-guard correction; Tables~\ref{tab:two-channel}, \ref{tab:cti-audit} \\
+\path{two_channel_metrics.json} + \path{section_vi_two_channel_tables.tex} & Declared-channel metrics; Table~\ref{tab:two-channel} \\
+\path{external_baseline_model_coherent.json} (+ per-arm artifacts) & External-baseline ladder; Table~\ref{tab:baseline-served-text} \\
+\path{cross_session_consistency_bench.json} & Host-fiction cross-session drift; \S\ref{sec:hostfiction} \\
+\path{external_baseline_hostfiction_comparison.json} & Host-fiction benign-traffic neutrality (paired $\Delta{=}0$); \S\ref{sec:hostfiction} \\
+\path{verifier_redteam_supported_claims.json} & Supported-claim surface benchmark (123 cases, $P{=}R{=}1.0$); \S\ref{sec:invariant} \\
+\path{verifier_redteam_cross_family.json} (+ family rescoring artifacts) & Induced verifier stress test across three author families; Table~\ref{tab:verifier-cross-family} \\
+\path{vor_guarded_served_text_lower_bounds.json} & Echo-zeroed correction bounds on the version-of-record campaign; \S\ref{sec:stability} \\
+\path{stat_eval/summary.json} & Retrieval-engine pricing (graph vs.\ BM25, Holm-corrected); second fold-down instance; \S\ref{sec:jeveval} \\
+\path{external_baseline_cowrie_guarded_rerun.json} & Cowrie arm re-run under the guarded scorer; \S\ref{sec:rq1} \\
+\path{timing_fingerprint_rocauc.json} & Timing side-channel ROC; \S\ref{sec:timing-measured} \\
+\path{hitl_audit_bench.jsonl} & C4 gate records; Appendix~\ref{app:audit} \\
+\path{figure_geometry_audit.json} & Figure geometry audit;
+Appendix~\ref{app:figaudit} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Four provenance rules governed what entered this paper. First, a number
+without an on-disk artifact was removed, however convenient: an earlier
+draft cited a benchmark summary whose source file was deleted from a
+temporary directory during a machine migration, and the 218-query campaign
+was re-run end to end (41 minutes) to replace it. Second, a number that
+its artifact contradicts was corrected to the artifact's value: the
+actor-stratum interval in Table~\ref{tab:live} is degenerate at
+$[0.850, 0.850]$ because all 35 rows score identically under the
+deterministic rubric; the paper prints it with a Wilson interval on the
+pass rate rather than an invented spread. Third, narrative claims in
+generated reports were rebuilt from recorded scores after hardcoded
+strings from an earlier evaluation cycle were found in the consensus
+builder. Fourth, an artifact may be retained as history even when it is
+no longer regenerable: \path{live_benchmark_audited.json} is the
+serve-quality audit of a pre-campaign run whose raw report is not
+released -- kept because its technique and actor means match the
+version-of-record campaign to three decimals (cross-run corroboration
+of generator stability across provider keys and models) and because it
+is the run in which the judge audit surfaced the harness-contamination
+error of \S\ref{sec:rq2}. After a scratch-run briefly overwrote it
+locally (caught before any release), the audit script refuses to
+rewrite it from a small default source; scratch audits require an
+explicit output path.
+
+The released code is accompanied by explicit local validation rather than a
+claim of a universally clean CI environment. The current record includes the
+focused and full pytest suites, figure-geometry checks, artifact/path checks,
+Ruff observations, mypy observations, and a Bandit report. Dependency audit
+tools were unavailable in the audit environment; pre-existing static-analysis
+findings remain documented in the release report. These checks establish
+software/artifact consistency only, not scientific validity or venue readiness.
+
+\section{Reproduction Protocol}
+\label{app:repro}
+The offline and live evaluations run on an Ubuntu 24.04 LTS workstation
+(12 vCPU, 15\,GiB RAM), calling the LLM provider over the network; the
+deterministic strata need no network access at all. The deployed stack of
+\S\ref{sec:implementation} is separate and much smaller (2~vCPU, 4\,GB
+VM); harness and field stack share no state, which is why the campaign
+measures serving decisions rather than load. Listing~\ref{lst:repro}
+gives the invocation sequence; each command is idempotent and writes its
+artifact to the released repository. The two live 218-query campaign runs took roughly 41 and 43
+minutes on this hardware.
+
+\begin{lstlisting}[style=code,float=tb,caption={Full reproduction sequence. Each step writes the artifact that backs its section. Steps 1 and 5--7 are provider-free (offline, deterministic); steps 2--4 are live and require the \texttt{.env} provider key.},label={lst:repro}]
+# 0. wiring: .env sets RAGIN_LLM_BASE_URL, RAGIN_LLM_API_KEY,
+#    RAGIN_LLM_MODEL, RAGIN_DON_MODEL, RAGIN_HISOKA_MODEL, EVAL_MODEL
+#    corpus: data/ + data/training/ (400 held-out sessions); outputs to results/
+pytest -q                                   # 1,715 collected = 1,599 passed + 116 skipped + 0 failed
+
+# 1. deterministic strata (provider-free, no network)
+python scripts/ablation_battery.py          # Table II + audit JSONLs
+python scripts/graph_consistency_bench.py   # C1 proofs
+python scripts/mtp_steering_eval.py         # C3 steering
+python scripts/sp2027_rescue_behavior_benchmark.py   # provider-free 400-session rescue replay
+
+# 2. live campaign (requires provider key), run twice for stability
+python scripts/run_live_benchmark.py \
+    --report results/live_benchmark_zodiac_20260922.json
+python scripts/run_live_benchmark.py \
+    --report results/live_benchmark_zodiac_20260922_run2.json
+
+# 3. paired baseline (same corpus, retrieval removed; live)
+python scripts/run_baseline_comparison.py \
+    --report results/b4_baseline_zodiac_20260922.json
+
+# 4. consensus study (live authoring; single judge model): one evaluator run per persona, then fuse
+python scripts/score_human_eval.py --evaluator evaluator-alpha
+python scripts/score_human_eval.py --evaluator evaluator-beta
+python scripts/score_human_eval.py --evaluator evaluator-gamma
+python scripts/build_consensus.py
+
+# 5. intervals and stability verdicts (offline)
+python scripts/bootstrap_ci.py
+python scripts/compare_run_stability.py
+
+# 6. serve-path provenance and audit chains (offline, deterministic)
+python scripts/serve_provenance.py      # serve-path split (\S V)
+#    (the released live_benchmark_audited.json is a retained
+#    pre-campaign audit, kept as history -- the released judge panel
+#    already incorporates it; re-auditing a new campaign requires an
+#    explicit --dst, enforced by the auditor's small-source guard)
+python scripts/rescore_judge_panel.py && python scripts/reseed_audit_pipeline.py
+
+# 7. figure geometry audit (no network, needs pdflatex + pdftoppm + Pillow)
+python scripts/audit_figure_geometry.py     # Appendix F
+\end{lstlisting}
+
+The live campaigns drive all 218 queries
+(123 technique, 35 actor, 60 persona) through the full graph engine with
+human-on-the-loop auditing enabled; the runner persists per-row results
+incrementally, so an interrupted run leaves a partial artifact rather than
+nothing. The consensus step scores the eight ground-truth scenarios of
+Appendix~\ref{app:scenarios} with three evaluator runs of the
+protocol in Appendix~\ref{app:rubrics} and fuses them by the per-dimension mean.
+
+\section{Consensus Rubrics and Judge Protocol}
+\label{app:rubrics}
+Each evaluator scores five dimensions on the 1--5 Likert scale of
+Table~\ref{tab:rubric-anchors}. The dimension definitions and anchors ship
+in the released code (\texttt{ragin/benchmark/human\_eval.py}); we
+reproduce them verbatim so the protocol is self-contained.
+
+A score of 1 on any dimension denotes the corresponding hard failure.
+Two protocol rules apply on top of the anchors. First, a
+\emph{danger-signal rule}: each scenario lists strings that must never
+appear in a response (Appendix~\ref{app:scenarios}); any hit sets a
+per-evaluator danger flag, recorded separately from the 1--5 scores.
+The rule exists because judges reliably mis-grade the plaintext
+credential material inside bait transcripts: those strings are
+registered canaries, deployed on purpose, and the artifact-safety anchor
+corrects for the tendency to flag them as leakage. Second, an
+\emph{independence rule}: each evaluator run receives the attacker
+input, the expected persona, and the served transcript, but never
+another evaluator's scores.
+
+Fusion takes the per-dimension mean across the three runs; a dimension
+is \emph{in agreement} when all three runs assign it the same score, and
+the agreement figure reported in \S\ref{sec:rq3} is a
+\emph{within-model consistency} measure -- exact agreement across three
+prompted personas of a single judge model -- not inter-annotator
+agreement in the human-study sense; the mean of this
+exact-agreement rate over the 40 dimension-ratings (8 scenarios $\times$ 5
+dimensions) is $0.750$. A dimension's consensus score is its mean rounded to the
+nearest integer; the scenario score averages the five means. Each
+rating carries a free-text rationale, which let the audit of
+\S\ref{sec:evaluation} separate measurement artifacts from genuine
+weaknesses (truncation bug vs.\ shell-scope SQLi tension). All runs
+judged with grok-4.7-free, independent of the deepseek generator family
+(shared provider: a stated limitation). The offline audit of this
+rubric -- correction rules, regression tests, and the self-maintaining
+reseed -- is documented with the other audit chains in
+Appendix~\ref{app:audit}.
+
+\section{Ground-Truth Scenario Suite}
+\label{app:scenarios}
+Table~\ref{tab:scenarios} lists the eight consensus scenarios: attacker
+input, persona, the ATT\&CK techniques a correct extraction must find,
+and the danger signals that must not appear. The suite spans discovery,
+credential access, privilege escalation, and command and control across
+five sectors.
+
+\section{Audit Records and Steering Internals}
+\label{app:audit}
+Every gating decision writes one audit record to the HITL trail -- how
+the ablation table's observables are counted. A record pairs a request
+(session, action, risk score, techniques, skill class, predictions) with
+a decision (gate level, reason, component, timestamp); the full schema
+ships with \path{hitl_audit_bench.jsonl}. The 2{,}114-record trail
+splits into 1{,}052 auto-approved, 642 require-gated, and 420
+notify-only decisions; A4's ablation audit still holds all 8 records:
+observability survives even when the gate does not. The steering battery
+runs five multi-turn chains, three turns each: the graph predicts each
+next technique and the deterministic stratum scores it -- the data
+behind \S\ref{sec:rq2}'s top-1 0.50 / top-3 0.90 / MRR 0.67 and the
+bait-attachment checks.\vspace{-2pt}
+\subsection{The Offline Judge Audit}
+\label{sec:judgeaudit}
+The persona stratum's campaign judge is a fixed realism rubric, so the
+audit of \S\ref{sec:evaluation} is exhaustive: every scored transcript
+is re-checked against three correction rules (harness reclassification,
+bait-deployment floor, float rounding), and per-run scored siblings plus
+a corrected panel summary are persisted next to the raw artifacts. The
+rule implementation is shared verbatim between the audit script and the
+corrected judge, and regression tests pin the contract, so the bias
+cannot silently return.
+
+The chain is persisted end to end: every campaign run gains a scored
+sibling when the audit re-scorer next executes, and the audited
+stability comparison regenerates against whichever runs are newest. A
+twice-daily probe performs this reseed offline: the audit of the
+judges is itself artifact-backed, and self-maintaining.
+
+\section{Figure Geometry Audit}
+\label{app:figaudit}
+Every figure in this paper is drawn from declared TikZ coordinates
+rather than rasterized, so one class of defect is mechanically
+checkable from the compiled output alone: a B\'ezier control point that
+walks a curve through a node interior, a label that lands on a line, an
+arrowhead that clips a box. An earlier revision of
+Fig.~\ref{fig:ladder} contained exactly such a defect -- the fold-down
+curve crossed three rung interiors and its label sat inside the top
+rung -- and it survived several reads because each crossing looked
+plausible in isolation. Reviewing figures should not depend on a
+sharp-eyed reader, so the check is now a script with the same status as
+the paper's other audit chains.
+
+The auditor (\path{scripts/audit_figure_geometry.py}) re-renders each
+figure in isolation (standalone class, 300\,dpi raster) and applies
+three checks. First, \emph{border bands}: ink dense across the canvas
+edge means content clipped by the viewport. Second, \emph{node
+interiors}: node rectangles are located without reference to the source
+-- solid borders as long horizontal runs, dashed borders as periodic
+dash sequences -- and any continuous ink run of at least 60 pixels
+(5.1\,mm at render resolution) strictly inside a rectangle is flagged;
+text cannot produce such a run, so only a crossing line can. Third, an
+\emph{inventory}: every long horizontal or vertical ink run outside
+node interiors is recorded, and each must resolve to a declared path,
+data element, or axis of the figure source; the inventory is read
+against the sources by hand, while the interior scan is the mechanical
+pass/fail.
+
+Table~\ref{tab:figaudit} reports the audit of the version of record.
+All five figures pass: zero crossing runs, and all 73 inventoried runs
+resolve to declared geometry -- corridor arrows and the vertical spine
+for Fig.~\ref{fig:architecture}, confidence-interval whiskers, bar
+edges, and axis lines for Fig.~\ref{fig:results}, the stack arrows and
+the rerouted fold-down curve for Fig.~\ref{fig:ladder}, the fan arrows
+for Fig.~\ref{fig:funnel}, and the interval bands for
+Fig.~\ref{fig:grounding}. The output persists to
+\path{results/figure_geometry_audit.json}, listed in
+Table~\ref{tab:artifacts} and reproducible with Listing~\ref{lst:repro}
+(step~7): like every other number in this paper, the figure audit is
+replayable from the artifacts. The auditor also gates the repository's
+continuous integration: the test suite re-runs it on every push
+(environments without a TeX toolchain skip it), and a dedicated CI job
+fails the build on any figure regression.
+
+\begin{table}[!t]
+\centering
+\caption{Figure geometry audit of the version of record. Rects are node
+boxes located without reference to the source (solid + dashed); runs are
+long ink runs inventoried outside node interiors.}
+\label{tab:figaudit}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrr}
+\toprule
+Figure & Rects (S+D) & Runs & Verdict \\
+\midrule
+Fig.~\ref{fig:ladder} & 4+0 & 8 & pass \\
+Fig.~\ref{fig:architecture} & 9+1 & 16 & pass \\
+Fig.~\ref{fig:results} & 0+0 & 33 & pass \\
+Fig.~\ref{fig:grounding} & 0+0 & 10 & pass \\
+Fig.~\ref{fig:funnel} & 4+1 & 6 & pass \\
+\bottomrule
+\end{tabular}
+\end{table}

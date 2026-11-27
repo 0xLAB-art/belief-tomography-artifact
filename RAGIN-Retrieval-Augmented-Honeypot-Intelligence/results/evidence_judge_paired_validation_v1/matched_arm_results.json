@@ -1,0 +1,4864 @@
+{
+  "input_sha256": "5dc2717279a6003043bfd8c64c4b129e2ab31c36dfbf5aa04fa7a818462aa7ca",
+  "results": [
+    {
+      "arm_a": {
+        "bundle_sha256": "525bf6c434b7c7306700433d2317e6ddf81111def054b1ae2ca8aeca87cc8d1a",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1082"
+          ]
+        },
+        "latency_ms": 0.052306
+      },
+      "arm_b": {
+        "bundle_sha256": "b7d03f93e196832218d08dd4dfe882bc347bf750a357dbfb9401f926da09481f",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1082"
+          ]
+        },
+        "gate_latency_ms": 0.040111,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1082",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "uname -a",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "discovery,system_discovery",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1082"
+            ]
+          },
+          "trace_sha256": "bfaa00667951e6092b3622be3fb6f7fa50f7f70cbbc539a041794631903659b4"
+        },
+        "judge_latency_ms": 0.194713,
+        "latency_ms": 0.234824
+      },
+      "case_id": "direct-001",
+      "category": "direct_relevant",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=direct_relevant; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "279a1a469b9a200bd58ac3a1f4421dec42d72ea23163b41e1af563290752177d",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1082"
+          ]
+        },
+        "latency_ms": 0.032551
+      },
+      "arm_b": {
+        "bundle_sha256": "8c4551be1109c2f0c08ea61970f63eb4909cd7f9b23aa1f7484b51d891c9d72f",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1082"
+          ]
+        },
+        "gate_latency_ms": 0.033969,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1082",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "hostname",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "discovery,system_discovery",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1082"
+            ]
+          },
+          "trace_sha256": "f6231a34af148b8625eb06fb6ab45c527948f542f50d659115cdd3e7909e38ab"
+        },
+        "judge_latency_ms": 0.21092,
+        "latency_ms": 0.244889
+      },
+      "case_id": "direct-002",
+      "category": "direct_relevant",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=direct_relevant; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "33fda83abf384c4c04f4a124ffb21320b706b9c6ff0a5e421a59a15fa9c0f1ac",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1083"
+          ]
+        },
+        "latency_ms": 0.028013
+      },
+      "arm_b": {
+        "bundle_sha256": "3477e043f6ba2954971161180328d82bd86483b46a32eee81c6995f5755be8f6",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1083"
+          ]
+        },
+        "gate_latency_ms": 0.028515,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1083",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "ls -la",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "discovery,file_discovery",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1083"
+            ]
+          },
+          "trace_sha256": "dc874d28b28c611e68eb68bf7084308e003efb25822469143aa6e6c55a7d7340"
+        },
+        "judge_latency_ms": 0.106239,
+        "latency_ms": 0.13475399999999998
+      },
+      "case_id": "direct-003",
+      "category": "direct_relevant",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=direct_relevant; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "862b5c4ab319f3c57abfd733ed57dfa16ffe60813a676f04604b098d7cc00c36",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1083"
+          ]
+        },
+        "latency_ms": 0.028295
+      },
+      "arm_b": {
+        "bundle_sha256": "d3e998cf5065a392917ebeb18d7e5f9dff0cc103c22451d6fdc2ecbe516a01fc",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1083"
+          ]
+        },
+        "gate_latency_ms": 0.028255,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1083",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "find /tmp -type f",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "discovery,file_discovery",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1083"
+            ]
+          },
+          "trace_sha256": "05aa509714e1cd364c050ea83d39e615f7d3ea5f79ee3e752ac9fa24d28c7fe5"
+        },
+        "judge_latency_ms": 0.105181,
+        "latency_ms": 0.133436
+      },
+      "case_id": "direct-004",
+      "category": "direct_relevant",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=direct_relevant; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "55c6fcac416f5324c023100021fe1af40516c00d2fcbfca4e18d7dca501bdb77",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1087.001"
+          ]
+        },
+        "latency_ms": 0.026547
+      },
+      "arm_b": {
+        "bundle_sha256": "ca3d7a13edd8d9ea7fce35f8620080939361bfc38fa1c5572f8f149290dd4268",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1087.001"
+          ]
+        },
+        "gate_latency_ms": 0.026973,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1087.001",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "id",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "account_discovery,discovery",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1087.001"
+            ]
+          },
+          "trace_sha256": "eff0aa3c25feb96538cdbe0c6c7660aee32fc8d3ebc1ef12759002d14c0a92d2"
+        },
+        "judge_latency_ms": 0.098857,
+        "latency_ms": 0.12583
+      },
+      "case_id": "direct-005",
+      "category": "direct_relevant",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=direct_relevant; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "4f6b09226a605acfe107440257b5c98db6c7d5f2ed146a61409b8b895a1e4784",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1087.001"
+          ]
+        },
+        "latency_ms": 0.026662
+      },
+      "arm_b": {
+        "bundle_sha256": "0f93e7b53683e8133ccfd130d34aa36cb8842b35417d32d5b2d3751be8184592",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1087.001"
+          ]
+        },
+        "gate_latency_ms": 0.027327,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1087.001",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "whoami",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "account_discovery,discovery",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1087.001"
+            ]
+          },
+          "trace_sha256": "4101308367777e33a7ccf69cb4adc3494dcbaf0023e84fc586a430c85b9ba9b7"
+        },
+        "judge_latency_ms": 0.097464,
+        "latency_ms": 0.124791
+      },
+      "case_id": "direct-006",
+      "category": "direct_relevant",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=direct_relevant; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "90484b9ee71d14a77fe13cb6b8f7507d294a2875e2f9df07e502e42805aa9b1b",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1053.003"
+          ]
+        },
+        "latency_ms": 0.026243
+      },
+      "arm_b": {
+        "bundle_sha256": "f964c95789dd154408fca00aa44d006ccefeba7d31750e00b937073ca10507c8",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1053.003"
+          ]
+        },
+        "gate_latency_ms": 0.027364,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1053.003",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "crontab -l",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "persistence",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1053.003"
+            ]
+          },
+          "trace_sha256": "1adab087a8f4b4d144869b780633b8cba2a9e839489cd5dd03e3742745207381"
+        },
+        "judge_latency_ms": 0.096197,
+        "latency_ms": 0.123561
+      },
+      "case_id": "direct-007",
+      "category": "direct_relevant",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=direct_relevant; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "c7eb03239214a6bcd7a2daa4a839056a4c6084e7c837826c5fb4f70eb4ef2433",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1021.004"
+          ]
+        },
+        "latency_ms": 0.028447
+      },
+      "arm_b": {
+        "bundle_sha256": "fa0e62f3ea5d1666edbd85232a0170039baa5a9f5b6361244e6476e9605d8fc6",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1021.004"
+          ]
+        },
+        "gate_latency_ms": 0.029232,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1021.004",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "ssh admin@example.invalid",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "remote_access,ssh",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1021.004"
+            ]
+          },
+          "trace_sha256": "86e68de7811ba69abff7f174953adebad8ef481d5037e1735565c32ca3b49165"
+        },
+        "judge_latency_ms": 0.14285,
+        "latency_ms": 0.172082
+      },
+      "case_id": "direct-008",
+      "category": "direct_relevant",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=direct_relevant; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "0ea8f75857d8b06ee3b8aa6c29afbb8ce9ffffa0114de99c5dd3951bea2b38f8",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1105"
+          ]
+        },
+        "latency_ms": 0.033373
+      },
+      "arm_b": {
+        "bundle_sha256": "84793f6a91f397a6a7e6292c6ca1bff5443e7e09bf2b4e9547e1dacc5bb8dcd4",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1105"
+          ]
+        },
+        "gate_latency_ms": 0.03431,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1105",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "curl http://example.invalid/payload",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "download,transfer",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1105"
+            ]
+          },
+          "trace_sha256": "701449586930617cf1e3ef7b4fd1a0971a49812d87b0c11d2428f4bf0ffb7409"
+        },
+        "judge_latency_ms": 0.145817,
+        "latency_ms": 0.180127
+      },
+      "case_id": "direct-009",
+      "category": "direct_relevant",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=direct_relevant; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "449ce5753ee39ce09c7e319d0a95e1e0b4f91c75925f77503ca0d11d0dcf2582",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1105"
+          ]
+        },
+        "latency_ms": 0.033545
+      },
+      "arm_b": {
+        "bundle_sha256": "ef1b4548cf7d4f587c3f1ca3dfe46e1195e622f6e6bbf6187491108050f19bc6",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1105"
+          ]
+        },
+        "gate_latency_ms": 0.034434,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1105",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "wget http://example.invalid/payload",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "download,transfer",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1105"
+            ]
+          },
+          "trace_sha256": "40446228b8135b533541cd99e01c8f30b61b7691b27b6064f59247ea10357be0"
+        },
+        "judge_latency_ms": 0.144427,
+        "latency_ms": 0.178861
+      },
+      "case_id": "direct-010",
+      "category": "direct_relevant",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=direct_relevant; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "93e89bb1944eb04da0808918eb55ada5fb2f3d24d9df199c1439970bbc741c53",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1552.001"
+          ]
+        },
+        "latency_ms": 0.028213
+      },
+      "arm_b": {
+        "bundle_sha256": "68b1a903751c81272bd9afda8f77ee530872a6ae4b1746e0138ce7c8d56a2e75",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1552.001"
+          ]
+        },
+        "gate_latency_ms": 0.029251,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1552.001",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "cat /etc/passwd",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "credential_access,credentials",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1552.001"
+            ]
+          },
+          "trace_sha256": "f2acac01f61e1a333a03700874aa90d1b81dfef3fdacc95baf1c0c7a7afcbe29"
+        },
+        "judge_latency_ms": 0.107539,
+        "latency_ms": 0.13679
+      },
+      "case_id": "direct-011",
+      "category": "direct_relevant",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=direct_relevant; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "dce9293f75550beda65e82cd52525ee321152ece245aca04a25a67443998e5b2",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1543.002"
+          ]
+        },
+        "latency_ms": 0.036131
+      },
+      "arm_b": {
+        "bundle_sha256": "fa4815ac44490c5e78b06998eb17f551913d1b44440be434fbd20642051b6ac3",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1543.002"
+          ]
+        },
+        "gate_latency_ms": 0.0376,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1543.002",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "systemctl status ssh",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "persistence",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1543.002"
+            ]
+          },
+          "trace_sha256": "40159207863ba9305332d901145a8e5e99accadb20b3c3c6abfddfee2b7eed1d"
+        },
+        "judge_latency_ms": 0.224475,
+        "latency_ms": 0.262075
+      },
+      "case_id": "direct-012",
+      "category": "direct_relevant",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=direct_relevant; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "55b3e923fa9bb9568341ccc016f929a09cc17b6ddbeee5b6ebce06b5b4f8cb63",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1082"
+          ]
+        },
+        "latency_ms": 0.031923
+      },
+      "arm_b": {
+        "bundle_sha256": "42b02266f0e4e5dc40dd9ab34063216254050aef8bc4950007b98d0ca12461a2",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.032241,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1082",
+              "label": "IRRELEVANT",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "no_command_relation"
+              ],
+              "relates_to_command": false,
+              "substantively_supports_behavior": false,
+              "support_kind": "IRRELEVANT"
+            }
+          ],
+          "command": "ps aux",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "discovery,system_discovery",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "565b85f4eb30613eb99ad9fd3d93eb5def62de1308941bbef414526f9bf2ae3f"
+        },
+        "judge_latency_ms": 0.131965,
+        "latency_ms": 0.164206
+      },
+      "case_id": "adjacent-001",
+      "category": "adjacent_insufficient",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=adjacent_insufficient; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "a096be738cea22a7b2e3e9c57af9b3c6718331ae9e44ac7f71a3abb2c6dfff42",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1016"
+          ]
+        },
+        "latency_ms": 0.030098
+      },
+      "arm_b": {
+        "bundle_sha256": "735e0f255fd005078d2276ac1ea7237164f723af77001d239020af409e77b53a",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.029974,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1016",
+              "label": "IRRELEVANT",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "no_command_relation"
+              ],
+              "relates_to_command": false,
+              "substantively_supports_behavior": false,
+              "support_kind": "IRRELEVANT"
+            }
+          ],
+          "command": "netstat -an",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "discovery,network_discovery",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "4b3da477c8e118414b4d7e624cbfbb1640525623cda1be1dc4fac85ab39a4b85"
+        },
+        "judge_latency_ms": 0.116074,
+        "latency_ms": 0.146048
+      },
+      "case_id": "adjacent-002",
+      "category": "adjacent_insufficient",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=adjacent_insufficient; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "9cbeee49b641307ddc7a8b80c207124647e709c7f91e4fa8802fc3f865e659e6",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1007"
+          ]
+        },
+        "latency_ms": 0.027585
+      },
+      "arm_b": {
+        "bundle_sha256": "4653f44397589e152592473f9e83dc142ee0bb007b83f17c9ff8320312687047",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.026478,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1007",
+              "label": "IRRELEVANT",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "no_command_relation"
+              ],
+              "relates_to_command": false,
+              "substantively_supports_behavior": false,
+              "support_kind": "IRRELEVANT"
+            }
+          ],
+          "command": "journalctl -n 20",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "discovery,service_discovery",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "1cf44c0691b72772eb8b9cebb9293491ee7abbbd1acd9831bba5ae8a4c79f470"
+        },
+        "judge_latency_ms": 0.098231,
+        "latency_ms": 0.124709
+      },
+      "case_id": "adjacent-003",
+      "category": "adjacent_insufficient",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=adjacent_insufficient; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "da859581ead03e149b78222845970765d7f12ce3f8023a34504ac1544e6ae71f",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1552.001"
+          ]
+        },
+        "latency_ms": 0.028383
+      },
+      "arm_b": {
+        "bundle_sha256": "ec411e449710aa8b5957bb0a02716571b277e8668a12aa203dc7dcf3709440eb",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.027876,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1552.001",
+              "label": "IRRELEVANT",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "no_command_relation"
+              ],
+              "relates_to_command": false,
+              "substantively_supports_behavior": false,
+              "support_kind": "IRRELEVANT"
+            }
+          ],
+          "command": "grep passwd /var/log/auth.log",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "credential_access,credentials",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "8fe66712cf55848afe80c6225b349cf1f0dd4604cfca5d6baa85f5f7ca2a62cc"
+        },
+        "judge_latency_ms": 0.109209,
+        "latency_ms": 0.137085
+      },
+      "case_id": "adjacent-004",
+      "category": "adjacent_insufficient",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=adjacent_insufficient; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "de30f77265c1c6dd44791451e0d7001c8b0e71007840dff083a1a8858e82d549",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1083"
+          ]
+        },
+        "latency_ms": 0.027584
+      },
+      "arm_b": {
+        "bundle_sha256": "1f6540ca8e858707f3934e1895ea112cdfa669a10623f0200cb1344baf5ef4f0",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.027879,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1083",
+              "label": "IRRELEVANT",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "no_command_relation"
+              ],
+              "relates_to_command": false,
+              "substantively_supports_behavior": false,
+              "support_kind": "IRRELEVANT"
+            }
+          ],
+          "command": "tail -f /var/log/syslog",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "discovery,file_discovery",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "1b7d484fcf1867195aaa0a695dc69dd6e16632ffae9f5cf0a47ca96863894f8b"
+        },
+        "judge_latency_ms": 0.111979,
+        "latency_ms": 0.13985799999999998
+      },
+      "case_id": "adjacent-005",
+      "category": "adjacent_insufficient",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=adjacent_insufficient; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "9c4587d7f73ce712ad8bab45d3ad4996f4122e574785fe0adbb68c148a939bd1",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1087.001"
+          ]
+        },
+        "latency_ms": 0.026168
+      },
+      "arm_b": {
+        "bundle_sha256": "abea2e50aa48ba5cc33b496ae667b45a12731cb884027bc26e0874e4b3d74598",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.02618,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1087.001",
+              "label": "IRRELEVANT",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "no_command_relation"
+              ],
+              "relates_to_command": false,
+              "substantively_supports_behavior": false,
+              "support_kind": "IRRELEVANT"
+            }
+          ],
+          "command": "env | sort",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "account_discovery,discovery",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "51dfa2c45aeb0d95a789d41f30c8d49990206b2166be55494ea992ac2bd889fb"
+        },
+        "judge_latency_ms": 0.097916,
+        "latency_ms": 0.124096
+      },
+      "case_id": "adjacent-006",
+      "category": "adjacent_insufficient",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=adjacent_insufficient; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "93fc7d9b590ceead984eec0fef72f0789725a078bad5fc8b0063c8bddc40d83b",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1016"
+          ]
+        },
+        "latency_ms": 0.029503
+      },
+      "arm_b": {
+        "bundle_sha256": "5c0b73239c556354568ab80512c046daf113f347c2b1e730953fe6b697a6f2e4",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.029429,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1016",
+              "label": "IRRELEVANT",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "no_command_relation"
+              ],
+              "relates_to_command": false,
+              "substantively_supports_behavior": false,
+              "support_kind": "IRRELEVANT"
+            }
+          ],
+          "command": "stat /etc/hosts",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "discovery,network_discovery",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "2f4abd3c46a0b2d9275869f0bd693e23bc35b3c0166ecb1910431c363745a31b"
+        },
+        "judge_latency_ms": 0.119869,
+        "latency_ms": 0.14929800000000001
+      },
+      "case_id": "adjacent-007",
+      "category": "adjacent_insufficient",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=adjacent_insufficient; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "7acc57ceb48498f3346d7fd91e0669fd693ff35f9d6e06a5f3ed225197ee9fe6",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1082"
+          ]
+        },
+        "latency_ms": 0.030879
+      },
+      "arm_b": {
+        "bundle_sha256": "28856cc1b1dae209b127dad22f91bd1a9d079b7d5a39009f594678580d54cba3",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.031613,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1082",
+              "label": "IRRELEVANT",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "no_command_relation"
+              ],
+              "relates_to_command": false,
+              "substantively_supports_behavior": false,
+              "support_kind": "IRRELEVANT"
+            }
+          ],
+          "command": "du -sh /var",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "discovery,system_discovery",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "6ee3d4e4d3751fb4457361c14bb0a775bac62c000a99e4392e89a56bd67518ba"
+        },
+        "judge_latency_ms": 0.129459,
+        "latency_ms": 0.161072
+      },
+      "case_id": "adjacent-008",
+      "category": "adjacent_insufficient",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=adjacent_insufficient; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "f1c75f458a648fa99328ecc03ee9796e8b676223f236b1b6c5c7929e5d3a90a2",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1082",
+            "DONV2-T1082-CONTRADICTORY"
+          ]
+        },
+        "latency_ms": 0.039741
+      },
+      "arm_b": {
+        "bundle_sha256": "4cf065d3d4d3ab0bc83eb8cd21f0bffff5473d9a5fb91f7761e73787aa76bfbd",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "UNRESOLVED_CONFLICT",
+          "reason_code": "evidence_judge_conflicting",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.039807,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1082",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            },
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1082-CONTRADICTORY",
+              "label": "CONTRADICTORY",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "explicit_contradiction"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "CONTRADICTORY"
+            }
+          ],
+          "command": "uname -a",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [
+              "DONV2-T1082-CONTRADICTORY"
+            ],
+            "label": "CONFLICTING",
+            "policy_behavior": "discovery,system_discovery",
+            "rationale_codes": [
+              "supported_and_contradictory_evidence"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1082"
+            ]
+          },
+          "trace_sha256": "b203a8647b756219546913409bf25f5d66ef4fbc06da685b7bd966e3435fc19c"
+        },
+        "judge_latency_ms": 0.159905,
+        "latency_ms": 0.199712
+      },
+      "case_id": "conflicting-001",
+      "category": "contradictory_documents",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 2,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 2
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "CONFLICTING",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=contradictory_documents; expected=CONFLICTING; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "7af6382907bd6e756e9d5b9fdd44475f8afedbced13d2ce015ad24affc627f9d",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1083",
+            "DONV2-T1083-CONTRADICTORY"
+          ]
+        },
+        "latency_ms": 0.036262
+      },
+      "arm_b": {
+        "bundle_sha256": "031d845281595ff80990cd24fe681c44b5498701f76ca6ead9c9fffd984f3b09",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "UNRESOLVED_CONFLICT",
+          "reason_code": "evidence_judge_conflicting",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.036032,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1083",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            },
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1083-CONTRADICTORY",
+              "label": "CONTRADICTORY",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "explicit_contradiction"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "CONTRADICTORY"
+            }
+          ],
+          "command": "ls -la",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [
+              "DONV2-T1083-CONTRADICTORY"
+            ],
+            "label": "CONFLICTING",
+            "policy_behavior": "discovery,file_discovery",
+            "rationale_codes": [
+              "supported_and_contradictory_evidence"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1083"
+            ]
+          },
+          "trace_sha256": "530ea7584a8d61f9eab4bbcf60d046a9a980da779ce80c6ccb21fce3632bfd02"
+        },
+        "judge_latency_ms": 0.125984,
+        "latency_ms": 0.16201600000000002
+      },
+      "case_id": "conflicting-002",
+      "category": "contradictory_documents",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 2,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 2
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "CONFLICTING",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=contradictory_documents; expected=CONFLICTING; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "eb34e5cce1216136debfd873764201cd4fc2ef51f39ebf9be6a72c91986f6a01",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1087.001",
+            "DONV2-T1087.001-CONTRADICTORY"
+          ]
+        },
+        "latency_ms": 0.035528
+      },
+      "arm_b": {
+        "bundle_sha256": "b9a1e78f56a3d5de662d5be20accc46bee5944b20e438edcceeb0f089357f58f",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "UNRESOLVED_CONFLICT",
+          "reason_code": "evidence_judge_conflicting",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.033604,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1087.001",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            },
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1087.001-CONTRADICTORY",
+              "label": "CONTRADICTORY",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "explicit_contradiction"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "CONTRADICTORY"
+            }
+          ],
+          "command": "id",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [
+              "DONV2-T1087.001-CONTRADICTORY"
+            ],
+            "label": "CONFLICTING",
+            "policy_behavior": "account_discovery,discovery",
+            "rationale_codes": [
+              "supported_and_contradictory_evidence"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1087.001"
+            ]
+          },
+          "trace_sha256": "11c252d3d18d0f2d1924fe44e48dbafd681f3ee5691c8515babc92b2cb4259bc"
+        },
+        "judge_latency_ms": 0.11522,
+        "latency_ms": 0.148824
+      },
+      "case_id": "conflicting-003",
+      "category": "contradictory_documents",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 2,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 2
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "CONFLICTING",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=contradictory_documents; expected=CONFLICTING; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "4e5dac073ba79b70dfb142d54e9688aabe00316086a15145accefc627cbb853f",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1053.003",
+            "DONV2-T1053.003-CONTRADICTORY"
+          ]
+        },
+        "latency_ms": 0.034433
+      },
+      "arm_b": {
+        "bundle_sha256": "f1dd19e4d4aebb0d749219596e6f3251245028f7ea723079f9922aae25242e4b",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "UNRESOLVED_CONFLICT",
+          "reason_code": "evidence_judge_conflicting",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.033954,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1053.003",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            },
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1053.003-CONTRADICTORY",
+              "label": "CONTRADICTORY",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "explicit_contradiction"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "CONTRADICTORY"
+            }
+          ],
+          "command": "crontab -l",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [
+              "DONV2-T1053.003-CONTRADICTORY"
+            ],
+            "label": "CONFLICTING",
+            "policy_behavior": "persistence",
+            "rationale_codes": [
+              "supported_and_contradictory_evidence"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1053.003"
+            ]
+          },
+          "trace_sha256": "2328ecab5f52f5d174b74eeee59f6f9cca445fa544b78f7c1681b235bd0d7740"
+        },
+        "judge_latency_ms": 0.115534,
+        "latency_ms": 0.149488
+      },
+      "case_id": "conflicting-004",
+      "category": "contradictory_documents",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 2,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 2
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "CONFLICTING",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=contradictory_documents; expected=CONFLICTING; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "47dc13503980de482bc92e4c5ab32c247fb83211ae21f18718cef5e6d4012028",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1021.004",
+            "DONV2-T1021.004-CONTRADICTORY"
+          ]
+        },
+        "latency_ms": 0.037445
+      },
+      "arm_b": {
+        "bundle_sha256": "4e4f5f70d1297ff828301520c28bfe2c7b3f37efd51288797a95c3d15f3277ce",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "UNRESOLVED_CONFLICT",
+          "reason_code": "evidence_judge_conflicting",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.036284,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1021.004",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            },
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1021.004-CONTRADICTORY",
+              "label": "CONTRADICTORY",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "explicit_contradiction"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "CONTRADICTORY"
+            }
+          ],
+          "command": "ssh admin@example.invalid",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [
+              "DONV2-T1021.004-CONTRADICTORY"
+            ],
+            "label": "CONFLICTING",
+            "policy_behavior": "remote_access,ssh",
+            "rationale_codes": [
+              "supported_and_contradictory_evidence"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1021.004"
+            ]
+          },
+          "trace_sha256": "36949b70c754c5d8765a16e4d7b26294125b40d3341e86280c078a7e4666b790"
+        },
+        "judge_latency_ms": 0.156409,
+        "latency_ms": 0.192693
+      },
+      "case_id": "conflicting-005",
+      "category": "contradictory_documents",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 2,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 2
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "CONFLICTING",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=contradictory_documents; expected=CONFLICTING; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "0573aa3e8aebf02ab6d41ed27e4ce818e4ce607862bbac41de1a5423a1a6db5a",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1105",
+            "DONV2-T1105-CONTRADICTORY"
+          ]
+        },
+        "latency_ms": 0.04198
+      },
+      "arm_b": {
+        "bundle_sha256": "0ca468a1c688aa20036a5d49db4753889825658a56a3e9f32af4586f4059d38b",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "UNRESOLVED_CONFLICT",
+          "reason_code": "evidence_judge_conflicting",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.0423,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1105",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            },
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1105-CONTRADICTORY",
+              "label": "CONTRADICTORY",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "explicit_contradiction"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "CONTRADICTORY"
+            }
+          ],
+          "command": "curl http://example.invalid/payload",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [
+              "DONV2-T1105-CONTRADICTORY"
+            ],
+            "label": "CONFLICTING",
+            "policy_behavior": "download,transfer",
+            "rationale_codes": [
+              "supported_and_contradictory_evidence"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1105"
+            ]
+          },
+          "trace_sha256": "ef4dfdcd1105bb78969a4921240e4aeb935cf4170b62de966f062697fad5a337"
+        },
+        "judge_latency_ms": 0.165495,
+        "latency_ms": 0.207795
+      },
+      "case_id": "conflicting-006",
+      "category": "contradictory_documents",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 2,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 2
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "CONFLICTING",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=contradictory_documents; expected=CONFLICTING; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "4ee54039f6a77964b3d51e1a04541eff146b1c32308a1fbdfd6f234c9bf2dd6f",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "INVALID_PROVENANCE",
+          "reason_code": "invalid_or_unknown_provenance",
+          "valid_doc_ids": []
+        },
+        "latency_ms": 0.028125
+      },
+      "arm_b": {
+        "bundle_sha256": "ecdbd32d4588b70be5eff66da6810c922bae46df225aefdc2a53c9ec24dd513a",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "INVALID_PROVENANCE",
+          "reason_code": "invalid_or_unknown_provenance",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.029006,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1082",
+              "label": "UNKNOWN",
+              "provenance_sufficient": false,
+              "rationale_codes": [
+                "insufficient_provenance"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "UNKNOWN"
+            }
+          ],
+          "command": "uname -a",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "discovery,system_discovery",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "07f29341ebd384626fa2d031b3f803043828cd43b71090a055fb093af8472b6a"
+        },
+        "judge_latency_ms": 0.126466,
+        "latency_ms": 0.155472
+      },
+      "case_id": "missing-provenance-001",
+      "category": "missing_provenance",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 0,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=missing_provenance; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "df1fe3c08f8717ed70679a90fee8a218ec993849fc67bad20c9975f16a58d10b",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "INVALID_PROVENANCE",
+          "reason_code": "invalid_or_unknown_provenance",
+          "valid_doc_ids": []
+        },
+        "latency_ms": 0.028319
+      },
+      "arm_b": {
+        "bundle_sha256": "fa332789cc6f702513bfc98ceb1aa88ceca6fa2a2bfe8fd95b9fe05902d85175",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "INVALID_PROVENANCE",
+          "reason_code": "invalid_or_unknown_provenance",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.028783,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1082",
+              "label": "UNKNOWN",
+              "provenance_sufficient": false,
+              "rationale_codes": [
+                "insufficient_provenance"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "UNKNOWN"
+            }
+          ],
+          "command": "hostname",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "discovery,system_discovery",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "99dca2ad408b10707c7fd48621b3ec4224036ae57ec57c5fefb77b74fd20b132"
+        },
+        "judge_latency_ms": 0.124953,
+        "latency_ms": 0.15373599999999998
+      },
+      "case_id": "missing-provenance-002",
+      "category": "missing_provenance",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 0,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=missing_provenance; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "7a58d8ff9f1c8f3f3c45d0236e3c53665ac96707453d0f1705eaa385101109dc",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "INVALID_PROVENANCE",
+          "reason_code": "invalid_or_unknown_provenance",
+          "valid_doc_ids": []
+        },
+        "latency_ms": 0.024638
+      },
+      "arm_b": {
+        "bundle_sha256": "c56d531e8ddf17d7358ae8d6ec997f38f36eae09c7cc146a690b48b221deaf65",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "INVALID_PROVENANCE",
+          "reason_code": "invalid_or_unknown_provenance",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.025103,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1083",
+              "label": "UNKNOWN",
+              "provenance_sufficient": false,
+              "rationale_codes": [
+                "insufficient_provenance"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "UNKNOWN"
+            }
+          ],
+          "command": "ls -la",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "discovery,file_discovery",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "07d80fd49f824b3b1e692bd99751922114d043b532b7d0371ea88331f2de4e60"
+        },
+        "judge_latency_ms": 0.104892,
+        "latency_ms": 0.129995
+      },
+      "case_id": "missing-provenance-003",
+      "category": "missing_provenance",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 0,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=missing_provenance; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "73e3c3eda9d291e83455efe7fa59008a9416460512190b9939092b21d0f604c6",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "INVALID_PROVENANCE",
+          "reason_code": "invalid_or_unknown_provenance",
+          "valid_doc_ids": []
+        },
+        "latency_ms": 0.024738
+      },
+      "arm_b": {
+        "bundle_sha256": "677452d818430b18734f8347ac00e1180d74b9aa04b4f71a08f90fe72ebcd55a",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "INVALID_PROVENANCE",
+          "reason_code": "invalid_or_unknown_provenance",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.024959,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1083",
+              "label": "UNKNOWN",
+              "provenance_sufficient": false,
+              "rationale_codes": [
+                "insufficient_provenance"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "UNKNOWN"
+            }
+          ],
+          "command": "find /tmp -type f",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "discovery,file_discovery",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "9e7728449daab7db3b55057fb19e3d1c2efc7a6427d1a707e592cf0a1c1c1d31"
+        },
+        "judge_latency_ms": 0.104698,
+        "latency_ms": 0.129657
+      },
+      "case_id": "missing-provenance-004",
+      "category": "missing_provenance",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 0,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=missing_provenance; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "687d5b44cc23b8659ab609c601f0a659f0ba005e6410e6ce1f5006a089c6acb6",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "INVALID_PROVENANCE",
+          "reason_code": "invalid_or_unknown_provenance",
+          "valid_doc_ids": []
+        },
+        "latency_ms": 0.023202
+      },
+      "arm_b": {
+        "bundle_sha256": "833bde04bcadc95d53de9a0409f6769b7c1ec334e61fb392f153db6a21596a3b",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "INVALID_PROVENANCE",
+          "reason_code": "invalid_or_unknown_provenance",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.023111,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1087.001",
+              "label": "UNKNOWN",
+              "provenance_sufficient": false,
+              "rationale_codes": [
+                "insufficient_provenance"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "UNKNOWN"
+            }
+          ],
+          "command": "id",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "account_discovery,discovery",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "7375fc33e98d51acdf94a1e7ade84ec0540bc8835fe214fa2be3f570b8e40d87"
+        },
+        "judge_latency_ms": 0.096774,
+        "latency_ms": 0.11988499999999999
+      },
+      "case_id": "missing-provenance-005",
+      "category": "missing_provenance",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 0,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=missing_provenance; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "bee3cd74d9b4ec49437dbde58ecbc8f16fe6c596f1f733b0c8b8e1ff408290f4",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "INVALID_PROVENANCE",
+          "reason_code": "invalid_or_unknown_provenance",
+          "valid_doc_ids": []
+        },
+        "latency_ms": 0.022878
+      },
+      "arm_b": {
+        "bundle_sha256": "69899f8a2dcfd173a0ce8f749c3631066351b9d0c963bf02d2cdb09079646b08",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "INVALID_PROVENANCE",
+          "reason_code": "invalid_or_unknown_provenance",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.023002,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1087.001",
+              "label": "UNKNOWN",
+              "provenance_sufficient": false,
+              "rationale_codes": [
+                "insufficient_provenance"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "UNKNOWN"
+            }
+          ],
+          "command": "whoami",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "account_discovery,discovery",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "00eed36981cb46e49ff5b359f02fde75d4b99e550c3670f05de309b77be54efa"
+        },
+        "judge_latency_ms": 0.09647,
+        "latency_ms": 0.119472
+      },
+      "case_id": "missing-provenance-006",
+      "category": "missing_provenance",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 0,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=missing_provenance; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "19d853d151589e16948bd26fdcc44a6907cc3449266d41ecead0a8ee6d0aafa3",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1082"
+          ]
+        },
+        "latency_ms": 0.031888
+      },
+      "arm_b": {
+        "bundle_sha256": "ed87d843dd6fd45c5e1f4d675508035bef8f79ab6c35514f1c1411bddcc6714a",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_unknown",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.031947,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "AMBIGUOUS",
+              "doc_id": "DONV2-T1082",
+              "label": "PARTIAL",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "related_without_direct_behavior_support"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "PARTIAL"
+            }
+          ],
+          "command": "uname -a '",
+          "context_missing_or_ambiguous": true,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "UNKNOWN",
+            "policy_behavior": "discovery,system_discovery",
+            "rationale_codes": [
+              "ambiguous_command_context"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "0c1f645ed90ca08f207e92b32c84db643e397460f5e10478124a49beb0c382f6"
+        },
+        "judge_latency_ms": 0.126264,
+        "latency_ms": 0.158211
+      },
+      "case_id": "ambiguous-001",
+      "category": "ambiguous_shell_command",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "UNKNOWN",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=ambiguous_shell_command; expected=UNKNOWN; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "07b99b5b7c431d5862282d32169f0970f17f56f10008f372b1324f909a45ba5b",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1082"
+          ]
+        },
+        "latency_ms": 0.031268
+      },
+      "arm_b": {
+        "bundle_sha256": "76addad45982fb357815e27be4ea6817b5c505e3beed2caf322beabda063cbb2",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_unknown",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.03144,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "AMBIGUOUS",
+              "doc_id": "DONV2-T1082",
+              "label": "PARTIAL",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "related_without_direct_behavior_support"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "PARTIAL"
+            }
+          ],
+          "command": "hostname '",
+          "context_missing_or_ambiguous": true,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "UNKNOWN",
+            "policy_behavior": "discovery,system_discovery",
+            "rationale_codes": [
+              "ambiguous_command_context"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "329087f4297137d17d5f693f2db970d4bfeaf806e878b4481c8d7d1c59e164df"
+        },
+        "judge_latency_ms": 0.125352,
+        "latency_ms": 0.156792
+      },
+      "case_id": "ambiguous-002",
+      "category": "ambiguous_shell_command",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "UNKNOWN",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=ambiguous_shell_command; expected=UNKNOWN; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "ce9bdaea19ce6d9602f7b1dd49a5971e6ba20de8e244d3dba29fd53e78c43da5",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1083"
+          ]
+        },
+        "latency_ms": 0.02816
+      },
+      "arm_b": {
+        "bundle_sha256": "2fa2b574285769c27eb47c7b1cdf99cb4baf1d89462163f904c4854f63626980",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_unknown",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.027972,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "AMBIGUOUS",
+              "doc_id": "DONV2-T1083",
+              "label": "PARTIAL",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "related_without_direct_behavior_support"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "PARTIAL"
+            }
+          ],
+          "command": "ls -la '",
+          "context_missing_or_ambiguous": true,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "UNKNOWN",
+            "policy_behavior": "discovery,file_discovery",
+            "rationale_codes": [
+              "ambiguous_command_context"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "327a365c2d4a9c80f8b4529a7c6516156dd73edb8abfc4a2a86bfe188e686ffc"
+        },
+        "judge_latency_ms": 0.104095,
+        "latency_ms": 0.132067
+      },
+      "case_id": "ambiguous-003",
+      "category": "ambiguous_shell_command",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "UNKNOWN",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=ambiguous_shell_command; expected=UNKNOWN; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "2df11ceaf5f01bed94026265f9763093d95d175cf9f10b5f5dc127139c09c488",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1083"
+          ]
+        },
+        "latency_ms": 0.027675
+      },
+      "arm_b": {
+        "bundle_sha256": "096f92c898d76c7350ada65b0eb9e94eeedb2fce58513c69514ca705cd55719c",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_unknown",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.028971,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "AMBIGUOUS",
+              "doc_id": "DONV2-T1083",
+              "label": "PARTIAL",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "related_without_direct_behavior_support"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "PARTIAL"
+            }
+          ],
+          "command": "find /tmp -type f '",
+          "context_missing_or_ambiguous": true,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "UNKNOWN",
+            "policy_behavior": "discovery,file_discovery",
+            "rationale_codes": [
+              "ambiguous_command_context"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "189e843479e0ef366768b440b414abcbb3db8f6f799a15f5408afcfa56495230"
+        },
+        "judge_latency_ms": 0.137208,
+        "latency_ms": 0.166179
+      },
+      "case_id": "ambiguous-004",
+      "category": "ambiguous_shell_command",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "UNKNOWN",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=ambiguous_shell_command; expected=UNKNOWN; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "25fc1b3a42abea4f6b8dc439a5f4fc361e084d1925c631420efe054faa2d09c9",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1087.001"
+          ]
+        },
+        "latency_ms": 0.026785
+      },
+      "arm_b": {
+        "bundle_sha256": "57b6a69ebae0b47184862b6b8f01b5d6892c6f35153ce58eea83e636742c08bd",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_unknown",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.02641,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "AMBIGUOUS",
+              "doc_id": "DONV2-T1087.001",
+              "label": "PARTIAL",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "related_without_direct_behavior_support"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "PARTIAL"
+            }
+          ],
+          "command": "id '",
+          "context_missing_or_ambiguous": true,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "UNKNOWN",
+            "policy_behavior": "account_discovery,discovery",
+            "rationale_codes": [
+              "ambiguous_command_context"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "5316d4a61409db390a4a01e4e33dd55565edc5fc2d1534edd7fb6096dd2fc10d"
+        },
+        "judge_latency_ms": 0.096617,
+        "latency_ms": 0.123027
+      },
+      "case_id": "ambiguous-005",
+      "category": "ambiguous_shell_command",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "UNKNOWN",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=ambiguous_shell_command; expected=UNKNOWN; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "275efd633796b1119f85118f4a939658916744f24be04ff0a5b2679be76d1e15",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1087.001"
+          ]
+        },
+        "latency_ms": 0.026276
+      },
+      "arm_b": {
+        "bundle_sha256": "d8ccf9ff85e91596534200f278dbfc43347b7b90762f69e4b8cfc6a40b9c997e",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_unknown",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.026277,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "AMBIGUOUS",
+              "doc_id": "DONV2-T1087.001",
+              "label": "PARTIAL",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "related_without_direct_behavior_support"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "PARTIAL"
+            }
+          ],
+          "command": "whoami '",
+          "context_missing_or_ambiguous": true,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "UNKNOWN",
+            "policy_behavior": "account_discovery,discovery",
+            "rationale_codes": [
+              "ambiguous_command_context"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "aa070d07ee102becb3509749414986160c8cf39802d7ee4bd08765db302348e9"
+        },
+        "judge_latency_ms": 0.095568,
+        "latency_ms": 0.121845
+      },
+      "case_id": "ambiguous-006",
+      "category": "ambiguous_shell_command",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "UNKNOWN",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=ambiguous_shell_command; expected=UNKNOWN; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "c7bf0d111c0084bebabe92784826a69fe280b0287672feb0efae5b7887f28c22",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1105"
+          ]
+        },
+        "latency_ms": 0.033126
+      },
+      "arm_b": {
+        "bundle_sha256": "2fe40b3554069c80a0ae45020e1c9a58567cbce5ab2efa91f8855886d3cb665d",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1105"
+          ]
+        },
+        "gate_latency_ms": 0.039388,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1105",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "chmod +x /tmp/x",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "download,transfer",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1105"
+            ]
+          },
+          "trace_sha256": "6ea55a5223fcb1b6289af766e800ec096c2fd7645b2825cbf876d23d3d2ca47a"
+        },
+        "judge_latency_ms": 0.142829,
+        "latency_ms": 0.18221700000000002
+      },
+      "case_id": "multi-command-001",
+      "category": "multi_command_context",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=multi_command_context; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "a6883f5caf4c6e2f8c48412fb3b51c8d8166eace781efe5501627ef6f822fe10",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1105"
+          ]
+        },
+        "latency_ms": 0.033224
+      },
+      "arm_b": {
+        "bundle_sha256": "920a7110d81a89dae98974f9bc8a13d545b99ab0552d44675659ac93cea1dc71",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1105"
+          ]
+        },
+        "gate_latency_ms": 0.034629,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1105",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "chmod +x /tmp/x",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "download,transfer",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1105"
+            ]
+          },
+          "trace_sha256": "6ea55a5223fcb1b6289af766e800ec096c2fd7645b2825cbf876d23d3d2ca47a"
+        },
+        "judge_latency_ms": 0.142082,
+        "latency_ms": 0.176711
+      },
+      "case_id": "multi-command-002",
+      "category": "multi_command_context",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=multi_command_context; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "acc6d08f94c292a8d5c0c23564f5331e75d779ed5cf1d26311ad4880cb536d74",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1021.004"
+          ]
+        },
+        "latency_ms": 0.028569
+      },
+      "arm_b": {
+        "bundle_sha256": "c3cf823827c9b4d993055e3d5a80886f445faae900c6b1e3b66415083eb82741",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1021.004"
+          ]
+        },
+        "gate_latency_ms": 0.028866,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1021.004",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "ssh admin@example.invalid",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "remote_access,ssh",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1021.004"
+            ]
+          },
+          "trace_sha256": "86e68de7811ba69abff7f174953adebad8ef481d5037e1735565c32ca3b49165"
+        },
+        "judge_latency_ms": 0.13753,
+        "latency_ms": 0.16639600000000002
+      },
+      "case_id": "multi-command-003",
+      "category": "multi_command_context",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=multi_command_context; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "c777379204c03bd07f7bed158e5578765c6f54e7798ccea0b80894b4178d53ca",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1053.003"
+          ]
+        },
+        "latency_ms": 0.02908
+      },
+      "arm_b": {
+        "bundle_sha256": "4cf51be4857f72c90d0e8cfd927d8500cfb2c54872b98e7894af094a22421d81",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1053.003"
+          ]
+        },
+        "gate_latency_ms": 0.027933,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1053.003",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "crontab -e",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "persistence",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1053.003"
+            ]
+          },
+          "trace_sha256": "12305fbe309099c0c875d00147dc5498a7a99fe0798aab138ae0632eea87225e"
+        },
+        "judge_latency_ms": 0.101357,
+        "latency_ms": 0.12929000000000002
+      },
+      "case_id": "multi-command-004",
+      "category": "multi_command_context",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=multi_command_context; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "53f38b02b1dafc5c0d260b8b31d799eeb60ed5062383f160d87f19e5ef53afd3",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1543.002"
+          ]
+        },
+        "latency_ms": 0.036629
+      },
+      "arm_b": {
+        "bundle_sha256": "d4dd52d1a7663bd33e075f49e6f2b8e0d012d66f0e72a6b36f4d304b8cc9fccb",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1543.002"
+          ]
+        },
+        "gate_latency_ms": 0.037725,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1543.002",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "systemctl enable ssh",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "persistence",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1543.002"
+            ]
+          },
+          "trace_sha256": "9903c05de5f70b1d8915b899230f503ddac5e35d0c3a309964467672d614d0af"
+        },
+        "judge_latency_ms": 0.219361,
+        "latency_ms": 0.257086
+      },
+      "case_id": "multi-command-005",
+      "category": "multi_command_context",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=multi_command_context; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "35686c58d6919ae7fff4df371845b6112b1ffe4828c0d37ffa2d57bf1c97f02d",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1552.001"
+          ]
+        },
+        "latency_ms": 0.028115
+      },
+      "arm_b": {
+        "bundle_sha256": "5b576fd4cd490c583f783de45f997e74ce92ec75375bdca31f6aabef1b08c257",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1552.001"
+          ]
+        },
+        "gate_latency_ms": 0.029201,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1552.001",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "cat /etc/shadow",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "credential_access,credentials",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1552.001"
+            ]
+          },
+          "trace_sha256": "8ab4ac76b901e51aec792c1287bcc47b9526d2924719b1646ea6214b05149dbf"
+        },
+        "judge_latency_ms": 0.108973,
+        "latency_ms": 0.138174
+      },
+      "case_id": "multi-command-006",
+      "category": "multi_command_context",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=multi_command_context; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "ce2af10c7cafd1a08fabb0042740028fd62a4d64fb7bf23f873f83dee851abbc",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1552.001"
+          ]
+        },
+        "latency_ms": 0.02847
+      },
+      "arm_b": {
+        "bundle_sha256": "2226ce5b7bef5495713f2b3f04479f64024ffeea3c1e647e704de81fa741ec84",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.028308,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1552.001",
+              "label": "PARTIAL",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "related_without_direct_behavior_support"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": false,
+              "support_kind": "PARTIAL"
+            }
+          ],
+          "command": "grep passwords /tmp/report",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "credential_access,credentials",
+            "rationale_codes": [
+              "partial_support_only"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "c09a26c7cbfdf6b91907b1f6e9e8a925c2411d39b415220fa37bd082a78a64db"
+        },
+        "judge_latency_ms": 0.106822,
+        "latency_ms": 0.13513
+      },
+      "case_id": "partial-001",
+      "category": "partial_support",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=partial_support; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "ed213ca7632ffbfa70a3c438b525903f258a05f28f3aef9171ec48d52da9ea3e",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-REL-AUTHKEYS"
+          ]
+        },
+        "latency_ms": 0.023469
+      },
+      "arm_b": {
+        "bundle_sha256": "2c040327a9133a61bb663589ee8c297502954f2b810ecb9c3e24f7bf1407e468",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.022765,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-REL-AUTHKEYS",
+              "label": "PARTIAL",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "related_without_direct_behavior_support"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": false,
+              "support_kind": "PARTIAL"
+            }
+          ],
+          "command": "grep Skidmap /tmp/report",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "credentials,documented_relationship",
+            "rationale_codes": [
+              "partial_support_only"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "acdb3054e61a9ad2514c39b836e1ff5f9b248693e978e1e0fdea420dd06e31cd"
+        },
+        "judge_latency_ms": 0.068714,
+        "latency_ms": 0.091479
+      },
+      "case_id": "partial-002",
+      "category": "partial_support",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=partial_support; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "ddf96933ab29810416efe1fc7956ee87d16a74e3e441d194287f00d71a9a6f50",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-REL-CRONTAB"
+          ]
+        },
+        "latency_ms": 0.02231
+      },
+      "arm_b": {
+        "bundle_sha256": "e2f83178da858c38fbdfdc947e83fd3279b1dac6c5f871e0738558c993c9d3a1",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.022124,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-REL-CRONTAB",
+              "label": "PARTIAL",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "related_without_direct_behavior_support"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": false,
+              "support_kind": "PARTIAL"
+            }
+          ],
+          "command": "grep installed /tmp/report",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "documented_relationship,persistence",
+            "rationale_codes": [
+              "partial_support_only"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "28f99b3ae0bace12713f4ce409a24cb003bda66736b35b5d03e567b246ecdb33"
+        },
+        "judge_latency_ms": 0.06233,
+        "latency_ms": 0.084454
+      },
+      "case_id": "partial-003",
+      "category": "partial_support",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=partial_support; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "3d93322940aac5cd043a9caa63ab2b2916e1e280c577285a943fb22c1ab64ee5",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-REL-SSH"
+          ]
+        },
+        "latency_ms": 0.022677
+      },
+      "arm_b": {
+        "bundle_sha256": "b2186f9efed4585321c281aa2f8aec71f180942604fe62c03c01efb95c516c17",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.022185,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-REL-SSH",
+              "label": "PARTIAL",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "related_without_direct_behavior_support"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": false,
+              "support_kind": "PARTIAL"
+            }
+          ],
+          "command": "grep tunneling /tmp/report",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "documented_relationship,remote_access",
+            "rationale_codes": [
+              "partial_support_only"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "8cd608fcf450139303f921cf5bdef608f8781b55b2ec5480227bab8675c33ff2"
+        },
+        "judge_latency_ms": 0.065225,
+        "latency_ms": 0.08741
+      },
+      "case_id": "partial-004",
+      "category": "partial_support",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=partial_support; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "e891f22fe1df14584a61c64a931204942a4a3844c6c51775c860934a49a453ac",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-REL-CURL"
+          ]
+        },
+        "latency_ms": 0.024824
+      },
+      "arm_b": {
+        "bundle_sha256": "1320e8095c98f4374cefdabb6c61137fb6e041a1aa8d968894e4c9a5f92a6d2d",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.024088,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-REL-CURL",
+              "label": "PARTIAL",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "related_without_direct_behavior_support"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": false,
+              "support_kind": "PARTIAL"
+            }
+          ],
+          "command": "grep malware /tmp/report",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "documented_relationship,download",
+            "rationale_codes": [
+              "partial_support_only"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "3a57c7ebec3e75ffc5c095246ecc61c3e69e55149edabf7474189d73d0f2ed35"
+        },
+        "judge_latency_ms": 0.081191,
+        "latency_ms": 0.105279
+      },
+      "case_id": "partial-005",
+      "category": "partial_support",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=partial_support; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "bec82356eb564fab5537a717fe2bd8055dbfcd30bb8327f59188fe1d5eb5f0d8",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-REL-WGET"
+          ]
+        },
+        "latency_ms": 0.022092
+      },
+      "arm_b": {
+        "bundle_sha256": "24f7007408378f3f9cce573e9e07a9a2c1de7b80068351d7a80cfdc60165801a",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.021294,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-REL-WGET",
+              "label": "PARTIAL",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "related_without_direct_behavior_support"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": false,
+              "support_kind": "PARTIAL"
+            }
+          ],
+          "command": "grep TAMECAT /tmp/report",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "documented_relationship,download",
+            "rationale_codes": [
+              "partial_support_only"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "e9334bd2f76d1a2cf8712738a082dc2abb2a4ac07f0f90a7e8af8f9ebb2716c2"
+        },
+        "judge_latency_ms": 0.063021,
+        "latency_ms": 0.084315
+      },
+      "case_id": "partial-006",
+      "category": "partial_support",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=partial_support; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "b506c0c996562bebeb4bc80d8fb35fd453b9531cede4a613026872a9f30401c1",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1021.004"
+          ]
+        },
+        "latency_ms": 0.027483
+      },
+      "arm_b": {
+        "bundle_sha256": "6db4884a47ec6e660829e4269cfd7cd44f45d1b13eb1e1015c23f63b9f791a6f",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.027444,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1021.004",
+              "label": "IRRELEVANT",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "no_command_relation"
+              ],
+              "relates_to_command": false,
+              "substantively_supports_behavior": false,
+              "support_kind": "IRRELEVANT"
+            }
+          ],
+          "command": "echo hello",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "remote_access,ssh",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "60a197c09fef60f564ae4e8195ca26bbe24bd4535fac6a24f652cb7bfbad38f2"
+        },
+        "judge_latency_ms": 0.134151,
+        "latency_ms": 0.161595
+      },
+      "case_id": "irrelevant-001",
+      "category": "irrelevant_retrieval_candidate",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=irrelevant_retrieval_candidate; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "65424ca1ebfbaa48c24640ed6cadd49270459cbcfb9a4da00e60c069f698115e",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1053.003"
+          ]
+        },
+        "latency_ms": 0.027455
+      },
+      "arm_b": {
+        "bundle_sha256": "4e00b480bccce26a9ad1ab18cfa6f26bcb61ef469ed8d3b033dcfa830f42f815",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.026627,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1053.003",
+              "label": "IRRELEVANT",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "no_command_relation"
+              ],
+              "relates_to_command": false,
+              "substantively_supports_behavior": false,
+              "support_kind": "IRRELEVANT"
+            }
+          ],
+          "command": "printf done",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "persistence",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "af8f3c6a065ec5ad23544db8836548fdfac86c476e0f19f112e292f211ca5be7"
+        },
+        "judge_latency_ms": 0.100892,
+        "latency_ms": 0.127519
+      },
+      "case_id": "irrelevant-002",
+      "category": "irrelevant_retrieval_candidate",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=irrelevant_retrieval_candidate; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "2d1b35ad5e4db256bdffd15504cf04d76f9dc5b830d610094cfeee1714b0ade3",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1552.001"
+          ]
+        },
+        "latency_ms": 0.0319
+      },
+      "arm_b": {
+        "bundle_sha256": "3c9b6d8a0baec25543b4c83f3934b788818812aa63b91b767d05780928466b18",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.02782,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1552.001",
+              "label": "IRRELEVANT",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "no_command_relation"
+              ],
+              "relates_to_command": false,
+              "substantively_supports_behavior": false,
+              "support_kind": "IRRELEVANT"
+            }
+          ],
+          "command": "true",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "credential_access,credentials",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "598dedfed72ad899da7dc0054d111d77e099f4ba375bdc34866e3d436d554bf2"
+        },
+        "judge_latency_ms": 0.105553,
+        "latency_ms": 0.133373
+      },
+      "case_id": "irrelevant-003",
+      "category": "irrelevant_retrieval_candidate",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=irrelevant_retrieval_candidate; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "d665ffd4b3c54cf619c8afc7f5d96bb136729f868c045c0b5266b31192b9b0e8",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1105"
+          ]
+        },
+        "latency_ms": 0.033113
+      },
+      "arm_b": {
+        "bundle_sha256": "c9df3ee65428326a8724040b5f0597f1e79f34d2167223c0e4a84d2d2e9f2233",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.033545,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1105",
+              "label": "IRRELEVANT",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "no_command_relation"
+              ],
+              "relates_to_command": false,
+              "substantively_supports_behavior": false,
+              "support_kind": "IRRELEVANT"
+            }
+          ],
+          "command": "date",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "download,transfer",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "af975cf2ea1950da932048c107bf1d198cb806a380cc07d04f1ada909f16492c"
+        },
+        "judge_latency_ms": 0.13979,
+        "latency_ms": 0.173335
+      },
+      "case_id": "irrelevant-004",
+      "category": "irrelevant_retrieval_candidate",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=irrelevant_retrieval_candidate; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "50fd9c3596899076d966867aed7bf97f268898cd733f93c1eab441b943efad6d",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1087.001"
+          ]
+        },
+        "latency_ms": 0.026511
+      },
+      "arm_b": {
+        "bundle_sha256": "3a7aab17f83ccb91d5a02eb73f4986b44e9c229744c3fb35e5fc2cd9b203c95e",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1087.001"
+          ]
+        },
+        "gate_latency_ms": 0.027085,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1087.001",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "whoami",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "account_discovery,discovery",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1087.001"
+            ]
+          },
+          "trace_sha256": "4101308367777e33a7ccf69cb4adc3494dcbaf0023e84fc586a430c85b9ba9b7"
+        },
+        "judge_latency_ms": 0.100749,
+        "latency_ms": 0.127834
+      },
+      "case_id": "benign-admin-001",
+      "category": "benign_administrative_behavior",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=benign_administrative_behavior; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "ab6b294496e08f5e722ecc151e0baa1f9d94ad2a2c2e70726ecb214c103959ff",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1087.001"
+          ]
+        },
+        "latency_ms": 0.026039
+      },
+      "arm_b": {
+        "bundle_sha256": "475d1cbc955ec59353091a0c00b8e4835c74e3d328d0c89a3b53ab72c98c67ea",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1087.001"
+          ]
+        },
+        "gate_latency_ms": 0.026827,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1087.001",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "id",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "account_discovery,discovery",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1087.001"
+            ]
+          },
+          "trace_sha256": "eff0aa3c25feb96538cdbe0c6c7660aee32fc8d3ebc1ef12759002d14c0a92d2"
+        },
+        "judge_latency_ms": 0.095436,
+        "latency_ms": 0.12226300000000001
+      },
+      "case_id": "benign-admin-002",
+      "category": "benign_administrative_behavior",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=benign_administrative_behavior; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "3dd83ba940385f2e94fa8a200d2f11da9bb276b6f6fa81c432e944a68c8c85af",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1082"
+          ]
+        },
+        "latency_ms": 0.031038
+      },
+      "arm_b": {
+        "bundle_sha256": "ac39a5fc8fa98a489e1d7fb43dc64818ce16b247c1cceffae4eb809f7ed936ce",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1082"
+          ]
+        },
+        "gate_latency_ms": 0.032499,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1082",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "hostname",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "discovery,system_discovery",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1082"
+            ]
+          },
+          "trace_sha256": "f6231a34af148b8625eb06fb6ab45c527948f542f50d659115cdd3e7909e38ab"
+        },
+        "judge_latency_ms": 0.129604,
+        "latency_ms": 0.162103
+      },
+      "case_id": "benign-admin-003",
+      "category": "benign_administrative_behavior",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=benign_administrative_behavior; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "3049851d63c1304b572d729e7cab9117d1f9992957ad2b0747a6cb8080770127",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1082"
+          ]
+        },
+        "latency_ms": 0.030681
+      },
+      "arm_b": {
+        "bundle_sha256": "999bd53c6e8ac8a7c109aeacb7b34bd935bf38f88ab402f5bb3dbc298d619480",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1082"
+          ]
+        },
+        "gate_latency_ms": 0.033024,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1082",
+              "label": "SUPPORTED",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "command_pattern_or_behavior_match"
+              ],
+              "relates_to_command": true,
+              "substantively_supports_behavior": true,
+              "support_kind": "SUPPORTED"
+            }
+          ],
+          "command": "df -h",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "SUFFICIENT",
+            "policy_behavior": "discovery,system_discovery",
+            "rationale_codes": [
+              "direct_behavior_support"
+            ],
+            "supporting_doc_ids": [
+              "DONV2-T1082"
+            ]
+          },
+          "trace_sha256": "d85a14a6cd7b15deba65f2005d986ef6341550cffa483511806df0cf00bcb43f"
+        },
+        "judge_latency_ms": 0.124291,
+        "latency_ms": 0.15731499999999998
+      },
+      "case_id": "benign-admin-004",
+      "category": "benign_administrative_behavior",
+      "measurements": {
+        "false_admission_arm_a": false,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": false,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 1,
+        "trace_complete": true,
+        "unsupported_removed": 0
+      },
+      "oracle": {
+        "expected_false_admission": false,
+        "expected_false_rejection": true,
+        "expected_sufficiency": "SUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=benign_administrative_behavior; expected=SUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "6bfb64d443ee21b58ca7fc662afcfe443f07b90255c98e5d8b9028b57501ce0c",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1082"
+          ]
+        },
+        "latency_ms": 0.031408
+      },
+      "arm_b": {
+        "bundle_sha256": "32bc95dd41d1757c0314e3ce4243e1365eee6a142fb6e9ebf6fc0f10650b7dc7",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.031975,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1082",
+              "label": "IRRELEVANT",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "no_command_relation"
+              ],
+              "relates_to_command": false,
+              "substantively_supports_behavior": false,
+              "support_kind": "IRRELEVANT"
+            }
+          ],
+          "command": "echo hello",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "discovery,system_discovery",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "1e1719014282b6b4438bdfb7d2fd714a2b262c5ff702412eca2c5fd7bf007405"
+        },
+        "judge_latency_ms": 0.134518,
+        "latency_ms": 0.166493
+      },
+      "case_id": "unsupported-001",
+      "category": "unsupported_behavior_claim",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=unsupported_behavior_claim; expected=INSUFFICIENT; no human label"
+      }
+    },
+    {
+      "arm_a": {
+        "bundle_sha256": "6d8e4076cb7163d133feaf1aaaaf07ed83fcb33083fe474b86939055c446cfc6",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "VALID_EVIDENCE",
+          "reason_code": "validated_bundle",
+          "valid_doc_ids": [
+            "DONV2-T1552.001"
+          ]
+        },
+        "latency_ms": 0.027873
+      },
+      "arm_b": {
+        "bundle_sha256": "3631366d803194c31708e314b97a80235caed6e9a5cf021b5ffd50ce4b1556f3",
+        "gate": {
+          "contract_version": "EVIDENCE_GATE_V1",
+          "gate_state": "LOW_RELEVANCE",
+          "reason_code": "evidence_judge_insufficient",
+          "valid_doc_ids": []
+        },
+        "gate_latency_ms": 0.028088,
+        "judge": {
+          "adapter_kind": "deterministic",
+          "candidate_judgments": [
+            {
+              "context_status": "PRESENT",
+              "doc_id": "DONV2-T1552.001",
+              "label": "IRRELEVANT",
+              "provenance_sufficient": true,
+              "rationale_codes": [
+                "no_command_relation"
+              ],
+              "relates_to_command": false,
+              "substantively_supports_behavior": false,
+              "support_kind": "IRRELEVANT"
+            }
+          ],
+          "command": "printf ready",
+          "context_missing_or_ambiguous": false,
+          "contract_version": "EVIDENCE_JUDGE_V1",
+          "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+          "probabilities": {},
+          "sufficiency": {
+            "contradictory_doc_ids": [],
+            "label": "INSUFFICIENT",
+            "policy_behavior": "credential_access,credentials",
+            "rationale_codes": [
+              "no_substantive_support"
+            ],
+            "supporting_doc_ids": []
+          },
+          "trace_sha256": "c28ede2ba3744dba1f04adfff0130212209714f1486d6e5d3d47fa72ed161d25"
+        },
+        "judge_latency_ms": 0.107886,
+        "latency_ms": 0.13597399999999998
+      },
+      "case_id": "unsupported-002",
+      "category": "unsupported_behavior_claim",
+      "measurements": {
+        "false_admission_arm_a": true,
+        "false_admission_arm_b": false,
+        "false_rejection_arm_a": false,
+        "false_rejection_arm_b": false,
+        "partial_rejected_or_abstained": true,
+        "relevant_candidates_arm_a": 1,
+        "relevant_candidates_arm_b": 0,
+        "trace_complete": true,
+        "unsupported_removed": 1
+      },
+      "oracle": {
+        "expected_false_admission": true,
+        "expected_false_rejection": false,
+        "expected_sufficiency": "INSUFFICIENT",
+        "oracle_kind": "deterministic_fixture_rule",
+        "rule": "category=unsupported_behavior_claim; expected=INSUFFICIENT; no human label"
+      }
+    }
+  ],
+  "schema": "ragin.evidence_judge_matched_results.v1"
+}

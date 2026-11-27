@@ -1,0 +1,22 @@
+{
+  "observed_utc": "2026-10-09",
+  "opencode_version": "1.18.35",
+  "proxy_bind": "127.0.0.1:8731",
+  "configured_model": "opencode/ling-3.1-flash-free",
+  "free_model_allowlist_count": 7,
+  "local_proxy_tests": {
+    "models_without_upstream_auth": "PASS_HTTP_200",
+    "health_without_upstream_auth": "PASS_FAIL_CLOSED_HTTP_503",
+    "completion_without_upstream_auth": "PASS_FAIL_CLOSED_HTTP_503",
+    "request_bounds_unit_tests": "PASS"
+  },
+  "upstream_tests": {
+    "zen_models_endpoint": "HTTP_200",
+    "zen_completion_without_auth": "HTTP_401",
+    "zen_completion_with_public_placeholder": "HTTP_401",
+    "opencode_cli_free_model": "TIMEOUT_ENDPOINT_UNAVAILABLE"
+  },
+  "aws_changes": false,
+  "public_listener": false,
+  "secret_values_recorded": false
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "ragin.laya_v3.task_adaptation_development.v1",
+  "status": "COMPLETE_BEFORE_VALIDATION",
+  "checkpoint": {
+    "package": "laya",
+    "version": "0.4.2",
+    "model": "english",
+    "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+    "sha256": "891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c",
+    "device": "cpu"
+  },
+  "synthetic_boundary": {
+    "development_cases": 24,
+    "prior_ragin_cases_used": false,
+    "prior_labels_used": false,
+    "prior_predictions_used": false,
+    "effectiveness_artifacts_used": false,
+    "oracle_type": "synthetic_contract_oracle_not_real_world_ground_truth"
+  },
+  "iterations": [
+    {
+      "id": "v1_verbose",
+      "question_variant": "compact evidence-state wording, canonical strategy descriptions",
+      "strategy_order": "canonical",
+      "raw_evidence_state_agreement": {"numerator": 16, "denominator": 24},
+      "caller_required_abstain_recall": {"numerator": 24, "denominator": 24},
+      "inappropriate_abstain": {"numerator": 17, "denominator": 24},
+      "selected": true
+    },
+    {
+      "id": "v2_reordered",
+      "question_variant": "same question wording and descriptions",
+      "strategy_order": "reverse canonical",
+      "raw_evidence_state_agreement": {"numerator": 12, "denominator": 24},
+      "caller_required_abstain_recall": {"numerator": 24, "denominator": 24},
+      "inappropriate_abstain": {"numerator": 17, "denominator": 24},
+      "selected": false
+    },
+    {
+      "id": "v3_semantic",
+      "question_variant": "more semantic strategy descriptions",
+      "strategy_order": "canonical",
+      "raw_evidence_state_agreement": {"numerator": 8, "denominator": 24},
+      "caller_required_abstain_recall": {"numerator": 24, "denominator": 24},
+      "inappropriate_abstain": {"numerator": 17, "denominator": 24},
+      "selected": false
+    }
+  ],
+  "selection_rule": "Select v1 because it had the highest raw evidence-state agreement; validation results were not observed when selecting.",
+  "selected_candidate": "results/laya_decision_v3/laya_v3_task_adaptation_candidate_freeze_v1.json",
+  "candidate_freeze_sha256": "c3fea3c979ed33b8831fcecee7e4ed8eea16bd9bf57bc23690071700c0feca9b",
+  "development_contract_checks": {
+    "schema_valid": "100% across recorded development outputs",
+    "allow_list_valid": "100% across recorded development outputs",
+    "evidence_reference_valid": "100% across recorded development outputs",
+    "semantic_gate_status": "NOT_PASSED",
+    "interpretation": "Development established a frozen callable contract, not reliable semantic policy selection."
+  },
+  "option_order_study": {
+    "tested": ["canonical", "reverse canonical"],
+    "observed": "raw evidence-state agreement changed from 16/24 to 12/24",
+    "frozen_rule": "fixed canonical order"
+  }
+}

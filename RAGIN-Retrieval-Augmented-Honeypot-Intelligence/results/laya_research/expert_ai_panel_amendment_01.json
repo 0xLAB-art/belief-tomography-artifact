@@ -1,0 +1,87 @@
+{
+  "amendment_based_on_annotation_outcomes": false,
+  "amendment_id": "EXPERT_AI_REFERENCE_PANEL_V1_AMENDMENT_01",
+  "amendment_number": 1,
+  "amendment_status": "PRE_ANNOTATION",
+  "amendment_timestamp": "2026-10-13T14:36:40.541450+00:00",
+  "annotation_cases_completed_after_amendment": 0,
+  "annotation_cases_completed_before_amendment": 0,
+  "annotation_outputs_created_before_amendment": false,
+  "ground_truth_accessed": false,
+  "new_assignments": {
+    "expert_ai_01": "GPT-6-Luna / MEDIUM",
+    "expert_ai_02": "GPT-6.1-Sol / MEDIUM",
+    "expert_ai_03": "GPT-5.6-Terra / MEDIUM"
+  },
+  "new_model_verification_rule": {
+    "agent_must_not_hallucinate_model_identity": true,
+    "agent_self_introspection_required": false,
+    "assignment_violation_only_if": [
+      "The operator states the wrong model was selected.",
+      "Available session metadata explicitly contradicts the assignment."
+    ],
+    "cannot_self_observe_model_name_is_not_a_violation": true,
+    "model_identity_provenance": "OPERATOR_UI_ATTESTED",
+    "operator_responsibility": "The human operator selects the assigned model in the Codex UI before launching each annotation session and records the selected model.",
+    "required_metadata": [
+      "assigned_model",
+      "operator_attested_model",
+      "reasoning_effort",
+      "model_identity_provenance"
+    ]
+  },
+  "new_workspace_strategy": {
+    "allowed_files_only": [
+      "ANNOTATOR_PROMPT.txt",
+      "INSTRUCTIONS.txt",
+      "RUN_METADATA_TEMPLATE.json",
+      "packet.json"
+    ],
+    "first_filesystem_action": "pwd",
+    "git_repositories": false,
+    "outside_ragin_repository": true,
+    "root": "/home/elaref/Documents/research/ragin_expert_panel_v1",
+    "symlinks_to_ragin_repository": false,
+    "workspace_mismatch_action": "STOP with WORKSPACE_MISMATCH",
+    "workspaces": [
+      "/home/elaref/Documents/research/ragin_expert_panel_v1/expert_ai_01",
+      "/home/elaref/Documents/research/ragin_expert_panel_v1/expert_ai_02",
+      "/home/elaref/Documents/research/ragin_expert_panel_v1/expert_ai_03"
+    ]
+  },
+  "old_assignments": {
+    "expert_ai_01": "GPT-6-Luna / MEDIUM",
+    "expert_ai_02": "GPT-5.6-Sol / MEDIUM",
+    "expert_ai_03": "GPT-5.6-Terra / MEDIUM"
+  },
+  "old_model_verification_rule": "Each AI agent had to independently observe and verify its own model identity from the Codex UI; failure to observe a matching model could invalidate the run.",
+  "old_workspace_strategy": {
+    "failure": "The Codex execution process could not reliably enter some /tmp workspaces and produced Failed to create unified exec process: No such file or directory.",
+    "paths": [
+      "/tmp/ragin_expert_ai_01/",
+      "/tmp/ragin_expert_ai_02/",
+      "/tmp/ragin_expert_ai_03/"
+    ]
+  },
+  "original_freeze": {
+    "path": "results/laya_research/expert_ai_panel_preregistration_freeze_v1.json",
+    "preserved_unchanged": true,
+    "sha256": "2515f1117f1d71fde890792ff645c9ed02d9bede712806d076e2b1ca13a2928b"
+  },
+  "packet_source_mapping": {
+    "expert_ai_01": "results/laya_research/rater_packets_v3/r1.json",
+    "expert_ai_02": "results/laya_research/rater_packets_v3/r2.json",
+    "expert_ai_03": "results/laya_research/rater_packets_v3/r3.json"
+  },
+  "panel_type": "MULTI_MODEL_INDEPENDENT_AI_SESSIONS",
+  "predictions_accessed": false,
+  "previous_annotations_accessed": false,
+  "reason": "Pre-annotation infrastructure and model-identity verification correction.",
+  "resource_and_scientific_rules": {
+    "aggregation_rules_unchanged": true,
+    "frozen_v3_semantics_unchanged": true,
+    "outcome_driven_selection": false,
+    "selection_before_annotation": true,
+    "taxonomy_unchanged": true
+  }
+}

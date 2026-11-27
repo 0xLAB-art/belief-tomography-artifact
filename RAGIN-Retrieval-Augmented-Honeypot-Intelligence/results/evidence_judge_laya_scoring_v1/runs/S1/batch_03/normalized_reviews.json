@@ -1,0 +1,374 @@
+{
+  "benign-admin-001": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Evidence lacks support for the command's benign characterization.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-T1087.001": {
+        "doc_id": "DONV2-T1087.001",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Supports account-related observation, not benign administrative intent."
+      }
+    }
+  },
+  "benign-admin-002": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Evidence supports observation but not benign characterization.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-T1087.001": {
+        "doc_id": "DONV2-T1087.001",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Describes id-based account observation, not benign administrative intent."
+      }
+    }
+  },
+  "benign-admin-003": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Evidence supports observation but not benign characterization.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2,
+          3
+        ],
+        "rationale": "Supports system-information observation, not benign administrative intent."
+      }
+    }
+  },
+  "benign-admin-004": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Evidence supports observation but not benign characterization.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Supports system-information observation, not benign administrative intent."
+      }
+    }
+  },
+  "irrelevant-001": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Retrieved SSH evidence is unrelated to echo behavior.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-T1021.004": {
+        "doc_id": "DONV2-T1021.004",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2,
+          3
+        ],
+        "rationale": "SSH behavior does not materially concern echo output."
+      }
+    }
+  },
+  "irrelevant-002": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Retrieved cron evidence is unrelated to printf behavior.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-T1053.003": {
+        "doc_id": "DONV2-T1053.003",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2,
+          3
+        ],
+        "rationale": "Cron scheduling does not materially concern printf output."
+      }
+    }
+  },
+  "irrelevant-003": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Retrieved credential evidence is unrelated to true behavior.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-T1552.001": {
+        "doc_id": "DONV2-T1552.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2,
+          3
+        ],
+        "rationale": "Credential-file searching does not concern true execution."
+      }
+    }
+  },
+  "irrelevant-004": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Retrieved transfer evidence is unrelated to date behavior.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-T1105": {
+        "doc_id": "DONV2-T1105",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2,
+          3
+        ],
+        "rationale": "Tool transfer behavior does not concern date output."
+      }
+    }
+  },
+  "multi-command-003": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "SUFFICIENT",
+      "rationale": "Evidence directly supports SSH remote access behavior.",
+      "supporting_doc_ids": [
+        "DONV2-T1021.004"
+      ]
+    },
+    "candidate_reviews": {
+      "DONV2-T1021.004": {
+        "doc_id": "DONV2-T1021.004",
+        "label": "DIRECT_SUPPORT",
+        "paragraph_indexes": [
+          2,
+          3
+        ],
+        "rationale": "Describes SSH remote-shell access matching command behavior."
+      }
+    }
+  },
+  "multi-command-004": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "SUFFICIENT",
+      "rationale": "Evidence directly supports cron scheduling behavior.",
+      "supporting_doc_ids": [
+        "DONV2-T1053.003"
+      ]
+    },
+    "candidate_reviews": {
+      "DONV2-T1053.003": {
+        "doc_id": "DONV2-T1053.003",
+        "label": "DIRECT_SUPPORT",
+        "paragraph_indexes": [
+          2,
+          3
+        ],
+        "rationale": "Explains crontab scheduling and scheduled task execution."
+      }
+    }
+  },
+  "multi-command-005": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Evidence is general and lacks SSH enablement specificity.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-T1543.002": {
+        "doc_id": "DONV2-T1543.002",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2,
+          6
+        ],
+        "rationale": "Supports service persistence generally, not enabling SSH specifically."
+      }
+    }
+  },
+  "multi-command-006": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Evidence broadly concerns credentials but lacks shadow-file specificity.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-T1552.001": {
+        "doc_id": "DONV2-T1552.001",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2,
+          4
+        ],
+        "rationale": "Supports credential-file searching, not specifically reading shadow."
+      }
+    }
+  },
+  "partial-001": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Topically related but does not establish execution or policy consequence.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-T1552.001": {
+        "doc_id": "DONV2-T1552.001",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns searching files for credentials, not execution consequences."
+      }
+    }
+  },
+  "partial-002": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Related persistence evidence does not establish the claimed consequence.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-AUTHKEYS": {
+        "doc_id": "DONV2-REL-AUTHKEYS",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Describes persistence behavior, not grep execution consequences."
+      }
+    }
+  },
+  "partial-003": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Related persistence evidence does not establish the claimed consequence.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-CRONTAB": {
+        "doc_id": "DONV2-REL-CRONTAB",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Describes crontab persistence, not grep execution consequences."
+      }
+    }
+  },
+  "partial-004": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Related SSH behavior does not establish the claimed consequence.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-SSH": {
+        "doc_id": "DONV2-REL-SSH",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Describes SSH tunneling, not grep execution consequences."
+      }
+    }
+  },
+  "partial-005": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Related malware evidence does not establish the claimed consequence.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-CURL": {
+        "doc_id": "DONV2-REL-CURL",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Discusses malware execution techniques, not grep consequences."
+      }
+    }
+  },
+  "partial-006": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Related transfer evidence does not establish the claimed consequence.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-WGET": {
+        "doc_id": "DONV2-REL-WGET",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Describes downloading content, not grep execution consequences."
+      }
+    }
+  },
+  "unsupported-001": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Evidence concerns system discovery, not the claimed behaviors.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid."
+      }
+    }
+  },
+  "unsupported-002": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Evidence concerns credentials, not the claimed command consequence.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-T1552.001": {
+        "doc_id": "DONV2-T1552.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2,
+          3
+        ],
+        "rationale": "Credential-file evidence does not support printf consequences."
+      }
+    }
+  }
+}

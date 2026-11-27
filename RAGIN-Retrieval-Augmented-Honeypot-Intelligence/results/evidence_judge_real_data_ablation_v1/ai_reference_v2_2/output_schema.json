@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["cases"],
+  "properties": {
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["case_id", "candidate_reviews", "bundle_review"],
+        "properties": {
+          "case_id": {"type": "string"},
+          "candidate_reviews": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["candidate_index", "label", "paragraph_indexes", "rationale"],
+              "properties": {
+                "candidate_index": {"type": "integer", "minimum": 0},
+                "label": {"type": "string", "enum": ["DIRECT_SUPPORT", "PARTIAL", "IRRELEVANT", "CONTRADICTORY", "UNKNOWN"]},
+                "paragraph_indexes": {"type": "array", "items": {"type": "integer", "minimum": 1}},
+                "rationale": {"type": "string"}
+              }
+            }
+          },
+          "bundle_review": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["label", "supporting_candidate_indexes", "conflicting_candidate_indexes", "rationale"],
+            "properties": {
+              "label": {"type": "string", "enum": ["SUFFICIENT", "INSUFFICIENT", "CONFLICTING", "UNKNOWN"]},
+              "supporting_candidate_indexes": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+              "conflicting_candidate_indexes": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+              "rationale": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

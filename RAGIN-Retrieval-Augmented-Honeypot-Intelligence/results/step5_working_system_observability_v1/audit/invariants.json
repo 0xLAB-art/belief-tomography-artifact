@@ -1,0 +1,91 @@
+{
+  "protocol": "ragin.step5.working_system_observability.v1",
+  "phase": "audit:invariants",
+  "recorded_at": "2026-10-15T04:30:29.678442+00:00",
+  "status": "PASS",
+  "records": 17,
+  "invariants": [
+    {
+      "name": "INV01_expectations_match",
+      "detail": "Every scenario's declared expectation (gate state, outcome, dispositions) is observed \u2014 the scenario exercised the intended condition.",
+      "status": "PASS",
+      "violations": []
+    },
+    {
+      "name": "INV02_served_turns_have_verifier_approval_commit_disposition",
+      "detail": "Every served turn: verification passed+accepted, approval approved, commit disposition accepted (observable, not inferred).",
+      "status": "PASS",
+      "violations": []
+    },
+    {
+      "name": "INV04_no_unauthorized_commit",
+      "detail": "No commit is accepted without a passing verifier verdict AND approved HITL on that attempt.",
+      "status": "PASS",
+      "violations": []
+    },
+    {
+      "name": "INV05_no_unsafe_evidence_promotion",
+      "detail": "Policy refs subset of gate-valid IDs; non-VALID gate never consumes a strategy or selects non-baseline; VALID gate selects one.",
+      "status": "PASS",
+      "violations": []
+    },
+    {
+      "name": "INV06_no_arm_state_leakage",
+      "detail": "Baseline records carry no V4 policy stage/engine; V4 records carry exactly the policy stage of their own arm.",
+      "status": "PASS",
+      "violations": []
+    },
+    {
+      "name": "INV07_policy_visible_evidence_and_strategy_match_trace",
+      "detail": "Gate-valid IDs, judge-filter visible IDs, policy-visible before/after, bundle hash and consumed strategy all agree across bundle, policy decision and serving attempts.",
+      "status": "PASS",
+      "violations": []
+    },
+    {
+      "name": "INV08_commit_dispositions_explicit_with_state_hashes",
+      "detail": "Every attempt carries an explicit disposition (accepted/rejected/not_attempted) with reason; accepted/rejected commits carry consistent before/after state hashes; no-op and rejected (not_committed) states are labeled explicitly \u2014 never inferred.",
+      "status": "PASS",
+      "violations": []
+    },
+    {
+      "name": "INV09_fallback_and_noop_events_explicit",
+      "detail": "Fallback turns record an explicit fallback reason; no-op commits are recorded explicitly and consistently.",
+      "status": "PASS",
+      "violations": []
+    },
+    {
+      "name": "INV10_no_inference_filled_commit_metadata",
+      "detail": "No attempt leaves commit metadata as the NOT_VERIFIABLE sentinel \u2014 nothing is left for downstream inference.",
+      "status": "PASS",
+      "violations": []
+    },
+    {
+      "name": "INV11_response_differences_survive_decorative_marker_removal",
+      "detail": "First line (prompt/echo decoration) stripped from baseline and supported-evidence responses; remaining content must differ.",
+      "status": "PASS",
+      "violations": [],
+      "observed": {
+        "baseline_stripped_sha256": "4f3d2c5ac84f60c72b85c1e3cad03428441f0858739422fdf0d24cd1036c41d5",
+        "supported_stripped_sha256": "9019e9191eda30756a7c4921aa5c6cc5609b1cee9cae997cfee12a2de661c85e"
+      }
+    },
+    {
+      "name": "INV12_persistence_restart_continuity",
+      "detail": "After restart: session log resumes (SESSION_RESUME), turn count continues, pinned host identity and promoted host facts persist, and the turn serves with full dispositions.",
+      "status": "PASS",
+      "violations": []
+    },
+    {
+      "name": "INV13_rejected_update_rolled_back_and_persisted",
+      "detail": "Rejected update: fiction graph restored (before==after), host store restored AND persisted to disk, generator state untouched, fallback commit accepted.",
+      "status": "PASS",
+      "violations": []
+    },
+    {
+      "name": "INV14_no_unserved_state_mutation_and_errors_explicit",
+      "detail": "A turn that does not serve records an explicit error and never leaves an accepted commit behind.",
+      "status": "PASS",
+      "violations": []
+    }
+  ]
+}

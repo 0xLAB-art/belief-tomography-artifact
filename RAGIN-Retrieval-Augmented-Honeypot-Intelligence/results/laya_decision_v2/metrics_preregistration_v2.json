@@ -1,0 +1,18 @@
+{
+  "schema": "ragin.laya_decision_v2.metrics_preregistration.v2",
+  "decision_level": {
+    "task": "binary attack versus non-attack only where the locked reference taxonomy explicitly aligns",
+    "primary": "balanced_accuracy",
+    "secondary": ["accuracy", "precision", "recall", "specificity", "F1", "MCC", "FPR", "FNR"],
+    "probability_metrics": ["Brier score", "ECE"],
+    "probability_metric_gate": "Report Brier/ECE only when the evaluated signal is a valid probability for the evaluated unit; native Laya noul from a long-state deciding window is not treated as calibrated document-level probability.",
+    "uncertain_handling": "Report coverage and uncertainty separately; do not silently convert NO_SIGNAL or UNCERTAIN to a class."
+  },
+  "workflow_level": {
+    "primary": "accepted_non_fallback_response_rate",
+    "secondary": ["verifier_first_pass_acceptance_rate", "total_verifier_rejection_count", "generation_retry_count", "fallback_rate", "HITL_escalation_rate", "fiction_consistency_rejection_rate", "host_fiction_rejection_rate", "final_controlled_failure_rate", "end_to_end_latency", "Laya_incremental_latency", "decision_path_distribution", "response_strategy_distribution"],
+    "optional_valid_metrics": "Include existing independent deception-quality or groundedness measures only if their validity and provenance predate this outcome evaluation; do not add a post-outcome LLM judge."
+  },
+  "denominators": "Report arm-specific attempted cases, evaluable cases, NO_SIGNAL/UNCERTAIN cases, and final accepted cases explicitly for every rate.",
+  "historical_120_role": "EXPLORATORY_DECISION_V2_SET only; it is not the sole new confirmatory result."
+}

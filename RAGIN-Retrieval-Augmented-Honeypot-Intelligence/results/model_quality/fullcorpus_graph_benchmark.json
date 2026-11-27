@@ -1,0 +1,403 @@
+{
+  "generated_at": "2026-09-17T11:41:19Z",
+  "corpus": {
+    "docs": 22396,
+    "source": "data/benchmark_lightrag/kv_store_full_docs.json"
+  },
+  "provider": "azure",
+  "engine_model": "qwen--qwen38-27b",
+  "panel_models": [
+    "qwen--qwen38-27b",
+    "nvidia/nemotron-3-super-120b-a12b:free",
+    "poolside/laguna-s-2.1:free",
+    "inclusionai/ling-3.0-flash-vl:free"
+  ],
+  "panel_type": "single-rater",
+  "panel_queries": 5,
+  "rows": [
+    {
+      "query": "scheduled task persistence via crontab and systemd timers",
+      "must": [
+        "Scheduled Task"
+      ],
+      "legacy": {
+        "ctx_bytes": 2456,
+        "latency_ms": 60,
+        "n_hits": 9874,
+        "p_at_5": 0.0
+      },
+      "graph": {
+        "ctx_bytes": 3038,
+        "latency_ms": 433990,
+        "n_relevant": 26,
+        "p_at_5": 0.0,
+        "sub_queries": [
+          "Known malware families and APT groups using crontab entries for persistence on Linux systems",
+          "Systemd timer and unit file abuse for persistence by threat actors, including stealth techniques",
+          "Detection rules and IOCs for malicious scheduled tasks via crontab and systemd timers in Linux environments"
+        ],
+        "rounds": 0,
+        "degraded": false,
+        "n_candidates": 28
+      },
+      "panel": {
+        "legacy": {
+          "per_judge": {
+            "qwen--qwen38-27b": 3,
+            "nvidia/nemotron-3-super-120b-a12b:free": null,
+            "poolside/laguna-s-2.1:free": null,
+            "inclusionai/ling-3.0-flash-vl:free": null
+          },
+          "mean": 3
+        },
+        "graph": {
+          "per_judge": {
+            "qwen--qwen38-27b": 4,
+            "nvidia/nemotron-3-super-120b-a12b:free": null,
+            "poolside/laguna-s-2.1:free": null,
+            "inclusionai/ling-3.0-flash-vl:free": null
+          },
+          "mean": 4
+        }
+      }
+    },
+    {
+      "query": "credential dumping from LSASS with mimikatz",
+      "must": [
+        "LSASS",
+        "Credential"
+      ],
+      "legacy": {
+        "ctx_bytes": 4218,
+        "latency_ms": 69,
+        "n_hits": 5806,
+        "p_at_5": 0.4
+      },
+      "graph": {
+        "ctx_bytes": 4741,
+        "latency_ms": 115655,
+        "n_relevant": 27,
+        "p_at_5": 0.6,
+        "sub_queries": [
+          "Mimikatz LSASS credential dumping detection signatures and EDR telemetry",
+          "Known APT groups and campaigns using Mimikatz for LSASS access",
+          "Defensive mitigations for LSASS protection (CredGuard, PPL, WPP) and their bypasses"
+        ],
+        "rounds": 0,
+        "degraded": false,
+        "n_candidates": 29
+      },
+      "panel": {
+        "legacy": {
+          "per_judge": {
+            "qwen--qwen38-27b": 5,
+            "nvidia/nemotron-3-super-120b-a12b:free": null,
+            "poolside/laguna-s-2.1:free": null,
+            "inclusionai/ling-3.0-flash-vl:free": null
+          },
+          "mean": 5
+        },
+        "graph": {
+          "per_judge": {
+            "qwen--qwen38-27b": 4,
+            "nvidia/nemotron-3-super-120b-a12b:free": null,
+            "poolside/laguna-s-2.1:free": null,
+            "inclusionai/ling-3.0-flash-vl:free": null
+          },
+          "mean": 4
+        }
+      }
+    },
+    {
+      "query": "ssh brute force password spraying against exposed services",
+      "must": [
+        "Brute Force",
+        "Password"
+      ],
+      "legacy": {
+        "ctx_bytes": 3286,
+        "latency_ms": 33,
+        "n_hits": 1732,
+        "p_at_5": 0.4
+      },
+      "graph": {
+        "ctx_bytes": 3897,
+        "latency_ms": 310969,
+        "n_relevant": 28,
+        "p_at_5": 0.2,
+        "sub_queries": [
+          "SSH brute force and password spraying TTPs, tooling, and associated malware families observed in",
+          "Infrastructure patterns for SSH credential stuffing campaigns including botnet C2, source IP geolocation, and proxy usage",
+          "Targeting profiles for exposed SSH services by sector, geography, and common default or reused credential patterns",
+          "Post-compromise activity following successful SSH brute force access including lateral movement, persistence, and data exfiltration"
+        ],
+        "rounds": 0,
+        "degraded": false,
+        "n_candidates": 32
+      },
+      "panel": {
+        "legacy": {
+          "per_judge": {
+            "qwen--qwen38-27b": 5,
+            "nvidia/nemotron-3-super-120b-a12b:free": null,
+            "poolside/laguna-s-2.1:free": null,
+            "inclusionai/ling-3.0-flash-vl:free": null
+          },
+          "mean": 5
+        },
+        "graph": {
+          "per_judge": {
+            "qwen--qwen38-27b": 4,
+            "nvidia/nemotron-3-super-120b-a12b:free": null,
+            "poolside/laguna-s-2.1:free": null,
+            "inclusionai/ling-3.0-flash-vl:free": null
+          },
+          "mean": 4
+        }
+      }
+    },
+    {
+      "query": "lateral movement via SMB and remote services",
+      "must": [
+        "SMB",
+        "Lateral"
+      ],
+      "legacy": {
+        "ctx_bytes": 2082,
+        "latency_ms": 85,
+        "n_hits": 10023,
+        "p_at_5": 0.6
+      },
+      "graph": {
+        "ctx_bytes": 2936,
+        "latency_ms": 295904,
+        "n_relevant": 32,
+        "p_at_5": 0.2,
+        "sub_queries": [
+          "SMB lateral movement techniques including pass-the-hash, SMB relay, and NTLM authentication abuse",
+          "Remote service-based lateral movement via WMI, WinRM, PsExec, and scheduled tasks",
+          "Detection signatures and MITRE ATT&CK mappings for SMB and remote service lateral movement",
+          "Common tooling and TTPs used by APT groups for SMB and remote service lateral movement"
+        ],
+        "rounds": 0,
+        "degraded": false,
+        "n_candidates": 33
+      },
+      "panel": {
+        "legacy": {
+          "per_judge": {
+            "qwen--qwen38-27b": 5,
+            "nvidia/nemotron-3-super-120b-a12b:free": null,
+            "poolside/laguna-s-2.1:free": null,
+            "inclusionai/ling-3.0-flash-vl:free": null
+          },
+          "mean": 5
+        },
+        "graph": {
+          "per_judge": {
+            "qwen--qwen38-27b": 5,
+            "nvidia/nemotron-3-super-120b-a12b:free": null,
+            "poolside/laguna-s-2.1:free": null,
+            "inclusionai/ling-3.0-flash-vl:free": null
+          },
+          "mean": 5
+        }
+      }
+    },
+    {
+      "query": "reverse shell payload delivery and execution",
+      "must": [
+        "Command",
+        "Execution"
+      ],
+      "legacy": {
+        "ctx_bytes": 2259,
+        "latency_ms": 76,
+        "n_hits": 9786,
+        "p_at_5": 0.4
+      },
+      "graph": {
+        "ctx_bytes": 2209,
+        "latency_ms": 259545,
+        "n_relevant": 22,
+        "p_at_5": 0.0,
+        "sub_queries": [
+          "Common reverse shell delivery techniques and associated C2 frameworks",
+          "Detection signatures and IOCs for reverse shell execution on endpoints",
+          "Evasion methods used to bypass EDR and network detection for reverse shells",
+          "Known APT campaigns leveraging reverse shell payload delivery"
+        ],
+        "rounds": 0,
+        "degraded": false,
+        "n_candidates": 34
+      },
+      "panel": {
+        "legacy": {
+          "per_judge": {
+            "qwen--qwen38-27b": 4,
+            "nvidia/nemotron-3-super-120b-a12b:free": null,
+            "poolside/laguna-s-2.1:free": null,
+            "inclusionai/ling-3.0-flash-vl:free": null
+          },
+          "mean": 4
+        },
+        "graph": {
+          "per_judge": {
+            "qwen--qwen38-27b": 5,
+            "nvidia/nemotron-3-super-120b-a12b:free": null,
+            "poolside/laguna-s-2.1:free": null,
+            "inclusionai/ling-3.0-flash-vl:free": null
+          },
+          "mean": 5
+        }
+      }
+    },
+    {
+      "query": "network service scanning and port discovery",
+      "must": [
+        "Network Service",
+        "Discovery"
+      ],
+      "legacy": {
+        "ctx_bytes": 1679,
+        "latency_ms": 52,
+        "n_hits": 9556,
+        "p_at_5": 0.2
+      },
+      "graph": {
+        "ctx_bytes": 4705,
+        "latency_ms": 246633,
+        "n_relevant": 23,
+        "p_at_5": 0.0,
+        "sub_queries": [
+          "tools and techniques threat actors use for port scanning and service enumeration",
+          "detection signatures and network indicators of compromise for active scanning activity",
+          "reconnaissance TTPs and campaign patterns associated with pre-exploitation port discovery"
+        ],
+        "rounds": 0,
+        "degraded": false,
+        "n_candidates": 26
+      }
+    },
+    {
+      "query": "web shell deployment on internet-facing servers",
+      "must": [
+        "Web Shell",
+        "Server"
+      ],
+      "legacy": {
+        "ctx_bytes": 3048,
+        "latency_ms": 39,
+        "n_hits": 4716,
+        "p_at_5": 0.2
+      },
+      "graph": {
+        "ctx_bytes": 4376,
+        "latency_ms": 542922,
+        "n_relevant": 27,
+        "p_at_5": 0.4,
+        "sub_queries": [
+          "Known web shell families and their file signatures, naming conventions, and C2 communication patterns",
+          "Initial access vectors and exploitation chains that lead to web shell placement on internet-facing web servers",
+          "Threat actor TTPs and active campaigns associated with web shell deployment, including post-exploitation behaviors",
+          "Detection rules, IOC patterns, and host-based indicators for identifying web shells in web server directories"
+        ],
+        "rounds": 0,
+        "degraded": false,
+        "n_candidates": 30
+      }
+    },
+    {
+      "query": "data exfiltration over encrypted channels",
+      "must": [
+        "Exfiltration"
+      ],
+      "legacy": {
+        "ctx_bytes": 3267,
+        "latency_ms": 32,
+        "n_hits": 2620,
+        "p_at_5": 1.0
+      },
+      "graph": {
+        "ctx_bytes": 4958,
+        "latency_ms": 546816,
+        "n_relevant": 24,
+        "p_at_5": 0.8,
+        "sub_queries": [
+          "T1041 and T1567 exfiltration techniques leveraging legitimate encrypted protocols (HTTPS, DNS-over-HTTPS, ICMP tunneling)",
+          "Detection methods for encrypted exfiltration: JA3/JA4 fingerprinting, traffic entropy analysis, and behavioral baselining",
+          "Adversary TTPs for obfuscating data exfiltration within TLS sessions (steganography, chunked encoding, protocol tunneling)",
+          "Known C2 frameworks and tools that support encrypted data exfiltration channels (Cobalt Strike, Sliver, Havoc, custom implants)"
+        ],
+        "rounds": 0,
+        "degraded": false,
+        "n_candidates": 33
+      }
+    },
+    {
+      "query": "defense evasion via file deletion and log clearing",
+      "must": [
+        "Indicator Removal",
+        "Defense"
+      ],
+      "legacy": {
+        "ctx_bytes": 2324,
+        "latency_ms": 55,
+        "n_hits": 10115,
+        "p_at_5": 0.0
+      },
+      "graph": {
+        "ctx_bytes": 3217,
+        "latency_ms": 484010,
+        "n_relevant": 19,
+        "p_at_5": 0.0,
+        "sub_queries": [
+          "MITRE ATT&CK T1070 sub-techniques for log clearing and file deletion with associated tooling",
+          "Threat actor groups and malware families known for anti-forensics via log wiping and artifact removal",
+          "Detection strategies and SIEM rules for identifying post-compromise log clearing and file deletion activity"
+        ],
+        "rounds": 0,
+        "degraded": false,
+        "n_candidates": 29
+      }
+    },
+    {
+      "query": "exploitation of public-facing application vulnerabilities",
+      "must": [
+        "Exploit Public-Facing"
+      ],
+      "legacy": {
+        "ctx_bytes": 4313,
+        "latency_ms": 42,
+        "n_hits": 5661,
+        "p_at_5": 0.2
+      },
+      "graph": {
+        "ctx_bytes": 4536,
+        "latency_ms": 234420,
+        "n_relevant": 34,
+        "p_at_5": 0.0,
+        "sub_queries": [
+          "Actively exploited CVEs targeting public-facing web applications in the last 90 days",
+          "TTPs and tooling used by threat actors for initial access via public-facing application vulnerabilities",
+          "Sector-specific exploitation trends for internet-exposed applications (finance, healthcare, government)",
+          "Exploit kits and automated scanning campaigns targeting unpatched public-facing applications"
+        ],
+        "rounds": 0,
+        "degraded": false,
+        "n_candidates": 37
+      }
+    }
+  ],
+  "panel_kappa_legacy_arm": {},
+  "summary": {
+    "mean_p5_legacy": 0.34,
+    "mean_p5_graph": 0.22,
+    "mean_latency_legacy_ms": 54,
+    "mean_latency_graph_ms": 347086,
+    "mean_ctx_legacy_bytes": 2893,
+    "mean_ctx_graph_bytes": 3861,
+    "graph_degraded_runs": 0,
+    "graph_total_llm_rounds": 0
+  }
+}

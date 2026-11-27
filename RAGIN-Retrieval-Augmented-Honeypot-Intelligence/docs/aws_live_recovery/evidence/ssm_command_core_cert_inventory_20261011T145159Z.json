@@ -1,0 +1,46 @@
+{
+    "Command": {
+        "CommandId": "ad42b416-adca-4b5f-9ef4-280979592225",
+        "DocumentName": "AWS-RunShellScript",
+        "DocumentVersion": "$DEFAULT",
+        "Comment": "RAGIN CORE /etc/ragin and cert metadata (no secrets)",
+        "ExpiresAfter": "2026-10-11T18:54:00.800000+03:00",
+        "Parameters": {
+            "commands": [
+                "set -euo pipefail\necho RUN\ndate -u\necho ETC_RAGIN_TREE\nif [ -d /etc/ragin ]; then\n  find /etc/ragin -maxdepth 4 -type f 2>/dev/null | sort\nelse\n  echo DIR_MISSING=/etc/ragin\nfi\necho ETC_RAGIN_TLS_DIRS\nfor d in /etc/ragin/tls /etc/ragin/certs /etc/ragin/keys; do\n  if [ -d \"$d\" ]; then\n    echo DIR=$d\n    find \"$d\" -maxdepth 3 -type f 2>/dev/null | sort | head -n 200\n  else\n    echo DIR_MISSING=$d\n  fi\ndone\necho ENV_VALUES\nif [ -f /etc/ragin/server.env ]; then\n  echo FILE=/etc/ragin/server.env\n  while IFS= read -r line; do\n    key=\"${line%%=*}\"\n    case \"$key\" in\n      RAGIN_LLM_API_KEY|RAGIN_PROVIDER_SECRET|RAGIN_EAIC_SECRET|RAGIN_SECRET|RAGIN_TOKEN|PRIVATE_KEY|KEY|SECRET|CREDENTIAL)\n        echo \"REDACTED_KEY=$key\"\n        ;;\n      *)\n        printf '%s\\n' \"$line\"\n        ;;\n    esac\n  done < /etc/ragin/server.env\nelse\n  echo ENV_MISSING=/etc/ragin/server.env\nfi\necho CERT_PUB_ONLY\nfor f in /etc/ragin/tls/server.crt /etc/ragin/tls/ca.crt /etc/ragin/tls/client.crt /etc/ragin/tls/*.crt /etc/ragin/tls/*.pem; do\n  if [ -f \"$f\" ]; then\n    echo FILE_PUB=$f\n    openssl x509 -noout -subject -issuer -dates -ext subjectAltName,extendedKeyUsage,keyId,authorityKeyIdentifier -in \"$f\" 2>/dev/null || echo PARSE_FAIL=$f\n    echo FINGERPRINT_SUM=$(openssl x509 -noout -fingerprint -sha256 -in \"$f\" 2>/dev/null || echo fingerprint_failed)\n    echo SIZE_BYTES=$(stat -c %s \"$f\" 2>/dev/null || echo stat_failed)\n  fi\ndone\necho KEY_LIST_ONLY\nfor f in /etc/ragin/tls/*.key /etc/ragin/tls/*.pem; do\n  if [ -f \"$f\" ]; then\n    echo KEY_FILE=$f\n    echo KEY_SIZE_BYTES=$(stat -c %s \"$f\" 2>/dev/null || echo stat_failed)\n  fi\ndone\necho DONE"
+            ]
+        },
+        "InstanceIds": [
+            "i-062a400b300f4f9e4"
+        ],
+        "Targets": [],
+        "RequestedDateTime": "2026-10-11T17:52:00.800000+03:00",
+        "Status": "Pending",
+        "StatusDetails": "Pending",
+        "OutputS3Region": "eu-north-1",
+        "OutputS3BucketName": "",
+        "OutputS3KeyPrefix": "",
+        "MaxConcurrency": "1",
+        "MaxErrors": "1",
+        "TargetCount": 1,
+        "CompletedCount": 0,
+        "ErrorCount": 0,
+        "DeliveryTimedOutCount": 0,
+        "ServiceRole": "",
+        "NotificationConfig": {
+            "NotificationArn": "",
+            "NotificationEvents": [],
+            "NotificationType": ""
+        },
+        "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "",
+            "CloudWatchOutputEnabled": false
+        },
+        "TimeoutSeconds": 120,
+        "AlarmConfiguration": {
+            "IgnorePollAlarmFailure": false,
+            "Alarms": []
+        },
+        "TriggeredAlarms": []
+    }
+}

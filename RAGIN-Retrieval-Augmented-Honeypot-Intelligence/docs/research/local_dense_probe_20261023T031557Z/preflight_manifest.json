@@ -1,0 +1,149 @@
+{
+  "schema": "ragin.local_dense_probe.preflight.v1",
+  "written_before_inference": true,
+  "utc_started": "2026-10-23T03:17:19Z",
+  "artifact_dir": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/docs/research/local_dense_probe_20261023T031557Z",
+  "fixture": {
+    "split": "SYNTHETIC_DEVELOPMENT",
+    "source": "authored for this probe; no existing dev/calibration/holdout record used",
+    "documents_path": "fixtures/corpus/documents.jsonl",
+    "documents_sha256": "8de2ea4c534c3f1c2782f0cd581e2698d631fd49f37eaaa2eeb0c1974bcdcfd0",
+    "document_count": 12,
+    "document_ids": [
+      "syn-001",
+      "syn-002",
+      "syn-003",
+      "syn-004",
+      "syn-005",
+      "syn-006",
+      "syn-007",
+      "syn-008",
+      "syn-009",
+      "syn-010",
+      "syn-011",
+      "syn-012"
+    ],
+    "queries_path": "fixtures/queries.json",
+    "queries_sha256": "49c2a24c56e446e6320718ef0f33a6ac32565f34082e89a6b60e65dd6028ffdd",
+    "query_count": 4,
+    "query_ids": [
+      "q1",
+      "q2",
+      "q3",
+      "q4"
+    ],
+    "top_k": 5
+  },
+  "model": {
+    "hub_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "snapshot_dir": "/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "snapshot_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "files": {
+      "config.json": {
+        "sha256": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+        "bytes": 612,
+        "resolved": "/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/72b987fd805cfa2b58c4c8c952b274a11bfd5a00"
+      },
+      "config_sentence_transformers.json": {
+        "sha256": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+        "bytes": 116,
+        "resolved": "/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/fd1b291129c607e5d49799f87cb219b27f98acdf"
+      },
+      "modules.json": {
+        "sha256": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+        "bytes": 349,
+        "resolved": "/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/952a9b81c0bfd99800fabf352f69c7ccd46c5e43"
+      },
+      "sentence_bert_config.json": {
+        "sha256": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+        "bytes": 53,
+        "resolved": "/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/59d594003bf59880a884c574bf88ef7555bb0202"
+      },
+      "special_tokens_map.json": {
+        "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+        "bytes": 112,
+        "resolved": "/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/e7b0375001f109a6b8873d756ad4f7bbb15fbaa5"
+      },
+      "tokenizer.json": {
+        "sha256": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+        "bytes": 466247,
+        "resolved": "/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/cb202bfe2e3c98645018a6d12f182a434c9d3e02"
+      },
+      "tokenizer_config.json": {
+        "sha256": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+        "bytes": 350,
+        "resolved": "/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/c79f2b6a0cea6f4b564fed1938984bace9d30ff0"
+      },
+      "vocab.txt": {
+        "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "bytes": 231508,
+        "resolved": "/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/fb140275c155a9c7c5a3b3e0e77a9e839594a938"
+      },
+      "1_Pooling/config.json": {
+        "sha256": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23",
+        "bytes": 190,
+        "resolved": "/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/d1514c3162bbe87b343f565fadc62e6c06f04f03"
+      },
+      "model.safetensors": {
+        "sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+        "bytes": 90868376,
+        "resolved": "/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db"
+      }
+    },
+    "config": {
+      "model_type": "bert",
+      "architectures": [
+        "BertModel"
+      ],
+      "hidden_size": 384,
+      "num_hidden_layers": 6,
+      "max_position_embeddings": 512,
+      "vocab_size": 30522
+    },
+    "sentence_bert_config": {
+      "max_seq_length": 256,
+      "do_lower_case": false
+    },
+    "tokenizer_class": "BertTokenizer",
+    "tokenizer_model_max_length": 512
+  },
+  "source": {
+    "ragin/don/vector_store.py": {
+      "sha256": "4189ce343613c9ecf314ac9218f123ce771dbc4faaa90f8ea598f277d7394fef"
+    },
+    "ragin/don/rag_engine.py": {
+      "sha256": "3c12fc58b2dda62c4f54c717b38f9cbd9f143408e8da1280d840e5e75f2564ae"
+    },
+    "ragin/don/intel_corpus.py": {
+      "sha256": "76ac0938396612db281e8e56af253ab646655eb8e2e18584bf16753ab7537e84"
+    }
+  },
+  "git": {
+    "head": "7d8a32aded7f4d168015aaa7f648f3367d3edad1",
+    "dirty": true,
+    "dirty_entry_count": 3042,
+    "porcelain_sha256": "f7afbb6a23ba809ae34c78d59fffcb02db8f6829a42cdfd349a4b987411284ec",
+    "probe_owned_source_files_dirty": [
+      "ragin/don/rag_engine.py",
+      "ragin/don/vector_store.py"
+    ],
+    "note": "dirty tree includes concurrent peer edits to core/verifier/evaluation files; this probe edited none of them"
+  },
+  "runtime": {
+    "python": "3.12.3",
+    "python_executable": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/.venv/bin/python",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "cpu_count": 12,
+    "gpu_policy": "CPU only (torch device=cpu, 4 intra-op threads)"
+  },
+  "environment": {
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "env_key_count": 11,
+    "credential_or_proxy_like_keys_present": [
+      "HF_HUB_DISABLE_IMPLICIT_TOKEN",
+      "TOKENIZERS_PARALLELISM"
+    ],
+    "note": "only key NAMES are reported; no values recorded"
+  }
+}

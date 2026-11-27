@@ -1,0 +1,33 @@
+# CI overlay for the integration job: mounts the mock-provider gateway
+# config (no external API keys) and relaxes health checks so containers
+# do not get flagged unhealthy while tests drive the HTTP surface.
+services:
+  gateway:
+    volumes:
+      - ./llm-gateway/config.ci.toml:/app/config.toml:ro
+    healthcheck:
+      test: ["CMD", "true"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  chrollo:
+    healthcheck:
+      test: ["CMD", "true"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  don:
+    healthcheck:
+      test: ["CMD", "true"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  hisoka:
+    healthcheck:
+      test: ["CMD", "true"]
+      interval: 10s
+      timeout: 5s
+      retries: 3

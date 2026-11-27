@@ -1,0 +1,38 @@
+--- a/ragin/cycle/harness.py (Phase 0 working tree)
++++ b/ragin/cycle/harness.py (current)
+@@ -252,6 +252,11 @@
+     def mandatory_verification(self) -> bool:
+         return self._mandatory_verification
+ 
++    @property
++    def decision_arm(self) -> str:
++        """Resolved decision arm, for per-interaction trace attribution."""
++        return str(self._decision_arm)
++
+     def fiction(self, session_id: str, skill_level: str = "novice") -> FictionGraph:
+         existing = self._fiction_graphs.get(session_id)
+         if existing is not None:
+@@ -349,11 +354,21 @@
+                 "issues": [f"verifier_exception:{exc.__class__.__name__}"],
+                 "deterministic": True,
+             }
+-        if not isinstance(decision, dict) or decision.get("passed") is not True:
+-            return dict(decision) if isinstance(decision, dict) else {
++        if not isinstance(decision, dict):
++            return {
+                 "passed": False,
+                 "issues": ["verifier_malformed_result"],
++                "deterministic": True,
+             }
++        if decision.get("passed") is not True:
++            # Preserve whatever the verifier reported, but ALWAYS make the
++            # failure explicit. Returning a bare {} here (the old behavior for
++            # a dict without "passed") lost the reason and left downstream
++            # observers unable to distinguish malformed from absent evidence.
++            malformed = dict(decision)
++            malformed["passed"] = False
++            malformed.setdefault("issues", ["verifier_malformed_result"])
++            return malformed
+         return decision
+ 
+     def _strict_approval(self, ctx: _ProcessContext, candidate: dict[str, Any]) -> dict[str, Any]:

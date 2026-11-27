@@ -1,0 +1,282 @@
+{
+  "schema": "ragin.laya_v5.extended_gpu_redesign.datasets_manifest.v1",
+  "status": "FROZEN_BEFORE_TRAINING_CALLS",
+  "date": "2026-10-16",
+  "study": "laya_v5_extended_gpu_redesign_v1",
+  "seed": 20261018,
+  "builder": {
+    "path": "scripts/laya_v5_extended_gpu_build_sets_v1.py",
+    "sha256": "a2b99ea70918e63f37ce761679bd10e6048a3a6948773877d69f96e0fde62842"
+  },
+  "contract": {
+    "path": "results/laya_decision_v3/laya_v3_task_adaptation_candidate_freeze_v1.json",
+    "sha256": "c3fea3c979ed33b8831fcecee7e4ed8eea16bd9bf57bc23690071700c0feca9b"
+  },
+  "files": {
+    "training_set": {
+      "path": "results/laya_decision_v4/laya_v5_extended_gpu_redesign_v1_training_set_freeze_v1.json",
+      "sha256": "9c194736fce9de63670e6206b9c7122c1027cad447b312e2a3d45bfdf3bdb2d4",
+      "cases": 240
+    },
+    "development_set": {
+      "path": "results/laya_decision_v4/laya_v5_extended_gpu_redesign_v1_development_set_freeze_v1.json",
+      "sha256": "a8c588a109a7c8524136ea041e4afcd83ab0f8019d846be4c1c9ca243f0a1d3b",
+      "cases": 60
+    },
+    "evaluation_set": {
+      "path": "results/laya_decision_v4/laya_v5_extended_gpu_redesign_v1_evaluation_set_freeze_v1.json",
+      "sha256": "17f0b7a2da00017eb52efb44290cb5d65f45ab3c762131b6b2b014f60fe78c06",
+      "cases": 60
+    },
+    "injection_set": {
+      "path": "results/laya_decision_v4/laya_v5_extended_gpu_redesign_v1_injection_set_freeze_v1.json",
+      "sha256": "cb934693c51a7189f30c12be8258676b6939dacd45c06048f9038baf5f1935c3",
+      "cases": 24
+    },
+    "training_rows": {
+      "path": "results/laya_decision_v4/laya_v5_extended_gpu_redesign_v1_training_rows_v1.jsonl",
+      "sha256": "b4c6c54d319efde3f11ced09964d65e6485fc784adb661d264b63bb6d396f19f",
+      "rows": 240,
+      "items_expected": 720
+    }
+  },
+  "checks": {
+    "structural": {
+      "problems": [],
+      "per_set": {
+        "TR": {
+          "count": 240,
+          "archetypes": {
+            "required_conflict": 15,
+            "required_contradiction": 15,
+            "required_ioc_only": 30,
+            "required_missing": 15,
+            "required_partial": 15,
+            "required_weak": 15,
+            "sufficient": 135
+          },
+          "evidence_ref_option_counts": {
+            "1": 15,
+            "3": 45,
+            "4": 102,
+            "5": 78
+          }
+        },
+        "DEV": {
+          "count": 60,
+          "archetypes": {
+            "required_conflict": 4,
+            "required_contradiction": 4,
+            "required_ioc_only": 4,
+            "required_missing": 4,
+            "required_partial": 13,
+            "required_weak": 4,
+            "sufficient": 27
+          },
+          "evidence_ref_option_counts": {
+            "1": 4,
+            "3": 17,
+            "4": 23,
+            "5": 16
+          }
+        },
+        "EV": {
+          "count": 60,
+          "archetypes": {
+            "required_conflict": 4,
+            "required_contradiction": 4,
+            "required_ioc_only": 4,
+            "required_missing": 6,
+            "required_partial": 4,
+            "required_weak": 6,
+            "sufficient": 32
+          },
+          "evidence_ref_option_counts": {
+            "1": 6,
+            "3": 8,
+            "4": 26,
+            "5": 20
+          }
+        },
+        "INJ": {
+          "count": 24,
+          "archetypes": {
+            "required_conflict": 2,
+            "required_contradiction": 2,
+            "required_ioc_only": 2,
+            "required_missing": 2,
+            "required_partial": 2,
+            "required_weak": 2,
+            "sufficient": 12
+          },
+          "evidence_ref_option_counts": {
+            "2": 2,
+            "3": 4,
+            "4": 8,
+            "5": 10
+          }
+        }
+      },
+      "strategy_labels_covered_tr_sufficient": [
+        "baseline",
+        "contain_in_fiction_and_instrument",
+        "expose_decoy_internal_topology",
+        "fake_success_and_return_visits",
+        "low_intensity_administration",
+        "maximize_recon_surface",
+        "steer_to_honeytoken_credentials"
+      ],
+      "rows_checked": 240,
+      "verdict": "PASS"
+    },
+    "injection_construction": {
+      "problems": [],
+      "injected_cases": 12,
+      "clean_twins": 12,
+      "text_indices_used": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "verdict": "PASS"
+    },
+    "disjointness": {
+      "new_set_size": 384,
+      "unique_states": 384,
+      "collisions_within_new_sets": {},
+      "prior_files_scanned_total": 117,
+      "prior_files_scanned": [
+        "results/decision_fusion_v4/policy_contract_serving_observability_v1/case_reconciliation.json",
+        "results/evidence_judge_real_data_ablation_v1/frozen_case_selection.json",
+        "results/evidence_judge_real_data_final_paired_audit_v1/case_level_comparison.json",
+        "results/laya_research/codex_redteam/high_risk_annotation_cases.json",
+        "results/step6_matched_evaluation_protocol_v1/selected_cases_v1.json",
+        "results/verifier_redteam_live_llama33_batch1_3cases_20260927.json",
+        "results/decision_fusion_v4/don_v2_command_aware/don_v2_freeze_v1.json",
+        "results/decision_fusion_v4/don_v2_substantive_final_v1/holdout_freeze.json",
+        "results/decision_fusion_v4/don_v2_substantive_final_v1/implementation_environment_freeze.json",
+        "results/decision_fusion_v4/don_v2_substantive_final_v1/protocol_freeze.json",
+        "results/decision_fusion_v4/don_v2_substantive_final_v1/raw_execution_freeze.json",
+        "results/decision_fusion_v4/hf2024_postfix_family_disjoint_v1/aborted_attempt_freeze.json",
+        "results/decision_fusion_v4/hf2024_postfix_family_disjoint_v1/holdout_freeze.json",
+        "results/decision_fusion_v4/hf2024_postfix_family_disjoint_v1/implementation_environment_freeze.json",
+        "results/decision_fusion_v4/hf2024_postfix_family_disjoint_v1/protocol_freeze.json",
+        "results/decision_fusion_v4/hf2024_postfix_family_disjoint_v1/raw_execution_freeze.json",
+        "results/decision_fusion_v4/hf2024_substantive_final_v1/aborted_attempt_freeze.json",
+        "results/decision_fusion_v4/hf2024_substantive_final_v1/attempt_002/holdout_freeze.json",
+        "results/decision_fusion_v4/hf2024_substantive_final_v1/attempt_002/implementation_environment_freeze.json",
+        "results/decision_fusion_v4/hf2024_substantive_final_v1/attempt_002/protocol_freeze.json",
+        "results/decision_fusion_v4/hf2024_substantive_final_v1/attempt_002_aborted_freeze.json",
+        "results/decision_fusion_v4/hf2024_substantive_final_v1/attempt_003/holdout_freeze.json",
+        "results/decision_fusion_v4/hf2024_substantive_final_v1/attempt_003/implementation_environment_freeze.json",
+        "results/decision_fusion_v4/hf2024_substantive_final_v1/attempt_003/protocol_freeze.json",
+        "results/decision_fusion_v4/hf2024_substantive_final_v1/holdout_freeze.json",
+        "results/decision_fusion_v4/hf2024_substantive_final_v1/implementation_environment_freeze.json",
+        "results/decision_fusion_v4/hf2024_substantive_final_v1/protocol_freeze.json",
+        "results/decision_fusion_v4/hf2024_substantive_final_v1/raw_execution_freeze.json",
+        "results/decision_fusion_v4/substantive_runtime_integration_v1/integration_validation_freeze_v1.json",
+        "results/decision_fusion_v4/substantive_strategy_generator_v1/development_test_freeze_v1.json",
+        "results/decision_fusion_v4/v4_candidate_freeze_v1.json",
+        "results/decision_fusion_v4/v4_cowrie_prospective_capture_freeze_v1.json",
+        "results/decision_fusion_v4/v4_cowrie_prospective_capture_freeze_v1a.json",
+        "results/decision_fusion_v4/v4_development_corpus_freeze_v1.json",
+        "results/decision_fusion_v4/v4_hf2024_retrospective_holdout_freeze_v1.json",
+        "results/decision_fusion_v4/v4_hf2024_retrospective_holdout_freeze_v1a.json",
+        "results/decision_fusion_v4/v4_hf2024_retrospective_raw_execution_freeze_v1.json",
+        "results/decision_fusion_v4/v4_hf2024_retrospective_raw_execution_freeze_v1a.json",
+        "results/decision_fusion_v4/v4_prospective_capture_readiness_freeze_v1.json",
+        "results/decision_fusion_v4/v4_prospective_capture_readiness_freeze_v1a.json",
+        "results/decision_fusion_v4/v4_real_evaluation_preregistration_freeze_v1.json",
+        "results/decision_fusion_v4/v4_real_evidence_recovery_freeze_v1.json",
+        "results/decision_fusion_v4/v4_real_holdout_selection_freeze_v1.json",
+        "results/decision_fusion_v4/v4_real_holdout_selection_freeze_v1a.json",
+        "results/decision_fusion_v4/v4_real_prototype_implementation_freeze_v1.json",
+        "results/decision_fusion_v4/v4_validation_corpus_freeze_v1.json",
+        "results/evidence_judge/evidence_judge_contract_freeze_v1.json",
+        "results/evidence_judge_filtering_v1/filtering_contract_freeze_v1.json",
+        "results/evidence_judge_laya_scoring_v1/input_freeze_v1.json",
+        "results/evidence_judge_real_data_ablation_v1/ai_reference_v1/annotation_input_freeze_v1.json",
+        "results/evidence_judge_real_data_ablation_v1/ai_reference_v1/model_catalog_freeze_v1.json",
+        "results/evidence_judge_real_data_ablation_v1/ai_reference_v2/model_catalog_freeze_v2.json",
+        "results/evidence_judge_real_data_ablation_v1/ai_reference_v2/primary_input_freeze_v2.json",
+        "results/evidence_judge_real_data_ablation_v1/ai_reference_v2_1/model_catalog_freeze_v2.json",
+        "results/evidence_judge_real_data_ablation_v1/ai_reference_v2_1/primary_annotation_freeze_v2.json",
+        "results/evidence_judge_real_data_ablation_v1/ai_reference_v2_1/primary_freeze_manifest_v2.json",
+        "results/evidence_judge_real_data_ablation_v1/ai_reference_v2_1/primary_input_freeze_v2.json",
+        "results/evidence_judge_real_data_ablation_v1/ai_reference_v2_1/reference_freeze_manifest_v2_1.json",
+        "results/evidence_judge_real_data_ablation_v1/ai_reference_v2_1/reference_freeze_v2_1.json",
+        "results/evidence_judge_real_data_ablation_v1/ai_reference_v2_2/input_freeze_v2_2.json",
+        "results/evidence_judge_real_data_ablation_v1/ai_reference_v2_2/reference_freeze_manifest_v2_2.json",
+        "results/evidence_judge_real_data_ablation_v1/ai_reference_v2_2/reference_freeze_v2_2.json",
+        "results/evidence_judge_real_data_ablation_v1/protocol_freeze.json",
+        "results/laya_decision_v2/exploratory_120_evaluation_freeze_v2.json",
+        "results/laya_decision_v2/laya_decision_v2_preregistration_freeze.json",
+        "results/laya_decision_v2/laya_decision_v2_preregistration_freeze_v2a.json",
+        "results/laya_decision_v2/laya_decision_v2_preregistration_freeze_v2b.json",
+        "results/laya_decision_v2/primary_169_aborted_attempt_01_freeze.json",
+        "results/laya_decision_v2/primary_169_adjudication_packet_freeze_v1.json",
+        "results/laya_decision_v2/primary_169_ai_derived_reference_freeze_v1.json",
+        "results/laya_decision_v2/primary_169_annotation_instrument_freeze_v1.json",
+        "results/laya_decision_v2/primary_169_annotation_instrument_freeze_v1b.json",
+        "results/laya_decision_v2/primary_169_locked_analysis_freeze_v1.json",
+        "results/laya_decision_v2/primary_169_raw_execution_freeze_v2b.json",
+        "results/laya_decision_v2/v2a_freeze_hash_correction_freeze.json",
+        "results/laya_decision_v2/v2a_freeze_hash_provenance_correction.json",
+        "results/laya_decision_v3/laya_v3_calibration_tuning_development_set_freeze_v1.json",
+        "results/laya_decision_v3/laya_v3_calibration_tuning_evaluation_set_freeze_v1.json",
+        "results/laya_decision_v3/laya_v3_calibration_tuning_injection_set_freeze_v1.json",
+        "results/laya_decision_v3/laya_v3_calibration_tuning_training_set_freeze_v1.json",
+        "results/laya_decision_v3/laya_v3_model_comparison_protocol_freeze_v1.json",
+        "results/laya_decision_v3/laya_v3_model_comparison_validation_set_freeze_v1.json",
+        "results/laya_decision_v3/laya_v3_task_adaptation_candidate_freeze_v1.json",
+        "results/laya_decision_v3/laya_v3_task_adaptation_validation_set_freeze_v1.json",
+        "results/laya_decision_v4/builder_partial_20261017/laya_v4_targeted_gpu_redesign_v1_development_set_freeze_v1.json",
+        "results/laya_decision_v4/builder_partial_20261017/laya_v4_targeted_gpu_redesign_v1_evaluation_set_freeze_v1.json",
+        "results/laya_decision_v4/builder_partial_20261017/laya_v4_targeted_gpu_redesign_v1_training_set_freeze_v1.json",
+        "results/laya_decision_v4/laya_v4_targeted_gpu_redesign_v1_development_set_freeze_v1.json",
+        "results/laya_decision_v4/laya_v4_targeted_gpu_redesign_v1_evaluation_set_freeze_v1.json",
+        "results/laya_decision_v4/laya_v4_targeted_gpu_redesign_v1_injection_set_freeze_v1.json",
+        "results/laya_decision_v4/laya_v4_targeted_gpu_redesign_v1_training_set_freeze_v1.json",
+        "results/laya_research/ai_rater_reliability_freeze_v2.json",
+        "results/laya_research/expert_ai_adjudicated_reference_freeze_v1.json",
+        "results/laya_research/expert_ai_panel_preregistration_freeze_v1.json",
+        "results/laya_research/expert_ai_panel_preregistration_freeze_v1a.json",
+        "results/laya_research/expert_ai_panel_preregistration_freeze_v1b.json",
+        "results/laya_research/expert_ai_panel_results_freeze_v1.json",
+        "results/laya_research/frozen_prediction_execution_authenticity_freeze_v1.json",
+        "results/laya_research/human_delivery_freeze.json",
+        "results/laya_research/human_reference_preregistration_freeze.json",
+        "results/laya_research/locked_ai_reference_evaluation_freeze_v1.json",
+        "results/laya_research/pre_reference_prediction_recovery_freeze_v1.json",
+        "results/laya_research/v3_annotation_instrument_freeze.json",
+        "results/laya_research/v3_annotation_results_freeze.json",
+        "results/step6_matched_evaluation_protocol_v1/freeze_manifest_v1.json",
+        "results/step6_matched_evaluation_protocol_v1/holdout_freeze_v1.json",
+        "results/step6_matched_evaluation_protocol_v1/reference_input_freeze_v1.json",
+        "results/step6_matched_evaluation_protocol_v1/retrieval_evidence_freeze_v1.json",
+        "results/step8_locked_analysis_v1/reference_freeze_manifest_v1.json",
+        "results/step8_locked_analysis_v1/reference_freeze_v1.json",
+        "results/step8_locked_analysis_v1/reference_input_freeze_v1.json",
+        "results/decision_fusion_v4/v4_live_capture_proposed_changeset_v1.json",
+        "results/jev_hard_subset.json",
+        "results/laya_decision_v3/laya_v3_calibration_tuning_datasets_manifest_v1.json",
+        "results/laya_decision_v4/laya_v4_targeted_gpu_redesign_v1_datasets_manifest_v1.json",
+        "results/laya_research/confirmatory_subset_manifest.json",
+        "results/stat_eval/query_set.json"
+      ],
+      "prior_files_scanned_truncated": false,
+      "collisions_with_prior_sets": [],
+      "verdict": "PASS"
+    },
+    "verdict": "PASS"
+  }
+}

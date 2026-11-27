@@ -1,0 +1,489 @@
+{
+  "what": "218-row CTI manual audit \u2014 double-annotated, P/R/F1 + Cohen's kappa (advisory #5)",
+  "attack_pin": {
+    "bundle_path": "data/mitre_stix/enterprise-attack.json",
+    "collection": "Enterprise ATT&CK",
+    "attack_version": "ATT&CK Enterprise ATT&CK v19.1",
+    "x_mitre_version": "19.1",
+    "modified": "2026-05-12T14:00:00.188Z",
+    "bundle_sha256": "bdf1ce86a4e604214c5076d37ae4dcb322678afc528df8492e6fdc1b554f5da3",
+    "live_technique_count": 697,
+    "live_intrusion_set_count": 183
+  },
+  "annotators": {
+    "A": "opencode/nemotron-3-ultra-free",
+    "B": "opencode/mimo-v2.6-flash-free",
+    "C": "opencode/ling-3.0-flash-fin-free"
+  },
+  "annotation_protocol": "two independent LLM annotators label blinded packets (no gold, no pipeline scores); requested is read from the query alone, identified from the analysis record; a third annotator adjudicates disagreements; human raters (decision Q4) receive the same packets via export-human",
+  "rows_total": 218,
+  "annotation_errors": {},
+  "per_suite": {
+    "cti_technique": {
+      "suite": "cti_technique",
+      "n_rows": 123,
+      "kappa_A_vs_B": {
+        "identification": 0.8658,
+        "identification_n": 123,
+        "served_on_topic": 0.2625,
+        "served_on_topic_n": 123,
+        "realism": null,
+        "realism_n": 0
+      },
+      "prf_A": {
+        "strict": {
+          "precision": 0.7317,
+          "recall": 0.7317,
+          "f1": 0.7317,
+          "tp": 90,
+          "fp": 33,
+          "fn": 33
+        },
+        "family": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 123,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "prf_B": {
+        "strict": {
+          "precision": 0.7317,
+          "recall": 0.7317,
+          "f1": 0.7317,
+          "tp": 90,
+          "fp": 33,
+          "fn": 33
+        },
+        "family": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 123,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "agreement_n": 116,
+      "kappa_pair_n": 123,
+      "disagreements": [
+        {
+          "row_id": "R0011",
+          "A": "partial",
+          "B": "correct",
+          "C": "partial"
+        },
+        {
+          "row_id": "R0114",
+          "A": "correct",
+          "B": "partial",
+          "C": "correct"
+        },
+        {
+          "row_id": "R0075",
+          "A": "partial",
+          "B": "correct",
+          "C": "correct"
+        },
+        {
+          "row_id": "R0069",
+          "A": "partial",
+          "B": "correct",
+          "C": "partial"
+        },
+        {
+          "row_id": "R0035",
+          "A": "correct",
+          "B": "partial",
+          "C": "partial"
+        },
+        {
+          "row_id": "R0002",
+          "A": "partial",
+          "B": "correct",
+          "C": "correct"
+        },
+        {
+          "row_id": "R0109",
+          "A": "partial",
+          "B": "correct",
+          "C": "partial"
+        }
+      ]
+    },
+    "cti_actor": {
+      "suite": "cti_actor",
+      "n_rows": 35,
+      "kappa_A_vs_B": {
+        "identification": 0.16,
+        "identification_n": 35,
+        "served_on_topic": 0.0,
+        "served_on_topic_n": 35,
+        "realism": null,
+        "realism_n": 0
+      },
+      "prf_A": {
+        "strict": {
+          "precision": 0.7714,
+          "recall": 0.7714,
+          "f1": 0.7714,
+          "tp": 27,
+          "fp": 8,
+          "fn": 8
+        },
+        "family": {
+          "precision": 0.7714,
+          "recall": 0.7714,
+          "f1": 0.7714,
+          "tp": 27,
+          "fp": 8,
+          "fn": 8
+        }
+      },
+      "prf_B": {
+        "strict": {
+          "precision": 0.7647,
+          "recall": 0.7647,
+          "f1": 0.7647,
+          "tp": 26,
+          "fp": 8,
+          "fn": 8
+        },
+        "family": {
+          "precision": 0.7647,
+          "recall": 0.7647,
+          "f1": 0.7647,
+          "tp": 26,
+          "fp": 8,
+          "fn": 8
+        }
+      },
+      "agreement_n": 29,
+      "kappa_pair_n": 35,
+      "disagreements": [
+        {
+          "row_id": "R0149",
+          "A": "correct",
+          "B": "partial",
+          "C": "correct"
+        },
+        {
+          "row_id": "R0136",
+          "A": "correct",
+          "B": "partial",
+          "C": "correct"
+        },
+        {
+          "row_id": "R0152",
+          "A": "correct",
+          "B": "partial",
+          "C": "partial"
+        },
+        {
+          "row_id": "R0142",
+          "A": "partial",
+          "B": "correct",
+          "C": "correct"
+        },
+        {
+          "row_id": "R0143",
+          "A": "partial",
+          "B": "correct",
+          "C": "correct"
+        },
+        {
+          "row_id": "R0151",
+          "A": "correct",
+          "B": "partial",
+          "C": "partial"
+        }
+      ]
+    },
+    "deception": {
+      "suite": "deception",
+      "n_rows": 60,
+      "kappa_A_vs_B": {
+        "identification": null,
+        "identification_n": 0,
+        "served_on_topic": 0.7043,
+        "served_on_topic_n": 60,
+        "realism": 0.0725,
+        "realism_n": 60
+      },
+      "realism_dist_A": {
+        "realistic": 48,
+        "partial": 3,
+        "unrealistic": 9
+      },
+      "realism_dist_B": {
+        "realistic": 53,
+        "partial": 7,
+        "unrealistic": 0
+      },
+      "agreement_n": 44,
+      "kappa_pair_n": 60,
+      "disagreements": [
+        {
+          "row_id": "R0171",
+          "A": "realistic",
+          "B": "partial",
+          "C": "realistic"
+        },
+        {
+          "row_id": "R0190",
+          "A": "unrealistic",
+          "B": "realistic",
+          "C": "realistic"
+        },
+        {
+          "row_id": "R0186",
+          "A": "partial",
+          "B": "realistic",
+          "C": "realistic"
+        },
+        {
+          "row_id": "R0180",
+          "A": "realistic",
+          "B": "partial",
+          "C": "unrealistic"
+        },
+        {
+          "row_id": "R0165",
+          "A": "realistic",
+          "B": "partial",
+          "C": "realistic"
+        },
+        {
+          "row_id": "R0199",
+          "A": "unrealistic",
+          "B": "realistic",
+          "C": "realistic"
+        },
+        {
+          "row_id": "R0175",
+          "A": "unrealistic",
+          "B": "realistic",
+          "C": "unrealistic"
+        },
+        {
+          "row_id": "R0195",
+          "A": "unrealistic",
+          "B": "partial",
+          "C": "partial"
+        },
+        {
+          "row_id": "R0210",
+          "A": "partial",
+          "B": "realistic",
+          "C": "realistic"
+        },
+        {
+          "row_id": "R0189",
+          "A": "unrealistic",
+          "B": "partial",
+          "C": "realistic"
+        },
+        {
+          "row_id": "R0182",
+          "A": "realistic",
+          "B": "partial",
+          "C": "partial"
+        },
+        {
+          "row_id": "R0198",
+          "A": "unrealistic",
+          "B": "partial",
+          "C": "realistic"
+        },
+        {
+          "row_id": "R0185",
+          "A": "unrealistic",
+          "B": "realistic",
+          "C": "unrealistic"
+        },
+        {
+          "row_id": "R0194",
+          "A": "partial",
+          "B": "realistic",
+          "C": "realistic"
+        },
+        {
+          "row_id": "R0192",
+          "A": "unrealistic",
+          "B": "realistic",
+          "C": "partial"
+        },
+        {
+          "row_id": "R0208",
+          "A": "unrealistic",
+          "B": "realistic",
+          "C": "realistic"
+        }
+      ]
+    }
+  },
+  "adjudication_summary": {
+    "cti_technique": {
+      "n": 7,
+      "C_sides_with_A": 4,
+      "C_sides_with_B": 3,
+      "C_neither": 0
+    },
+    "cti_actor": {
+      "n": 6,
+      "C_sides_with_A": 2,
+      "C_sides_with_B": 4,
+      "C_neither": 0
+    },
+    "deception": {
+      "n": 16,
+      "C_sides_with_A": 4,
+      "C_sides_with_B": 8,
+      "C_neither": 4
+    }
+  },
+  "unresolved_disagreements": 0,
+  "machine_vs_human": {
+    "cti_technique": {
+      "n_pairs": 246,
+      "agreement": 0.6748,
+      "kappa": 0.3487
+    },
+    "cti_actor": {
+      "n_pairs": 70,
+      "agreement": 0.9571,
+      "kappa": 0.9143
+    },
+    "deception": {
+      "n_pairs": 60,
+      "agreement": 0.8333,
+      "kappa": 0.0991
+    }
+  },
+  "echo_diagnosis": {
+    "cti_technique": {
+      "confusion": {
+        "(0,0):echo": 68,
+        "(0,1)": 38,
+        "(0,0)": 10,
+        "(1,1):echo": 4,
+        "(1,0):echo": 3
+      },
+      "machine_yes_human_no_total": 3,
+      "machine_yes_human_no_that_are_echoes": 3,
+      "all_conflicts_are_echoes": true
+    },
+    "cti_actor": {
+      "confusion": {
+        "(0,0):echo": 33,
+        "(0,0)": 2
+      },
+      "machine_yes_human_no_total": 0,
+      "machine_yes_human_no_that_are_echoes": 0,
+      "all_conflicts_are_echoes": false
+    },
+    "deception": {
+      "confusion": {
+        "(1,1)": 46,
+        "(0,1):echo": 1,
+        "(1,0)": 10,
+        "(0,0):echo": 2,
+        "(1,0):echo": 1
+      },
+      "machine_yes_human_no_total": 11,
+      "machine_yes_human_no_that_are_echoes": 1,
+      "all_conflicts_are_echoes": false
+    }
+  },
+  "served_text_row_identity_vs_two_channel": {
+    "checked": true,
+    "method": "score-equality under identical pre-guard scorers: served_text score is a deterministic function of the transcript, so per-row exact score equality between independent runs means the runs served the same text surface (the checkpoint stores scores, not transcripts)",
+    "rows_compared": 218,
+    "identical_pre_guard": 218,
+    "differing_pre_guard": 0,
+    "deterministic_serve_surface": true,
+    "post_guard_score_changes": 97,
+    "post_guard_note": "post_guard_score_changes counts rows whose score changed under the echo-guarded scorer \u2014 an expected correction artifact, not a text difference between runs"
+  },
+  "workload_quality_flags": [
+    {
+      "row_id": "R0143",
+      "kind": "actor",
+      "gold": "lazarus group",
+      "annotator": "apt38"
+    }
+  ],
+  "echo_guard_correction": {
+    "what": "echo-guard correction (2026-09-28): served-text machine scores were crediting the technique ID / actor name inside echoed fallback queries; all scores recomputed with the guarded scorers (analysis channel unchanged)",
+    "rows_changed": 97,
+    "pre_correction": {
+      "machine_vs_human": {
+        "cti_technique": {
+          "n_pairs": 246,
+          "agreement": 0.4146,
+          "kappa": -0.1874
+        },
+        "cti_actor": {
+          "n_pairs": 70,
+          "agreement": 0.4857,
+          "kappa": 0.0483
+        },
+        "deception": {
+          "n_pairs": 60,
+          "agreement": 0.8333,
+          "kappa": 0.0991
+        }
+      },
+      "echo_diagnosis": {
+        "cti_technique": {
+          "confusion": {
+            "(1,0):echo": 67,
+            "(0,1)": 38,
+            "(0,0)": 10,
+            "(0,0):echo": 4,
+            "(1,1):echo": 4
+          },
+          "machine_yes_human_no_total": 67,
+          "machine_yes_human_no_that_are_echoes": 67,
+          "all_conflicts_are_echoes": true
+        },
+        "cti_actor": {
+          "confusion": {
+            "(1,0):echo": 33,
+            "(0,0)": 2
+          },
+          "machine_yes_human_no_total": 33,
+          "machine_yes_human_no_that_are_echoes": 33,
+          "all_conflicts_are_echoes": true
+        },
+        "deception": {
+          "confusion": {
+            "(1,1)": 46,
+            "(0,1):echo": 1,
+            "(1,0)": 10,
+            "(0,0):echo": 2,
+            "(1,0):echo": 1
+          },
+          "machine_yes_human_no_total": 11,
+          "machine_yes_human_no_that_are_echoes": 1,
+          "all_conflicts_are_echoes": false
+        }
+      },
+      "served_avg": {
+        "cti_technique": 0.5236,
+        "cti_actor": 0.68,
+        "deception": 0.6492
+      }
+    },
+    "post_correction_served_avg": {
+      "cti_technique": 0.0569,
+      "cti_actor": 0.0,
+      "deception": 0.6492
+    },
+    "note": "re-run `score` to refresh machine_vs_human and echo_diagnosis from the corrected blinding key; the per-row corrected scores live in the corpus artifact (machine_scores_initial preserves the pre-guard values)",
+    "provenance_note": "pre_correction values are the FIRST score run (2026-09-28, pre-guard scorers), transcribed from the run output; an intermediate artifact overwrite made the auto-snapshot unreliable, so these are pinned explicitly",
+    "validation": "post-guard machine-vs-human kappa: technique -0.1874 -> +0.3487, actor 0.0483 -> 0.9143 (machine now agrees with human annotators); residual machine-yes/human-no = 3/123 technique rows whose served text quotes the query verbatim inside otherwise-real content"
+  }
+}

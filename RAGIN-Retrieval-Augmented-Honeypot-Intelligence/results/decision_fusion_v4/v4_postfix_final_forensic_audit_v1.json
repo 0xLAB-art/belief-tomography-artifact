@@ -1,0 +1,87 @@
+{
+  "schema": "ragin.v4.postfix_final_forensic_audit.v1",
+  "experiment_id": "HF2024_POSTFIX_FAMILY_DISJOINT_V1",
+  "classification": [
+    "BEHAVIORAL_INTEGRATION_EVALUATION_COMPLETE",
+    "POLICY_CORRECTNESS_NOT_EVALUATED",
+    "REAL_WORLD_ENGAGEMENT_NOT_EVALUATED"
+  ],
+  "audit_scope": "read_only_frozen_artifacts_no_new_execution",
+  "frozen_input_hashes": {
+    "raw_arm_outputs.jsonl": "33278567cead415667dd63f7789b8bbb1d8c0061797dc7466304ad5d92d741db",
+    "reference_free_behavioral_analysis.json": "f5c43113d42584ff56ae695e2207d71c6070c63366b408f39a12df8bd696bb62",
+    "raw_execution_freeze.json": "63729ec18f1d93b566df901f1cab428ce3b5a022a332d043dbd75e1e4de341c8",
+    "holdout_freeze.json": "73efbb94d9381dc9860a6e7003dcd7db2f3f21e76cde026f274638796d4176ae",
+    "implementation_environment_freeze.json": "d855f0d39f495b293c0dac54b5cd8ba52b9b66766b9de4beaefc31b484ab86b9",
+    "protocol_freeze.json": "ecbf19ce527f95265266cdcaafedb127f04845375311a7cf98b275c77a657961"
+  },
+  "sample": {
+    "records": 720,
+    "cases": 240,
+    "arms": {"RAGIN_BASELINE": 240, "RAGIN_V4_DETERMINISTIC": 240, "RAGIN_V4_LOGISTIC": 240},
+    "unique_source_groups": 240,
+    "unique_command_families": 240,
+    "old_family_overlap": 0
+  },
+  "response_difference_audit": {
+    "method": "exact response text comparison; secondary comparison removes six known static strategy suffixes",
+    "pairs": {
+      "baseline_vs_deterministic": {"identical": 120, "strategy_conditioned_suffix_only": 120, "formatting_only": 0, "different_template_selection": 0, "other_or_substantive": 0, "changed_after_suffix_removal": 0},
+      "baseline_vs_logistic": {"identical": 1, "strategy_conditioned_suffix_only": 239, "formatting_only": 0, "different_template_selection": 0, "other_or_substantive": 0, "changed_after_suffix_removal": 0},
+      "deterministic_vs_logistic": {"identical": 2, "strategy_conditioned_suffix_only": 238, "formatting_only": 0, "different_template_selection": 0, "other_or_substantive": 0, "changed_after_suffix_removal": 0}
+    },
+    "interpretation": "All observed changed responses are decorative strategy suffix changes; no substantive template behavior is supported."
+  },
+  "strategy_consumption": {
+    "v4_records": 480,
+    "strategy_source": {"v4_policy_decision": 480},
+    "delivered": 478,
+    "not_delivered": {"total": 2, "cause": "authorization fast-path", "case_scope": "same case across two V4 arms"},
+    "consumed": 359,
+    "not_consumed": {"total": 121, "cause": "explicit baseline selection", "deterministic": 120, "logistic": 1},
+    "missing_trace_not_counted_as_consumption": true
+  },
+  "policy_behavior": {
+    "strategy_distribution": {
+      "baseline": {"baseline": 240},
+      "deterministic": {"baseline": 120, "low_intensity_administration": 119, "maximize_recon_surface": 1},
+      "logistic": {"maximize_recon_surface": 239, "baseline": 1}
+    },
+    "strategy_agreement": {"baseline_vs_deterministic": "120/240", "baseline_vs_logistic": "1/240", "deterministic_vs_logistic": "2/240"},
+    "gate_states": {"baseline": {"NOT_APPLICABLE_BASELINE": 240}, "deterministic": {"VALID_EVIDENCE": 239, "LOW_RELEVANCE": 1}, "logistic": {"VALID_EVIDENCE": 239, "LOW_RELEVANCE": 1}},
+    "fallback_reasons": {"baseline": {"no_gateway": 239, "NOT_VERIFIABLE": 1}, "deterministic": {"no_gateway": 239, "fastpath": 1}, "logistic": {"no_gateway": 239, "fastpath": 1}},
+    "source_evidence_reference_integrity": {"deterministic": "239/239 valid-evidence records internally consistent", "logistic": "239/239 valid-evidence records internally consistent"}
+  },
+  "safety_and_trace": {
+    "verifier_passed": "720/720",
+    "verifier_failures": 0,
+    "automatic_hitl_approvals": "720/720",
+    "human_reviews": 0,
+    "commit_events": "NOT_VERIFIABLE 720/720",
+    "fast_path_bypasses": 2,
+    "full_don_chrollo_trace": "NOT_VERIFIABLE",
+    "external_generation_calls": 0,
+    "attacker_commands_executed": 0
+  },
+  "limitations": [
+    "same-source retrospective HF-2024 corpus",
+    "no independent reference labels or judge",
+    "strategy distributions are concentrated",
+    "raw response changes are static suffix effects",
+    "compact freeze lacks full upstream retrieval and commit traces",
+    "automatic HITL approval is not human review"
+  ],
+  "outputs": {
+    "report": "docs/decision_fusion/RAGIN_V4_FINAL_EXPERIMENTAL_FINDINGS.md",
+    "latex_table": "docs/decision_fusion/RAGIN_V4_POSTFIX_RESULTS_TABLE.tex",
+    "audit_json_self_hash": "EXCLUDED_FROM_MANIFEST_SELF_REFERENTIAL"
+  },
+  "sha256_manifest": {
+    "coverage": "frozen inputs and additive report/table; audit JSON intentionally excluded because self-hashing is circular",
+    "raw_arm_outputs.jsonl": "33278567cead415667dd63f7789b8bbb1d8c0061797dc7466304ad5d92d741db",
+    "reference_free_behavioral_analysis.json": "f5c43113d42584ff56ae695e2207d71c6070c63366b408f39a12df8bd696bb62",
+    "docs/decision_fusion/RAGIN_V4_FINAL_EXPERIMENTAL_FINDINGS.md": "9b048ec4da62d2f6f0bc940059ad6c28b755321aebb996db081a2bf5159c06b9",
+    "docs/decision_fusion/RAGIN_V4_POSTFIX_RESULTS_TABLE.tex": "8d4f02838cdae9acc006598085c93f27f8bc486d240f538acfc8305ceb712021"
+  },
+  "unresolved_blocker": null
+}

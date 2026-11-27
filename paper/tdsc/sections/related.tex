@@ -1,0 +1,141 @@
+\section{Related Work}
+\label{sec:related}
+
+\subsection{Honeypot and Honeynet Architectures}
+Deception research has moved from single-service traps to orchestrated
+honeynets~\cite{spitzner2002}, with recent surveys cataloging managed
+deception fabrics and cloud-native deployment~\cite{lopez2024}. Multi-sensor
+platforms aggregate dozens of low- and medium-interaction sensors in one
+stack, and containerized honeynets scale the same idea
+elastically~\cite{t-pot2024}. The survey's gap analysis is blunt: no
+widely deployed framework grounds its responses in real-time threat
+intelligence or differentiates behavior across attacker classes, which
+are the two capabilities G1 and \S\ref{sec:chrollo} exist to provide.
+What these architectures share is a static
+relationship between the decoy and its content: the deception is authored
+once, at deployment time. \system differs in kind, not degree: its served
+content is decided per session, and every decision passes a verification
+gate before reaching the wire.
+
+\subsection{Generative Models in Deception}
+LLM-backed honeypots are the closest line of work, and the field has
+moved quickly from feasibility demonstrations to state-aware designs.
+GPT-driven SSH bots demonstrate that language models can hold convincing
+interactive sessions~\cite{kouremetis2024}; LLM-generated web deception
+serves convincing HTTP responses for arbitrary paths~\cite{galah2024};
+RAG-coupled generation grounds responses in retrieved
+content~\cite{qiao2025,sezgin2025decoypot}, and agentic RAG pipelines
+have been proposed for CTI workflows~\cite{belmahjoub2025,gao2025}.
+HoneyGPT breaks the classical flexibility/depth/deception trilemma with
+structured prompting and reports a three-month field
+evaluation~\cite{wang2026honeygpt}; DecoyPot drives a web-API honeypot
+with a RAG agent improved from live attacker
+traffic~\cite{sezgin2025decoypot}; and LLMHoney pairs a virtual file
+system with real-time LLM response generation~\cite{malhotra2025llmhoney}.
+Most directly relevant to this paper's machinery, a 2026 generation of
+systems now treats state and validation explicitly: LLM-SSHH serializes a
+persistent state snapshot into the prompt and validates generated
+responses against state constraints, rejecting hallucination-driven
+inconsistencies~\cite{li2026llmsshh}, and GenPot couples generative
+interaction across command-line, API, and web surfaces with state
+management and guardrails, evaluated operationally and at
+scale~\cite{laragutierrez2026genpot}. A recent SoK systematizes this
+design space and its failure modes~\cite{bridges2026}.
+
+The gap this paper addresses is therefore no longer whether LLM honeypots
+can be consistent -- the newest systems demonstrate exactly that -- but
+what the consistency machinery is \emph{for}. Prior systems improve or
+validate generative consistency: state snapshots and constraint checks
+(LLM-SSHH), guardrails and state management (GenPot), structured
+prompting (HoneyGPT) are mechanisms for making the generator's output
+stay believable. This work turns the entire serving path into an
+explicitly verified security architecture: every response is either
+admitted by a serving-time verifier against a session-scoped fiction
+graph with a recorded verdict, served from human-vetted deterministic
+content, or withheld -- with the verifier itself red-teamed by labeled
+cases and live-LLM-authored drafts (\S\ref{sec:rq2}) -- and every safety
+decision lands in an append-only audit trail a human gate can act on
+(G3, G5). The second difference is methodological and, we argue, the
+paper's central contribution: the intelligence-ladder evaluation places
+every mechanism on a certifiability axis and prices each rung by measured
+marginal effect, including the fold-down direction -- an adaptive rung
+whose benefit a certifiable mechanism reproduces is removed from the
+serving path (\S\ref{sec:jeveval}). Prior systems argue \emph{for} their
+intelligent components; this evaluation is designed to argue
+\emph{against} them and to keep only what survives pricing.
+Table~\ref{tab:related-matrix} summarizes the positioning along the
+dimensions this paper treats as first-class security properties.
+
+\begin{table*}[t]
+\centering
+\caption{Positioning against recent generative-honeypot systems. Y =
+present as a first-class, evaluated mechanism; P = partial (mechanism
+present but not evaluated under adversarial pressure, or scoped to
+response content only); N = not reported. Entries reflect the cited
+papers' own evaluations; where a capability is absent from a paper's
+reported design we mark N without implying the system could not add it.
+\system's column is the only one whose evaluation includes a priced
+fold-down of an intelligent component.}
+\label{tab:related-matrix}
+\small
+\setlength{\tabcolsep}{3.4pt}
+\begin{tabular}{lccccccccc}
+\toprule
+ & \rotatebox{60}{State consistency} & \rotatebox{60}{Serving-time verification} & \rotatebox{60}{Danger/safety gate} & \rotatebox{60}{Deterministic fallback} & \rotatebox{60}{CTI grounding} & \rotatebox{60}{Human-in-the-loop gate} & \rotatebox{60}{Verifier red-team} & \rotatebox{60}{Field deployment} & \rotatebox{60}{Mechanism fold-down} \\
+\midrule
+HoneyGPT~\cite{wang2026honeygpt} & P & N & N & N & N & N & N & Y & N \\
+DecoyPot~\cite{sezgin2025decoypot} & P & N & N & N & Y & N & N & N & N \\
+LLMHoney~\cite{malhotra2025llmhoney} & P & N & N & P & N & N & N & N & N \\
+LLM-SSHH~\cite{li2026llmsshh} & Y & P & N & N & N & N & N & N & N \\
+GenPot~\cite{laragutierrez2026genpot} & P & P & P & N & N & N & N & P & N \\
+\system (this work) & Y & Y & Y & Y & Y & Y & Y & P & Y \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{LLM Security and Alignment Pressure}
+Our provider-fragility observations connect to a broader alignment literature.
+Safety-aligned models refuse or deflect on adversarial-role prompts, and
+constitutional and RLHF training shapes exactly the refusal behavior our
+harness must route around~\cite{bai2022,ganguli2022,christiano2017}.
+Prompt-injection risks in retrieval pipelines motivate the corpus hygiene
+of \S\ref{sec:implementation}~\cite{greshake2023,perez2022}, and
+documented failures of ML-backed security tooling under distribution
+shift~\cite{reworr2024} reinforce the case for measured fallbacks over
+trusting generation. The generate-then-check pattern itself has
+classical roots, and modern guardrail and safety-filtering systems
+structure the same draft-then-verify separation around content policy
+rather than world-model consistency~\cite{inan2023}; our verifier
+differs in checking against a session-scoped fiction the defender fully
+controls, which makes the check a decision procedure rather than
+another learned judgment. The deployment lesson we add is operational:
+treat the provider as an unreliable component with catalog drift, quota
+exhaustion, and alignment-induced timeouts as normal operating conditions.
+The reviewer-facing implication is a methodological one: evaluations of
+LLM-driven defenses should report provider instability as part of the
+results, because it shaped which experiments were even runnable.
+
+\subsection{CTI and Behavior Analysis}
+Hybrid RAG over threat intelligence has been shown effective for
+attribution and technique mapping~\cite{alsada2024,rajapaksha2024},
+agentic RAG for attack investigation and incident
+response~\cite{blefari2025,liu2025}, and TTP extraction from unstructured
+text predates the current generation of systems~\cite{orbinato2022}.
+RAG-driven deception in the honeypot context specifically is represented
+by DecoyPot's self-improving RAG agent~\cite{sezgin2025decoypot} and
+adaptive RAG honeypot architectures~\cite{qiao2025}; what these systems
+ground is response content, whereas this paper's retrieval rung grounds
+the \emph{plan} (which facts to project, which bait to attach to which
+predicted technique) and its effect is measured by a paired ablation with
+a structural-dependence control (\S\ref{sec:rq1}).
+Behavioral profiling of attacker sessions underpins both intrusion
+detection~\cite{bachl2021,farasat2024b,sharafaldin2018} and
+honeypot-facing classification~\cite{lekssays2025}, and attack-graph
+sequence models connect observed actions to
+attribution~\cite{alsaheel2021,noureddine2020}. Adaptive
+deception experiments show that attacker skill modulates effective
+strategy~\cite{kouremetis2024,jeon2024}, and honeytoken-based
+attribution~\cite{spitzner2003,valeros2024} motivates the
+canary-registered bait
+design. \system composes these primitives into a loop whose safety
+properties, rather than its raw capability, are the contribution.

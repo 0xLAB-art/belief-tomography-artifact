@@ -1,0 +1,88 @@
+\section{The Economics of Disclosure}\label{sec:disclosure}
+
+A published certificate is a data release with an adversary on the other
+side. Four results treat it as sensitive data rather than marketing: a
+reconnaissance externality, defender-side deception release, the detection
+budget, and the disclosure frontier. They join the economics-of-security
+tradition \cite{anderson2006}, with the measurement itself as the artifact
+under incentive analysis.
+
+\subsection{The reconnaissance externality (E14)}\label{sec:recon}
+
+\begin{proposition}[Reconnaissance externality]\label{prop:recon}
+An attacker who reads a published profile $\hat\beta$ chooses
+$f^*=\arg\max_f\hat\beta_f$ instead of a uniformly random family, raising
+expected success from the mean family to the maximum; the advantage
+$A_{\mathrm{rec}}=\beta_{f^*}-\bar\beta$, with $\bar\beta$ the mean over
+the $F$ profile families, is zero only for a flat profile and is stated at
+the estimator's resolution (the argmax attacker reads the measured
+$\hat\beta$, and inherits its intervals). Publishing the scalar worst-family upper bound
+$U_{\max}=\max_f U_f$ removes the ranking but also the defender's family-level
+allocation information. The inequality is elementary---a maximum exceeds
+a mean---and the proposition \emph{registers the disclosure rule} with
+its information asymmetry rather than proving a new bound; it is labelled
+as such.
+\end{proposition}
+
+On the frozen E4 profiles the graded foil's advantage is $0.067$ (uniform
+$0.600$ to informed $0.667$) and the flat resistant foil's is $0.000$;
+publishing only the scalar $U_{\max}$ removes the ranking at the cost of the
+defender's allocation information. This is decision analysis on existing
+profiles, not a measured attacker.
+
+\subsection{The defender as forger (E15)}\label{sec:release}
+
+\begin{proposition}[Deception release]\label{prop:release}
+Fix the public probe suite $\Pi_{\mathrm{pub}}$ and let the defender publish
+$\tilde\beta$ that is $\Pi_{\mathrm{pub}}$-consistent (which
+Theorem~\ref{thm:forgery} permits). Then (i) any attacker whose measurement is
+confined to $\Pi_{\mathrm{pub}}$ verifies $\tilde\beta$ and allocates by it:
+the release deception is \emph{stable} against public verification; (ii) a
+decoy concentration misdirects allocation away from the true vulnerable
+family; (iii) the deception collapses exactly when the attacker acquires
+held-out measurement capability (proved trigger; the proposition asserts no \emph{only-if}:
+other collapse channels exist), with a \emph{trust-collapse} externality
+that operates independently of held-out capability---one detected
+falsification discounts all future releases.
+\end{proposition}
+
+On the frozen E9 profiles with a seeded attacker simulation ($B=120$;
+$n=2{,}000$ per cell), honest release hands the attacker per-attempt success
+$1.000$, decoy release $0.000$, silence $0.200$, and the decoy's edge
+collapses monotonically ($0.000\to0.100\to0.200$) as held-out capability
+arrives. No dominance is asserted under repeated play, where the
+trust-collapse externality accumulates.
+
+\subsection{How many held-out probes? (E16)}\label{sec:budget}
+
+\begin{proposition}[Detection budget vs.\ probe discrimination]\label{prop:budget}
+An attacker that breaches iff it classifies a probe as held-out is caught by
+its own mistakes: any misclassification \emph{toward} the public support fails
+the public certificate immediately (the asymmetry is fatal), and held-out
+misreadings shrink the measured gap. With held-out misread rate $m$, the
+minimum held-out budget for detection at the registered $95\%$ power is
+computable in closed form (binomial tail $\times$ Wilson geometry) and
+diverges as $m\to1$; evasion requires \emph{error-free one-sided
+discrimination} of the public support. Detection cannot be guaranteed with
+probability one at any finite budget for $m>0$; at the registered $95\%$
+power a finite $n_{\min}(m)$ exists for $m<0.94$ and diverges as
+$m\uparrow0.94$, with no feasible budget for $m\ge0.94$. The closed form
+prices that power.
+\end{proposition}
+
+Seeded Monte Carlo ($n=2{,}000$ per cell) validates the closed form:
+$n_{\min}=1,2,8$ at $m=0.02,0.1,0.5$, then $33,103,549,2{,}057$ at
+$m=0.74,0.84,0.90,0.92$, with no feasible budget for $m\ge0.94$. The
+attacker's own fallibility is the defender's detection resource.
+
+\subsection{The disclosure frontier (E20)}\label{sec:frontier}
+
+Releasing the profile under per-cell Laplace noise ($\varepsilon$-DP over
+profile space, grid $\varepsilon\in\{0.25,\dots,8\}$, $N=2{,}000$, defender
+utility the Kendall $\tau_b$ of the released ranking) traces a monotone
+trade-off between the scalar $U_{\max}$ (advantage $0$, utility $0$) and the
+full vector (advantage $0.067$, $\tau_b=1.0$). No interior point dominates
+either corner: noise moves the defender along the frontier. Certificate
+disclosure has no free lunch; the defender chooses a point on the curve, not
+an escape from it. The release-wave and detection-budget figure, with the
+full simulation record, is in the supplement's disclosure record.

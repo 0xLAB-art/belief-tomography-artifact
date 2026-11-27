@@ -1,0 +1,48 @@
+#cloud-config
+# Azure field endpoint bootstrap (all three arms).
+#
+# SECRET-FREE BY DESIGN: nothing in this file authenticates anything. The
+# .env.field (LLM key, backend key) and the Tailscale auth key are applied
+# in post-provision steps by the operator/agent, so cloud-init logs
+# (/var/log/cloud-init-output.log) never contain credentials.
+#
+# Consumed by scripts/provision_azure_field.sh via --custom-data.
+
+package_update: true
+package_upgrade: false
+
+packages:
+  - docker.io
+  - docker-compose-v2
+  - git
+  - rsync
+  - jq
+
+users:
+  - default
+  - name: ragin-deploy
+    gecos: RAGIN field deploy
+    groups: [docker]
+    shell: /bin/bash
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    ssh_authorized_keys:
+      - __RAGIN_DEPLOY_SSH_KEY__
+
+write_files:
+  - path: /opt/ragin/README.txt
+    permissions: "0644"
+    content: |
+      RAGIN field endpoint. Bootstrap complete.
+      Remaining (operator/agent, via Tailscale SSH):
+        1. rsync repo to /opt/ragin/repo
+        2. cp .env.field.example /opt/ragin/repo/.env.field && fill per-arm values
+        3. docker compose -f docker-compose.field.yml --env-file .env.field up -d <arm services>
+        4. sudo bash scripts/field_provision.sh <arm>   (egress lockdown AFTER pulls)
+        5. tailscale up --ssh --authkey <key>           (management plane)
+        6. scripts/field_smoke_ssh.py --host <public-ip>  (smoke gate)
+runcmd:
+  # SSH: keep sshd for Tailscale management; public exposure is controlled
+  # by the NSG (only 22 open) and the honeypot binds INSIDE docker, not here.
+  - systemctl enable --now docker
+  - mkdir -p /opt/ragin
+  - chown ragin-deploy:ragin-deploy /opt/ragin

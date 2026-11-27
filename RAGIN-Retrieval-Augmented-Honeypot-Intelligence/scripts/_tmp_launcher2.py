@@ -1,0 +1,11 @@
+import os, subprocess, sys, pathlib
+print("PARENT pid", os.getpid(), flush=True)
+print("PARENT VENV=", os.environ.get("VENV"), flush=True)
+print("PARENT has VENV key?", "VENV" in os.environ, flush=True)
+print("PARENT keys containing VENV/FOO/API:", [k for k in os.environ if any(s in k for s in ("VENV","FOO","API_KEY"))], flush=True)
+child_env = dict(os.environ)
+print("CHILD_CMD=", [child_env.get("VENV") + "/bin/python", "-c", "import os; print('CHILD pid', os.getpid()); print('CHILD keys containing VENV/FOO/API:', [k for k in os.environ if any(s in k for s in ('VENV','FOO','API_KEY'))]); print('CHILD VENV=', os.environ.get('VENV'))"], flush=True)
+rc = subprocess.run([child_env.get("VENV") + "/bin/python", "-c", "import os; print('CHILD pid', os.getpid()); print('CHILD keys containing VENV/FOO/API:', [k for k in os.environ if any(s in k for s in ('VENV','FOO','API_KEY'))]); print('CHILD VENV=', os.environ.get('VENV'))"], env=child_env, capture_output=True, text=True)
+print("CHILD stdout:", rc.stdout, flush=True)
+print("CHILD stderr:", rc.stderr, flush=True)
+print("CHILD rc:", rc.returncode, flush=True)

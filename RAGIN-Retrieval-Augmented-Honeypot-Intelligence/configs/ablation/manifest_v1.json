@@ -1,0 +1,77 @@
+{
+  "arms": {
+    "B0": {
+      "file": "b0_native_cowrie.json",
+      "status": "EXECUTABLE_LOCAL_TRANSPORT_ONLY"
+    },
+    "B1": {
+      "file": "b1_no_retrieval.json",
+      "status": "BLOCKED_MODEL_AND_FROZEN_GENERATOR"
+    },
+    "B2": {
+      "file": "b2_bm25.json",
+      "status": "BLOCKED_MODEL_AND_FROZEN_GENERATOR"
+    },
+    "B3": {
+      "file": "b3_dense.json",
+      "status": "BLOCKED_EXACT_STORE_MODEL_AND_FROZEN_GENERATOR"
+    },
+    "B4": {
+      "file": "b4_rule_decision.not_ready.json",
+      "status": "NOT_READY"
+    },
+    "B5": {
+      "file": "b5_finetuned_laya.not_ready.json",
+      "status": "NOT_READY"
+    }
+  },
+  "execution_lock": "INCOMPLETE",
+  "execution_lock_reason": "Generator identity/prompt/price, allocation, codebook, data, and model hashes are not frozen.",
+  "files": {
+    "b0_native_cowrie.json": {
+      "bytes": 1444,
+      "sha256": "e6d8f6e25008b05efcafaf42faf9d00ec42edb6678ba9ac32f9847baebf9093e"
+    },
+    "b1_no_retrieval.json": {
+      "bytes": 1928,
+      "sha256": "6fe984ca3a1a32d1e3f6063052c76ff4db0c1ab0773eaa05ea33d5b32178a760"
+    },
+    "b2_bm25.json": {
+      "bytes": 1630,
+      "sha256": "3781dcfbbf23a79f7873f43d500a77e202e647d3b519297d7ee44107c75c1341"
+    },
+    "b3_dense.json": {
+      "bytes": 1974,
+      "sha256": "e9810f46f77cc3fcdced49263bbe011ffd598df29c4a4bac0340b7dbb952e5de"
+    },
+    "b4_rule_decision.not_ready.json": {
+      "bytes": 710,
+      "sha256": "42cce9643faa7350600289b8e7375bb218317e0a6d278e18bf8e66d55261c8c4"
+    },
+    "b5_finetuned_laya.not_ready.json": {
+      "bytes": 892,
+      "sha256": "a996ae5ad7916a7796346ee6ce7ada394ac1ce64fc8669a20820ea1e2b11a285"
+    }
+  },
+  "frozen_utc": "2026-10-22T00:00:00Z",
+  "provider_calls": 0,
+  "provider_spend_usd": 0,
+  "schema": "ragin.ablation.config_manifest.v1",
+  "shared_b1_b3": {
+    "command_aware_v2": false,
+    "generator_identity": "UNRESOLVED_FROZEN_GENERATOR",
+    "generator_settings": {
+      "fallback": "none",
+      "max_retries": 1,
+      "max_tokens": 512,
+      "seed": 0,
+      "temperature": 0.0,
+      "top_p": 1.0
+    },
+    "laya_enabled": false,
+    "persona": "data/host_fiction.json (hash UNRESOLVED)",
+    "prompt_template": "UNRESOLVED_FROZEN_PROMPT_V1",
+    "verification": "FictionConsistencyVerifier+HostFictionVerifier, mandatory=true"
+  },
+  "version": "v1"
+}

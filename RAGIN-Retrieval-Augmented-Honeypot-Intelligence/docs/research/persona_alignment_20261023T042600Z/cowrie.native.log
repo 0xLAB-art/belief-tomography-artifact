@@ -1,0 +1,42 @@
+2026-10-23T04:24:38.091574Z [cowrie.core.config#info] Reading configuration from ['etc/cowrie.cfg']
+2026-10-23T04:24:38.312252Z [cowrie.plugin#info] Python Version 3.13.5 (main, Aug 10 2026, 12:06:59) [GCC 14.2.0]
+2026-10-23T04:24:38.312286Z [cowrie.plugin#info] Twisted Version 26.4.0
+2026-10-23T04:24:38.312300Z [cowrie.plugin#info] Cowrie Version 3.1.1
+2026-10-23T04:24:38.312309Z [cowrie.plugin#info] Sensor UUID: f474c9c6-c070-11f1-96a9-c6acb5aab4f2
+2026-10-23T04:24:38.313066Z [cowrie.core.output#info] Loaded output engine: jsonlog
+2026-10-23T04:24:38.314214Z [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 26.4.0 (/cowrie/cowrie-env/bin/python3 3.13.5) starting up.
+2026-10-23T04:24:38.314284Z [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2026-10-23T04:24:38.314624Z [-] CowrieSSHFactory starting on 59631
+2026-10-23T04:24:38.314704Z [cowrie.ssh.factory.CowrieSSHFactory#info] Starting factory <cowrie.ssh.factory.CowrieSSHFactory object at 0x7d779b9e8ad0>
+2026-10-23T04:24:38.410502Z [cowrie.ssh.factory.CowrieSSHFactory#info] Ready to accept SSH connections
+2026-10-23T04:24:38.434668Z [cowrie.ssh.factory.CowrieSSHFactory] No moduli, no diffie-hellman-group-exchange-sha1
+2026-10-23T04:24:38.434807Z [cowrie.ssh.factory.CowrieSSHFactory] No moduli, no diffie-hellman-group-exchange-sha256
+2026-10-23T04:24:38.435389Z [ssh,f3ca162dcccd,127.0.0.1] New connection: 127.0.0.1:45460 (127.0.0.1:59631) [session: f3ca162dcccd]
+2026-10-23T04:24:38.435728Z [ssh,f3ca162dcccd,127.0.0.1] Remote SSH version: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.20
+2026-10-23T04:24:38.436515Z [ssh,f3ca162dcccd,127.0.0.1] SSH client hassh fingerprint: aae6b9604f6f3356543709a376d7f657
+2026-10-23T04:24:38.485145Z [ssh,f3ca162dcccd,127.0.0.1] login attempt [webapp/x] succeeded
+2026-10-23T04:24:38.485281Z [HoneyPotSSHTransport,0,127.0.0.1] Initialized emulated server as architecture: linux-x64-lsb
+2026-10-23T04:24:38.486009Z [HoneyPotSSHTransport,0,127.0.0.1] channel open
+2026-10-23T04:24:38.683657Z [SSHChannel session (0) on SSHService b'ssh-connection' on HoneyPotSSHTransport,0,127.0.0.1] Handling pty request: b'' (0, 0, 0, 0)
+2026-10-23T04:24:38.683894Z [ssh,f3ca162dcccd,127.0.0.1] Terminal Size: 0 0
+2026-10-23T04:24:38.684202Z [ssh,f3ca162dcccd,127.0.0.1] request_env: LC_CTYPE=C.UTF-8
+2026-10-23T04:24:38.684348Z [SSHChannel session (0) on SSHService b'ssh-connection' on HoneyPotSSHTransport,0,127.0.0.1] Getting shell
+2026-10-23T04:24:38.685847Z [ssh,f3ca162dcccd,127.0.0.1] CMD: whoami
+2026-10-23T04:24:38.688553Z [HoneyPotSSHTransport,0,127.0.0.1] Command found: whoami 
+2026-10-23T04:24:42.430785Z [ssh,f3ca162dcccd,127.0.0.1] CMD: id
+2026-10-23T04:24:42.433418Z [HoneyPotSSHTransport,0,127.0.0.1] Command found: id 
+2026-10-23T04:24:46.431480Z [ssh,f3ca162dcccd,127.0.0.1] CMD: uname -a
+2026-10-23T04:24:46.435170Z [HoneyPotSSHTransport,0,127.0.0.1] Command found: uname -a
+2026-10-23T04:24:50.431882Z [ssh,f3ca162dcccd,127.0.0.1] CMD: hostname
+2026-10-23T04:24:50.434495Z [HoneyPotSSHTransport,0,127.0.0.1] Command found: hostname 
+2026-10-23T04:24:54.432491Z [ssh,f3ca162dcccd,127.0.0.1] CMD: cat /etc/os-release
+2026-10-23T04:24:54.436134Z [HoneyPotSSHTransport,0,127.0.0.1] Command found: cat /etc/os-release
+2026-10-23T04:24:58.931753Z [HoneyPotSSHTransport,0,127.0.0.1] received eof, logging out
+2026-10-23T04:24:58.931901Z [HoneyPotSSHTransport,0,127.0.0.1] exitCode: 0
+2026-10-23T04:24:58.932461Z [ssh,f3ca162dcccd,127.0.0.1] Closing TTY Log: var/lib/cowrie/tty/4e90208e63570808d94cb37ddfe7532118da2657c5952491cf93a35e70adac9b after 20248 milliseconds
+2026-10-23T04:24:58.932580Z [HoneyPotSSHTransport,0,127.0.0.1] sending close 0
+2026-10-23T04:24:58.932997Z [HoneyPotSSHTransport,0,127.0.0.1] remote close
+2026-10-23T04:24:58.933140Z [HoneyPotSSHTransport,0,127.0.0.1] Got remote error, code 11 reason: b'disconnected by user'
+2026-10-23T04:24:58.933372Z [HoneyPotSSHTransport,0,127.0.0.1] avatar webapp logging out
+2026-10-23T04:24:58.933450Z [HoneyPotSSHTransport,0,127.0.0.1] connection lost
+2026-10-23T04:24:58.933592Z [ssh,f3ca162dcccd,127.0.0.1] Connection lost after 20498 milliseconds

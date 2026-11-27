@@ -1,0 +1,41 @@
+{
+  "catalog_source": "https://openrouter.ai/api/v1/models",
+  "catalog_checked_utc": "2026-10-14T16:17:52Z",
+  "models": [
+    {
+      "model_id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "context_length": 1000000,
+      "max_completion_tokens": 65536,
+      "prompt_price_per_token": "0",
+      "completion_price_per_token": "0",
+      "preflight": "passed",
+      "preflight_data": "generic READY probe only; no RAGIN evidence sent",
+      "provider_family": "NVIDIA Nemotron"
+    },
+    {
+      "model_id": "thinkingmachines/inkling:free",
+      "context_length": 1048576,
+      "max_completion_tokens": 262144,
+      "prompt_price_per_token": "0",
+      "completion_price_per_token": "0",
+      "preflight": "passed",
+      "preflight_data": "generic READY probe only; no RAGIN evidence sent",
+      "provider_family": "Thinking Machines Inkling"
+    },
+    {
+      "model_id": "dots-studio/dots-3-note-preview:free",
+      "context_length": 512000,
+      "max_completion_tokens": 460800,
+      "prompt_price_per_token": "0",
+      "completion_price_per_token": "0",
+      "preflight": "passed",
+      "preflight_data": "generic READY probe only; no RAGIN evidence sent",
+      "provider_family": "Dots"
+    }
+  ],
+  "rejected_route": {
+    "model_id": "google/gemma-4-31b-it:free",
+    "reason": "upstream 429 shared-pool rate limit during no-data probe; no annotation request sent"
+  },
+  "scope_note": "Free catalog pricing and preflight results are not a permanent availability guarantee; every actual request records returned model, provider, and billed cost."
+}

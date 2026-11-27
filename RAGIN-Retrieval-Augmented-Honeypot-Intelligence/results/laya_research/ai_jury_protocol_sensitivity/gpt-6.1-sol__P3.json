@@ -1,0 +1,611 @@
+{
+  "model": "gpt-6.1-sol",
+  "phrase": "P3",
+  "items": [
+    {
+      "case_id": "00dbac0794ca",
+      "label": "OTHER_ATTACK",
+      "notes": "Specifies unauthorized remote access using compromised SSH keys, without vulnerability exploitation, privilege elevation, or a persistence modification."
+    },
+    {
+      "case_id": "019b4481c760",
+      "label": "BENIGN",
+      "notes": "Requests current networking parameters, a scoped read-only system-information lookup."
+    },
+    {
+      "case_id": "073ee5a7d918",
+      "label": "BENIGN",
+      "notes": "Threat-intelligence question about APT37 targeting; no attack activity is shown."
+    },
+    {
+      "case_id": "0a1631f174eb",
+      "label": "BENIGN",
+      "notes": "Requests local listening-process information for privileged ports; no remote sweep, exploitation, or configuration change is shown."
+    },
+    {
+      "case_id": "0cefcd8a03b7",
+      "label": "BENIGN",
+      "notes": "Requests inspection of existing user crontabs; no persistence installation, edits, or credential collection is shown."
+    },
+    {
+      "case_id": "0d67d1113703",
+      "label": "BENIGN",
+      "notes": "Requests a conceptual explanation; no indicator blocking, concealment, or defense modification is shown."
+    },
+    {
+      "case_id": "0e27da0444c0",
+      "label": "BENIGN",
+      "notes": "Requests a conceptual explanation of masquerading, not an evasion operation."
+    },
+    {
+      "case_id": "0f7315251b4f",
+      "label": "BENIGN",
+      "notes": "Requests an explanation of alternate authentication material; no credentials are used or lateral movement performed."
+    },
+    {
+      "case_id": "16cb0880a2cb",
+      "label": "BENIGN",
+      "notes": "Requests running-container inventory and resource usage, a routine operational monitoring task."
+    },
+    {
+      "case_id": "177f12fec88d",
+      "label": "BENIGN",
+      "notes": "Requests read-only firewall-rule and counter inspection; no rules or security settings are changed."
+    },
+    {
+      "case_id": "19595b9defea",
+      "label": "UNCERTAIN",
+      "notes": "Execution is requested, but no Python script, arguments, or result establishes what would run or its effects."
+    },
+    {
+      "case_id": "19a0830d246e",
+      "label": "RECON",
+      "notes": "Enumerates processes with non-default capabilities, mapping elevated execution privileges without attempting to acquire them."
+    },
+    {
+      "case_id": "1bb93b1e99a7",
+      "label": "UNCERTAIN",
+      "notes": "Repeated unrecognized token provides no identifiable action or interpretable command behavior."
+    },
+    {
+      "case_id": "1c7b5a587634",
+      "label": "BENIGN",
+      "notes": "Requests a conceptual explanation of exploitation-based privilege escalation; no exploit or elevation attempt is shown."
+    },
+    {
+      "case_id": "1e9777872e77",
+      "label": "BENIGN",
+      "notes": "Requests threat-intelligence information about APT50 targeting governments."
+    },
+    {
+      "case_id": "1f51a3f35e2e",
+      "label": "BENIGN",
+      "notes": "df -h reports filesystem capacity and utilization without changing state."
+    },
+    {
+      "case_id": "1ffe88405d1f",
+      "label": "DATA_ACCESS",
+      "notes": "Attempts off-host transfer of /etc/passwd; accompanying root SSH access and host-key discovery do not establish exploitation or privilege escalation."
+    },
+    {
+      "case_id": "23a0bb12e4c1",
+      "label": "EXPLOITATION",
+      "notes": "Explicitly requests client/browser exploitation to obtain execution; successful exploitation is not demonstrated."
+    },
+    {
+      "case_id": "284c37e21b6f",
+      "label": "SUSPICIOUS",
+      "notes": "Requests remote WMI execution without a specified administrative task or payload; vulnerability abuse and unauthorized control are not established."
+    },
+    {
+      "case_id": "2d09a05767ec",
+      "label": "DATA_ACCESS",
+      "notes": "Explicitly requests dumping /etc/shadow, a protected file containing password hashes."
+    },
+    {
+      "case_id": "2d28266233d7",
+      "label": "UNCERTAIN",
+      "notes": "Only no-op commands and session termination are shown; no substantive activity supports another category."
+    },
+    {
+      "case_id": "2db67bf4fb9c",
+      "label": "BENIGN",
+      "notes": "Requests time-bounded authentication-error analysis in syslog; routine log review without credential extraction or modification."
+    },
+    {
+      "case_id": "2ebc1972a455",
+      "label": "BENIGN",
+      "notes": "Requests an explanation of LSASS credential dumping; no memory access or credential extraction is shown."
+    },
+    {
+      "case_id": "2f7c1524ec52",
+      "label": "BENIGN",
+      "notes": "Requests one web-server process's SELinux context, a narrowly scoped read-only administrative check."
+    },
+    {
+      "case_id": "332171c6a243",
+      "label": "BENIGN",
+      "notes": "Requests an explanation of service-based persistence; no service installation or modification is shown."
+    },
+    {
+      "case_id": "336d301ccde5",
+      "label": "BENIGN",
+      "notes": "Requests information about energy-sector targeting; no probing or attack activity is shown."
+    },
+    {
+      "case_id": "3375d0a90c00",
+      "label": "BENIGN",
+      "notes": "Checks uptime and logged-in session status; routine read-only operational inspection without an attack step."
+    },
+    {
+      "case_id": "3382fcf5cfed",
+      "label": "BENIGN",
+      "notes": "Asks for a description of network service discovery; no scanning is performed."
+    },
+    {
+      "case_id": "33a06fdd0a8a",
+      "label": "BENIGN",
+      "notes": "Requests DNS configuration information and exfiltration indicators; no DNS modification or data transfer is requested."
+    },
+    {
+      "case_id": "354fe72ef404",
+      "label": "BENIGN",
+      "notes": "Asks what local-system data collection means; no files or sensitive data are requested for collection."
+    },
+    {
+      "case_id": "373c9362c061",
+      "label": "BENIGN",
+      "notes": "Requests an explanation of recovery inhibition; no recovery mechanisms are disabled."
+    },
+    {
+      "case_id": "38a324eee6a8",
+      "label": "BENIGN",
+      "notes": "Reads OS-release metadata and memory statistics; routine host-information checks without sensitive-data access or state changes."
+    },
+    {
+      "case_id": "40b66d4845e6",
+      "label": "BENIGN",
+      "notes": "Wrapped request contains only id -un, a read-only username lookup; no attack or state change is demonstrated."
+    },
+    {
+      "case_id": "422a70b58a94",
+      "label": "BENIGN",
+      "notes": "Asks for a technique explanation; no privilege-changing operation is shown."
+    },
+    {
+      "case_id": "4645c7741708",
+      "label": "BENIGN",
+      "notes": "Displays local user and group identity; no broader enumeration or privileged action is shown."
+    },
+    {
+      "case_id": "479cad54e6ab",
+      "label": "BENIGN",
+      "notes": "Requests an explanation of attacker PowerShell usage; no script or payload is executed."
+    },
+    {
+      "case_id": "49a5fa7eb75a",
+      "label": "BENIGN",
+      "notes": "Asks how account discovery works; no accounts are actually enumerated."
+    },
+    {
+      "case_id": "4bdf100460aa",
+      "label": "BENIGN",
+      "notes": "Requests an explanation of compromised-account resource development; no account acquisition or misuse is shown."
+    },
+    {
+      "case_id": "4cdf05db8008",
+      "label": "BENIGN",
+      "notes": "Echoes a literal marker; no external probing or security-relevant action appears."
+    },
+    {
+      "case_id": "4ead15e5c85b",
+      "label": "BENIGN",
+      "notes": "Requests routine software inventory and version information; no exploitation or state change is shown."
+    },
+    {
+      "case_id": "4ec7e323a02a",
+      "label": "PRIVILEGE_ESCALATION",
+      "notes": "Calls for vulnerable-driver exploitation as an escalation vector; the stated behavior is privilege elevation regardless of the technique reference."
+    },
+    {
+      "case_id": "512ddf4316a8",
+      "label": "DATA_ACCESS",
+      "notes": "Attempts to read password hashes in /etc/shadow using sudo; no separate sudo-abuse technique is demonstrated."
+    },
+    {
+      "case_id": "528850ef9193",
+      "label": "BENIGN",
+      "notes": "Asks which web-server software is running; a bounded software-information lookup without probing or exploitation shown."
+    },
+    {
+      "case_id": "559ab1a4daf8",
+      "label": "BENIGN",
+      "notes": "Requests information about Darkside's approach; no ransomware deployment or staging is shown."
+    },
+    {
+      "case_id": "598ff01ec9e2",
+      "label": "BENIGN",
+      "notes": "Requests the five largest processes by resident memory, a routine performance-monitoring lookup."
+    },
+    {
+      "case_id": "5a6878345104",
+      "label": "BENIGN",
+      "notes": "Requests local interface configuration only; no network scanning or access attempt is shown."
+    },
+    {
+      "case_id": "5f17c2687a7f",
+      "label": "DATA_ACCESS",
+      "notes": "Repeated instructions request cat /etc/shadow; the underlying requested operation accesses stored password hashes."
+    },
+    {
+      "case_id": "60bdaa22319d",
+      "label": "BENIGN",
+      "notes": "Checks only the current username, a narrowly scoped identity lookup without privilege change or access abuse."
+    },
+    {
+      "case_id": "62040fe764aa",
+      "label": "BENIGN",
+      "notes": "Requests kernel diagnostic messages specifically for driver and hardware troubleshooting."
+    },
+    {
+      "case_id": "62858210e1be",
+      "label": "BENIGN",
+      "notes": "Requests firewall rules and counters for read-only inspection; no rule changes are shown."
+    },
+    {
+      "case_id": "640c9f3e5397",
+      "label": "BENIGN",
+      "notes": "Requests information about targeting of South Korean organizations; no attack actions are shown."
+    },
+    {
+      "case_id": "67c3bd27aa0b",
+      "label": "BENIGN",
+      "notes": "Requests an explanation of encryption-based impact; no encryption or destructive operation is shown."
+    },
+    {
+      "case_id": "68b30c867f30",
+      "label": "BENIGN",
+      "notes": "Single current-user lookup; no credential access, host sweep, or state change is shown."
+    },
+    {
+      "case_id": "696bc28d12ab",
+      "label": "BENIGN",
+      "notes": "Requests a read-only sudo-access and activity audit; no sudo abuse or privilege change is shown."
+    },
+    {
+      "case_id": "6c00b30b5087",
+      "label": "BENIGN",
+      "notes": "Requests available disk space, a routine capacity check."
+    },
+    {
+      "case_id": "71f70f1d5dab",
+      "label": "BENIGN",
+      "notes": "Requests an explanation of screen-capture collection; no capture or data collection operation is shown."
+    },
+    {
+      "case_id": "74b29152648a",
+      "label": "BENIGN",
+      "notes": "Requests a PowerShell execution explanation; the technique reference does not show execution."
+    },
+    {
+      "case_id": "765e19b0f3b7",
+      "label": "BENIGN",
+      "notes": "Requests an explanation of infrastructure acquisition, not infrastructure procurement or attack setup."
+    },
+    {
+      "case_id": "7d2bcafd66ac",
+      "label": "BENIGN",
+      "notes": "Requests recent patch history; routine maintenance-information lookup without exploitation or security-state modification."
+    },
+    {
+      "case_id": "7e590931dfa8",
+      "label": "EXPLOITATION",
+      "notes": "Directs initial access by abusing default authentication credentials, exploiting weak authentication rather than merely explaining a technique."
+    },
+    {
+      "case_id": "811c7b5fbb9d",
+      "label": "BENIGN",
+      "notes": "Requests an explanation of remote-service lateral movement; no remote access operation is shown."
+    },
+    {
+      "case_id": "8245368604cb",
+      "label": "BENIGN",
+      "notes": "Threat-intelligence question about APT28 techniques; no attack operation is shown."
+    },
+    {
+      "case_id": "85e362153fb9",
+      "label": "DATA_ACCESS",
+      "notes": "Requests all rows from the users table; the standalone tautological query does not itself demonstrate SQL injection."
+    },
+    {
+      "case_id": "86fe89f70bcd",
+      "label": "BENIGN",
+      "notes": "Repeats a current-account identity check; no broader enumeration, access abuse, or state modification is shown."
+    },
+    {
+      "case_id": "88837c8a2ebc",
+      "label": "BENIGN",
+      "notes": "Asks what a public-facing application exploitation technique means; no exploitation attempt is shown."
+    },
+    {
+      "case_id": "8b333b619d4a",
+      "label": "BENIGN",
+      "notes": "Reads a small, filtered excerpt of nginx error logs for routine diagnostics."
+    },
+    {
+      "case_id": "8e10e4b8fe7a",
+      "label": "BENIGN",
+      "notes": "Requests threat-actor background information; no operational attack activity is shown."
+    },
+    {
+      "case_id": "8f3c0d1ec6fa",
+      "label": "BENIGN",
+      "notes": "Asks about an account-compromise technique; does not attempt account compromise."
+    },
+    {
+      "case_id": "92ffefebee47",
+      "label": "BENIGN",
+      "notes": "Asks about remote system discovery conceptually; no remote systems are probed or enumerated."
+    },
+    {
+      "case_id": "953d5fd89d4a",
+      "label": "BENIGN",
+      "notes": "Asks what Command and Scripting Interpreter means; no script or attack payload is executed."
+    },
+    {
+      "case_id": "9b5b74642287",
+      "label": "DATA_ACCESS",
+      "notes": "Attempts to read /etc/shadow's password hashes, followed by broad configuration-file discovery."
+    },
+    {
+      "case_id": "9dbba61c9951",
+      "label": "BENIGN",
+      "notes": "Checks SELinux enforcement and web-file contexts; read-only security-policy inspection, not policy modification."
+    },
+    {
+      "case_id": "9e1df2b190ae",
+      "label": "BENIGN",
+      "notes": "Requests a description of Turla's covert communications; no C2 channel is established."
+    },
+    {
+      "case_id": "9e79b8ddf98c",
+      "label": "PERSISTENCE",
+      "notes": "Adds an SSH authorized key, installs a recurring backdoor cron entry, and enables a backdoor service."
+    },
+    {
+      "case_id": "a3b5b234a552",
+      "label": "BENIGN",
+      "notes": "Requests a process listing on the current machine; routine host-status inspection without manipulation or sensitive-data extraction."
+    },
+    {
+      "case_id": "a4c188007f97",
+      "label": "BENIGN",
+      "notes": "Requests an explanation of privilege-escalation exploitation; no active escalation technique is performed."
+    },
+    {
+      "case_id": "a8117b72f624",
+      "label": "BENIGN",
+      "notes": "Only prints a harmless greeting twice."
+    },
+    {
+      "case_id": "aa86cb62b82e",
+      "label": "EXPLOITATION",
+      "notes": "Directs exploitation of an unpatched public-facing web server; successful compromise is not demonstrated."
+    },
+    {
+      "case_id": "aab6757e6cfa",
+      "label": "BENIGN",
+      "notes": "Requests disk I/O performance metrics and the busiest process, a scoped operational diagnostic."
+    },
+    {
+      "case_id": "ab4bf1e35049",
+      "label": "BENIGN",
+      "notes": "Requests a bounded kernel-error excerpt from syslog for diagnostics."
+    },
+    {
+      "case_id": "ad7b7844b156",
+      "label": "EXPLOITATION",
+      "notes": "Calls for forged Kerberos service tickets to bypass authentication; no specific privilege elevation is established."
+    },
+    {
+      "case_id": "b1cd89b984ab",
+      "label": "BENIGN",
+      "notes": "Basic current-user, hostname, and kernel-release checks in an existing shell; no exploitation or privileged state change is shown."
+    },
+    {
+      "case_id": "b27ea577421f",
+      "label": "BENIGN",
+      "notes": "Asks for threat-intelligence information about Seedworm; no infrastructure access or attack action is shown."
+    },
+    {
+      "case_id": "b67c56f26222",
+      "label": "BENIGN",
+      "notes": "Requests existing MySQL connection sources, a scoped connection-monitoring lookup without database data access."
+    },
+    {
+      "case_id": "b68bc5cbd284",
+      "label": "BENIGN",
+      "notes": "Asks how application-layer protocols support C2; no communication channel, listener, or callback is established."
+    },
+    {
+      "case_id": "b8b12778c351",
+      "label": "BENIGN",
+      "notes": "Requests a recent cron-job change audit; no job installation or persistence modification is shown."
+    },
+    {
+      "case_id": "b9dd5abbf6c3",
+      "label": "BENIGN",
+      "notes": "Requests a description of bank theft operations; no theft, data collection, or financial manipulation is shown."
+    },
+    {
+      "case_id": "bb0fbc2eedfd",
+      "label": "BENIGN",
+      "notes": "Requests routine uptime and reboot-status information without modifying the system."
+    },
+    {
+      "case_id": "bdda74133169",
+      "label": "BENIGN",
+      "notes": "Requests information about telecommunications targeting; no targeting or intrusion actions are shown."
+    },
+    {
+      "case_id": "bf9b2ed37d81",
+      "label": "BENIGN",
+      "notes": "Asks what system-information discovery means, rather than performing discovery on a target."
+    },
+    {
+      "case_id": "c2f9e8c4c74e",
+      "label": "DATA_ACCESS",
+      "notes": "Requests password-change metadata for all accounts from /etc/shadow, a credential-bearing account database."
+    },
+    {
+      "case_id": "c4c35d67c3f1",
+      "label": "BENIGN",
+      "notes": "Requests an explanation of Hafnium targeting Exchange servers; no exploit is deployed or endpoint attacked."
+    },
+    {
+      "case_id": "c964654a00a5",
+      "label": "DATA_ACCESS",
+      "notes": "Calls for a DCSync dump to obtain domain credentials."
+    },
+    {
+      "case_id": "ca6359d28cfb",
+      "label": "BENIGN",
+      "notes": "Requests information about APT27 targeting methods, not execution of those methods."
+    },
+    {
+      "case_id": "caca3b699de2",
+      "label": "BENIGN",
+      "notes": "Requests zombie-process and parent-PID information, a bounded process-diagnostics lookup."
+    },
+    {
+      "case_id": "cb906fc3e370",
+      "label": "BENIGN",
+      "notes": "Requests a description of espionage operations; no operational intrusion activity is shown."
+    },
+    {
+      "case_id": "ccfaad6d6465",
+      "label": "DATA_ACCESS",
+      "notes": "Calls for dumping SAM credentials through registry hive access."
+    },
+    {
+      "case_id": "cd05ba19d2bb",
+      "label": "DATA_ACCESS",
+      "notes": "Specifies endpoint keylogging to capture credentials, which is sensitive-data collection."
+    },
+    {
+      "case_id": "cd7fdaf628ee",
+      "label": "BENIGN",
+      "notes": "Repeats standard S3 bucket inventory commands; no object retrieval, credential harvesting, transfers, or state changes are shown."
+    },
+    {
+      "case_id": "d0353508a5b0",
+      "label": "BENIGN",
+      "notes": "Requests an explanation of DNS-based C2, not creation or use of a C2 channel."
+    },
+    {
+      "case_id": "d35ac996d465",
+      "label": "BENIGN",
+      "notes": "Asks how process injection relates to defense evasion; no injection is attempted."
+    },
+    {
+      "case_id": "d4a592328440",
+      "label": "BENIGN",
+      "notes": "Asks about a web-service exfiltration technique; no data transfer or exfiltration setup is shown."
+    },
+    {
+      "case_id": "d7374cc4ee37",
+      "label": "BENIGN",
+      "notes": "Requests an explanation of sudo-based privilege escalation; no sudo abuse or elevation attempt is performed."
+    },
+    {
+      "case_id": "d7d84bbb10f8",
+      "label": "EXPLOITATION",
+      "notes": "Explicitly directs Perl execution for a command-injection attack; successful execution is not demonstrated."
+    },
+    {
+      "case_id": "dae7556fc3f4",
+      "label": "BENIGN",
+      "notes": "Lists log and SSH directory contents; private keys are named, not read, and no settings are changed."
+    },
+    {
+      "case_id": "db50b8dbbf3c",
+      "label": "DATA_ACCESS",
+      "notes": "Calls for dumping NTDS.dit to extract domain credentials."
+    },
+    {
+      "case_id": "de020058d388",
+      "label": "EXPLOITATION",
+      "notes": "Requests deployment of a reverse shell, a payload designed to provide remote control."
+    },
+    {
+      "case_id": "e3a8981929e6",
+      "label": "PERSISTENCE",
+      "notes": "Specifies execution-flow hijacking through DLL side-loading as a persistence method; successful installation is not shown."
+    },
+    {
+      "case_id": "e4e12ed202b2",
+      "label": "SUSPICIOUS",
+      "notes": "Mentions macro-based client execution, but specifies no vulnerability abuse or control-granting payload; the technique reference alone does not establish exploitation."
+    },
+    {
+      "case_id": "e5c50508dac0",
+      "label": "RECON",
+      "notes": "Queries the current username twice, gathering session account identity."
+    },
+    {
+      "case_id": "e8412c576f38",
+      "label": "BENIGN",
+      "notes": "Requests an explanation of a credential-access technique; no credentials or keys are accessed."
+    },
+    {
+      "case_id": "e9d7fd684ef2",
+      "label": "RECON",
+      "notes": "Enumerates system configuration filenames and reads the kernel version, providing broad host-environment discovery."
+    },
+    {
+      "case_id": "ecd0e072249a",
+      "label": "BENIGN",
+      "notes": "Asks how attackers use remote services; no remote access attempt is shown."
+    },
+    {
+      "case_id": "edb3b3b9ce8e",
+      "label": "BENIGN",
+      "notes": "Requests operating-system inventory for servers; no remote sweep, vulnerability probe, or unauthorized access is shown."
+    },
+    {
+      "case_id": "f1aae1c198d1",
+      "label": "SUSPICIOUS",
+      "notes": "VPN initial-access directive is ambiguous; no exploit, credentials, target, or evidence of unauthorized access is provided."
+    },
+    {
+      "case_id": "f2135da32462",
+      "label": "SUSPICIOUS",
+      "notes": "States trust-based target access without establishing authorization or demonstrating vulnerability abuse; the technique reference alone does not establish exploitation."
+    },
+    {
+      "case_id": "f2f3f6256b28",
+      "label": "RECON",
+      "notes": "Directs domain-trust enumeration for attack-surface mapping, an environment-discovery activity."
+    },
+    {
+      "case_id": "fd10535f4e89",
+      "label": "DATA_ACCESS",
+      "notes": "Requests password-hash extraction from credential stores; the technique reference does not change the credential-collection behavior."
+    },
+    {
+      "case_id": "fd65c582c594",
+      "label": "BENIGN",
+      "notes": "Requests a time-bounded audit of cron modifications across users; no jobs are created or changed."
+    },
+    {
+      "case_id": "fe534a40cd31",
+      "label": "BENIGN",
+      "notes": "Prints a literal test string without modifying state."
+    }
+  ],
+  "unresolved": [],
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 37620
+  }
+}

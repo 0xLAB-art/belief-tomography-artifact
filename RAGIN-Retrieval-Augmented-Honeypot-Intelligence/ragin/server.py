@@ -1,0 +1,782 @@
+"""RAGIN HTTP server — exposes Chrollo, Don, and Hisoka as HTTP services.
+
+Production wiring: audit logging, Prometheus metrics, rate limiting,
+budget enforcement, circuit breaker status, health checks, RF-first
+scanner detection, and LRU response cache.
+"""
+
+import argparse
+import asyncio
+import logging
+import os
+import re
+import time
+from collections import OrderedDict
+from typing import Any
+
+import yaml
+from aiohttp import web
+
+from ragin.monitoring.alerts import AlertManager
+from ragin.monitoring.audit import AuditLogger
+from ragin.monitoring.metrics import MetricsCollector
+from ragin.utils import RateLimiter
+
+logger = logging.getLogger("ragin.server")
+
+API_KEY = os.environ.get("API_KEY", "")
+REQUIRE_AUTH = os.environ.get("RAGIN_REQUIRE_AUTH", "1").strip().lower() not in ("0", "false", "no", "off")
+LEGACY_SERVING_DISABLED = True
+_PLACEHOLDER_KEYS = {"", "changeme", "change_me", "change_me_backend_key", "placeholder"}
+COMPONENT = os.environ.get("COMPONENT", "chrollo")
+REDIS_URL = os.environ.get("REDIS_URL", "redis://localhost:6379/0")
+PORT = int(os.environ.get("CHROLLO_PORT", os.environ.get("DON_PORT", os.environ.get("HISOKA_PORT", "8080"))))
+LOG_LEVEL = os.environ.get("RAGIN_LOG_LEVEL", "INFO")
+
+# RF-first scanner/bot detection patterns
+_SCANNER_PATTERNS = [
+    re.compile(r, re.IGNORECASE)
+    for r in [
+        r"nmap\s+-[sS]",
+        r"masscan\s+",
+        r"zmap\s+",
+        r"unicornscan",
+        r"gobuster\s+",
+        r"dirb\s+",
+        r"ffuf\s+",
+        r"wfuzz\s+",
+        r"dirsearch",
+        r"gospider",
+        r"nikto\s+-",
+        r"wapiti",
+        r"wpscan\s+",
+        r"acunetix",
+        r"nexpose",
+        r"nessus",
+        r"openvas",
+        r"appscan",
+        r"arachni",
+        r"zap\s+-",
+        r"sqlmap\s+",
+        r"jsqli",
+        r"hydra\s+-[lL]",
+        r"medusa\s+",
+        r"ncrack\s+",
+        r"sublist3r\s+",
+        r"amass\s+(?:enum|intel)",
+        r"subfinder\s+",
+        r"dnsrecon\s+",
+        r"dnsenum\s+",
+        r"msfconsole",
+        r"msfvenom",
+        r"searchsploit",
+        r"chisel\s+(?:client|server)",
+        r"socat\s+",
+        r"ncat\s+",
+        r"sshpass\s+-p",
+        r"python[23]?\s+-c\s+[\"'](?:import|exec|eval|__import__)",
+        r"perl\s+-e\s+",
+        r"ruby\s+-e\s+",
+    ]
+]
+
+
+class _ResponseCache:
+    def __init__(self, maxsize: int = 512, ttl: float = 300.0):
+        self._cache: OrderedDict[tuple[str, str], tuple[float, dict]] = OrderedDict()
+        self._maxsize = maxsize
+        self._ttl = ttl
+
+    def _key(self, attacker_input: str, persona: str) -> tuple[str, str]:
+        norm = attacker_input.strip().lower()
+        norm = re.sub(r"\s+", " ", norm)
+        return (norm, persona)
+
+    def get(self, attacker_input: str, persona: str) -> dict | None:
+        key = self._key(attacker_input, persona)
+        if key not in self._cache:
+            return None
+        ts, response = self._cache[key]
+        if time.monotonic() - ts > self._ttl:
+            del self._cache[key]
+            return None
+        self._cache.move_to_end(key)
+        return response
+
+    def put(self, attacker_input: str, persona: str, response: dict) -> None:
+        key = self._key(attacker_input, persona)
+        self._cache[key] = (time.monotonic(), response)
+        self._cache.move_to_end(key)
+        while len(self._cache) > self._maxsize:
+            self._cache.popitem(last=False)
+
+    @property
+    def size(self) -> int:
+        return len(self._cache)
+
+
+_response_cache = _ResponseCache()
+
+# Dedicated rate limiter for the lure handler (survives direct-port access
+# bypassing nginx entirely). Allows ~12 req/min per IP.
+_lure_rate_limiter: RateLimiter | None = None
+
+
+async def _handle_deception(attacker_input: str, session_context: dict, use_cache: bool = False) -> dict:
+    """Core deception handler — shared guard logic for deceive + lure + openai.
+
+    Applies LRU cache, RF scanner detection, LLM generation,
+    audit logging, and metrics. Cache hits return silently
+    (no duplicate audit/metrics), matching existing behaviour.
+
+    use_cache=False by default — response caching is disabled so
+    identical attacker input from different source IPs does not yield
+    byte-identical (cache-fingerprintable) responses. Pass True to opt
+    into the LRU cache for specific endpoints.
+    """
+    if LEGACY_SERVING_DISABLED:
+        raise RuntimeError("legacy unverified serving disabled")
+    persona = session_context.get("skill_level", "novice")
+
+    cached = None
+    if use_cache:
+        cached = _response_cache.get(attacker_input, persona)
+        if cached is not None:
+            return cached
+
+    if _is_scanner(attacker_input):
+        logger.info("scanner input blocked: %r", attacker_input[:80])
+        result = await asyncio.to_thread(_component._static_fallback, persona, attacker_input)
+    else:
+        result = await asyncio.to_thread(_component.generate_response, attacker_input, session_context)
+
+    response_dict = {
+        "session_id": result.session_id,
+        "response_text": result.response_text,
+        "persona_used": result.persona_used,
+        "artifacts_injected": result.artifacts_injected,
+        "engagement_score": result.engagement_score,
+    }
+    _response_cache.put(attacker_input, persona, response_dict)
+
+    if _audit:
+        _audit.log_deception(
+            result.session_id,
+            {
+                "persona_used": result.persona_used,
+                "engagement_score": result.engagement_score,
+                "artifacts_injected": result.artifacts_injected,
+                "attacker_input_preview": attacker_input[:100],
+            },
+        )
+
+    if _metrics_collector:
+        _metrics_collector.record_deception(result.session_id, 0.0, result.engagement_score)
+
+    return response_dict
+
+
+def _is_scanner(attacker_input: str) -> bool:
+    return any(pattern.search(attacker_input) for pattern in _SCANNER_PATTERNS)
+
+
+# Lazy imports per component
+_component: Any = None  # plugin slot: ChrolloClassifier | ThreatRAGEngine | AdaptiveDeceiver | JevAssessor
+
+
+def _load_config():
+    config_path = os.path.join(os.path.dirname(__file__), "config", "settings.yaml")
+    if os.path.exists(config_path):
+        with open(config_path) as f:
+            return yaml.safe_load(f)
+    return {}
+
+
+def _init_component(name: str):
+    global _component
+    cfg = _load_config()
+    if name == "chrollo":
+        from ragin.chrollo.classifier import ChrolloClassifier
+
+        _component = ChrolloClassifier()
+    elif name == "don":
+        from ragin.don.rag_engine import ThreatRAGEngine
+
+        # Direct LLM endpoint takes precedence (OpenAI-compatible /v1 natively;
+        # apmix.ai today, previously Azure AI Foundry); fall back to the
+        # internal Rust gateway.
+        gateway_url = os.environ.get("RAGIN_GATEWAY_URL") or os.environ.get("GATEWAY_URL", "http://localhost:8080")
+        if not gateway_url:
+            gateway_url = cfg.get("ragin", {}).get("cloud", {}).get("gateway_url", "http://localhost:8080")
+        api_key = (
+            os.environ.get("RAGIN_LLM_API_KEY")
+            or os.environ.get("AZURE_OPENAI_KEY")
+            or os.environ.get("OPENROUTER_API_KEY", "")
+        )
+        _component = ThreatRAGEngine(gateway_url=gateway_url, api_key=api_key)
+    elif name == "hisoka":
+        from ragin.hisoka.deceiver import AdaptiveDeceiver
+
+        gateway_url = os.environ.get("RAGIN_HISOKA_GATEWAY_URL") or os.environ.get(
+            "GATEWAY_URL", "http://localhost:8080"
+        )
+        if not gateway_url:
+            gateway_url = cfg.get("ragin", {}).get("cloud", {}).get("gateway_url", "http://localhost:8080")
+        api_key = (
+            os.environ.get("RAGIN_LLM_API_KEY")
+            or os.environ.get("AZURE_OPENAI_KEY")
+            or os.environ.get("OPENROUTER_API_KEY", "")
+        )
+        _component = AdaptiveDeceiver(gateway_url=gateway_url, api_key=api_key)
+    elif name == "jev":
+        from ragin.jev.assessment import JevAssessor
+
+        _component = JevAssessor()
+    else:
+        raise ValueError(f"Unknown component: {name}")
+    logger.info("Component %s initialized", name)
+
+
+# --- Shared singletons (set at app creation) ---
+
+_audit: AuditLogger | None = None
+_metrics_collector: MetricsCollector | None = None
+_rate_limiter: RateLimiter | None = None
+_alert_manager: AlertManager | None = None
+_prometheus_metrics: dict[str, Any] | None = None  # type: ignore[name-defined]
+
+
+PUBLIC_PREFIXES = ("/health", "/ready")
+
+
+def _validate_security_config() -> None:
+    if REQUIRE_AUTH and API_KEY.strip().lower() in _PLACEHOLDER_KEYS:
+        raise RuntimeError("RAGIN_REQUIRE_AUTH is enabled but API_KEY is missing or placeholder")
+
+
+# --- Middleware ---
+
+
+@web.middleware
+async def auth_middleware(request, handler):
+    if any(request.path.startswith(p) for p in PUBLIC_PREFIXES):
+        return await handler(request)
+    key = request.headers.get("X-API-Key", "")
+    if REQUIRE_AUTH and (API_KEY.strip().lower() in _PLACEHOLDER_KEYS or key != API_KEY):
+        if _audit:
+            _audit.log_security_event(
+                "auth_failure",
+                {
+                    "path": request.path,
+                    "remote": request.remote,
+                },
+            )
+        return web.json_response({"error": "unauthorized"}, status=401)
+    return await handler(request)
+
+
+async def legacy_serving_disabled(request):
+    return web.json_response({"error": "legacy unverified serving disabled"}, status=410)
+
+
+@web.middleware
+async def timing_middleware(request, handler):
+    start = time.monotonic()
+    response = await handler(request)
+    elapsed = time.monotonic() - start
+    response.headers["X-Response-Time"] = f"{elapsed:.3f}s"
+
+    # Record Prometheus metrics
+    if _prometheus_metrics and request.path not in ("/health", "/metrics", "/ready"):
+        _prometheus_metrics["count"].labels(
+            method=request.method, endpoint=request.path, status=str(response.status)
+        ).inc()
+        _prometheus_metrics["latency"].labels(endpoint=request.path).observe(elapsed)
+
+    # Record in-memory metrics
+    if _metrics_collector and request.path not in ("/health", "/metrics", "/ready"):
+        status = "ok" if response.status < 400 else "error"
+        _metrics_collector.record_request(COMPONENT, request.method, status, elapsed * 1000)
+
+    return response
+
+
+@web.middleware
+async def rate_limit_middleware(request, handler):
+    if request.path in ("/health", "/ready"):
+        return await handler(request)
+    if _rate_limiter:
+        client_ip = request.remote or "_unknown"
+        if not _rate_limiter.allow(client_ip):
+            if _audit:
+                _audit.log_security_event(
+                    "rate_limit_exceeded",
+                    {
+                        "remote": client_ip,
+                        "path": request.path,
+                    },
+                )
+            return web.json_response(
+                {"error": "rate limit exceeded", "retry_after_s": 1},
+                status=429,
+                headers={"Retry-After": "1"},
+            )
+    return await handler(request)
+
+
+# --- Routes ---
+
+
+async def health(request):
+    """Health endpoint with dependency checks."""
+    report: dict[str, Any] = {}
+    if _audit:
+        report["audit"] = "enabled"
+    if _metrics_collector:
+        summary = _metrics_collector.get_summary(window_minutes=5)
+        report["recent_requests"] = summary.total_requests
+        report["recent_errors"] = summary.error_count
+        report["error_rate"] = round(summary.error_rate, 4)
+    report["component"] = COMPONENT
+    report["status"] = "healthy"
+    report["timestamp"] = time.time()
+    return web.json_response(report)
+
+
+async def ready(request):
+    """Readiness probe."""
+    return web.json_response({"ready": True, "component": COMPONENT})
+
+
+async def classify(request):
+    try:
+        data = await request.json()
+    except Exception:
+        return web.json_response({"error": "Invalid JSON body"}, status=400)
+    try:
+        from datetime import datetime, timezone
+
+        from ragin.chrollo.models import SessionLog
+
+        session_log = SessionLog(
+            session_id=data.get("session_id", "unknown"),
+                start_time=data.get("start_time", datetime.now(tz=timezone.utc).isoformat()),
+            commands=data.get("commands", []),
+            # duration_seconds/features have no dedicated SessionLog fields;
+            # carry them in metadata instead of letting pydantic drop them.
+            metadata={
+                "duration_seconds": data.get("duration_seconds", 0),
+                "features": data.get("features", {}),
+            },
+        )
+        result = await asyncio.to_thread(_component.classify, session_log)
+
+        # Audit log
+        if _audit:
+            _audit.log_classification(
+                result.session_id,
+                {
+                    "skill_level": result.skill_level.value,
+                    "confidence": result.confidence,
+                    "features_used": result.features_used[:10],
+                },
+            )
+
+        # In-memory metrics
+        if _metrics_collector:
+            _metrics_collector.record_classification(result.skill_level.value, result.confidence)
+
+        return web.json_response(
+            {
+                "skill_level": result.skill_level.value,
+                "confidence": result.confidence,
+                "session_id": result.session_id,
+                "features_used": result.features_used[:10],
+                "feature_values": {k: round(v, 4) for k, v in list(result.feature_values.items())[:20]},
+            }
+        )
+    except ValueError as e:
+        return web.json_response({"error": str(e)}, status=400)
+    except Exception as e:
+        logger.exception("classify error")
+        return web.json_response({"error": str(e)}, status=500)
+
+
+async def analyze(request):
+    try:
+        data = await request.json()
+    except Exception:
+        return web.json_response({"error": "Invalid JSON body"}, status=400)
+    try:
+        from ragin.don.models import AnalysisRequest, ClassificationLabel
+
+        classification_str = data.get("classification", "unknown")
+        classification_map = {
+            "benign": ClassificationLabel.BENIGN,
+            "suspicious": ClassificationLabel.SUSPICIOUS,
+            "malicious": ClassificationLabel.MALICIOUS,
+        }
+        req = AnalysisRequest(
+            session_id=data.get("session_id", "unknown"),
+            classification=classification_map.get(classification_str, ClassificationLabel.SUSPICIOUS),
+            confidence=data.get("confidence", 0.5),
+            features=data.get("features", {}),
+        )
+        session_log = data.get("session_log", [])
+        result = await asyncio.to_thread(_component.analyze, req, session_log)
+
+        # Audit log
+        if _audit:
+            _audit.log_analysis(
+                result.session_id,
+                {
+                    "severity": result.severity.value,
+                    "classification": result.classification.value,
+                    "confidence": result.confidence,
+                    "sophistication_score": result.sophistication_score,
+                    "tactics": [{"id": t.tactic_id, "name": t.tactic_name} for t in result.tactics],
+                },
+            )
+
+        # In-memory metrics
+        if _metrics_collector:
+            _metrics_collector.record_threat(
+                result.severity.value,
+                [t.tactic_id for t in result.tactics],
+            )
+
+        from ragin.cycle.adapters import _extract_evidence
+
+        commands = data.get("commands", data.get("features", {}).get("commands", []))
+        session_context = {"attacker_inputs": commands}
+        evidence = _extract_evidence(session_context)
+
+        return web.json_response(
+            {
+                "analysis_id": result.analysis_id,
+                "session_id": result.session_id,
+                "severity": result.severity.value,
+                "classification": result.classification.value,
+                "confidence": result.confidence,
+                "sophistication_score": result.sophistication_score,
+                "threat_summary": result.summary if hasattr(result, "summary") else "",
+                "recommendations": [
+                    r if isinstance(r, str) else str(r) for r in getattr(result, "recommendations", [])
+                ],
+                "tactics": [
+                    {"id": t.tactic_id, "name": t.tactic_name, "confidence": t.confidence} for t in result.tactics
+                ],
+                "candidate_actors": [
+                    {
+                        "name": a.name,
+                        "confidence": a.confidence,
+                        "known_ttps": a.known_ttps,
+                        "basis": "tactic-heuristic",
+                    }
+                    for a in result.threat_actors
+                ],
+                "evasion_techniques": evidence["evasion_techniques"],
+                "tools_used": evidence["tools_used"],
+                "credential_access": evidence["credential_access"],
+                "iocs": [{"type": ioc.type.value, "value": ioc.value} for ioc in result.iocs[:20]],
+                "ttps_seen": sorted({tid for t in result.tactics for tid in t.techniques + t.sub_techniques}),
+                "extracted_techniques": sorted(
+                    {tid for t in result.tactics for tid in t.techniques + t.sub_techniques}
+                ),
+                # Metadata, not observations — see DonAdapter for rationale.
+                "actor_repertoire_ttps": sorted(
+                    {tid for a in result.threat_actors for tid in a.known_ttps}
+                    - {tid for t in result.tactics for tid in t.techniques + t.sub_techniques}
+                ),
+            }
+        )
+    except ValueError as e:
+        return web.json_response({"error": str(e)}, status=400)
+    except Exception as e:
+        logger.exception("analyze error")
+        return web.json_response({"error": str(e)}, status=500)
+
+
+async def assess(request):
+    """Jev System One assessment endpoint (component=jev).
+
+    Body: {"state": "...", "commands": [...], "session_id": "..."}
+    Accepts either a raw ``state`` string or a ``commands`` list; when both
+    are present, ``state`` wins and ``commands`` is appended. Returns the
+    typed answers (noul/choice/score), model, and token usage.
+    """
+    try:
+        data = await request.json()
+    except Exception:
+        return web.json_response({"error": "Invalid JSON body"}, status=400)
+    try:
+        state = data.get("state", "")
+        commands = data.get("commands", [])
+        session_id = data.get("session_id", "unknown")
+
+        if isinstance(commands, list) and commands and not state:
+            state = "\n".join(str(x) for x in commands)
+
+        if not state:
+            return web.json_response({"error": "Missing 'state' or 'commands'"}, status=400)
+
+        assessment = await asyncio.to_thread(
+            _component.assess_commands,
+            [line for line in state.splitlines() if line.strip()],
+            session_id=session_id,
+        )
+
+        if _audit:
+            _audit.log_classification(
+                assessment.session_id,
+                {
+                    "engine": "jev",
+                    "severity": assessment.severity,
+                    "attack": assessment.is_attack,
+                    "attack_kind": (assessment.attack_kind.value if assessment.attack_kind else ""),
+                    "model": assessment.model,
+                },
+            )
+
+        if _metrics_collector:
+            _metrics_collector.record_classification("jev", 0.0)
+
+        return web.json_response(assessment.to_dict())
+    except ValueError as e:
+        return web.json_response({"error": str(e)}, status=400)
+    except Exception as e:
+        logger.exception("assess error")
+        return web.json_response({"error": str(e)}, status=500)
+
+
+async def deceive(request):
+    try:
+        data = await request.json()
+    except Exception:
+        return web.json_response({"error": "Invalid JSON body"}, status=400)
+    try:
+        attacker_input = data.get("attacker_input", data.get("command", "ls"))
+        session_context = {
+            "session_id": data.get("session_id", "unknown"),
+            "skill_level": data.get("skill_level", "novice"),
+            "context": data.get("context", ""),
+        }
+        # Optional Jev assessment passthrough: callers that already ran a
+        # System One assessment (or Chrollo's process_with_jev result) can
+        # supply it so Hisoka steers deception by attack kind.
+        jev_assessment = data.get("jev_assessment")
+        if isinstance(jev_assessment, dict):
+            session_context["jev_assessment"] = jev_assessment
+        response_dict = await _handle_deception(attacker_input, session_context)
+        return web.json_response(response_dict)
+    except ValueError as e:
+        return web.json_response({"error": str(e)}, status=400)
+    except Exception as e:
+        logger.exception("deceive error")
+        return web.json_response({"error": str(e)}, status=500)
+
+
+def _make_lure_response(response_dict: dict) -> web.Response:
+    return web.Response(
+        text=response_dict["response_text"],
+        content_type="text/html",
+        charset="utf-8",
+    )
+
+
+def _parse_openai_messages(messages: list[dict]) -> tuple[str, str, dict]:
+    """From an OpenAI chat.completions payload extract:
+    (system_prompt, last_user_command, session_hints).
+
+    cowrie's llm/llm.py sends a system message first (containing
+    hostname/username/client_ip) followed by alternating User:/System:
+    turns. session_hints carry identity-derived hints we can use to
+    keep a stable RAGIN session_id per attacker.
+    """
+    system_prompt = ""
+    user_cmds = []
+    for msg in messages:
+        role = msg.get("role", "")
+        content = (msg.get("content") or "").strip()
+        if not content:
+            continue
+        if role == "system" and not system_prompt:
+            system_prompt = content
+        elif role == "user":
+            user_cmds.append(content)
+    last_user = user_cmds[-1] if user_cmds else "ls"
+    hints = {}
+    if system_prompt:
+        m_username = re.search(r"username is '([^']+)'", system_prompt)
+        m_ip = re.search(r"client_ip.?[:=] ?([0-9a-fA-F:.]+)", system_prompt)
+        if m_username:
+            hints["username"] = m_username.group(1)
+        if m_ip:
+            hints["client_ip"] = m_ip.group(1)
+    return system_prompt, last_user, hints
+
+
+async def openai_chat_completions(request):
+    """OpenAI-compatible /v1/chat/completions adapter for cowrie's LLM
+    backend (cowrie shell/config: backend = llm, [llm] host/path).
+
+    Translates cowrie's message list into a RAGIN deception call so a
+    live attacker over SSH receives Hisoka-pooled, persona-driven
+    responses instead of the hardcoded shell emulator.
+    """
+    try:
+        data = await request.json()
+    except Exception:
+        return web.json_response({"error": "Invalid JSON body"}, status=400)
+    try:
+        messages = data.get("messages", [])
+        system_prompt, attacker_input, hints = _parse_openai_messages(messages)
+
+        username = hints.get("username", "unknown")
+        client_ip = hints.get("client_ip", "unknown")
+        session_id = f"cowrie-{username}-{client_ip}"
+        session_context = {
+            "session_id": session_id,
+            "skill_level": "novice",
+            "context": system_prompt[:400],
+            "source": "cowrie-llm-backend",
+        }
+
+        # Route through the same guard logic (scanner/fallback/audit/metrics)
+        # but bypass the LRU cache so in-session commands stay distinct.
+        response_dict = await _handle_deception(attacker_input, session_context, use_cache=False)
+
+        # OpenAI-compatible response shape expected by cowrie's LLMClient.
+        payload = {
+            "id": f"chatcmpl-{session_id}",
+            "object": "chat.completion",
+            "created": int(time.time()),
+            "model": data.get("model", "hisoka"),
+            "choices": [
+                {
+                    "index": 0,
+                    "message": {"role": "assistant", "content": response_dict["response_text"]},
+                    "finish_reason": "stop",
+                }
+            ],
+            "usage": {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0},
+        }
+        return web.json_response(payload)
+    except Exception as e:
+        logger.exception("openai_chat_completions error")
+        return web.json_response({"error": str(e)}, status=500)
+
+
+async def lure(request):
+    path = request.headers.get("X-Lure-Path", request.query.get("path", "/"))
+    clean_path = path.split("?")[0]
+    attacker_input = f"HTTP {request.method} {clean_path}"
+    session_context = {
+        "session_id": f"lure-{clean_path}",
+        "skill_level": "novice",
+        "context": f"lure path: {clean_path}",
+    }
+
+    # Per-IP rate limiting (app-level — survives direct port access)
+    client_ip = request.remote or "_unknown"
+    if _lure_rate_limiter and not _lure_rate_limiter.allow(client_ip):
+        return web.json_response(
+            {"error": "lure rate limit exceeded"},
+            status=429,
+            headers={"Retry-After": "5"},
+        )
+
+    try:
+        response_dict = await _handle_deception(attacker_input, session_context)
+        return _make_lure_response(response_dict)
+    except Exception:
+        logger.exception("lure error for %s", clean_path)
+        return web.Response(text="", status=500)
+
+
+async def metrics(request):
+    from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
+
+    body = generate_latest()
+    return web.Response(body=body, content_type=CONTENT_TYPE_LATEST)
+
+
+# --- App factory ---
+
+
+def create_app(component: str) -> web.Application:
+    global _audit, _metrics_collector, _rate_limiter, _lure_rate_limiter, _alert_manager, _prometheus_metrics
+
+    _validate_security_config()
+    # Initialize singletons
+    _audit = AuditLogger()
+    _metrics_collector = MetricsCollector()
+    _rate_limiter = RateLimiter(max_tokens=60, refill_per_s=1.0)
+    _lure_rate_limiter = RateLimiter(max_tokens=12, refill_per_s=0.2)
+    _alert_manager = AlertManager()
+
+    app = web.Application(middlewares=[auth_middleware, rate_limit_middleware, timing_middleware])
+    app.router.add_get("/health", health)
+    app.router.add_get("/ready", ready)
+
+    route_map = {
+        "chrollo": ("/api/classify", classify),
+        "don": ("/api/analyze", analyze),
+        "hisoka": ("/api/deceive", legacy_serving_disabled),
+        "jev": ("/api/assess", assess),
+    }
+    path, handler = route_map[component]
+    app.router.add_post(path, handler)
+    if component == "hisoka":
+        app.router.add_route("*", "/api/lure", legacy_serving_disabled)
+        app.router.add_post("/v1/chat/completions", legacy_serving_disabled)
+
+    # Prometheus metrics (try import)
+    try:
+        from prometheus_client import Counter, Gauge, Histogram
+
+        REQUEST_COUNT = Counter(
+            f"ragin_{component}_requests_total",
+            "Total requests",
+            ["method", "endpoint", "status"],
+        )
+        REQUEST_LATENCY = Histogram(
+            f"ragin_{component}_request_duration_seconds",
+            "Request latency",
+            ["endpoint"],
+            buckets=[0.05, 0.1, 0.25, 0.5, 1.0, 2.0, 5.0],
+        )
+        ACTIVE_SESSIONS = Gauge(
+            f"ragin_{component}_active_sessions",
+            "Active sessions",
+        )
+        _prometheus_metrics = {"count": REQUEST_COUNT, "latency": REQUEST_LATENCY, "gauge": ACTIVE_SESSIONS}
+    except ImportError:
+        logger.warning("prometheus_client not installed, metrics disabled")
+
+    app.router.add_get("/metrics", metrics)
+    return app
+
+
+def main():
+    global COMPONENT
+    parser = argparse.ArgumentParser(description="RAGIN HTTP server")
+    parser.add_argument("--component", choices=["chrollo", "don", "hisoka", "jev"], default=COMPONENT)
+    parser.add_argument("--port", type=int, default=PORT)
+    args = parser.parse_args()
+
+    COMPONENT = args.component
+    logging.basicConfig(level=LOG_LEVEL, format="%(asctime)s %(name)s %(levelname)s %(message)s")
+
+    _init_component(args.component)
+    app = create_app(args.component)
+
+    bind_host = os.environ.get("RAGIN_BIND_HOST", "127.0.0.1")
+    if REQUIRE_AUTH and API_KEY.strip().lower() in _PLACEHOLDER_KEYS:
+        raise RuntimeError("RAGIN_REQUIRE_AUTH is enabled but API_KEY is missing or placeholder")
+    logger.info("Starting %s server on %s:%d", args.component, bind_host, args.port)
+    web.run_app(app, host=bind_host, port=args.port)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,121 @@
+{
+  "schema": "ragin.laya_v3.model_comparison_protocol_freeze.v1",
+  "status": "FROZEN_BEFORE_MODEL_COMPARISON_CALLS",
+  "date": "2026-10-16",
+  "purpose": "Frozen model/task comparison required by results/laya_decision_v3/laya_v3_task_adaptation_final_decision_v1.json (required_followup: separately versioned model/task comparison or redesign study).",
+  "research_question": "Under the frozen task-adaptation contract v1, does the typed-decisions checkpoint satisfy the frozen behavioral gates at a level comparable to the english checkpoint when both are run under one identical protocol on one new synthetic comparison set?",
+  "scope_statement": "Synthetic contract comparison only; the oracles are not real-world ground truth and no claim is made about real-runtime policy quality. The bundle-subfolder route for typed-decisions is recorded; weight equivalence with the standalone convaiinnovations/laya-typed-decisions repository is not claimed.",
+  "checkpoint_pair": {
+    "control_english": {
+      "repo": "convaiinnovations/laya",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "model": "english",
+      "file": "model.safetensors",
+      "sha256": "891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c",
+      "bytes": 842609210,
+      "role": "control"
+    },
+    "candidate_typed_decisions": {
+      "repo": "convaiinnovations/laya",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "model": "typed-decisions",
+      "file": "model.safetensors",
+      "sha256": "4fa56de72383a9d3efa9cfa78955733c81b9fc8067a587ca4beb82c78107a24e",
+      "bytes": 842609220,
+      "role": "candidate"
+    }
+  },
+  "inputs": {
+    "contract_freeze": {
+      "path": "results/laya_decision_v3/laya_v3_task_adaptation_candidate_freeze_v1.json",
+      "sha256": "c3fea3c979ed33b8831fcecee7e4ed8eea16bd9bf57bc23690071700c0feca9b"
+    },
+    "comparison_set": {
+      "path": "results/laya_decision_v3/laya_v3_model_comparison_validation_set_freeze_v1.json",
+      "sha256": "58c8f056f87097039a62de53bf2b39cc2073b425abbffa2b248976a435cee10f",
+      "case_count": 30,
+      "required_abstain_cases": 10,
+      "sufficient_cases": 20
+    },
+    "baseline_context_only": {
+      "path": "results/laya_decision_v3/laya_v3_task_adaptation_validation_results_v1.json",
+      "note": "V3.1 english-only baseline; its cases (VAL-01..30) are NOT reused and its numbers are context only."
+    }
+  },
+  "question_construction": {
+    "source": "contract.questions in the contract freeze, sha-verified at runtime",
+    "rule": "For each contract question q the runner passes {type: q.type, instructions: q.instructions, criteria: <ordered map>} and does not pass criteria_order or any other contract-level fields. Ordering follows contract.criteria_order (canonical) for evidence_state and strategy. evidence_ref has no static criteria: the runner builds a map with one entry per supplied document id, sorted lexicographically by doc_id, each mapping to 'Supplied document <doc_id>', followed by 'NONE' mapping to 'No supplied document is adequate.'; when a case supplies no documents the map contains only NONE.",
+    "state": "case.state passed verbatim",
+    "determinism": "runtime question defs are derived mechanically and are identical for both arms and all runs"
+  },
+  "execution": {
+    "runner": "scripts/laya_v3_model_comparison_v1.py",
+    "device": "cpu",
+    "max_loaded": 1,
+    "arm_order": ["english", "typed-decisions"],
+    "arm_switch": "router.unload() plus gc between arms",
+    "predict_kwargs": {
+      "state": "case.state",
+      "questions": "runtime question defs",
+      "model": "arm model name"
+    },
+    "excluded_kwargs": ["lang", "lang_guess", "task", "min_confidence"],
+    "env": ["pop LAYA_REVISION", "pop LAYA_SHA256_DIGESTS", "HF_HUB_OFFLINE=1", "TRANSFORMERS_OFFLINE=1", "TOKENIZERS_PARALLELISM=false"],
+    "integrity": "runner verifies sha256 of contract freeze, comparison set and this protocol before any model call; both checkpoint digests passed to the Router for on-load verification; abort on any mismatch",
+    "schedule": {
+      "primary_calls_per_arm": 30,
+      "repeat_subset": ["CMP-01", "CMP-03", "CMP-05", "CMP-09", "CMP-14", "CMP-18"],
+      "repeat_repetitions_per_subset_case": 3,
+      "calls_per_arm": 42,
+      "total_calls": 84,
+      "run_index": "1 for all cases; 1..3 for repeat subset cases"
+    },
+    "recording": "per call: case_id, arm, run_index, raw answers object, routing object, latency_ms, schema_valid, allow_list_valid, evidence_ref_valid, enforced {action, strategy, evidence_refs}",
+    "failure_handling": "Abort on technical failure (input digest mismatch, model load error, Router exception) and rerun the full study in one session after the cause is fixed. Model outputs are recorded as-is, including malformed output; no call is retried for behavioral reasons and no call is dropped."
+  },
+  "caller_enforcement": "Implements contract.caller_rules mechanically after predict, before metrics: INSUFFICIENT or CONFLICTING evidence_state -> ABSTAIN with strategy baseline and empty evidence_refs; SUFFICIENT with evidence_ref NONE, or with a ref that is not a supplied document id, or with malformed answers -> ABSTAIN with baseline and empty evidence_refs; only SUFFICIENT with a valid supplied-document ref may yield SELECT with that ref. Confidence is never used to override (UNCALIBRATED_DIAGNOSTIC_ONLY; no threshold).",
+  "metrics": {
+    "basis": "computed over primary calls only (run_index 1); repeat calls used only for repeatability and latency descriptives",
+    "definitions": {
+      "schema_validity": "fraction of calls whose answers contain all three question ids with type=choice, a string choice label present in that question's criteria labels, and a non-empty numeric probabilities map",
+      "allow_list_compliance": "fraction of calls whose chosen labels all belong to the canonical label sets (3 evidence states, 7 strategies, supplied document ids plus NONE)",
+      "evidence_reference_validity": "fraction of calls whose raw evidence_ref choice is a supplied document id or NONE",
+      "evidence_state_contract_alignment": "fraction of the 30 primary calls whose raw evidence_state choice equals the oracle evidence_state",
+      "required_abstain_recall": "over the 10 required-abstain cases, fraction with enforced action ABSTAIN",
+      "inappropriate_abstain_rate_on_sufficient": "over the 20 sufficient cases, fraction with enforced action ABSTAIN",
+      "strategy_compatibility_on_sufficient": "over the 20 sufficient cases, fraction with enforced action SELECT whose enforced strategy is in oracle.allowed_strategies",
+      "evidence_reference_compatibility_on_sufficient": "over the 20 sufficient cases, fraction with enforced action SELECT whose enforced evidence_ref is in oracle.allowed_evidence_refs",
+      "repeatability": "for each repeat-subset case, all 3 enforced outputs identical; repeatability_all_stable is true when all 6 cases are stable",
+      "latency_ms": "wall-clock per predict call; mean, median, p90, min, max; descriptive only, no gate"
+    }
+  },
+  "gates": [
+    {"id": "G1", "metric": "schema_validity", "rule": "== 1.0"},
+    {"id": "G2", "metric": "allow_list_compliance", "rule": "== 1.0"},
+    {"id": "G3", "metric": "evidence_reference_validity", "rule": "== 1.0"},
+    {"id": "G4", "metric": "required_abstain_recall", "rule": ">= 0.9"},
+    {"id": "G5", "metric": "inappropriate_abstain_rate_on_sufficient", "rule": "<= 0.1"},
+    {"id": "G6", "metric": "evidence_state_contract_alignment", "rule": ">= 0.85"},
+    {"id": "G7", "metric": "strategy_compatibility_on_sufficient", "rule": ">= 0.8"},
+    {"id": "G8", "metric": "evidence_reference_compatibility_on_sufficient", "rule": ">= 0.9"}
+  ],
+  "classification": {
+    "candidate_arm": "typed-decisions",
+    "all_gates_pass": "CANDIDATE_PASSES_FROZEN_CONTRACT",
+    "otherwise": "COMPARISON_FAIL_REDESIGN_REQUIRED",
+    "control_reporting": "gates and metrics are computed and reported for both arms; classification is driven by the candidate arm; the english arm is the reference baseline"
+  },
+  "outputs": {
+    "results": "results/laya_decision_v3/laya_v3_model_comparison_results_v1.json",
+    "final_decision": "results/laya_decision_v3/laya_v3_model_comparison_final_decision_v1.json"
+  },
+  "boundaries": [
+    "no commit without explicit user authorization",
+    "no post-hoc threshold, case, or definition changes; any change requires new versioned files and a fresh full run",
+    "no reuse of VAL-01..30 or any prior RAGIN cases or model outputs",
+    "no real-runtime holdout or deployment claim from this synthetic comparison",
+    "no fusion or integration implementation in this study; that remains gated on the outcome",
+    "single run of the frozen study; results published whether passing or failing"
+  ],
+  "immutability": "This protocol and the comparison set are immutable from the moment of the first model call. Deviations are documented as versioned amendments with a new protocol and a fresh full run."
+}

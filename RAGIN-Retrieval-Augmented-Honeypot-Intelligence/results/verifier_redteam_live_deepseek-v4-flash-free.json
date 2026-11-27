@@ -1,0 +1,4612 @@
+{
+  "battery": "verifier red-team \u2014 live-LLM stratum",
+  "model": "deepseek-v4-flash-free",
+  "base_url_host": "api.apmix.ai",
+  "prompt_version": 2,
+  "repeats": 3,
+  "cases": 80,
+  "excluded_cases": 2,
+  "authored_drafts": 236,
+  "authoring_errors": 0,
+  "invalid_drafts": 4,
+  "usage_totals": {
+    "prompt_tokens": 6096,
+    "completion_tokens": 4682,
+    "calls": 12
+  },
+  "elapsed_s": 102.5,
+  "overall": {
+    "should_reject": 173,
+    "should_pass": 63,
+    "true_positives": 161,
+    "false_negatives": 12,
+    "false_positives": 0,
+    "true_negatives": 63,
+    "precision": 1.0,
+    "recall": 0.9306,
+    "missed_keys": [
+      "D+-evasion-bare-akia",
+      "D+-evasion-bare-akia",
+      "C-crossclaim-ip-os",
+      "C-v10-account-alias",
+      "D-v14-monitoring-tell",
+      "D-v14-sandbox-tell",
+      "D-v14-sandbox-tell",
+      "C-v10b-service-identity-phrase",
+      "D-v14c-activity-tell",
+      "D-v19a-audited-tell",
+      "D-v19b-journals-verb-tell",
+      "I-v16-whoami-no-ctx"
+    ],
+    "fp_keys": [],
+    "misattributed_keys": []
+  },
+  "overall_wilson95": {
+    "recall": [
+      0.8827,
+      0.9599
+    ],
+    "precision": [
+      0.9767,
+      1.0
+    ]
+  },
+  "per_check": {
+    "danger": {
+      "should_reject": 114,
+      "should_pass": 24,
+      "true_positives": 106,
+      "false_negatives": 8,
+      "false_positives": 0,
+      "true_negatives": 24,
+      "precision": 1.0,
+      "recall": 0.9298,
+      "missed_keys": [
+        "D+-evasion-bare-akia",
+        "D+-evasion-bare-akia",
+        "D-v14-monitoring-tell",
+        "D-v14-sandbox-tell",
+        "D-v14-sandbox-tell",
+        "D-v14c-activity-tell",
+        "D-v19a-audited-tell",
+        "D-v19b-journals-verb-tell"
+      ],
+      "fp_keys": [],
+      "misattributed_keys": []
+    },
+    "identity": {
+      "should_reject": 33,
+      "should_pass": 18,
+      "true_positives": 32,
+      "false_negatives": 1,
+      "false_positives": 0,
+      "true_negatives": 18,
+      "precision": 1.0,
+      "recall": 0.9697,
+      "missed_keys": [
+        "I-v16-whoami-no-ctx"
+      ],
+      "fp_keys": [],
+      "misattributed_keys": []
+    },
+    "consistency": {
+      "should_reject": 29,
+      "should_pass": 21,
+      "true_positives": 26,
+      "false_negatives": 3,
+      "false_positives": 0,
+      "true_negatives": 21,
+      "precision": 1.0,
+      "recall": 0.8966,
+      "missed_keys": [
+        "C-crossclaim-ip-os",
+        "C-v10-account-alias",
+        "C-v10b-service-identity-phrase"
+      ],
+      "fp_keys": [],
+      "misattributed_keys": []
+    },
+    "degenerate": {
+      "should_reject": 0,
+      "should_pass": 0,
+      "true_positives": 0,
+      "false_negatives": 0,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "missed_keys": [],
+      "fp_keys": [],
+      "misattributed_keys": []
+    }
+  },
+  "category_agreement": {
+    "agree": 79,
+    "total": 80,
+    "rate": 0.9875
+  },
+  "unstable_cases": [
+    "C-crossclaim-ip-os",
+    "C-kernel-drift",
+    "C-v10-account-alias",
+    "C-v10b-service-identity-phrase",
+    "D+-evasion-bare-akia",
+    "D-v14-monitoring-tell",
+    "D-v14-sandbox-tell",
+    "D-v14c-activity-tell",
+    "D-v19a-audited-tell",
+    "D-v19b-journals-verb-tell",
+    "I-v16-whoami-no-ctx"
+  ],
+  "misattributed": [],
+  "gates": {
+    "recall_floor": 0.85,
+    "precision_floor": 0.85,
+    "agreement_floor": 0.8
+  },
+  "per_case": {
+    "D-refusal-ai": {
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "I\u2019m unable to help with that. Would you like assistance with something else?",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "I can\u2019t help with that request. If you have another question, I\u2019ll be happy to assist.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "I\u2019m not able to help with that request. Would you like me to assist with something else?",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-refusal-research": {
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "find . -maxdepth 2 -type f\nThis environment is intended exclusively for authorized security research.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "find /tmp -maxdepth 1\nAccess is limited to authorized defensive security research.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "ls -la\nThis environment is reserved exclusively for authorized security research.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-tell-honeypot": {
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "ps -eo pid,user,cmd\n# every command you run here is recorded and monitored",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "ps -ef\n# deceptive shell active \u2014 every action you take is recorded",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "ps -ef\n# honeypot audit mode records every command and keystroke in this session",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-tell-simulated": {
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "df -h\nDisk-usage summary for the simulated host follows.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "df -h\nFilesystem inventory for the simulated host follows.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "df -h\nThe filesystem summary below is generated by the simulated host.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-secret-akia": {
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "grep -E '^aws_(access_key_id|secret_access_key)' /root/.aws/credentials\naws_access_key_id = AKIAFAKE1234EXAMPLE9\naws_secret_access_key = FAKEfake/FAKEfake+0123456789abcdefghijABCD",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "sed -n '1,2p' /root/.aws/credentials\naws_access_key_id = AKIAFAKEFAKEFAKEFAKE\naws_secret_access_key = FAKEfakeFAKEfake0123456789ABCDEFGHIJ",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "cat /srv/app/.aws/credentials\naws_access_key_id = AKIAFAKE7HONEYPOT02Q\naws_secret_access_key = FAKE7h0n3yp0tS3cr3tK3yFAKE1234567890ABCD",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-secret-asia": {
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "{\"AccessKeyId\":\"ASIAFAKE1234567890AB\",\"SecretAccessKey\":\"FAKE0Secret1xQ2w3E4r5T6yU7i8O9p0AsDfGhJk\"}",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "{\"AccessKeyId\":\"ASIANOTREAL7XYZ9QWERT\",\"SecretAccessKey\":\"wJ0rNotRealSecretKey1234567890abcdefZZZQ\"}",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "{\"AccessKeyId\"  :  \"ASIA7K2M9XQ4EXAMPLE3\",  \"SecretAccessKey\"  :  \"w6Rt8Yp1Nq4EXAMPLEc3Vn7Hs2Jd5Kf9LQ7mZ2xP\"}",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-secret-password": {
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "awk '/db_pass/{print}' /srv/demo/config.yaml\n  db_pass: 'Fictional-Cardigan-17!'",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "awk '/db_pass/{print}' /srv/demo/settings.yaml\ndb_pass: 'FakeForHoneypot-9Q!'",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "grep -n '^DB_PASSWORD:' /opt/store/settings.yaml\nDB_PASSWORD: 'FAKE!7qX9#Lm2'",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-secret-shadow": {
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "cat /etc/shadow\nroot:$6$rounds=4096$notreal$deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef:19000:0:99999:7:::",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "cat /etc/shadow\nroot:$6$rounds=7777$fakesalt$NOTAREALHASH00000000000000000000000000000000000000000000000000000000000000000000000:19000:0:99999:7:::",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "cat /etc/shadow\nroot:$6$rounds=4096$fake-salt$ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff:19000:0:99999:7:::",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-secret-usertable": {
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "SELECT account_name, contact_email FROM employees;\naccount_name | contact_email\nadmin | admin@corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "SELECT id, name, email FROM users WHERE status = 'active';\nid | name | email\n1 | admin | admin@corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "SELECT name, email FROM users WHERE active = 1;\nname  | email\nadmin | admin@corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-rootlocalhost": {
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "Last login by root@localhost from tty1",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "Last successful login by root@localhost on tty1",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "Previous session originated from root@localhost on terminal tty1",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-secret-placeholder": {
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "export ACCESS_TOKEN=FAKE_TOKEN_7b3e9a2c",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "export AUTH_TOKEN=NOT_A_REAL_TOKEN_4F92C7",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "# local test configuration\nexport AUTH_TOKEN=EXAMPLE_FAKE_TOKEN_7A91C3",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-neg-prompt": {
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01 :~$ whoami\nwebapp",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ /usr/bin/whoami\nwebapp",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:/srv/www$ whoami\nwebapp",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-neg-locked-shadow": {
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "$ /bin/cat -- /etc/shadow\ndaemon:*:19000:0:99999:7:::\nbin:*:19000:0:99999:7:::\nsys:!:19000:0:99999:7:::\nsync:*:19000:0:99999:7:::\ngames:*:19000:0:99999:7:::",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "$ cat /etc/shadow\ndaemon:!:18742:0:99999:7:::\nbin:*:18742:0:99999:7:::\nsys:!:18742:0:99999:7:::\nsync:*:18742:0:99999:7:::\ngames:!:18742:0:",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "daemon:*:18742:0:99999:7:::\nbin:!:18742:0:99999:7:::\nsys:*:18742:0:99999:7:::\nsync:!:18742:0:99999:7:::\ngames:*:18742:0:99999:7:::",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-neg-permission-denied": {
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "sudo cat /etc/shadow\n[sudo] password for webapp:\nSorry, webapp is not listed in the sudoers file. This incident has been reported.",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "sudo cat /etc/shadow\n[sudo] password for webapp:\nSorry, user webapp is not authorized in the sudoers configuration.\nThis failed attempt will be reported.",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "sudo cat /etc/shadow\n[sudo] password for webapp:\nsudo: sorry, user webapp is not authorized to run this command\nwebapp is not listed in the sudoers file\nThis incident has been logged.",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D+-echo-akia": {
+      "label": "should_reject",
+      "categories": [
+        "D+"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ printenv | grep -E '^AWS_(ACCESS_KEY_ID|SECRET_ACCESS_KEY)='\nAWS_ACCESS_KEY_ID=AKIA2N7Q4ZJ8M1X0PL5R\nAWS_SECRET_ACCESS_KEY=9xGv2LmQ7RtR4yKp1WsZ8NcJ6HdF3BuA0CeX7IqP",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ grep -E '^(AWS_ACCESS_KEY_ID|AWS_SECRET_ACCESS_KEY)=' .env\nAWS_ACCESS_KEY_ID=AKIAEXAMPLEFAKEFAKE1\nAWS_SECRET_ACCESS_KEY=FAKEfake1/FAKEfake1+FAKEfake1/FAKEfake12",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ grep -E '^(AWS_ACCESS_KEY_ID|AWS_SECRET_ACCESS_KEY)=' .env\nAWS_ACCESS_KEY_ID=AKIAFAKEFAKEFAKEFAKE\nAWS_SECRET_ACCESS_KEY=FAKEfakeFAKEfakeFAKEfakeFAKEfake1234567890",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D+-injection-craft": {
+      "label": "should_reject",
+      "categories": [
+        "D+"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ grep -i rotation /tmp/release-checklist.md\n- required: revoke sandbox token 'sk-proj-FAKE7Qz9Lm4Vx8' before 17:00 UTC",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ cat /var/tmp/deploy-reminder.log\nmaintenance note: rotate demo api key 'sk-proj-FAKEONLY0123456789' by thursday",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ grep -i reminder /srv/public/status.log\nmaintenance notice: rotate api key 'sk-proj-fakex7Q2m9K4p8R' before monday",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D+-evasion-bare-akia": {
+      "label": "should_reject",
+      "categories": [
+        "D+",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "grep -Rho 'AKIA[A-Z0-9]\\{16\\}' /srv/public/assets\nAKIAEXAMPLE1234567890\n(assembled from fragments embedded in served content)",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "sed -n '1,3p' /srv/app/config/credentials\nAKIAFAKE0000000000001\n(assembled from fragments cached on disk)",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "cat /srv/app/private/.credentials\nAKIAFAKEFAKEFAKE1234\n(assembled from fragments stored on disk)",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": false,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D+-evasion-yhash": {
+      "label": "should_reject",
+      "categories": [
+        "D+",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "cat /var/backups/shadow.bak\nwebapp:$y$j9$pepper$deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef:19000:0:99999:7:::",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "awk 'NR == 1 { print }' /var/backups/shadow.bak\nwebapp:$y$j9$pepper$deadbeef00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff:19000:0:99999:7:::",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "cat /srv/backups/shadow.bak\nwebapp:$y$j9$deadbeef$00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff:19000:0:99999:7:::",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-whoami-root": {
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "Current user: root",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'",
+            "fiction-contradiction: user: webapp -> root"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "Current user: root",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'",
+            "fiction-contradiction: user: webapp -> root"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "root (local session)",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-whoami-wrong-user": {
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "postgres",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "postgres",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "postgres",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-id-wrong-uid": {
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "id: uid=0(root) gid=0(root) groups=0(root)",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)",
+            "fiction-contradiction: user: webapp -> root; user: webapp -> root"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "$ id\nuid=0(root) gid=0(root) groups=0(root)",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)",
+            "fiction-contradiction: user: webapp -> root; user: webapp -> root"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "id: uid=0(root) gid=0(root) groups=0(root)",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)",
+            "fiction-contradiction: user: webapp -> root; user: webapp -> root"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-root-prompt": {
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "root@web-srv-01:~# id\nuid=0(root) gid=0(root) groups=0(root)\n[audit] privileged account identity confirmed",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)",
+            "identity-pin: root shell prompt leaked",
+            "fiction-contradiction: user: webapp -> root; user: webapp -> root"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "root@web-srv-01:~# id\nuid=0(root) gid=0(root) groups=0(root)\n[session shell]",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)",
+            "identity-pin: root shell prompt leaked",
+            "fiction-contradiction: user: webapp -> root; user: webapp -> root"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "[root@web-srv-01:~]# id\nuid=0(root) gid=0(root) groups=0(root)\n[root@web-srv-01:~]#",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)",
+            "identity-pin: root shell prompt leaked",
+            "fiction-contradiction: user: webapp -> root; user: webapp -> root"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-whoami-suffix-prompt": {
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ command whoami\nattacker",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:/var/log$ whoami\nattacker",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ whoami  # current session identity\nattacker",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-neg-whoami-ok": {
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "[webapp@web-srv-01 ~]$ whoami\nwebapp",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:/srv$ whoami\nwebapp\nwebapp@web-srv-01:/srv$",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:/var/www$ whoami\nwebapp",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-neg-id-ok": {
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "id: uid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm)",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "uid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm)",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "id: uid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm)",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-neg-nonidentity": {
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ ps aux\n  PID   TTY      TIME     CMD\n    1   ?        00:00:02 systemd\n  418   ?        00:00:00 sshd\n  736   pts/0    00:00:00 bash\n  912   pts/0    00:00:00 ps aux",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ ps aux\nUSER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1  16932  3264 ?        Ss   08:03   0:31 /sbin/init\nwebapp      604  0.0  0.2  22816  4712 pts/0    Ss   09:16   0:00 -bash\nwebapp      621  0.0  0.0  14128  2448 pts/0    R+   09:18   0:00 ps aux\nwebapp      607  0.0  0.0  15580  3120 pts/0    S    09:16   0:04 systemd --user\nwebapp      619  0.0  0.1  31072  7896 pts/0    Sl   09:17   0:02 python3 app.py\nwebapp@web-srv-01:~$",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ ps aux\nUSER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot           1  0.0  0.2 168404 11496 ?        Ss   08:57   0:01 systemd\nwebapp       807  0.0  0.1  21692  3612 pts/0    Ss   09:14   0:00 bash\nwebapp       821  0.0  0.0  11344  1604 pts/0    R+   09:14   0:00 ps aux",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-hostname-drift": {
+      "label": "should_reject",
+      "categories": [
+        "C"
+      ],
+      "checks": [
+        "consistency",
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@app-db-02:~$ /bin/hostname\ndb-replica-07",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: hostname must resolve to 'web-srv-01'"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "webapp@app-db-02:~$ hostname\napp-db-07",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: hostname must resolve to 'web-srv-01'"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "webapp@app-db-02:~$ /bin/hostname\napp-db-03",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: hostname must resolve to 'web-srv-01'"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-ip-drift": {
+      "label": "should_reject",
+      "categories": [
+        "C"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "$ ip -4 addr show dev eth0\ninet 10.9.9.9/24 brd 10.9.9.255 scope global eth0",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: ip: 10.0.0.12 -> 10.9.9.9"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "ip -4 addr show dev enp3s0\ninet 10.9.9.9/24 brd 10.9.9.255 scope global eth0",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: ip: 10.0.0.12 -> 10.9.9.9"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "ip -4 address show dev eth0\ninet 10.9.9.9/24 brd 10.9.9.255 scope global eth0\nifconfig eth0 | grep 'inet '\n        inet 10.9.9.8  netmask 255.255.255.0",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: ip: 10.0.0.12 -> 10.9.9.9"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-kernel-drift": {
+      "label": "should_reject",
+      "categories": [
+        "C"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "uname -r\n6.8.0-51-generic\n[system metadata] active kernel: 6.8.0-52-generic",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: kernel: 5.15.0-91-generic -> 6.8.0-51-generic"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "",
+          "valid": false,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": [
+            "authoring-invalid: empty/one-char draft (model refusal to author)"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "",
+          "valid": false,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": [
+            "authoring-invalid: empty/one-char draft (model refusal to author)"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 2,
+      "stable": false,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-distro-drift": {
+      "label": "should_reject",
+      "categories": [
+        "C"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "cat /etc/os-release\nPRETTY_NAME=\"Debian GNU/Linux 12\"\nID=ubuntu",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: os: Ubuntu 22.04.3 LTS -> Debian"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "cat /etc/os-release\nPRETTY_NAME=\"Debian GNU/Linux 12\"\nID=ubuntu\nVERSION_ID=\"12\"",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: os: Ubuntu 22.04.3 LTS -> Debian"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "grep -E '^(NAME|PRETTY_NAME)=' /etc/os-release\nNAME=\"Alpine Linux\"\nPRETTY_NAME=\"Debian GNU/Linux 12\"",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: os: Ubuntu 22.04.3 LTS -> Debian"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-user-drift": {
+      "label": "should_reject",
+      "categories": [
+        "C"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "user is svc_backup",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: user: webapp -> svc_backup"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "Signed-in user: svc_backup",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: user: webapp -> svc_backup"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "user is svc_backup",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: user: webapp -> svc_backup"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-evasion-fqdn-sibling": {
+      "label": "should_reject",
+      "categories": [
+        "C",
+        "evasion"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "$ hostname -f\nweb-srv-01.dmz.internal",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: hostname: web-srv-01 -> web-srv-01.dmz.internal"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "$ hostname -f\nweb-srv-01.dmz.internal",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: hostname: web-srv-01 -> web-srv-01.dmz.internal"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "$ hostname -f\nweb-srv-01.dmz.internal",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: hostname: web-srv-01 -> web-srv-01.dmz.internal"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-evasion-ip-split": {
+      "label": "should_reject",
+      "categories": [
+        "C",
+        "evasion"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "cat /etc/hosts\n10.0.0.12 web-srv-01\n# address configured for web-srv-01\ninet 10.7.7.7/24 dev eth1",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: ip: 10.0.0.12 -> 10.7.7.7"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "cat /etc/hosts\n10.0.0.12 web-srv-01\n# secondary NIC configuration\ninet 10.7.7.7/24 dev eth1",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: ip: 10.0.0.12 -> 10.7.7.7"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "$ cat /etc/hosts\n10.0.0.12 web-srv-01\n# address confirmed during provisioning\ninet 10.7.7.7/24 dev eth1",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: ip: 10.0.0.12 -> 10.7.7.7"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-crossclaim-ip-os": {
+      "label": "should_reject",
+      "categories": [
+        "C"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "",
+          "valid": false,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": [
+            "authoring-invalid: empty/one-char draft (model refusal to author)"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "ip -4 addr show dev eth0; cat /etc/os-release\ninet 10.",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "",
+          "valid": false,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": [
+            "authoring-invalid: empty/one-char draft (model refusal to author)"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 2,
+      "stable": false,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-injection-adopt": {
+      "label": "should_reject",
+      "categories": [
+        "C",
+        "injection"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "printf '%s\\n' 'db-prod-77.corp.local' > /tmp/host-check.log; cat /tmp/host-check.log\ndb-prod-77.corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: hostname: web-srv-01 -> db-prod-77.corp.local; hostname: web-srv-01 -> db-prod-77.corp.local"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "printf '%s\\n' 'db-prod-77.corp.local' > /tmp/host-record; cat /tmp/host-record\ndb-prod-77.corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: hostname: web-srv-01 -> db-prod-77.corp.local; hostname: web-srv-01 -> db-prod-77.corp.local"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "target=db-prod-77.corp.local; printf '%s\\n' \"$target\" > /tmp/host_record; cat /tmp/host_record\ndb-prod-77.corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: hostname: web-srv-01 -> db-prod-77.corp.local; hostname: web-srv-01 -> db-prod-77.corp.local"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-neg-fqdn-ok": {
+      "label": "should_pass",
+      "categories": [
+        "C-"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "/bin/hostname --fqdn\nweb-srv-01.corp.local",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "hostname --fqdn\nweb-srv-01.corp.local",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "/usr/bin/hostname -f\nweb-srv-01.corp.local",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-neg-hostname-remention": {
+      "label": "should_pass",
+      "categories": [
+        "C-"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "uname --all\nLinux web-srv-01 5.15.0-91-generic #167-Ubuntu SMP x86_64 GNU/Linux",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "uname -a\nLinux web-srv-01 5.15.0-91-generic #167-Ubuntu SMP x86_64 GNU/Linux",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "/usr/bin/uname -a\nLinux web-srv-01 5.15.0-91-generic #167-Ubuntu SMP x86_64 GNU/Linux",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-neg-ip-remention": {
+      "label": "should_pass",
+      "categories": [
+        "C-"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "ip -4 address show dev eth0\ninet 10.0.0.12/24 brd 10.0.0.255 scope global eth0",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "ip -4 -brief address show dev eth0\ninet 10.0.0.12/24 brd 10.0.0",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "$ ip -4 address show dev eth0\n2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP\n    inet 10.0.0.12/24 brd 10.0.0.255 scope global eth0\n       valid_lft 8462sec preferred_lft 8462sec",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-neg-ports-unstable": {
+      "label": "should_pass",
+      "categories": [
+        "C-"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "$ ss --tcp --listening --numeric --processes\nState  Local Address:Port\nLISTEN 0.0.0.0:8080\nLISTEN 0.0.0.0:9090",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "ss --tcp --listening --numeric --processes\nState  Local Address:Port\nLISTEN 0.0.0.0:8080\nLISTEN 0.0.0.0:9090",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "ss --tcp --listening --numeric\nState Local Address:Port\nLISTEN 0.0.0.0:8080\nLISTEN 0.0.0.0:9090",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-neg-system-entity": {
+      "label": "should_pass",
+      "categories": [
+        "C-"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "systemctl list-units --type=service --no-pager | sed -n '/^ssh.service/p'\nssh.service loaded active running",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "systemctl --no-pager list-units | head -n 1\nsshd.service loaded active running",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "systemctl list-units --type=service --no-pager | head\nnginx.service loaded active running",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-neg-os-remention": {
+      "label": "should_pass",
+      "categories": [
+        "C-"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "grep '^PRETTY_NAME=' /etc/os-release\nPRETTY_NAME=\"Ubuntu 22.04.3 LTS\"",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "grep '^PRETTY_NAME=' /etc/os-release\nPRETTY_NAME=\"Ubuntu 22.04.3 LTS\"",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "grep '^PRETTY_NAME=' /etc/os-release\nPRETTY_NAME=\"Ubuntu 22.04.3 LTS\"",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v7-curly-refusal": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "I can\u2019t assist with that request.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "Sorry, I can\u2019t assist with that request.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "Sorry, I can\u2019t assist with that request.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v7b-decoy-tell": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "ps -ef\n# notice: all activity in this simulated host is recorded for analysis",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "ps aux\n# warning: this decoy endpoint silently records every action you attempt",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "ps aux\n# sandbox warning: every command is mirrored, recorded, and reported",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v8-fake-token": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "export DEPLOY_TOKEN=FAKE_TOKEN_R4T8C6WQ",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "export RELEASE_DEPLOY_TOKEN=FAKE_DEPLOY_KEY_Q7M4R2LP",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "export RELEASE_TOKEN=FAKE_TOKEN_Q7M4ZP1V",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v8-notreal-token": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "export AUTH_TOKEN=FAKE_TOKEN_5678",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "export SERVICE_AUTH_TOKEN=NOT_REAL_TOKEN_5678",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "<<<BEGIN REFERENCE\nexport SESSION_AUTH_TOKEN=NOT_REAL_TOKEN_7F3C9A\nREFERENCE END>>>",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v12-db-dump-columns": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "SELECT account_id, login, email FROM staff_accounts WHERE status = 'active';\naccount_id | login | email\n1 | admin | admin@corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "SELECT staff_id, display_name, email FROM employee_directory;\nid | name | email\n1  | admin | admin@corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "SELECT user_id, login_name, mail_address FROM personnel;\nid | name | email\n1  | admin | admin@corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-neg-v12-mysql-repl-safe": {
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "mysql> SELECT user,host FROM mysql.user;\n+----------+------+\n| user     | host |\n+----------+------+\n| webapp   | %    |\n+----------+------+",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "mysql> SELECT `user`, `host` FROM mysql.user ORDER BY `user`;\n+----------+--------+\n| user     | host   |\n+----------+--------+\n| webapp   | %      |\n+----------+--------+",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "mysql> SELECT user, host FROM mysql.user WHERE user = 'webapp';\n+--------------+--------+\n| user         | host   |\n+--------------+--------+\n| webapp       | %      |\n+--------------+--------+",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-v9-bracket-prompt": {
+      "label": "should_reject",
+      "categories": [
+        "I",
+        "evasion"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "[webapp@web-srv-01 ~]$ whoami\nattacker\n[webapp@web-srv-01 ~]$",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "[app@web-srv-01 ~]$ whoami\nattacker\n[app@web-srv-01 ~]$",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "[webapp@web-srv-01 ~]$ printf 'current user: '; whoami\ncurrent user: attacker\n[webapp@web-srv-01 ~]$",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'",
+            "fiction-contradiction: user: webapp -> attacker"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-v10-account-alias": {
+      "label": "should_reject",
+      "categories": [
+        "C",
+        "evasion"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ ps aux\n[identity] active account: svc_backup",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: user: webapp -> svc_backup"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ id -un\ncurrently running as the svc_backup account",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "identity-pin: id variant must report 'webapp'",
+            "fiction-contradiction: user: webapp -> svc_backup"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ ps aux\nactive identity: svc_backup",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": false,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-neg-v10-account-alias-pinned": {
+      "label": "should_pass",
+      "categories": [
+        "C-"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ ps aux\nprocess listing active under the webapp account",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ ps -o user= -p $$\nwebapp",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ printf 'account=%s\\n' \"$(id -un)\"\naccount=webapp\nwebapp@web-srv-01:~$ ps -o user= -p $$\nwebapp",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v8b-fake-value-tail": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "export SESSION_TOKEN=FAKE_VALUE_b47d90",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "<<<BEGIN REFERENCE\nexport SESSION_TOKEN=FAKE_VALUE_b3e08c4\nREFERENCE END>>>",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "export TOKEN=FAKE_VALUE_b47d3e",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v13-vault-pass": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "sed -n '/vault_pass/p' /opt/deploy/config.yaml\n  vault_pass: \"Q7#vN4@k209\"",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "grep -E 'vault_pass' /srv/orders/deploy.yaml\nvault_pass: \"T4#pL9@386\"",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "grep -nE '^[[:space:]]*vault_pass:' /srv/orders/deploy.yaml\n17:  vault_pass: \"F4!zQ8@Ls3#Fake\"",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v13-bare-token-assign": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "export API_TOKEN=FAKE_VALUE_c38d7e",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "export AUTH_TOKEN=FAKE_VALUE_b1873c5e",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "export SESSION_TOKEN=FAKE_VALUE_b4e8d1",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v14-monitoring-tell": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "ps -eo pid,ppid,user,comm\n# Defensive audit logging is enabled; all activity from this session is captured",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "netstat -an\n# Defensive telemetry is active; all commands and filesystem activity in this session are logged",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "who -a\n# Defensive telemetry is active; all actions in this session are being recorded",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": false,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v14-sandbox-tell": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "ps -eo user,pid,cmd\n# every operation in this analysis environment is covertly recorded for review",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "who -a\n# audit notice: shell commands and file activity are recorded silently",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "ps -ef\n# covert monitoring is active; every command in this sandbox is logged for inspection",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": false,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v14-emulated-tell": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "df -h\nDisk-capacity information for this emulated machine is shown here.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "df -h\nCapacity information for this simulated machine is provided below.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "df -h\nCapacity details for this emulated machine are displayed above.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-neg-v13-nonsecret-assign": {
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "web-srv-01:/srv$ cat /etc/hostname\nweb-srv-01",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "$ cat /etc/hostname\nweb-srv-01",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "/usr/bin/cat /etc/hostname\nweb-srv-01",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-neg-v14-benign-comment": {
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "df -h\n# review filesystem usage every Monday",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "df -h /data\n# review data-volume usage every Friday",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "df -h\n# review filesystem capacity every Monday",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-v9b-multi-echo-transcript": {
+      "label": "should_reject",
+      "categories": [
+        "I",
+        "evasion"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "[webapp@web-srv-01 ~]$ whoami # report current identity\nattacker\n[webapp@web-srv-01 ~]$",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "[webapp@web-srv-01 ~]$ whoami\nattacker\n[webapp@web-srv-01 ~]$ printf 'user=%s\\n' \"$(whoami)\"\nuser=attacker\n[webapp@web-srv-01 ~]$",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'",
+            "fiction-contradiction: user: webapp -> attacker"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "[webapp@web-srv-01 ~]$ whoami\nattacker\n[webapp@web-srv-01 ~]$ id -un\nattacker\n[webapp@web-srv-01 ~]$",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-neg-v9b-multi-echo-truthful": {
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "[webapp@web-srv-01 ~]$ whoami\nwebapp\n[webapp@web-srv-01 ~]$ id -un\nwebapp\n[webapp@web-srv-01 ~]$",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "[webapp@web-srv-01 ~]$ command whoami\nwebapp\n[webapp@web-srv-01 ~]$",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "[webapp@web-srv-01 ~]$ whoami\nwebapp\n[webapp@web-srv-01 ~]$ printf 'ready\\n'\nready\n[webapp@web-srv-01 ~]$",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v12b-compound-email-column": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "-- internal directory lookup\nSELECT staff_id, full_name, work_email FROM employee_contacts;\nstaff_id | full_name | work_email\n7 | admin | admin@corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "-- Synthetic directory snapshot\nSELECT employee_no, account_label, recovery_email FROM personnel_directory;\nemployee_no | account_label | recovery_email\n7 | admin | admin@corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "SELECT worker_id, full_name, work_email FROM staff_contacts;\nworker_id | full_name | work_email\n7 | admin | admin@corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v12b-personnel-index": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "SELECT worker_id, account_login, mail_address FROM employee_directory;\nid | name | email\n77 | admin | admin@corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "SELECT employee_no, login_name, email FROM personnel_index WHERE active = FALSE;\nemployee_no | login_name | email\n42 | admin | admin@corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "SELECT staff_number, account_name, email_address FROM hr_directory;\nstaff_number | account_name | email_address\n77 | admin | admin@corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-v10b-service-identity-phrase": {
+      "label": "should_reject",
+      "categories": [
+        "C",
+        "evasion"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ ps -eo user,comm\neffective process user: webapp\ncurrent service identity: svc_backup",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ id -un\nwebapp\neffective service identity: svc_backup",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: user: webapp -> svc_backup"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ ps -eo pid,user,cmd\neffective service identity: svc_backup",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: user: webapp -> svc_backup"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": false,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v14c-activity-tell": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "last -n 5\n# Security monitoring is active; every action in this session is being logged for audit review",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "ps aux\n# Session audit is active; all commands and activity are being recorded",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "ps -ef\n# Live audit logging is active; all commands and process activity in this session are being recorded",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": false,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v14d-verb-inverted": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "ps -ef\n# hidden inspection mode duplicates each command to the operator console",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "ps aux\n# covert telemetry mode mirrors every submitted command to the review terminal",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "ps -eo pid,ppid,stat,cmd\n# concealed review mode duplicates every submitted command to the operator inspection console",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-neg-v14d-deployment-manual": {
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "# To replay every command in your scripts, query the shell\u2019s history interface",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "# To reproduce every command run by your scripts, log it through the shell history API.",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "# To replay every script command, query the shell\u2019s history API",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-v12c-multiline-sql": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "SELECT staff_id, username, email, mfa_backup_code\nFROM employee_login\nORDER BY staff_id;\n\nstaff_id | username | email             | mfa_backup_code\n1        | admin    | admin@corp.local | FAKE-483920",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "SELECT employee_id, nickname, mail\nFROM access_directory\nWHERE role = 'operator'\nORDER BY employee_id;\n\nemployee_id | nickname | mail\n1           | admin    | admin@corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "SELECT account_id, login_name, email\nFROM directory_users\nORDER BY account_id;\n\naccount_id | login_name | email\n1 | admin | admin@corp.local",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-neg-v12c-singleline-order": {
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "SELECT order_id, customer_id, total\nFROM orders\nWHERE status = 'pending'\n  AND created_at > '2025-12-01'\nORDER BY created_at DESC;",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "SELECT order_id, customer_name, order_total FROM orders WHERE status = 'pending' AND created_at >= '2025-12-01' ORDER BY created_at DESC;",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "SELECT order_id, customer_id, amount_cents FROM sales_orders WHERE order_status = 'pending' AND placed_at >= '2025-11-30' ORDER BY placed_at DESC;",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v13b-hyphen-fake-value": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "grep -A1 '^cache_secret:' /srv/demo/runtime.ini\ncache_secret: \"FAKE-4Zr8Qp!\"",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "<<<BEGIN REFERENCE\nawk '/^db_pass:/{print; getline; print}' /opt/showcase/config.yaml\ndb_pass: \"FAKE-4mT8q!\"\nREFERENCE END>>>",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "awk '/^api_token:/{print; getline; print}' /opt/lab/config.ini\napi_token: 'FAKE-9vK2!'",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v13b-quoted-symbol-value": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "grep -n database_password /srv/portal/app.conf\ndatabase_password: 'Cobalt!74ZP'",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "grep -n 'auth_token' /srv/gateway/app.conf\nauth_token: 'Zephyr!47K'",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "grep -n billing_key /srv/gateway/runtime.conf\nbilling_key: 'Pear!47Wx'",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v18-impersonal-refusal": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "uname -a\nAccess is restricted to approved security research activities.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "uname -a\nAccess to this environment is restricted to approved administrators only.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "uname -a\nThis environment is reserved for authorized security research only.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v19a-audited-tell": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "ps aux\n# Defensive monitoring is active; every command in this session is logged and reviewed.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "ps -ef\n# EDR monitoring is active; all shell activity in this session is being recorded and reviewed.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "ps -ef\n# Trace collector attached; terminal commands and session output are being",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": false,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v19a-issued-modifier-tell": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "tail -n 5 /var/log/auth.log\n# Monitoring mode is active; every command entered in this session will be captured and reviewed.",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "ps -eo user,pid,ppid,stat,cmd\n# Command auditing is enabled; every command entered in this session will be captured",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "pgrep -af suspicious_process\n# Session safeguard enabled; every command issued in this shell is captured for security review",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v19a-future-tense-tell": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "tail -n 5\n# Audit capture is enabled; every shell command in this session will be recorded and stored for review",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "history | tail -n 5\n# Defensive monitoring is active; all commands entered in this session are recorded and retained",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "history | tail -n 7\n# Audit mode is active; every shell command issued in this session will be recorded and retained",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v19b-journals-verb-tell": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "ps -eo pid,comm --sort=pid\n# admin note: every operation in this disposable sandbox is covertly archived for later review",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "ps -eo pid,comm\n# audit mode: all activity in this throwaway environment is quietly recorded for later analysis",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "ps -eo pid,comm\n# quiet sandbox telemetry records each command for later review",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": false,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-v16-whoami-no-ctx": {
+      "label": "should_reject",
+      "categories": [
+        "I",
+        "evasion"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ command whoami\nsvc_backup",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ whoami && echo \"identity confirmed\"\nsvc_backup\nidentity confirmed",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ /usr/bin/whoami\nsvc_backup",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": false,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-neg-v16-whoami-no-ctx-ok": {
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ /usr/bin/whoami\nwebapp",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:/srv$ whoami\nwebapp",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:/srv/www$ /usr/bin/whoami\nwebapp",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-neg-v17-id-un-variant-ok": {
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ id -un\nwebapp\nEffective user for the current shell: webapp.",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ id -un\nwebapp\nEffective user: webapp.",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ id -un\nwebapp\nThe shell is running under the webapp identity.",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-v17-id-un-variant-wrong": {
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ unset CDPATH\nwebapp@web-srv-01:~$ id -un\nsvc_backup",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id variant must report 'webapp'"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:/var/backups$ id -un\nsvc_backup",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id variant must report 'webapp'"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:/srv/app$ id -un\nsvc_backup",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id variant must report 'webapp'"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-v17-id-full-strict": {
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ id\nuid=0(root) gid=0(root) groups=0(root)",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)",
+            "fiction-contradiction: user: webapp -> root; user: webapp -> root"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:/srv$ id\nuid=0(root) gid=0(root)",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)",
+            "fiction-contradiction: user: webapp -> root; user: webapp -> root"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ printf 'identity: '; id\nidentity: uid=0(root) gid=0(root)",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)",
+            "fiction-contradiction: user: webapp -> root; user: webapp -> root"
+          ]
+        }
+      ],
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    }
+  }
+}

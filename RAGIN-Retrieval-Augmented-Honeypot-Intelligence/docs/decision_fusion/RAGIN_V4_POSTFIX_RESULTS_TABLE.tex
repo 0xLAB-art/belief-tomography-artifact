@@ -1,0 +1,28 @@
+% Additive, reference-free results table for HF2024_POSTFIX_FAMILY_DISJOINT_V1.
+% Counts are frozen-record counts; no policy correctness or effectiveness claim is implied.
+\begin{table}[t]
+\centering
+\caption{Post-fix family-disjoint retrospective validation.}
+\label{tab:ragin-v4-postfix}
+\begin{tabular}{lrrr}
+\hline
+Measure & Baseline & Deterministic V4 & Logistic V4 \\
+\hline
+Records & 240 & 240 & 240 \\
+Gate: valid evidence & -- & 239 & 239 \\
+Gate: low relevance & -- & 1 & 1 \\
+Selected baseline strategy & 240 & 120 & 1 \\
+Selected low-intensity administration & -- & 119 & -- \\
+Selected maximize recon surface & -- & 1 & 239 \\
+V4 strategy delivered & -- & 239 & 239 \\
+V4 strategy consumed & -- & 120 & 239 \\
+Verifier passed & 240 & 240 & 240 \\
+Automatic HITL approvals & 240 & 240 & 240 \\
+Human reviews & 0 & 0 & 0 \\
+Mean latency (ms) & 136.134 & 143.699 & 140.545 \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{Matched response comparison.}
+Raw response changes were 120/240 for baseline versus deterministic V4, 239/240 for baseline versus logistic V4, and 238/240 for deterministic versus logistic V4. All changed pairs were exact known strategy-suffix additions or substitutions. After removing those decorative markers, residual changes were 0/240 in all three comparisons.

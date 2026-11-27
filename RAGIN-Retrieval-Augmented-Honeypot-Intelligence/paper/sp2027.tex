@@ -1,0 +1,110 @@
+\documentclass[journal,compsoc]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric,patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\lstdefinestyle{code}{basicstyle=\ttfamily\scriptsize,breaklines=true,frame=single,framerule=0pt,rulecolor=\color{black!30},columns=fullflexible,keepspaces=true,aboveskip=3pt,belowskip=3pt}
+\lstset{style=code}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\newtheorem{property}{Property}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\usepackage{enumitem}
+\usepackage{xspace}
+\usepackage{balance}
+\setlist{itemsep=1pt,topsep=2pt}
+\setlength{\textfloatsep}{5pt plus 1pt minus 2pt}
+\setlength{\floatsep}{4pt plus 1pt minus 2pt}
+\setlength{\intextsep}{5pt plus 1pt minus 2pt}
+\def\SPSubmission{}
+
+\graphicspath{{../figures/}}
+
+\newcommand{\system}{RAGIN\xspace}
+\newcommand{\RAGIN}{RAGIN\xspace}
+\newcommand{\attck}{ATT\&CK\xspace}
+\newcommand{\eg}{e.g.,\xspace}
+\newcommand{\ie}{i.e.,\xspace}
+\newcommand{\etal}{et al.\xspace}
+
+\begin{document}
+
+\title{The Intelligence Ladder: Pricing AI Capabilities in a Verified-Serving Deception Honeypot}
+\author{Anonymous~Submission\thanks{Manuscript submitted to IEEE Transactions on Dependable and Secure Computing. Artifact, preregistration documents, and analysis code available at the anonymized repository upon acceptance.}\thanks{This work was conducted on infrastructure owned and operated by the authors. No external funding was received. The authors declare no conflicts of interest.}}
+\maketitle
+
+\begin{abstract}
+How much intelligence can a deception endpoint spend crafting its lie before
+that intelligence becomes the risk? We
+study it with RAGIN, a verified deception loop in which retrieval-grounded
+generation proposes a response, a fiction graph and deterministic checks
+decide whether it may be served, and vetted content is the fail-safe. No
+generative honeypot to date states a serving contract for its model's
+output; RAGIN's contribution is that contract, and a ladder analysis that
+prices every intelligence rung against its cheapest certifiable
+competitor. A paired
+90-scenario ablation reports that grounding lifts the analysis-channel
+technique detection by $+0.317$ (95\% CI $[+0.162,+0.480]$) and actor
+attribution by $+0.140$ ($[+0.083,+0.197]$) while persona realism is
+unchanged; a fresh live-model rerun and a checkpoint-disjoint juror
+confirm the differential is keyword matching, not substantive CTI
+quality---the analysis channel prices retrieval, it does not measure
+served deception quality.
+On the served-text channel we report no capability gain: an echo-guarded audit
+of our scorer invalidates the raw numbers, zeroing 97 of 218 rows. Verification
+is measured where drafts violate the fiction: across 778 drafts from three
+author families the serving path rejected 554 of the 572 invariant-violating
+drafts and admitted 18 while refusing 17 of 206 benign ones. Purpose-built probes bound
+the gate: it stops six of seven fluent, tell-free cases and all ten credential
+formats after repair, but misses both prompt-injection cases; exposure to a real
+credential is thus bounded by canary-registry discipline, not the verifier. In a paired thirty-turn adversarial workload under a pre-registered
+protocol, five attacker personas drive both surfaces over SSH to the
+turn cap: no persistence or bait-capture effect is measurable, and the
+one separating interval---planted artifacts returned on adversarial
+reads---replicates confirmatorily under a family-disjoint attacker
+brain (6/10 versus 0/10, $p=0.011$; risk difference $0.60$, CI
+$[0.30, 0.90]$), and a direct control shows stock cowrie's static
+filesystem cannot serve planted files without restart---the contrast
+measures dynamic serving capability stock surfaces structurally lack. A disclosed
+three-checkpoint panel within one model family---machine labels, not
+human ones---scores 120 cases at Fleiss $\kappa=0.81$. The result is a measured boundary around
+generative deception: grounding buys intelligence the analysis channel
+keeps, the gate bounds what may be served and publishes its own misses,
+and the deterministic floor absorbs everything the model cannot
+certify.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Cyber deception, honeypots, retrieval-augmented generation, large language
+models, MITRE \attck, verified serving.
+\end{IEEEkeywords}
+
+\input{sections/introduction}
+\input{sections/sp_threat_model}
+\input{sections/design}
+\input{sections/sp_related}
+\input{sections/sp_evaluation}
+\input{sections/ethics}
+\input{sections/conclusion}
+
+\input{references}
+\appendices
+\input{sections/sp_supplement}
+\input{sections/sp_threats}
+\input{sections/sp_appendix}
+
+\balance
+\end{document}

@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "generated_at": "2026-11-05T19:51:36Z",
+    "cowrie_path": "data/cowrie_logs/cowrie_merged.json",
+    "ragin_path": "results/live_benchmark.json"
+  },
+  "ragin": {
+    "source": "ragin_live_benchmark",
+    "n_sessions": 30,
+    "engagement_rate": 0.96,
+    "ttps_detected": 5,
+    "ttps_unique": 13,
+    "detection_precision": 0.74,
+    "honeytokens_deployed": 30,
+    "honeytokens_triggered": 0,
+    "composite_score": 0.697,
+    "perf": {
+      "mean_response_ms": 7287,
+      "throughput_rps": null
+    }
+  },
+  "cowrie": {
+    "source": "cowrie_vps_deployment",
+    "n_sessions": 16,
+    "engagement_rate": 0.8125,
+    "ttps_detected": 13,
+    "ttps_unique": 10,
+    "detection_precision": 1.0,
+    "honeytokens_deployed": 16,
+    "honeytokens_triggered": 0,
+    "composite_score": 0.4125,
+    "perf": {
+      "mean_response_ms": 0.0,
+      "throughput_rps": null
+    },
+    "all_ttps_observed": [
+      "T1003.008",
+      "T1005",
+      "T1021.004",
+      "T1033",
+      "T1049",
+      "T1057",
+      "T1082",
+      "T1083",
+      "T1105",
+      "T1222"
+    ],
+    "command_corpus_size": 51
+  },
+  "delta": {
+    "engagement_rate_delta": 0.147,
+    "ttps_unique_delta": 3,
+    "honeytokens_deployed_delta": 14,
+    "composite_delta": 0.284,
+    "composite_pct": 69.0
+  },
+  "interpretation": {
+    "engagement": "Cowrie logs every successful auth as a session; RAGIN's 96.7% engagement comes from 30 single-turn probes via the gateway \u2014 apples-to-oranges. Normalize on session_count or turn_count when comparing.",
+    "ttps": "RAGIN surfaces 13 unique MITRE techniques vs Cowrie's 10, but the corpus sizes differ: 51 Cowrie commands vs 218 RAGIN queries across CTI/Actor/Persona suites. The richer RAGIN corpus is what enables wider TTP coverage; Cowrie's TP list reflects only the commands actually executed.",
+    "honeytokens": "RAGIN injected 30 honeytokens across 30 sessions; Cowrie v3.0.x has no honeytoken engine. This is the primary RAGIN differentiator: adversarial value-add, not raw emulation.",
+    "composite": "Composite score RAGIN=0.697 vs Cowrie=0.4125. Cowrie scores low here because the EffectivenessMetrics composite weights honeytokens + persona accuracy + adaptive strategy \u2014 none of which Cowrie produces. Use this delta to argue the differentiation, not pure TTP recall."
+  }
+}

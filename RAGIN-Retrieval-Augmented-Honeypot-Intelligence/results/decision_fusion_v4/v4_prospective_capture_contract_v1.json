@@ -1,0 +1,54 @@
+{
+  "acquisition_target_independent_groups": 260,
+  "allowed_source_classes": [
+    "NATURAL_FIELD",
+    "CONTROLLED_REAL_HONEYPOT",
+    "CONTROLLED_REAL_ADMIN"
+  ],
+  "eligibility_exclusions": [
+    "synthetic command generation",
+    "LLM-generated attacker sessions",
+    "replays presented as new captures",
+    "benchmark fixtures",
+    "old 120",
+    "old 169",
+    "V3/V4 synthetic cases",
+    "records lacking resolvable capture lineage"
+  ],
+  "final_holdout_target": 240,
+  "independence_unit": "one underlying native capture session; derived records from one native session count as one group; replay of one source counts as zero new groups",
+  "labeling_policy": "no security labels, gate outcomes, policy outputs, strategy or effectiveness metadata during acquisition",
+  "manifest_ordering": [
+    "write and hash capture manifest before any RAGIN output is generated",
+    "append immutable source metadata",
+    "retain raw source and hash",
+    "record derivation links for every later canonical record"
+  ],
+  "minimum_authorization_threshold": 180,
+  "native_capture_record": {
+    "attacker_or_operator_input_count": "required_integer",
+    "capture_ended_at": "required",
+    "capture_id": "required",
+    "capture_manifest_sha256": "required",
+    "capture_started_at": "required",
+    "collector_version": "required",
+    "deployment_or_environment_id": "required",
+    "event_count": "required_integer",
+    "native_session_id": "required",
+    "parent_source": null,
+    "raw_log_path": "required",
+    "raw_log_sha256": "required",
+    "replay": false,
+    "source_class": "required_enum",
+    "synthetic": false,
+    "test_fixture": false
+  },
+  "required_pre_execution_checks": [
+    "session-group deduplication",
+    "cross-study hash overlap audit",
+    "manifest integrity verification",
+    "privacy/ethics and containment approval where applicable"
+  ],
+  "schema": "ragin.v4.prospective_capture_contract.v1",
+  "status": "DESIGN_ONLY_NOT_DEPLOYED"
+}

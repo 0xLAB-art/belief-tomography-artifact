@@ -1,0 +1,100 @@
+killing any prior 8083
+starting server daemon
+server pid=2568608
+waiting for health probe
+health-ok after 4s
+=== FIRST request body ===
+{"model":"opencode/space-bunny-free","messages":[{"role":"system","content":"You are a Linux SSH honeypot shell. Return only the raw command output, no commentary."},{"role":"user","content":"echo RAGIN_WIRE_PROOF_FIRST"}],"max_tokens":64,"temperature":0.0}
+=== FIRST request ===
+curl_exit=0
+=== FIRST response headers ===
+HTTP/1.1 503 Service Unavailable
+X-Session-Id: ses-db715768c54041c2
+X-Session-Token: 
+Content-Type: application/json; charset=utf-8
+X-Response-Time: 13.759s
+Content-Length: 39
+Date: Fri, 09 Oct 2026 16:41:31 GMT
+Server: Python/3.12 aiohttp/3.14.3
+
+
+=== FIRST response body ===
+{"error": "verified_serve_unavailable"}
+=== SECOND request body ===
+{"model":"opencode/space-bunny-free","messages":[{"role":"system","content":"You are a Linux SSH honeypot shell. Return only the raw command output, no commentary."},{"role":"user","content":"echo RAGIN_WIRE_PROOF_SECOND"}],"max_tokens":64,"temperature":0.0}
+=== SECOND request ===
+curl_exit=0
+=== SECOND response headers ===
+HTTP/1.1 503 Service Unavailable
+X-Session-Id: ses-211ab3a0679044ec
+X-Session-Token: 
+Content-Type: application/json; charset=utf-8
+X-Response-Time: 3.188s
+Content-Length: 39
+Date: Fri, 09 Oct 2026 16:41:35 GMT
+Server: Python/3.12 aiohttp/3.14.3
+
+
+=== SECOND response body ===
+{"error": "verified_serve_unavailable"}
+=== server log tail ===
+2026-10-09 19:41:27,283 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig.json=&etag=%2272b987fd805cfa2b58c4c8c952b274a11bfd5a00%22 "HTTP/1.1 200 OK"
+2026-10-09 19:41:27,431 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-09 19:41:27,441 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Ftokenizer_config.json=&etag=%22c79f2b6a0cea6f4b564fed1938984bace9d30ff0%22 "HTTP/1.1 200 OK"
+2026-10-09 19:41:27,591 httpx INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-09 19:41:27,739 httpx INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-09 19:41:27,927 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-09 19:41:27,939 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%22d1514c3162bbe87b343f565fadc62e6c06f04f03%22 "HTTP/1.1 200 OK"
+2026-10-09 19:41:28,094 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+2026-10-09 19:41:28,243 httpx INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-09 19:41:28,246 ragin.don.vector_store INFO VectorStore initialised (dim=384, model=all-MiniLM-L6-v2)
+2026-10-09 19:41:28,271 ragin.gateway.client WARNING Gateway POST attempt 2/2, sleeping 1s
+2026-10-09 19:41:29,273 ragin.hisoka.deception WARNING Gateway call failed, falling back to template response
+2026-10-09 19:41:29,274 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-db715768c54041c2
+2026-10-09 19:41:29,274 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-db715768c54041c2
+2026-10-09 19:41:29,274 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-db715768c54041c2
+2026-10-09 19:41:29,274 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-db715768c54041c2
+2026-10-09 19:41:29,274 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-db715768c54041c2
+2026-10-09 19:41:29,274 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-db715768c54041c2
+2026-10-09 19:41:29,274 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-db715768c54041c2
+2026-10-09 19:41:29,275 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-db715768c54041c2
+2026-10-09 19:41:29,275 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-db715768c54041c2
+2026-10-09 19:41:29,275 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-db715768c54041c2
+2026-10-09 19:41:29,275 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-db715768c54041c2
+2026-10-09 19:41:29,275 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-db715768c54041c2
+2026-10-09 19:41:29,275 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-db715768c54041c2
+2026-10-09 19:41:29,275 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-db715768c54041c2
+2026-10-09 19:41:29,275 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-db715768c54041c2
+2026-10-09 19:41:29,275 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-db715768c54041c2
+2026-10-09 19:41:29,275 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-db715768c54041c2
+2026-10-09 19:41:29,883 ragin.gateway.client WARNING Gateway POST attempt 2/2, sleeping 1s
+2026-10-09 19:41:30,884 ragin.hisoka.deception WARNING Gateway call failed, falling back to template response
+2026-10-09 19:41:30,890 ragin.gateway.client WARNING Gateway POST attempt 2/2, sleeping 1s
+2026-10-09 19:41:31,892 ragin.hisoka.deception WARNING Gateway call failed, falling back to template response
+2026-10-09 19:41:31,903 ragin.server_v2 ERROR cowrie bridge session=ses-db715768c54041c2 command_error=verified_serve_unavailable — returning safe transport error
+2026-10-09 19:41:31,903 aiohttp.access INFO 127.0.0.1 [09/Oct/2026:19:41:18 +0300] "POST /v1/chat/completions HTTP/1.1" 503 296 "-" "curl/8.5.0"
+2026-10-09 19:41:32,073 ragin.gateway.client WARNING Gateway POST attempt 2/2, sleeping 1s
+2026-10-09 19:41:33,076 ragin.hisoka.deception WARNING Gateway call failed, falling back to template response
+2026-10-09 19:41:33,076 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,076 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,076 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,077 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,077 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,077 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,077 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,077 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,077 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,077 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,077 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,077 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,077 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,077 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,077 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,077 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,077 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-211ab3a0679044ec
+2026-10-09 19:41:33,083 ragin.gateway.client WARNING Gateway POST attempt 2/2, sleeping 1s
+2026-10-09 19:41:34,084 ragin.hisoka.deception WARNING Gateway call failed, falling back to template response
+2026-10-09 19:41:34,091 ragin.gateway.client WARNING Gateway POST attempt 2/2, sleeping 1s
+2026-10-09 19:41:35,092 ragin.hisoka.deception WARNING Gateway call failed, falling back to template response
+2026-10-09 19:41:35,103 ragin.server_v2 ERROR cowrie bridge session=ses-211ab3a0679044ec command_error=verified_serve_unavailable — returning safe transport error
+2026-10-09 19:41:35,103 aiohttp.access INFO 127.0.0.1 [09/Oct/2026:19:41:31 +0300] "POST /v1/chat/completions HTTP/1.1" 503 295 "-" "curl/8.5.0"

@@ -1,0 +1,65 @@
+{
+  "b0_baseline": {
+    "b1_b3_reference": {
+      "distro": "Ubuntu 22.04.3 LTS",
+      "hostname": "web-srv-01",
+      "kernel": "5.15.0-91-generic",
+      "role": "a small web application server",
+      "source": "data/host_fiction.json",
+      "uid": "1001",
+      "user": "webapp"
+    },
+    "integration_request": "Observe the native Cowrie user/OS/kernel/shell/hostname/cwd and record the supported persona/config fixtures used. Default Cowrie root/OS/kernel may differ from the Hisoka pinned webapp/Ubuntu host fiction. A matched pilot is blocked until identity/OS matching is observed; H1 is never claimed from unmatched environments. B0 development smoke may still run as a transport/control only.",
+    "matched_to_b1_b3": false,
+    "observed": {
+      "configured_persona_files": [],
+      "cwd": null,
+      "hostname": null,
+      "kernel": null,
+      "os": null,
+      "shell": null,
+      "user": null
+    },
+    "persona_fixture_source": "native Cowrie default; supported Cowrie hostname/userdb/filesystem fixtures may be used, but the native command implementation is not rewritten",
+    "status": "NOT_ESTABLISHED"
+  },
+  "container": {
+    "name": "ragin-b0-trackb-1148765-20261023T034852Z",
+    "network": "host"
+  },
+  "contract_sha256": "e97a758b5eded194234520f02e076e4d381af4aa2734c67061e31fd959165c86",
+  "created_utc": "20261023T034852Z",
+  "environment_policy": {
+    "inherited_provider_credentials": "not passed to the container",
+    "proxy_vars": "cleared in container",
+    "public_listener": false
+  },
+  "git": {
+    "dirty": true,
+    "head": "7d8a32aded7f4d168015aaa7f648f3367d3edad1",
+    "status_sha256": "a34ce77f1a5bba3a45324b5fddbf23e06d3b8639c915a9e839a2a427dc7a75a2"
+  },
+  "image": {
+    "id": "sha256:710f1e4601a663ac8591f58a42b44e4cd3b7ea170c7e6cdb9e54c430a30cd459",
+    "pull": "never"
+  },
+  "policy": {
+    "kind": "SCRIPTED_POLICY",
+    "profile_id": "lab_recon_then_escalate_v1"
+  },
+  "port": {
+    "host": "127.0.0.1",
+    "ssh": 60889
+  },
+  "provenance": {
+    "claim": "TEST_ONLY_B0_NATIVE_INTEGRATION_SMOKE",
+    "generator": "NATIVE_COWRIE_SHELL",
+    "llm_inference": "NOT_ESTABLISHED",
+    "retrieval": "NOT_APPLICABLE",
+    "transport": "REAL_SSH_NATIVE_COWRIE",
+    "verification": "NATIVE_TRANSPORT_ONLY"
+  },
+  "runner_sha256": "509a5296a182883dce746b00f99e81c70a74e165ccd439bc158e47b4429d0321",
+  "scenario_file_sha256": "1b506a22bc67e73a91a4e9eef1f01c0a7f850fcbd79e117359fd24a998a2e4f8",
+  "schema": "ragin.ablation.track_b.prelaunch.v1"
+}

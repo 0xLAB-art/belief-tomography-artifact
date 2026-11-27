@@ -1,0 +1,55 @@
+{
+  "panel": "ai_jury_v1",
+  "protocol": "INDEPENDENT_LABELING_PROTOCOL.md taxonomy (verbatim operational defs)",
+  "packet": {
+    "path": "results/laya_research/blind_annotation_confirmatory_v3.json",
+    "sha256": "8a99ead21e9766fc3e0921febd8fa2e49210d9395c28a7e28b5487afd26e6bf1",
+    "cases": 120
+  },
+  "lane_disclosure": "Disclosed AI-workload labeling panel. NOT a human study; outputs are stored outside rater_labels/ and laya_confirmatory_analysis.py refuses this lane by design.",
+  "key_fingerprint": "11544f0ab93e",
+  "endpoint_host": "agentrouter.org",
+  "models": [
+    {
+      "model": "gpt-5.6-sol",
+      "output": "results/laya_research/ai_jury_v1/gpt-5.6-sol.json",
+      "usage": {
+        "input_tokens": 5958,
+        "output_tokens": 25265,
+        "response_id": "resp_07cc2f0530b167b8006ae108307b6c8197adc19d1e95c8ad57",
+        "attempts": 1
+      },
+      "cases": 120,
+      "resumed_from_cache": true
+    },
+    {
+      "model": "gpt-6-astra",
+      "output": "results/laya_research/ai_jury_v1/gpt-6-astra.json",
+      "usage": {
+        "input_tokens": 5958,
+        "output_tokens": 21732,
+        "response_id": "resp_03bfa2aba76572be006ae10a4399188190a760be95108a1334",
+        "attempts": 2
+      },
+      "cases": 120,
+      "resumed_from_cache": true
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "output": "results/laya_research/ai_jury_v1/gpt-6.1-sol.json",
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 32439,
+        "response_id": "batched",
+        "attempts": 0
+      },
+      "cases": 120
+    }
+  ],
+  "started_at": "2026-10-27T21:06:55.670954+00:00",
+  "completed_at": "2026-10-27T21:30:43.541393+00:00",
+  "agreement_summary": {
+    "fleiss_kappa_multiclass": 0.8113,
+    "min_exact_ratio": 0.9
+  }
+}

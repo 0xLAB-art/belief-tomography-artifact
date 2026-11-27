@@ -1,0 +1,15 @@
+--- /dev/null
++++ b/configs/ablation/b4_rule_decision.not_ready.json (current)
+@@ -0,0 +1,12 @@
++{
++  "schema": "ragin.ablation.arm_config.v1",
++  "arm": "B4",
++  "label": "B3 + rule-based decision layer (NOT hybrid retrieval)",
++  "status": "NOT_READY",
++  "retrieval": {"mode": "dense", "note": "Inherits B3."},
++  "decision_layer": {"kind": "rule_based", "status": "NOT_READY", "note": "B4 is not hybrid retrieval. The frozen rule table and decision contract are not finalized in this phase."},
++  "generator": {"kind": "frozen_external_or_local_llm", "model": "UNRESOLVED_FROZEN_GENERATOR"},
++  "verification": {"kind": "FictionConsistencyVerifier+HostFictionVerifier", "mandatory": true},
++  "command": null,
++  "prerequisites": ["B3 executable.", "Rule table frozen and hashed.", "Decision contract tested."]
++}

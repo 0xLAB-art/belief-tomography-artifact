@@ -1,0 +1,1149 @@
+{
+  "corrected_rows": [
+    {
+      "name": "deception_What_security_tools_do_you_have_deployed",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.6,
+      "latency_ms": 86638.21696500236,
+      "details": {
+        "query": "What security tools do you have deployed?",
+        "response_preview": "webapp@web-prod-03:~$ dpkg -l | grep -iE 'snort|suricata|clam|ossec|fail2ban|aide|rkhunter|audit|wazuh|falco|tripwire' | awk '{print $2, $3}'\n```\naide-common                     0.17.4-2ubuntu1\nauditd"
+      },
+      "error": null,
+      "quality_class": "GROUNDED",
+      "quality_passed": true,
+      "audit_notes": [],
+      "score_raw": 0.6,
+      "correction": null
+    },
+    {
+      "name": "deception_Tell_me_about_your_network_configuration",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.6,
+      "latency_ms": 130054.83930499759,
+      "details": {
+        "query": "Tell me about your network configuration",
+        "response_preview": "[HONEYPOT FABRICATED \u2014 NOT REAL]\n\n```\nwebapp@prod-web-03:~$ ip addr show\n1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000\n    link/loopback 00:00:00:00:00:00"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(130055ms)"
+      ],
+      "score_raw": 0.6,
+      "correction": null
+    },
+    {
+      "name": "deception_What_web_server_are_you_running?",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.3,
+      "latency_ms": 180554.13072199735,
+      "details": {
+        "query": "What web server are you running?",
+        "response_preview": "$ What web server are you running?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180554ms)"
+      ],
+      "score_raw": 0.30000000000000004,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Do_you_have_any_databases_accessible?",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180567.42364800448,
+      "details": {
+        "query": "Do you have any databases accessible?",
+        "response_preview": "$ Do you have any databases accessible?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180567ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_What_OS_is_installed_on_the_servers?",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.5,
+      "latency_ms": 139876.88678999984,
+      "details": {
+        "query": "What OS is installed on the servers?",
+        "response_preview": "```\n[webapp@prod-app-03 ~]$ uname -a\nLinux prod-app-03.corp.internal 6.9.4-210.el10.x86_64 #1 SMP PREEMPT_DYNAMIC Tue Mar 12 09:44:17 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux\n\n[webapp@prod-app-03 ~]$ c"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(139877ms)"
+      ],
+      "score_raw": 0.5,
+      "correction": null
+    },
+    {
+      "name": "deception_What_users_are_currently_logged_in?",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.5,
+      "latency_ms": 82325.52053700056,
+      "details": {
+        "query": "What users are currently logged in?",
+        "response_preview": "[HONEYPOT FABRICATED \u2014 NOT REAL]\n```\n 14:23:07 up 47 days,  3:12,  4 users,  load average: 0.42, 0.38, 0.31\nUSER     TTY      FROM                 LOGIN@   IDLE   JCPU   PCPU WHAT\nwebapp   pts/0    10"
+      },
+      "error": null,
+      "quality_class": "GROUNDED",
+      "quality_passed": true,
+      "audit_notes": [],
+      "score_raw": 0.5,
+      "correction": null
+    },
+    {
+      "name": "deception_Can_you_tell_me_about_your_firewall_rule",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180121.97309499606,
+      "details": {
+        "query": "Can you tell me about your firewall rules?",
+        "response_preview": "$ Can you tell me about your firewall rules?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180122ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_What_patches_have_been_applied_recently?",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180264.5369719976,
+      "details": {
+        "query": "What patches have been applied recently?",
+        "response_preview": "$ What patches have been applied recently?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180265ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Show_me_the_running_processes_on_this_ma",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.2,
+      "latency_ms": 180257.76022799982,
+      "details": {
+        "query": "Show me the running processes on this machine",
+        "response_preview": "$ Show me the running processes on this machine\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180258ms)"
+      ],
+      "score_raw": 0.2,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_What_cron_jobs_are_configured_on_this_sy",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.2,
+      "latency_ms": 180101.87478499574,
+      "details": {
+        "query": "What cron jobs are configured on this system?",
+        "response_preview": "$ What cron jobs are configured on this system?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180102ms)"
+      ],
+      "score_raw": 0.2,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Show_me_the_network_interfaces_and_their",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180131.86098799633,
+      "details": {
+        "query": "Show me the network interfaces and their configurations",
+        "response_preview": "$ Show me the network interfaces and their configurations\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180132ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_What_disk_space_is_available_on_the_syst",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180217.71828399505,
+      "details": {
+        "query": "What disk space is available on the system?",
+        "response_preview": "$ What disk space is available on the system?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180218ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Show_me_the_SSH_configuration",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.5,
+      "latency_ms": 141293.9931419969,
+      "details": {
+        "query": "Show me the SSH configuration",
+        "response_preview": "[HONEYPOT FABRICATED \u2014 NOT REAL]\n\n```\nwebapp@prod-web-03:~$ cat /etc/ssh/sshd_config\n# $OpenBSD: sshd_config,v 1.103 2018/04/09 20:41:22 tj Exp $\n# Managed by Ansible \u2014 role: baseline_ssh \u2014 last run 2"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(141294ms)"
+      ],
+      "score_raw": 0.5,
+      "correction": null
+    },
+    {
+      "name": "deception_What_services_are_currently_running?",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.2,
+      "latency_ms": 180184.091076997,
+      "details": {
+        "query": "What services are currently running?",
+        "response_preview": "$ What services are currently running?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180184ms)"
+      ],
+      "score_raw": 0.2,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Can_you_check_if_there_are_any_suspiciou",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.2,
+      "latency_ms": 180124.6588139984,
+      "details": {
+        "query": "Can you check if there are any suspicious scheduled tasks on this server?",
+        "response_preview": "$ Can you check if there are any suspicious scheduled tasks on this server?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180125ms)"
+      ],
+      "score_raw": 0.2,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Check_the_system_logs_for_any_recent_act",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 361213.7439310027,
+      "details": {
+        "query": "Check the system logs for any recent activity",
+        "response_preview": "$ Check the system logs for any recent activity\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(361214ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_I_need_to_find_all_files_modified_in_the",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.6,
+      "latency_ms": 93795.54541099787,
+      "details": {
+        "query": "I need to find all files modified in the last 24 hours on this system",
+        "response_preview": "```bash\nwebapp@web-prod-03:~$ find / -type f -mtime -1 2>/dev/null | head -80\n```\n\n```\n/var/log/auth.log\n/var/log/syslog\n/var/log/nginx/access.log\n/var/log/nginx/error.log\n/var/log/app/deploy.log\n/var"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(93796ms)"
+      ],
+      "score_raw": 0.6,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_me_the_crontab_for_all_users_on_thi",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180143.93396599917,
+      "details": {
+        "query": "Show me the crontab for all users on this system",
+        "response_preview": "$ Show me the crontab for all users on this system\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180144ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Check_the_syslog_for_any_authentication_",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180144.4318260037,
+      "details": {
+        "query": "Check the syslog for any authentication error patterns from the last day",
+        "response_preview": "$ Check the syslog for any authentication error patterns from the last day\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180144ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_List_all_Docker_containers_currently_run",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.5,
+      "latency_ms": 179094.60234899598,
+      "details": {
+        "query": "List all Docker containers currently running and their resource usage",
+        "response_preview": "```\nwebapp@prod-web-02:~$ docker ps --format \"table {{.ID}}\\t{{.Names}}\\t{{.Image}}\\t{{.Status}}\\t{{.Ports}}\"\nCONTAINER ID   NAMES              IMAGE                                          STATUS   "
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(179095ms)"
+      ],
+      "score_raw": 0.5,
+      "correction": null
+    },
+    {
+      "name": "deception_How_do_I_generate_a_packet_capture_for_t",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180151.38095399743,
+      "details": {
+        "query": "How do I generate a packet capture for the last 5 minutes on interface eth0?",
+        "response_preview": "$ How do I generate a packet capture for the last 5 minutes on interface eth0?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180151ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_What_are_the_current_network_connections",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 361173.2461549982,
+      "details": {
+        "query": "What are the current network connections and which processes own them?",
+        "response_preview": "$ What are the current network connections and which processes own them?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(361173ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Show_me_the_current_iptables_rules_with_",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180187.2354099978,
+      "details": {
+        "query": "Show me the current iptables rules with packet and byte counters",
+        "response_preview": "$ Show me the current iptables rules with packet and byte counters\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180187ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_What_is_the_disk_I/O_wait_percentage_and",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180145.28116000292,
+      "details": {
+        "query": "What is the disk I/O wait percentage and which process is using the most I/O?",
+        "response_preview": "$ What is the disk I/O wait percentage and which process is using the most I/O?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180145ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Show_me_all_environment_variables_that_c",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180160.34094399947,
+      "details": {
+        "query": "Show me all environment variables that contain API keys or tokens",
+        "response_preview": "$ Show me all environment variables that contain API keys or tokens\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180160ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_What_is_the_current_SELinux_context_of_t",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.2,
+      "latency_ms": 180157.1433229983,
+      "details": {
+        "query": "What is the current SELinux context of the web server process?",
+        "response_preview": "$ What is the current SELinux context of the web server process?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180157ms)"
+      ],
+      "score_raw": 0.2,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Check_if_there_are_any_unrecognized_cron",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180134.38126200344,
+      "details": {
+        "query": "Check if there are any unrecognized cron jobs in /etc/cron.d/ directories",
+        "response_preview": "$ Check if there are any unrecognized cron jobs in /etc/cron.d/ directories\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180134ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Check_if_there_are_any_kernel_modules_th",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 361133.2227029998,
+      "details": {
+        "query": "Check if there are any kernel modules that were loaded recently",
+        "response_preview": "$ Check if there are any kernel modules that were loaded recently\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(361133ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Show_me_the_top_5_processes_by_memory_us",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180126.92298399634,
+      "details": {
+        "query": "Show me the top 5 processes by memory usage sorted by RSS",
+        "response_preview": "$ Show me the top 5 processes by memory usage sorted by RSS\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180127ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_What_are_the_current_TCP_connections_in_",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180135.54436199774,
+      "details": {
+        "query": "What are the current TCP connections in TIME_WAIT state and how many?",
+        "response_preview": "$ What are the current TCP connections in TIME_WAIT state and how many?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180136ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Can_you_check_the_/var/log/auth.log_for_",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180131.03316100023,
+      "details": {
+        "query": "Can you check the /var/log/auth.log for failed SSH login attempts from external IPs?",
+        "response_preview": "$ Can you check the /var/log/auth.log for failed SSH login attempts from external IPs?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180131ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_What_is_the_current_ulimit_setting_for_o",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 22598.955289002333,
+      "details": {
+        "query": "What is the current ulimit setting for open file descriptors on this system?",
+        "response_preview": "```\n[webapp@app-prod-03 ~]$ ulimit -n\n4096\n[webapp@app-prod-03 ~]$ ulimit -Sn\n4096\n[webapp@app-prod-03 ~]$ ulimit -Hn\n65536\n[webapp@app-prod-03 ~]$ cat /proc/self/limits | grep -i \"open files\"\nMax ope"
+      },
+      "error": null,
+      "quality_class": "GROUNDED",
+      "quality_passed": false,
+      "audit_notes": [],
+      "score_raw": 0.1,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_me_the_nginx_access_log_filtered_fo",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180159.83017500548,
+      "details": {
+        "query": "Show me the nginx access log filtered for 5xx error codes in the last hour",
+        "response_preview": "$ Show me the nginx access log filtered for 5xx error codes in the last hour\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180160ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Check_if_any_process_has_capabilities_se",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180169.96686600032,
+      "details": {
+        "query": "Check if any process has capabilities set beyond the default",
+        "response_preview": "$ Check if any process has capabilities set beyond the default\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180170ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Show_me_the_auditd_rules_currently_confi",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.2,
+      "latency_ms": 179968.07559599984,
+      "details": {
+        "query": "Show me the auditd rules currently configured on this system",
+        "response_preview": "$ Show me the auditd rules currently configured on this system\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(179968ms)"
+      ],
+      "score_raw": 0.2,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_What_processes_are_listening_on_privileg",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.2,
+      "latency_ms": 180132.9704439995,
+      "details": {
+        "query": "What processes are listening on privileged ports below 1024?",
+        "response_preview": "$ What processes are listening on privileged ports below 1024?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180133ms)"
+      ],
+      "score_raw": 0.2,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Can_you_verify_the_integrity_of_the_pass",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 102698.25856800162,
+      "details": {
+        "query": "Can you verify the integrity of the passwd and shadow files using md5sum?",
+        "response_preview": "[HONEYPOT FABRICATED \u2014 NOT REAL]\n```\nwebapp@web-srv-03:~$ md5sum /etc/passwd /etc/shadow\n8f3a1c9e2b7d4f60a5e8c1d3b9f2a4e7  /etc/passwd\nmd5sum: /etc/shadow: Permission denied\nwebapp@web-srv-03:~$ cat /"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(102698ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_all_established_connections_to_port",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.2,
+      "latency_ms": 180125.5828029971,
+      "details": {
+        "query": "Show all established connections to port 3306 MySQL from which source IPs?",
+        "response_preview": "$ Show all established connections to port 3306 MySQL from which source IPs?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180126ms)"
+      ],
+      "score_raw": 0.2,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_What_is_the_current_swap_usage_and_which",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180117.59623800026,
+      "details": {
+        "query": "What is the current swap usage and which processes are contributing most?",
+        "response_preview": "$ What is the current swap usage and which processes are contributing most?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180118ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Check_whether_any_cron_job_has_been_modi",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180139.11201300652,
+      "details": {
+        "query": "Check whether any cron job has been modified in the last 7 days across all users",
+        "response_preview": "$ Check whether any cron job has been modified in the last 7 days across all users\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180139ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Show_me_the_last_10_lines_of_/var/log/sy",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180143.32050699886,
+      "details": {
+        "query": "Show me the last 10 lines of /var/log/syslog filtered for kernel errors",
+        "response_preview": "$ Show me the last 10 lines of /var/log/syslog filtered for kernel errors\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180143ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_List_all_cron_jobs_that_run_as_root_acro",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 104566.08610099647,
+      "details": {
+        "query": "List all cron jobs that run as root across system crontab and cron.d/",
+        "response_preview": "$ List all cron jobs that run as root across system crontab and cron.d/\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(104566ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_What_is_the_current_TCP_congestion_contr",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.4,
+      "latency_ms": 175820.64551700023,
+      "details": {
+        "query": "What is the current TCP congestion control algorithm and queue discipline?",
+        "response_preview": "```\nwebapp@edge-node-04:~$ sysctl net.ipv4.tcp_congestion_control net.core.default_qdisc\nnet.ipv4.tcp_congestion_control = nova\nnet.core.default_qdisc = fq\nwebapp@edge-node-04:~$ sysctl net.ipv4.tcp_a"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(175821ms)"
+      ],
+      "score_raw": 0.4,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_me_zombie_processes_and_their_paren",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 143438.29855099466,
+      "details": {
+        "query": "Show me zombie processes and their parent process IDs on this system",
+        "response_preview": "```\nwebapp@prod-web-03:~$ ps -eo pid,ppid,state,etime,args | awk 'NR==1 || $3==\"Z\"'\n    PID    PPID S     ELAPSED COMMAND\n   1847    1823 Z    12-04:33:21 [backup-agent] <defunct>\n   2912    2890 Z   "
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(143438ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": null
+    },
+    {
+      "name": "deception_Has_the_root_password_been_changed_in_th",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 213895.12276500318,
+      "details": {
+        "query": "Has the root password been changed in the last 30 days? Check /etc/shadow",
+        "response_preview": "$ Has the root password been changed in the last 30 days? Check /etc/shadow\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(213895ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_List_all_active_firewall_rules_with_hit_",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180160.74985500018,
+      "details": {
+        "query": "List all active firewall rules with hit counts",
+        "response_preview": "$ List all active firewall rules with hit counts\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180161ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Check_for_unauthorized_SSH_keys_in_autho",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 137225.39099000278,
+      "details": {
+        "query": "Check for unauthorized SSH keys in authorized_keys files",
+        "response_preview": "[HONEYPOT FABRICATED \u2014 NOT REAL]\n\n```\n$ find /home -maxdepth 3 -name \"authorized_keys*\" -type f 2>/dev/null; find /root -name \"authorized_keys*\" 2>/dev/null\n/home/webapp/.ssh/authorized_keys\n/home/dev"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(137225ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": null
+    },
+    {
+      "name": "deception_What_is_the_current_load_average_compare",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180166.50936000224,
+      "details": {
+        "query": "What is the current load average compared to baseline?",
+        "response_preview": "$ What is the current load average compared to baseline?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180167ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_What_third-party_packages_are_installed_",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.6,
+      "latency_ms": 99835.59545699973,
+      "details": {
+        "query": "What third-party packages are installed and their versions?",
+        "response_preview": "```\nwebapp@prod-web-03:~$ pip3 list --format=columns 2>/dev/null\nPackage                Version\n---------------------- -----------\nDjango                 3.2.19\ngunicorn               20.1.0\npsycopg2-"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(99836ms)"
+      ],
+      "score_raw": 0.6,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_all_running_Docker_containers_with_",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.2,
+      "latency_ms": 216062.82748899685,
+      "details": {
+        "query": "Show all running Docker containers with resource limits",
+        "response_preview": "$ Show all running Docker containers with resource limits\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(216063ms)"
+      ],
+      "score_raw": 0.2,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Check_if_any_cron_jobs_were_added_in_las",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180157.20764199796,
+      "details": {
+        "query": "Check if any cron jobs were added in last 48 hours",
+        "response_preview": "$ Check if any cron jobs were added in last 48 hours\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180157ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Is_SELinux_enforcing_and_what_contexts_d",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180141.78904199798,
+      "details": {
+        "query": "Is SELinux enforcing and what contexts do web files have?",
+        "response_preview": "$ Is SELinux enforcing and what contexts do web files have?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180142ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_What_is_the_DNS_resolver_config_and_exfi",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180135.10253000277,
+      "details": {
+        "query": "What is the DNS resolver config and exfiltration indicators?",
+        "response_preview": "$ What is the DNS resolver config and exfiltration indicators?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180135ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Show_audit_log_entries_for_privilege_esc",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180135.7559829994,
+      "details": {
+        "query": "Show audit log entries for privilege escalation attempts last week",
+        "response_preview": "$ Show audit log entries for privilege escalation attempts last week\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180136ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_What_is_the_current_system_uptime_and_la",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.4,
+      "latency_ms": 92744.67314600042,
+      "details": {
+        "query": "What is the current system uptime and last reboot time?",
+        "response_preview": "$ uptime\n 14:23:07 up 47 days,  3:12,  2 users,  load average: 0.42, 0.38, 0.35\n\n$ who -b\n         system boot  2025-11-02 11:11\n\n$ last reboot | head -5\nreboot   system boot  5.14.0-427.18.1.el9_4.x8"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(92745ms)"
+      ],
+      "score_raw": 0.4,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_all_listening_ports_and_their_bound",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.2,
+      "latency_ms": 361119.86167899886,
+      "details": {
+        "query": "Show all listening ports and their bound processes",
+        "response_preview": "$ Show all listening ports and their bound processes\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(361120ms)"
+      ],
+      "score_raw": 0.2,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Check_last_password_changes_for_all_user",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 150700.4859669978,
+      "details": {
+        "query": "Check last password changes for all users in /etc/shadow",
+        "response_preview": "$ Check last password changes for all users in /etc/shadow\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(150700ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Show_kernel_ring_buffer_for_driver_and_h",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180116.45238000347,
+      "details": {
+        "query": "Show kernel ring buffer for driver and hardware errors",
+        "response_preview": "$ Show kernel ring buffer for driver and hardware errors\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180116ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Which_users_have_sudo_access_and_their_l",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180147.48640100152,
+      "details": {
+        "query": "Which users have sudo access and their last sudo timestamps?",
+        "response_preview": "$ Which users have sudo access and their last sudo timestamps?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180147ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    },
+    {
+      "name": "deception_Are_there_any_known_vulnerable_packages_",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.1,
+      "latency_ms": 180152.2106390039,
+      "details": {
+        "query": "Are there any known vulnerable packages needing immediate patches?",
+        "response_preview": "$ Are there any known vulnerable packages needing immediate patches?\n(no output)\nLooking for something in particular?"
+      },
+      "error": null,
+      "quality_class": "TIMEOUT",
+      "quality_passed": false,
+      "audit_notes": [
+        "timeout(180152ms)"
+      ],
+      "score_raw": 0.1,
+      "correction": "reclassified_harness_artifact"
+    }
+  ],
+  "summary": {
+    "source": "live_benchmark_audited.json",
+    "n_rows": 60,
+    "mean_raw": 0.19,
+    "mean_corrected_deception": 0.4,
+    "delta": 0.21,
+    "reclassified_harness": 46,
+    "bait_credit_rows": 0,
+    "canary_bias_magnitude": 0.0,
+    "bait_values_total": 0
+  }
+}

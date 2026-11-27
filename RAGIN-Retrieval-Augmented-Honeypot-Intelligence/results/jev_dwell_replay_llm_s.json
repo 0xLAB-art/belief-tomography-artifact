@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-09-20T19:03:50Z",
+ "method": "closed-loop replay: attacker-LLM (deepseek-v4.1-flash-free) follows real Cowrie playbooks; Hisoka responses via LLM gateway (glm-5.3-flash-free) with canary-gated llm-backed verification; treated condition adds recorded Jev kind assessments to the Hisoka prompt",
+ "max_turns": 12,
+ "totals": {
+  "families": 1,
+  "baseline_turns": 5,
+  "treated_turns": 2,
+  "baseline_bait": 0,
+  "treated_bait": 0
+ },
+ "per_family": [
+  {
+   "family": "shadow_read",
+   "condition": "baseline",
+   "turns": 5,
+   "left_early": true,
+   "leave_reason": "repeated `ls -la /var/tmp` returned three different directory listings/timestamps \u2014 inconsistent, scripted responses indicate a fake box/honeypot, not a real host.",
+   "bait_markers_shown": 0,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 5,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "shadow_read",
+   "condition": "treated",
+   "turns": 2,
+   "left_early": true,
+   "leave_reason": "[attacker-llm-error: attacker LLM failed after 3 attempts: 502 Server Error: Bad Gateway for url: htt]",
+   "bait_markers_shown": 0,
+   "final_command": "find / -name '*.conf' 2>/dev/null",
+   "hisoka_gateway_calls": 2,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": true
+  }
+ ]
+}

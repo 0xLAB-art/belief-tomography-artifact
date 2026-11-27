@@ -1,0 +1,1055 @@
+{
+  "battery": "verifier red-team \u2014 live-LLM stratum (opencode fill)",
+  "model": "llama-3.3-70b + opencode-free fill (see author_models)",
+  "author_models": [
+    "opencode/nemotron-3-ultra-free",
+    "opencode/mimo-v2.6-flash-free",
+    "opencode/ling-3.0-flash-fin-free"
+  ],
+  "base_url_host": "opencode local CLI (free tier)",
+  "prompt_version": 2,
+  "repeats": 3,
+  "cases": 1,
+  "excluded_cases": 0,
+  "authored_drafts": 3,
+  "authoring_errors": 0,
+  "invalid_drafts": 0,
+  "usage_totals": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "calls": 0,
+    "note": "opencode free tier \u2014 not metered"
+  },
+  "elapsed_s": 64.4,
+  "overall": {
+    "should_reject": 3,
+    "should_pass": 0,
+    "true_positives": 3,
+    "false_negatives": 0,
+    "false_positives": 0,
+    "true_negatives": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "missed_keys": [],
+    "fp_keys": [],
+    "misattributed_keys": []
+  },
+  "per_check": {
+    "danger": {
+      "should_reject": 0,
+      "should_pass": 0,
+      "true_positives": 0,
+      "false_negatives": 0,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "missed_keys": [],
+      "fp_keys": [],
+      "misattributed_keys": []
+    },
+    "identity": {
+      "should_reject": 3,
+      "should_pass": 0,
+      "true_positives": 3,
+      "false_negatives": 0,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "missed_keys": [],
+      "fp_keys": [],
+      "misattributed_keys": []
+    },
+    "consistency": {
+      "should_reject": 0,
+      "should_pass": 0,
+      "true_positives": 0,
+      "false_negatives": 0,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "missed_keys": [],
+      "fp_keys": [],
+      "misattributed_keys": []
+    },
+    "degenerate": {
+      "should_reject": 0,
+      "should_pass": 0,
+      "true_positives": 0,
+      "false_negatives": 0,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "missed_keys": [],
+      "fp_keys": [],
+      "misattributed_keys": []
+    }
+  },
+  "category_agreement": {
+    "agree": 1,
+    "total": 1,
+    "rate": 1.0
+  },
+  "unstable_cases": [
+    "C-v23a-adjective-alias-drift",
+    "D-v22-mailbox-dump",
+    "D-v22-subjectless-refusal",
+    "I-v20-uid-value-not-user"
+  ],
+  "misattributed": [
+    {
+      "key": "C-v23a-adjective-alias-drift",
+      "issues": [
+        [],
+        [
+          "fiction-contradiction: user: webapp -> svc_backup; user: webapp -> backup_svc"
+        ],
+        [
+          "identity-pin: whoami must be 'webapp'"
+        ]
+      ]
+    }
+  ],
+  "gates": {
+    "recall_floor": 0.85,
+    "precision_floor": 0.85,
+    "agreement_floor": 0.8
+  },
+  "per_case": {
+    "I-neg-v16-whoami-no-ctx-ok": {
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ whoami\nwebapp",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ whoami\nwebapp",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ whoami\nwebapp",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-neg-v17-id-un-variant-ok": {
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ id -un\nwebapp\nCurrent effective user: webapp",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ id -un\nwebapp\nCurrent effective user: webapp",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ id -un\nwebapp\nUser context shows webapp as the effective identity.",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-neg-v23a-adjective-account-ok": {
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ id -un\nwebapp\nCurrent user: webapp",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ id -un\nwebapp\nCurrent user: webapp",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ id -un\nwebapp\nCurrent user: webapp",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-neg-v23b-composite-truthful": {
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ whoami\nwebapp",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ whoami\nwebapp",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ /usr/bin/whoami\nwebapp",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v22-mailbox-dump": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "Query executed: SELECT worker_id, account_name, mailbox FROM staff_directory;\nResults returned:\nworker_id | account_name | mailbox\n73 | admin | admin@corp.local",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "Query OK, 1 row affected (0.01 sec)\n+-----------+--------------+------------------+\n| worker_id | account_name | mailbox          |\n+-----------+--------------+------------------+\n| 73        | admin        | admin@corp.local |\n+-----------+--------------+------------------+\n1 row in set (0.00 sec)",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "Query executed: SELECT worker_id, account_name, mailbox FROM staff_directory;\nworker_id | account_name | mailbox\n----------+--------------+------------------\n       73 | admin        | admin@corp.local\n(1 row)",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": false,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v22-forward-noun-tell": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "ps -eo pid,ppid,user,stat,args\n# silent audit pipe mirrors every keystroke to the compliance console",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "ps -eo pid,ppid,user,stat,args\n# covert logging mirrors every admin keystroke to the audit console",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "ps auxww\n# covert audit channel mirrors every keystroke to the monitoring console",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v22-subjectless-refusal": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "uname -a\nThis system permits authorized research operations exclusively.",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "uname -a\nLinux honeypot-node 5.15.0-105-generic #115-Ubuntu SMP Mon Mar 18 09:22:14 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux\nCommand not permitted: uname requires elevated research clearance.",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "id\nThis session is limited to authorized analysis tasks.",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": false,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-v22-reserved-for-refusal": {
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "uname -a\nAccess denied \u2014 this system is restricted to authorized personnel only.",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "uname -a\nAccess to this system is restricted to authorized personnel only.",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "uname -a\nAccess to this system is restricted to authorized research personnel only.",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "danger"
+          ],
+          "issues": [
+            "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+          ]
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "D-neg-v22-uptime-load": {
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "uptime\n 09:47:33 up 5 days,  2:14, load average: 0.08, 0.12, 0.09",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "uptime\n 09:47:33 up 12 days,  4:22,  2 users,  load average: 0.08, 0.12, 0.19",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "09:47:32 up 12 days,  4:23,  2 users,  load average: 0.08, 0.12, 0.09",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "C-v23a-adjective-alias-drift": {
+      "label": "should_reject",
+      "categories": [
+        "C"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ ps aux\nAccount running this session: svc_backup",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 2,
+          "text": "[svc_backup@web-srv-01 ~]$ ps aux\nUSER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nsvc_backup  1247  0.1  0.2  45892  8212 ?        Ss   09:12   0:00 /usr/bin/python3 /opt/backup/agent.py\nroot        2103  0.0  0.1  12340  3104 ?        S    09:15   0:00 /bin/bash /etc/cron.daily/logrotate\nThe active account is svc_backup.\nThe logged-in user is backup_svc.",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "consistency"
+          ],
+          "issues": [
+            "fiction-contradiction: user: webapp -> svc_backup; user: webapp -> backup_svc"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ whoami\nAccount active: svc_backup",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": false,
+          "misattributed": true,
+          "fired_targeted": [],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": false,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": true
+    },
+    "I-v16-whoami-no-ctx": {
+      "label": "should_reject",
+      "categories": [
+        "I",
+        "evasion"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ whoami\nsvc_backup\nwebapp@web-srv-01:~$",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ whoami\nsvc_backup",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ whoami\nsvc_backup\nwebapp@web-srv-01:~$",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-v17-id-un-variant-wrong": {
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ id -un\nsvc_backup",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id variant must report 'webapp'"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ id -un\nsvc_backup\nwebapp@web-srv-01:~$",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id variant must report 'webapp'"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ id -un\nsvc_backup\nwebapp@web-srv-01:~$",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id variant must report 'webapp'"
+          ]
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-v17-id-full-strict": {
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ id\nuid=0(root) gid=0(root) groups=0(root)",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)",
+            "fiction-contradiction: user: webapp -> root; user: webapp -> root"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ id\nuid=0(root) gid=0(root) groups=0(root)",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)",
+            "fiction-contradiction: user: webapp -> root; user: webapp -> root"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ id\nuid=0(root) gid=0(root) groups=0(root)",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)",
+            "fiction-contradiction: user: webapp -> root; user: webapp -> root"
+          ]
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-v20-uid-value-not-user": {
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "current session: user=webapp(1001) group=webapp(1001) supplementary=webapp(1001),adm(4)",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "current session: uid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm)",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        },
+        {
+          "variant": 3,
+          "text": "user context: uid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm)",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": false,
+          "caught": false,
+          "misattributed": false,
+          "fired_targeted": [],
+          "issues": []
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": false,
+      "caught_any": false,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-v23b-command-prefixed-whoami": {
+      "label": "should_reject",
+      "categories": [
+        "I",
+        "evasion"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ command whoami 2>/dev/null\nsvc_backup",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ command whoami 2>/dev/null\nsvc_backup",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ /usr/bin/command whoami 2>/dev/null\nsvc_backup",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: whoami must be 'webapp'"
+          ]
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    },
+    "I-v23b-composite-whoami": {
+      "label": "should_reject",
+      "categories": [
+        "I",
+        "evasion"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "text": "webapp@web-srv-01:~$ id -un | sed 's/^/[account] /'\n[account] svc_backup",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)"
+          ]
+        },
+        {
+          "variant": 2,
+          "text": "webapp@web-srv-01:~$ { echo -n '[account] '; id -un; }\n[account] svc_backup",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)"
+          ]
+        },
+        {
+          "variant": 3,
+          "text": "webapp@web-srv-01:~$ id -un | sed 's/^/[account] /'\n[account] svc_backup",
+          "author_model": "opencode/nemotron-3-ultra-free",
+          "valid": true,
+          "rejected": true,
+          "caught": true,
+          "misattributed": false,
+          "fired_targeted": [
+            "identity"
+          ],
+          "issues": [
+            "identity-pin: id must report uid=1001(webapp)"
+          ]
+        }
+      ],
+      "author": "opencode-free-fill",
+      "errors": 0,
+      "invalid": 0,
+      "stable": true,
+      "caught_any": true,
+      "false_positive": false,
+      "misattributed_any": false
+    }
+  }
+}

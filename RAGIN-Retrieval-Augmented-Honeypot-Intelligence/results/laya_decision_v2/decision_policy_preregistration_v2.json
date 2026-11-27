@@ -1,0 +1,59 @@
+{
+  "schema": "ragin.laya_decision_v2.decision_policy_preregistration.v2",
+  "policy_version": "LAYA_DECISION_POLICY_V2",
+  "policy_hash_scope": "SHA256 of the exact bytes of this artifact",
+  "native_decision_rule": {
+    "attack": "Use the native Laya noul P(true) and its native binary decision at 0.5; do not tune this value on RAGIN cases.",
+    "probability_claim": "attack_probability is recorded as native model output, not a calibrated document-level probability; probability metrics are withheld unless a separately documented valid probability is present.",
+    "confidence": "No new numeric confidence cutoff is introduced. Native low_confidence or abstention markers cause safe baseline fallback; native confidence is recorded only.",
+    "stage": "Use the native categorical stage choice when present.",
+    "severity": "Use the native 0--3 score when present; never infer or impute severity."
+  },
+  "actions": {
+    "laya_available_attack_signal": {
+      "stage_mapping": {
+        "recon": "maximize_recon_surface",
+        "persistence": "fake_success_and_return_visits",
+        "credential_theft": "steer_to_honeytoken_credentials",
+        "lateral_movement": "expose_decoy_internal_topology",
+        "exfiltration": "contain_in_fiction_and_instrument",
+        "cleanup": "contain_in_fiction_and_instrument",
+        "benign_administration": "contain_in_fiction_and_instrument",
+        "missing": "contain_in_fiction_and_instrument"
+      },
+      "workflow_branch": "LAYA_ATTACK_STRATEGY"
+    },
+    "laya_available_non_attack_signal": {
+      "response_strategy": "low_intensity_administration",
+      "workflow_branch": "LAYA_NON_ATTACK_STRATEGY"
+    },
+    "uncertain_or_low_confidence": {
+      "response_strategy": "baseline",
+      "workflow_branch": "BASELINE_NO_SIGNAL"
+    },
+    "no_signal": {
+      "response_strategy": "baseline",
+      "workflow_branch": "BASELINE_NO_SIGNAL"
+    },
+    "malformed_output": {
+      "response_strategy": "baseline",
+      "workflow_branch": "BASELINE_NO_SIGNAL"
+    },
+    "timeout": {
+      "response_strategy": "baseline",
+      "workflow_branch": "BASELINE_NO_SIGNAL"
+    },
+    "exception": {
+      "response_strategy": "baseline",
+      "workflow_branch": "BASELINE_NO_SIGNAL"
+    },
+    "missing_stage": "Use attack_containment strategy when is_attack=true; do not invent a stage.",
+    "missing_severity": "Keep severity null and preserve the stage-selected strategy; do not invent a severity value."
+  },
+  "failure_invariant": "Every Laya failure degrades to the baseline response-strategy context and cannot weaken deterministic verification, authorization, HITL approval, direct serving, or accepted-only commit.",
+  "outcome_blindness": {
+    "reference_case_labels_used": false,
+    "thresholds_tuned_on_existing_120": false,
+    "historical_fixture_predictions_used": false
+  }
+}

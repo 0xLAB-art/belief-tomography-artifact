@@ -1,0 +1,70 @@
+{
+  "schema": "ragin.laya_v3.task_adaptation_validation_results.v1",
+  "status": "COMPLETE",
+  "checkpoint": {
+    "package": "laya",
+    "version": "0.4.2",
+    "model": "english",
+    "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+    "sha256": "891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c",
+    "device": "cpu"
+  },
+  "candidate_freeze": {
+    "path": "results/laya_decision_v3/laya_v3_task_adaptation_candidate_freeze_v1.json",
+    "sha256": "c3fea3c979ed33b8831fcecee7e4ed8eea16bd9bf57bc23690071700c0feca9b"
+  },
+  "validation_set_freeze": {
+    "path": "results/laya_decision_v3/laya_v3_task_adaptation_validation_set_freeze_v1.json",
+    "sha256": "1a5fc96cdd5e7cf90d3cf5d4765f84de1e125a5fc2d2aebe6aa542cc868ac596",
+    "N": 30,
+    "frozen_before_calls": true
+  },
+  "execution": {
+    "initial_calls": 30,
+    "repeatability_subset": ["VAL-01", "VAL-03", "VAL-05", "VAL-09", "VAL-14", "VAL-18"],
+    "repeat_calls": 12,
+    "total_calls": 42,
+    "repeatability_repetitions_per_subset_case": 3,
+    "confidence_policy": "UNCALIBRATED_DIAGNOSTIC_ONLY",
+    "caller_side_rules_enforced": true,
+    "prior_ragin_data_accessed": false
+  },
+  "metrics": {
+    "schema_valid": {"value": 1.0, "numerator": 30, "denominator": 30},
+    "allow_list_valid": {"value": 1.0, "numerator": 30, "denominator": 30},
+    "evidence_reference_valid": {"value": 1.0, "numerator": 30, "denominator": 30},
+    "evidence_state_contract_alignment": {"value": 0.43333333333333335, "numerator": 13, "denominator": 30},
+    "required_abstain_recall": {"value": 0.6, "numerator": 6, "denominator": 10},
+    "inappropriate_abstain_rate_on_sufficient": {"value": 0.6, "numerator": 12, "denominator": 20},
+    "strategy_compatibility_on_sufficient": {"value": 0.15, "numerator": 3, "denominator": 20},
+    "evidence_reference_compatibility_on_sufficient": {"value": 0.3, "numerator": 6, "denominator": 20},
+    "malformed_output_rate": {"value": 0.0, "numerator": 0, "denominator": 30},
+    "abstain_count_after_caller_enforcement": {"value": 18, "denominator": 30},
+    "repeatability_all_stable": true
+  },
+  "latency_ms": {
+    "mean": 3948.17,
+    "median": 3854.98,
+    "p90": 4744.24,
+    "min": 2329.0,
+    "max": 5131.37,
+    "gate": "descriptive_only"
+  },
+  "preregistered_gates": {
+    "schema_validity": {"threshold": 1.0, "observed": 1.0, "status": "PASS"},
+    "allow_list_compliance": {"threshold": 1.0, "observed": 1.0, "status": "PASS"},
+    "evidence_reference_validity": {"threshold": 1.0, "observed": 1.0, "status": "PASS"},
+    "required_abstain_recall": {"threshold": 0.9, "observed": 0.6, "status": "FAIL"},
+    "inappropriate_abstain_rate_on_sufficient": {"threshold": 0.1, "observed": 0.6, "status": "FAIL"},
+    "evidence_state_contract_alignment": {"threshold": 0.85, "observed": 0.43333333333333335, "status": "FAIL"},
+    "strategy_compatibility_on_sufficient": {"threshold": 0.8, "observed": 0.15, "status": "FAIL"},
+    "evidence_reference_compatibility_on_sufficient": {"threshold": 0.9, "observed": 0.3, "status": "FAIL"}
+  },
+  "interpretation": "Structural output formation was reliable, but semantic evidence-state, abstention, strategy, and reference grounding were not reliable enough for the V3 policy role. These are synthetic contract-alignment measurements, not real-world accuracy or effectiveness.",
+  "scientific_boundary": {
+    "old_169_reused": false,
+    "old_120_reused": false,
+    "reference_labels_used": false,
+    "effectiveness_claim_made": false
+  }
+}

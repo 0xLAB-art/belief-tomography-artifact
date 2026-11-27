@@ -1,0 +1,39 @@
+PT018 Assertion should be broken down into multiple parts
+   --> scripts/prove_cowrie_persona_alignment_v1.py:266:5
+    |
+264 |         ssh_cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+265 |     )
+266 |     assert client.stdin is not None and client.stdout is not None and client.stderr is not None
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+267 |     for command in commands:
+268 |         try:
+    |
+help: Break down assertion into multiple parts
+
+F841 Local variable `started` is assigned to but never used
+   --> scripts/prove_cowrie_persona_alignment_v1.py:458:5
+    |
+456 |     (out / "sessions").mkdir()
+457 |
+458 |     started = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    |     ^^^^^^^
+459 |     run_id = f"{stamp}-{os.getpid()}"
+460 |     server_port, native_port, ragin_port, native_telnet, ragin_telnet = _five_free_ports()
+    |
+help: Remove assignment to unused variable `started`
+
+SIM102 Use a single `if` statement instead of nested `if` statements
+   --> scripts/prove_cowrie_persona_alignment_v1.py:716:13
+    |
+714 |               native_turn = next(t for t in native_parsed["turns"] if t["command"] == command)
+715 |               ragin_turn = next(t for t in ragin_parsed["turns"] if t["command"] == command)
+716 | /             if native_turn["answer_lines"] != ragin_turn["answer_lines"]:
+717 | |                 if command not in {"id"}:
+    | |_________________________________________^
+718 |                       blockers.append(
+719 |                           {
+    |
+help: Combine `if` statements using `and`
+
+Found 3 errors.
+No fixes available (3 hidden fixes can be enabled with the `--unsafe-fixes` option).

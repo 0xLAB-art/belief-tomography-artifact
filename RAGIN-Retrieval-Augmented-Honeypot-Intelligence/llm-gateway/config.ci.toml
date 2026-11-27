@@ -1,0 +1,115 @@
+# Gateway configuration for CI integration tests.
+#
+# Full mirror of config.toml (GatewayConfig requires every section) with
+# the tokenrouter provider swapped for the gateway's built-in mock
+# provider, so the HTTP contract (models, chat, cost estimate) is
+# exercisable without external API keys. Mounted over /app/config.toml
+# by docker-compose.ci.yml.
+[server]
+host = "0.0.0.0"
+port = 8080
+workers = 4
+max_request_size = 10485760
+request_timeout_secs = 240
+keep_alive_secs = 30
+
+[providers.mock]
+name = "Mock"
+provider_type = "mock"
+# The gateway requires a key for every enabled provider except ollama;
+# the mock client never reads it, but validation demands its presence.
+api_key = "mock-not-used"
+base_url = "http://localhost:0"
+api_base_url = "http://localhost:0"
+models = ["meta-llama/llama-3.1-8b-instruct"]
+priority = 1
+enabled = true
+weight = 1
+timeout_secs = 180
+max_retries = 0
+headers = {}
+
+[models."meta-llama/llama-3.1-8b-instruct"]
+provider = "mock"
+context_window = 128000
+max_output_tokens = 4096
+input_cost_per_1k = 0.0
+output_cost_per_1k = 0.0
+enabled = true
+max_retries = 0
+timeout_secs = 180
+skill_levels = ["intermediate"]
+
+[models."meta-llama/llama-3.1-8b-instruct".capabilities]
+chat = true
+completion = false
+function_calling = false
+vision = false
+json_mode = false
+streaming = true
+system_prompt = true
+parallel_tool_calls = false
+
+[routing]
+strategy = "priority"
+fallback_enabled = true
+fallback_models = ["meta-llama/llama-3.1-8b-instruct"]
+latency_threshold_ms = 5000
+cost_threshold_usd = 0.01
+
+[routing.skill_routing]
+novice = "meta-llama/llama-3.1-8b-instruct"
+intermediate = "meta-llama/llama-3.1-8b-instruct"
+expert = "meta-llama/llama-3.1-8b-instruct"
+apt = "meta-llama/llama-3.1-8b-instruct"
+
+[rate_limiting]
+global_rpm = 1000
+global_tpm = 100000
+per_model_rpm = {}
+per_client_rpm = {}
+burst_allowance = 1.5
+
+[circuit_breaker]
+failure_threshold = 1000000
+success_threshold = 3
+timeout_secs = 30
+
+[caching]
+enabled = true
+cache_responses = false
+cache_embeddings = false
+max_size_mb = 100
+ttl_secs = 3600
+
+[cost]
+daily_budget_usd = 20.0
+monthly_budget_usd = 500.0
+alert_threshold_percent = 80.0
+track_per_model = true
+track_per_provider = true
+track_per_skill = true
+
+[validation]
+enabled = true
+strict_mode = false
+max_tokens_per_response = 8192
+allowed_finish_reasons = ["stop", "length", "tool_calls", "content_filter"]
+content_filters = []
+
+[prompt_engine]
+templates_dir = "./templates"
+default_skill_level = "intermediate"
+auto_detect_skill = true
+max_context_tokens = 128000
+
+[metrics]
+enabled = true
+prometheus_port = 9090
+log_level = "info"
+sample_rate = 1.0
+
+[security]
+api_keys = {}
+cors_origins = ["*"]
+rate_limit_by_api_key = true

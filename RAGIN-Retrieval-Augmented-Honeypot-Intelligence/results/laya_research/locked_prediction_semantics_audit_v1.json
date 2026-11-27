@@ -1,0 +1,49 @@
+{
+  "analysis": "LOCKED_AI_REFERENCE_EVALUATION",
+  "chrollo": {
+    "binary_mapping": null,
+    "binary_mapping_status": "MAPPING_NOT_PREREGISTERED",
+    "evidence": [
+      "ragin/chrollo/classifier.py",
+      "ragin/chrollo/models.py",
+      "scripts/laya_frozen_runner.py"
+    ],
+    "meaning": "attacker skill level/persona tier, not the frozen benign-versus-attack endpoint",
+    "multiclass_mapping_status": "MAPPING_NOT_IDENTIFIABLE_FROM_NULL_CONFIRMATORY_OUTPUTS",
+    "native_ontology_documented_as": [
+      "novice",
+      "intermediate",
+      "expert",
+      "apt"
+    ],
+    "observed_field_in_authoritative_artifact": "chrollo_output",
+    "runner_output_field": "chrollo_class"
+  },
+  "combination_policy": {
+    "advisory_contract": "SIGNAL flags for adjudication; it does not overwrite Chrollo; NO_SIGNAL has no effect",
+    "evidence": [
+      "results/laya_research/gating_preregistration.json",
+      "scripts/laya_frozen_runner.py"
+    ],
+    "pre_outcome_complete_rule_exists": false,
+    "status": "NO_PRE_FROZEN_END_TO_END_COMBINATION_POLICY"
+  },
+  "laya": {
+    "answer_field": "laya_answer",
+    "answer_schema": "typed attack/stage/severity assessment; no frozen binary projection",
+    "binary_mapping": null,
+    "binary_mapping_status": "MAPPING_NOT_PREREGISTERED",
+    "evidence": [
+      "scripts/laya_frozen_runner.py",
+      "docs/laya_integration/RAGIN_INTEGRATION_STATUS.md",
+      "docs/laya_integration/REAL_MODEL_INFERENCE_RESULTS.md"
+    ],
+    "status_field": "laya_status",
+    "status_semantics": {
+      "NO_SIGNAL": "abstention/no signal; not benign",
+      "SIGNAL": "assessment returned"
+    }
+  },
+  "prediction_path": "results/laya_research/confirmatory_frozen_predictions.jsonl",
+  "semantics_status": "MAPPINGS_NOT_PREREGISTERED"
+}

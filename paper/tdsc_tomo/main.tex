@@ -1,0 +1,195 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric,patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{mathtools}
+\usepackage{microtype}
+\microtypesetup{protrusion=true,expansion=true,factor=800}
+\setlength{\emergencystretch}{1.5em}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\hypersetup{pdftitle={Measuring the Belief--Claim Gap: Active Black-Box Tomography of Autonomous Agents and the Limits of Certification},
+pdfauthor={Anonymous},
+pdfkeywords={belief tomography, agent security, certification, deception, honeypots, disclosure economics}}
+
+% ---- run-in heads: IEEEtran numbers \paragraph as a) by default; keep them unnumbered
+\setcounter{secnumdepth}{3}
+
+% ---- theorem environments (amsthm; numbered independently, as in the TOPS build)
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+% ---- float density: pack floats tighter ----------------------------------
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{5}
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.08}
+\renewcommand{\floatpagefraction}{0.85}
+
+\graphicspath{{../figures/}{../tops/figs/}{figs/}}
+
+% ---- paper macros ---------------------------------------------------------
+\newcommand{\TV}{d_{\mathrm{TV}}}
+\newcommand{\E}{\mathbb{E}}
+
+% ---- unified figure system (identical styles to the TOPS build) -----------
+\definecolor{oiblue}{HTML}{0072B2}
+\definecolor{oiorange}{HTML}{E69F00}
+\definecolor{oigreen}{HTML}{009E73}
+\definecolor{oired}{HTML}{D55E00}
+\definecolor{oipurple}{HTML}{CC79A7}
+\pgfplotsset{
+  tomog/.style={
+    font=\footnotesize,
+    tick label style={font=\scriptsize},
+    label style={font=\footnotesize},
+    title style={font=\scriptsize},
+    axis lines*=left,
+    axis line style={black!60, thin},
+    tick style={black!60, thin},
+    grid style={black!10, thin},
+    ymajorgrids,
+    xmajorgrids=false,
+    legend cell align=left,
+    legend style={draw=none, fill=none, font=\scriptsize,
+      inner sep=1.5pt, row sep=-2pt},
+    clip=true,
+    xlabel near ticks, ylabel near ticks,
+  },
+  ebars/.style={error bars/.cd, y dir=both, y explicit,
+    error mark=none, error bar style={thin}},
+  ebarsx/.style={error bars/.cd, x dir=both, x explicit,
+    error mark=none, error bar style={thin}},
+}
+
+% acmart accessibility macro; kept as a no-op (alt text remains in the source)
+\newcommand{\Description}[1]{}
+
+\begin{document}
+
+\title{Measuring the Belief--Claim Gap: Active Black-Box Tomography of
+Autonomous Agents and the Limits of Certification}
+
+\author{Anonymous%
+\thanks{Manuscript submitted to the IEEE Transactions on Dependable and
+Secure Computing. (Corresponding author: Anonymous.)}%
+\thanks{The author is an Independent Researcher, Cairo, Egypt
+(e-mail: anonymous@example.com; ORCID:
+withheld-for-review). The artifact repository, pre-registrations, and
+execution log accompany the paper; a claims--evidence ledger
+(\texttt{CLAIMS\_EVIDENCE\_LEDGER.md}) and SHA-256 manifest
+(\texttt{ARTIFACT\_MANIFEST.sha256}) pin every number to an artifact path
+and commit.}}
+
+\markboth{IEEE Transactions on Dependable and Secure Computing}%
+{Anonymous: Measuring the Belief--Claim Gap}
+
+\maketitle
+
+\begin{abstract}
+Deployed agents publish a charter---the security policy they claim to
+uphold---and act on beliefs no certification mechanism tests: that a message
+came from an administrator, that a tool output is trustworthy, that they are
+unobserved. The distance between claim and behavior becomes a measured
+quantity, the \emph{Belief--Claim Gap}, estimated by belief
+tomography: active, black-box probing of an agent's belief
+profile, with Wilson intervals and certification semantics. Attack
+vectors in use become instruments; each forged directive, lying
+output, or lure poses one question.
+
+Theory bounds it: passive monitoring cannot tomograph; deception decays as
+$O(L/\sqrt{N})$ against a fresh observer; public suites are gameable;
+certificates do not compose; profiles are forgeable; censoring above
+tolerance leaves a certificate unidentified; and disclosure has no free
+lunch.
+
+On constructed foils with known truth, dose--response reaches $r\ge0.986$,
+test--retest $r=0.949$, and a seeded audit calibrates the verdict channel
+(sensitivity $0.960$, false positives $0/25$). Thirty registered experiments
+follow---twenty-four confirmatory, six exploratory, a retrospective split.
+Two field registrations forecast a positive gap and positive deception gain;
+both were refuted---gateway targets held their
+charters on every measured turn ($\hat\beta=0$; Wilson 95\% $[0,0.060]$
+at the nominal $0/60$ mapping) and five attacker personas held theirs under live
+honeypot deception---two error classes caught in the program itself. On open
+weights, charter-holding is a spectrum: canary echo from $0.000$ on the
+gateway to a pooled $0.030$--$0.143$ ($0.700$ in echo), and no model complies with destructive
+commands. Estimand, protocol, and foil bounds are released.
+\end{abstract}
+
+\begin{IEEEkeywords}
+AI safety, agent security, behavioral measurement, belief tomography,
+certification, deception, disclosure economics, honeypots.
+\end{IEEEkeywords}
+
+\input{sections/introduction}
+\input{sections/related}
+\input{sections/estimand}
+\input{sections/theory}
+\input{sections/instrument}
+\input{sections/field}
+\input{sections/limitscert}
+\input{sections/disclosure}
+\input{sections/discussion}
+\input{sections/limitations}
+
+\section*{Acknowledgment}
+The author thanks the open-weight model maintainers and the authenticated
+gateway providers. AI-assisted drafting tools were used under author
+direction; experimental design, data collection, analysis, and verified
+claims are the author's own, and the execution log, pre-registrations, and
+deviation ledger are in the repository. No external funding; no competing
+interests.
+
+\section*{Data Availability}
+
+All 30 registered experiments---E1--E22 and E30--E31 confirmatory, E23 and
+E25--E29 exploratory diagnostics designed after the anomalies, review
+concerns, or budget questions they investigate---are seeded and pinned
+to a frozen estimator commit. The 24/6 confirmatory--exploratory split is
+ours, applied retroactively; Section~\ref{sec:limits} gives the
+per-experiment registration timing in full, including the post-data entries
+and the two disclosed header-date edits (E27, E29). The artifact package
+reproduces every number the registered runs produce, records as
+manuscript-side the two computations no run produces (the Holm bounds and
+Figure~\ref{fig:tomogram}'s reconstructed panel), and includes the
+fleet-census, EPK frontier, jury-lane, and blinded re-adjudication artifacts.
+A claims--evidence ledger (\texttt{CLAIMS\_EVIDENCE\_LEDGER.md}) maps every
+number to an artifact path and commit, and a SHA-256 manifest
+(\texttt{ARTIFACT\_MANIFEST.sha256}) pins the artifacts---registration files
+hashed \emph{as frozen}, post-hoc edits included.
+Experiment dates are UTC run-log dates; JSONL records carry no wall-clock
+fields, and the timestamps are authoritative (headers state local-zone dates,
+UTC+2, so a near-midnight run reads one day later there; UTC governs).
+The constructed-foil harness is public; live-fleet diagnostic probe sets are
+withheld per the release policy of Section~\ref{sec:discussion}. The
+artifact package is deposited with the submission; its repository DOI is
+assigned on acceptance.
+
+
+
+{\linespread{0.97}\input{references}}
+
+
+\end{document}

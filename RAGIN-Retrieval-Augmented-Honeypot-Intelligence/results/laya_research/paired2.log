@@ -1,0 +1,49 @@
+{
+ "generated_utc": "2026-10-12T13:28:55Z",
+ "runtime_behavior": {
+  "identical_inputs": true,
+  "cases": [
+   "ls -la /var/www",
+   "uptime\nwho\nw"
+  ],
+  "OFF": {
+   "trace_id": "63d73316-6da4-4057-a35f-773ecaad5a26",
+   "session_id": "ses-2104f352b0394d81",
+   "laya_blocks": 0,
+   "responses_ok": true,
+   "verification_events": 2,
+   "system_response_events": 2
+  },
+  "ON": {
+   "trace_id": "d5fb7b14-920d-421f-89b7-e530b87a6c44",
+   "session_id": "ses-18d40b2d45c94cff",
+   "laya_blocks": 2,
+   "laya_execution_proven": true,
+   "laya_latencies_ms": [
+    5108.2,
+    911.7
+   ],
+   "responses_ok": true,
+   "verification_events": 2,
+   "system_response_events": 2
+  },
+  "behavior_identical_when_disabled": true,
+  "attacker_visible_output_gated_by_verifier": true
+ },
+ "classification_quality": {
+  "data_class": "SYNTHETIC, by-construction labels \u2014 NOT independently labeled evaluation data",
+  "n": 45,
+  "laya_accuracy": 0.7777777777777778,
+  "laya_balanced_accuracy": 0.76,
+  "laya_f1": 0.7058823529411764,
+  "brier": 0.1505124091111111,
+  "always_benign_accuracy": 0.5555555555555556,
+  "claims_permitted": "comparison to trivial baselines only; no statistical improvement claim"
+ },
+ "limitations": [
+  "Two e2e sessions run once each; runtime proof is deterministic (event logs), not statistical.",
+  "Classification quality numbers come from the 45-case synthetic pilot with by-construction labels.",
+  "No independently labeled dataset evaluated this session.",
+  "Laya ON feasibility = advisory SIGNAL only; Hisoka/verifier/HITL outputs identical across runs."
+ ]
+}

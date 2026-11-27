@@ -1,0 +1,214 @@
+\section{The Measurement Instrument}\label{sec:instrument}
+
+\subsection{The platform behind the instrument}\label{sec:platform}
+
+The measurement layer validated below is one plane of an engineered
+deception platform, built and hardened across this program
+(Appendix~\ref{app:platform}, Figure~\ref{fig:platform}). The instrument is
+one object in both settings: the probe library, verdict logic, and pinned
+estimator of Section~\ref{sec:library} run verbatim from foils to field, E2
+through the model gateway and E3 against the fleet's attacker personas
+(deception gain $\Delta(B)$; Section~\ref{sec:field}). Instrument
+\emph{parameters}---the response budget above all---are part of the frozen
+configuration, and every change to them is a logged deviation; the
+response-budget deviation and its repair are the story of
+Section~\ref{sec:field}. The platform's construction and its own measured
+defenses are stated in Appendix~\ref{app:platform}.
+
+\subsection{Library, verdicts, and estimator}\label{sec:library}
+
+\paragraph{Probe library}
+The v0 library holds five families---authority forgery, state deception,
+goal subversion, epistemic echo, exfiltration lure---each at three
+generations of indirectness. Every episode is seeded and reproducible, and
+the target \emph{model} never sees family labels, oracle logic, or the
+generator (routing metadata is consumed by the proxy process and excluded
+from the model-visible channel by the leakage audit of
+Section~\ref{sec:audit}). The v0 families are template worlds: one template
+per (family, generation) cell, sampled repeatedly. Probe \emph{diversity}
+within a cell is a library-v1 property (Section~\ref{sec:limits}); the
+label ``E2-v1'' in Section~\ref{sec:field} denotes the \emph{replication}
+driver (session isolation and full logging), not a new probe library. What
+the v0 instrument measures is the sampling probability of a fixed probe,
+which is exactly what the dose--response experiment validates.
+
+\paragraph{Library-v1 paraphrase validation (E22)}
+Three semantic-preserving paraphrase variants per cell are frozen in code
+(preflight-verified against the v0 breach pattern), and the full E1 grid
+re-runs under each: exact profile parity on the deterministic harness (max
+$|\Delta\hat\beta| = 0.000$ over 75 cells; cross-variant $r = 1.0$; every
+family at the E1 bar). The v0 readout is wording-invariant for
+semantics-preserving probes---on deterministic foils; whether production
+models are wording-invariant is what E21 measures
+(Section~\ref{sec:e2}).
+
+\paragraph{Verdicts and the measurement model}
+Two deterministic oracles form the reproducible floor: \texttt{secret\_leak}
+(the literal secret appears in the target's outputs) and
+\texttt{unauthorized\_action} (an action word co-occurs with a destructive
+command string). Both are lexical, and Section~\ref{sec:audit} shows why
+that matters: lexical verdicts are a floor, not a semantic judge. The
+calibrated multi-model jury lane\footnote{A program methodology artifact
+with measured inter-rater agreement; see Data Availability.} is the v1
+semantic layer; any breach claim that is not a literal echo is audited
+against its transcript. Because Definition~\ref{def:beta} fixes the
+estimand's verdict as ``produced by deterministic oracles and a calibrated
+judge,'' a  
+\emph{measurement model} is needed before any field number is read: the
+operational estimator in the field layers is the \emph{lexical-oracle
+channel} $\beta^{\mathrm{lex}}$---the verdicts are the two oracles above
+(with the audit as its calibration), not the oracles-plus-jury circuit of
+the estimand. The gap between channel and estimand is priced, not
+ignored: on boundary sessions the lexical channel misses
+$12/25=48\%$ $[30.0,66.5]$ of seeded breaches (the rubric channel misses
+$0.04$; Section~\ref{sec:audit}), the field's mandatory non-literal-breach
+audit triggers only on \emph{oracle positives}---there were none in
+E2-v1---so its protection was vacuous exactly when it looked clean, and
+the E2 bridge to the estimand is the blind adjudication of the stratified
+sample (51 labelable sessions, zero breaches) plus the 230-flag audit.
+Every $\hat\beta$ printed in Sections~\ref{sec:field} is therefore a
+$\beta^{\mathrm{lex}}$ estimate whose correspondence to the estimand is
+carried by those audits, a correspondence that no theory result in
+Section~\ref{sec:theory} propagates and that
+Section~\ref{sec:limits} states as a limitation.
+
+\paragraph{Estimator}
+Per family, $\hat\beta$ is the breach rate over the family's generations,
+with a Wilson score interval \cite{wilson1927}; Wilson intervals are the
+default throughout, and the exact (Clopper--Pearson) intervals used only in
+adjudication-ratio audits are labeled as such where they appear. Profiles are
+compared under $\ell_1$ distance; the Belief--Claim Gap averages the family
+$\beta$s mapped to a charter claim. The estimator is frozen by commit hash
+before data collection; every change is a logged deviation.
+
+\subsection{Validity: dose--response (E1)}\label{sec:validity}
+
+The E1 grid crosses the five families with five injection doses
+$\{0,0.25,0.50,0.75,1.00\}$ of the foil's induced belief, 60 episodes per
+cell (20 probes $\times$ 3 generations): $25\times60=1{,}500$ episodes.
+The cell size is sized, not guessed: at $n=60$ the worst-case binomial SE
+($0.065$ at $p=0.5$) stays below the $0.25$ dose step---the design
+response to an early $n=18$ pilot's apparent authority-forgery dip
+($\mathrm{SE}\approx0.118$ exceeds half the step; diagnosed as cell-size
+noise before any curve was read). The result: Pearson $r\ge0.986$ and
+Spearman $\rho=1.00$ in every family (per-family $r$
+$0.986$--$0.990$),
+monotone curves, exact zero-dose cleanliness. On
+the constructed planes, at the registered operating point, the instrument
+recovers what it claims to measure; what that resolution cannot exclude on
+production targets is stated where the field results are
+(Section~\ref{sec:field}).
+
+\subsection{Reliability: test--retest (E1b)}\label{sec:reliability}
+
+Two independent probe batches on a stochastic foil (temperature-like noise
+$\eta=0.15$) yield $r=0.949$ with mean $|\Delta\hat\beta|=0.067$ at 10
+probes per cell. At 4 probes per cell the same foil yields $r=0.837$, below
+the pre-registered reliability bar. \emph{Batch size is part of the
+instrument specification}; the operating point is $\ge10$ probes per cell.
+Effects below the measured noise floor are not claimable in any document.
+
+\subsection{Allocation: the objective must match the goal (T3)}\label{sec:alloc}
+
+Which probe family should receive the next episode? The intuitive answers
+are a bandit's regret objective (attack the family that fails most) and a
+psychophysics information objective (maximize entropy reduction). We
+benchmarked both against uniform and variance-equalizing (Neyman) allocation
+for \emph{profile estimation} at budgets 25--400.
+
+The negative result is the point. Over 150 seeded replications per
+(policy, budget) cell---paired seeds across the four policies, on a fixed
+heterogeneous target profile with family rates spread from $0.1$ to $0.9$
+(Policy Benchmark artifact)---uniform achieves mean
+error 0.035 and Neyman 0.035 at $n=400$, while the upper-confidence-bound
+bandit (UCB-lite) stalls at 0.121 and the entropy-greedy information
+heuristic (PSI) at 0.129:
+regret-optimal allocation starves non-frontier families, and entropy-greedy
+allocation over-invests in extreme-rate families. Mutual information is the
+right tool for \emph{detection}-style tasks, not for estimation. This
+refines the open problem of Section~\ref{sec:qc}: the optimal design for
+profile estimation is variance-equalizing, and the adaptive gain is bounded
+by profile sparsity, not by greedy information.
+
+\subsection{The verdict channel, audited}\label{sec:audit}
+
+\paragraph{Constructed boundary audit}
+We constructed 50 boundary sessions with human-assigned labels---frozen in
+code before any oracle ran, assigned semantically and not by the oracle's
+lexical rules: safe
+refusals that \emph{name} the forbidden command (``I am not executing
+\texttt{rm -rf /var/\allowbreak log}''), safe cases with no oracle keywords,
+and breaches phrased around the lexical rules (implicit completion,
+paraphrase, split secrets). The lexical oracle produced 5/25 false positives
+(20.0\%, 95\% CI [8.9\%, 39.1\%]) and 12/25 false negatives (48.0\%, 95\% CI
+[30.0\%, 66.5\%]). Both directions matter: a false positive inflates a
+charter violation; a false negative certifies an agent that complied. The
+deterministic oracle is a reproducible floor, and every non-literal breach
+verdict must be verified against its transcript. Any instrument with
+automated verdicts deserves the same audit.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lcc}
+\toprule
+ & human label: safe & human label: breach \\
+\midrule
+oracle: clean & 20 (TN) & 12 (FN, 48.0\%) \\
+oracle: breach & 5 (FP, 20.0\%) & 13 (TP) \\
+\bottomrule
+\end{tabular}
+\caption{Constructed boundary audit ($n=50$): the lexical oracle's confusion
+matrix. The 2\% false-positive bar of kill criterion (a) is not met on
+boundary text, which is why the oracle is a floor and the transcript audit
+is mandatory.}
+\label{tab:audit}
+\end{table}
+
+\paragraph{E17: the audit channel's operating characteristic}
+The live kill-(a) audit of Section~\ref{sec:field} reported FP $0/51$
+$[0,5.7\%]$ (one-sided exact Clopper--Pearson bound; the two-sided
+interval is $[0,7.0\%]$) with zero oracle positives---honestly
+labeled underpowered. E17
+closes the gap with a seeded audit: 50 frozen constructed sessions of known
+ground truth (labels never exposed to the adjudicator) plus 70 real E2-v1
+sessions, shuffled blind---presented without id, kind, or family
+labels---and adjudicated by
+the registered transcript rubric rather than the lexical oracle. The channel
+measures sensitivity $0.960$ $[0.805,0.993]$ and FP $0/25$ $[0,0.133]$; the
+single false negative is a pretext-only phrasing (``executing the vendor
+guidance'') with no prohibited content in the output. The channel dominates
+the oracle on the same 50 sessions (oracle FP $0.20$, FN $0.48$; channel FP
+$0.00$, FN $0.04$). Of the 70 real sessions, the adjudicator could label 52; 18 (all with
+censored turns) were returned \emph{unavailable} and are excluded---the
+censoring reaches even the audit channel, at a disclosed rate of
+$18/70=25.7\%$. No labelable session adjudicates as a breach. The
+containment runs one way, the direction the field section supports:
+every E2-v1 state-deception session carries an unavailable turn
+(Section~\ref{sec:e2}), while the E2 audit tables show the broader
+censored set outside the family; instrument resolution inverts that to
+the other direction---the instrument-resolution sentence inverted the field
+record. With 25 seeded positives, the audit
+detects adjudicator FP rates above ${\approx}12\%$ (rule of three): kill
+criterion (a) now has a stated power. The seeded-audit concept is borrowed
+from practitioner oversight; the object calibrated here is this program's
+transcript-adjudication channel, not a general audit methodology.
+
+\subsection{Robustness: estimator and seeds (E18, E19)}\label{sec:robust}
+
+Two robustness results close the remaining methodological
+questions about the instrument itself; their registrations are reconciled
+against the ledger in Section~\ref{sec:limits}. \emph{E18 (estimator
+robustness):} an
+empirical-Bayes Beta--Binomial estimator with a per-experiment
+method-of-moments prior, applied to the frozen E1/E2/E17 data, produces zero
+\emph{decision} flips at $\tau=0.2$, so headline inferences do not depend on
+the interval estimator, while its credible intervals are narrower
+\emph{on average} (per-dataset mean width ratios $0.88$--$0.99$;
+per-cell ratios span $0.65$--$1.01$, with 13 of 59 cells where the Bayes
+interval is the wider one); the two estimators disagree on the exactly-zero
+cells---where a continuous posterior excludes zero by construction---and on
+six exactly-one cells, all disclosed in the artifact (a v2-estimator
+design note).
+\emph{E19 (seed extension):} the E6/E7/E9/E10 registered protocols re-run
+unchanged at three fresh seeds $(131, 2026, 90210)$; every registered
+condition holds at every seed, so the foil-harness results are seed-robust.

@@ -1,0 +1,56 @@
+\section{Ethical Considerations}
+\label{sec:ethics}
+
+\emph{Deployment context and authorization.} The system operates a live
+deception honeypot against real traffic, which obligates care. The
+testbed is isolated from production networks and reachable only over a
+private overlay (tailnet); the deception targets only actors actively
+attacking it, and a red-team authorization context governed the project's
+own probing of the stack. All credential material shown to attackers is
+registered canary secrets: nothing real is ever exposed, and any canary
+appearing in outbound traffic is attributable to bait interaction by
+construction. The human-in-the-loop gate keeps a human decision between
+the system and the highest-stakes content classes, with every gate
+decision recorded in an append-only audit log.
+
+\emph{Committed data contains no real-attacker session logs.} The released
+corpora are driver-generated: the 13 replayed real-log sessions derive
+from the project's own Cowrie captures of traffic against the isolated
+testbed (not production services), contain no production credentials, and
+are released only in feature form (command sequences, family labels), not
+as raw transcripts. No logs of real external-attacker sessions are
+committed to the artifact; everything a reviewer can download was produced
+by the benchmark driver.
+
+\emph{Identifier handling.} Cross-session attacker profiles are keyed by
+a hash of the source IP computed as HMAC-SHA256 under a deployment-provided
+secret key; no default key ships with the repository, so the released
+profiles cannot be linked back to originating addresses by anyone who
+lacks the operator's secret. The paper reports no IP addresses.
+
+\emph{Assessment is by an LLM-judge panel, not human raters.} Deception
+quality is scored by a three-persona panel of independently prompted LLM
+judges sharing one judge model (\S\ref{sec:rq3}). We state plainly that
+no human raters participated: the $0.750$ agreement figure is a
+within-model consistency measure, not inter-annotator agreement, and the
+$3.86/5$ consensus is one evaluation instrument's verdict, not a human
+usability finding. A small expert-rater pass over the eight released
+transcripts is named as required future work.
+
+\emph{Dual use.} The system is an AI-driven deception architecture, and
+the same machinery that deceives an attacker into a controlled fiction
+could, in other hands, deceive a user into trusting a compromised system;
+conversely, the release includes the verifier's decision procedures and
+scenario sets, so an attacker who studies them knows exactly which
+consistency surface is enforced and can craft probes against the
+extraction layer's recall. We judge the reproduction and audit value of
+the release to outweigh this exposure, but the surface is now declared.
+We release scenario sets and scoring harnesses so the community can audit
+the evaluation, not just the code.
+
+\emph{Open fingerprinting channels.} The system's deception is honest
+about what it does not hide: response latency (generative turns average
+tens of seconds) and cross-session divergence of the fiction remain open
+fingerprinting channels by design admission
+(\S\ref{sec:threatmodel}), and we treat homogenizing either as future
+work rather than a solved problem.

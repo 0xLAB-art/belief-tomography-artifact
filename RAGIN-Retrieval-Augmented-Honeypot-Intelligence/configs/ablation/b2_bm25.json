@@ -1,0 +1,78 @@
+{
+  "schema": "ragin.ablation.arm_config.v1",
+  "arm": "B2",
+  "label": "B1 + BM25 sparse CTI retrieval",
+  "status": "BLOCKED_MODEL_AND_FROZEN_GENERATOR",
+  "claim_status": "NOT_A_MEASURED_MODEL_EXPERIMENT",
+  "retrieval": {
+    "mode": "bm25",
+    "env": {"RAGIN_RAG_MODE": "bm25", "RAGIN_CORPUS_PATH": "data/corpus"},
+    "note": "Sparse-only. No vector store is constructed."
+  },
+  "generator": {
+    "kind": "frozen_external_or_local_llm",
+    "model": "UNRESOLVED_FROZEN_GENERATOR",
+    "settings_status": "PROPOSED_NOT_ENFORCED",
+    "decoding": {
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 512,
+      "seed": 0,
+      "enforcement": "PROPOSED_NOT_ENFORCED"
+    },
+    "max_retries": 1,
+    "prompt_template": "UNRESOLVED_FROZEN_PROMPT_V1",
+    "fallback": "none",
+    "fallback_status": "PROPOSED_NOT_ENFORCED",
+    "runtime_observed_defaults": {"temperature": 0.7, "max_tokens": 4096},
+    "not_exposed_by_runtime": ["seed", "top_p"],
+    "note": "PROPOSED_NOT_ENFORCED. The current Hisoka runtime requests temperature=0.7 and max_tokens=4096 and can serve template/static fallback paths; seed and top_p are not exposed. The proposed values above are not applied by the runtime and are not a measured decoding contract."
+  },
+  "verification": {
+    "kind": "FictionConsistencyVerifier+HostFictionVerifier",
+    "mandatory": true,
+    "fail_closed_supported_claims": false
+  },
+  "persona": {
+    "kind": "host_fiction",
+    "host_fiction_path": "data/host_fiction.json",
+    "host_fiction_sha256": "UNRESOLVED"
+  },
+  "resources": {
+    "budget_id": "B1_B3_SHARED_PROPOSED_BUDGET",
+    "runtime": "host .venv or ragin-python image",
+    "network": "provider endpoint required for generation; no public listener",
+    "cpu": 1,
+    "memory_mb": 2048,
+    "gpu": false,
+    "enforcement": "PROPOSED_NOT_ENFORCED",
+    "note": "Identical proposed CPU/memory/concurrency budget for B1-B3. These JSON fields are not cgroup, container, or scheduler enforcement."
+  },
+  "command": null,
+  "command_template": {
+    "status": "STARTUP_WIRING_ONLY_NOT_EXPERIMENT",
+    "executed": false,
+    "shell_guard": [
+      ": \"${PROVIDER_ENDPOINT:?required}\"",
+      ": \"${PROVIDER_KEY:?required}\""
+    ],
+    "env": {
+      "RAGIN_RAG_MODE": "bm25",
+      "RAGIN_CORPUS_PATH": "data/corpus",
+      "RAGIN_PROVIDER_ENABLED": "1",
+      "RAGIN_LLM_BASE_URL": "${PROVIDER_ENDPOINT}",
+      "RAGIN_LLM_API_KEY": "${PROVIDER_KEY}",
+      "RAGIN_LAYA_ENABLED": "0",
+      "RAGIN_DON_RETRIEVAL_VERSION": ""
+    },
+    "argv": [".venv/bin/python", "-m", "ragin.server_v2", "--mode", "pipeline", "--port", "8082"],
+    "timeout_s": 120,
+    "note": "Nonexecuted metadata. This starts serving wiring only; it does not invoke a frozen model experiment, and the proposed decoding settings are not applied."
+  },
+  "bounded_runtime_s": 120,
+  "prerequisites": [
+    "Frozen generator endpoint/model/revision and price recorded.",
+    "data/corpus present and hashed.",
+    "Prompt template and host-fiction file hashed."
+  ]
+}

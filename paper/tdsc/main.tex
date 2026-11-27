@@ -1,0 +1,125 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric,patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\lstdefinestyle{code}{basicstyle=\ttfamily\scriptsize,breaklines=true,frame=single,framerule=0pt,rulecolor=\color{black!30},columns=fullflexible,keepspaces=true,aboveskip=4pt,belowskip=4pt}
+\lstset{style=code}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\newtheorem{property}{Property}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\usepackage{enumitem}
+\usepackage{xspace}
+\setlist{itemsep=2pt,topsep=3pt}
+
+\graphicspath{{../figures/}}
+
+\newcommand{\system}{RAGIN\xspace}
+\newcommand{\RAGIN}{RAGIN\xspace}
+\newcommand{\attck}{ATT\&CK\xspace}
+\newcommand{\eg}{e.g.,\xspace}
+\newcommand{\ie}{i.e.,\xspace}
+\newcommand{\etal}{et al.\xspace}
+
+\begin{document}
+
+\title{The Intelligence Ladder: Pricing AI Mechanisms in a Verified
+Deception Honeypot}
+
+\author{Anonymous%
+\thanks{Manuscript received XXX; revised XXX. (Corresponding author: Anonymous.)}%
+\thanks{The author is with the Department of Computer Science, Benha University, Benha, Egypt (e-mail: anonymous@example.com). The artifact repository is released for reproduction; an anonymized mirror is linked in the implementation section during review.}}
+
+\maketitle
+
+\begin{abstract}
+Every deception endpoint faces the same budgeting question: how much
+intelligence can it spend on crafting its lie before the intelligence
+itself becomes the risk? Scripted templates spend none and remain
+consistent by construction, but cannot adapt. A behavioral classifier spends little and
+stays auditable, but only routes. Retrieval-augmented generation spends
+more and buys measurable detection gains, yet its output is a statistic.
+A large language model (LLM) spends the most and adapts to anything, but
+on a commercial provider under safety-alignment pressure, 86.7\% of
+generated turns exceeded the inference budget and behavior varied with
+the account's remaining
+quota. We treat that ladder as the experiment. Each rung is
+added to the same verified deception loop and measured for what it buys
+and costs: routing
+raises held-out classification accuracy from 0.8875 to 0.9550; grounding
+lifts technique detection by $+0.317$ (95\% CI $[+0.162,+0.480]$), actor
+attribution by $+0.140$ ($[+0.083,+0.197]$), and the overall composite by
+$+0.154$ ($[+0.092,+0.221]$) in a paired 90-row ablation under
+operationally defined rubrics, while leaving persona realism untouched;
+with grounding disabled, every technique detection disappears (35 to 0)
+-- a structural-dependence result the architecture predicts, so the
+benefit claim rests on the rubric-scored differential, not on the count;
+the full 218-query campaign with grounding active engages 132 detections
+across 67 unique techniques. Generative
+adaptivity then operates only under a serving-time verifier, which
+records zero unverified responses served, zero false-positive CTI
+alerts, and zero contradictions across 45 adversarial re-queries within
+live sessions; the deterministic strata and replayed session state
+reproduce byte-identically, and the campaign composite reproduces to
+$+0.005$ across two independent runs (per-row agreement 0.991); the
+campaign's serves split 88\% verified-generation to 12\% vetted
+deterministic content, with zero fallback serves. At the
+final rung, kind-aware adversarial classification fixes 12/13 assessments
+on 13 replayed real-log sessions and lifts attacker bait exposure by
+125\% in five closed-loop replay pairs, yet
+adds no measurable dwell time and, at the benchmark's resolution, shows
+no measurable advantage over a deterministic decision floor on that
+benchmark -- a directional fold-down signal, not a general subsumption
+claim. Deception-quality assessment is by a three-persona LLM-judge panel
+(3.86/5, one judge model), not human raters. All consistency claims are
+within-session by construction; cross-session divergence and response
+latency remain open fingerprinting channels. Past the point of
+verification, this system's evidence says intelligence buys adaptation,
+not safety at the margin. We release the full ladder and replayable
+artifacts; the design rule: certifiable intelligence
+inside the loop, generative intelligence outside it under verification.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Cyber deception, honeypots, retrieval-augmented generation, large language
+models, serving-time verification, honeytokens, MITRE \attck, threat
+intelligence.
+\end{IEEEkeywords}
+
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/design}
+\input{sections/formal}
+\input{sections/implementation}
+\input{sections/evaluation}
+\input{sections/discussion}
+\input{sections/related}
+\input{sections/conclusion}
+
+\begin{IEEEbiographynophoto}{Anonymous}
+is with the Department of Computer Science, Benha University, Egypt. His
+research interests include cyber deception and honeypot design,
+retrieval-augmented generation for security tooling, applied large
+language models under verification, and threat-intelligence grounding of
+autonomous defense systems.
+\end{IEEEbiographynophoto}
+
+\input{references}
+
+\input{sections/appendix}
+
+\end{document}

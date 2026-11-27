@@ -1,0 +1,61 @@
+{
+  "alpha": 0.05,
+  "central_sigma_assumption": {
+    "justification": "Paired design: both arms share identical retrieval candidates per case, so per-case fractions are strongly correlated and paired differences concentrate near zero on the majority of cases; historical judge-vs-gate agreement on the old cohort was 1.0 at case level, so dispersion is driven only by cases where the judge changes admissions.",
+    "sigma": 0.25
+  },
+  "computed_at": "2026-10-15T05:19:30.024354+00:00",
+  "design": "paired (both arms run every case; per-case outcome difference B minus A)",
+  "experiment_id": "ragin.step6.matched_judge_contrast.v1",
+  "n_available_eligible": 40,
+  "n_frozen": 40,
+  "power_target": 0.8,
+  "precision_statement": "At N=40 the expected 95% CI half-width for the mean paired difference is 0.080 under central sigma; MDE for 80% power is 0.115 at central sigma and 0.16 at the conservative sigma (0.35).",
+  "primary_statistic": "mean paired difference in per-case unsupported-admission fraction",
+  "required_n_at_central_sigma": 24,
+  "sample_size_decision": "N=40 (all eligible captures) exceeds the required n=24 for the preregistered effect target under the central sigma assumption (0.25); sample size fixed at the full eligible cohort.",
+  "sample_size_decision_code": "ALL_ELIGIBLE_EXCEEDS_REQUIRED_N",
+  "schema": "ragin.step6.power_analysis.v1",
+  "sigma_sensitivity_table": [
+    {
+      "ci95_half_width_at_available_n": 0.048,
+      "mde_at_available_n": 0.07,
+      "power_at_delta_star": 1.0,
+      "required_n_for_delta_star": 10,
+      "sigma": 0.15
+    },
+    {
+      "ci95_half_width_at_available_n": 0.064,
+      "mde_at_available_n": 0.095,
+      "power_at_delta_star": 0.9961,
+      "required_n_for_delta_star": 16,
+      "sigma": 0.2
+    },
+    {
+      "ci95_half_width_at_available_n": 0.08,
+      "mde_at_available_n": 0.115,
+      "power_at_delta_star": 0.9591,
+      "required_n_for_delta_star": 24,
+      "sigma": 0.25
+    },
+    {
+      "ci95_half_width_at_available_n": 0.0959,
+      "mde_at_available_n": 0.14,
+      "power_at_delta_star": 0.8694,
+      "required_n_for_delta_star": 34,
+      "sigma": 0.3
+    },
+    {
+      "ci95_half_width_at_available_n": 0.1119,
+      "mde_at_available_n": 0.16,
+      "power_at_delta_star": 0.7528,
+      "required_n_for_delta_star": 45,
+      "sigma": 0.35
+    }
+  ],
+  "smallest_effect_size_of_interest": {
+    "delta": 0.15,
+    "justification": "0.15 absolute reduction in the per-case unsupported-admission fraction. On the frozen historical cohort the gate-only arm admitted a 0.741 candidate-level unsupported rate, and the judge demonstrably misses adjacent/ambiguous support, so the achievable headroom is bounded; a stage that changes fewer than roughly 1 in 7 admitted-evidence decisions does not justify its added latency and complexity in the deployed pipeline."
+  },
+  "test": "two-sided paired permutation (sign-flip, 100000 draws, frozen seed) with paired-t power approximation for design"
+}

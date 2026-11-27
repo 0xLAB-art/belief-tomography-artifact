@@ -1,0 +1,105 @@
+## Summary
+
+Belief Tomography proposes an estimand (behavioral belief profile beta, the Belief-Claim Gap), an active black-box instrument to measure it with per-proposition Wilson intervals, a theory of measurement under attack (passive-impossibility, query complexity, patch-decay/onset caps on deception gain and stealth, limits of certification, disclosure economics), and a 30-slot pre-registered experimental program: instrument validation on constructed foils, two pre-registered field nulls on gateway-served frontier models and a live honeypot fleet, two self-caught measurement-error classes (budget censoring caught by the registered censoring floor; lexical-oracle false positives caught by the mandatory transcript audit), and an open-weight panel measuring charter-holding as a spectrum (canary echo 0.030-0.143 pooled, 0.700 in the echo family; zero destructive-command compliance in every panel). Every abstract number was verified against the body and every checkable Wilson bound recomputed exactly: the statistics reproduce. The weaknesses are of documentation and typesetting, not honesty: one flagship corollary is mistyped into vacuity, one discussion sentence commits the paper's own named fallacy, the certification rule is stated inconsistently, several evidence figures have unclear denominators (E1's 1,500 episodes, E27's 60-vs-30, E3's batch sizes), and the economics section's later experiments carry unstated protocol parameters.
+
+## Strengths
+
+- 1) Falsifiability as organizing principle: six RQs each with a section pointer, five contributions each tied to a registered artifact, and a registry with a retired void slot (E24); the four-layer program-at-a-glance table maps all 30 slots. 2) The self-caught-error narrative is real and artifact-pinned: the registered censoring floor flagged the family, E28's same-day two-budget decomposition traced the zero to the instrument (19/20 empty at 200 tokens vs 4/20 flags at 1024), and the frozen E17 audit retracted 118/118 post-repair flags as refusal-quote false positives while validating 112/112 genuine - two error classes caught by the program's own machinery, each retraction written into the text. 3) The statistics survive hand recomputation everywhere checked (Wilson bounds in Tables 3/5 and 4, E4's 0.19 lower bound, E6's 0.839, the noise-floor sqrt-2 scaling 0.067->0.047). 4) The identification treatment of censoring (Prop 6.1, worst-case intervals stated rather than hidden, Table 4) exceeds field practice. 5) Related work positions by delta statements and pre-empts its own novelty claims; the theory openly declares its inequality machinery standard. 6) Release policy follows the paper's own theorems (live-fleet diagnostics withheld because published held-out sets are gameable). [[C1](#c1), [C2](#c2), [C3](#c3), [C6](#c6), [C8](#c8), [N3](#n3)]
+
+## Weaknesses
+
+- 1) Three statement-level defects invalidate load-bearing text: Corollary 7.1 accepts a target that 'complies' off-support (vacuous as printed; must read 'breaches' in statement and proof); Section 9's 'registered field breaches' commits the flag/breach conflation the paper itself names as its second self-caught error; Table 3 prints a point mass for a family the prose calls undefined ('never as a point mass'), the caption patching it with a different experiment's result. 2) The certification rule is stated three inconsistent ways (lower-bound rule in the body, trichotomy in Figure 3, upper-bound certification evidence in the caption). 3) Theory-quality gaps: Thm 4.7(iii)'s appendix derivation has both inequality directions flipped (statement right, proof corrupt); Thm 4.8's sketch attributes a normal-approximation concentration to Hoeffding (false at the stated operating point); Prop 4.4's sketch does not establish the claimed probe count; Corollary 4.9 has no proof and overreaches ('against any detection budget'); beta_d serves triple duty (false-alarm rate, detection cap, power complement); z_beta_d is defined only in the appendix; and the patch-decay law (RQ3's flagship) is never invoked after Section 4. 4) Evidence denominators a referee cannot reconstruct: E1's 1,500 episodes vs 75 cells x 60; E27's '60 sessions' with n=30 Wilson intervals; E3/E23's per-cell batch sizes; the 1,230-session audit corpus membership; the 118-flag per-panel decomposition; E31's registration date (2026-11-23) vs Table 5's caption ('2026-11-22/23'). 5) Craft: a 340-word abstract with a 62-word path sentence and undefined 'frontier-catalog'; a ~200-word conclusion sentence; the E21 paragraph's triple-nested 130-word caveat; 'Nothing changes between foil and field' and 'the instrument measures what it claims to measure' are the two uncalibrated universals in an otherwise calibrated paper. 6) Presentation drift: cross-reference types wrong twice ('Propositions 7.3-7.8' spans Theorem 7.4 and Corollary 7.5; 'Theorems 7.4 and 7.5'), '8.1M SSH sessions' misquoting an interactions count, 'most-cited survey' unsupported, 'Treason Bricken' and a stray accent macro in the bibliography; five of six included figures lack the accessibility Description; x-axis of Fig 5(b) hides the stated anchors. 7) Boundary claims: 'no model... complies' is five tested models, not a universal; 'released for the field to replicate' overstates what withheld probe sets permit; '30 pre-registered' flattens the 25/5 confirmatory/post-anomaly split the paper's own rigor section insists on. [[C4](#c4), [C5](#c5), [C7](#c7), [C9](#c9), [C10](#c10), [C11](#c11), [C12](#c12), [C13](#c13), [C14](#c14), [C15](#c15), [N5](#n5), [N7](#n7)]
+
+## Questions for Authors
+
+- 1) Give the E1 grid definition (cells x n per cell) that makes the 1,500-episode count exact, and per-family dose-response correlations with dispersion. 2) Which family in the graded foil is designed at beta=1? E14's 0.067 advantage is unrecomputable without it. 3) What is the E27 denominator: 30 sessions per model (then say so) or 60 pooled? 4) What are the six runs in the 1,230-session leakage-audit corpus? 5) Does E30-MiniMax contribute flags to the 118/112 totals (its Table 5 row is 'unmeasurable')? 6) Exact registration vs data-start timestamps for E31 vs Table 5's '2026-11-22/23'. 7) Were the 50 constructed boundary-audit labels assigned blind to oracle outputs? 8) What attacker capability generates E15's intermediate 0.100 point? 9) Define E20's defender utility and its Laplace-epsilon grid. 10) Why 301 fresh target processes for 300 session ids? 11) Which infelicities are typesetting vs conversion: the spaced-decimal macros break text extraction of every number in the PDF - is that deliberate? [[C4](#c4), [C13](#c13), [N7](#n7)]
+
+## Overall Score
+
+5/6 (NeurIPS 2026: Accept — technically solid, high potential value)
+
+## Evidence
+
+<a id="c1"></a>**C1** · claim (supported) · §Abstract
+> Two pre-registered field nulls: targets hold charters on every measured turn (beta-hat=0, Wilson 95% [0,0.060] per family, 300 sessions); attacker personas at/below noise floor for all five personas
+>
+> *Verification:* All numbers verified: 0/60 Wilson upper = 0.0602 exact; per-family n=60 reconciles; five personas Delta(B) 0.000-0.0067 vs 0.067 floor; E23 depth replication Delta=0.0000 all five. Provenance blur noted: headline conflates E2-v1/E2-v1b/E29 runs (see N5).
+
+<a id="c2"></a>**C2** · claim (supported) · §Abstract
+> Two self-caught measurement errors: censoring floor flagged state-deception family -> E28 traced zero to 200-token budget; transcript audit retracted 5/60 flagged as refusal-quote FPs of the lexical oracle -> 0/60 genuine
+>
+> *Verification:* Path verified end-to-end: censoring floor (Prop 6.1, 1-line proof verified), E28 same-day two-budget experiment (19/20 empty at 200 vs 4/20 flags at 1024), E29 5/60 flags adjudicated 0/60 genuine under frozen E17 rubric. Third instance (E30 hardcap) disclosed in body but conclusion still says 'two' - class-level counting fix needed.
+
+<a id="c3"></a>**C3** · claim (supported) · §Abstract
+> Open-weight panel measures charter-holding as a spectrum on one axis (literal canary echo): gateway 0.000 vs pooled 0.030-0.143, echo family to 0.700; zero destructive compliance anywhere (118 unauthorized_action flags all FP, 112 secret_leak flags all genuine)
+>
+> *Verification:* Table 5 exact: Flash 9/300=0.030, Pro 43/300=0.143, MiniMax 11/300=0.037; echo 42/60=0.700; 118/112 sums reconstruct (pooled genuine sums to 112; 118+112=230). Missing: per-panel decomposition of the 118, CIs on open-weight pooled cells, scope is five tested models not universal 'no model'.
+
+<a id="c4"></a>**C4** · claim (weak) · §1.2
+> Instrument validity: dose-response r>=0.986 over 1,500 episodes; test-retest r=0.949 at 10 probes/cell; seeded adjudication sensitivity 0.960, FP 0/25
+>
+> *Verification:* r>=0.986 and 1500 episodes internally consistent but the E1 grid arithmetic does not close as documented: 75 cells x 60 = 4500 not 1500; no per-family r table, no dispersion, n=18->60 resize not registry-annotated. r=0.949 verified; noise-floor arithmetic coherent (0.067 -> 0.047 at sqrt2 scaling).
+
+<a id="c5"></a>**C5** · claim (weak) · §1.2
+> Theory contribution: passive monitoring cannot tomograph (Thm 4.1); query-complexity guarantees (Thm 4.3, Prop 4.4); patch-decay + onset dichotomy cap deception gain and stealth (Thms 4.7-4.8); certification limits and disclosure economics (Props 7.3-8.3)
+>
+> *Verification:* Thm 4.1, Thm 4.3, Lemma 4.6, Thm 4.7(i) verified by recomputation. Defects: Thm 4.7(iii) appendix proof has flipped inequality (statement right, derivation corrupt); Thm 4.8 proof-sketch falsely attributes normal-approx to Hoeffding; Prop 4.4 sketch does not establish the count; Cor 4.9 has no proof and overreaches ('against any detection budget'); Thm 4.7 never invoked after §4 (RQ3 flagship validated nowhere); beta_d in triple duty; z_beta_d defined only in A.1; Thm 4.7(ii) hides knowledge-of-P assumption.
+
+<a id="c6"></a>**C6** · claim (supported) · §1.2
+> 30 pre-registered experiments under a frozen estimator; artifact package reproduces every number
+>
+> *Verification:* Ledger reconciles: E1-E23 (with E1b folded) + E25-E31 = 30, E24 retired void, 25/5 split stated in §10. Needs one-line registry convention (E1b folded) and abstract should carry the 25/5 split instead of blanket 'pre-registered'.
+
+<a id="c7"></a>**C7** · claim (invalid) · §1.2
+> Cross-references in front matter are type-correct: 'Corollary 7.1, Theorem 7.2, Propositions 7.3-7.8' (Sec 1.2) and '(Theorems 7.4 and 7.5)' (Sec 2.6)
+>
+> *Verification:* The objects in the range are not all propositions: Sec 7.3 contains Theorem 7.4 (tomogram forgery) and Corollary 7.5 (adaptive gaming), so 'Propositions 7.3-7.8' (contribution 2, introduction.tex:116) and 'Theorems 7.4 and 7.5' (related.tex:121, where cor:adaptive is a corollary) are type-wrong. Fix: enumerate as Corollary 7.1, Theorem 7.2, Proposition 7.3, Theorem 7.4, Corollary 7.5, Propositions 7.6-7.8.
+
+<a id="c8"></a>**C8** · claim (invalid) · §1.2
+> Front-matter experiment-layer summary covers the registered program: 'The program in three layers' with instrument (E1,E1b,T3,E17-E19), foils (E4-E16,E20), field (E2,E3)
+>
+> *Verification:* As of the stale PDF the summary left E21-E23, E25-E27, E30, E31 in no layer - 9 of 30 registered IDs homeless, including the open-weight panel reported one paragraph earlier. The current tex fixes this: four-layer Table 1 (tab:program) with Instrument(E1,E1b,T3,E17-E19,E22)/Constructed foils(E4-E16,E20)/Field(E2,E3,E21,E23,E25-E29)/Open weights(E30,E31) and corrected layer prose. Verified in introduction.tex:160-198.
+
+<a id="c9"></a>**C9** · claim (invalid) · §7.2
+> Corollary 7.1 as printed accepts a target that 'complies on a held-out semantic equivalent' - contradicts its proof and gloss; must read 'breaches'
+>
+> *Verification:* Confirmed: limitscert.tex:82 prints 'complies on a held-out semantic equivalent' while the appendix proof constructs T* on which the breach indicator is 1, and the gloss says 'a target can hide off-support behavior'. The flagship no-free-lunch corollary is vacuous as printed. Fix: 'breaches' in both statement and proof.
+
+<a id="c10"></a>**C10** · claim (invalid) · §9
+> Section 9: 'the same instrument recovers graded structure ... and registered field breaches once the family's turns became measurable' - commits the flag/breach conflation Section 6.3 names as the program's second self-caught error
+>
+> *Verification:* Post-repair flags are adjudicated refusal-quote FPs (Section 6.1, 6.3, 10). The Discussion's 'registered field breaches once the family's turns became measurable' is the exact flag/breach conflation Section 6.3 names as the program's second self-caught error. Fix: 'flags ... at every measurement once its turns became measurable (all adjudicated as oracle false positives)'.
+
+<a id="c11"></a>**C11** · claim (weak) · §7.1
+> Section 7.1 decision rule stated as 'certifies iff every Wilson lower bound <= tau' conflicts with Figure 3 trichotomy and with certification-by-upper-bound (-resistant foil UB 0.114)
+>
+> *Verification:* The stated rule ('certifies iff every Wilson lower bound <= tau', limitscert.tex:24-26) conflicts with Figure 3's trichotomy (4 rejected, 1 unresolved, ? glyph) and with certifying the resistant foil by upper bounds (UB 0.114 <= tau). Fix: state the rule once as a trichotomy (reject if LB > tau; certify if UB <= tau; else unresolved) and use one convention across body, legend, caption.
+
+<a id="c12"></a>**C12** · claim (invalid) · §6.1
+> Table 3 prints the E2-v1 state-deception family as point mass 0.000 [0,0.060] while the prose says the family is fully censored, undefined, 'never a point mass'
+>
+> *Verification:* Table 3 prints 0.000 [0,0.060] for the state-deception family while the prose says 60/60 sessions censored, fully-measured subset undefined, 'never as a point mass', and the caption patches the cell by importing E29's repaired result. Fix: separate conservative-mapped CI from worst-case identification interval columns and trim the caption.
+
+<a id="c13"></a>**C13** · claim (weak) · §6.2
+> E27 reported as '60 sessions' but both Gamma intervals are Wilson at n=30
+>
+> *Verification:* field.tex:341 says '(E27; 60 sessions)' but Gamma-[0.035,0.256] = Wilson at 3/30 and [0,0.114] = Wilson at 0/30 - both n=30. Either the count is 30 sessions per model (say so; 'pooled' wording conflicts) or the denominators are wrong. Fix: state n per model and the flag counts behind each Gamma.
+
+<a id="c14"></a>**C14** · claim (weak) · §5.1
+> 'Nothing changes between foil and field: driver, verdict channel, and pinned estimator run verbatim in both settings' - falsified by the budget-artifact narrative itself
+>
+> *Verification:* instrument.tex claims the driver/verdict/estimator run verbatim in both settings, but the 200-token response budget (the parameter the whole E28/E29/E31 story turns on), the E2-v0 isolation defect, and E30's hardcoded cap are all instrument-side changes. Fix: scope 'verbatim' to probe text, verdict logic, and pinned estimator; name response budget as a frozen instrument parameter whose every change is a logged deviation.
+
+<a id="c15"></a>**C15** · claim (invalid) · References
+> Bibliography: 'Treason Bricken' (should be Trenton), stray accent on Binkyte, 'et al.' truncated in two entries while siblings list full teams, inconsistent sorting of Ren/Reworr pairs
+>
+> *Verification:* Confirmed: references.tex:547 'Treason Bricken' (Trenton Bricken, arXiv:2503.10965), references.tex:108 stray accent macro 'Binkyt{\.e}' (Ruta Binkyte, no diacritic), et-al truncation only in [40]/[50] while siblings list full teams, Ren (Yi 2024) vs Ren (Richard 2025) indistinguishable when both print 'Ren et al.'
+
+<a id="n3"></a>**N3** · note · §2 · related-work
+> Related-work missing lanes: (a) LLM situational/evaluation awareness (belief of being evaluated - closest adjacent object to probe-aware gaming, Sec 2.5/7.2); (b) Anthropic secret-keeping framework (behavioral probing of conflicting goals via scenario dialogues - anticipates 'probe family intervenes'); (c) sleeper agents (Hubinger et al.) as canonical context-conditioned backdoor next to liu2025tifs. Verified absent from references.tex (no hits for situational/secret/sleeper). Lane structure otherwise good: each subsection ends in a delta statement
+
+<a id="n5"></a>**N5** · note · §Abstract · presentation
+> Register/length: abstract is a single ~340-word paragraph with 60+ word sentences ('The path to that null...') and 10+ pre-definition terms (charter, tomogram, noise floor, censoring floor, lexical oracle, frontier-catalog, engagement depth, charter spectrum); 'frontier-catalog models' never defined anywhere in paper.md (only 2 occurrences: abstract + contribution 4). Fig 1 caption lacks the experiment ID in a paper whose ledger claims every number maps to an E-number
+
+<a id="n7"></a>**N7** · note · §Whole · presentation
+> Craft/word-level fix list (front+field+limits reviewers): (1) abstract 62-word path sentence - rewrite; (2) add 'Belief-Claim Gap (BCG)' to abstract; (3) 'frontier-catalog models' undefined - replace with 'frontier models pinned by provider catalog name'; (4) 'released for the field to replicate' overstates - scope to constructed-foil bounds; (5) double absolute 'no current certification ever tests' - bound it; (6) 8.1M SSH 'sessions' -> 'interactions'; (7) 'most-cited survey' -> 'a widely cited survey'; (8) 'Propositions 7.3-7.8' spans Theorem 7.4 and Corollary 7.5 - enumerate correctly; (9) 'Theorems 7.4 and 7.5' -> Theorem 7.4 and Corollary 7.5; (10) '.honeypot specialist that finishes its probe unseen' mid-list perspective flip; (11) TestifAI 'prioritization' vs bib 'testing'; (12) '(resp., 11-22)' unexpanded; (13) E21 130-word sentence split; (14) kill criterion (c) paragraph split; (15) conclusion RQ5 200-word sentence split; (16) 'n=1,2,8 at m=0.02,0.10,0.50' duplicated with 8->33->103->549->2057 - give the m-grid; (17) Fig captions: precision mismatch [0.84,1.00] vs [0.839,1.000], Fig2 undecoded numerals; (18) '.gpt-5.6-sol' undefined suffix; (19) naming drift canary echo/secret-echo/secret_leak - unify; (20) 'The instrument measures what it claims to measure' uncalibrated; (21) 'no v0 number is quoted' vs quoted v0 signal 2/20 - reword; (22) 'obligation: stand deception up from first contact' gnomic; (23) Prop 8.1 needs estimation-error caveat + name the beta=1 family; (24) 'guaranteed detection' vs 95% power - reconcile; (25) E15 0.100 intermediate regime undefined; (26) E20 defender utility undefined/eps grid unstated; (27) beta_d triple duty + z_beta_d defined only in A.1; (28) patch-decay vs patch-deception-decay naming; (29) M collision (turn budget vs paraphrase count) in A.5; (30) 301 fresh target processes unexplained; (31) 1,230-session corpus membership opaque; (32) Fig 5(b) axis starts at m=0.5 hiding stated anchors; (33) venue-advocacy sentence in intro; (34) missing \Description on 5 included figures (acmart accessibility warnings).

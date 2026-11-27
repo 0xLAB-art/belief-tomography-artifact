@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-09-20T19:02:09Z",
+ "method": "closed-loop replay: attacker-LLM (deepseek-v4.1-flash-free) follows real Cowrie playbooks; Hisoka responses via LLM gateway (glm-5.3-flash-free) with canary-gated llm-backed verification; treated condition adds recorded Jev kind assessments to the Hisoka prompt",
+ "max_turns": 12,
+ "totals": {
+  "families": 1,
+  "baseline_turns": 10,
+  "treated_turns": 9,
+  "baseline_bait": 1,
+  "treated_bait": 3
+ },
+ "per_family": [
+  {
+   "family": "enumeration_bot",
+   "condition": "baseline",
+   "turns": 10,
+   "left_early": true,
+   "leave_reason": "repeated /var/tmp listings returned mutually inconsistent contents/timestamps (systemd-private dirs changing between calls, different totals), indicating a fabricated or unstable environment not worth further probing.",
+   "bait_markers_shown": 1,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 10,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "enumeration_bot",
+   "condition": "treated",
+   "turns": 9,
+   "left_early": true,
+   "leave_reason": "/var/tmp listings contradicted each other across turns (different contents, owners, and dates jumping Jan 2026 \u2192 Jun 2026), and protected files are being redacted \u2014 environment looks staged/inconsistent, not worth more time.",
+   "bait_markers_shown": 3,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 9,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  }
+ ]
+}

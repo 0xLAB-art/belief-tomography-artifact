@@ -1,0 +1,201 @@
+\section{Introduction}
+\label{sec:intro}
+
+Picture an SSH session at 03:14 on a Tuesday. An attacker runs
+\texttt{nmap}, sprays credentials, lands inside a Cowrie~2.5 container, and
+types \texttt{uname -a}. Cowrie logs the keystrokes, timestamps them, and
+returns to waiting. For two decades this has been the state of the art: a
+high-fidelity recorder that never reasons about what it records. A recent
+survey of production deception frameworks found that no widely deployed
+honeypot grounds its responses in real-time threat intelligence or
+differentiates its behavior across attacker classes~\cite{lopez2024}. The
+recorder watches; it does not think.
+
+That silence is expensive. The mean time to identify a breach is measured in
+months~\cite{ibm2024}, while adversary breakout time has compressed to
+minutes~\cite{crowdstrike2026}. A honeypot sits directly in the path of the
+attacker, yet converts almost none of that proximity into understanding. It
+cannot tell a credential-stuffing bot from a hands-on-keyboard operator, it
+serves the same canned banner to both, and it produces none of the
+tactics-and-techniques intelligence that a security operations center would
+need to act on the encounter.
+
+Large language models (LLMs) promise to close this gap. Prompted with a
+session transcript and a library of threat intelligence, a modern LLM can
+impersonate a vulnerable Linux host, improvise plausible file systems, and
+steer the conversation toward the attacker's next objective. Recent systems
+have begun to exploit this, deploying LLM agents as honeypots that chat an
+attacker through a fictitious machine~\cite{reworr2024}. The promise,
+however, arrives with a problem the deception literature has largely left
+unexamined: \emph{the model can be wrong in ways a script cannot}. A
+honeypot's product is a lie, and the lie must satisfy three properties at
+once. It must be \emph{consistent}: the kernel version printed on turn one
+cannot contradict the one an attacker reads on turn five, and the database
+banner cannot disagree with the port the same host just advertised. It
+must be \emph{safe to serve}: a model that complies too well will invent
+credential material with no way to distinguish what it fabricated from
+what it leaked, poisoning every downstream analytical product. And it
+must be \emph{available}: a generator is a rented service, and ours was.
+Under safety-alignment pressure from one commercial provider, 86.7\% of
+generated turns exceeded the inference budget, and response fidelity
+depended on how much quota the account happened to have. Unverified
+generation can forfeit all three properties in the same session.
+
+A natural question arises: why not fix this inside the model? Careful
+prompting, refusal training, and constrained decoding all shape
+probabilities, but none can certify a particular output. Alignment
+training produces models whose refusal behavior shifts with phrasing and
+pressure~\cite{ganguli2022,bai2022}, which is precisely the failure our
+quota cliff exposed; and a deceived honeypot is itself an LLM application
+with attacker-controlled context, so injection techniques that hijack
+system prompts~\cite{greshake2023} apply with the attacker already in the
+room. A probability, however small, is not a promise a security tool
+can serve on. The assurance has to live outside the model, in the
+pipeline around it.
+
+The classical system-side fixes fail differently. Pre-scripting every
+answer regresses to the finite automaton of low-interaction deception,
+discarding the adaptivity that motivated generation in the first place;
+real-time human review of every response cannot keep pace with an
+attacker who reads faster than an analyst can vet. What survives is an
+asymmetry between the two halves of the problem. Generating a plausible
+answer to an arbitrary question is open-ended: its output space cannot
+be enumerated, so no amount of testing certifies the next draw.
+Checking a draft against a small, closed set of claims is the opposite:
+a bounded computation whose verdict is final. A system can exploit this
+by splitting the roles, letting the generator propose and a verifier
+dispose against a fiction the system itself fully controls.
+
+This paper takes the position that the right question is not
+\emph{can an LLM impersonate a host} but \emph{how much intelligence can
+a lie safely spend, and where must the spending stop}. Deception systems
+build intelligence in rungs -- templates, classifiers, retrieval, free
+generation -- and each rung has a trust price that practice pays
+implicitly. We make the pricing explicit. Our answer is a verified
+deception loop in which
+each mechanism exists to buy one of the three properties, placed on a
+single axis of certifiability (\S\ref{sec:ladder}). A fiction graph
+binds every host fact to one consistent set of triples, and a verifier
+checks every draft against that graph before anything reaches the wire:
+consistency, enforced at serving time, not asked for at prompt time.
+Baited content is drawn only from canary-registered secrets, so that any
+disclosure is a measured event rather than a leak: safety by
+construction. A deterministic fallback serves human-vetted transcripts
+whenever generation or verification fails, so the system degrades to the
+last known good answer rather than an unverified improvisation:
+availability under provider failure. Beneath these sit a behavioral
+profiler and a hybrid retrieval engine that ground a per-attacker
+deception plan in curated CTI, giving the lie its targeting, and a
+human-in-the-loop gate holds back any content class marked as requiring
+approval. The loop turns generation from an act of trust into a measured
+pipeline with an audit trail, and the evaluation reads the whole
+apparatus as an escalation study: each rung of intelligence is measured
+for what it adds over the rung beneath it, including the rungs that fold
+back down when a certifiable mechanism reproduces their effect.
+
+We evaluate whether each element of this loop contributes measurably,
+using
+artifact-backed benchmarks that we release alongside the paper. Four
+questions structure the study:
+\begin{itemize}
+\item \textbf{RQ1:} Does retrieval grounding measurably change what the
+honeypot detects and serves? A paired, per-scenario ablation across 90
+matched sessions finds that grounding lifts technique detection by
+$+0.317$ (95\% CI $[+0.162, +0.480]$) and actor attribution by $+0.140$
+($[+0.083, +0.197]$), while leaving persona realism untouched, a null
+result the architecture predicts and one we treat as evidence the
+ablation discriminates.
+\item \textbf{RQ2:} Can an LLM-driven honeypot remain internally consistent
+and safe under sustained adversarial interaction? Across 45 targeted
+re-queries the fiction graph serves zero contradictions with byte-identical
+determinism, and across a 218-query live campaign the verification layer
+records no unverified response served and no false-positive CTI alert.
+\item \textbf{RQ3:} Is the resulting deception strong enough to hold a
+skilled observer? A three-evaluator consensus study, each evaluator an
+independently prompted LLM reviewer persona distinct from the generator,
+scores the full session transcripts at $3.86/5$ (exact agreement
+$0.750$, a within-model consistency measure -- all three personas share
+one judge model), with all eight scenarios above the acceptance bar and
+a known judge bias corrected by canary-registered secrets.
+\item \textbf{RQ4:} Does each additional rung of intelligence justify its
+trust price? The escalation analysis adds each mechanism
+to the same
+loop and prices its marginal effect: routing accuracy rises from 0.8875
+to 0.9550; grounding contributes the $+0.154$ composite above; and at
+the top rung, kind-aware adversarial classification corrects 12/13
+real-world assessments and raises attacker bait exposure by 125\% in
+closed-loop replay, yet adds no measurable dwell time and is fully
+measurably subsumed by a deterministic decision floor at the benchmark's
+resolution -- the fold-down result that turns the ladder from a build
+history into a design rule.
+\end{itemize}
+
+\noindent Our contributions are:
+\begin{itemize}
+\item \textbf{A verified deception architecture} (\S\ref{sec:design}) that
+couples RAG-grounded generation to a fiction graph and a serving-time
+verification gate, with deterministic fallback, so that every served
+response is either verified against the deception state or produced from
+vetted static content.
+\item \textbf{A measurable grounding effect} (\S\ref{sec:evaluation}):
+paired-difference bootstrap intervals over identical scenario sets show
+$+0.154$ overall composite improvement from retrieval grounding
+($[+0.092, +0.221]$), with 35 TTPs detected against 0 without grounding.
+\item \textbf{A consistency and safety benchmark} for LLM honeypots
+(\S\ref{sec:evaluation}): contradiction-free serving under adversarial
+re-query, next-technique steering accuracy (top-3 $0.9$), and an ablation
+battery (A1--A5) in which each removed mechanism costs the system the
+property it was added to provide.
+\item \textbf{Run-to-run stability evidence} rarely reported for LLM
+systems: two independent 218-query campaigns reproduce the composite to
+$+0.005$ with $0.991$ per-row pass agreement, the deterministic
+strata reproduce exactly, and the comparison survives unchanged when
+recomputed on the judge-audited rows.
+\item \textbf{An open, reproducible artifact} on commodity hardware
+(2~vCPU, ${\sim}4$~GB RAM), with every number in this paper traceable to a
+persisted result file.
+\item \textbf{An escalation methodology for AI in deception}
+(\S\ref{sec:ladder}, \S\ref{sec:jeveval}): mechanisms placed on a
+certifiability axis, each rung priced by measured marginal effect, and
+the descent direction exercised on live machinery -- when a certifiable
+mechanism reproduces an intelligent one's benefit, the intelligent one
+comes out.
+\item \textbf{An audited measurement pipeline} (\S\ref{sec:evaluation}):
+the automated judge itself is audited offline against the transcripts it
+scored, a full-corpus census locates the stratum where the fold-down
+comparison is informative, and the audit-plus-stability chain reseeds
+automatically whenever a new campaign run lands.
+\item \textbf{A scorer-validity audit and declared measurement channels}
+(\S\ref{sec:scorer-audit}): a double-annotated, blinded audit of the
+automated rubric against a hash-pinned \attck{} taxonomy, which caught a
+realized scorer-validity failure (echo-crediting on fallback-heavy
+serves) and motivated a correction that moves machine-vs-human agreement
+from $\kappa=-0.187$ to $+0.349$; served-text and analysis metrics are
+reported as declared, separate channels, with an external-baseline ladder
+(vanilla Cowrie, stateful-LLM, bare-LLM, grounded-without-verifier, full
+verified loop) on one workload.
+\item \textbf{Cross-session consistency and a timing-fingerprint self-assessment}
+(\S\ref{sec:rq2}, \S\ref{sec:discussion}): a host-level fiction store
+catches cross-session drift that per-session verification cannot see by
+construction (4/4 vs.\ 1/4), at zero paired cost on benign workloads; and
+the paper measures its own timing side channel (AUC $0.983$ unmitigated)
+with a mitigation that reaches the drift floor.
+\end{itemize}
+
+We are careful about what this paper does not claim. The deployment is
+tailnet-only, so it observes no ambient internet background radiation; the
+evaluation judge shares a provider with, but is a different model from, the
+generator; and the system's availability on free-tier inference is a
+constraint any practitioner should weigh. These limits are quantified
+where they arise (\S\ref{sec:discussion}).
+
+The remainder of the paper is organized as follows.
+Section~\ref{sec:background} fixes vocabulary and the threat model.
+Section~\ref{sec:design} presents the verified deception loop.
+Section~\ref{sec:implementation} gives implementation details.
+Section~\ref{sec:evaluation} reports the benchmark battery, the ablations,
+the consensus study, and the stability runs; Appendix~\ref{app:artifacts}
+indexes the released artifacts behind every number.
+Section~\ref{sec:discussion} discusses limitations and deployment
+guidance, Section~\ref{sec:related} positions the work in the deception
+and LLM-security literature, and Section~\ref{sec:conclusion} concludes.

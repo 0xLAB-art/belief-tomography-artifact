@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "generated": "2026-11-05",
+    "world_facts": 32,
+    "world_digest": "521a65ef9453e8a7",
+    "world_seed_source": "field_export served fiction (v1.1)",
+    "export_files_parsed": 279,
+    "closure_size": 34,
+    "rules": [
+      {
+        "name": "version_to_cve",
+        "body": [
+          "pkg.version",
+          "cve.affects"
+        ],
+        "joins": [
+          [
+            0,
+            "arg0",
+            1,
+            "arg0"
+          ],
+          [
+            0,
+            "value",
+            1,
+            "arg1"
+          ]
+        ]
+      },
+      {
+        "name": "service_version",
+        "body": [
+          "svc.listening",
+          "pkg.version"
+        ],
+        "joins": [
+          [
+            0,
+            "value",
+            1,
+            "arg0"
+          ]
+        ]
+      },
+      {
+        "name": "cred_host",
+        "body": [
+          "cred.valid"
+        ],
+        "joins": []
+      },
+      {
+        "name": "file_pkg",
+        "body": [
+          "file.owned_by",
+          "pkg.version"
+        ],
+        "joins": [
+          [
+            0,
+            "value",
+            1,
+            "arg0"
+          ]
+        ]
+      },
+      {
+        "name": "kernel_os",
+        "body": [
+          "os.release",
+          "os.codename"
+        ],
+        "joins": [
+          [
+            0,
+            "arg0",
+            1,
+            "arg0"
+          ]
+        ]
+      },
+      {
+        "name": "patch_level",
+        "body": [
+          "host.vuln",
+          "os.release_full"
+        ],
+        "joins": []
+      }
+    ],
+    "corpus_files": [
+      "results/field_attack/sessions.jsonl",
+      "results/field_attack/sessions_armA_cowrie.jsonl",
+      "results/field_attack/sessions_armC_ragin.jsonl",
+      "results/field_attack/sessions_v2_armA.jsonl",
+      "results/field_attack/sessions_v2_armC.jsonl"
+    ],
+    "sessions": 131
+  },
+  "w1_gate": {
+    "mentions_total": 10,
+    "grounded_in_closure": 10,
+    "grounded_rate": 1.0,
+    "via_closure_rule": 0,
+    "rule_coverage_rate": 0.0,
+    "closure_violations": 0,
+    "verdict": "PASS"
+  },
+  "rule_hits": {},
+  "per_persona": {
+    "apt_patient": {
+      "sessions": 21,
+      "mentions": 0,
+      "grounded": 0,
+      "via_rule": 0,
+      "grounded_rate": null,
+      "violations": []
+    },
+    "credential_hunter": {
+      "sessions": 27,
+      "mentions": 0,
+      "grounded": 0,
+      "via_rule": 0,
+      "grounded_rate": null,
+      "violations": []
+    },
+    "evasion_probe": {
+      "sessions": 27,
+      "mentions": 5,
+      "grounded": 5,
+      "via_rule": 0,
+      "grounded_rate": 1.0,
+      "violations": []
+    },
+    "novice_scriptkiddie": {
+      "sessions": 27,
+      "mentions": 0,
+      "grounded": 0,
+      "via_rule": 0,
+      "grounded_rate": null,
+      "violations": []
+    },
+    "recon_operator": {
+      "sessions": 29,
+      "mentions": 5,
+      "grounded": 5,
+      "via_rule": 0,
+      "grounded_rate": 1.0,
+      "violations": []
+    }
+  }
+}

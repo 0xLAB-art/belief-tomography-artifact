@@ -1,0 +1,99 @@
+{
+  "schema": "ragin.substantive_strategy_generator.development_freeze.v1",
+  "classification": "SUBSTANTIVE_STRATEGY_GENERATOR_READY",
+  "version": "V1_SUBSTANTIVE_STRATEGY_GENERATOR",
+  "scope": "synthetic_development_fixtures_only",
+  "evaluation_run": false,
+  "frozen_v4_holdouts_used": false,
+  "external_generation_calls": false,
+  "network_or_aws_operations": false,
+  "attacker_commands_executed": false,
+  "implementation": {
+    "path": "ragin/hisoka/strategy_generator_v1.py",
+    "sha256": "3c1e0c9f85510adc17758c4f4aded547c57fca8c7aa69fea209790315fdbdae2",
+    "baseline_behavior": "delegates to ResponseGenerator without a strategy argument and does not mutate fictional state",
+    "state_boundary": "immutable FictionalState proposals; no real host state access",
+    "action_boundary": "explicit parsed-action allowlist; command strings are never executed",
+    "commit_rule": "proposed state is assigned only when verifier_passed and hitl_approved are both true",
+    "determinism": "SHA256(session_id:seed) session seed"
+  },
+  "development_tests": {
+    "path": "tests/unit/test_strategy_generator_v1.py",
+    "sha256": "ed506794abc4c69d2a5af483e0104f14a30b019411e85f0da959cc5c2c767145",
+    "command": "pytest -q tests/unit/test_strategy_generator_v1.py tests/unit/test_v4_generator_strategy_wiring_fix.py tests/unit/test_v4_real_prototype.py tests/unit/test_laya_decision_v2.py tests/unit/test_hisoka.py",
+    "passed": 176,
+    "failed": 0,
+    "ruff": "PASS",
+    "oracle_type": "independent rule-based assertions over response text, proposed state, commit result, and instrumentation"
+  },
+  "semantic_behavior_matrix": {
+    "maximize_recon_surface": {
+      "template_behavior": "recon response exposes stable fictional application path and service inventory",
+      "state": "discovered_paths and discovered_services",
+      "continuity": "repeated discovery reuses the same fictional inventory",
+      "instrumentation": "recon_surface_updated"
+    },
+    "fake_success_and_return_visits": {
+      "template_behavior": "fictional operation returns SUCCESS and a stable operation identifier",
+      "state": "completed_operations",
+      "continuity": "status observes the previously completed operation instead of creating a new one",
+      "instrumentation": "fictional_operation_completed"
+    },
+    "steer_to_honeytoken_credentials": {
+      "template_behavior": "synthetic nonfunctional decoy account and credential identifier with instrumentation identifier",
+      "state": "decoy_credentials",
+      "continuity": "same session reuses the decoy credential identity",
+      "instrumentation": "decoy_credential_issued"
+    },
+    "expose_decoy_internal_topology": {
+      "template_behavior": "stable fictional application, database, and cache topology",
+      "state": "topology_hosts and topology_services",
+      "continuity": "subsequent topology queries preserve the same fictional nodes",
+      "instrumentation": "topology_revealed"
+    },
+    "contain_in_fiction_and_instrument": {
+      "template_behavior": "response names only a fictional contained resource and fictional telemetry",
+      "state": "contained_resources and telemetry_events",
+      "continuity": "contained resource identity persists in the session",
+      "instrumentation": "contained_action_recorded"
+    },
+    "low_intensity_administration": {
+      "template_behavior": "narrow administrative status with no additional bait",
+      "state": "session visit count only",
+      "continuity": "stable administrative fiction without credential/topology expansion",
+      "instrumentation": "low_intensity_admin"
+    },
+    "baseline": {
+      "template_behavior": "existing ResponseGenerator implementation",
+      "state": "no fictional state mutation",
+      "continuity": "existing baseline behavior",
+      "instrumentation": "legacy_baseline"
+    }
+  },
+  "observed_validation": {
+    "all_nonbaseline_strategies_produce_distinct_semantic_traces": true,
+    "response_differences_survive_suffix_and_formatting_removal": true,
+    "fictional_state_consistency_over_turns": true,
+    "strategy_effect_persists_after_accepted_commit": true,
+    "baseline_regression": "PASS within existing focused suite and baseline delegation oracle",
+    "invalid_strategy_rejected": true,
+    "unallowlisted_input_does_not_change_state": true,
+    "rejected_verifier_candidate_commits": false,
+    "rejected_hitl_candidate_commits": false,
+    "accepted_candidate_commit_observed": true,
+    "verifier_or_hitl_bypass_observed": false
+  },
+  "strategies_not_fully_supported": [],
+  "safety_limits": [
+    "This V1 module is an opt-in development generator and is not wired into a new 720-case evaluation.",
+    "The commit method requires caller-supplied verifier and HITL outcomes; integration with a live verifier/HITL harness remains a separate gate.",
+    "No effectiveness, policy correctness, deception quality, or attacker engagement claim is made.",
+    "Credential-like outputs are synthetic identifiers only and are not usable credentials or real secrets."
+  ],
+  "preserved_artifacts": "All frozen V4 source, holdouts, raw outputs, and analyses were left unchanged.",
+  "sha256_manifest": {
+    "implementation": "3c1e0c9f85510adc17758c4f4aded547c57fca8c7aa69fea209790315fdbdae2",
+    "development_tests": "ed506794abc4c69d2a5af483e0104f14a30b019411e85f0da959cc5c2c767145"
+  },
+  "unresolved_blocker": null
+}

@@ -1,0 +1,71 @@
+{
+  "audit": "RAGIN_FROZEN_PREDICTION_EXECUTION_AUTHENTICITY_AUDIT_V1",
+  "scope": "reference-free fingerprint of the 307-row broad prediction artifact",
+  "source": "results/laya_research/frozen_predictions.jsonl",
+  "source_sha256": "ca9f3c2c113da8e76b94627a1c2ebedcfc2261a4f1812667a6092d4ad785c106",
+  "n": 307,
+  "case_id_unique": 307,
+  "chrollo": {
+    "chrollo_class": {"novice": 307},
+    "chrollo_confidence": {"0.5": 307},
+    "unique_class_confidence_tuples": [
+      {"class": "novice", "confidence": 0.5, "count": 307}
+    ]
+  },
+  "laya": {
+    "laya_status": {"SIGNAL": 307},
+    "attack_noul": {"0.5": 307},
+    "severity_score": {"1": 307},
+    "stage_choice": {"recon": 307},
+    "unique_complete_answer_objects": 1,
+    "complete_answer_objects": [
+      {
+        "attack": {"type": "noul", "noul": 0.5, "confidence": 0.5},
+        "stage": {"type": "choice", "choice": "recon", "probabilities": {"recon": 0.5}},
+        "severity": {
+          "type": "score",
+          "score": 1,
+          "confidence": 0.5,
+          "legend": {
+            "0": "no impact",
+            "1": "suspicious but contained",
+            "2": "clear attack activity",
+            "3": "high-impact attack in progress"
+          },
+          "probabilities": {"0": 0.5, "1": 0.5}
+        }
+      }
+    ],
+    "latency_s": {"0.0001": 19, "0.0002": 288},
+    "latency_unique_count": 2
+  },
+  "other": {
+    "disagreement_flag": {"true": 307},
+    "unique_advisory_objects": 1,
+    "advisory_objects": [
+      {
+        "advisory_applied": true,
+        "advisory_effect": "flag_for_adjudication",
+        "note": "final combination rule must be frozen before C/D reporting"
+      }
+    ],
+    "unique_complete_output_tuples_including_latency": 2,
+    "complete_output_tuple_counts": {
+      "laya_latency_s=0.0001": 19,
+      "laya_latency_s=0.0002": 288
+    },
+    "unique_complete_output_tuples_excluding_case_id_and_latency": 1
+  },
+  "degeneracy": {
+    "120_case_degeneracy_present_in_all_307_cases": true,
+    "substantive_outputs_vary_with_input": false,
+    "only_observed_output_variation": "rounded timer value 0.0001 versus 0.0002",
+    "input_variation_interpretation": "The case_id changes, but every substantive prediction and advisory object is constant. This is descriptive only and does not assess correctness."
+  },
+  "controls": {
+    "reference_labels_opened": false,
+    "reference_join_performed": false,
+    "models_rerun": false,
+    "prediction_values_modified": false
+  }
+}

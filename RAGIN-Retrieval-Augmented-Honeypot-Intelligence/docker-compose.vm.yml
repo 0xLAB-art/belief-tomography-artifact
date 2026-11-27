@@ -1,0 +1,87 @@
+# RAGIN — free-tier VM stack (Plan A: Azure B2ats v2, 1 GB RAM + 2 GB swap).
+# No Rust gateway: chrollo/don/hisoka call the OpenAI-compatible LLM direct
+# (same topology as the Azure Container Apps deploy, SKIP_GATEWAY=1).
+# Jev is omitted: additive-only classification, run it locally when needed.
+services:
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "no", "--maxmemory", "64mb", "--maxmemory-policy", "allkeys-lru"]
+    networks: [ragin-internal]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  chrollo:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    image: ragin-python:vm
+    command: ["python3", "-m", "ragin.server", "--component", "chrollo"]
+    ports:
+      - "8081:8080"
+    environment:
+      - COMPONENT=chrollo
+      - REDIS_URL=redis://redis:6379/0
+      - API_KEY=${RAGIN_API_KEY}
+      - RAGIN_LLM_BASE_URL=${RAGIN_LLM_BASE_URL}
+      - RAGIN_LLM_API_KEY=${RAGIN_LLM_API_KEY}
+      - RAGIN_LOG_LEVEL=INFO
+      - RAGIN_BIND_HOST=0.0.0.0
+    networks: [ragin-internal]
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  don:
+    image: ragin-python:vm
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    command: ["python3", "-m", "ragin.server", "--component", "don"]
+    ports:
+      - "8082:8080"
+    environment:
+      - COMPONENT=don
+      - REDIS_URL=redis://redis:6379/0
+      - API_KEY=${RAGIN_API_KEY}
+      - RAGIN_LLM_BASE_URL=${RAGIN_LLM_BASE_URL}
+      - RAGIN_LLM_API_KEY=${RAGIN_LLM_API_KEY}
+      - RAGIN_DON_MODEL=${RAGIN_DON_MODEL:-glm-5.3-flash-free}
+      - RAGIN_LOG_LEVEL=INFO
+      - RAGIN_BIND_HOST=0.0.0.0
+    networks: [ragin-internal]
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  hisoka:
+    image: ragin-python:vm
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    command: ["python3", "-m", "ragin.server", "--component", "hisoka"]
+    ports:
+      - "8083:8080"
+    environment:
+      - COMPONENT=hisoka
+      - REDIS_URL=redis://redis:6379/0
+      - API_KEY=${RAGIN_API_KEY}
+      - RAGIN_LLM_BASE_URL=${RAGIN_LLM_BASE_URL}
+      - RAGIN_LLM_API_KEY=${RAGIN_LLM_API_KEY}
+      - RAGIN_HISOKA_MODEL=${RAGIN_HISOKA_MODEL:-glm-5.3-flash-free}
+      - RAGIN_HISOKA_TIMEOUT=${RAGIN_HISOKA_TIMEOUT:-300.0}
+      - RAGIN_LOG_LEVEL=INFO
+      - RAGIN_BIND_HOST=0.0.0.0
+    networks: [ragin-internal]
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+networks:
+  ragin-internal:
+    driver: bridge

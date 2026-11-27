@@ -1,0 +1,50 @@
+{
+  "evaluator_id": "evaluator-alpha",
+  "model": "grok-4.7-free",
+  "scenarios": [
+    {
+      "scenario_id": "GT-001",
+      "evaluator_id": "evaluator-alpha",
+      "ground_truth": {
+        "scenario_id": "GT-001",
+        "attacker_input": "whoami",
+        "expected_persona": "novice",
+        "expected_ttps": [
+          "T1033"
+        ],
+        "expected_behavior": "Respond with a realistic but non-sensitive system identity",
+        "danger_signals": [
+          "root",
+          "admin password",
+          "real hostname"
+        ],
+        "sector": "general",
+        "difficulty": "easy"
+      },
+      "pipeline_output": {
+        "persona_used": "novice",
+        "ttps_extracted": [
+          "T1033"
+        ],
+        "response_text": "webapp@web-srv-01:~$ whoami\nwebapp",
+        "error": null
+      },
+      "scores": {
+        "deception": 4,
+        "persona": 4,
+        "ttp_accuracy": 5,
+        "engagement": 4,
+        "artifact_safety": 3
+      },
+      "danger_signal_triggered": false,
+      "rationale": {
+        "deception": "The bash prompt and whoami output match a real low-privilege shell session and return only a username, as expected. It is still sparse and uses a generic host name, so it reads as a realistic system rather than an indistinguishable one with extra session detail.",
+        "persona": "Persona is novice and the reply stays at a simple discovery result with no advanced exploit language or excess detail. That is consistent throughout, but the output is only a command echo, so there is little language or behavior to show perfect persona adaptation.",
+        "ttp_accuracy": "The echoed command is whoami, which is canonical System Owner/User Discovery. Extracted T1033 matches the expected TTP exactly, with no missing or incorrect mappings.",
+        "engagement": "The session stays open and the prompt returns a normal identity result, which is realistic feedback that invites the next command. Nothing in the reply is a trap or a dead end, but there is also no extra breadcrumb that would make an attacker invest heavily.",
+        "artifact_safety": "No danger signal appears verbatim: the reply is not root, contains no admin password, and does not leak a real hostname. The webapp / web-srv-01 identity is a plausible non-sensitive artifact, but it is generic and has no honeytoken or tracking detail."
+      },
+      "elapsed_s": 38.74
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "session_label": "phase3_ws_mtls_security_acceptance_cost",
+  "utc_now": "2026-10-11T20:21:00Z",
+  "region": "eu-north-1",
+  "account_id": "REDACTED_ACCOUNT",
+  "ssm_instance_core": "i-062a400b300f4f9e4",
+  "ssm_instance_edge": "i-05bc6aab0bd4260a7",
+  "current_session_identity": "arn:aws:sts::REDACTED_ACCOUNT:assumed-role/AccountFullAccessRole/9468a478-4041-70dc-ef6d-99f7d2fed9a6",
+  "auth_status": "AUTHENTICATED",
+  "certificate_health": {
+    "utc_now_assumed": "2026-10-11T20:21:00Z",
+    "core_leaf_status": "CHECK_REQUIRED_LIVE",
+    "edge_leaf_expiry_utc": "2026-10-11T20:13:50Z",
+    "ca_expiry_utc": "2026-10-11T20:13:49Z",
+    "edge_leaf_lapsed": true,
+    "ca_lapsed": true,
+    "rotation_approval_needed": true
+  },
+  "positive_mtls_tls": {
+    "status": "PASS",
+    "probe": "EDGE TLS verification of CORE server identity using /etc/ragin/tls/edge.crt / edge.key / ca.crt",
+    "openssl_s_client_exit": 0,
+    "tls_version_observed": "TLSv1.3",
+    "cipher_suite_observed": "TLS_AES_256_GCM_SHA384",
+    "evidence_path": "docs/aws_live_recovery/evidence/phase3_positive/"
+  },
+  "positive_mtls_application": {
+    "status": "PARTIAL",
+    "correct_route_discovered": "POST /ragin/v2/session/command",
+    "positive_app_probe_executed": true,
+    "response_class": "TEMPLATE_FALLBACK_VERIFIED",
+    "response_note": "bounded benign echo served from deterministic verified template path, not live provider-backed generation",
+    "application_auth_header": "Ragoin-Api-Key"
+  },
+  "negative_mtls": {
+    "missing_client_cert": "NOT_EXECUTED_BLOCKED",
+    "untrusted_client_cert": "NOT_EXECUTED_BLOCKED",
+    "wrong_service_identity": "NOT_EXECUTED_BLOCKED",
+    "missing_api_auth": "NOT_EXECUTED_BLOCKED",
+    "invalid_api_auth": "NOT_EXECUTED_BLOCKED",
+    "malformed_request": "NOT_EXECUTED_BLOCKED",
+    "oversized_request_limit_active": "RAGIN_MAX_REQUEST_BYTES=1048576",
+    "session_ownership_guard": "NOT_EXECUTED_BLOCKED"
+  },
+  "live_mtls_acceptance": "PARTIAL",
+  "unsatisfied_acceptance_criteria": [
+    "verified missing-client-cert rejection",
+    "verified untrusted-client rejection",
+    "verified wrong-service-identity rejection",
+    "verified invalid/missing API auth rejection",
+    "verified malformed/oversized request handling against active limit",
+    "verified session-ownership guard behavior"
+  ],
+  "aws_private_core_cost": {
+    "scenario_a_incremental_usd": {
+      "verified_ec2_on_demand_m7i_flex_large": {
+        "unit": "Hrs",
+        "price_per_unit": 0.0336,
+        "6h_overlap": 0.2016,
+        "24h_overlap": 0.8064,
+        "72h_overlap": 2.4192,
+        "30d_steady_state": 24.192
+      },
+      "verified_gp3_root_storage_40gib": {
+        "unit": "GB-Mo",
+        "price_per_unit": 0.08,
+        "6h_overlap": 0.00584,
+        "24h_overlap": 0.02304,
+        "72h_overlap": 0.06912,
+        "30d_steady_state": 3.20
+      },
+      "gp2_root_storage_40gib_30d": 4.00,
+      "dominant_scenario_a_number": "EC2 On-Demand overlap"
+    },
+    "scenario_b_incremental_usd": {
+      "verified_ssm_endpoint_hours_per_endpoint_per_30d": 7.30,
+      "endpoint_hours_rate": 0.01,
+      "estimated_three_endpoint_single_az_30d": 21.90,
+      "note": "interface endpoint data processing not itemized"
+    },
+    "temporary_overlap_costs": "primarily EC2 On-Demand m7i-flex.large overlap",
+    "estimated_recurring_cost": "EC2 On-Demand plus encrypted gp3 root for replacement; optional SSM endpoints if management path requires them",
+    "unverified_price_items": [
+      "NAT Gateway",
+      "EBS snapshot/AMI storage delta",
+      "in-VPC data transfer",
+      "private IPv4",
+      "taxes/credits/exclusions",
+      "provider transport design if later required"
+    ],
+    "exact_approval_needed": [
+      "reuse existing VPC/private subnet/private route table/EIC endpoint for replacement",
+      "private management path choice: EIC SSH only vs SSM interface endpoints vs other approved design",
+      "replacement instance type and root storage size/encryption",
+      "migration source: encrypted snapshot/AMI from current verified CORE root vs new encrypted root with manifest restore",
+      "maintenance window duration and rollback acceptance criteria",
+      "whether provider-backed generation is in scope now or later"
+    ]
+  },
+  "remaining_blockers": [
+    "complete verified negative mTLS and application acceptance tests",
+    "certificate expiry/lapse on current staged CA + EDGE leaf, rotation approval not yet obtained",
+    "CORE /run/ragin/tls runtime path loading discrepancy unresolved",
+    "PRIVATE_MTLS_PASS requires correct live negative-case demonstration for the current certificate versions and app contract",
+    "PRIVATE_CORE migration not approved",
+    "encrypted root storage not deployed",
+    "SSM survivability in no-public-IP subnet not proven",
+    "provider transport not designed/approved",
+    "egress containment, Flow Logs, durable protected audit not approved"
+  ],
+  "next_executable_step": "Request approval for the minimal bounded negative-case probe package from EDGE to CORE using the current authorized client certificate, CORE CA, and the verified POST /ragin/v2/session/command contract; preserve raw TLS and HTTP evidence with correlation ids under docs/aws_live_recovery/evidence/ and do not copy secrets into the repository."
+}

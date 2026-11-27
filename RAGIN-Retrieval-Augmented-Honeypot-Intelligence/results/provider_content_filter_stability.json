@@ -1,0 +1,1908 @@
+{
+  "schema": "ragin.provider_content_filter_stability.v1",
+  "generated_at": "2026-10-27T09:12:55Z",
+  "provider": "agentrouter.org",
+  "endpoint_style": "responses",
+  "model": "gpt-6.1-sol",
+  "corpus": {
+    "source": "results/provider_content_filter_probe.json (content_blocked)",
+    "n_commands": 72
+  },
+  "method": "one GatewayClient request per command (WAF rewrite + transport style from .env), max_tokens=16",
+  "attempts": 3,
+  "counts": {
+    "content_blocked": 216
+  },
+  "rates": {
+    "served_fraction": 0.0,
+    "content_blocked_fraction": 1.0,
+    "template_fallback_fraction": 1.0
+  },
+  "rows": [
+    {
+      "command": "SELECT * FROM appdb.users LIMIT 10;",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.1
+    },
+    {
+      "command": "SELECT * FROM appdb.users LIMIT 10;",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.1
+    },
+    {
+      "command": "SELECT * FROM appdb.users LIMIT 10;",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.3
+    },
+    {
+      "command": "cat /etc/hostname",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "cat /etc/hostname",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.1
+    },
+    {
+      "command": "cat /etc/hostname",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.3
+    },
+    {
+      "command": "cat /etc/passwd",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.4
+    },
+    {
+      "command": "cat /etc/passwd",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "cat /etc/passwd",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "cat /etc/ssh/sshd_config",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /etc/ssh/sshd_config",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /etc/ssh/sshd_config",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /home/webapp/.ssh/id_rsa",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "cat /home/webapp/.ssh/id_rsa",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat /home/webapp/.ssh/id_rsa",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat /home/webapp/app.config",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "cat /home/webapp/app.config",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "cat /home/webapp/app.config",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.4
+    },
+    {
+      "command": "cat /proc/cpuinfo",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/cpuinfo",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "cat /proc/cpuinfo",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "cat /proc/cpuinfo | grep -E \"processor|model name\" | head -4",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/cpuinfo | grep -E \"processor|model name\" | head -4",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "cat /proc/cpuinfo | grep -E \"processor|model name\" | head -4",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/cpuinfo | head -20",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat /proc/cpuinfo | head -20",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/cpuinfo | head -20",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/meminfo",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/meminfo",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat /proc/meminfo",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat /proc/self/status",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/self/status",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat /proc/self/status",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.0
+    },
+    {
+      "command": "cat /proc/self/status | grep -E '^(Pid|PPid|Uid|Gid)'",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/self/status | grep -E '^(Pid|PPid|Uid|Gid)'",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat /proc/self/status | grep -E '^(Pid|PPid|Uid|Gid)'",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat /proc/sys/kernel/hostname",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat /proc/sys/kernel/hostname",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/sys/kernel/hostname",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/sys/kernel/random/uuid",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat /proc/sys/kernel/random/uuid",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/sys/kernel/random/uuid",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/uptime",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "cat /proc/uptime",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/uptime",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 20.9
+    },
+    {
+      "command": "cat /proc/version",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/version",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.2
+    },
+    {
+      "command": "cat /proc/version",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "cat /root/server.log",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "cat /root/server.log",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "cat /root/server.log",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /var/log/server.log",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "cat /var/log/server.log",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /var/log/server.log",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat app.config",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat app.config",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat app.config",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "cat passwd | grep -E ':[0-9]{4}:' | head -5",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat passwd | grep -E ':[0-9]{4}:' | head -5",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat passwd | grep -E ':[0-9]{4}:' | head -5",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "cat server.log",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat server.log",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "cat server.log",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat ~/app.config",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat ~/app.config",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat ~/app.config",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cd /root && ls -lah",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cd /root && ls -lah",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cd /root && ls -lah",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cd /var/log && ls -lt | head -15",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cd /var/log && ls -lt | head -15",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cd /var/log && ls -lt | head -15",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "crontab -l",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "crontab -l",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "crontab -l",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 20.9
+    },
+    {
+      "command": "crontab -l -u phil",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "crontab -l -u phil",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.2
+    },
+    {
+      "command": "crontab -l -u phil",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "dd if=/dev/urandom bs=1 count=8 2>/dev/null | od -An -tx1",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "dd if=/dev/urandom bs=1 count=8 2>/dev/null | od -An -tx1",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "dd if=/dev/urandom bs=1 count=8 2>/dev/null | od -An -tx1",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "dmesg | tail -30",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "dmesg | tail -30",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "dmesg | tail -30",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "file /bin/bash",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "file /bin/bash",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "file /bin/bash",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "file /usr/bin/dmesg",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "file /usr/bin/dmesg",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "file /usr/bin/dmesg",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "file /usr/bin/stat",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "file /usr/bin/stat",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "file /usr/bin/stat",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "find / -name \"flag*\" 2>/dev/null",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.3
+    },
+    {
+      "command": "find / -name \"flag*\" 2>/dev/null",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "find / -name \"flag*\" 2>/dev/null",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "find / -type f -name \"*flag*\" 2>/dev/null",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "find / -type f -name \"*flag*\" 2>/dev/null",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "find / -type f -name \"*flag*\" 2>/dev/null",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "find /proc -name cpuinfo 2>/dev/null",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "find /proc -name cpuinfo 2>/dev/null",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "find /proc -name cpuinfo 2>/dev/null",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "find /proc -type f -name status 2>/dev/null | head -1 | xargs cat",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "find /proc -type f -name status 2>/dev/null | head -1 | xargs cat",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "find /proc -type f -name status 2>/dev/null | head -1 | xargs cat",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "find /var/www -type f 2>/dev/null",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "find /var/www -type f 2>/dev/null",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "find /var/www -type f 2>/dev/null",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "grep -r \"password\\|secret\\|key\" /root/ 2>/dev/null",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "grep -r \"password\\|secret\\|key\" /root/ 2>/dev/null",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.2
+    },
+    {
+      "command": "grep -r \"password\\|secret\\|key\" /root/ 2>/dev/null",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "head -1 /var/log/server.log",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "head -1 /var/log/server.log",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.0
+    },
+    {
+      "command": "head -1 /var/log/server.log",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "head -c 16 /dev/urandom | xxd -p",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "head -c 16 /dev/urandom | xxd -p",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.0
+    },
+    {
+      "command": "head -c 16 /dev/urandom | xxd -p",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "hexdump -C /usr/bin/dmesg | head -1",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "hexdump -C /usr/bin/dmesg | head -1",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "hexdump -C /usr/bin/dmesg | head -1",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "hexdump -C /usr/bin/stat | head -1",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.3
+    },
+    {
+      "command": "hexdump -C /usr/bin/stat | head -1",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.4
+    },
+    {
+      "command": "hexdump -C /usr/bin/stat | head -1",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "ls -l /proc/1/exe",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "ls -l /proc/1/exe",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "ls -l /proc/1/exe",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "ls -la /home",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.4
+    },
+    {
+      "command": "ls -la /home",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "ls -la /home",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.2
+    },
+    {
+      "command": "ls -la /home/webapp",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "ls -la /home/webapp",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "ls -la /home/webapp",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "ls -la /opt",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "ls -la /opt",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.3
+    },
+    {
+      "command": "ls -la /opt",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "ls -la /proc",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.1
+    },
+    {
+      "command": "ls -la /proc",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "ls -la /proc",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "ls -la /proc/1/",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.4
+    },
+    {
+      "command": "ls -la /proc/1/",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "ls -la /proc/1/",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "ls -la /proc/self/fd",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "ls -la /proc/self/fd",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.3
+    },
+    {
+      "command": "ls -la /proc/self/fd",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "ls -la /root",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "ls -la /root",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "ls -la /root",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "ls -la /root/.ssh/",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "ls -la /root/.ssh/",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "ls -la /root/.ssh/",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "ls -la /var/log",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "ls -la /var/log",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "ls -la /var/log",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "ls -la /var/www",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "ls -la /var/www",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "ls -la /var/www",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "ls -lahi /proc/self/fd 2>&1",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "ls -lahi /proc/self/fd 2>&1",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "ls -lahi /proc/self/fd 2>&1",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.2
+    },
+    {
+      "command": "ls -li / | head -20",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "ls -li / | head -20",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "ls -li / | head -20",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "mysql -h 10.0.0.5 -u svc_backup -pKvUbKvNQoDNZOz0Bt8bG6G!7 -e \"SELECT * FROM appdb.users LIMIT 10\"",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "mysql -h 10.0.0.5 -u svc_backup -pKvUbKvNQoDNZOz0Bt8bG6G!7 -e \"SELECT * FROM appdb.users LIMIT 10\"",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "mysql -h 10.0.0.5 -u svc_backup -pKvUbKvNQoDNZOz0Bt8bG6G!7 -e \"SELECT * FROM appdb.users LIMIT 10\"",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 20.9
+    },
+    {
+      "command": "mysql -h 10.0.0.5 -u svc_backup -pKvUbKvNQoDNZOz0Bt8bG6G!7 -e \"SELECT user,host FROM mysql.user\"",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "mysql -h 10.0.0.5 -u svc_backup -pKvUbKvNQoDNZOz0Bt8bG6G!7 -e \"SELECT user,host FROM mysql.user\"",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "mysql -h 10.0.0.5 -u svc_backup -pKvUbKvNQoDNZOz0Bt8bG6G!7 -e \"SELECT user,host FROM mysql.user\"",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.3
+    },
+    {
+      "command": "netstat -tuln | head -20",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "netstat -tuln | head -20",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "netstat -tuln | head -20",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "netstat -tulpn",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "netstat -tulpn",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "netstat -tulpn",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "netstat -tulpn | grep LISTEN",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "netstat -tulpn | grep LISTEN",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "netstat -tulpn | grep LISTEN",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.0
+    },
+    {
+      "command": "ps auxf | grep -v '\\[' | head -30",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "ps auxf | grep -v '\\[' | head -30",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "ps auxf | grep -v '\\[' | head -30",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "stat -c '%y' /proc/1",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "stat -c '%y' /proc/1",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "stat -c '%y' /proc/1",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "stat /proc/1/exe",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "stat /proc/1/exe",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "stat /proc/1/exe",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "stat /proc/cpuinfo",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "stat /proc/cpuinfo",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "stat /proc/cpuinfo",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "stat /proc/version",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "stat /proc/version",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 20.9
+    },
+    {
+      "command": "stat /proc/version",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "strings /home/webapp/app.config",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "strings /home/webapp/app.config",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "strings /home/webapp/app.config",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "strings /var/log/server.log",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "strings /var/log/server.log",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.3
+    },
+    {
+      "command": "strings /var/log/server.log",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.3
+    },
+    {
+      "command": "sudo /usr/bin/iptables -D INPUT 5",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "sudo /usr/bin/iptables -D INPUT 5",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "sudo /usr/bin/iptables -D INPUT 5",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "sudo /usr/bin/iptables -F",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "sudo /usr/bin/iptables -F",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "sudo /usr/bin/iptables -F",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "sudo /usr/bin/iptables -L",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "sudo /usr/bin/iptables -L",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "sudo /usr/bin/iptables -L",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.1
+    },
+    {
+      "command": "sudo /usr/sbin/auditctl -D",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "sudo /usr/sbin/auditctl -D",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "sudo /usr/sbin/auditctl -D",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "sudo /usr/sbin/auditctl -l",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "sudo /usr/sbin/auditctl -l",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "sudo /usr/sbin/auditctl -l",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "sudo iptables -L",
+      "attempt": 1,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "sudo iptables -L",
+      "attempt": 2,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "sudo iptables -L",
+      "attempt": 3,
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.0
+    }
+  ],
+  "caveats": [
+    "Commands were sent as the whole user message. Production prompts add system/context text, which can move a payload across the filter.",
+    "transport_error rows are timeouts/transient failures, not filter verdicts."
+  ],
+  "stability": {
+    "per_command_verdict": {
+      "always_blocked": 72
+    },
+    "spread": {
+      "SELECT * FROM appdb.users LIMIT 10;": "always_blocked",
+      "cat /etc/hostname": "always_blocked",
+      "cat /etc/passwd": "always_blocked",
+      "cat /etc/ssh/sshd_config": "always_blocked",
+      "cat /home/webapp/.ssh/id_rsa": "always_blocked",
+      "cat /home/webapp/app.config": "always_blocked",
+      "cat /proc/cpuinfo": "always_blocked",
+      "cat /proc/cpuinfo | grep -E \"processor|model name\" | head -4": "always_blocked",
+      "cat /proc/cpuinfo | head -20": "always_blocked",
+      "cat /proc/meminfo": "always_blocked",
+      "cat /proc/self/status": "always_blocked",
+      "cat /proc/self/status | grep -E '^(Pid|PPid|Uid|Gid)'": "always_blocked",
+      "cat /proc/sys/kernel/hostname": "always_blocked",
+      "cat /proc/sys/kernel/random/uuid": "always_blocked",
+      "cat /proc/uptime": "always_blocked",
+      "cat /proc/version": "always_blocked",
+      "cat /root/server.log": "always_blocked",
+      "cat /var/log/server.log": "always_blocked",
+      "cat app.config": "always_blocked",
+      "cat passwd | grep -E ':[0-9]{4}:' | head -5": "always_blocked",
+      "cat server.log": "always_blocked",
+      "cat ~/app.config": "always_blocked",
+      "cd /root && ls -lah": "always_blocked",
+      "cd /var/log && ls -lt | head -15": "always_blocked",
+      "crontab -l": "always_blocked",
+      "crontab -l -u phil": "always_blocked",
+      "dd if=/dev/urandom bs=1 count=8 2>/dev/null | od -An -tx1": "always_blocked",
+      "dmesg | tail -30": "always_blocked",
+      "file /bin/bash": "always_blocked",
+      "file /usr/bin/dmesg": "always_blocked",
+      "file /usr/bin/stat": "always_blocked",
+      "find / -name \"flag*\" 2>/dev/null": "always_blocked",
+      "find / -type f -name \"*flag*\" 2>/dev/null": "always_blocked",
+      "find /proc -name cpuinfo 2>/dev/null": "always_blocked",
+      "find /proc -type f -name status 2>/dev/null | head -1 | xargs cat": "always_blocked",
+      "find /var/www -type f 2>/dev/null": "always_blocked",
+      "grep -r \"password\\|secret\\|key\" /root/ 2>/dev/null": "always_blocked",
+      "head -1 /var/log/server.log": "always_blocked",
+      "head -c 16 /dev/urandom | xxd -p": "always_blocked",
+      "hexdump -C /usr/bin/dmesg | head -1": "always_blocked",
+      "hexdump -C /usr/bin/stat | head -1": "always_blocked",
+      "ls -l /proc/1/exe": "always_blocked",
+      "ls -la /home": "always_blocked",
+      "ls -la /home/webapp": "always_blocked",
+      "ls -la /opt": "always_blocked",
+      "ls -la /proc": "always_blocked",
+      "ls -la /proc/1/": "always_blocked",
+      "ls -la /proc/self/fd": "always_blocked",
+      "ls -la /root": "always_blocked",
+      "ls -la /root/.ssh/": "always_blocked",
+      "ls -la /var/log": "always_blocked",
+      "ls -la /var/www": "always_blocked",
+      "ls -lahi /proc/self/fd 2>&1": "always_blocked",
+      "ls -li / | head -20": "always_blocked",
+      "mysql -h 10.0.0.5 -u svc_backup -pKvUbKvNQoDNZOz0Bt8bG6G!7 -e \"SELECT * FROM appdb.users LIMIT 10\"": "always_blocked",
+      "mysql -h 10.0.0.5 -u svc_backup -pKvUbKvNQoDNZOz0Bt8bG6G!7 -e \"SELECT user,host FROM mysql.user\"": "always_blocked",
+      "netstat -tuln | head -20": "always_blocked",
+      "netstat -tulpn": "always_blocked",
+      "netstat -tulpn | grep LISTEN": "always_blocked",
+      "ps auxf | grep -v '\\[' | head -30": "always_blocked",
+      "stat -c '%y' /proc/1": "always_blocked",
+      "stat /proc/1/exe": "always_blocked",
+      "stat /proc/cpuinfo": "always_blocked",
+      "stat /proc/version": "always_blocked",
+      "strings /home/webapp/app.config": "always_blocked",
+      "strings /var/log/server.log": "always_blocked",
+      "sudo /usr/bin/iptables -D INPUT 5": "always_blocked",
+      "sudo /usr/bin/iptables -F": "always_blocked",
+      "sudo /usr/bin/iptables -L": "always_blocked",
+      "sudo /usr/sbin/auditctl -D": "always_blocked",
+      "sudo /usr/sbin/auditctl -l": "always_blocked",
+      "sudo iptables -L": "always_blocked"
+    }
+  },
+  "blocked_commands": [
+    "SELECT * FROM appdb.users LIMIT 10;",
+    "cat /etc/hostname",
+    "cat /etc/passwd",
+    "cat /etc/ssh/sshd_config",
+    "cat /home/webapp/.ssh/id_rsa",
+    "cat /home/webapp/app.config",
+    "cat /proc/cpuinfo",
+    "cat /proc/cpuinfo | grep -E \"processor|model name\" | head -4",
+    "cat /proc/cpuinfo | head -20",
+    "cat /proc/meminfo",
+    "cat /proc/self/status",
+    "cat /proc/self/status | grep -E '^(Pid|PPid|Uid|Gid)'",
+    "cat /proc/sys/kernel/hostname",
+    "cat /proc/sys/kernel/random/uuid",
+    "cat /proc/uptime",
+    "cat /proc/version",
+    "cat /root/server.log",
+    "cat /var/log/server.log",
+    "cat app.config",
+    "cat passwd | grep -E ':[0-9]{4}:' | head -5",
+    "cat server.log",
+    "cat ~/app.config",
+    "cd /root && ls -lah",
+    "cd /var/log && ls -lt | head -15",
+    "crontab -l",
+    "crontab -l -u phil",
+    "dd if=/dev/urandom bs=1 count=8 2>/dev/null | od -An -tx1",
+    "dmesg | tail -30",
+    "file /bin/bash",
+    "file /usr/bin/dmesg",
+    "file /usr/bin/stat",
+    "find / -name \"flag*\" 2>/dev/null",
+    "find / -type f -name \"*flag*\" 2>/dev/null",
+    "find /proc -name cpuinfo 2>/dev/null",
+    "find /proc -type f -name status 2>/dev/null | head -1 | xargs cat",
+    "find /var/www -type f 2>/dev/null",
+    "grep -r \"password\\|secret\\|key\" /root/ 2>/dev/null",
+    "head -1 /var/log/server.log",
+    "head -c 16 /dev/urandom | xxd -p",
+    "hexdump -C /usr/bin/dmesg | head -1",
+    "hexdump -C /usr/bin/stat | head -1",
+    "ls -l /proc/1/exe",
+    "ls -la /home",
+    "ls -la /home/webapp",
+    "ls -la /opt",
+    "ls -la /proc",
+    "ls -la /proc/1/",
+    "ls -la /proc/self/fd",
+    "ls -la /root",
+    "ls -la /root/.ssh/",
+    "ls -la /var/log",
+    "ls -la /var/www",
+    "ls -lahi /proc/self/fd 2>&1",
+    "ls -li / | head -20",
+    "mysql -h 10.0.0.5 -u svc_backup -pKvUbKvNQoDNZOz0Bt8bG6G!7 -e \"SELECT * FROM appdb.users LIMIT 10\"",
+    "mysql -h 10.0.0.5 -u svc_backup -pKvUbKvNQoDNZOz0Bt8bG6G!7 -e \"SELECT user,host FROM mysql.user\"",
+    "netstat -tuln | head -20",
+    "netstat -tulpn",
+    "netstat -tulpn | grep LISTEN",
+    "ps auxf | grep -v '\\[' | head -30",
+    "stat -c '%y' /proc/1",
+    "stat /proc/1/exe",
+    "stat /proc/cpuinfo",
+    "stat /proc/version",
+    "strings /home/webapp/app.config",
+    "strings /var/log/server.log",
+    "sudo /usr/bin/iptables -D INPUT 5",
+    "sudo /usr/bin/iptables -F",
+    "sudo /usr/bin/iptables -L",
+    "sudo /usr/sbin/auditctl -D",
+    "sudo /usr/sbin/auditctl -l",
+    "sudo iptables -L"
+  ]
+}

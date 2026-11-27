@@ -1,0 +1,273 @@
+{
+  "arms": {
+    "RAGIN_BASELINE": {
+      "HITL_escalation_rate": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "numerator": 2,
+        "rate": 0.011834319526627219
+      },
+      "accepted_non_fallback_response_rate": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "numerator": 162,
+        "rate": 0.9585798816568047
+      },
+      "attempted_n": 169,
+      "decision_path_distribution": {
+        "BASELINE_NO_LAYA": 169
+      },
+      "end_to_end_latency": {
+        "N": 169,
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "mean_ms": 114.6093288590834,
+        "p50_ms": 116.63088802015409,
+        "p90_ms": 126.22765923151748,
+        "p95_ms": 130.37929178681225
+      },
+      "fallback_rate": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "numerator": 1,
+        "rate": 0.005917159763313609
+      },
+      "fiction_consistency_rejection_rate": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "numerator": 2,
+        "rate": 0.011834319526627219
+      },
+      "final_controlled_failure_rate": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "numerator": 6,
+        "rate": 0.03550295857988166
+      },
+      "generation_retry_count": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "mean": 0.0650887573964497,
+        "total": 11
+      },
+      "host_fiction_rejection_rate": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "response_strategy_distribution": {
+        "baseline": 169
+      },
+      "total_verifier_rejection_count": 17,
+      "verifier_first_pass_acceptance_rate": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "numerator": 162,
+        "rate": 0.9585798816568047
+      }
+    },
+    "RAGIN_LAYA_DECISION": {
+      "HITL_escalation_rate": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "numerator": 2,
+        "rate": 0.011834319526627219
+      },
+      "Laya_incremental_latency": {
+        "N": 169,
+        "attempted_n": 169,
+        "definition": "per-case real Laya inference component; not assumed to be wholly inside the end-to-end timer",
+        "evaluable_n": 169,
+        "mean_ms": 1974.7919171597634,
+        "p50_ms": 1767.868,
+        "p90_ms": 2154.5266,
+        "p95_ms": 2726.2939999999976
+      },
+      "accepted_non_fallback_response_rate": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "numerator": 162,
+        "rate": 0.9585798816568047
+      },
+      "attempted_n": 169,
+      "decision_path_distribution": {
+        "LAYA_ATTACK_STRATEGY": 36,
+        "LAYA_NON_ATTACK_STRATEGY": 133
+      },
+      "end_to_end_latency": {
+        "N": 169,
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "mean_ms": 2094.9275915065955,
+        "p50_ms": 1890.3119739843532,
+        "p90_ms": 2275.917122373358,
+        "p95_ms": 2851.9761339994125
+      },
+      "fallback_rate": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "numerator": 1,
+        "rate": 0.005917159763313609
+      },
+      "fiction_consistency_rejection_rate": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "numerator": 2,
+        "rate": 0.011834319526627219
+      },
+      "final_controlled_failure_rate": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "numerator": 6,
+        "rate": 0.03550295857988166
+      },
+      "generation_retry_count": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "mean": 0.0650887573964497,
+        "total": 11
+      },
+      "host_fiction_rejection_rate": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "response_strategy_distribution": {
+        "fake_success_and_return_visits": 35,
+        "low_intensity_administration": 133,
+        "steer_to_honeytoken_credentials": 1
+      },
+      "total_verifier_rejection_count": 17,
+      "verifier_first_pass_acceptance_rate": {
+        "attempted_n": 169,
+        "evaluable_n": 169,
+        "numerator": 162,
+        "rate": 0.9585798816568047
+      }
+    }
+  },
+  "paired_differences": {
+    "HITL_escalation_rate": {
+      "baseline_mean": 0.011834319526627219,
+      "kind": "rate",
+      "paired_difference_mean": 0.0,
+      "treatment_mean": 0.011834319526627219
+    },
+    "Laya_incremental_latency": {
+      "baseline": "not_applicable",
+      "kind": "treatment-only component",
+      "paired_difference": "not_applicable",
+      "treatment_mean_ms": 1974.7919171597634
+    },
+    "accepted_non_fallback_response_rate": {
+      "baseline_mean": 0.9585798816568047,
+      "kind": "rate",
+      "paired_difference_mean": 0.0,
+      "treatment_mean": 0.9585798816568047
+    },
+    "decision_path_distribution": {
+      "BASELINE_NO_LAYA": {
+        "baseline_N": 169,
+        "difference_N": -169,
+        "treatment_N": 0
+      },
+      "LAYA_ATTACK_STRATEGY": {
+        "baseline_N": 0,
+        "difference_N": 36,
+        "treatment_N": 36
+      },
+      "LAYA_NON_ATTACK_STRATEGY": {
+        "baseline_N": 0,
+        "difference_N": 133,
+        "treatment_N": 133
+      }
+    },
+    "end_to_end_latency_ms": {
+      "baseline_mean": 114.6093288590834,
+      "kind": "continuous",
+      "paired_difference_mean": 1980.3182626475123,
+      "treatment_mean": 2094.9275915065955
+    },
+    "fallback_rate": {
+      "baseline_mean": 0.005917159763313609,
+      "kind": "rate",
+      "paired_difference_mean": 0.0,
+      "treatment_mean": 0.005917159763313609
+    },
+    "fiction_consistency_rejection_rate": {
+      "baseline_mean": 0.011834319526627219,
+      "kind": "rate",
+      "paired_difference_mean": 0.0,
+      "treatment_mean": 0.011834319526627219
+    },
+    "final_controlled_failure_rate": {
+      "baseline_mean": 0.03550295857988166,
+      "kind": "rate",
+      "paired_difference_mean": 0.0,
+      "treatment_mean": 0.03550295857988166
+    },
+    "generation_retry_count": {
+      "baseline_mean": 0.0650887573964497,
+      "kind": "count",
+      "paired_difference_mean": 0.0,
+      "treatment_mean": 0.0650887573964497
+    },
+    "host_fiction_rejection_rate": {
+      "baseline_mean": 0.0,
+      "kind": "rate",
+      "paired_difference_mean": 0.0,
+      "treatment_mean": 0.0
+    },
+    "response_strategy_distribution": {
+      "baseline": {
+        "baseline_N": 169,
+        "difference_N": -169,
+        "treatment_N": 0
+      },
+      "fake_success_and_return_visits": {
+        "baseline_N": 0,
+        "difference_N": 35,
+        "treatment_N": 35
+      },
+      "low_intensity_administration": {
+        "baseline_N": 0,
+        "difference_N": 133,
+        "treatment_N": 133
+      },
+      "steer_to_honeytoken_credentials": {
+        "baseline_N": 0,
+        "difference_N": 1,
+        "treatment_N": 1
+      }
+    },
+    "total_verifier_rejection_count": {
+      "baseline_total": 17,
+      "kind": "count",
+      "paired_difference_mean_per_case": 0.0,
+      "paired_difference_total": 0,
+      "treatment_total": 17
+    },
+    "verifier_first_pass_acceptance_rate": {
+      "baseline_mean": 0.9585798816568047,
+      "kind": "rate",
+      "paired_difference_mean": 0.0,
+      "treatment_mean": 0.9585798816568047
+    }
+  },
+  "primary": "accepted_non_fallback_response_rate",
+  "primary_paired_outcome": {
+    "A_both_success": 162,
+    "B_baseline_only_success": 0,
+    "C_treatment_only_success": 0,
+    "D_both_failure": 7,
+    "absolute_delta": 0.0,
+    "baseline_rate": 0.9585798816568047,
+    "discordant_N": 0,
+    "exact_two_sided_mcnemar_p": 1.0,
+    "relative_delta": 0.0,
+    "treatment_rate": 0.9585798816568047
+  },
+  "schema": "ragin.laya_decision_v2.primary_169_locked_workflow_metrics.v1"
+}

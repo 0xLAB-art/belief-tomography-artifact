@@ -1,0 +1,43 @@
+{
+  "schema": "ragin.laya_decision_v2.decision_event.v2",
+  "required": [
+    "session_id",
+    "laya_enabled",
+    "real_model_verified",
+    "model",
+    "checkpoint",
+    "model_hash",
+    "input_sha256",
+    "native_raw_output",
+    "normalized_decision",
+    "decision_policy_version",
+    "decision_policy_hash",
+    "availability",
+    "latency_ms",
+    "error",
+    "fallback_reason",
+    "selected_workflow_branch",
+    "selected_response_strategy"
+  ],
+  "properties": {
+    "session_id": "string",
+    "laya_enabled": "boolean",
+    "real_model_verified": "boolean",
+    "model": "string",
+    "checkpoint": "string|null",
+    "model_hash": "string|null",
+    "input_sha256": "sha256 hex string; raw state is not stored here",
+    "native_raw_output": "JSON object copied from the real Laya output; no secrets",
+    "normalized_decision": "LayaDecisionSignal object",
+    "decision_policy_version": "string",
+    "decision_policy_hash": "sha256 of the locked policy artifact",
+    "availability": "boolean",
+    "latency_ms": "non-negative number",
+    "error": "string|null",
+    "fallback_reason": "string|null",
+    "selected_workflow_branch": "string",
+    "selected_response_strategy": "string"
+  },
+  "redaction": ["secrets", "tokens", "raw credentials", "full attacker state"],
+  "safety": "This event records a pre-generation decision only; it cannot authorize, serve, verify, or commit state."
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "ragin.laya_decision_v2.ablation_arms.v1",
+  "control": {
+    "name": "RAGIN_BASELINE",
+    "laya_enabled": false,
+    "decision_policy": "absent",
+    "components": ["same Chrollo", "same Don", "same Hisoka/provider", "same deterministic verifiers", "same HITL policy"],
+    "routing": "current authoritative routing behavior"
+  },
+  "treatment": {
+    "name": "RAGIN_LAYA_DECISION",
+    "laya_enabled": true,
+    "real_model_required": true,
+    "decision_policy": "LAYA_DECISION_POLICY_V2",
+    "components": ["same Chrollo", "same Don", "same Hisoka/provider", "same deterministic verifiers", "same HITL policy"],
+    "routing": "only preregistered pre-generation response-strategy seam differs"
+  },
+  "only_experimental_difference": "The treatment obtains one real Laya decision signal and applies LayaDecisionPolicy to response-strategy context; all other code paths, configuration, seeds where supported, verification, authorization, HITL, and commit gates are held constant.",
+  "historical_freezes_modified": false
+}

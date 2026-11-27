@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "generated": "2026-11-06T21:12:15.141976+00:00",
+    "experiment": "IND-DEF gen-3 \u2014 escalation-vs-closure measurement against kernel v9 (V1-V6b era)",
+    "sessions_total": 4,
+    "caveats": [
+      "evasion sessions ran on v9 (V5/V6 closed, V4b/V7 fixes shipped as v10 AFTER this batch)",
+      "recon/apt ran across the v10 restart (driver auto-reconnected); synthetic-arm slice",
+      "small n \u2014 quota-limited"
+    ]
+  },
+  "per_persona": {
+    "evasion_probe": {
+      "sessions": 2,
+      "turns": [
+        4,
+        4
+      ],
+      "dwell_s": [
+        160.5,
+        359.7
+      ],
+      "verdicts": [
+        "honeypot",
+        "honeypot"
+      ],
+      "detection_rate": 1.0,
+      "degraded": 0
+    },
+    "recon_operator": {
+      "sessions": 1,
+      "turns": [
+        30
+      ],
+      "dwell_s": [
+        1415.1
+      ],
+      "verdicts": [
+        "censored"
+      ],
+      "detection_rate": 0.0,
+      "degraded": 0
+    },
+    "credential_hunter": {
+      "sessions": 1,
+      "turns": [
+        15
+      ],
+      "dwell_s": [
+        2205.1
+      ],
+      "verdicts": [
+        "censored"
+      ],
+      "detection_rate": 0.0,
+      "degraded": 0
+    }
+  },
+  "escalation_ladder": {
+    "gen-1": {
+      "vectors": "V1 fs-depth, V2 coreutils, V3 metadata, V4 double-prompt",
+      "kernel": "no epistemic layer",
+      "evasion_detection": "2-3 turns",
+      "detection_rate_evasion": 1.0
+    },
+    "gen-2": {
+      "vectors": "V5 inode probing, V6 time-coherence (escalated after V1-V4 closed)",
+      "kernel": "v7: systree V1/V2 closure + identity-seeded world",
+      "evasion_detection": "2 turns",
+      "detection_rate_evasion": 1.0
+    },
+    "gen-3": {
+      "vectors": "V4b prompt-user mismatch (content prompt echoes), V7 cross-directory inode-scale (both measured on v9; V7 pre-closed by v10's ordering table)",
+      "kernel": "v9: + W4.1 session continuity + hostname/prompt hygiene",
+      "evasion_detection": "4 turns (doubled vs gen-2 \u2014 deeper probing required)",
+      "detection_rate_evasion": 1.0
+    },
+    "next_rungs": [
+      "V4b fix shipped (v11): prompt-echo sanitizer \u2014 real output never contains prompts",
+      "V7 fix shipped (v10): mtime-ordered inode table covers every tree path (zero ordering violations, no scale-mixed fallbacks)",
+      "open by design: latency homogenization, cross-session linking, deeper proc/package epochs"
+    ]
+  },
+  "non_detector_hold": {
+    "credential_hunter": "15/15 unique commands, 2205s (36.8 min) \u2014 zero detection",
+    "recon_operator": "full 30-turn cap, 17/30 unique, 1415s \u2014 zero detection (survived a mid-session kernel redeploy via auto-reconnect)",
+    "gen1_comparison": "gen-1 cred_hunter 0/4 @36min, apt 0/2 @30-turn \u2014 the hold is stable across kernel versions and attacker generations"
+  }
+}

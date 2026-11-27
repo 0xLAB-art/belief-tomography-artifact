@@ -1,0 +1,46 @@
+{
+    "Command": {
+        "CommandId": "9ed19f1e-b471-4aef-8d8f-6a50036b4eac",
+        "DocumentName": "AWS-RunShellScript",
+        "DocumentVersion": "$DEFAULT",
+        "Comment": "RAGIN CORE listener binding discovery",
+        "ExpiresAfter": "2026-10-11T18:57:48.053000+03:00",
+        "Parameters": {
+            "commands": [
+                "set -euo pipefail\necho RUN\ndate -u\necho LISTEN_BIND\nif command -v ss >/dev/null 2>&1; then\n  echo SS_OUT_BEGIN\n  ss -tulpn 2>/dev/null | grep -iE ':8443|:24443|python3' || echo SS_NO_MATCH\n  echo SS_OUT_END\nelse\n  echo SS_NOT_PRESENT\nfi\necho PYTHON_PROC\nps -eo pid,args --width 300 2>/dev/null | grep -iE 'ragin.server_v2|server_v2.py|python3.*server_v2' | grep -v grep | head -n 20 || true\necho PORT_DOC\nif [ -f /etc/ragin/server.env ]; then\n  echo ENV_PORT=$(grep -E '^PORT=' /etc/ragin/server.env 2>/dev/null | head -n 1 || echo ENV_PORT_MISSING)\n  echo ENV_BIND=$(grep -E '^RAGIN_BIND_HOST=' /etc/ragin/server.env 2>/dev/null | head -n 1 || echo ENV_BIND_MISSING)\n  echo ENV_MTLS=$(grep -E '^RAGIN_MTLS' /etc/ragin/server.env 2>/dev/null | head -n 40 || echo ENV_MTLS_MISSING)\nelse\n  echo ENV_MISSING=/etc/ragin/server.env\nfi\necho DONE"
+            ]
+        },
+        "InstanceIds": [
+            "i-062a400b300f4f9e4"
+        ],
+        "Targets": [],
+        "RequestedDateTime": "2026-10-11T17:56:48.053000+03:00",
+        "Status": "Pending",
+        "StatusDetails": "Pending",
+        "OutputS3Region": "eu-north-1",
+        "OutputS3BucketName": "",
+        "OutputS3KeyPrefix": "",
+        "MaxConcurrency": "1",
+        "MaxErrors": "1",
+        "TargetCount": 1,
+        "CompletedCount": 0,
+        "ErrorCount": 0,
+        "DeliveryTimedOutCount": 0,
+        "ServiceRole": "",
+        "NotificationConfig": {
+            "NotificationArn": "",
+            "NotificationEvents": [],
+            "NotificationType": ""
+        },
+        "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "",
+            "CloudWatchOutputEnabled": false
+        },
+        "TimeoutSeconds": 60,
+        "AlarmConfiguration": {
+            "IgnorePollAlarmFailure": false,
+            "Alarms": []
+        },
+        "TriggeredAlarms": []
+    }
+}

@@ -1,0 +1,149 @@
+[check] builder sha256 OK: 96d5988d446398ff3391cd723921cff37f1642b0f5aab4880c9e77d96bb31118
+[check] datasets manifest sha256 OK: cdc475882f155301fc75a69ba6d7ff86a2c53189f2e54cc47a69d072fb98a66e
+[check] TR set sha256 OK: e20f527719cc359403f4ea07281d566093f08af790d237ca8f659fa5eaa1b6cb
+[check] DEV set sha256 OK: 7278c3bb0c90d22d9756bd19f26ac0adf4de75bf79f078591521e7ca65192491
+[check] training rows sha256 OK: 3b12552b6e7ea5d266440fd6f15a272777354710217d4c38ca11425abc160815
+[check] contract sha256 OK: c3fea3c979ed33b8831fcecee7e4ed8eea16bd9bf57bc23690071700c0feca9b
+[check] base checkpoint weights sha256 OK: 891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c
+[check] DEV cases: 60 (sufficient 27, required-abstain 33); runtime question defs built for all
+[check] dev subset (all TR rows (kept == total per archetype); 10% calibration holdout at calib_seed 20260922): 423 cases / 423 items
+        required_conflict        27 -> 27 kept
+        required_contradiction   27 -> 27 kept
+        required_ioc_only        36 -> 36 kept
+        required_missing         36 -> 36 kept
+        required_partial         72 -> 72 kept
+        required_weak            36 -> 36 kept
+        sufficient               189 -> 189 kept
+[check] subset rows sha256 (derived, not written): 3b12552b6e7ea5d266440fd6f15a272777354710217d4c38ca11425abc160815
+[check] on-disk subset rows file matches (3b12552b6e7ea5d266440fd6f15a272777354710217d4c38ca11425abc160815)
+[check] development artefact already exists: /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_decision_v4/laya_v12_balanced_allrows_gpu_redesign_v1_development_v1.json
+[phase-c] evaluation set sha256 OK: dd6c6dbcda9050dea7ad68cc417f97d1a28e33613f88e96bfbb28e30dfebe4a3
+[phase-c] evaluation set: 60 cases (32 sufficient, 28 required-abstain)
+[phase-c] injection set sha256 OK: 166117d37a05972e9b97d85795a7e1c2eb6168fec3f23f8926c29d5c175ced7d
+[phase-c] injection set: 24 cases (12 injected + 12 clean twins); oracle states {'SUFFICIENT': 12, 'INSUFFICIENT': 8, 'CONFLICTING': 4}
+[fit] development artefact OK: ebc95a47a42368d5eeda90b4e8c78e5401dca013c49d610e7d225c71ba917976 (candidate B, loss rlcd)
+dry-run: 423 rows read, 1269 valid items, skipped: {}
+dry-run: optimizer budget: 1143 train item(s), effective batch up to 32 (micro_batch 2 x grad_accum 16), 576 optimizer updates over 16 epoch(s)
+[fit] full-TR dry_run OK: 423 rows, 1269 items, 1143 train / 126 calib, 576 optimizer updates, zero skips
+/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/scripts/laya_v7_selective_train.py:743: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  scheduler.step()
+epoch 1/1 mean loss -0.8147
+[fit] live micro-batch rehearsal (rlcd): 2 items in 1.8 s, 1 optimizer update
+[fit] wall-clock projection: 16368 s (dev-scaled 5510 s, rehearsal-scaled 16368 s)
+[fit] final fit on the full TR: loss=rlcd, 1143 train items, 16 epochs, 576 optimizer updates
+train items 1143, calibration items 126, eval items 126 (calibration_slice), skipped {}, device cuda
+optimizer budget: 1143 train item(s), effective batch up to 32 (micro_batch 2 x grad_accum 16), 576 optimizer updates over 16 epoch(s)
+epoch 1/16 step 100 loss 0.3581
+epoch 1/16 step 200 loss 0.7684
+epoch 1/16 step 300 loss 1.2986
+epoch 1/16 step 400 loss -0.2605
+epoch 1/16 step 500 loss 0.8405
+epoch 1/16 mean loss 0.8759
+epoch 2/16 step 100 loss 1.8869
+epoch 2/16 step 200 loss -0.1780
+epoch 2/16 step 300 loss -1.3894
+epoch 2/16 step 400 loss -0.1878
+epoch 2/16 step 500 loss 1.0249
+epoch 2/16 mean loss 0.9047
+epoch 3/16 step 100 loss 0.6186
+epoch 3/16 step 200 loss 0.5603
+epoch 3/16 step 300 loss 0.2321
+epoch 3/16 step 400 loss -0.0000
+epoch 3/16 step 500 loss -0.0000
+epoch 3/16 mean loss 1.1734
+epoch 4/16 step 100 loss 1.8943
+epoch 4/16 step 200 loss 0.1711
+epoch 4/16 step 300 loss 0.5875
+epoch 4/16 step 400 loss -0.0000
+epoch 4/16 step 500 loss 8.6935
+epoch 4/16 mean loss 1.5081
+epoch 5/16 step 100 loss 0.0035
+epoch 5/16 step 200 loss 1.2985
+epoch 5/16 step 300 loss 0.9440
+epoch 5/16 step 400 loss -0.0000
+epoch 5/16 step 500 loss 1.0696
+epoch 5/16 mean loss 1.0042
+epoch 6/16 step 100 loss 13.0273
+epoch 6/16 step 200 loss -0.1493
+epoch 6/16 step 300 loss -0.1771
+epoch 6/16 step 400 loss 1.0835
+epoch 6/16 step 500 loss 6.6136
+epoch 6/16 mean loss 1.5774
+epoch 7/16 step 100 loss 0.5064
+epoch 7/16 step 200 loss -0.0000
+epoch 7/16 step 300 loss 2.9274
+epoch 7/16 step 400 loss 0.1346
+epoch 7/16 step 500 loss 16.8458
+epoch 7/16 mean loss 1.3935
+epoch 8/16 step 100 loss 0.1493
+epoch 8/16 step 200 loss -0.0000
+epoch 8/16 step 300 loss -0.1912
+epoch 8/16 step 400 loss 0.0146
+epoch 8/16 step 500 loss -0.0000
+epoch 8/16 mean loss 1.1374
+epoch 9/16 step 100 loss -0.0000
+epoch 9/16 step 200 loss 0.7739
+epoch 9/16 step 300 loss -0.0000
+epoch 9/16 step 400 loss -0.0000
+epoch 9/16 step 500 loss -0.0000
+epoch 9/16 mean loss 0.8330
+epoch 10/16 step 100 loss 0.3044
+epoch 10/16 step 200 loss 0.2438
+epoch 10/16 step 300 loss -0.0000
+epoch 10/16 step 400 loss 0.5673
+epoch 10/16 step 500 loss 2.9269
+epoch 10/16 mean loss 0.7818
+epoch 11/16 step 100 loss -0.0000
+epoch 11/16 step 200 loss 1.0896
+epoch 11/16 step 300 loss -0.0000
+epoch 11/16 step 400 loss -0.0000
+epoch 11/16 step 500 loss -0.0000
+epoch 11/16 mean loss 0.6890
+epoch 12/16 step 100 loss -0.0000
+epoch 12/16 step 200 loss -0.0000
+epoch 12/16 step 300 loss 0.4209
+epoch 12/16 step 400 loss 1.0555
+epoch 12/16 step 500 loss -0.0000
+epoch 12/16 mean loss 0.6177
+epoch 13/16 step 100 loss -0.0000
+epoch 13/16 step 200 loss -0.0000
+epoch 13/16 step 300 loss -0.0000
+epoch 13/16 step 400 loss -0.0000
+epoch 13/16 step 500 loss -0.0000
+epoch 13/16 mean loss 0.8820
+epoch 14/16 step 100 loss -0.0000
+epoch 14/16 step 200 loss 6.8977
+epoch 14/16 step 300 loss -0.0000
+epoch 14/16 step 400 loss -0.0000
+epoch 14/16 step 500 loss -0.0000
+epoch 14/16 mean loss 0.6829
+epoch 15/16 step 100 loss -0.0000
+epoch 15/16 step 200 loss -0.0000
+epoch 15/16 step 300 loss -0.0000
+epoch 15/16 step 400 loss -0.0000
+epoch 15/16 step 500 loss -0.0000
+epoch 15/16 mean loss 0.6157
+epoch 16/16 step 100 loss -0.3586
+epoch 16/16 step 200 loss 0.9614
+epoch 16/16 step 300 loss -0.0000
+epoch 16/16 step 400 loss 0.3161
+epoch 16/16 step 500 loss -0.0979
+epoch 16/16 mean loss 0.5395
+
+=== Calibration Evidence (in-sample calibration slice, 126 items; not held-out) ===
+Metric                 Before         After          Delta         
+-----------------------------------------------------------------
+Accuracy               0.5952         0.9444         +0.3492       
+Loss                   0.9568         0.2088         -0.7480       
+ECE                    0.1403         0.0270         -0.1133       
+Brier (multi-class)    0.5709         0.0825         -0.4884       
+Brier (top-1)          0.2569         0.0411         -0.2158       
+Mean Confidence        0.4549         0.9475         +0.4926       
+-----------------------------------------------------------------
+
+[fit] final checkpoint: /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/models/laya_v12_balanced_allrows_gpu_redesign_v1_final_v1
+[fit] checkpoint model.safetensors sha256: ee7501a34323cf6f26e68209eedca8f5cd275a187a83cc687714bfa2824b3ac5
+[fit] fit report: /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_decision_v4/laya_v12_balanced_allrows_gpu_redesign_v1_final_fit_v1.json
+[fit] fit report sha256: 82b9d26674171b9b840811cda21f9e18616921c392b366b5a80d930809944715
+[fit] trained 3332.1 s; epoch loss [0.875902, 0.90469, 1.173389, 1.508056, 1.004231, 1.577441, 1.393458, 1.137443, 0.832989, 0.781795, 0.688955, 0.617688, 0.881981, 0.682928, 0.615676, 0.539477]
+[fit]   warning x1 [RuntimeWarning]: laya.train: choice calibration: the fitted temperature 5 is on the [0.5, 5] clamp

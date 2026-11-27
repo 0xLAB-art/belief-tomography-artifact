@@ -1,0 +1,46 @@
+{
+    "Command": {
+        "CommandId": "a768d79f-4242-40c4-befc-ce39849cf29c",
+        "DocumentName": "AWS-RunShellScript",
+        "DocumentVersion": "$DEFAULT",
+        "Comment": "RAGIN EDGE env cert vars and file presence check",
+        "ExpiresAfter": "2026-10-11T19:20:10.844000+03:00",
+        "Parameters": {
+            "commands": [
+                "set -euo pipefail\necho RUN\ndate -u\necho ENV_VARS\necho RAGIN_MTLS_CERT_FILE=\"${RAGIN_MTLS_CERT_FILE:-unset}\"\necho RAGIN_MTLS_KEY_FILE=\"${RAGIN_MTLS_KEY_FILE:-unset}\"\necho RAGIN_MTLS_CA_FILE=\"${RAGIN_MTLS_CA_FILE:-unset}\"\necho 파일존재\nfor f in \"${RAGIN_MTLS_CERT_FILE:-}\" \"${RAGIN_MTLS_KEY_FILE:-}\" \"${RAGIN_MTLS_CA_FILE:-}\"; do\n  if [ -n \"$f\" ]; then\n    echo PATH=$f exists=$( [ -f \"$f\" ] && echo yes || echo no )\n  fi\ndone\necho DIRECT_ETC_PATH_CHECK\nfor f in /etc/ragin/tls/edge.crt /etc/ragin/tls/edge.key /etc/ragin/tls/ca.crt; do\n  echo PATH=$f exists=$( [ -f \"$f\" ] && echo yes || echo no )\ndone\necho OPENSSL_CHECK\nif command -v openssl >/dev/null 2>&1; then\n  echo openssl_present=yes\n  openssl version 2>/dev/null || true\nelse\n  echo openssl_present=no\nfi\necho DONE"
+            ]
+        },
+        "InstanceIds": [
+            "i-05bc6aab0bd4260a7"
+        ],
+        "Targets": [],
+        "RequestedDateTime": "2026-10-11T18:19:10.844000+03:00",
+        "Status": "Pending",
+        "StatusDetails": "Pending",
+        "OutputS3Region": "eu-north-1",
+        "OutputS3BucketName": "",
+        "OutputS3KeyPrefix": "",
+        "MaxConcurrency": "1",
+        "MaxErrors": "1",
+        "TargetCount": 1,
+        "CompletedCount": 0,
+        "ErrorCount": 0,
+        "DeliveryTimedOutCount": 0,
+        "ServiceRole": "",
+        "NotificationConfig": {
+            "NotificationArn": "",
+            "NotificationEvents": [],
+            "NotificationType": ""
+        },
+        "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "",
+            "CloudWatchOutputEnabled": false
+        },
+        "TimeoutSeconds": 60,
+        "AlarmConfiguration": {
+            "IgnorePollAlarmFailure": false,
+            "Alarms": []
+        },
+        "TriggeredAlarms": []
+    }
+}

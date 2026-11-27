@@ -1,0 +1,43 @@
+{
+  "schema": "ragin.ablation.analysis_plan.v1",
+  "created_utc": "2026-10-23T00:00:00Z",
+  "status": "PRESPECIFIED_NOT_YET_RUN",
+  "horizon_turns": 12,
+  "primary_cause": "DETECTION",
+  "primary_estimand": "paired risk difference in the cause-specific cumulative incidence of explicit detection at turn 12",
+  "retrieval_contrasts": ["B2_vs_B1", "B3_vs_B1", "B3_vs_B2"],
+  "h1_contrast": "B1_vs_B0",
+  "h4_contrast": null,
+  "h5_contrast": null,
+  "multiplicity": {
+    "confirmatory_family": ["B2_vs_B1", "B3_vs_B1", "B3_vs_B2", "B1_vs_B0"],
+    "method": "holm",
+    "family_size": 4,
+    "secondary": "Benjamini-Hochberg, labelled exploratory"
+  },
+  "competing_causes": ["ABANDONMENT", "OBJECTIVE_COMPLETION", "TECHNICAL_FAILURE", "UNAVAILABLE"],
+  "censoring": ["TURN_CAP", "ADMIN_CENSORED"],
+  "pairing_unit": "matched block of four arms",
+  "bootstrap_iterations": 2000,
+  "permutation_iterations": 2000,
+  "seed": 20261023,
+  "alpha": 0.05,
+  "acceptance_criteria": null,
+  "claims_rules": [
+    "Always report detection CIF jointly with technical/unavailable/abandonment CIF and receipt/admission plus compliant-exposure rates.",
+    "Detection CIF may fall because an arm fails or abandons more; that is not evidence of better deception.",
+    "Preserve all allocated sessions in ITT; report per-protocol as a labelled sensitivity analysis.",
+    "Never count a missing or unexposed arm as a zero effect.",
+    "H1 compares B1 against B0 native Cowrie; B1 carries the shared RAGIN verifier, so H1 is a system-package effect, not a pure generator effect.",
+    "No H1-H5 support claim without prespecified availability/utility acceptance criteria and actual compliant model exposure.",
+    "No threshold may be tuned on pilot or holdout data.",
+    "The strict verifier renders a finite exact command/claim surface; passing it does not establish general SSH deception or LLM value."
+  ],
+  "notes": [
+    "ADMIN_CENSORED is an administrative stop for bounded development smoke (for example a 4-turn cap); it is censoring, never an event, and must not be mixed into a measured 12-turn primary analysis.",
+    "B2/B3 contrasts require the same canonical corpus content and document-ID set plus the same top_k/context budget. Equal BM25/FAISS index-byte hashes are not corpus identity.",
+    "B0 native baseline identity/OS/kernel may differ from the pinned B1-B3 host fiction. A matched pilot and any H1 claim are blocked until observed matching is recorded; B0 development smoke remains transport/control only.",
+    "The local implementation supports the Aalen-Johansen turn-12 CIF and block-bootstrap risk difference. Cause-specific Cox with block stratum is the preregistered primary model and is not replaced by this summary.",
+    "Small-sample bootstrap intervals do not repair a small pilot and are not a power claim."
+  ]
+}

@@ -1,0 +1,146 @@
+name: CI Security Gates
+
+# Real security gates for this repository. This replaces an earlier
+# scaffold that GitHub rejected at parse time (a reusable workflow
+# invoked as a step, references to a missing CodeQL config, and matrix
+# entries building ./rust and ./go which do not exist), so it had never
+# produced a single job. It masked every push with a 0-second failure.
+#
+# What is actually checkable here:
+#   - secrets: Gitleaks over the full history. The honeypot artifacts
+#     carry fabricated credentials by design (registered canaries), so
+#     .gitleaks.toml allowlists those paths and keeps default rules
+#     everywhere else.
+#   - sast: Semgrep over the Python services (docker run, no token).
+#   - deps: pip-audit over both requirement sets.
+#
+# Deliberately dropped with the scaffold: the GHCR build/sign/attest
+# pipeline (no release images exist to match), FOSSA (no account),
+# Slack/webhook notify (no secrets configured), and Kyverno/Conftest
+# policy dirs that were never committed.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 2 * * 1' # Weekly Monday 2 AM UTC
+
+permissions:
+  contents: read
+
+env:
+  SEMGREP_IMAGE: returntocorp/semgrep:latest
+
+jobs:
+  secrets:
+    name: Secrets (Gitleaks, full history)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          config-path: .gitleaks.toml
+
+  sast:
+    name: SAST (Semgrep, python)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Semgrep (security-audit + secrets rulesets)
+        # Exclusions are this repository's threat model, each deliberate:
+        #   - generic secret/AWS/SSH patterns: the deception engine and the
+        #     training-data generator fabricate credential-shaped strings
+        #     for a living, and transcripts carry registered canary bait;
+        #     real-secret detection is Gitleaks' job (with its tuned
+        #     allowlist), not a pattern scan over generated fiction.
+        #   - nginx dynamic-proxy/missing-internal/header rules: the
+        #     externally exposed, variable-upstream proxy IS the honeypot
+        #     (ragin/config/*.conf); static exposure advice does not apply.
+        #   - dynamic-urllib: advisory-grade hardening notes in the CTI
+        #     loaders; tracked for cleanup, not a merge blocker.
+        # No --error flag: a prover-rule timeout on the generated-content
+        # files must not kill the scan; the gate below reads the JSON.
+        run: |
+          docker run --rm -v "$PWD:/src" $SEMGREP_IMAGE \
+            semgrep --config p/security-audit --config p/secrets \
+            --metrics=off \
+            --exclude-rule generic.secrets.security.detected-generic-secret.detected-generic-secret \
+            --exclude-rule generic.secrets.security.detected-aws-access-key-id-value.detected-aws-access-key-id-value \
+            --exclude-rule generic.secrets.security.detected-ssh-password.detected-ssh-password \
+            --exclude-rule generic.nginx.security.dynamic-proxy-host.dynamic-proxy-host \
+            --exclude-rule generic.nginx.security.missing-internal.missing-internal \
+            --exclude-rule generic.nginx.security.header-redefinition.header-redefinition \
+            --exclude-rule python.lang.security.audit.dynamic-urllib-use-detected.dynamic-urllib-use-detected \
+            --json -o /src/semgrep.json ragin/ scripts/ llm-gateway/ || true
+
+      - name: Fail on findings
+        run: |
+          python3 - <<'EOF'
+          import json, sys
+          with open("semgrep.json") as f:
+              data = json.load(f)
+          hits = [r for r in data.get("results", [])
+                  if "skip" not in r.get("extra", {}).get("labels", {})]
+          for r in hits:
+              print(f"{r['path']}:{r['start']['line']}: {r['check_id']}")
+          for e in data.get("errors", []):
+              print(f"WARNING scan error: {e.get('path')}: {str(e.get('message'))[:120]}")
+          if hits:
+              print(f"::error::{len(hits)} Semgrep finding(s)")
+              sys.exit(1)
+          print("no Semgrep findings")
+          EOF
+
+      - name: Upload Semgrep report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: semgrep-report
+          path: semgrep.json
+          retention-days: 30
+
+  deps:
+    name: Dependencies (pip-audit)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pip-audit
+        run: pipx install pip-audit
+
+      - name: Audit runtime requirements
+        run: pip-audit -r requirements-runtime.txt --strict
+
+      - name: Audit test/dev environment
+        # The local ragin package is editable and not on PyPI, so it is
+        # dropped from the freeze before auditing; everything installed
+        # from PyPI is audited. --no-deps: the freeze is already the
+        # fully resolved set. No suppressions are currently needed:
+        # chromadb (whose four server-mode advisories were previously
+        # ignored here) was removed from pyproject dependencies in
+        # 2026-09: the repo never imported it and the vector store is
+        # FAISS.
+        run: |
+          pip install -e ".[test,dev]" --quiet
+          pip freeze | grep -v '^-e ' | grep -v '+cpu\|+cu' > /tmp/audit-reqs.txt
+          pip-audit -r /tmp/audit-reqs.txt --strict --disable-pip --no-deps

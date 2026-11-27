@@ -1,0 +1,65 @@
+--- a/ragin/cycle/adapters.py (prior P0 snapshot)
++++ b/ragin/cycle/adapters.py (current)
+@@ -314,11 +314,21 @@
+     Native:   analyze(classification_result: AnalysisRequest, session_log: list) -> ThreatAnalysis
+     """
+ 
+-    def __init__(self, engine: Any = None, gateway_url: str | None = None, api_key: str | None = None) -> None:
++    def __init__(
++        self,
++        engine: Any = None,
++        gateway_url: str | None = None,
++        api_key: str | None = None,
++        vector_store_path: str | None = None,
++    ) -> None:
+         if engine is None:
+             from ragin.don.rag_engine import ThreatRAGEngine
+ 
+-            engine = ThreatRAGEngine(gateway_url=gateway_url, api_key=api_key)
++            engine = ThreatRAGEngine(
++                gateway_url=gateway_url,
++                api_key=api_key,
++                vector_store_path=vector_store_path,
++            )
+         self._engine = engine
+ 
+     def analyze(self, attacker_input: str, session_context: dict[str, Any]) -> dict[str, Any]:
+@@ -378,6 +388,9 @@
+             "classification": classification,
+             "features": features,
+         }
++        provenance = getattr(self._engine, "retrieval_provenance", None)
++        if isinstance(provenance, dict):
++            safe_evidence_context["retrieval_provenance"] = provenance
+ 
+         try:
+             result = self._engine.analyze(req, session_log)
+@@ -450,7 +463,10 @@
+                 "extracted_techniques": [],
+                 "error": str(e),
+             }
+-            payload["evidence_bundle"] = failure_evidence_bundle({**session_context, "classification": payload}, attacker_input, str(e))
++            failure_context = {**session_context, "classification": payload}
++            if isinstance(provenance, dict):
++                failure_context["retrieval_provenance"] = provenance
++            payload["evidence_bundle"] = failure_evidence_bundle(failure_context, attacker_input, str(e))
+             return payload
+ 
+ 
+@@ -534,10 +550,13 @@
+ 
+     def _fallback(self, attacker_input: str, context: dict[str, Any], reason: str) -> dict[str, Any]:
+         result = self._baseline.generate_response(attacker_input, context)
+-        result.setdefault("metadata", {})
+-        decision = context.get("policy_decision") if isinstance(context.get("policy_decision"), dict) else {}
++        raw_metadata = result.get("metadata")
++        metadata: dict[str, Any] = dict(raw_metadata) if isinstance(raw_metadata, dict) else {}
++        result["metadata"] = metadata
++        raw_decision = context.get("policy_decision")
++        decision: dict[str, Any] = dict(raw_decision) if isinstance(raw_decision, dict) else {}
+         selected = str(decision.get("selected_response_strategy", "baseline"))
+-        result["metadata"].update(
++        metadata.update(
+             {
+                 "generator_version": "V1_SUBSTANTIVE_STRATEGY_GENERATOR",
+                 "runtime_mode": self.runtime_mode,

@@ -1,0 +1,85 @@
+{
+  "acceptance_thresholds": {
+    "below_binary_status": "NOT_IDENTIFIABLE",
+    "below_resolved_status": "INSUFFICIENT_RESOLVED_REFERENCE",
+    "minimum_binary_evaluable": 145,
+    "minimum_resolved_concrete": 150,
+    "total_cases": 169
+  },
+  "aggregation_policy": {
+    "adjudicated": {
+      "concrete_source": "BLINDED_AI_ADJUDICATION",
+      "uncertain_source": "BLINDED_AI_ADJUDICATION"
+    },
+    "exact_3_of_3": {
+      "adjudication": false,
+      "final": "unanimous label",
+      "source": "EXACT_3_OF_3_PRIMARY_RUNS"
+    },
+    "otherwise": {
+      "adjudicate": true,
+      "includes": [
+        "2/3 exact majority",
+        "binary-only agreement",
+        "three-way disagreement",
+        "any UNCERTAIN"
+      ]
+    },
+    "two_of_three_final_rule": false
+  },
+  "agreement_metrics": [
+    "pairwise exact multiclass agreement",
+    "pairwise Cohen kappa",
+    "Fleiss kappa across three primary runs",
+    "pairwise binary agreement excluding UNCERTAIN",
+    "pairwise binary Cohen kappa excluding UNCERTAIN",
+    "binary Fleiss kappa where jointly eligible",
+    "exact 3/3 count",
+    "exact 2/3 count",
+    "three-way disagreement count",
+    "UNCERTAIN count per run",
+    "category distribution per run"
+  ],
+  "binary_projection": {
+    "BENIGN": "NEGATIVE",
+    "DATA_ACCESS": "POSITIVE",
+    "EXPLOITATION": "POSITIVE",
+    "OTHER_ATTACK": "POSITIVE",
+    "PERSISTENCE": "POSITIVE",
+    "PRIVILEGE_ESCALATION": "POSITIVE",
+    "RECON": "POSITIVE",
+    "SUSPICIOUS": "POSITIVE",
+    "UNCERTAIN": "EXCLUDED"
+  },
+  "binary_projection_fixed_pre_annotation": true,
+  "definitions": {
+    "BENIGN": "Observable activity is benign, administrative, diagnostic, or otherwise lacks attack behavior.",
+    "DATA_ACCESS": "Observable behavior accesses, searches for, stages, or extracts data beyond ordinary benign operation.",
+    "EXPLOITATION": "Observable exploitation or attempted exploitation of a vulnerability, service, parser, credential, or execution path.",
+    "OTHER_ATTACK": "Observable malicious behavior that does not fit the more specific attack categories.",
+    "PERSISTENCE": "Observable behavior establishes or attempts continued access across sessions or restarts.",
+    "PRIVILEGE_ESCALATION": "Observable behavior attempts to obtain higher privileges or expand authorization.",
+    "RECON": "Observable discovery, probing, enumeration, scanning, or information gathering without a demonstrated exploit.",
+    "SUSPICIOUS": "Observable behavior is materially anomalous or attack-like but insufficient to support a more specific concrete attack category.",
+    "UNCERTAIN": "Evidence is insufficient or materially ambiguous for a concrete taxonomy label."
+  },
+  "schema": "ragin.laya_decision_v2.primary_169_reference_policy_preregistration.v1",
+  "statistical_independence_claimed": false,
+  "taxonomy": [
+    "BENIGN",
+    "RECON",
+    "SUSPICIOUS",
+    "EXPLOITATION",
+    "PRIVILEGE_ESCALATION",
+    "DATA_ACCESS",
+    "PERSISTENCE",
+    "OTHER_ATTACK",
+    "UNCERTAIN"
+  ],
+  "terminology": "RUN_TO_RUN_SELF_CONSISTENCY_UNDER_BLINDED_REPEATED_INFERENCE",
+  "uncertainty_policy": {
+    "exclude_from_primary_binary": true,
+    "imputation": false,
+    "valid_outcome": true
+  }
+}

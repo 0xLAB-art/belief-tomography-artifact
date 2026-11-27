@@ -1,0 +1,60 @@
+{
+  "schema": "ragin.laya_decision_v2.preregistration_freeze.v2b",
+  "version": "LAYA_DECISION_MODEL_V2b",
+  "chronology": [
+    "V2a freeze",
+    "primary attempt 01",
+    "procedural failure at long input",
+    "no effectiveness analysis",
+    "input-boundary audit",
+    "V2b engineering amendment",
+    "V2b freeze",
+    "full 169 restart required"
+  ],
+  "inherited_freezes": {
+    "results/laya_decision_v2/laya_decision_v2_preregistration_freeze_v2a.json": "f4e465d8a1c4957fdf45230c9e524c8f0c6c1f190376e244cbf6e57faba833ce",
+    "results/laya_decision_v2/v2a_freeze_hash_correction_freeze.json": "9d95e964dcc1644705a92346b306bb21fc1fb8a51242fe00f8f83c03d28a2990",
+    "results/laya_decision_v2/decision_policy_preregistration_v2.json": "95b29d203cf2e149ec4d0dc8ff740f4525b245d04ad575de476361e4854ec8e9",
+    "results/laya_decision_v2/fresh_holdout_selection_preregistration_v2.json": "2d6d6ebe2acfff76a25d1456bb2b26d1ec8990d674497f0f1a1920ed19006159",
+    "results/laya_decision_v2/metrics_preregistration_v2.json": "dacbc06932f7ba9fd86571178d68dfb6816d3b6a9d5b679db130eccf8d8accd9",
+    "results/laya_decision_v2/ab_analysis_design_v2.json": "1aecf6058daf65c7e749df9dbcf195e3c79e4649cf8e914f80bfc723937c4f5d",
+    "results/laya_decision_v2/ablation_arms_v2.json": "bfb2605fa92139b913afa064c64424741dff78da4e5b2666efec3bfafc3bac52"
+  },
+  "holdout": {"planned_n": 169, "selection_unchanged": true, "restart_required": true},
+  "decision_policy_unchanged": true,
+  "metrics_unchanged": true,
+  "ab_design_unchanged": true,
+  "input_boundary_decision": "SESSION_HISTORY_REPRESENTATION",
+  "evaluation_raw_log_max_chars": 16384,
+  "lossy_transformation": false,
+  "source_hashes": {
+    "ragin/cycle/adapters.py": "171ec128ae70a2f4b873e0fa44066121c1e7417f86ed90aa7454fe0c3447ae4b",
+    "ragin/chrollo/features.py": "7720ba04f9ac7ae80d9af36b3715f838da298c5b31b0d501204bbb410b937722",
+    "scripts/laya_primary_169_blind_execution_v2a.py": "dbcadfd18cfed684058b25e27c4ca9a3f0a76b7d905e767fbe810b131d36fe83",
+    "tests/unit/test_laya_decision_v2.py": "f41032b73a186979a2efa78e6996af87f1fb5efe1ba118a78ddfbb7d79e8988b"
+  },
+  "artifacts": {
+    "primary_169_aborted_attempt_01_v2a.json": "ab9ae8f33afae0c90303992f233afd4507ef8457ca20d8ff0f2ce0e686beb6c2",
+    "primary_169_aborted_attempt_01_freeze.json": "3da4950715bd275f5656383dd5b6250976dfe48c68714cd05790ee0fca45b603",
+    "chrollo_commandentry_semantics_audit_v2b.json": "6af42dc403de47da5775828e3fe78f4b921273b2473745709a35e12cc50a6dcf",
+    "primary_long_input_construction_audit_v2b.json": "ead0b6a077852b550667992fe0252e3c44b058e1601e74588c2ad979a9240a03",
+    "primary_169_input_length_census_v2b.json": "6fd28619f0623a6f1b51e679baa1606bc4109df5f7c0ad12fca10257c7c21d89",
+    "long_input_arm_symmetry_audit_v2b.json": "34949a8ac15f1d2dd5fdc4c6f35df4d886d87e86ccc50671a079c2f0517ac6c7",
+    "long_input_implementation_amendment_v2b.json": "14f4b635b016c6f2499dcfaa7c9c58ef64588f7d2a6edd5ed863ab126e6b3cd5",
+    "long_input_smoke_v2b.json": "47fe969416e4b0eb5a7b730366d06f566bf03c4007fe5425a1c4b0f79d344260",
+    "partial_primary_reuse_decision_v2b.json": "b25968cc6c978c9b74e23165b0c6d0f0c941f2baf463de53a80e120564162590"
+  },
+  "tests": {"tests/unit/test_laya_decision_v2.py": "f41032b73a186979a2efa78e6996af87f1fb5efe1ba118a78ddfbb7d79e8988b", "passed": 19},
+  "primary_status": {
+    "holdout_execution_partially_attempted": true,
+    "matched_pairs_previously_executed": 100,
+    "reference_labels_accessed": false,
+    "effectiveness_metrics_seen": false,
+    "policy_tuned_from_partial_outputs": false,
+    "threshold_tuned": false,
+    "metrics_tuned": false,
+    "partial_100_reused": false,
+    "full_169_restart_required": true
+  },
+  "implementation_amendment_reason": "PRIMARY_RUN_PROCEDURAL_INPUT_BOUNDARY_FAILURE"
+}

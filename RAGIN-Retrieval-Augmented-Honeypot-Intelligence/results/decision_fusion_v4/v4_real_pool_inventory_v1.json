@@ -1,0 +1,68 @@
+{
+  "candidate_case_count": 7072,
+  "candidate_sources": [
+    {
+      "classification": "REAL_ELIGIBLE",
+      "path": "data/sessions/*.jsonl",
+      "provenance_basis": "repository independent-labeling source registry; tracked session event records"
+    },
+    {
+      "candidate_case_count": 0,
+      "classification": "REAL_ELIGIBLE",
+      "path": "data/cowrie_logs/",
+      "provenance_basis": "repository independent-labeling source registry; controlled Cowrie logs"
+    },
+    {
+      "classification": "REAL_ELIGIBLE",
+      "input_contract_status": "not eligible in current structural form",
+      "path": "data/field/",
+      "provenance_basis": "field export documentation"
+    },
+    {
+      "classification": "REAL_ELIGIBLE",
+      "path": "data/real_linux_transcripts.json",
+      "provenance_basis": "repository independent-labeling source registry"
+    },
+    {
+      "classification": "DEVELOPMENT_USED",
+      "path": "results/laya_research/",
+      "provenance_basis": "historical study artifacts"
+    },
+    {
+      "classification": "SYNTHETIC/DEVELOPMENT_USED",
+      "path": "results/decision_fusion_v4/",
+      "provenance_basis": "V4 synthetic benchmark and smoke artifacts"
+    },
+    {
+      "classification": "TEST_FIXTURE",
+      "path": "evidence/sessions/",
+      "provenance_basis": "execution evidence directory"
+    }
+  ],
+  "created_utc": "2026-10-14T05:41:33.915685+00:00",
+  "eligible_unique_session_groups": 2289,
+  "excluded_development": 0,
+  "excluded_old_120_overlap": 0,
+  "excluded_old_169_overlap": 0,
+  "excluded_synthetic": 0,
+  "excluded_test": 0,
+  "metadata_only": true,
+  "provenance_unclear_count": 2335,
+  "schema": "ragin.v4.real_pool_inventory.v1",
+  "session_group_selection_rule": "one case per source-defined session group; for multi-turn records select the final non-empty attacker-input turn by record order, without content or outcome conditioning",
+  "source_counts": {
+    "data_sessions": 7051,
+    "field_export": 9,
+    "real_linux_transcripts": 12
+  },
+  "source_notes": {
+    "cowrie_note": "Cowrie logs are documented real controlled honeypot sessions; the current rotated logs are retained for audit but do not yield a stable command-session candidate without execution-time reconstruction.",
+    "field_note": "Field exports are documented natural collection, but current records expose no attacker-input field in the metadata-only structural contract and therefore fail input validation."
+  },
+  "status_counts": {
+    "PROVENANCE_UNCLEAR": 2335,
+    "REAL_ELIGIBLE": 2289,
+    "UNUSABLE": 2448
+  },
+  "unique_session_groups": 7063
+}

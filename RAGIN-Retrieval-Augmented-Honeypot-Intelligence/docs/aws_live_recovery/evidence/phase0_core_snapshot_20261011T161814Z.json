@@ -1,0 +1,46 @@
+{
+    "Command": {
+        "CommandId": "b35ab32c-6760-4b94-89c1-45de5967614a",
+        "DocumentName": "AWS-RunShellScript",
+        "DocumentVersion": "$DEFAULT",
+        "Comment": "RAGIN phase0 CORE process/route/env snapshot",
+        "ExpiresAfter": "2026-10-11T20:19:15.732000+03:00",
+        "Parameters": {
+            "commands": [
+                "set -euo pipefail\necho RUN\ndate -u\necho PROC_SANITY\nps -eo pid,user,args --width 300 2>/dev/null | grep -iE 'ragin.server_v2|server_v2.py|python3.*ragin' | grep -v grep | head -n 20 || true\necho LISTEN_SANITY\nif command -v ss >/dev/null 2>&1; then\n  ss -tulpn 2>/dev/null | grep -iE ':8443|python3' || true\nelse\n  echo ss_not_present\nfi\necho ENV_SANITY\nif [ -f /etc/ragin/server.env ]; then\n  echo ENV_FILE=/etc/ragin/server.env\n  grep -E '^(RAGIN_MTLS|RAGIN_BIND_HOST|PORT|RAGIN_LLM|GATEWAY_URL|RAGIN_REQUIRE_AUTH|RAGIN_MAX_REQUEST|RAGIN_HOST_FICTION|RAGIN_DON_MODEL|RAGIN_HISOKA_MODEL|RAGIN_HISOKA_TIMEOUT|OPENROUTER_API_KEY|RAGIN_LLM_API_KEY)=' /etc/ragin/server.env 2>/dev/null | sed -E 's/^(RAGIN_LLM_API_KEY|OPENROUTER_API_KEY|RAGIN_LLM_API_KEY)=.*/REDACTED_KEY_ENV=yes/' || true\nelse\n  echo ENV_MISSING=/etc/ragin/server.env\nfi\necho RUNTIME_TLS_PATHS\nfor p in /run/ragin/tls /run/ragin /run/ragin/tls/server.crt /run/ragin/tls/server.key /run/ragin/tls/ca.crt; do\n  if [ -e \"$p\" ]; then\n    if [ -d \"$p\" ]; then\n      echo PATH_TYPE=directory PATH=$p exists=yes\n    else\n      echo PATH_TYPE=file PATH=$p exists=yes\n    fi\n  else\n    echo PATH_TYPE=$p exists=no\n  fi\ndone\necho SOURCE_PROVENANCE\nfor d in /opt/ragin /app /srv /etc/ragin; do\n  if [ -d \"$d\" ] && [ -f \"$d/ragin/server_v2.py\" ]; then\n    echo SOURCE_DIR=$d\n    ls -la \"$d/ragin/server_v2.py\" 2>/dev/null || true\n    echo SOURCE_HASH=$(sha256sum \"$d/ragin/server_v2.py\" 2>/dev/null | cut -d' ' -f1 || echo hash_failed)\n    break\n  fi\ndone\necho DONE"
+            ]
+        },
+        "InstanceIds": [
+            "i-062a400b300f4f9e4"
+        ],
+        "Targets": [],
+        "RequestedDateTime": "2026-10-11T19:18:15.732000+03:00",
+        "Status": "Pending",
+        "StatusDetails": "Pending",
+        "OutputS3Region": "eu-north-1",
+        "OutputS3BucketName": "",
+        "OutputS3KeyPrefix": "",
+        "MaxConcurrency": "1",
+        "MaxErrors": "1",
+        "TargetCount": 1,
+        "CompletedCount": 0,
+        "ErrorCount": 0,
+        "DeliveryTimedOutCount": 0,
+        "ServiceRole": "",
+        "NotificationConfig": {
+            "NotificationArn": "",
+            "NotificationEvents": [],
+            "NotificationType": ""
+        },
+        "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "",
+            "CloudWatchOutputEnabled": false
+        },
+        "TimeoutSeconds": 60,
+        "AlarmConfiguration": {
+            "IgnorePollAlarmFailure": false,
+            "Alarms": []
+        },
+        "TriggeredAlarms": []
+    }
+}

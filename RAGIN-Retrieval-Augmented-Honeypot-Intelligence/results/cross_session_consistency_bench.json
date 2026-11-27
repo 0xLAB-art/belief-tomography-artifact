@@ -1,0 +1,483 @@
+{
+  "what": "cross-session consistency benchmark \u2014 per-session fiction vs host-persistent fiction",
+  "method": "identical deterministic scenario scripts (real verifier classes, no LLM) run under three wiring arms; drift drafts assert facts a reconnecting/reclassified attacker must not see changed; control drafts repeat session-1 facts and must pass everywhere",
+  "identity_note": "per-skill identities name DIFFERENT hosts (novice web-srv-01, intermediate app-db-02): scenario 3 exploits exactly that seam",
+  "arms": {
+    "session_scoped": {
+      "drift_caught": 1,
+      "drift_total": 4,
+      "benign_false_rejects": 0,
+      "benign_total": 7,
+      "per_scenario": {
+        "reconnect_drift": {
+          "drift_caught": 1,
+          "drift_total": 1,
+          "benign_ok": 1,
+          "benign_total": 1
+        },
+        "beyond_identity_drift": {
+          "drift_caught": 0,
+          "drift_total": 1,
+          "benign_ok": 1,
+          "benign_total": 1
+        },
+        "cross_skill_host_swap": {
+          "drift_caught": 0,
+          "drift_total": 1,
+          "benign_ok": 1,
+          "benign_total": 1
+        },
+        "simultaneous_contradiction": {
+          "drift_caught": 0,
+          "drift_total": 1,
+          "benign_ok": 1,
+          "benign_total": 1
+        },
+        "revisit_consistent_ctrl": {
+          "drift_caught": 0,
+          "drift_total": 0,
+          "benign_ok": 3,
+          "benign_total": 3
+        }
+      }
+    },
+    "reconnect": {
+      "drift_caught": 4,
+      "drift_total": 4,
+      "benign_false_rejects": 0,
+      "benign_total": 7,
+      "per_scenario": {
+        "reconnect_drift": {
+          "drift_caught": 1,
+          "drift_total": 1,
+          "benign_ok": 1,
+          "benign_total": 1
+        },
+        "beyond_identity_drift": {
+          "drift_caught": 1,
+          "drift_total": 1,
+          "benign_ok": 1,
+          "benign_total": 1
+        },
+        "cross_skill_host_swap": {
+          "drift_caught": 1,
+          "drift_total": 1,
+          "benign_ok": 1,
+          "benign_total": 1
+        },
+        "simultaneous_contradiction": {
+          "drift_caught": 1,
+          "drift_total": 1,
+          "benign_ok": 1,
+          "benign_total": 1
+        },
+        "revisit_consistent_ctrl": {
+          "drift_caught": 0,
+          "drift_total": 0,
+          "benign_ok": 3,
+          "benign_total": 3
+        }
+      }
+    },
+    "per_session": {
+      "drift_caught": 4,
+      "drift_total": 4,
+      "benign_false_rejects": 0,
+      "benign_total": 7,
+      "per_scenario": {
+        "reconnect_drift": {
+          "drift_caught": 1,
+          "drift_total": 1,
+          "benign_ok": 1,
+          "benign_total": 1
+        },
+        "beyond_identity_drift": {
+          "drift_caught": 1,
+          "drift_total": 1,
+          "benign_ok": 1,
+          "benign_total": 1
+        },
+        "cross_skill_host_swap": {
+          "drift_caught": 1,
+          "drift_total": 1,
+          "benign_ok": 1,
+          "benign_total": 1
+        },
+        "simultaneous_contradiction": {
+          "drift_caught": 1,
+          "drift_total": 1,
+          "benign_ok": 1,
+          "benign_total": 1
+        },
+        "revisit_consistent_ctrl": {
+          "drift_caught": 0,
+          "drift_total": 0,
+          "benign_ok": 3,
+          "benign_total": 3
+        }
+      }
+    }
+  },
+  "gates": {
+    "baseline_gap_quantified": true,
+    "persistent_catches_all_drift": true,
+    "no_false_rejections": true
+  },
+  "verdicts": {
+    "session_scoped": [
+      {
+        "scenario": "reconnect_drift",
+        "session": "s1",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "reconnect_drift",
+        "session": "s2",
+        "kind": "drift",
+        "rejected": true,
+        "caught": true,
+        "issues": [
+          "fiction-contradiction: os: Ubuntu 22.04.3 LTS -> Debian"
+        ],
+        "expect": "reject",
+        "ok": true
+      },
+      {
+        "scenario": "beyond_identity_drift",
+        "session": "s1",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "beyond_identity_drift",
+        "session": "s2",
+        "kind": "drift",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "reject",
+        "ok": false
+      },
+      {
+        "scenario": "cross_skill_host_swap",
+        "session": "s1",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "cross_skill_host_swap",
+        "session": "s2",
+        "kind": "drift",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "reject",
+        "ok": false
+      },
+      {
+        "scenario": "simultaneous_contradiction",
+        "session": "s1",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "simultaneous_contradiction",
+        "session": "s2",
+        "kind": "drift",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "reject",
+        "ok": false
+      },
+      {
+        "scenario": "revisit_consistent_ctrl",
+        "session": "s1",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "revisit_consistent_ctrl",
+        "session": "s2",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "revisit_consistent_ctrl",
+        "session": "s2",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      }
+    ],
+    "reconnect": [
+      {
+        "scenario": "reconnect_drift",
+        "session": "s1",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "reconnect_drift",
+        "session": "s2",
+        "kind": "drift",
+        "rejected": true,
+        "caught": true,
+        "issues": [
+          "fiction-contradiction: os: Ubuntu 22.04.3 LTS -> Debian"
+        ],
+        "expect": "reject",
+        "ok": true
+      },
+      {
+        "scenario": "beyond_identity_drift",
+        "session": "s1",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "beyond_identity_drift",
+        "session": "s2",
+        "kind": "drift",
+        "rejected": true,
+        "caught": true,
+        "issues": [
+          "fiction-contradiction: ip:docker0: 172.17.0.1 -> 172.18.0.1"
+        ],
+        "expect": "reject",
+        "ok": true
+      },
+      {
+        "scenario": "cross_skill_host_swap",
+        "session": "s1",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "cross_skill_host_swap",
+        "session": "s2",
+        "kind": "drift",
+        "rejected": true,
+        "caught": true,
+        "issues": [
+          "identity-pin: hostname must resolve to 'web-srv-01'"
+        ],
+        "expect": "reject",
+        "ok": true
+      },
+      {
+        "scenario": "simultaneous_contradiction",
+        "session": "s1",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "simultaneous_contradiction",
+        "session": "s2",
+        "kind": "drift",
+        "rejected": true,
+        "caught": true,
+        "issues": [
+          "fiction-contradiction: ip:docker0: 172.17.0.1 -> 172.18.0.1"
+        ],
+        "expect": "reject",
+        "ok": true
+      },
+      {
+        "scenario": "revisit_consistent_ctrl",
+        "session": "s1",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "revisit_consistent_ctrl",
+        "session": "s2",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "revisit_consistent_ctrl",
+        "session": "s2",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      }
+    ],
+    "per_session": [
+      {
+        "scenario": "reconnect_drift",
+        "session": "s1",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "reconnect_drift",
+        "session": "s2",
+        "kind": "drift",
+        "rejected": true,
+        "caught": true,
+        "issues": [
+          "fiction-contradiction: os: Ubuntu 22.04.3 LTS -> Debian"
+        ],
+        "expect": "reject",
+        "ok": true
+      },
+      {
+        "scenario": "beyond_identity_drift",
+        "session": "s1",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "beyond_identity_drift",
+        "session": "s2",
+        "kind": "drift",
+        "rejected": true,
+        "caught": true,
+        "issues": [
+          "cross-session-contradiction: host env.ip:docker0: previously served '172.17.0.1' -> now '172.18.0.1'"
+        ],
+        "expect": "reject",
+        "ok": true
+      },
+      {
+        "scenario": "cross_skill_host_swap",
+        "session": "s1",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "cross_skill_host_swap",
+        "session": "s2",
+        "kind": "drift",
+        "rejected": true,
+        "caught": true,
+        "issues": [
+          "identity-pin: hostname must resolve to 'web-srv-01'"
+        ],
+        "expect": "reject",
+        "ok": true
+      },
+      {
+        "scenario": "simultaneous_contradiction",
+        "session": "s1",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "simultaneous_contradiction",
+        "session": "s2",
+        "kind": "drift",
+        "rejected": true,
+        "caught": true,
+        "issues": [
+          "cross-session-contradiction: host env.ip:docker0: previously served '172.17.0.1' -> now '172.18.0.1'"
+        ],
+        "expect": "reject",
+        "ok": true
+      },
+      {
+        "scenario": "revisit_consistent_ctrl",
+        "session": "s1",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "revisit_consistent_ctrl",
+        "session": "s2",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      },
+      {
+        "scenario": "revisit_consistent_ctrl",
+        "session": "s2",
+        "kind": "benign",
+        "rejected": false,
+        "caught": false,
+        "issues": [],
+        "expect": "pass",
+        "ok": true
+      }
+    ]
+  },
+  "reading": "session_scoped caught 1/4 cross-session drift drafts (benign false rejections: 0); per_session store caught 4/4 with 0 false rejections; reconnect caught 4/4 with 0 false rejections. The baseline's misses concentrate in beyond-identity drift (docker0/ports) and cross-skill host swap \u2014 classes a session-scoped verifier cannot see by construction."
+}

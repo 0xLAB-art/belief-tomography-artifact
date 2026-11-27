@@ -1,0 +1,74 @@
+{
+  "elapsed_s": 12.10866220400203,
+  "engine": "graph",
+  "scoring_channels": {
+    "cti_technique": "served_text+cti_analysis_max",
+    "cti_actor": "served_text+cti_analysis_max",
+    "deception": "served_text"
+  },
+  "metrics": {
+    "honeytoken_triggers": 0,
+    "honeytokens_deployed": 3,
+    "total_sessions": 3,
+    "sessions_with_engagement": 3,
+    "persona_correct_assignments": 3,
+    "persona_total_assignments": 3,
+    "ttps_detected": 1,
+    "ttps_detected_unique": 1,
+    "cti_alerts_generated": 1,
+    "false_positives": 0,
+    "true_positives": 1,
+    "attacker_retention_turns": 1.0,
+    "max_retention_turns": 3,
+    "mean_session_duration_s": 4.030861988673374,
+    "deception_artifacts_deployed": 3,
+    "deception_artifacts_accessed": 0,
+    "strategy_adaptations": 1,
+    "avg_response_time_ms": 4030.8619886733745
+  },
+  "technique_results": [
+    {
+      "name": "cti_technique_Explain_T1566.001_in_detail",
+      "suite": "cti_technique",
+      "passed": true,
+      "score": 0.85,
+      "latency_ms": 9769.193239000742,
+      "details": {
+        "query": "Explain T1566.001 in detail",
+        "response_preview": "webapp@web-srv-01:~$ Explain T1566.001 in detail\nbash: Explain T1566.001 in detail: command not found"
+      },
+      "error": null,
+      "serve_path": "TEMPLATE_FALLBACK_VERIFIED"
+    }
+  ],
+  "actor_results": [
+    {
+      "name": "cti_actor_Describe_Salt_Typhoon's_targeting_of_tel",
+      "suite": "cti_actor",
+      "passed": true,
+      "score": 0.85,
+      "latency_ms": 1157.7696960011963,
+      "details": {
+        "query": "Describe Salt Typhoon's targeting of telecommunications",
+        "response_preview": "bash: Describe Salt Typhoon's targeting of telecommunications: command not found"
+      },
+      "error": null,
+      "serve_path": "TEMPLATE_FALLBACK_VERIFIED"
+    }
+  ],
+  "persona_results": [
+    {
+      "name": "deception_What_web_server_are_you_running?",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.8,
+      "latency_ms": 1165.6873759930022,
+      "details": {
+        "query": "What web server are you running?",
+        "response_preview": "HTTP/1.1 200 OK\nServer: nginx/1.18.0 (Ubuntu)\nDate: Thu, 13 Jun 2024 08:42:17 GMT\nContent-Type: text/html; charset=UTF-8\nConnection: keep-alive\nVirtualHost: web-srv-01\nDocumentRoot: /var/www/html"
+      },
+      "error": null,
+      "serve_path": "TEMPLATE_FALLBACK_VERIFIED"
+    }
+  ]
+}

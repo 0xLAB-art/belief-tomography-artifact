@@ -1,0 +1,25 @@
+{
+  "schema": "ragin.laya_v3.task_adaptation_final_decision.v1",
+  "classification": "TASK_ADAPTATION_FAILED",
+  "checkpoint": "laya 0.4.2 english@55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+  "checkpoint_sha256": "891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c",
+  "validation_results": "results/laya_decision_v3/laya_v3_task_adaptation_validation_results_v1.json",
+  "decision_basis": {
+    "structural_gates": "all pass",
+    "semantic_gates": "all fail",
+    "major_failure": "The model formed allowed outputs, but did not reliably identify sufficient, insufficient, or conflicting evidence and produced poor strategy/reference compatibility on sufficient cases."
+  },
+  "next_step": {
+    "full_post_retrieval_policy_fusion_prototype_allowed": false,
+    "new_checkpoint_required": true,
+    "current_checkpoint_v3_role": "retire",
+    "prompt_tuning_continuation": false,
+    "required_followup": "separately versioned model/task comparison or redesign study"
+  },
+  "scientific_boundary": {
+    "old_169_reused": false,
+    "old_120_reused": false,
+    "prior_labels_predictions_or_effectiveness_used": false,
+    "effectiveness_claim": false
+  }
+}

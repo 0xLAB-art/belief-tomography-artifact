@@ -1,0 +1,265 @@
+{
+  "artifacts": {
+    "crosscheck": "json_crosscheck.json",
+    "match_table": "match_table.json",
+    "native_raw_stdout": "ssh_client.native.stdout",
+    "native_terminal": "raw_terminal.native.json",
+    "ragin_raw_stdout": "ssh_client.ragin.stdout",
+    "ragin_terminal": "raw_terminal.ragin.json"
+  },
+  "blockers": [
+    {
+      "cause": "cowrie/llm/protocol.py hardcodes self.cwd = '/' (line 104) while cowrie/shell/honeypot.py derives cwd from the passwd home and renders '~' when cwd == home (lines 1115-1120).",
+      "id": "prompt_cwd",
+      "native": "webapp@web-srv-01:~$ ",
+      "owner": "shared RAGIN/Cowrie LLM protocol (peer-owned)",
+      "ragin": "webapp@web-srv-01:/$ "
+    },
+    {
+      "cause": "cowrie/commands/base.py Command_id prints only the primary gid; the declared persona and RAGIN _id_line include 4(adm),999(docker).",
+      "id": "id_supplementary_groups",
+      "native": [
+        "uid=1001(webapp) gid=1001(webapp) groups=1001(webapp)"
+      ],
+      "owner": "native Cowrie handler (would require a handler change)",
+      "ragin": []
+    },
+    {
+      "cause": "native serves the supported command; the RAGIN deterministic generator has no strict-verifiable transcript for it (or, for os-release, its template adds a second prompt echo and uname -r).",
+      "id": "answer:whoami",
+      "native": [
+        "webapp"
+      ],
+      "owner": "RAGIN deterministic generator/template (peer-owned)",
+      "ragin": []
+    },
+    {
+      "cause": "native serves the supported command; the RAGIN deterministic generator has no strict-verifiable transcript for it (or, for os-release, its template adds a second prompt echo and uname -r).",
+      "id": "answer:uname -a",
+      "native": [
+        "Linux web-srv-01 5.15.0-91-generic #167-Ubuntu SMP x86_64 GNU/Linux"
+      ],
+      "owner": "RAGIN deterministic generator/template (peer-owned)",
+      "ragin": []
+    },
+    {
+      "cause": "native serves the supported command; the RAGIN deterministic generator has no strict-verifiable transcript for it (or, for os-release, its template adds a second prompt echo and uname -r).",
+      "id": "answer:hostname",
+      "native": [
+        "web-srv-01"
+      ],
+      "owner": "RAGIN deterministic generator/template (peer-owned)",
+      "ragin": []
+    },
+    {
+      "cause": "native serves the supported command; the RAGIN deterministic generator has no strict-verifiable transcript for it (or, for os-release, its template adds a second prompt echo and uname -r).",
+      "id": "answer:cat /etc/os-release",
+      "native": [
+        "PRETTY_NAME=\"Ubuntu 22.04.3 LTS\"",
+        "NAME=\"Ubuntu\"",
+        "VERSION_ID=\"22.04\"",
+        "VERSION=\"22.04.3 LTS (Jammy Jellyfish)\"",
+        "ID=ubuntu"
+      ],
+      "owner": "RAGIN deterministic generator/template (peer-owned)",
+      "ragin": []
+    }
+  ],
+  "bounded_sequence": {
+    "command_limit": 6,
+    "commands_per_session": 5,
+    "session_limit": 2,
+    "sessions": 2
+  },
+  "environment_policy": {
+    "env_keys": [
+      "ALL_PROXY",
+      "API_KEY",
+      "GATEWAY_URL",
+      "HF_HUB_OFFLINE",
+      "HOME",
+      "HTTPS_PROXY",
+      "HTTP_PROXY",
+      "LANG",
+      "LC_ALL",
+      "LOGNAME",
+      "NO_PROXY",
+      "PATH",
+      "PYTHONNOUSERSITE",
+      "PYTHONUNBUFFERED",
+      "RAGIN_BIND_HOST",
+      "RAGIN_DON_RETRIEVAL_VERSION",
+      "RAGIN_FIELD_EXPORT_DIR",
+      "RAGIN_HISOKA_GATEWAY_URL",
+      "RAGIN_HOST_FICTION_PATH",
+      "RAGIN_JEVI_ENABLED",
+      "RAGIN_LAYA_ENABLED",
+      "RAGIN_LAYA_EVAL_REQUIRE_REAL_MODEL",
+      "RAGIN_LLM_BASE_URL",
+      "RAGIN_PROVIDER_ENABLED",
+      "RAGIN_RAG_MODE",
+      "RAGIN_REQUIRE_AUTH",
+      "RAGIN_REQUIRE_PROVIDER",
+      "RAGIN_RUNTIME_MODE",
+      "RAGIN_SESSION_DIR",
+      "RAGIN_VERIFIER_DEADLINE_S",
+      "RAGIN_VERIFIER_PROFILE",
+      "SHELL",
+      "TERM",
+      "TMPDIR",
+      "TRANSFORMERS_OFFLINE",
+      "USER",
+      "all_proxy",
+      "http_proxy",
+      "https_proxy",
+      "no_proxy"
+    ],
+    "env_redacted": {
+      "ALL_PROXY": "",
+      "API_KEY": "[REDACTED]",
+      "GATEWAY_URL": "http://127.0.0.1:9",
+      "HF_HUB_OFFLINE": "1",
+      "HOME": "docs/research/persona_alignment_20261023T042431Z/home",
+      "HTTPS_PROXY": "",
+      "HTTP_PROXY": "",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LOGNAME": "elaref",
+      "NO_PROXY": "127.0.0.1,localhost",
+      "PATH": "/home/elaref/.local/bin:/home/elaref/bin:/home/elaref/.codex/packages/app-server-daemon/releases/0.163.0-x86_64-unknown-linux-musl/codex-path:/home/elaref/.codex/tmp/arg0-linux/codex-arg0VBAuMn:/home/elaref/.codex/tmp/arg0-linux/codex-arg0puGyzV:/home/elaref/.codex/packages/standalone/releases/0.163.0-x86_64-unknown-linux-musl/codex-path:/home/elaref/.local/bin:/home/elaref/.nvm/versions/node/v26.10.0/bin:/home/elaref/.local/bin:/run/user/1000/fnm_multishells/525012_1792694185048/bin:/home/elaref/.local/share/fnm:/run/user/1000/fnm_multishells/525011_1792694185046/bin:/home/elaref/.local/share/fnm:/home/elaref/.grok/bin:/home/elaref/.bun/bin:/home/elaref/.strix/bin:/home/elaref/.codex/packages/standalone/current/bin:/home/elaref/.opencode/bin:/home/elaref/.local/bin:/home/elaref/.local/share/pipx/venvs/opencode/bin:/home/elaref/.local/bin:/home/elaref/.juliaup/bin:/home/elaref/.cargo/bin:/home/elaref/.local/bin:/home/elaref/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/elaref/go/bin:/usr/local/bin:/home/elaref/go/bin:/usr/local/bin:/home/elaref/go/bin:/home/elaref/go/bin:/usr/local/bin",
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONUNBUFFERED": "1",
+      "RAGIN_BIND_HOST": "127.0.0.1",
+      "RAGIN_DON_RETRIEVAL_VERSION": "",
+      "RAGIN_FIELD_EXPORT_DIR": "docs/research/persona_alignment_20261023T042431Z/field_export",
+      "RAGIN_HISOKA_GATEWAY_URL": "http://127.0.0.1:9",
+      "RAGIN_HOST_FICTION_PATH": "docs/research/persona_alignment_20261023T042431Z/host_fiction.json",
+      "RAGIN_JEVI_ENABLED": "0",
+      "RAGIN_LAYA_ENABLED": "0",
+      "RAGIN_LAYA_EVAL_REQUIRE_REAL_MODEL": "0",
+      "RAGIN_LLM_BASE_URL": "http://127.0.0.1:9",
+      "RAGIN_PROVIDER_ENABLED": "[REDACTED]",
+      "RAGIN_RAG_MODE": "none",
+      "RAGIN_REQUIRE_AUTH": "[REDACTED]",
+      "RAGIN_REQUIRE_PROVIDER": "[REDACTED]",
+      "RAGIN_RUNTIME_MODE": "RAGIN_V4_SUBSTANTIVE_DETERMINISTIC",
+      "RAGIN_SESSION_DIR": "docs/research/persona_alignment_20261023T042431Z/sessions",
+      "RAGIN_VERIFIER_DEADLINE_S": "1.0",
+      "RAGIN_VERIFIER_PROFILE": "research_strict_v1",
+      "SHELL": "/bin/bash",
+      "TERM": "dumb",
+      "TMPDIR": "docs/research/persona_alignment_20261023T042431Z/tmp",
+      "TRANSFORMERS_OFFLINE": "1",
+      "USER": "elaref",
+      "all_proxy": "",
+      "http_proxy": "",
+      "https_proxy": "",
+      "no_proxy": "127.0.0.1,localhost"
+    },
+    "gateway": "http://127.0.0.1:9 (closed loopback)",
+    "provider_enabled": false,
+    "proxy_vars": "cleared"
+  },
+  "error": null,
+  "json_crosscheck": {
+    "event_count": 0,
+    "parse_errors": [],
+    "rows": [],
+    "session_files": 0
+  },
+  "outcome": {
+    "native_answers_match_expected": true,
+    "native_banners": [
+      "Welcome to web-srv-01"
+    ],
+    "native_outer_prompts": [
+      "webapp@web-srv-01:~$ ",
+      "webapp@web-srv-01:~$ ",
+      "webapp@web-srv-01:~$ ",
+      "webapp@web-srv-01:~$ ",
+      "webapp@web-srv-01:~$ "
+    ],
+    "native_prompt_ok": true,
+    "native_session": {
+      "command": [
+        "sshpass",
+        "-p",
+        "x",
+        "ssh",
+        "-tt",
+        "-o",
+        "StrictHostKeyChecking=no",
+        "-o",
+        "UserKnownHostsFile=/dev/null",
+        "-o",
+        "PreferredAuthentications=password",
+        "-o",
+        "PubkeyAuthentication=no",
+        "-o",
+        "NumberOfPasswordPrompts=1",
+        "-o",
+        "ConnectTimeout=10",
+        "-p",
+        "42531",
+        "webapp@127.0.0.1"
+      ],
+      "exit_code": 0,
+      "stderr_bytes": 138,
+      "stderr_sha256": "ea2ec0dcbdd0c9a065df0e8723d1e14a2ccbdef759d7f1877ba95c085bd3b369",
+      "stdout_bytes": 511,
+      "stdout_sha256": "d09d04fe25918d506beec552a6432e48e3a3b967c092dbdd50774121818e3765"
+    },
+    "ragin_answers_match_expected": false,
+    "ragin_banners": [
+      "Welcome to web-srv-01"
+    ],
+    "ragin_outer_prompts": [
+      "webapp@web-srv-01:/$ ",
+      "webapp@web-srv-01:/$ ",
+      "webapp@web-srv-01:/$ ",
+      "webapp@web-srv-01:/$ ",
+      "webapp@web-srv-01:/$ "
+    ],
+    "ragin_prompt_ok": true,
+    "ragin_session": {
+      "command": [
+        "sshpass",
+        "-p",
+        "x",
+        "ssh",
+        "-tt",
+        "-o",
+        "StrictHostKeyChecking=no",
+        "-o",
+        "UserKnownHostsFile=/dev/null",
+        "-o",
+        "PreferredAuthentications=password",
+        "-o",
+        "PubkeyAuthentication=no",
+        "-o",
+        "NumberOfPasswordPrompts=1",
+        "-o",
+        "ConnectTimeout=10",
+        "-p",
+        "38377",
+        "webapp@127.0.0.1"
+      ],
+      "exit_code": 0,
+      "stderr_bytes": 138,
+      "stderr_sha256": "b6d510fd2b62657727186cccd608e818d7f7a1b7855b38a55858643024ca7f0e",
+      "stdout_bytes": 206,
+      "stdout_sha256": "f4b0f33e852b08211d843d3488500fc06189061190c7a476f05746b3a871d881"
+    }
+  },
+  "provenance": {
+    "llm_inference": "NOT_ESTABLISHED",
+    "native": "COWRIE_V3_1_1_UNMODIFIED_HANDLERS",
+    "note": "Deterministic output is not a model result.",
+    "provider_backed": false,
+    "ragin": "DETERMINISTIC_STRATEGY_RUNTIME_STRICT_VERIFIER",
+    "transport": "REAL_SSH_LOOPBACK"
+  },
+  "run_id": "20261023T042431Z-1216242",
+  "schema": "ragin.persona_alignment.result.v1",
+  "status": "FAIL"
+}

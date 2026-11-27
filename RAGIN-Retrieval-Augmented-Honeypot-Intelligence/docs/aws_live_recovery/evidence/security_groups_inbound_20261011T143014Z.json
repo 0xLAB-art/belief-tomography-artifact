@@ -1,0 +1,66 @@
+[
+    {
+        "G": "sg-03486d70769d21e4e",
+        "N": "launch-wizard-3",
+        "I": [
+            {
+                "IpProtocol": "tcp",
+                "FromPort": 22,
+                "ToPort": 22,
+                "UserIdGroupPairs": [
+                    {
+                        "Description": "RAGIN EIC private management",
+                        "UserId": "REDACTED_ACCOUNT",
+                        "GroupId": "sg-05f6e3f406f0c9be2"
+                    }
+                ],
+                "IpRanges": [
+                    {
+                        "CidrIp": "REDACTED_OPERATOR_HOST/32"
+                    }
+                ],
+                "Ipv6Ranges": [],
+                "PrefixListIds": []
+            },
+            {
+                "IpProtocol": "tcp",
+                "FromPort": 8443,
+                "ToPort": 8443,
+                "UserIdGroupPairs": [],
+                "IpRanges": [
+                    {
+                        "Description": "RAGIN-EDGE temporary mTLS staging",
+                        "CidrIp": "172.31.35.203/32"
+                    }
+                ],
+                "Ipv6Ranges": [],
+                "PrefixListIds": []
+            }
+        ]
+    },
+    {
+        "G": "sg-077b8f78668f4f646",
+        "N": "launch-wizard-4",
+        "I": [
+            {
+                "IpProtocol": "tcp",
+                "FromPort": 22,
+                "ToPort": 22,
+                "UserIdGroupPairs": [
+                    {
+                        "Description": "RAGIN EIC private management",
+                        "UserId": "REDACTED_ACCOUNT",
+                        "GroupId": "sg-05f6e3f406f0c9be2"
+                    }
+                ],
+                "IpRanges": [
+                    {
+                        "CidrIp": "REDACTED_OPERATOR_HOST/32"
+                    }
+                ],
+                "Ipv6Ranges": [],
+                "PrefixListIds": []
+            }
+        ]
+    }
+]

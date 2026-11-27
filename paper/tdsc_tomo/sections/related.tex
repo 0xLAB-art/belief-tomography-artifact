@@ -1,0 +1,43 @@
+\section{Background and Related Work}\label{sec:related}
+
+\subsection{Four frames, one missing layer}\label{sec:frames}
+
+Four research communities study objects adjacent to the behavioral belief
+profile, and each stops one step short. Quantitative information flow asks
+what an adversary \emph{learns} about a secret from a system's observable
+behavior \cite{smith2009}. Information design asks what a sender
+can \emph{conceal or distort} \cite{kamenica2011}. Deception games ask what
+a defender \emph{gains} at equilibrium \cite{nguyen2019}. Theory-of-mind
+research asks whether an agent can model \emph{others'} beliefs
+\cite{strachan2024}. Belief tomography asks what an agent is made to wrongly
+believe, with quantified bounds. Two 2026 assessments reach the same
+conclusion from the measurement side: a systematic map of the honeypot--LLM
+intersection evaluates content and engagement, never a belief estimand
+\cite{bridges2026sok}, and a peer-reviewed methodology audit finds that
+ad-hoc LLM-security measurements do not identify a target quantity
+\cite{evertz2026shadows}. This paper supplies the missing layer: an estimand,
+an instrument, impossibility results, and the gain--stealth frontier.
+
+\subsection{Adjacent measurement traditions}
+Five traditions inform the design without supplying its object. Cognitive
+tomography recovers latent representations from behavior
+\cite{houlsby2013}; white-box probing and activation-drift detection recover
+internal states or task drift rather than security beliefs
+\cite{abdelnabi2025drift,marks2025audit}, which makes them complements.
+Psychometric work documents that self-reports diverge from behavior
+\cite{shen2025}, and preference tuning teaches models to match the
+user's beliefs over the truth \cite{sharma2024}: the Belief--Claim Gap is that
+phenomenon in its adversarial form. Deception measures
+score the deceiver \cite{mask2025}; none estimates a victim's belief profile
+as a statistical object. Evaluation-aware behavior is established---alignment
+faking \cite{greenblatt2024faking}, trained backdoors
+\cite{sleeperagents2024}, Ferrara's defeat device \cite{ferrara2026}, and
+partition-theoretic identifiability limits \cite{mahran2026}---and
+Corollary~\ref{cor:pub} and Theorem~\ref{thm:forgery} are its estimator-level
+instances; adaptive attacks bypass defenses reporting near-zero attack success
+\cite{nasr2026attacker}, and a certified model can pass its audit and fail on
+fresh draws \cite{luck2026certified}. Deception against AI agents is now an
+evaluated defense line \cite{ayzenshteyn2025cloak,volkov2024}; E15 differs in
+medium. Composition boundaries are documented at the orchestration layer
+\cite{li2026ace,camel2026}, and Theorem~\ref{thm:compose} is the
+estimator-level analogue. The full survey is in the supplement.

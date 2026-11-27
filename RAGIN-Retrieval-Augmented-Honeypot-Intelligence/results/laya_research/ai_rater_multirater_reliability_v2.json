@@ -1,0 +1,31 @@
+{
+  "schema_version": "ai_rater_multirater_reliability_v2",
+  "run_ids": [
+    "agent_run_01",
+    "agent_run_02",
+    "agent_run_03",
+    "agent_run_04",
+    "agent_run_05",
+    "agent_run_06"
+  ],
+  "n_raters": 6,
+  "case_count": 120,
+  "multiclass": {
+    "N": 120,
+    "n_raters": 6,
+    "observed_agreement": 0.743333,
+    "expected_agreement": 0.412068,
+    "fleiss_kappa": 0.563442,
+    "statistic": "Fleiss kappa with all six fixed ratings per case"
+  },
+  "binary": {
+    "eligible_N": 104,
+    "excluded_cases_because_of_uncertain": 16,
+    "n_raters": 6,
+    "observed_agreement": 0.828205,
+    "expected_agreement": 0.559911,
+    "fleiss_kappa": 0.609636,
+    "statistic": "Fleiss kappa, Option A: retain only cases with six non-UNCERTAIN ratings",
+    "excluded_rule": "A case is excluded if any of the six labels is UNCERTAIN; no variable-rater rows are used."
+  }
+}

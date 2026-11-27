@@ -1,0 +1,88 @@
+{
+  "foil": "HardenedDummy",
+  "seed": 31337,
+  "eps_grid": [
+    0.25,
+    0.5,
+    1.0,
+    2.0,
+    4.0,
+    8.0
+  ],
+  "n_mc": 2000,
+  "mc_seed": 90210,
+  "tau_tolerance": 0.02,
+  "true_profile": {
+    "authority_forgery": 0.3333,
+    "state_deception": 0.6667,
+    "goal_subversion": 0.6667,
+    "epistemic_echo": 0.6667,
+    "exfiltration_lure": 0.6667
+  },
+  "curve": {
+    "0.25": {
+      "attacker_advantage": -0.0844,
+      "kendall_tau": 0.0163,
+      "top1_recovery": 0.272,
+      "adv_se": 0.0131
+    },
+    "0.5": {
+      "attacker_advantage": -0.0558,
+      "kendall_tau": 0.0359,
+      "top1_recovery": 0.274,
+      "adv_se": 0.0131
+    },
+    "1.0": {
+      "attacker_advantage": -0.0263,
+      "kendall_tau": 0.0858,
+      "top1_recovery": 0.298,
+      "adv_se": 0.0131
+    },
+    "2.0": {
+      "attacker_advantage": 0.0103,
+      "kendall_tau": 0.1732,
+      "top1_recovery": 0.285,
+      "adv_se": 0.0131
+    },
+    "4.0": {
+      "attacker_advantage": 0.0453,
+      "kendall_tau": 0.3507,
+      "top1_recovery": 0.2525,
+      "adv_se": 0.0131
+    },
+    "8.0": {
+      "attacker_advantage": 0.063,
+      "kendall_tau": 0.5365,
+      "top1_recovery": 0.245,
+      "adv_se": 0.0131
+    }
+  },
+  "corners": {
+    "full_release": {
+      "attacker_advantage": 0.0667,
+      "kendall_tau": 0.4,
+      "top1_recovery": 1.0,
+      "adv_se": 0.0131
+    },
+    "scalar_Umax": {
+      "attacker_advantage": 0.0,
+      "kendall_tau": 0.0,
+      "top1_recovery": 0.2,
+      "note": "no ranking released (E14: attacker reverts to uniform)"
+    }
+  },
+  "verdict": {
+    "advantage_monotone_in_eps": true,
+    "utility_monotone_in_eps": true,
+    "dominates_scalar": [
+      0.25,
+      0.5,
+      1.0
+    ],
+    "dominates_full": [
+      8.0
+    ],
+    "corners_on_frontier_no_free_lunch": false,
+    "E20_outcome": "interior dominance found"
+  }
+}

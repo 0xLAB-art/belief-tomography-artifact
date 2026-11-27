@@ -1,0 +1,118 @@
+\section{Formal Properties and Adversarial Analysis}
+\label{sec:formal}
+
+The mechanism walk of \S\ref{sec:design} described what the loop does;
+this section states what the loop \emph{enforces} and prices what an
+adaptive adversary can still do to it. The two are paired deliberately:
+each invariant names the evaluation that stresses it, and each attack
+channel closes against one of the invariants.
+
+\subsection{The Serving-Time Consistency Invariant}
+\label{sec:invariant}
+
+The fiction graph (\S\ref{sec:design}) turns G2 from an aspiration into a
+data structure. We state the consistency condition it enforces, together
+with its induction and its measured stress test.\begin{property}[Serving-time fiction consistency]
+\label{prop:consistency}
+Let $\mathcal{G}$ be a session's fiction graph and $F(\mathcal{G})$ the
+set of host facts derivable from it, two facts conflicting when they assign
+conflicting normalized values to one predicate. Write $\sigma_t$ for the
+served response at turn $t$ and $E(\sigma_t)$ for the host facts the
+extraction layer emits from that response, $E$ being the same
+soundness-approximating extractor the consistency check runs (so the
+invariant inherits the extractor's failure modes; see the extractor
+condition below). The loop maintains the invariant
+\begin{equation*}
+E(\sigma_t) \not\pitchfork F(\mathcal{G}_{t-1}) \ \wedge \ F(\mathcal{G}_t) = \mathrm{cl}\big(F(\mathcal{G}_{t-1}) \cup E(\sigma_t)\big)
+\end{equation*}
+for every served turn, where $a \not\pitchfork b$ denotes that no fact
+in $a$ conflicts with any fact in $b$ under the graph's predicate-level
+normalization. The invariant is conditional on the extractor ($E$ must
+surface every fact a conflict-sensitive reader would surface), so the
+property is a guarantee about the checked relation, and its soundness in
+the world is bounded empirically by the re-query benchmark of
+\S\ref{sec:rq2}, not derived. Verification failure breaks the left
+conjunct \emph{before} serving, so the violated draft is never
+observable to the attacker; the failure path serves deterministic vetted
+content pinned to the seed identity and never commits the rejected
+draft's facts to the graph (\textsc{FailSafeFallback} in
+Algorithm~\ref{alg:loop}). The argument is a short induction: the empty
+graph is trivially conflict-free; if the invariant holds at $t-1$, any
+draft whose emitted facts conflict with the closure is rejected before
+serving, and the closure of a conflict-free set remains conflict-free;
+the failure path emits only vetted facts pre-registered against the
+seed graph. Because $\mathrm{cl}$ is the transitive closure of the
+graph's predicate conflicts, the invariant extends across the session:
+an attacker who re-queries any fact under any phrasing receives a value
+consistent with every prior turn \emph{of that session} -- and strictly
+of that session (\S\ref{sec:threatmodel}). The C1 benchmark
+(\S\ref{sec:rq2}) tests exactly this: zero contradictions over 45
+adversarial re-queries, upper confidence bound $0.079$.
+\end{property}
+
+\subsection{The Verified-Serve Algorithm}
+\label{sec:algorithm}
+
+\begin{algorithm}[t]
+\caption{Verified-serve loop (per attacker turn $x$)}
+\label{alg:loop}
+\begin{algorithmic}[1]
+\Require session state $\sigma$, fiction graph $\mathcal{G}_\sigma$, attacker turn $x$, policy $\pi$
+\State $c \gets \textsc{Classify}(x, \sigma)$ \Comment{behavioral class (Chrollo)}
+\State $\pi \gets \textsc{Plan}(c, \textsc{Retrieve}(x, \sigma))$ \Comment{grounded plan (Don)}
+\State $B \gets \textsc{FactBlock}(\mathcal{G}_\sigma)$ \Comment{graph serialization}
+\For{$\mathit{try} \in \{1, 2\}$}
+  \State $d \gets \textsc{Draft}(x, \pi, B, \textsc{Steer}(\pi))$ \Comment{provider LLM}
+  \State $\mathcal{G}' \gets \textsc{Observe}(\mathcal{G}_\sigma, d)$ \Comment{absorb emitted host facts}
+  \If{$\textsc{DangerScan}(d) \ \vee$}
+     \State \hspace{\algorithmicindent} $\textsc{IdentityPin}(d, \pi) = \bot \ \vee$
+     \State \hspace{\algorithmicindent} $\textsc{Consistent}(\mathcal{G}', d) = \bot \ \vee$
+     \State \hspace{\algorithmicindent} $\textsc{TerminalSanity}(d) = \bot$ \Comment{§\ref{sec:verify}}
+     \State \hspace{\algorithmicindent} \textbf{continue} \Comment{retry with violation fed back}
+  \EndIf
+  \If{$\textsc{Require}(d, \pi)$} \Comment{high-stakes content class}
+     \State \textbf{return} \textsc{HITLGate}$(d, \pi)$ \Comment{G3: human decides}
+  \EndIf
+  \State \textbf{return} $d$ \Comment{verified: serve}
+\EndFor
+\State \textbf{return} \textsc{FailSafeFallback}$(\mathcal{G}_\sigma)$
+  \Comment{G4: pinned-identity vetted transcript, graph unchanged}
+\end{algorithmic}
+\end{algorithm}
+
+Algorithm~\ref{alg:loop} gathers the serving path into one place: the
+four decision-procedure checks of \S\ref{sec:verify} form the reject
+arm, the \textsc{Require} branch carries G3, and the fallback arm
+carries G4. Every branch is deterministic given the draft; the only
+nondeterminism in the loop is the provider model itself, which is
+exactly the component the checks exist to bound.
+
+\subsection{Attacking the Loop}
+\label{sec:attack}
+An adaptive adversary (\S\ref{sec:threatmodel}) who has read this
+section has two footholds, and the design prices both. The first is the
+\emph{observation channel}: a served response's facts enter the graph,
+so an attacker who induces the honeypot to commit a lie has poisoned one
+session's world. The design contains this rather than prevents it.
+Commitment is one-way on purpose: the graph absorbs what was served,
+never what was merely drafted, so a rejected draft leaves no trace, and
+the session lifetime bounds the poisoned world to the attacker who
+created it. What the channel cannot do is leak true state, because the
+graph contains no true state to leak; every triple originates in the
+deception plan, the seed identity, or a prior verified serve.
+
+The second foothold is the \emph{steering channel}. Predicted next
+techniques and matched bait reach the generator as context, and
+attacker-controlled input influences what is retrieved and predicted;
+an attacker who knows this could shape their own session to steer bait
+of their choosing. Three facts bound the exposure. Bait is drawn from a
+closed canary-registered catalog, so the worst case is an attacker
+obtaining a credential that was designed to be obtained and is designed
+to be traced. Retrieval runs over a curated corpus, not open text, so
+corpus poisoning requires access the threat model denies
+(\S\ref{sec:threatmodel}). And the HITL gate sits between every
+high-stakes deployment and the wire, so steering the machinery still
+requires persuading a human. The residual risk is stated plainly: a
+sufficiently informed attacker can make the honeypot commit deeper to
+one fiction branch than the operator intended, at no safety cost and at
+the cost only of that session's plan flexibility.

@@ -1,0 +1,46 @@
+{
+    "Command": {
+        "CommandId": "e6e5cc72-6934-4be1-a531-60abdfb2de6e",
+        "DocumentName": "AWS-RunShellScript",
+        "DocumentVersion": "$DEFAULT",
+        "Comment": "RAGIN CORE app and listener inventory (safe commands)",
+        "ExpiresAfter": "2026-10-11T18:53:04.684000+03:00",
+        "Parameters": {
+            "commands": [
+                "echo RUN\ndate -u\necho APP_WALK\nfor d in /etc/ragin /opt/ragin /app /srv /var/lib/ragin /var/log/ragin; do\n  if [ -d \"$d\" ]; then\n    echo \"DIR=$d\"\n    find \"$d\" -maxdepth 3 -type f 2>/dev/null | sed -E \"s#^$d/##\" | sort | head -n 200\n  else\n    echo \"DIR_MISSING=$d\"\n  fi\ndone\necho PROCESS_HUNT\nps -eo pid,user,args --width 300 2>/dev/null | grep -iE 'ragin|server_v2|uvicorn|gunicorn|cowrie|socat|python|node|openssl|ssh' | grep -v grep | head -n 80 || true\necho LISTEN\nif command -v ss >/dev/null 2>&1; then\n  ss -tulpn 2>/dev/null | grep -iE '8443|24443|22|2222|50051|8080|8083|8731' || true\nelse\n  echo \"ss not present\"\nfi\necho AMAZON_LINUX_PKG_HINTS\nif command -v dpkg >/dev/null 2>&1; then\n  dpkg -l 2>/dev/null | grep -iE 'cowrie|ragin|openssl|python3-openssl|libssl|node' | head -n 80 || true\nelse\n  echo \"dpkg not present\"\nfi\necho OPENSSL_BIN\nif command -v openssl >/dev/null 2>&1; then\n  echo \"openssl present: $(openssl version 2>/dev/null || true)\"\nelse\n  echo \"openssl not present\"\nfi\necho OPENSSL_ENTROPY\nif command -v openssl >/dev/null 2>&1; then\n  for p in s_client s_server x509 rand version; do\n    openssl \"$p\" --help >/dev/null 2>&1 && echo \"openssl $p usable\" || echo \"openssl $p NOT usable\"\n  done\nfi\necho DONE"
+            ]
+        },
+        "InstanceIds": [
+            "i-062a400b300f4f9e4"
+        ],
+        "Targets": [],
+        "RequestedDateTime": "2026-10-11T17:51:04.684000+03:00",
+        "Status": "Pending",
+        "StatusDetails": "Pending",
+        "OutputS3Region": "eu-north-1",
+        "OutputS3BucketName": "",
+        "OutputS3KeyPrefix": "",
+        "MaxConcurrency": "1",
+        "MaxErrors": "1",
+        "TargetCount": 1,
+        "CompletedCount": 0,
+        "ErrorCount": 0,
+        "DeliveryTimedOutCount": 0,
+        "ServiceRole": "",
+        "NotificationConfig": {
+            "NotificationArn": "",
+            "NotificationEvents": [],
+            "NotificationType": ""
+        },
+        "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "",
+            "CloudWatchOutputEnabled": false
+        },
+        "TimeoutSeconds": 120,
+        "AlarmConfiguration": {
+            "IgnorePollAlarmFailure": false,
+            "Alarms": []
+        },
+        "TriggeredAlarms": []
+    }
+}

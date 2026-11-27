@@ -1,0 +1,25 @@
+{
+  "mode": "DRY_RUN",
+  "trace_sha256": "103699a6fd22c39afdcad3974e84785b80b18a667e7fd3a88b804dc61aa3657d",
+  "scenarios": [
+    {
+      "scenario_id": "dev-trackA-recon-01",
+      "commands": [
+        "id",
+        "cat /etc/passwd",
+        "ls -la /root",
+        "uname -a"
+      ]
+    },
+    {
+      "scenario_id": "dev-trackA-service-01",
+      "commands": [
+        "whoami",
+        "ps aux",
+        "ss -ltn",
+        "cat /etc/hosts"
+      ]
+    }
+  ],
+  "claim": "Track A cannot establish engagement, detection or suspicion"
+}

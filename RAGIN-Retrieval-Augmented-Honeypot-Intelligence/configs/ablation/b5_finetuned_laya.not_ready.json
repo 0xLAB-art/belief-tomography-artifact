@@ -1,0 +1,19 @@
+{
+  "schema": "ragin.ablation.arm_config.v1",
+  "arm": "B5",
+  "label": "B3 + fine-tuned Laya decision layer",
+  "status": "NOT_READY",
+  "retrieval": {"mode": "dense", "note": "Inherits B3."},
+  "decision_layer": {
+    "kind": "fine_tuned_laya",
+    "status": "NOT_READY",
+    "blockers": [
+      "LayaRuntime accepts only upstream checkpoint names (english, multilingual, typed-decisions); the v12 fine-tune is not supported.",
+      "The v12 contract emits attack/stage/severity while the runtime consumes evidence_state/strategy/evidence_ref."
+    ]
+  },
+  "generator": {"kind": "frozen_external_or_local_llm", "model": "UNRESOLVED_FROZEN_GENERATOR"},
+  "verification": {"kind": "FictionConsistencyVerifier+HostFictionVerifier", "mandatory": true},
+  "command": null,
+  "prerequisites": ["Both B5 blockers resolved.", "New protocol version frozen.", "No 0.880 attribution is claimed."]
+}

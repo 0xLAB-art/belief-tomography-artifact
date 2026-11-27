@@ -1,0 +1,49 @@
+{
+  "panel": "ai_jury_v1",
+  "raters": [
+    "gpt-5.6-sol",
+    "gpt-6-astra",
+    "gpt-6.1-sol"
+  ],
+  "pairwise": [
+    {
+      "a": "gpt-5.6-sol",
+      "b": "gpt-6-astra",
+      "exact_agreement": 109,
+      "total": 120,
+      "exact_ratio": 0.9083,
+      "binary_agreement": 117,
+      "binary_ratio": 0.975
+    },
+    {
+      "a": "gpt-5.6-sol",
+      "b": "gpt-6.1-sol",
+      "exact_agreement": 108,
+      "total": 120,
+      "exact_ratio": 0.9,
+      "binary_agreement": 116,
+      "binary_ratio": 0.9667
+    },
+    {
+      "a": "gpt-6-astra",
+      "b": "gpt-6.1-sol",
+      "exact_agreement": 115,
+      "total": 120,
+      "exact_ratio": 0.9583,
+      "binary_agreement": 117,
+      "binary_ratio": 0.975
+    }
+  ],
+  "fleiss_kappa_multiclass": 0.8113,
+  "label_distribution_panel_total": {
+    "BENIGN": 273,
+    "RECON": 5,
+    "SUSPICIOUS": 7,
+    "EXPLOITATION": 20,
+    "PRIVILEGE_ESCALATION": 3,
+    "DATA_ACCESS": 32,
+    "PERSISTENCE": 6,
+    "OTHER_ATTACK": 6,
+    "UNCERTAIN": 8
+  }
+}

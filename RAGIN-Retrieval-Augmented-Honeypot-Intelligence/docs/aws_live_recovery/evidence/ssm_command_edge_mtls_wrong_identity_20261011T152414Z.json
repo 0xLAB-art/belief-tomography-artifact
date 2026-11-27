@@ -1,0 +1,46 @@
+{
+    "Command": {
+        "CommandId": "35346383-7460-4855-add9-a711f783d8f9",
+        "DocumentName": "AWS-RunShellScript",
+        "DocumentVersion": "$DEFAULT",
+        "Comment": "RAGIN EDGE live negative mTLS wrong-identity probe (no secrets)",
+        "ExpiresAfter": "2026-10-11T19:26:15.641000+03:00",
+        "Parameters": {
+            "commands": [
+                "set -euo pipefail\necho RUN\ndate -u\nCA_FILE=/etc/ragin/tls/ca.crt\nWRONG_CERT=/etc/ragin/tls/server.crt\nWRONG_KEY=/etc/ragin/tls/server.key\necho CA_FILE=\"$CA_FILE\"\necho WRONG_CERT=\"$WRONG_CERT\"\necho WRONG_KEY=\"$WRONG_KEY\"\nCERTS_READY=0\nif [ -n \"$CA_FILE\" ] && [ -n \"$WRONG_CERT\" ] && [ -n \"$WRONG_KEY\" ] && [ -f \"$CA_FILE\" ] && [ -f \"$WRONG_CERT\" ] && [ -f \"$WRONG_KEY\" ]; then\n  CERTS_READY=1\nfi\necho CERTS_READY=$CERTS_READY\necho WRONG_IDENTITY_PREVIEW_BEGIN\nopenssl x509 -noout -subject -ext subjectAltName,extendedKeyUsage,keyId,authorityKeyIdentifier \\\n  -in \"$WRONG_CERT\" 2>/dev/null || echo WRONG_CERT_PARSE_FAILED\necho WRONG_IDENTITY_PREVIEW_END\nTMPDIR=$(mktemp -d)\necho TMPDIR=$TMPDIR\nif [ \"$CERTS_READY\" = \"1\" ] && command -v openssl >/dev/null 2>&1; then\n  echo \"CASE_WRONG_IDENTITY_CERT\"\n  if openssl s_client -connect 172.31.17.217:8443 \\\n    -CAfile \"$CA_FILE\" \\\n    -cert \"$WRONG_CERT\" \\\n    -key \"$WRONG_KEY\" \\\n    -verify_return_error \\\n    -brief -no_ign_eof < /dev/null > \"${TMPDIR}/case_wrong_identity.txt\" 2>&1; then\n    echo CASE_WRONG_IDENTITY_EXIT=0\n  else\n    echo CASE_WRONG_IDENTITY_EXIT=$?\n  fi\n  echo CASE_WRONG_IDENTITY_HEAD_BEGIN\n  head -n 80 \"${TMPDIR}/case_wrong_identity.txt\"\n  echo CASE_WRONG_IDENTITY_HEAD_END\nelse\n  echo WRONG_IDENTITY_CASE_SKIPPED=no_certs_or_no_openssl\nfi\nrm -rf \"${TMPDIR}\"\necho DONE"
+            ]
+        },
+        "InstanceIds": [
+            "i-05bc6aab0bd4260a7"
+        ],
+        "Targets": [],
+        "RequestedDateTime": "2026-10-11T18:24:15.641000+03:00",
+        "Status": "Pending",
+        "StatusDetails": "Pending",
+        "OutputS3Region": "eu-north-1",
+        "OutputS3BucketName": "",
+        "OutputS3KeyPrefix": "",
+        "MaxConcurrency": "1",
+        "MaxErrors": "1",
+        "TargetCount": 1,
+        "CompletedCount": 0,
+        "ErrorCount": 0,
+        "DeliveryTimedOutCount": 0,
+        "ServiceRole": "",
+        "NotificationConfig": {
+            "NotificationArn": "",
+            "NotificationEvents": [],
+            "NotificationType": ""
+        },
+        "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "",
+            "CloudWatchOutputEnabled": false
+        },
+        "TimeoutSeconds": 120,
+        "AlarmConfiguration": {
+            "IgnorePollAlarmFailure": false,
+            "Alarms": []
+        },
+        "TriggeredAlarms": []
+    }
+}

@@ -1,0 +1,186 @@
+{
+  "schema": "ragin.laya_v3.architecture_design.v1",
+  "status": "DESIGN_ONLY",
+  "implementation_performed": false,
+  "v2_v2a_v2b_modified": false,
+  "v3_predictions_created": false,
+  "primary_holdout_accessed": false,
+  "primary_holdout_reusable": false,
+  "new_untouched_holdout_required": true,
+  "authoritative_prior_finding": {
+    "v2b_attack_non_attack_balanced_accuracy": 0.493382,
+    "workflow_primary_delta": 0,
+    "strategy_reached_generator": "169/169",
+    "candidate_changed": "162/169",
+    "mean_added_e2e_latency_seconds": 1.98,
+    "interpretation": "motivation_for_redesign_only"
+  },
+  "recommendation": {
+    "seam": "POST_RETRIEVAL_POLICY_FUSION",
+    "rationale": "Don retrieval is complete before Laya policy selection, making the incremental policy estimand clear while preserving CTI provenance and verifier independence.",
+    "flow": [
+      "input_session",
+      "chrollo_behavioral_context",
+      "don_retrieval",
+      "don_evidence_bundle",
+      "laya_bounded_policy",
+      "baseline_on_abstain",
+      "hisoka",
+      "hitl_if_required",
+      "mandatory_deterministic_verification",
+      "accepted_only_commit",
+      "serve"
+    ]
+  },
+  "seam_assessment": {
+    "POST_RETRIEVAL_POLICY_FUSION": {
+      "scientific_clarity": "high",
+      "implementation_complexity": "moderate",
+      "latency": "one bounded Laya call after existing Don work",
+      "failure_modes": ["Laya timeout", "malformed policy", "insufficient evidence", "provenance mismatch"],
+      "provenance_integrity": "strong if evidence bundle is immutable and hashed",
+      "verifier_independence": "strong",
+      "testability": "high",
+      "ab_evaluation": "high",
+      "risk_of_repeating_v2_failure": "low_relative_to_other_seams"
+    },
+    "RETRIEVAL_RERANKING_PLUS_POLICY": {
+      "scientific_clarity": "mixed retrieval and policy effects are confounded",
+      "implementation_complexity": "high",
+      "latency": "additional ranking work and possible retrieval variation",
+      "failure_modes": ["evidence suppression", "reranking drift", "retrieval-policy confounding"],
+      "provenance_integrity": "requires original and reranked lists",
+      "verifier_independence": "moderate",
+      "testability": "moderate",
+      "ab_evaluation": "moderate_to_low",
+      "risk_of_repeating_v2_failure": "medium_to_high"
+    },
+    "PRE_RETRIEVAL_QUERY_ROUTING": {
+      "scientific_clarity": "low for a policy-layer claim",
+      "implementation_complexity": "high",
+      "latency": "pre-retrieval Laya call plus variable retrieval path",
+      "failure_modes": ["query suppression", "selection bias", "missed CTI evidence", "routing loops"],
+      "provenance_integrity": "weakest unless all rejected queries are retained",
+      "verifier_independence": "moderate but upstream evidence is altered",
+      "testability": "low",
+      "ab_evaluation": "low",
+      "risk_of_repeating_v2_failure": "highest"
+    }
+  },
+  "native_laya_suitability": {
+    "appropriate_as_is": false,
+    "current_task": "three typed questions over a bounded session string: attack, stage, severity",
+    "reason": "The current task is independent assessment, not evidence-cited bounded policy selection.",
+    "requires_new_task_contract": true,
+    "do_not_claim": "Do not claim the current checkpoint is an evidence-grounded policy model without task adaptation and new evaluation."
+  },
+  "don_to_laya_contract": {
+    "schema": "ragin.laya_v3.evidence_bundle.v1",
+    "immutable_after_don": true,
+    "fields": {
+      "session": {
+        "session_id": "CURRENT_DON_OR_SESSION_FIELD",
+        "turn_id": "NEW_REQUIRED_FIELD",
+        "attacker_input": "CURRENT_SESSION_CONTEXT_FIELD",
+        "attacker_inputs": "CURRENT_SESSION_CONTEXT_FIELD",
+        "system_responses": "CURRENT_SESSION_CONTEXT_FIELD"
+      },
+      "behavior": {
+        "skill_level": "CURRENT_CHROLLO_OUTPUT",
+        "classification_confidence": "CURRENT_CHROLLO_OUTPUT",
+        "features_used": "CURRENT_CHROLLO_OUTPUT",
+        "feature_values": "CURRENT_CHROLLO_OUTPUT",
+        "observed_techniques": "CURRENT_DON_FEATURE_INPUT_IF_PRESENT",
+        "evasion_techniques": "CURRENT_DON_ADAPTER_OUTPUT",
+        "tools_used": "CURRENT_DON_ADAPTER_OUTPUT",
+        "credential_access": "CURRENT_DON_ADAPTER_OUTPUT"
+      },
+      "don_analysis": {
+        "analysis_id": "CURRENT_DON_ADAPTER_OUTPUT",
+        "classification": "CURRENT_DON_ADAPTER_OUTPUT",
+        "severity": "CURRENT_DON_ADAPTER_OUTPUT",
+        "confidence": "CURRENT_DON_ADAPTER_OUTPUT",
+        "sophistication_score": "CURRENT_DON_ADAPTER_OUTPUT",
+        "tactics": "CURRENT_DON_ADAPTER_OUTPUT_WITH_LIMITED_FIELDS",
+        "observed_ttps": "CURRENT_DON_ADAPTER_OUTPUT",
+        "iocs": "CURRENT_DON_ADAPTER_OUTPUT_WITH_LIMITED_FIELDS",
+        "candidate_actors": "CURRENT_DON_ADAPTER_OUTPUT",
+        "recommendations": "CURRENT_DON_ADAPTER_OUTPUT",
+        "error": "CURRENT_DON_ADAPTER_OUTPUT"
+      },
+      "retrieval": {
+        "query": "NEW_REQUIRED_FIELD",
+        "mode": "NEW_REQUIRED_FIELD",
+        "documents.doc_id": "CURRENT_DON_HIT_FIELD",
+        "documents.title": "CURRENT_DON_HIT_FIELD",
+        "documents.content_excerpt": "CURRENT_DON_HIT_FIELD",
+        "documents.source": "CURRENT_INTEL_DOCUMENT_FIELD_BUT_NOT_CURRENTLY_EXPORTED_BY_ADAPTER",
+        "documents.published_date": "CURRENT_INTEL_DOCUMENT_FIELD_BUT_NOT_CURRENTLY_EXPORTED_BY_ADAPTER",
+        "documents.rank": "NEW_REQUIRED_FIELD",
+        "documents.retrieval_score": "NEW_REQUIRED_FIELD_FOR_STABLE_NAME",
+        "documents.relevance_grade": "NEW_REQUIRED_FIELD",
+        "documents.attack_mapping": "NEW_REQUIRED_FIELD_FOR_DOCUMENT_LEVEL_EXPORT",
+        "documents.cve_ids": "NEW_REQUIRED_FIELD",
+        "documents.document_sha256": "NEW_REQUIRED_FIELD",
+        "trace": "NEW_REQUIRED_FIELD",
+        "corpus_revision": "NEW_REQUIRED_FIELD",
+        "retrieved_at": "NEW_REQUIRED_FIELD"
+      },
+      "bundle_sha256": "NEW_REQUIRED_FIELD"
+    },
+    "fail_closed_rule": "Missing required provenance or evidence produces ABSTAIN and baseline policy."
+  },
+  "laya_to_hisoka_contract": {
+    "schema": "ragin.laya_v3.policy_decision.v1",
+    "actionable_fields": ["status", "selected_response_strategy"],
+    "status_values": ["SELECT", "ABSTAIN"],
+    "strategy_allowlist": [
+      "baseline",
+      "maximize_recon_surface",
+      "fake_success_and_return_visits",
+      "steer_to_honeytoken_credentials",
+      "expose_decoy_internal_topology",
+      "contain_in_fiction_and_instrument",
+      "low_intensity_administration"
+    ],
+    "required_audit_fields": ["session_id", "evidence_refs", "policy_version", "policy_hash", "laya_provenance"],
+    "new_required_fields": ["decision_confidence", "evidence_bundle_sha256"],
+    "prohibited_authorities": ["serve", "commit", "approve_hitl", "alter_verifier_outcome", "define_cti_truth"]
+  },
+  "abstain_path": {
+    "triggers": [
+      "timeout",
+      "malformed_output",
+      "model_identity_failure",
+      "missing_don_evidence",
+      "insufficient_evidence",
+      "unsupported_strategy",
+      "missing_evidence_reference",
+      "provenance_mismatch"
+    ],
+    "status": "ABSTAIN",
+    "selected_response_strategy": "baseline",
+    "retrieval_suppressed": false,
+    "continues_through": ["hisoka", "hitl_if_required", "deterministic_verification", "accepted_only_commit", "serve"]
+  },
+  "safety_authority": {
+    "don": "retrieval_and_cti_evidence",
+    "laya": "bounded_conditional_strategy_selection_only",
+    "hisoka": "response_generation",
+    "hitl": "required_human_approval",
+    "deterministic_verifier": "response_acceptance",
+    "finalize": "accepted_only_state_commit"
+  },
+  "implementation_changes_required": [
+    "export stable immutable Don evidence bundle",
+    "add retrieval provenance and document identity fields",
+    "move Laya from Chrollo seam to post-Don policy node",
+    "define and validate V3 evidence-conditioned task",
+    "thread bounded policy into plan and Hisoka",
+    "preserve HITL, deterministic verifier, accepted-only commit, and serve boundaries",
+    "add focused contract and provenance tests"
+  ],
+  "new_evaluation_required": "YES",
+  "old_169_reusable": "NO",
+  "new_untouched_holdout_required": "YES"
+}

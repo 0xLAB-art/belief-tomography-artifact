@@ -1,0 +1,139 @@
+{
+  "schema": "ragin.laya.ai_jury_oracle.v1",
+  "generated_at": "2026-10-28T12:35:52.278423+00:00",
+  "lane": "Non-LLM deterministic reference. Not a human study and not a substitute for rater_labels/; reported alongside the AI jury.",
+  "packet": {
+    "path": "results/laya_research/blind_annotation_confirmatory_v3.json",
+    "sha256": "8a99ead21e9766fc3e0921febd8fa2e49210d9395c28a7e28b5487afd26e6bf1",
+    "cases": 120
+  },
+  "jury_files": {
+    "gpt-5.6-sol": "results/laya_research/ai_jury_v1/gpt-5.6-sol.json",
+    "gpt-6-astra": "results/laya_research/ai_jury_v1/gpt-6-astra.json",
+    "gpt-6.1-sol": "results/laya_research/ai_jury_v1/gpt-6.1-sol.json"
+  },
+  "rules": {
+    "version": "structural_v2",
+    "command_heads": [
+      "cat ",
+      "ls",
+      "find ",
+      "grep ",
+      "ps ",
+      "ss ",
+      "netstat",
+      "id",
+      "whoami",
+      "uname",
+      "docker ",
+      "iptables",
+      "systemctl",
+      "crontab",
+      "df ",
+      "free",
+      "env",
+      "sed ",
+      "awk ",
+      "head ",
+      "tail ",
+      "curl ",
+      "wget ",
+      "python",
+      "bash",
+      "sh ",
+      "sudo",
+      "mysql",
+      "psql",
+      "redis-cli",
+      "ssh ",
+      "scp ",
+      "select "
+    ],
+    "question_prefixes": [
+      "what is",
+      "what are",
+      "explain",
+      "how does",
+      "how do",
+      "describe",
+      "what techniques",
+      "why does",
+      "is there",
+      "can you explain"
+    ],
+    "show_state_prefixes": [
+      "show me",
+      "list all",
+      "list the",
+      "check if",
+      "which processes",
+      "what processes",
+      "display",
+      "print the"
+    ],
+    "credential_paths": [
+      "/etc/shadow",
+      "/etc/passwd",
+      ".env",
+      "id_rsa",
+      "authorized_keys",
+      ".dbpass",
+      "credentials",
+      "select * from",
+      "or 1=1"
+    ],
+    "persistence_writes": [
+      "crontab -e",
+      "> /etc/cron",
+      "systemctl enable",
+      "authorized_keys >>",
+      "chmod +s",
+      "useradd",
+      "adduser"
+    ]
+  },
+  "oracle_distribution": {
+    "UNCERTAIN": 30,
+    "BENIGN": 50,
+    "RECON": 28,
+    "DATA_ACCESS": 6,
+    "EXPLOITATION": 5,
+    "PERSISTENCE": 1
+  },
+  "majority_distribution": {
+    "EXPLOITATION": 7,
+    "BENIGN": 92,
+    "UNCERTAIN": 4,
+    "DATA_ACCESS": 11,
+    "SUSPICIOUS": 2,
+    "PRIVILEGE_ESCALATION": 1,
+    "PERSISTENCE": 2,
+    "RECON": 1
+  },
+  "majority_ties": 2,
+  "agreement": {
+    "oracle_vs_majority_exact": 0.5083,
+    "oracle_vs_majority_binary_kappa": 0.3165,
+    "oracle_vs_majority_binary_cases": 88,
+    "per_juror": {
+      "gpt-5.6-sol": {
+        "cases": 120,
+        "exact_agreement": 0.4917,
+        "binary_cases": 88,
+        "binary_kappa": 0.3165
+      },
+      "gpt-6-astra": {
+        "cases": 120,
+        "exact_agreement": 0.4833,
+        "binary_cases": 88,
+        "binary_kappa": 0.3165
+      },
+      "gpt-6.1-sol": {
+        "cases": 120,
+        "exact_agreement": 0.5,
+        "binary_cases": 88,
+        "binary_kappa": 0.3165
+      }
+    }
+  }
+}

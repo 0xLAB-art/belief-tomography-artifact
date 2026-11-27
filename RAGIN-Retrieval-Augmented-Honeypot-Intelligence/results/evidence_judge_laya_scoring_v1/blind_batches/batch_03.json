@@ -1,0 +1,333 @@
+{
+  "cases": [
+    {
+      "case_id": "multi-command-003",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "ssh admin@example.invalid",
+      "preceding_commands": [
+        "cat /etc/passwd"
+      ],
+      "retrieved_candidates": [
+        {
+          "content": "# SSH (T1021.004)\n\nAdversaries may use [Valid Accounts](https://attack.mitre.org/techniques/T1078) to log into remote machines using Secure Shell (SSH). The adversary may then perform actions as the logged-on user.\n\nSSH is a protocol that allows authorized users to open remote shells on other computers. Many Linux and macOS versions come with SSH installed by default, although typically disabled until the user enables it. On ESXi, SSH can be enabled either directly on the host (e.g., via `vim-cmd hostsvc/enable_ssh`) or via vCenter.(Citation: Sygnia ESXi Ransomware 2025)(Citation: TrendMicro ESXI Ransomware)(Citation: Sygnia Abyss Locker 2025) The SSH server can be configured to use standard password authentication or public-private keypairs in lieu of or in addition to a password. In this authentication scenario, the user’s public key must be in a special file on the computer running the server that lists which keypairs are allowed to login as that user (i.e., [SSH Authorized Keys](https://attack.mitre.org/techniques/T1098/004)).\n\n**Platforms:** ESXi, Linux, macOS\n\n**Tactics:** lateral-movement\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1021.004",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1021/004",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: SSH (T1021.004)"
+        }
+      ]
+    },
+    {
+      "case_id": "multi-command-004",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "crontab -e",
+      "preceding_commands": [
+        "echo '# scheduled task'"
+      ],
+      "retrieved_candidates": [
+        {
+          "content": "# Cron (T1053.003)\n\nAdversaries may abuse the <code>cron</code> utility to perform task scheduling for initial or recurring execution of malicious code.(Citation: 20 macOS Common Tools and Techniques) The <code>cron</code> utility is a time-based job scheduler for Unix-like operating systems.  The <code> crontab</code> file contains the schedule of cron entries to be run and the specified times for execution. Any <code>crontab</code> files are stored in operating system-specific file paths.\n\nAn adversary may use <code>cron</code> in Linux or Unix environments to execute programs at system startup or on a scheduled basis for [Persistence](https://attack.mitre.org/tactics/TA0003). In ESXi environments, cron jobs must be created directly via the crontab file (e.g., `/var/spool/cron/crontabs/root`).(Citation: CloudSEK ESXiArgs 2023)\n\n**Platforms:** Linux, macOS, ESXi\n\n**Tactics:** execution, persistence, privilege-escalation\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1053.003",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1053/003",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Cron (T1053.003)"
+        }
+      ]
+    },
+    {
+      "case_id": "multi-command-005",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "systemctl enable ssh",
+      "preceding_commands": [
+        "systemctl status ssh"
+      ],
+      "retrieved_candidates": [
+        {
+          "content": "# Systemd Service (T1543.002)\n\nAdversaries may create or modify systemd services to repeatedly execute malicious payloads as part of persistence. Systemd is a system and service manager commonly used for managing background daemon processes (also known as services) and other system resources.(Citation: Linux man-pages: systemd January 2014) Systemd is the default initialization (init) system on many Linux distributions replacing legacy init systems, including SysVinit and Upstart, while remaining backwards compatible.  \n\nSystemd utilizes unit configuration files with the `.service` file extension to encode information about a service's process. By default, system level unit files are stored in the `/systemd/system` directory of the root owned directories (`/`). User level unit files are stored in the `/systemd/user` directories of the user owned directories (`$HOME`).(Citation: lambert systemd 2022) \n\nInside the `.service` unit files, the following directives are used to execute commands:(Citation: freedesktop systemd.service)  \n\n* `ExecStart`, `ExecStartPre`, and `ExecStartPost` directives execute when a service is started manually by `systemctl` or on system start if the service is set to automatically start.\n* `ExecReload` directive executes when a service restarts. \n* `ExecStop`, `ExecStopPre`, and `ExecStopPost` directives execute when a service is stopped.  \n\nAdversaries have created new service files, altered the commands a `.service` file’s directive executes, and modified the user directive a `.service` file executes as, which could result in privilege escalation. Adversaries may also place symbolic links in these directories, enabling systemd to find these payloads regardless of where they reside on the filesystem.(Citation: Anomali Rocke March 2019)(Citation: airwalk backdoor unix systems)(Citation: Rapid7 Service Persistence 22JUNE2016) \n\nThe `.service` file’s User directive can be used to run service as a specific user, which could result in privilege escalation based on specific user/group permissions. \n\nSystemd services can be created via systemd generators, which support the dynamic generation of unit files. Systemd generators are small executables that run during boot or configuration reloads to dynamically create or modify systemd unit files by converting non-native configurations into services, symlinks, or drop-ins (i.e., [Boot or Logon Initialization Scripts](https://attack.mitre.org/techniques/T1037)).(Citation: Elastic Security Labs Linux Persistence 2024)(Citation: Pepe Berba Systemd 2022)\n\n**Platforms:** Linux\n\n**Tactics:** persistence, privilege-escalation\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1543.002",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1543/002",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Systemd Service (T1543.002)"
+        }
+      ]
+    },
+    {
+      "case_id": "multi-command-006",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "cat /etc/shadow",
+      "preceding_commands": [
+        "ls -la /etc"
+      ],
+      "retrieved_candidates": [
+        {
+          "content": "# Credentials In Files (T1552.001)\n\nAdversaries may search local file systems and remote file shares for files containing insecurely stored credentials. These can be files created by users to store their own credentials, shared credential stores for a group of individuals, configuration files containing passwords for a system or service, or source code/binary files containing embedded passwords.\n\nIt is possible to extract passwords from backups or saved virtual machines through [OS Credential Dumping](https://attack.mitre.org/techniques/T1003).(Citation: CG 2014) Passwords may also be obtained from Group Policy Preferences stored on the Windows Domain Controller.(Citation: SRD GPP)\n\nIn cloud and/or containerized environments, authenticated user and service account credentials are often stored in local configuration and credential files.(Citation: Unit 42 Hildegard Malware) They may also be found as parameters to deployment commands in container logs.(Citation: Unit 42 Unsecured Docker Daemons) In some cases, these files can be copied and reused on another machine or the contents can be read and then used to authenticate without needing to copy any files.(Citation: Specter Ops - Cloud Credential Storage)\n\n**Platforms:** Containers, IaaS, Linux, macOS, Windows\n\n**Tactics:** credential-access\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1552.001",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1552/001",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Credentials In Files (T1552.001)"
+        }
+      ]
+    },
+    {
+      "case_id": "partial-001",
+      "claimed_behavior": "direct execution or policy consequence",
+      "command": "grep passwords /tmp/report",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# Credentials In Files (T1552.001)\n\nAdversaries may search local file systems and remote file shares for files containing insecurely stored credentials. These can be files created by users to store their own credentials, shared credential stores for a group of individuals, configuration files containing passwords for a system or service, or source code/binary files containing embedded passwords.\n\nIt is possible to extract passwords from backups or saved virtual machines through [OS Credential Dumping](https://attack.mitre.org/techniques/T1003).(Citation: CG 2014) Passwords may also be obtained from Group Policy Preferences stored on the Windows Domain Controller.(Citation: SRD GPP)\n\nIn cloud and/or containerized environments, authenticated user and service account credentials are often stored in local configuration and credential files.(Citation: Unit 42 Hildegard Malware) They may also be found as parameters to deployment commands in container logs.(Citation: Unit 42 Unsecured Docker Daemons) In some cases, these files can be copied and reused on another machine or the contents can be read and then used to authenticate without needing to copy any files.(Citation: Specter Ops - Cloud Credential Storage)\n\n**Platforms:** Containers, IaaS, Linux, macOS, Windows\n\n**Tactics:** credential-access\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1552.001",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1552/001",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Credentials In Files (T1552.001)"
+        }
+      ]
+    },
+    {
+      "case_id": "partial-002",
+      "claimed_behavior": "direct execution or policy consequence",
+      "command": "grep Skidmap /tmp/report",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "****\n\n[Skidmap](https://attack.mitre.org/software/S0468) has the ability to add the public key of its handlers to the <code>authorized_keys</code> file to maintain persistence on an infected host.(Citation: Trend Micro Skidmap)",
+          "doc_id": "DONV2-REL-AUTHKEYS",
+          "provenance_status": "VALID",
+          "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "Relationship: "
+        }
+      ]
+    },
+    {
+      "case_id": "partial-003",
+      "claimed_behavior": "direct execution or policy consequence",
+      "command": "grep installed /tmp/report",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "****\n\n[Skidmap](https://attack.mitre.org/software/S0468) has installed itself via crontab.(Citation: Trend Micro Skidmap)",
+          "doc_id": "DONV2-REL-CRONTAB",
+          "provenance_status": "VALID",
+          "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "Relationship: "
+        }
+      ]
+    },
+    {
+      "case_id": "partial-004",
+      "claimed_behavior": "direct execution or policy consequence",
+      "command": "grep tunneling /tmp/report",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "****\n\nDuring [C0027](https://attack.mitre.org/campaigns/C0027), [Scattered Spider](https://attack.mitre.org/groups/G1015) used SSH tunneling in targeted environments.(Citation: Crowdstrike TELCO BPO Campaign December 2022)",
+          "doc_id": "DONV2-REL-SSH",
+          "provenance_status": "VALID",
+          "source": "https://www.crowdstrike.com/blog/analysis-of-intrusion-campaign-targeting-telecom-and-bpo-companies/",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "Relationship: "
+        }
+      ]
+    },
+    {
+      "case_id": "partial-005",
+      "claimed_behavior": "direct execution or policy consequence",
+      "command": "grep malware /tmp/report",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "****\n\n[RedCurl](https://attack.mitre.org/groups/G1039) has used malware with string encryption.(Citation: therecord_redcurl) [RedCurl](https://attack.mitre.org/groups/G1039) has also encrypted data and has encoded PowerShell commands using Base64.(Citation: group-ib_redcurl1)(Citation: group-ib_redcurl2) [RedCurl](https://attack.mitre.org/groups/G1039) has used `PyArmor` to obfuscate code execution of [LaZagne](https://attack.mitre.org/software/S0349). (Citation: group-ib_redcurl1) Additionally, [RedCurl](https://attack.mitre.org/groups/G1039) has obfuscated downloaded files by renaming them as commonly used tools and has used `echo`, instead of file names themselves, to execute files.(Citation: trendmicro_redcurl) \n",
+          "doc_id": "DONV2-REL-CURL",
+          "provenance_status": "VALID",
+          "source": "https://therecord.media/redcurl-hackers-russian-bank-australian-company",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "Relationship: "
+        }
+      ]
+    },
+    {
+      "case_id": "partial-006",
+      "claimed_behavior": "direct execution or policy consequence",
+      "command": "grep TAMECAT /tmp/report",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "****\n\n[TAMECAT](https://attack.mitre.org/software/S1193) has used `wget` and `curl` to download additional content.(Citation: Mandiant APT42-untangling) ",
+          "doc_id": "DONV2-REL-WGET",
+          "provenance_status": "VALID",
+          "source": "https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "Relationship: "
+        }
+      ]
+    },
+    {
+      "case_id": "irrelevant-001",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "echo hello",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# SSH (T1021.004)\n\nAdversaries may use [Valid Accounts](https://attack.mitre.org/techniques/T1078) to log into remote machines using Secure Shell (SSH). The adversary may then perform actions as the logged-on user.\n\nSSH is a protocol that allows authorized users to open remote shells on other computers. Many Linux and macOS versions come with SSH installed by default, although typically disabled until the user enables it. On ESXi, SSH can be enabled either directly on the host (e.g., via `vim-cmd hostsvc/enable_ssh`) or via vCenter.(Citation: Sygnia ESXi Ransomware 2025)(Citation: TrendMicro ESXI Ransomware)(Citation: Sygnia Abyss Locker 2025) The SSH server can be configured to use standard password authentication or public-private keypairs in lieu of or in addition to a password. In this authentication scenario, the user’s public key must be in a special file on the computer running the server that lists which keypairs are allowed to login as that user (i.e., [SSH Authorized Keys](https://attack.mitre.org/techniques/T1098/004)).\n\n**Platforms:** ESXi, Linux, macOS\n\n**Tactics:** lateral-movement\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1021.004",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1021/004",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: SSH (T1021.004)"
+        }
+      ]
+    },
+    {
+      "case_id": "irrelevant-002",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "printf done",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# Cron (T1053.003)\n\nAdversaries may abuse the <code>cron</code> utility to perform task scheduling for initial or recurring execution of malicious code.(Citation: 20 macOS Common Tools and Techniques) The <code>cron</code> utility is a time-based job scheduler for Unix-like operating systems.  The <code> crontab</code> file contains the schedule of cron entries to be run and the specified times for execution. Any <code>crontab</code> files are stored in operating system-specific file paths.\n\nAn adversary may use <code>cron</code> in Linux or Unix environments to execute programs at system startup or on a scheduled basis for [Persistence](https://attack.mitre.org/tactics/TA0003). In ESXi environments, cron jobs must be created directly via the crontab file (e.g., `/var/spool/cron/crontabs/root`).(Citation: CloudSEK ESXiArgs 2023)\n\n**Platforms:** Linux, macOS, ESXi\n\n**Tactics:** execution, persistence, privilege-escalation\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1053.003",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1053/003",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Cron (T1053.003)"
+        }
+      ]
+    },
+    {
+      "case_id": "irrelevant-003",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "true",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# Credentials In Files (T1552.001)\n\nAdversaries may search local file systems and remote file shares for files containing insecurely stored credentials. These can be files created by users to store their own credentials, shared credential stores for a group of individuals, configuration files containing passwords for a system or service, or source code/binary files containing embedded passwords.\n\nIt is possible to extract passwords from backups or saved virtual machines through [OS Credential Dumping](https://attack.mitre.org/techniques/T1003).(Citation: CG 2014) Passwords may also be obtained from Group Policy Preferences stored on the Windows Domain Controller.(Citation: SRD GPP)\n\nIn cloud and/or containerized environments, authenticated user and service account credentials are often stored in local configuration and credential files.(Citation: Unit 42 Hildegard Malware) They may also be found as parameters to deployment commands in container logs.(Citation: Unit 42 Unsecured Docker Daemons) In some cases, these files can be copied and reused on another machine or the contents can be read and then used to authenticate without needing to copy any files.(Citation: Specter Ops - Cloud Credential Storage)\n\n**Platforms:** Containers, IaaS, Linux, macOS, Windows\n\n**Tactics:** credential-access\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1552.001",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1552/001",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Credentials In Files (T1552.001)"
+        }
+      ]
+    },
+    {
+      "case_id": "irrelevant-004",
+      "claimed_behavior": "observed_command_behavior",
+      "command": "date",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# Ingress Tool Transfer (T1105)\n\nAdversaries may transfer tools or other files from an external system into a compromised environment. Tools or files may be copied from an external adversary-controlled system to the victim network through the command and control channel or through alternate protocols such as [ftp](https://attack.mitre.org/software/S0095). Once present, adversaries may also transfer/spread tools between victim devices within a compromised environment (i.e. [Lateral Tool Transfer](https://attack.mitre.org/techniques/T1570)). \n\nOn Windows, adversaries may use various utilities to download tools, such as `copy`, `finger`, [certutil](https://attack.mitre.org/software/S0160), and [PowerShell](https://attack.mitre.org/techniques/T1059/001) commands such as <code>IEX(New-Object Net.WebClient).downloadString()</code> and <code>Invoke-WebRequest</code>. On Linux and macOS systems, a variety of utilities also exist, such as `curl`, `scp`, `sftp`, `tftp`, `rsync`, `finger`, and `wget`.(Citation: t1105_lolbas)  A number of these tools, such as `wget`, `curl`, and `scp`, also exist on ESXi. After downloading a file, a threat actor may attempt to verify its integrity by checking its hash value (e.g., via `certutil -hashfile`).(Citation: Google Cloud Threat Intelligence COSCMICENERGY 2023)\n\nAdversaries may also abuse installers and package managers, such as `yum` or `winget`, to download tools to victim hosts. Adversaries have also abused file application features, such as the Windows `search-ms` protocol handler, to deliver malicious files to victims through remote file searches invoked by [User Execution](https://attack.mitre.org/techniques/T1204) (typically after interacting with [Phishing](https://attack.mitre.org/techniques/T1566) lures).(Citation: T1105: Trellix_search-ms)\n\nFiles can also be transferred using various [Web Service](https://attack.mitre.org/techniques/T1102)s as well as native or otherwise present tools on the victim system.(Citation: PTSecurity Cobalt Dec 2016) In some cases, adversaries may be able to leverage services that sync between a web-based and an on-premises client, such as Dropbox or OneDrive, to transfer files onto victim systems. For example, by compromising a cloud account and logging into the service's web portal, an adversary may be able to trigger an automatic syncing process that transfers the file onto the victim's machine.(Citation: Dropbox Malware Sync)\n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** command-and-control\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1105",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1105",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Ingress Tool Transfer (T1105)"
+        }
+      ]
+    },
+    {
+      "case_id": "benign-admin-001",
+      "claimed_behavior": "benign administrative observation",
+      "command": "whoami",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# Local Account (T1087.001)\n\nAdversaries may attempt to get a listing of local system accounts. This information can help adversaries determine which local accounts exist on a system to aid in follow-on behavior.\n\nCommands such as <code>net user</code> and <code>net localgroup</code> of the [Net](https://attack.mitre.org/software/S0039) utility and <code>id</code> and <code>groups</code> on macOS and Linux can list local users and groups.(Citation: Mandiant APT1)(Citation: id man page)(Citation: groups man page) On Linux, local users can also be enumerated through the use of the <code>/etc/passwd</code> file. On macOS, the <code>dscl . list /Users</code> command can be used to enumerate local accounts. On ESXi servers, the `esxcli system account list` command can list local user accounts.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)\n\n**Platforms:** ESXi, Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1087.001",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1087/001",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Local Account (T1087.001)"
+        }
+      ]
+    },
+    {
+      "case_id": "benign-admin-002",
+      "claimed_behavior": "benign administrative observation",
+      "command": "id",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# Local Account (T1087.001)\n\nAdversaries may attempt to get a listing of local system accounts. This information can help adversaries determine which local accounts exist on a system to aid in follow-on behavior.\n\nCommands such as <code>net user</code> and <code>net localgroup</code> of the [Net](https://attack.mitre.org/software/S0039) utility and <code>id</code> and <code>groups</code> on macOS and Linux can list local users and groups.(Citation: Mandiant APT1)(Citation: id man page)(Citation: groups man page) On Linux, local users can also be enumerated through the use of the <code>/etc/passwd</code> file. On macOS, the <code>dscl . list /Users</code> command can be used to enumerate local accounts. On ESXi servers, the `esxcli system account list` command can list local user accounts.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)\n\n**Platforms:** ESXi, Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1087.001",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1087/001",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Local Account (T1087.001)"
+        }
+      ]
+    },
+    {
+      "case_id": "benign-admin-003",
+      "claimed_behavior": "benign administrative observation",
+      "command": "hostname",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        }
+      ]
+    },
+    {
+      "case_id": "benign-admin-004",
+      "claimed_behavior": "benign administrative observation",
+      "command": "df -h",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        }
+      ]
+    },
+    {
+      "case_id": "unsupported-001",
+      "claimed_behavior": "credential access or persistence",
+      "command": "echo hello",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        }
+      ]
+    },
+    {
+      "case_id": "unsupported-002",
+      "claimed_behavior": "credential access or persistence",
+      "command": "printf ready",
+      "preceding_commands": [],
+      "retrieved_candidates": [
+        {
+          "content": "# Credentials In Files (T1552.001)\n\nAdversaries may search local file systems and remote file shares for files containing insecurely stored credentials. These can be files created by users to store their own credentials, shared credential stores for a group of individuals, configuration files containing passwords for a system or service, or source code/binary files containing embedded passwords.\n\nIt is possible to extract passwords from backups or saved virtual machines through [OS Credential Dumping](https://attack.mitre.org/techniques/T1003).(Citation: CG 2014) Passwords may also be obtained from Group Policy Preferences stored on the Windows Domain Controller.(Citation: SRD GPP)\n\nIn cloud and/or containerized environments, authenticated user and service account credentials are often stored in local configuration and credential files.(Citation: Unit 42 Hildegard Malware) They may also be found as parameters to deployment commands in container logs.(Citation: Unit 42 Unsecured Docker Daemons) In some cases, these files can be copied and reused on another machine or the contents can be read and then used to authenticate without needing to copy any files.(Citation: Specter Ops - Cloud Credential Storage)\n\n**Platforms:** Containers, IaaS, Linux, macOS, Windows\n\n**Tactics:** credential-access\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1552.001",
+          "provenance_status": "VALID",
+          "source": "https://attack.mitre.org/techniques/T1552/001",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Credentials In Files (T1552.001)"
+        }
+      ]
+    }
+  ],
+  "schema": "ragin.laya_scorer_blind_batch.v1"
+}

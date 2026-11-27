@@ -1,0 +1,46 @@
+{
+  "schema": "ragin.cowrie.prospective_capture_freeze.v1",
+  "frozen_at_utc": "2026-10-14T06:50:00Z",
+  "runtime_contract": {
+    "path": "results/decision_fusion_v4/v4_cowrie_runtime_contract_v1.json",
+    "sha256": "bb66218061975d4a54425ca98ce6c5003d5a9b367a83f698d6c5e6b05e162b50"
+  },
+  "implementation": {
+    "adapter": {"path": "ragin/capture_v4/cowrie.py", "sha256": "213fa300c13c393b6afddc9b0ff3441bd67e33d5153a670924205b44e7c32e63"},
+    "passive_watcher": {"path": "scripts/v4_cowrie_capture_watch.py", "sha256": "1eca09700e57e78795e4c9136db4abc9344c760c972e767f9a847693d061ba18"},
+    "dry_run": {"path": "scripts/v4_cowrie_capture_dry_run.py", "sha256": "1fba950f1343e6622b666407cff76602950647a1bc73f523563658e3b1500ae3"},
+    "tests": {"path": "tests/unit/test_cowrie_capture.py", "sha256": "5c7084243df35a96d24923b10dfe2f7a5dd04cb1f661d18d6a9c0490e6234385"}
+  },
+  "artifacts": {
+    "test_results": {"path": "results/decision_fusion_v4/v4_cowrie_capture_test_results_v1.json", "sha256": "ddd02ddcd593274de7ae1168e6cb887ebcb3318b3534a7670266524aa8bdf618"},
+    "dry_run": {"path": "results/decision_fusion_v4/v4_cowrie_capture_dry_run_v1.json", "sha256": "8a2891de2464228add87b646365984608403aba06f352f6578f11adf239ae484"}
+  },
+  "finalization_contract": {
+    "grouping": "deployment_id plus native Cowrie session ID",
+    "trigger": "cowrie.session.closed and at least one usable input event",
+    "stale_recovery": "disabled; incomplete sessions fail closed",
+    "rotation": "all observed JSON segments required; missing fragments fail closed",
+    "raw": "atomic write, fsync, close, SHA256, read-only seal",
+    "registry": "append-only after raw, manifest, canonical, and lineage verification",
+    "idempotency": "deployment_id plus native_session_id",
+    "privacy": "source cluster is keyed HMAC in memory; source IP is absent from canonical and registry",
+    "historical_exclusion": "sessions whose first event predates the passive boundary are ignored"
+  },
+  "admin_reverification": {
+    "eligible": 40,
+    "raw_hashes": "PASS",
+    "manifest_hashes": "PASS",
+    "canonical_hashes": "PASS",
+    "lineage": "PASS",
+    "mutated": 0
+  },
+  "eligible_honeypot_sessions_before_freeze": 0,
+  "passive_collector": {
+    "enabled_after_freeze": true,
+    "network_changes": false,
+    "aws_changes": false,
+    "v4_policy_execution": 0,
+    "reference_annotations": 0,
+    "effectiveness_seen": false
+  }
+}

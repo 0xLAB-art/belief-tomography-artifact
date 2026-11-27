@@ -1,0 +1,35 @@
+{
+  "N": 120,
+  "checkpoint": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+  "checkpoint_sha256": "891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c",
+  "device": "cpu",
+  "entrypoint": "ragin.decision.laya_runtime:LayaRuntime.infer -> laya.Router.predict",
+  "max_ms": 7733.151,
+  "mean_ms": 1613.592,
+  "median_ms": 1245.9409999999998,
+  "min_ms": 1019.754,
+  "model": "english",
+  "model_initialization_contract": "ensure_real_model completed before the first matched case; per-case values measure infer calls and do not include one-time model loading",
+  "model_initialization_warmup_latency_ms": null,
+  "model_initialization_warmup_observed": false,
+  "p50_ms": 1245.9409999999998,
+  "p90_ms": 2668.5801,
+  "p95_ms": 2948.3932499999996,
+  "package": "laya",
+  "package_version": "0.4.2",
+  "real_model_verified_all_treatment": true,
+  "routing_effect": {
+    "BASELINE_NO_SIGNAL": 0,
+    "LAYA_ATTACK_STRATEGY": 24,
+    "LAYA_NON_ATTACK_STRATEGY": 96,
+    "attack_strategy_distribution": {
+      "fake_success_and_return_visits": 22,
+      "steer_to_honeytoken_credentials": 2
+    },
+    "schema": "ragin.laya_decision_v2.exploratory_120_routing_effect.v1",
+    "treatment_branch_changed_from_baseline_count": 120,
+    "treatment_branch_changed_from_baseline_rate": 1.0
+  },
+  "schema": "ragin.laya_decision_v2.exploratory_120_runtime_summary.v1",
+  "stdev_ms": 986.9572905241253
+}

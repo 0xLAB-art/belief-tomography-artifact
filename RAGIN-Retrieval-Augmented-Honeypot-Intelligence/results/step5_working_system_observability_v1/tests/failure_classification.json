@@ -1,0 +1,87 @@
+{
+  "protocol": "ragin.step5.working_system_observability.v1",
+  "phase": "audit:regression_classification",
+  "recorded_at": "2026-10-15T04:34:16.572365+00:00",
+  "baseline_run": {
+    "file": "tests/regression_baseline_prechange.txt",
+    "command": "python -m pytest tests -q -p no:cacheprovider (pre-change, captured earlier in the Step 5 session)",
+    "summary": "24 failed, 1847 passed, 116 skipped, 40 warnings, 15 errors in 75.69s (0:01:15)"
+  },
+  "post_run": {
+    "file": "tests/regression_post.txt",
+    "command": "python -m pytest tests -q -p no:cacheprovider (post-change)",
+    "summary": "24 failed, 1853 passed, 116 skipped, 40 warnings, 15 errors in 76.84s (0:01:16)"
+  },
+  "focused_run": {
+    "file": "tests/focused_post.txt",
+    "command": "python -m pytest tests/unit tests/integration tests/security -q -p no:cacheprovider (post-change)",
+    "summary": "24 failed, 1852 passed, 11 skipped, 37 warnings, 15 errors in 75.62s (0:01:15)"
+  },
+  "failing_ids_baseline": 39,
+  "failing_ids_post": 39,
+  "new_failures": [],
+  "resolved_failures": [],
+  "new_failure_count": 0,
+  "classification": "PASS: zero new failures; the post-run failure set is identical (1:1 by test ID) to the pre-change baseline; +6 passed = the 6 new Step 5 tests",
+  "pre_existing_failure_groups": {
+    "hisoka_memory_unit_tests": [
+      "tests/unit/test_hisoka_memory.py::TestAddAttackerProfile::test_add_profile_uses_profile_run_id",
+      "tests/unit/test_hisoka_memory.py::TestAddInteraction::test_add_basic_interaction",
+      "tests/unit/test_hisoka_memory.py::TestAddInteraction::test_add_returns_none_on_failure",
+      "tests/unit/test_hisoka_memory.py::TestAddInteraction::test_add_with_deception_response",
+      "tests/unit/test_hisoka_memory.py::TestAddInteraction::test_add_with_response_text",
+      "tests/unit/test_hisoka_memory.py::TestGetAllAttackers::test_get_all_attackers",
+      "tests/unit/test_hisoka_memory.py::TestGetAttackerProfile::test_profile_combines_searches",
+      "tests/unit/test_hisoka_memory.py::TestGetAttackerProfile::test_profile_empty_when_unavailable",
+      "tests/unit/test_hisoka_memory.py::TestGetSessionMemories::test_get_session_memories",
+      "tests/unit/test_hisoka_memory.py::TestHisokaMemoryLazyInit::test_ensure_initialized_calls_from_config",
+      "tests/unit/test_hisoka_memory.py::TestHisokaMemoryLazyInit::test_is_available_false_on_init_failure",
+      "tests/unit/test_hisoka_memory.py::TestHisokaMemoryLazyInit::test_no_double_init",
+      "tests/unit/test_hisoka_memory.py::TestPipelineIntegration::test_pipeline_handle_stores_to_memory",
+      "tests/unit/test_hisoka_memory.py::TestPipelineIntegration::test_pipeline_searches_history",
+      "tests/unit/test_hisoka_memory.py::TestSearchAttackerHistory::test_search_respects_limit",
+      "tests/unit/test_hisoka_memory.py::TestSearchAttackerHistory::test_search_returns_empty_on_failure",
+      "tests/unit/test_hisoka_memory.py::TestSearchAttackerHistory::test_search_returns_memories",
+      "tests/unit/test_hisoka_memory.py::TestUpdateDelete::test_delete_attacker",
+      "tests/unit/test_hisoka_memory.py::TestUpdateDelete::test_delete_memory",
+      "tests/unit/test_hisoka_memory.py::TestUpdateDelete::test_update_memory"
+    ],
+    "readiness_metrics": [
+      "tests/integration/test_readiness.py::TestMetricsFormat::test_metrics_contain_expected_format",
+      "tests/integration/test_readiness.py::TestMetricsFormat::test_prometheus_metrics_importable"
+    ],
+    "ttp_extraction_fixtures": [
+      "tests/unit/test_ttp_extraction_accuracy.py::TestDonAdapterTTPFixtures::test_don_adapter_extracts_expected_ttp[GT-001]",
+      "tests/unit/test_ttp_extraction_accuracy.py::TestDonAdapterTTPFixtures::test_don_adapter_extracts_expected_ttp[GT-002]",
+      "tests/unit/test_ttp_extraction_accuracy.py::TestDonAdapterTTPFixtures::test_don_adapter_extracts_expected_ttp[GT-003]",
+      "tests/unit/test_ttp_extraction_accuracy.py::TestDonAdapterTTPFixtures::test_don_adapter_extracts_expected_ttp[GT-004]",
+      "tests/unit/test_ttp_extraction_accuracy.py::TestDonAdapterTTPFixtures::test_don_adapter_extracts_expected_ttp[GT-005]",
+      "tests/unit/test_ttp_extraction_accuracy.py::TestDonAdapterTTPFixtures::test_don_adapter_extracts_expected_ttp[GT-006]",
+      "tests/unit/test_ttp_extraction_accuracy.py::TestDonAdapterTTPFixtures::test_don_adapter_extracts_expected_ttp[GT-007]",
+      "tests/unit/test_ttp_extraction_accuracy.py::TestDonAdapterTTPFixtures::test_don_adapter_extracts_expected_ttp[GT-008]"
+    ],
+    "pipeline_integration": [
+      "tests/integration/test_pipeline.py::TestChrolloToDonPipeline::test_classification_to_analysis",
+      "tests/integration/test_pipeline.py::TestConcurrentPipeline::test_parallel_sessions",
+      "tests/integration/test_pipeline.py::TestDonToHisokaPipeline::test_analysis_to_deception",
+      "tests/integration/test_pipeline.py::TestDonToHisokaPipeline::test_ioc_flow",
+      "tests/integration/test_pipeline.py::TestFullPipeline::test_chrollo_don_hisoka"
+    ],
+    "gateway_config": [
+      "tests/unit/test_gateway_integration.py::TestGatewayConfigLoading::test_load_from_dict",
+      "tests/unit/test_gateway_integration.py::TestGatewayConfigValidation::test_valid_config"
+    ],
+    "laya_confirmatory": [
+      "tests/unit/test_laya_confirmatory_analysis.py::test_refuses_when_label_fields_empty"
+    ],
+    "verifier_redteam_oracle": [
+      "tests/unit/test_verifier_redteam_security_oracle.py::test_oracle_validate_passes"
+    ]
+  },
+  "notes": [
+    "Baseline captured before any Step 5 harness/runner/test changes in this session.",
+    "One regression was found and RESOLVED during Step 5 (test_task2_verified_serving::test_persistence_failure_is_safe after the first commit-exception recovery attempt); root cause fixed (commit exceptions fail closed), not suppressed.",
+    "Exit code 1 on both runs is due solely to the pre-existing failures listed above; none are on the tested Step 5 path.",
+    "Focused set covers tests/unit + tests/integration + tests/security (includes all Step 5 focused tests and the verified-serving security suite)."
+  ]
+}

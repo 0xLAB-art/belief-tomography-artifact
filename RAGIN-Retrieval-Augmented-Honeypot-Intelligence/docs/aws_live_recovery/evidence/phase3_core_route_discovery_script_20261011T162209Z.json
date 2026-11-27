@@ -1,0 +1,46 @@
+{
+    "Command": {
+        "CommandId": "8ec8c5c2-6c08-4933-ae6e-09308c099a10",
+        "DocumentName": "AWS-RunShellScript",
+        "DocumentVersion": "$DEFAULT",
+        "Comment": "RAGIN python route discovery via SSM script file",
+        "ExpiresAfter": "2026-10-11T20:23:40.819000+03:00",
+        "Parameters": {
+            "commands": [
+                "set -euo pipefail\necho RUN\ndate -u\nSRC=\"/opt/ragin/ragin/server_v2.py\"\necho SRC=$SRC\nif [ ! -f \"$SRC\" ]; then\n  echo SRC_MISSING=yes\n  exit 2\nfi\npython3 - <<'PY'\nimport ast, json, pathlib, sys\np = pathlib.Path(\"/opt/ragin/ragin/server_v2.py\")\ntree = ast.parse(p.read_text(encoding=\"utf-8\"))\nroutes = []\nfor node in ast.walk(tree):\n    if isinstance(node, (ast.AsyncFunctionDef, ast.FunctionDef)):\n        name = getattr(node, \"name\", None)\n        if not name:\n            continue\n        first = (p.read_text(encoding=\"utf-8\").splitlines()[node.lineno-1] if node.lineno else \"\").strip()\n        routes.append({\"line\": node.lineno, \"name\": name, \"first_line\": first})\nprint(json.dumps(routes, indent=2))\nPY\necho DONE"
+            ]
+        },
+        "InstanceIds": [
+            "i-062a400b300f4f9e4"
+        ],
+        "Targets": [],
+        "RequestedDateTime": "2026-10-11T19:22:10.819000+03:00",
+        "Status": "Pending",
+        "StatusDetails": "Pending",
+        "OutputS3Region": "eu-north-1",
+        "OutputS3BucketName": "",
+        "OutputS3KeyPrefix": "",
+        "MaxConcurrency": "1",
+        "MaxErrors": "1",
+        "TargetCount": 1,
+        "CompletedCount": 0,
+        "ErrorCount": 0,
+        "DeliveryTimedOutCount": 0,
+        "ServiceRole": "",
+        "NotificationConfig": {
+            "NotificationArn": "",
+            "NotificationEvents": [],
+            "NotificationType": ""
+        },
+        "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "",
+            "CloudWatchOutputEnabled": false
+        },
+        "TimeoutSeconds": 90,
+        "AlarmConfiguration": {
+            "IgnorePollAlarmFailure": false,
+            "Alarms": []
+        },
+        "TriggeredAlarms": []
+    }
+}

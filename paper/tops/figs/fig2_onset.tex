@@ -1,0 +1,71 @@
+% Fig. 2 -- E5 onset dichotomy (two panels, log-x, theory-regime shading).
+% In-plot text kept to two short anchored labels; the floor numbers 0.283/0.141
+% live in the caption and Section 4.4.
+% Data: figs/figdata/fig2_{d02,d04}_{known,birth}.dat
+\begin{tikzpicture}
+\begin{groupplot}[
+  group style={
+    group size=2 by 1,
+    horizontal sep=1.0cm,
+    ylabels at=edge left,
+  },
+  tomog,
+  width=0.42\columnwidth, height=6.2cm,
+  xlabel={observation horizon $M$},
+  ylabel={detection AUC},
+  xmode=log,
+  xtick={5,10,20,40,80},
+  xticklabels={5,10,20,40,80},
+  x tick label style={/pgf/number format/1000 sep=},
+  log ticks with fixed point,
+  xmajorgrids=false, ymajorgrids=true,
+  ymin=0.3, ymax=1.03,
+  xmin=4.2, xmax=100,
+]
+\nextgroupplot[
+  title={$\delta = 0.2$},
+  legend to name=fig2leg,
+  legend columns=3,
+  legend style={at={(0.5,-0.34)}, anchor=north},
+]
+  % theory-regime shading: the N0=10 capped floor band
+  \fill[oiorange!10] (axis description cs:0,0.335) rectangle (axis description cs:1,0.44);
+  \node[font=\tiny, text=oiorange] at (axis description cs:0.5,0.385)
+    {$N_0{=}10$ floor regime};
+  \addplot[oiorange, thick, mark=*, mark size=1.5pt]
+    table[x=m, y=a10] {figs/figdata/fig2_d02_known.dat};
+  \addlegendentry{known onset, $N_0{=}10$}
+  \addplot[oiblue, thick, mark=square*, mark size=1.4pt]
+    table[x=m, y=a40] {figs/figdata/fig2_d02_known.dat};
+  \addlegendentry{known onset, $N_0{=}40$}
+  \addplot[black!55, semithick, densely dashed, mark=triangle*, mark size=1.5pt]
+    table[x=m, y=auc] {figs/figdata/fig2_d02_birth.dat};
+  \addlegendentry{birth onset (self-test)}
+  \addplot[black, dotted, thin, forget plot] coordinates {(4.2,0.5) (100,0.5)};
+  \node[font=\tiny, text=black!55, anchor=south west, inner sep=1pt]
+    at (axis cs:4.35,0.505) {chance};
+  \node[font=\tiny, text=oiblue, anchor=south, inner sep=2pt]
+    at (axis cs:80,0.97) {$0.97$};
+  \node[font=\tiny, text=oiorange, anchor=south, inner sep=2pt]
+    at (axis cs:80,0.71) {$0.71$};
+  \node[font=\footnotesize\bfseries, anchor=south west]
+    at (axis description cs:0.0,1.0) {(a)};
+\nextgroupplot[title={$\delta = 0.4$}]
+  \addplot[oiorange, thick, mark=*, mark size=1.5pt]
+    table[x=m, y=a10] {figs/figdata/fig2_d04_known.dat};
+  \addplot[oiblue, thick, mark=square*, mark size=1.4pt]
+    table[x=m, y=a40] {figs/figdata/fig2_d04_known.dat};
+  \addplot[black!55, semithick, densely dashed, mark=triangle*, mark size=1.5pt]
+    table[x=m, y=auc] {figs/figdata/fig2_d04_birth.dat};
+  \addplot[black, dotted, thin, forget plot] coordinates {(4.2,0.5) (100,0.5)};
+  \node[font=\tiny, text=black!55, anchor=south east, inner sep=1pt]
+    at (axis description cs:0.97,0.015) {both floors $<\ \delta$};
+  \node[font=\tiny, text=oiblue, anchor=south, inner sep=2pt]
+    at (axis cs:80,1.0) {$1.00$};
+  \node[font=\tiny, text=oiorange, anchor=north, inner sep=3pt]
+    at (axis cs:80,0.93) {$0.93$};
+  \node[font=\footnotesize\bfseries, anchor=south west]
+    at (axis description cs:0.0,1.0) {(b)};
+\end{groupplot}
+\end{tikzpicture}\\[2pt]
+\pgfplotslegendfromname{fig2leg}

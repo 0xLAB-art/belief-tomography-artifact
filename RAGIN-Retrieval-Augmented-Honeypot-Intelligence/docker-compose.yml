@@ -1,0 +1,324 @@
+services:
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.gateway
+    expose:
+      - "8080"
+    environment:
+      - TOKENROUTER_API_KEY=${TOKENROUTER_API_KEY}
+      - RUST_LOG=info
+    volumes:
+      - ./llm-gateway/config.toml:/app/config.toml:ro
+    networks:
+      - ragin-internal
+      - ragin-external
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  chrollo:
+    image: ragin-python:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    command: ["python3", "-m", "ragin.server", "--component", "chrollo"]
+    ports:
+      - "${CHROLLO_PORT:-8081}:8080"
+    volumes:
+      - ./ragin:/app/ragin:ro
+    environment:
+      - COMPONENT=chrollo
+      - REDIS_URL=redis://redis:6379/0
+      - API_KEY=${API_KEY}
+      - RAGIN_LLM_BASE_URL=${RAGIN_LLM_BASE_URL:?RAGIN_LLM_BASE_URL must be set}
+      - RAGIN_LLM_API_KEY=${RAGIN_LLM_API_KEY:-}
+      - RAGIN_DON_MODEL=${RAGIN_DON_MODEL:-opencode/space-bunny-free}
+      - RAGIN_HISOKA_MODEL=${RAGIN_HISOKA_MODEL:-opencode/space-bunny-free}
+      - RAGIN_LOG_LEVEL=INFO
+    networks:
+      - ragin-internal
+      - ragin-external
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  don:
+    image: ragin-python:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    command: ["python3", "-m", "ragin.server", "--component", "don"]
+    ports:
+      - "${DON_PORT:-8082}:8080"
+    volumes:
+      - ./ragin:/app/ragin:ro
+    environment:
+      - COMPONENT=don
+      - REDIS_URL=redis://redis:6379/0
+      - API_KEY=${API_KEY}
+      - RAGIN_GATEWAY_URL=${RAGIN_LLM_BASE_URL:?RAGIN_LLM_BASE_URL must be set}
+      - RAGIN_LLM_API_KEY=${RAGIN_LLM_API_KEY:-}
+      - RAGIN_DON_MODEL=${RAGIN_DON_MODEL:-opencode/space-bunny-free}
+      - RAGIN_LOG_LEVEL=INFO
+    networks:
+      - ragin-internal
+      - ragin-external
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  hisoka:
+    image: ragin-python:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    command: ["python3", "-m", "ragin.server", "--component", "hisoka"]
+    ports:
+      - "${HISOKA_PORT:-8083}:8080"
+    volumes:
+      - ./ragin:/app/ragin:ro
+    environment:
+      - COMPONENT=hisoka
+      - REDIS_URL=redis://redis:6379/0
+      - API_KEY=${API_KEY}
+      - GATEWAY_URL=http://gateway:8080
+      - RAGIN_HISOKA_GATEWAY_URL=${RAGIN_LLM_BASE_URL:?RAGIN_LLM_BASE_URL must be set}
+      - RAGIN_LLM_API_KEY=${RAGIN_LLM_API_KEY:-}
+      - RAGIN_HISOKA_MODEL=${RAGIN_HISOKA_MODEL:-opencode/space-bunny-free}
+      - RAGIN_HISOKA_TIMEOUT=${RAGIN_HISOKA_TIMEOUT:-300.0}
+      - RAGIN_LOG_LEVEL=INFO
+    networks:
+      - ragin-internal
+      - ragin-external
+    depends_on:
+      gateway:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis-data:/data
+    networks:
+      - ragin-internal
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+
+  jev:
+    image: ragin-python:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    command: ["python3", "-m", "ragin.server", "--component", "jev"]
+    ports:
+      - "${JEVI_PORT:-8084}:8080"
+    volumes:
+      - ./ragin:/app/ragin:ro
+    environment:
+      - COMPONENT=jev
+      - REDIS_URL=redis://redis:6379/0
+      - API_KEY=${API_KEY}
+      # Jev System One — free zen gateway; no external key required.
+      # Disable entirely with RAGIN_JEVI_ENABLED=0.
+      - RAGIN_JEVI_BASE_URL=${RAGIN_JEVI_BASE_URL:-https://opencode.ai/zen/v1}
+      - RAGIN_JEVI_API_KEY=${RAGIN_JEVI_API_KEY:-public}
+      - RAGIN_JEVI_MODEL=${RAGIN_JEVI_MODEL:-jev-1.13-free}
+      - RAGIN_JEVI_ENABLED=${RAGIN_JEVI_ENABLED:-1}
+      - RAGIN_LOG_LEVEL=INFO
+    networks:
+      - ragin-internal
+      - ragin-external
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    ports:
+      - "${PROMETHEUS_PORT:-9090}:9090"
+    volumes:
+      - ./ragin/config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./ragin/config/alert_rules.yml:/etc/prometheus/alert_rules.yml:ro
+      - prometheus-data:/prometheus
+    networks:
+      - ragin-internal
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.retention.time=30d"
+      - "--web.enable-lifecycle"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:9090/-/healthy"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  grafana:
+    image: grafana/grafana:10.4.0
+    ports:
+      - "${GRAFANA_PORT:-3000}:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-changeme}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - ./ragin/config/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./ragin/config/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana-data:/var/lib/grafana
+    networks:
+      - ragin-internal
+      - ragin-external
+    depends_on:
+      prometheus:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  nginx:
+    image: nginx:1.25-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+      - "${HISOKA_DECEPTION_PORT:-2222}:2222"
+    environment:
+      # API key is read from .env (gitignored) and injected into the nginx map block
+      # by /docker-entrypoint.d/30-ragin-envsubst.sh at container start.
+      # Compose fails hard if it is not set.
+      RAGIN_API_KEY: ${RAGIN_API_KEY}
+    volumes:
+      - ./ragin/config/nginx.conf.template:/etc/nginx/nginx.conf.template:ro
+      - ./ragin/config/docker-entrypoint-envsubst.sh:/docker-entrypoint.d/30-ragin-envsubst.sh:ro
+      - ./ssl/cert.pem:/etc/nginx/ssl/cert.pem:ro
+      - ./ssl/key.pem:/etc/nginx/ssl/key.pem:ro
+    networks:
+      - ragin-external
+      - ragin-internal
+    depends_on:
+      - gateway
+      - chrollo
+      - don
+      - hisoka
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:80/nginx-health"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+
+  cowrie:
+    image: cowrie/cowrie:latest
+    ports:
+      - "${COWRIE_PORT:-2223}:2222"
+    volumes:
+      - cowrie-data:/cowrie/var/log/cowrie
+    networks:
+      - ragin-internal
+      - ragin-external
+    restart: unless-stopped
+
+  # Authoritative verified pipeline (server_v2). This is the service that runs
+  # the Harness -> mandatory verification path. The legacy chrollo/don/hisoka
+  # services above are kept for backward-compatible component API access only;
+  # the verified serving path for SSH/Cowrie attackers is this pipeline service.
+  pipeline:
+    image: ragin-python:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    command: ["python3", "-m", "ragin.server_v2", "--mode", "pipeline"]
+    expose:
+      - "8080"
+    networks:
+      - ragin-internal
+    depends_on:
+      redis:
+        condition: service_healthy
+      gateway:
+        condition: service_healthy
+    environment:
+      - COMPONENT=pipeline
+      - REDIS_URL=redis://redis:6379/0
+      - API_KEY=${API_KEY}
+      - RAGIN_REQUIRE_AUTH=${RAGIN_REQUIRE_AUTH:-1}
+      - RAGIN_LLM_BASE_URL=${RAGIN_LLM_BASE_URL}
+      - RAGIN_LLM_API_KEY=${RAGIN_LLM_API_KEY}
+      - RAGIN_DON_MODEL=${RAGIN_DON_MODEL:-opencode/space-bunny-free}
+      - RAGIN_HISOKA_MODEL=${RAGIN_HISOKA_MODEL:-opencode/space-bunny-free}
+      - RAGIN_HISOKA_GATEWAY_URL=${RAGIN_LLM_BASE_URL}
+      - GATEWAY_URL=http://gateway:8080
+      - RAGIN_LOG_LEVEL=INFO
+      # Cowrie bridge reachability: when Cowrie is attached to the same internal
+      # network, set RAGIN_BRIDGE_HOST=pipeline so Cowrie's LLM-backend POSTs
+      # reach this service by Docker DNS. Leave unset for loopback-only dev.
+      - RAGIN_BRIDGE_HOST=${RAGIN_BRIDGE_HOST:-}
+      - RAGIN_BIND_HOST=${RAGIN_BIND_HOST:-0.0.0.0}
+      - RAGIN_SESSION_DIR=/data/sessions
+      - RAGIN_FIELD_EXPORT_DIR=/data/field
+      - RAGIN_HOST_FICTION_PATH=/data/host_fiction.json
+    volumes:
+      - ./ragin:/app/ragin:ro
+      - pipeline-data:/data
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.5"
+          pids: 256
+
+networks:
+  ragin-internal:
+    driver: bridge
+    internal: true
+  ragin-external:
+    driver: bridge
+
+volumes:
+  redis-data:
+  prometheus-data:
+  grafana-data:
+  cowrie-data:
+  pipeline-data:

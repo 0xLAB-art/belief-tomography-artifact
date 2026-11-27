@@ -1,0 +1,1129 @@
+=== FINAL REGRESSION STEP 7 (real repo tests/, not assumed server_v2/tests/) - timestamp 2026-10-10T09:12:22Z ===
+cwd: /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence
+py_ok cli: python
+pytest present: no
+pytest program ok: no
+--- ls tests/ ---
+total 152
+drwxrwxr-x  6 elaref elaref  4096 Sep 15 22:03 .
+drwxrwxr-x 29 elaref elaref  4096 Oct 10 08:08 ..
+-rwxrwxr-x  1 elaref elaref  8333 Sep 25 06:57 benchmark_traditional.py
+-rwxrwxr-x  1 elaref elaref 10128 Sep 15 22:22 conftest.py
+-rwxrwxr-x  1 elaref elaref     0 Sep 15 20:37 __init__.py
+drwxrwxr-x  3 elaref elaref  4096 Sep 15 22:11 integration
+drwxrwxr-x  2 elaref elaref  4096 Oct 10 12:12 __pycache__
+drwxrwxr-x  3 elaref elaref  4096 Oct  8 22:55 security
+-rwxrwxr-x  1 elaref elaref 66911 Sep 15 20:37 test_e2e_comprehensive.py
+-rwxrwxr-x  1 elaref elaref 19268 Sep 15 20:37 test_performance_benchmark.py
+-rwxrwxr-x  1 elaref elaref 15604 Sep 15 20:37 test_security_validation.py
+drwxrwxr-x  3 elaref elaref  4096 Oct  9 06:58 unit
+--- pytest --co (tests/ root) stdout+stderr ---
+/usr/local/bin/python: No module named pytest
+--- python -m unittest discover -s tests/ -v ---
+integration.test_gateway_api (unittest.loader._FailedTest.integration.test_gateway_api) ... ERROR
+integration.test_performance (unittest.loader._FailedTest.integration.test_performance) ... ERROR
+integration.test_pipeline (unittest.loader._FailedTest.integration.test_pipeline) ... ERROR
+integration.test_readiness (unittest.loader._FailedTest.integration.test_readiness) ... ERROR
+integration.test_stability (unittest.loader._FailedTest.integration.test_stability) ... ERROR
+security.test_adversarial (unittest.loader._FailedTest.security.test_adversarial) ... ERROR
+security.test_input_validation (unittest.loader._FailedTest.security.test_input_validation) ... ERROR
+security.test_mtls_transport (unittest.loader._FailedTest.security.test_mtls_transport) ... ERROR
+security.test_task2_verified_serving (unittest.loader._FailedTest.security.test_task2_verified_serving) ... ERROR
+test_e2e_comprehensive (unittest.loader._FailedTest.test_e2e_comprehensive) ... ERROR
+test_performance_benchmark (unittest.loader._FailedTest.test_performance_benchmark) ... ERROR
+test_security_validation (unittest.loader._FailedTest.test_security_validation) ... ERROR
+unit.test_adapters (unittest.loader._FailedTest.unit.test_adapters) ... ERROR
+unit.test_anonymized_mirror (unittest.loader._FailedTest.unit.test_anonymized_mirror) ... ERROR
+unit.test_artifact_consistency (unittest.loader._FailedTest.unit.test_artifact_consistency) ... ERROR
+unit.test_attack_heatmap (unittest.loader._FailedTest.unit.test_attack_heatmap) ... ERROR
+unit.test_b4_pairing_contract (unittest.loader._FailedTest.unit.test_b4_pairing_contract) ... ERROR
+unit.test_benchmark (unittest.loader._FailedTest.unit.test_benchmark) ... ERROR
+unit.test_chrollo (unittest.loader._FailedTest.unit.test_chrollo) ... ERROR
+unit.test_coordination (unittest.loader._FailedTest.unit.test_coordination) ... ERROR
+unit.test_credential_baits (unittest.loader._FailedTest.unit.test_credential_baits) ... ERROR
+unit.test_cycle (unittest.loader._FailedTest.unit.test_cycle) ... ERROR
+unit.test_cycle_graph (unittest.loader._FailedTest.unit.test_cycle_graph) ... ERROR
+unit.test_deception_prompt (unittest.loader._FailedTest.unit.test_deception_prompt) ... ERROR
+unit.test_don (unittest.loader._FailedTest.unit.test_don) ... ERROR
+unit.test_don_graph (unittest.loader._FailedTest.unit.test_don_graph) ... ERROR
+unit.test_extended_cti (unittest.loader._FailedTest.unit.test_extended_cti) ... ERROR
+unit.test_features_seq (unittest.loader._FailedTest.unit.test_features_seq) ... ERROR
+unit.test_fiction_graph (unittest.loader._FailedTest.unit.test_fiction_graph) ... ERROR
+unit.test_figure_geometry (unittest.loader._FailedTest.unit.test_figure_geometry) ... ERROR
+unit.test_gateway_integration (unittest.loader._FailedTest.unit.test_gateway_integration) ... ERROR
+unit.test_gateway_reasoning_models (unittest.loader._FailedTest.unit.test_gateway_reasoning_models) ... ERROR
+unit.test_harness_threat_modeling (unittest.loader._FailedTest.unit.test_harness_threat_modeling) ... ERROR
+unit.test_hisoka (unittest.loader._FailedTest.unit.test_hisoka) ... ERROR
+unit.test_hisoka_memory (unittest.loader._FailedTest.unit.test_hisoka_memory) ... ERROR
+unit.test_hitl (unittest.loader._FailedTest.unit.test_hitl) ... ERROR
+unit.test_honeytoken_propagation (unittest.loader._FailedTest.unit.test_honeytoken_propagation) ... ERROR
+unit.test_host_fiction (unittest.loader._FailedTest.unit.test_host_fiction) ... ERROR
+unit.test_host_fiction_wiring (unittest.loader._FailedTest.unit.test_host_fiction_wiring) ... ERROR
+unit.test_human_eval_subagents (unittest.loader._FailedTest.unit.test_human_eval_subagents) ... ERROR
+unit.test_intelligence (unittest.loader._FailedTest.unit.test_intelligence) ... ERROR
+unit.test_jevi (unittest.loader._FailedTest.unit.test_jevi) ... ERROR
+unit.test_judge_panel_corrections (unittest.loader._FailedTest.unit.test_judge_panel_corrections) ... ERROR
+unit.test_lightrag_adapter (unittest.loader._FailedTest.unit.test_lightrag_adapter) ... ERROR
+unit.test_metrics (unittest.loader._FailedTest.unit.test_metrics) ... ERROR
+unit.test_mitre_chain (unittest.loader._FailedTest.unit.test_mitre_chain) ... ERROR
+unit.test_mitre_chain_end (unittest.loader._FailedTest.unit.test_mitre_chain_end) ... ERROR
+unit.test_monitoring (unittest.loader._FailedTest.unit.test_monitoring) ... ERROR
+unit.test_multi_turn (unittest.loader._FailedTest.unit.test_multi_turn) ... ERROR
+unit.test_optional_assessment (unittest.loader._FailedTest.unit.test_optional_assessment) ... ERROR
+unit.test_postprocess_hardening (unittest.loader._FailedTest.unit.test_postprocess_hardening) ... ERROR
+unit.test_rollout (unittest.loader._FailedTest.unit.test_rollout) ... ERROR
+unit.test_serve_provenance (unittest.loader._FailedTest.unit.test_serve_provenance) ... ERROR
+unit.test_server_v2 (unittest.loader._FailedTest.unit.test_server_v2) ... ERROR
+unit.test_supported_claims (unittest.loader._FailedTest.unit.test_supported_claims) ... ERROR
+unit.test_threat_mapper_gt (unittest.loader._FailedTest.unit.test_threat_mapper_gt) ... ERROR
+unit.test_threat_modeling (unittest.loader._FailedTest.unit.test_threat_modeling) ... ERROR
+unit.test_ttp_extraction_accuracy (unittest.loader._FailedTest.unit.test_ttp_extraction_accuracy) ... ERROR
+unit.test_verifier (unittest.loader._FailedTest.unit.test_verifier) ... ERROR
+unit.test_verifier_redteam (unittest.loader._FailedTest.unit.test_verifier_redteam) ... ERROR
+unit.test_watch_audit_pipeline (unittest.loader._FailedTest.unit.test_watch_audit_pipeline) ... ERROR
+
+======================================================================
+ERROR: integration.test_gateway_api (unittest.loader._FailedTest.integration.test_gateway_api)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: integration.test_gateway_api
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/integration/test_gateway_api.py", line 9, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: integration.test_performance (unittest.loader._FailedTest.integration.test_performance)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: integration.test_performance
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/integration/test_performance.py", line 9, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: integration.test_pipeline (unittest.loader._FailedTest.integration.test_pipeline)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: integration.test_pipeline
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/integration/test_pipeline.py", line 11, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: integration.test_readiness (unittest.loader._FailedTest.integration.test_readiness)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: integration.test_readiness
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/integration/test_readiness.py", line 8, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: integration.test_stability (unittest.loader._FailedTest.integration.test_stability)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: integration.test_stability
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/integration/test_stability.py", line 10, in <module>
+    from ragin.chrollo.features import FeatureExtractor
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/chrollo/__init__.py", line 8, in <module>
+    from ragin.chrollo.classifier import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/chrollo/classifier.py", line 11, in <module>
+    import joblib
+ModuleNotFoundError: No module named 'joblib'
+
+
+======================================================================
+ERROR: security.test_adversarial (unittest.loader._FailedTest.security.test_adversarial)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: security.test_adversarial
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/security/test_adversarial.py", line 10, in <module>
+    from ragin.chrollo.features import FeatureExtractor
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/chrollo/__init__.py", line 8, in <module>
+    from ragin.chrollo.classifier import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/chrollo/classifier.py", line 11, in <module>
+    import joblib
+ModuleNotFoundError: No module named 'joblib'
+
+
+======================================================================
+ERROR: security.test_input_validation (unittest.loader._FailedTest.security.test_input_validation)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: security.test_input_validation
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/security/test_input_validation.py", line 13, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: security.test_mtls_transport (unittest.loader._FailedTest.security.test_mtls_transport)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: security.test_mtls_transport
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/security/test_mtls_transport.py", line 5, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: security.test_task2_verified_serving (unittest.loader._FailedTest.security.test_task2_verified_serving)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: security.test_task2_verified_serving
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/security/test_task2_verified_serving.py", line 6, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: test_e2e_comprehensive (unittest.loader._FailedTest.test_e2e_comprehensive)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_e2e_comprehensive
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/test_e2e_comprehensive.py", line 22, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: test_performance_benchmark (unittest.loader._FailedTest.test_performance_benchmark)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_performance_benchmark
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/test_performance_benchmark.py", line 17, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: test_security_validation (unittest.loader._FailedTest.test_security_validation)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_security_validation
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/test_security_validation.py", line 16, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_adapters (unittest.loader._FailedTest.unit.test_adapters)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_adapters
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_adapters.py", line 8, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_anonymized_mirror (unittest.loader._FailedTest.unit.test_anonymized_mirror)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_anonymized_mirror
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_anonymized_mirror.py", line 21, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_artifact_consistency (unittest.loader._FailedTest.unit.test_artifact_consistency)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_artifact_consistency
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_artifact_consistency.py", line 34, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_attack_heatmap (unittest.loader._FailedTest.unit.test_attack_heatmap)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_attack_heatmap
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_attack_heatmap.py", line 8, in <module>
+    from ragin.don.attack_heatmap import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/don/__init__.py", line 32, in <module>
+    from .models import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/don/models.py", line 10, in <module>
+    from pydantic import BaseModel, Field, field_validator
+ModuleNotFoundError: No module named 'pydantic'
+
+
+======================================================================
+ERROR: unit.test_b4_pairing_contract (unittest.loader._FailedTest.unit.test_b4_pairing_contract)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_b4_pairing_contract
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_b4_pairing_contract.py", line 9, in <module>
+    import pytest  # noqa: E402
+    ^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_benchmark (unittest.loader._FailedTest.unit.test_benchmark)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_benchmark
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_benchmark.py", line 9, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_chrollo (unittest.loader._FailedTest.unit.test_chrollo)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_chrollo
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_chrollo.py", line 13, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_coordination (unittest.loader._FailedTest.unit.test_coordination)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_coordination
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_coordination.py", line 5, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_credential_baits (unittest.loader._FailedTest.unit.test_credential_baits)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_credential_baits
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_credential_baits.py", line 13, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_cycle (unittest.loader._FailedTest.unit.test_cycle)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_cycle
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_cycle.py", line 13, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_cycle_graph (unittest.loader._FailedTest.unit.test_cycle_graph)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_cycle_graph
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_cycle_graph.py", line 8, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_deception_prompt (unittest.loader._FailedTest.unit.test_deception_prompt)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_deception_prompt
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_deception_prompt.py", line 5, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_don (unittest.loader._FailedTest.unit.test_don)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_don
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_don.py", line 11, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_don_graph (unittest.loader._FailedTest.unit.test_don_graph)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_don_graph
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_don_graph.py", line 8, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_extended_cti (unittest.loader._FailedTest.unit.test_extended_cti)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_extended_cti
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_extended_cti.py", line 9, in <module>
+    from ragin.don.extended_cti_loader import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/don/__init__.py", line 32, in <module>
+    from .models import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/don/models.py", line 10, in <module>
+    from pydantic import BaseModel, Field, field_validator
+ModuleNotFoundError: No module named 'pydantic'
+
+
+======================================================================
+ERROR: unit.test_features_seq (unittest.loader._FailedTest.unit.test_features_seq)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_features_seq
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_features_seq.py", line 7, in <module>
+    from ragin.chrollo.features_seq import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/chrollo/__init__.py", line 8, in <module>
+    from ragin.chrollo.classifier import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/chrollo/classifier.py", line 11, in <module>
+    import joblib
+ModuleNotFoundError: No module named 'joblib'
+
+
+======================================================================
+ERROR: unit.test_fiction_graph (unittest.loader._FailedTest.unit.test_fiction_graph)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_fiction_graph
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_fiction_graph.py", line 5, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_figure_geometry (unittest.loader._FailedTest.unit.test_figure_geometry)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_figure_geometry
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_figure_geometry.py", line 21, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_gateway_integration (unittest.loader._FailedTest.unit.test_gateway_integration)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_gateway_integration
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_gateway_integration.py", line 13, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_gateway_reasoning_models (unittest.loader._FailedTest.unit.test_gateway_reasoning_models)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_gateway_reasoning_models
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_gateway_reasoning_models.py", line 14, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_harness_threat_modeling (unittest.loader._FailedTest.unit.test_harness_threat_modeling)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_harness_threat_modeling
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_harness_threat_modeling.py", line 7, in <module>
+    from ragin.cycle.harness import Harness
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/__init__.py", line 31, in <module>
+    from ragin.cycle.harness import Harness, PipelineResult
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/harness.py", line 29, in <module>
+    from ragin.cycle.verifier import FictionConsistencyVerifier
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/verifier.py", line 28, in <module>
+    from ragin.hisoka.deception import identity_for
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/__init__.py", line 8, in <module>
+    from ragin.hisoka.deception import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/deception.py", line 18, in <module>
+    from ragin.hisoka.models import Persona, SessionState
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/models.py", line 8, in <module>
+    from pydantic import BaseModel, Field, field_validator
+ModuleNotFoundError: No module named 'pydantic'
+
+
+======================================================================
+ERROR: unit.test_hisoka (unittest.loader._FailedTest.unit.test_hisoka)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_hisoka
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_hisoka.py", line 13, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_hisoka_memory (unittest.loader._FailedTest.unit.test_hisoka_memory)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_hisoka_memory
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_hisoka_memory.py", line 10, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_hitl (unittest.loader._FailedTest.unit.test_hitl)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_hitl
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_hitl.py", line 5, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_honeytoken_propagation (unittest.loader._FailedTest.unit.test_honeytoken_propagation)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_honeytoken_propagation
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_honeytoken_propagation.py", line 7, in <module>
+    from ragin.cycle.harness import Harness
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/__init__.py", line 31, in <module>
+    from ragin.cycle.harness import Harness, PipelineResult
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/harness.py", line 29, in <module>
+    from ragin.cycle.verifier import FictionConsistencyVerifier
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/verifier.py", line 28, in <module>
+    from ragin.hisoka.deception import identity_for
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/__init__.py", line 8, in <module>
+    from ragin.hisoka.deception import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/deception.py", line 18, in <module>
+    from ragin.hisoka.models import Persona, SessionState
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/models.py", line 8, in <module>
+    from pydantic import BaseModel, Field, field_validator
+ModuleNotFoundError: No module named 'pydantic'
+
+
+======================================================================
+ERROR: unit.test_host_fiction (unittest.loader._FailedTest.unit.test_host_fiction)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_host_fiction
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_host_fiction.py", line 14, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_host_fiction_wiring (unittest.loader._FailedTest.unit.test_host_fiction_wiring)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_host_fiction_wiring
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_host_fiction_wiring.py", line 15, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_human_eval_subagents (unittest.loader._FailedTest.unit.test_human_eval_subagents)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_human_eval_subagents
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_human_eval_subagents.py", line 33, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_intelligence (unittest.loader._FailedTest.unit.test_intelligence)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_intelligence
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_intelligence.py", line 8, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_jevi (unittest.loader._FailedTest.unit.test_jevi)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_jevi
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_jevi.py", line 13, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_judge_panel_corrections (unittest.loader._FailedTest.unit.test_judge_panel_corrections)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_judge_panel_corrections
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_judge_panel_corrections.py", line 15, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_lightrag_adapter (unittest.loader._FailedTest.unit.test_lightrag_adapter)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_lightrag_adapter
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_lightrag_adapter.py", line 12, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_metrics (unittest.loader._FailedTest.unit.test_metrics)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_metrics
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_metrics.py", line 8, in <module>
+    from ragin.cycle.metrics import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/__init__.py", line 31, in <module>
+    from ragin.cycle.harness import Harness, PipelineResult
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/harness.py", line 29, in <module>
+    from ragin.cycle.verifier import FictionConsistencyVerifier
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/verifier.py", line 28, in <module>
+    from ragin.hisoka.deception import identity_for
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/__init__.py", line 8, in <module>
+    from ragin.hisoka.deception import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/deception.py", line 18, in <module>
+    from ragin.hisoka.models import Persona, SessionState
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/models.py", line 8, in <module>
+    from pydantic import BaseModel, Field, field_validator
+ModuleNotFoundError: No module named 'pydantic'
+
+
+======================================================================
+ERROR: unit.test_mitre_chain (unittest.loader._FailedTest.unit.test_mitre_chain)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_mitre_chain
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_mitre_chain.py", line 5, in <module>
+    from ragin.graph.mitre import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/graph/mitre.py", line 22, in <module>
+    from ragin.don.threat_mapper import _TECHNIQUE_TO_TACTIC
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/don/__init__.py", line 32, in <module>
+    from .models import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/don/models.py", line 10, in <module>
+    from pydantic import BaseModel, Field, field_validator
+ModuleNotFoundError: No module named 'pydantic'
+
+
+======================================================================
+ERROR: unit.test_mitre_chain_end (unittest.loader._FailedTest.unit.test_mitre_chain_end)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_mitre_chain_end
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_mitre_chain_end.py", line 12, in <module>
+    from ragin.graph.mitre import attach_strategy_context, next_candidates, suggest_next_techniques  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/graph/mitre.py", line 22, in <module>
+    from ragin.don.threat_mapper import _TECHNIQUE_TO_TACTIC
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/don/__init__.py", line 32, in <module>
+    from .models import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/don/models.py", line 10, in <module>
+    from pydantic import BaseModel, Field, field_validator
+ModuleNotFoundError: No module named 'pydantic'
+
+
+======================================================================
+ERROR: unit.test_monitoring (unittest.loader._FailedTest.unit.test_monitoring)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_monitoring
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_monitoring.py", line 9, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_multi_turn (unittest.loader._FailedTest.unit.test_multi_turn)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_multi_turn
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_multi_turn.py", line 3, in <module>
+    from ragin.cycle.multi_turn import MultiTurnTracker
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/__init__.py", line 31, in <module>
+    from ragin.cycle.harness import Harness, PipelineResult
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/harness.py", line 29, in <module>
+    from ragin.cycle.verifier import FictionConsistencyVerifier
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/verifier.py", line 28, in <module>
+    from ragin.hisoka.deception import identity_for
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/__init__.py", line 8, in <module>
+    from ragin.hisoka.deception import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/deception.py", line 18, in <module>
+    from ragin.hisoka.models import Persona, SessionState
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/models.py", line 8, in <module>
+    from pydantic import BaseModel, Field, field_validator
+ModuleNotFoundError: No module named 'pydantic'
+
+
+======================================================================
+ERROR: unit.test_optional_assessment (unittest.loader._FailedTest.unit.test_optional_assessment)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_optional_assessment
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_optional_assessment.py", line 3, in <module>
+    from ragin.decision.optional import LayaAssessmentAdapter
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/decision/__init__.py", line 1, in <module>
+    from ragin.decision.optional import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/decision/optional.py", line 9, in <module>
+    from ragin.jev.models import JevAssessment, JevResponse
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/jev/__init__.py", line 20, in <module>
+    from ragin.jev.assessment import JevAssessor, JevError
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/jev/assessment.py", line 21, in <module>
+    from ragin.jev.client import JevClient
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/jev/client.py", line 32, in <module>
+    from ragin.jev.models import JevQuestion, JevResponse
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/jev/models.py", line 20, in <module>
+    from pydantic import BaseModel, Field, field_validator
+ModuleNotFoundError: No module named 'pydantic'
+
+
+======================================================================
+ERROR: unit.test_postprocess_hardening (unittest.loader._FailedTest.unit.test_postprocess_hardening)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_postprocess_hardening
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_postprocess_hardening.py", line 10, in <module>
+    from ragin.hisoka.deception import (  # noqa: E402
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/__init__.py", line 8, in <module>
+    from ragin.hisoka.deception import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/deception.py", line 18, in <module>
+    from ragin.hisoka.models import Persona, SessionState
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/models.py", line 8, in <module>
+    from pydantic import BaseModel, Field, field_validator
+ModuleNotFoundError: No module named 'pydantic'
+
+
+======================================================================
+ERROR: unit.test_rollout (unittest.loader._FailedTest.unit.test_rollout)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_rollout
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_rollout.py", line 7, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_serve_provenance (unittest.loader._FailedTest.unit.test_serve_provenance)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_serve_provenance
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_serve_provenance.py", line 15, in <module>
+    from ragin.cycle.graph import (  # noqa: E402
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/__init__.py", line 31, in <module>
+    from ragin.cycle.harness import Harness, PipelineResult
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/harness.py", line 29, in <module>
+    from ragin.cycle.verifier import FictionConsistencyVerifier
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/verifier.py", line 28, in <module>
+    from ragin.hisoka.deception import identity_for
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/__init__.py", line 8, in <module>
+    from ragin.hisoka.deception import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/deception.py", line 18, in <module>
+    from ragin.hisoka.models import Persona, SessionState
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/models.py", line 8, in <module>
+    from pydantic import BaseModel, Field, field_validator
+ModuleNotFoundError: No module named 'pydantic'
+
+
+======================================================================
+ERROR: unit.test_server_v2 (unittest.loader._FailedTest.unit.test_server_v2)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_server_v2
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_server_v2.py", line 7, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_supported_claims (unittest.loader._FailedTest.unit.test_supported_claims)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_supported_claims
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_supported_claims.py", line 12, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_threat_mapper_gt (unittest.loader._FailedTest.unit.test_threat_mapper_gt)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_threat_mapper_gt
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_threat_mapper_gt.py", line 15, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_threat_modeling (unittest.loader._FailedTest.unit.test_threat_modeling)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_threat_modeling
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_threat_modeling.py", line 5, in <module>
+    from ragin.cycle.threat_modeling import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/__init__.py", line 31, in <module>
+    from ragin.cycle.harness import Harness, PipelineResult
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/harness.py", line 29, in <module>
+    from ragin.cycle.verifier import FictionConsistencyVerifier
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/cycle/verifier.py", line 28, in <module>
+    from ragin.hisoka.deception import identity_for
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/__init__.py", line 8, in <module>
+    from ragin.hisoka.deception import (
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/deception.py", line 18, in <module>
+    from ragin.hisoka.models import Persona, SessionState
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/hisoka/models.py", line 8, in <module>
+    from pydantic import BaseModel, Field, field_validator
+ModuleNotFoundError: No module named 'pydantic'
+
+
+======================================================================
+ERROR: unit.test_ttp_extraction_accuracy (unittest.loader._FailedTest.unit.test_ttp_extraction_accuracy)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_ttp_extraction_accuracy
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_ttp_extraction_accuracy.py", line 26, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_verifier (unittest.loader._FailedTest.unit.test_verifier)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_verifier
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_verifier.py", line 8, in <module>
+    import pytest  # noqa: F401  (fixture deps kept for future parametrization)
+    ^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_verifier_redteam (unittest.loader._FailedTest.unit.test_verifier_redteam)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_verifier_redteam
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_verifier_redteam.py", line 34, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+======================================================================
+ERROR: unit.test_watch_audit_pipeline (unittest.loader._FailedTest.unit.test_watch_audit_pipeline)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: unit.test_watch_audit_pipeline
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_watch_audit_pipeline.py", line 15, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+
+
+----------------------------------------------------------------------
+Ran 61 tests in 0.005s
+
+FAILED (errors=61)
+=== END ===

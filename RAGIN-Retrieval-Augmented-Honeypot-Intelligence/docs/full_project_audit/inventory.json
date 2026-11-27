@@ -1,0 +1,115 @@
+{
+  "audit_run": "2026-10-10",
+  "workspace_root": "/home/elaref/Documents/research/ragin",
+  "primary_repo": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence",
+  "git": {
+    "branch": "main",
+    "head": "f0c4042c0eb2ee25854796b770ea440f0b5851b2",
+    "head_date": "2026-10-10T06:42:55+03:00",
+    "ahead_of_origin": 43,
+    "dirty": true,
+    "modified_count": 65,
+    "untracked_count": 120
+  },
+  "python": {
+    "version": "3.12.3",
+    "venv": ".venv"
+  },
+  "directories": {
+    "source_modules": "ragin/ (107 .py files across 18 packages)",
+    "tests": "tests/ (93 .py files: 80 unit + 4 security + 5 integration + 3 top-level + 1 benchmark)",
+    "scripts": "scripts/ (80+ .py/.sh files)",
+    "results": "results/ (225 files across 17 subdirectories)",
+    "paper": "paper/ (TDSC main.tex + SP2027 sp2027.tex, both dirty)",
+    "graphify_out": "graphify-out/ (graph.json 11M, 2026-09-27 build, CLI at ~/.local/bin/graphify)",
+    "config": "ragin/config/ + .env.example + .env.field.example + docker-compose*.yml + settings.yaml"
+  },
+  "file_counts": {
+    "ragin_python_files": 107,
+    "test_python_files": 93,
+    "total_test_files": 93,
+    "results_files": 225,
+    "results_subdirectories": 17,
+    "session_files_on_disk": 6932,
+    "scripts_files": 80,
+    "docker_compose_variants": 10,
+    "top_level_git_files": 65
+  },
+  "inspection_coverage": {
+    "fully_read": [
+      "ragin/server.py",
+      "ragin/server_v2.py",
+      "ragin/cycle/__init__.py",
+      "ragin/cycle/harness.py",
+      "ragin/cycle/sandbox.py",
+      "ragin/cycle/verifier.py",
+      "ragin/cycle/adapters.py",
+      "ragin/cycle/session.py",
+      "ragin/cycle/provider_transport.py",
+      "ragin/cycle/supported_claims.py",
+      "ragin/hisoka/deception.py (lines 1-1098 of 3195)",
+      "ragin/hisoka/deceiver.py (truncated)",
+      "ragin/chrollo/classifier.py",
+      "ragin/don/rag_engine.py",
+      "ragin/gateway/client.py",
+      "ragin/graph/fiction.py",
+      "ragin/graph/host_fiction.py",
+      "ragin/transport/mtls.py",
+      "ragin/cycle/hitl.py (truncated)",
+      "config/settings.yaml",
+      ".env.example",
+      ".env.field.example",
+      "docker-compose.yml",
+      "pyproject.toml",
+      "requirements-runtime.txt",
+      "Makefile",
+      "scripts/verifier_redteam_check.py",
+      "results/verifier_artifacts_manifest.json",
+      "results/verifier_integrity_provenance.json",
+      "tests/unit/test_server_v2.py",
+      "tests/unit/test_provider_transport.py",
+      "tests/unit/test_artifact_consistency.py",
+      "tests/security/test_task2_verified_serving.py"
+    ],
+    "executed_tests": [
+      {"suite": "scripts/verifier_redteam_check.py", "result": "47/47 PASS", "duration_s": 1},
+      {"suite": "tests/unit/test_provider_transport.py", "result": "11/11 PASS", "duration_s": 0.33},
+      {"suite": "tests/security/test_task2_verified_serving.py", "result": "13/13 PASS", "duration_s": 0.95},
+      {"suite": "tests/unit/test_verifier.py + test_fiction_graph.py + test_hisoka.py + test_artifact_consistency.py", "result": "186/186 PASS", "duration_s": 1.01},
+      {"suite": "tests/unit/test_server_v2.py", "result": "24/24 PASS", "duration_s": 0.52},
+      {"suite": "tests/unit/test_cycle.py + test_don.py + test_chrollo.py + test_hitl.py + test_host_fiction.py", "result": "230/230 PASS", "duration_s": 87.36},
+      {"suite": "TOTAL_EXECUTED", "result": "471/471 PASS", "duration_s": 90.17}
+    ],
+    "selectively_inspected": [
+      "ragin/hisoka/deception.py lines 1099-3195 (unread — contains _scrub_danger_signals completion, ResponseGenerator class, deterministic fast-paths)",
+      "ragin/hisoka/deceiver.py (truncated — AdaptiveDeceiver.generate_response body unread)",
+      "ragin/cycle/hitl.py (truncated after ApprovalGateway — DefaultRiskBasedPolicy body unread)"
+    ],
+    "not_inspected": [
+      "ragin/auth/rbac.py",
+      "ragin/decoys/* (5 modules)",
+      "ragin/intelligence/* (4 modules)",
+      "ragin/jev/* (4 modules — light testing exists)",
+      "ragin/monitoring/* (4 modules — partial tests exist)",
+      "ragin/rollout/* (4 modules)",
+      "ragin/siem/* (4 modules)",
+      "ragin/decision/* (2 modules)",
+      "ragin/cycle/coordination.py (imported optionally, not tested)",
+      "data/sessions/ses-*.jsonl (6932 files — not inspected individually)",
+      "Most result JSON files (only 4 canonical verifier artifacts + manifest + provenance + derived_headline_values inspected)",
+      "ESWA-D-26-33173.pdf (binary, 4.6MB)",
+      "imc_vpn.pdf (binary, 1.6MB)",
+      "paper/main.pdf (binary, modified)",
+      "paper/sp2027.pdf (binary, untracked)"
+    ],
+    "known_stale_or_unused": [
+      "ragin/server.py — legacy, hisoka route returns 410",
+      "ragin/server_v2.py standalone mode — disabled (RuntimeError)",
+      "ragLegendre/ — stale narrow directory from prior agent",
+      "harness.py.bak20261010 — backup of pre-modification harness",
+      "scripts/_tmp_* (14 files) — temporary debug scripts",
+      "run/strace_server.* (13 files) — strace output from debug run",
+      "run/setsid_test.out, run/mock.out — debug artifacts"
+    ]
+  }
+}

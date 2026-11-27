@@ -1,0 +1,56 @@
+{
+  "claim_boundary": {
+    "commands": "STARTUP_WIRING_ONLY_NOT_EXPERIMENT",
+    "decoding_compliance": "NOT_ESTABLISHED",
+    "generator_settings": "PROPOSED_NOT_ENFORCED",
+    "genuine_model_invocation": "NOT_ESTABLISHED",
+    "resource_fields": "PROPOSED_NOT_ENFORCED"
+  },
+  "config_files": {
+    "b0_native_cowrie.json": "e6d8f6e25008b05efcafaf42faf9d00ec42edb6678ba9ac32f9847baebf9093e",
+    "b1_no_retrieval.json": "4425459fa4efebac45cbb933c8087c144eb2ed263d40c70652d81f4f620f60cf",
+    "b2_bm25.json": "678f384cd9fa3211116a794ee2a6ffdc1ce0a6e1dde23c9751a28f68c898e7bc",
+    "b3_dense.json": "64e2b26c6c1c5e76fc8d308e5ca7e4b29036fd3b7a199298ebe5671e75aa056a",
+    "b4_rule_decision.not_ready.json": "42cce9643faa7350600289b8e7375bb218317e0a6d278e18bf8e66d55261c8c4",
+    "b5_finetuned_laya.not_ready.json": "a996ae5ad7916a7796346ee6ce7ada394ac1ce64fc8669a20820ea1e2b11a285",
+    "manifest_v1.prior_fabricated_timestamp.json": "bce8d0786335ac3bde41d3c6276c8e43c5d814172332eff69026ef5447e3383d",
+    "manifest_v2.json": "ce38f9120b1736d85fd489a045790e7eb5d7a9ef2f9dd400525524cdcb0ff899"
+  },
+  "config_manifest": {
+    "path": "configs/ablation/manifest_v2.json",
+    "sha256": "ce38f9120b1736d85fd489a045790e7eb5d7a9ef2f9dd400525524cdcb0ff899"
+  },
+  "execution_lock": "INCOMPLETE",
+  "execution_lock_reason": "Generator identity/revision/decoding/prompt/price, allocation, codebook, data, exact store/model, and model hashes are not frozen.",
+  "frozen_utc": "2026-10-22T20:25:19Z",
+  "frozen_utc_basis": "actual system UTC at this write; not a midnight-rounded value",
+  "missing_execution_artifacts": [
+    "frozen generator identity/revision and decoding enforcement hash",
+    "frozen prompt template hash",
+    "provider price (P_in, P_out, P_eval) or local GPU-hour rate",
+    "frozen attacker-agent prompts/tools",
+    "frozen suspicion codebook with positive/negative examples",
+    "hashed development/calibration/holdout family split and scenario data",
+    "hashed allocation seed/sequence for 32 sessions",
+    "exact B3 index.faiss + documents.json and store path",
+    "local embedding-model identity/hash",
+    "host_fiction.json hash",
+    "B4 rule table/contract (if enabled)",
+    "B5 checkpoint and v12 contract compatibility (if enabled)"
+  ],
+  "note": "Freezing this file does not authorize execution. Commands are nonexecuted templates and proposed settings are not runtime-enforced.",
+  "prior_design_freeze": {
+    "note": "Preserved byte-for-byte; v3 supersedes it without deleting it.",
+    "path": "docs/research/design_freeze_v1.prior_v2.json",
+    "sha256": "ddec0ee0cbd20024bd57014233e7ee999989e86061787498e9d281f9781e5b81"
+  },
+  "protocol": {
+    "path": "docs/research/CAUSAL_ABLATION_PROTOCOL.md",
+    "sha256": "c64db9185ba550cfe65de9da461f21d0cfd10763837ff6b5bb15e5a5b5f84adc"
+  },
+  "provider_calls": 0,
+  "provider_spend_usd": 0,
+  "schema": "ragin.ablation.design_freeze.v1",
+  "status": "DESIGN_FROZEN_EXECUTION_LOCK_INCOMPLETE",
+  "version": "v3"
+}

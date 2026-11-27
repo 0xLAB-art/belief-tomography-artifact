@@ -1,0 +1,101 @@
+{
+  "generated_at": "2026-09-16T11:10:07.009095+00:00",
+  "config": {
+    "n_estimators": 500,
+    "max_depth": 16,
+    "min_samples_split": 5,
+    "min_samples_leaf": 1,
+    "class_weight": null,
+    "random_state": 42
+  },
+  "eval_set": {
+    "n": 400,
+    "source": "data/training/test.jsonl"
+  },
+  "curve": [
+    {
+      "size": 100,
+      "reps": 5,
+      "mean_accuracy": 0.855,
+      "std": 0.0106,
+      "min": 0.8375,
+      "max": 0.87,
+      "wilson95": [
+        0.8171,
+        0.8861
+      ]
+    },
+    {
+      "size": 200,
+      "reps": 5,
+      "mean_accuracy": 0.8505,
+      "std": 0.0175,
+      "min": 0.825,
+      "max": 0.875,
+      "wilson95": [
+        0.8117,
+        0.8817
+      ]
+    },
+    {
+      "size": 400,
+      "reps": 5,
+      "mean_accuracy": 0.879,
+      "std": 0.0102,
+      "min": 0.86,
+      "max": 0.89,
+      "wilson95": [
+        0.8445,
+        0.9083
+      ]
+    },
+    {
+      "size": 800,
+      "reps": 5,
+      "mean_accuracy": 0.887,
+      "std": 0.0071,
+      "min": 0.8775,
+      "max": 0.8975,
+      "wilson95": [
+        0.8528,
+        0.9149
+      ]
+    },
+    {
+      "size": 1200,
+      "reps": 5,
+      "mean_accuracy": 0.885,
+      "std": 0.0035,
+      "min": 0.88,
+      "max": 0.89,
+      "wilson95": [
+        0.85,
+        0.9127
+      ]
+    },
+    {
+      "size": 1600,
+      "reps": 5,
+      "mean_accuracy": 0.8865,
+      "std": 0.0025,
+      "min": 0.8825,
+      "max": 0.89,
+      "wilson95": [
+        0.8528,
+        0.9149
+      ]
+    }
+  ],
+  "power_law_fit": {
+    "a": 0.9462974183209389,
+    "b": 0.22851404411171142,
+    "c": 0.18884925784186887,
+    "note": "acc(n) = 0.946 - 0.23 * n^-0.19  (RMSE 0.0063)",
+    "projections": {
+      "3200": 0.8965,
+      "10000": 0.9062
+    }
+  },
+  "verdict": "plateaued: the curve is flat within noise (\u00b10.005) from n=800; more data of this generator would add \u2248+1.0pp at 2x and nothing operationally meaningful",
+  "plot": "results/model_quality/chrollo_learning_curve.png"
+}

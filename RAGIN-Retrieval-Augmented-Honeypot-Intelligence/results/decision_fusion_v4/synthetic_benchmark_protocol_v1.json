@@ -1,0 +1,86 @@
+{
+  "schema": "ragin.decision_fusion_v4.synthetic_benchmark_protocol.v1",
+  "status": "DESIGN_ONLY_NOT_EXECUTED",
+  "scientific_boundary": {
+    "new_synthetic_corpora_required": true,
+    "previous_laya_v3_validation_reused_for_selection": false,
+    "exploratory_120_used": false,
+    "primary_169_used": false,
+    "real_study_labels_used": false,
+    "effectiveness_claim": false
+  },
+  "corpora": {
+    "development": {
+      "N": 72,
+      "id_prefix": "V4D-",
+      "status": "to be constructed and frozen before development calls",
+      "strata": [
+        "valid_recon", "valid_credential_access", "valid_persistence", "valid_exploitation",
+        "valid_data_access", "valid_benign_administration", "multi_document_support",
+        "high_score_irrelevant", "low_score_relevant", "weak_or_missing_evidence",
+        "retrieval_failure", "invalid_provenance", "duplicate_documents", "unresolved_conflict",
+        "query_coverage_failure", "sanitization_failure"
+      ]
+    },
+    "validation": {
+      "N": 96,
+      "id_prefix": "V4V-",
+      "status": "to be constructed and frozen after candidate freeze and before validation calls",
+      "disjoint_from_development": true,
+      "disjoint_from_prior_laya_v3_cases": true,
+      "same_strata_with_new_templates": true
+    }
+  },
+  "case_oracle_schema": {
+    "case_id": "string",
+    "evidence_gate_expected": "VALID_EVIDENCE|NO_EVIDENCE|LOW_RELEVANCE|INVALID_PROVENANCE|UNRESOLVED_CONFLICT|RETRIEVAL_FAILURE",
+    "allowed_strategies_if_valid": "array of allow-listed strategies",
+    "supporting_evidence_ids": "array of case-local doc_ids",
+    "forbidden_strategies": "array of strategies where meaningful",
+    "required_baseline": "boolean",
+    "oracle_note": "contract oracle from scenario construction, not real-world ground truth"
+  },
+  "candidate_freeze": {
+    "before_validation": true,
+    "freeze": [
+      "deterministic policy rule table and precedence",
+      "learned-policy feature map, preprocessing, algorithm family, seed, and hyperparameters",
+      "local-instruction model identifier, endpoint, quantization, prompt, option order, and parser",
+      "evidence-gate contract and caller-side fallback rules",
+      "hardware and latency measurement procedure"
+    ],
+    "no_validation_prompt_or_model_tuning": true
+  },
+  "metrics": {
+    "evidence_gate": [
+      "gate-state contract alignment",
+      "fail-safe recall",
+      "invalid-evidence pass-through rate"
+    ],
+    "policy_on_valid_evidence_only": [
+      "strategy compatibility",
+      "catastrophic/incompatible strategy rate",
+      "deterministic/schema compliance",
+      "repeatability on preregistered repeated cases",
+      "latency"
+    ],
+    "reporting_rule": "Never combine gate quality and policy quality into one opaque score."
+  },
+  "preregistered_advancement_gates": {
+    "evidence_gate_fail_safe_recall": {"threshold": 0.95, "comparison": ">="},
+    "invalid_or_insufficient_evidence_pass_through": {"threshold": 0.05, "comparison": "<="},
+    "policy_strategy_compatibility": {"threshold": 0.8, "comparison": ">="},
+    "policy_catastrophic_incompatible_rate": {"threshold": 0.05, "comparison": "<="},
+    "policy_schema_allow_list_compliance": {"threshold": 1.0, "comparison": "="},
+    "baseline_noninferiority": {
+      "definition": "a non-baseline candidate is materially worse if strategy compatibility is more than 5 percentage points lower or catastrophic rate is more than 2 percentage points higher than deterministic policy on the same VALID_EVIDENCE cases"
+    }
+  },
+  "selection_policy": {
+    "deterministic_baseline_required": true,
+    "advance_at_most_one_learned_or_instruction_candidate": true,
+    "classification_values": ["ADVANCE_TO_REAL_PROTOTYPE", "PROMISING_BUT_NOT_VALIDATED", "REJECT_FOR_POLICY_ROLE"],
+    "real_prototype_requires": "all gate thresholds pass, candidate is not materially worse than deterministic baseline, and a new untouched real holdout is registered"
+  },
+  "execution_status": "No synthetic benchmark corpus has been executed by this design artifact. Full V4 serving remains unimplemented."
+}

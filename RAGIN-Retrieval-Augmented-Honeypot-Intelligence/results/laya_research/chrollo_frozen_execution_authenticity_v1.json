@@ -1,0 +1,48 @@
+{
+  "audit": "RAGIN_FROZEN_PREDICTION_EXECUTION_AUTHENTICITY_AUDIT_V1",
+  "artifact": "results/laya_research/frozen_predictions.jsonl",
+  "classification": "INFERENCE_PROVENANCE_UNVERIFIED",
+  "current_named_runner_path_classification": "VERIFIED_FIXTURE_OR_STUB_OUTPUT",
+  "historical_binding_limitation": "scripts/laya_frozen_runner.py is untracked and has no Git history or recorded generator hash, so the current source cannot be cryptographically asserted to be the exact historical generator.",
+  "real_trained_model_execution_verified": false,
+  "observed_pair": {
+    "class": "novice",
+    "confidence": 0.5,
+    "count": 307,
+    "origin_in_current_named_runner": "literal hard-coded placeholder return at scripts/laya_frozen_runner.py:31-43",
+    "input_used": false
+  },
+  "trace": {
+    "runner_imports_chrollo_classifier": false,
+    "runner_imports_chrollo_models": false,
+    "runner_constructs_session_log": false,
+    "runner_extracts_features": false,
+    "runner_loads_rf_model": false,
+    "runner_calls_classify": false,
+    "runner_returns_exception_fallback": false,
+    "runner_returns_mock_classifier_result": false,
+    "runner_returns_literal_result": true
+  },
+  "comparison_with_actual_chrollo_code": {
+    "classifier": "ragin/chrollo/classifier.py",
+    "real_classify_requires_loaded_model": "ragin/chrollo/classifier.py:192-195 raises RuntimeError when not loaded",
+    "real_classify_computes_features_and_predict_proba": "ragin/chrollo/classifier.py:205-216",
+    "adapter_exception_fallback": "ragin/cycle/adapters.py:131-140 returns skill_level novice with confidence 0.0",
+    "conclusion": "The observed novice/0.5 pair is not the shown ChrolloAdapter exception fallback, which uses confidence 0.0; it is the literal pair in the named runner. Historical generator identity remains unverified."
+  },
+  "production_mechanism_assessment": {
+    "missing_model": "NOT_SHOWN_AS_SOURCE_OF_OBSERVED_PAIR; actual classifier would raise and adapter fallback confidence is 0.0",
+    "exception_fallback": "NOT_SHOWN_AS_SOURCE_OF_OBSERVED_PAIR",
+    "unknown_behavior": "HISTORICAL_BINDING_UNVERIFIED",
+    "empty_features": "NOT_INVOKED_BY_NAMED_RUNNER",
+    "default_classification": "CURRENT_RUNNER_LITERAL_DEFAULT",
+    "mock_classifier": "NOT_INVOKED_BY_NAMED_RUNNER",
+    "real_trained_inference": "NOT_VERIFIED"
+  },
+  "controls": {
+    "reference_labels_opened": false,
+    "reference_join_performed": false,
+    "models_rerun": false,
+    "correctness_metrics_computed": false
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "audit_run": "2026-10-10",
+  "graph_type": "component_dependency_graph",
+  "nodes": [
+    {"id": "server_v2", "label": "server_v2.py", "type": "entry_point", "status": "active", "mode": "pipeline", "description": "Auth-authoritative HTTP server. Harness + Session + Sandbox + Cowrie bridge. Default mode. Standalone disabled."},
+    {"id": "server_legacy", "label": "server.py", "type": "entry_point", "status": "legacy", "description": "Legacy HTTP server. Chrollo/Don/Hisoka/Jev standalone. Hisoka deceive/lure return 410."},
+    {"id": "harness", "label": "Harness", "type": "orchestrator", "status": "active", "file": "ragin/cycle/harness.py", "description": "Stateless orchestration loop. Chrollo→Don→Hisoka pipeline. _process_verified is mandatory path."},
+    {"id": "sandbox", "label": "Sandbox", "type": "io_isolation", "status": "active", "file": "ragin/cycle/sandbox.py", "description": "Attacker I/O isolation. Thread-safe (RLock). Command limits. Session management."},
+    {"id": "session", "label": "Session", "type": "state", "status": "active", "file": "ragin/cycle/session.py", "description": "Append-only crash-safe JSONL event log. fsync after each write. Session.wake() recovers from disk."},
+    {"id": "verifier_fc", "label": "FictionConsistencyVerifier", "type": "verifier", "status": "active", "file": "ragin/cycle/verifier.py", "description": "4 check layers: degenerate, danger_signals, identity_pin, fiction_contradictions. Optional: supported_claims (RAGIN_FAIL_CLOSED)."},
+    {"id": "verifier_hf", "label": "HostFictionVerifier", "type": "verifier", "status": "active", "file": "ragin/graph/host_fiction.py", "description": "Wraps FictionConsistencyVerifier. Adds cross-session consistency check against HostFictionStore."},
+    {"id": "supported_claims", "label": "SupportedClaims", "type": "verifier", "status": "opt_in", "file": "ragin/cycle/supported_claims.py", "description": "Fail-closed completeness on whoami/id/uname/hostname/echo/uptime/date/os-release. Opt-in via RAGIN_FAIL_CLOSED."},
+    {"id": "bridge_verifier", "label": "bridge_verifier_artifact", "type": "verifier", "status": "active", "file": "ragin/cycle/harness.py (inline function)", "description": "Canonical prompt-template artifact for supported commands (id, id -un, whoami) on the bridge path. Rewrites GENERATED_VERIFIED to PROMPT_TEMPLATE_VERIFIED."},
+    {"id": "host_fiction_store", "label": "HostFictionStore", "type": "state", "status": "active", "file": "ragin/graph/host_fiction.py", "description": "Host-scoped fiction continuity. per_session policy default. Persists to data/host_fiction.json. mark_verified + promote_verified + atomic save."},
+    {"id": "fiction_graph", "label": "FictionGraph", "type": "state", "status": "active", "file": "ragin/graph/fiction.py", "description": "Session-scoped property graph of fabricated facts. declare/observe/fact_block. Stable predicates: os, kernel, hostname, domain, user, ip."},
+    {"id": "chrollo_adapter", "label": "ChrolloAdapter", "type": "adapter", "status": "active", "file": "ragin/cycle/adapters.py", "description": "Wraps ChrolloClassifier to Classifier protocol. Builds SessionLog from context."},
+    {"id": "chrollo_classifier", "label": "ChrolloClassifier", "type": "classifier", "status": "active", "file": "ragin/chrollo/classifier.py", "description": "sklearn Random Forest (500 trees, max_depth=16). 0.8875 accuracy, Wilson CI [0.853, 0.914]. Needs joblib model + scaler."},
+    {"id": "don_adapter", "label": "DonAdapter", "type": "adapter", "status": "active", "file": "ragin/cycle/adapters.py", "description": "Wraps ThreatRAGEngine to CTIEngine protocol. Builds AnalysisRequest + session_log from context."},
+    {"id": "don_engine", "label": "ThreatRAGEngine", "type": "cti_engine", "status": "active", "file": "ragin/don/rag_engine.py", "description": "Hybrid RAG: BM25 + vector (optional sentence-transformer) + optional LightRAG + optional LLM report. BM25 works offline."},
+    {"id": "hisoka_adapter", "label": "HisokaAdapter", "type": "adapter", "status": "active", "file": "ragin/cycle/adapters.py", "description": "Wraps AdaptiveDeceiver to Deceiver protocol. Propagates serve_path labels, honeytoken_triggered, metadata."},
+    {"id": "adaptive_deceiver", "label": "AdaptiveDeceiver", "type": "deceiver", "status": "active", "file": "ragin/hisoka/deceiver.py", "description": "Top-level deception orchestrator. Persona selection, scenario identity, canary arm, circuit breaker, cost tracker, engagement tracker."},
+    {"id": "response_generator", "label": "ResponseGenerator", "type": "deceiver", "status": "active", "file": "ragin/hisoka/deception.py", "description": "LLM draft via GatewayClient._gateway + deterministic fast-paths (sudo, IMDS, SSH, sudo -l, credential bait, FS replay) + post-processing (danger scrubbing, transcript styling)."},
+    {"id": "gateway_client", "label": "GatewayClient", "type": "transport", "status": "active", "file": "ragin/gateway/client.py", "description": "Shared HTTP client for LLM backends. Auth headers (Bearer + X-API-Key), WAF path rewrite, reasoning_effort=low, retry on empty content."},
+    {"id": "provider_transport", "label": "ProviderTransport", "type": "transport", "status": "implemented_tested_not_live", "file": "ragin/cycle/provider_transport.py", "description": "GatewayClient subclass. Fails closed (ProviderUnavailableError) when unauthenticated. Placeholder keys treated as unconfigured."},
+    {"id": "provider_transport_adapter", "label": "ProviderTransportAdapter", "type": "adapter", "status": "implemented_tested_not_live", "file": "ragin/cycle/provider_transport.py", "description": "Injects ProviderTransport into ResponseGenerator._gateway. Routes to deterministic fallback on provider error."},
+    {"id": "approval_gateway", "label": "ApprovalGateway", "type": "hitl", "status": "active", "file": "ragin/cycle/hitl.py", "description": "Risk-based policy: AUTO/NOTIFY/REQUIRE. ClaimedApprover (unattended), ConsoleApprover (interactive), FileAuditTrail (audit)."},
+    {"id": "jv_system", "label": "Jev System One", "type": "classifier", "status": "active", "file": "ragin/jev/assessment.py", "description": "Free zen gateway (opencode.ai/zen/v1, key=public). Additive classification/orchestration signal. RAGIN_JEVI_ENABLED=1 default."},
+    {"id": "mtls", "label": "mTLS transport", "type": "security", "status": "implemented_tested_not_in_compose", "file": "ragin/transport/mtls.py", "description": "build_server_context_from_env, peer_certificate_authorized. Optional via RAGIN_MTLS_REQUIRED. Tested (test_mtls_transport.py)."},
+    {"id": "cowrie", "label": "Cowrie SSH", "type": "honeypot_frontend", "status": "active", "description": "SSH honeypot. Terminates attacker SSH. LLM backend POSTs to server_v2 /v1/chat/completions. Public attack surface."},
+    {"id": "nginx", "label": "NGINX", "type": "reverse_proxy", "status": "active", "description": "TLS termination, auth map (RAGIN_API_KEY → X-API-Key), routes to chrollo/don/hisoka/jev. Port 80/443/2222."},
+    {"id": "llm_gateway", "label": "LLM Gateway (Rust)", "type": "backend", "status": "active", "description": "OpenAI-compatible /v1/chat/completions. Upstream of OpenCode CLI bridge / OpenRouter / Azure. Port 8080."},
+    {"id": "opencode_bridge", "label": "OpenCode CLI Bridge", "type": "backend", "status": "active_local_only", "file": "scripts/opencode_proxy.py", "description": "Loopback-only proxy. Local dev LLM backend. Config at scripts/opencode_cli_bridge_safe_config.json. Port 8731."},
+    {"id": "redis", "label": "Redis", "type": "cache", "status": "active", "description": "Cache for RAGIN services. Port 6379. Appendonly yes, 256mb maxmemory."},
+    {"id": "prometheus", "label": "Prometheus", "type": "monitoring", "status": "active", "description": "Metrics collection. Port 9090. 30d retention."},
+    {"id": "grafana", "label": "Grafana", "type": "monitoring", "status": "active", "description": "Dashboards. Port 3000. Admin password from env (default changeme in .env.example)."}
+  ],
+  "edges": [
+    {"source": "cowrie", "target": "server_v2", "type": "http_post", "path": "/v1/chat/completions", "auth": "X-Session-Id header or transcript-prefix fallback", "description": "Cowrie LLM backend POSTs full conversation history for each command"},
+    {"source": "nginx", "target": "server_legacy", "type": "http_proxy", "path": "/api/classify, /api/analyze, /api/assess", "auth": "X-API-Key via nginx auth map", "description": "NGINX routes legacy component requests with auth"},
+    {"source": "nginx", "target": "server_legacy", "type": "http_proxy", "path": "/api/deceive, /api/lure, /v1/chat/completions", "auth": "X-API-Key", "description": "These routes return 410 (legacy serving disabled)"},
+    {"source": "server_v2", "target": "harness", "type": "call", "path": "Harness._process_verified()", "auth": "n/a", "description": "server_v2 routes all commands through Harness._process_verified"},
+    {"source": "harness", "target": "chrollo_adapter", "type": "call", "path": "ChrolloAdapter.classify(attacker_input, context)", "auth": "n/a", "description": "Classification stage"},
+    {"source": "harness", "target": "don_adapter", "type": "call", "path": "DonAdapter.analyze(attacker_input, context)", "auth": "n/a", "description": "CTI enrichment stage"},
+    {"source": "harness", "target": "hisoka_adapter", "type": "call", "path": "HisokaAdapter.generate_response(attacker_input, enriched_context)", "auth": "n/a", "description": "Deception generation stage"},
+    {"source": "hisoka_adapter", "target": "adaptive_deceiver", "type": "call", "path": "AdaptiveDeceiver.generate_response()", "auth": "n/a", "description": "Delegation to deceiver"},
+    {"source": "adaptive_deceiver", "target": "response_generator", "type": "call", "path": "ResponseGenerator._gateway.generate(messages, model, temperature, max_tokens)", "auth": "Bearer token via GatewayClient", "description": "Optional LLM draft"},
+    {"source": "response_generator", "target": "gateway_client", "type": "call", "path": "GatewayClient.generate() → HTTP POST /v1/chat/completions", "auth": "Bearer + X-API-Key headers", "description": "HTTP call to LLM backend"},
+    {"source": "gateway_client", "target": "llm_gateway", "type": "http", "path": "/v1/chat/completions", "auth": "Bearer token", "description": "LLM gateway upstream"},
+    {"source": "llm_gateway", "target": "opencode_bridge", "type": "http", "path": "/v1/chat/completions", "auth": "RAGIN_LLM_API_KEY (loopback-test)", "description": "Local dev: gateway → OpenCode bridge"},
+    {"source": "llm_gateway", "target": "provider_transport", "type": "http", "path": "/v1/chat/completions", "auth": "Provider API key (when RAGIN_PROVIDER_ENABLED)", "description": "Production: gateway → provider (when configured)"},
+    {"source": "harness", "target": "verifier_fc", "type": "call", "path": "FictionConsistencyVerifier.verify(candidate, context)", "auth": "n/a", "description": "Verification stage — 4 check layers"},
+    {"source": "verifier_fc", "target": "fiction_graph", "type": "call", "path": "FictionGraph.observe(text) → contradictions", "auth": "n/a", "description": "Fiction contradiction check"},
+    {"source": "verifier_fc", "target": "supported_claims", "type": "call", "path": "check_supported_claim(user_input, text, ident) — only if RAGIN_FAIL_CLOSED", "auth": "n/a", "description": "Optional fail-closed completeness check"},
+    {"source": "harness", "target": "verifier_hf", "type": "call", "path": "HostFictionVerifier.verify(response, ctx) — only if host_store installed and session passed", "auth": "n/a", "description": "Cross-session verification (only if inner verification passed)"},
+    {"source": "verifier_hf", "target": "host_fiction_store", "type": "call", "path": "HostFictionStore.check_against_host(session_id, probe_graph)", "auth": "n/a", "description": "Cross-session contradiction check"},
+    {"source": "harness", "target": "approval_gateway", "type": "call", "path": "ApprovalGateway.resolve(state_with_candidate)", "auth": "n/a", "description": "HITL approval stage (AUTO/NOTIFY/REQUIRE)"},
+    {"source": "harness", "target": "host_fiction_store", "type": "call", "path": "mark_verified + promote_verified + save — only on successful commit", "auth": "n/a", "description": "Persist verified facts to host fiction store"},
+    {"source": "harness", "target": "fiction_graph", "type": "call", "path": "graph.clone() + staged.observe(text) + graph.replace_from(staged) — only on successful commit", "auth": "n/a", "description": "Commit fiction graph update (with rollback on contradiction)"},
+    {"source": "harness", "target": "bridge_verifier", "type": "call", "path": "_bridge_verifier_artifact(messages) — only on bridge path for supported commands", "auth": "n/a", "description": "Rewrite candidate to canonical template artifact for whoami/id/-un"},
+    {"source": "chrollo_adapter", "target": "chrollo_classifier", "type": "call", "path": "ChrolloClassifier.classify(session_log)", "auth": "n/a", "description": "RF model inference (needs joblib model + scaler)"},
+    {"source": "don_adapter", "target": "don_engine", "type": "call", "path": "ThreatRAGEngine.analyze(analysis_request, session_log)", "auth": "n/a", "description": "CTI analysis: BM25 + vector + optional LLM report"},
+    {"source": "don_engine", "target": "gateway_client", "type": "call", "path": "GatewayClient.generate() — for LLM report generation (optional)", "auth": "Bearer token", "description": "LLM report generation (optional, degrades to heuristics when gateway unavailable)"},
+    {"source": "server_v2", "target": "approval_gateway", "type": "indirect", "path": "via harness", "auth": "n/a", "description": "HITL approval is part of the harness pipeline"},
+    {"source": "server_v2", "target": "host_fiction_store", "type": "indirect", "path": "via harness._strict_commit", "auth": "n/a", "description": "Host fiction persistence is part of the commit path"},
+    {"source": "server_v2", "target": "session", "type": "call", "path": "Session.create / Session.wake / Session.emit", "auth": "n/a", "description": "Session lifecycle management"},
+    {"source": "sandbox", "target": "session", "type": "call", "path": "Session.create / Session.wake / Session.emit", "auth": "n/a", "description": "Sandbox manages sessions via Session"},
+    {"source": "harness", "target": "session", "type": "call", "path": "Session.emit (events during pipeline)", "auth": "n/a", "description": "Harness emits events to session log"},
+    {"source": "server_v2", "target": "mtls", "type": "config", "path": "build_server_context_from_env() — only if RAGIN_MTLS_REQUIRED=1", "auth": "n/a", "description": "mTLS is optional; server_v2 can use SSL context from env for TLS server"},
+    {"source": "opencode_bridge", "target": "external", "type": "http", "path": "opencode.ai (or other upstream)", "auth": "depends on provider", "description": "OpenCode bridge reaches external LLM provider (when configured)"}
+  ],
+  "deployments": {
+    "local_docker_compose": {
+      "file": "docker-compose.yml",
+      "services": ["gateway", "chrollo", "don", "hisoka", "jev", "redis", "prometheus", "grafana", "nginx", "cowrie"],
+      "networks": ["ragin-internal (internal: true)", "ragin-external"],
+      "server_v2_present": false,
+      "description": "Standard dev deployment. Runs legacy server.py services. server_v2 NOT a service."
+    },
+    "field_deployment": {
+      "file": "docker-compose.field.yml",
+      "env_template": ".env.field.example",
+      "server_v2_present": "unknown",
+      "description": "Field deployment template. Requires approved private LLM bridge (placeholder in .env.field.example)."
+    },
+    "aws_historical": {
+      "region": "eu-north-1",
+      "core_instance": "i-062a400b300f4f9e4 (172.31.17.217, port 8443)",
+      "edge_instance": "i-05bc6aab0bd4260a7 (172.31.35.203)",
+      "vpc": "vpc-044a70ed680faff8b",
+      "status": "NOT_VERIFIED_CURRENT",
+      "description": "All AWS identifiers are historical. No current AWS state verified. No AWS access confirmed."
+    }
+  },
+  "verification_chain": {
+    "order": [
+      "harness._strict_candidate (deceiver generates)",
+      "harness._strict_verify (FictionConsistencyVerifier: degenerate + danger_signals + identity_pin + fiction_contradictions)",
+      "harness._strict_verify (HostFictionVerifier: cross-session check — only if inner passed and host_store installed)",
+      "harness._strict_approval (ApprovalGateway: risk-based policy)",
+      "harness._strict_commit (fiction graph clone + observe + contradictions check + bridge_verifier_artifact rewrite + host_fiction_store mark+promote+save)"
+    ],
+    "fallback": {
+      "trigger": "max_retries+1 attempts exhausted without passing verification",
+      "action": "ResponseGenerator._generate_template(skill, attacker_input, feedback, identity) → fallback_candidate → verify → approve → commit (FALLBACK_VERIFIED) or verified_serve_unavailable"
+    },
+    "failure_modes": {
+      "no_verifier": "verified_serve_unavailable (empty response)",
+      "rejected_candidate": "empty response, fiction graph unchanged",
+      "verifier_exception": "empty response (fails closed)",
+      "approval_denied": "empty response (HITL REQUIRE without approver)",
+      "persistence_failure": "verified_serving_failed (empty response, logged)",
+      "fallback_rejected": "verified_serve_unavailable (empty response)"
+    }
+  },
+  "serve_paths": {
+    "GENERATED_VERIFIED": "LLM draft that passed verification and approval",
+    "PROMPT_TEMPLATE_VERIFIED": "Bridge verifier artifact (canonical whoami/id/-un template) — SSH wire proof",
+    "FALLBACK_VERIFIED": "Deterministic template fallback after retry exhaustion",
+    "TEMPLATE_FALLBACK_VERIFIED": "HisokaAdapter-labeled template fallback (gateway_fallback/unsafe_retry_fallback/template_anchored)"
+  }
+}

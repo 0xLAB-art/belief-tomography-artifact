@@ -1,0 +1,97 @@
+{
+  "schema": "ragin.laya_v3.task_adaptation_candidate_freeze.v1",
+  "status": "FROZEN_BEFORE_VALIDATION",
+  "checkpoint": {
+    "package": "laya",
+    "version": "0.4.2",
+    "model": "english",
+    "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+    "sha256": "891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c",
+    "device": "cpu"
+  },
+  "contract": {
+    "questions": {
+      "evidence_state": {
+        "type": "choice",
+        "instructions": "What is the evidence state for choosing one bounded deception strategy from this JSON? SUFFICIENT means coherent support; INSUFFICIENT means missing, weak, irrelevant, or incomplete evidence; CONFLICTING means incompatible evidence.",
+        "criteria_order": ["SUFFICIENT", "INSUFFICIENT", "CONFLICTING"],
+        "criteria": {
+          "SUFFICIENT": "coherent material support for one strategy",
+          "INSUFFICIENT": "absent, weak, irrelevant, or incomplete evidence",
+          "CONFLICTING": "incompatible material evidence"
+        }
+      },
+      "strategy": {
+        "type": "choice",
+        "instructions": "Which listed bounded deception strategy best fits the evidence? Use baseline for insufficient or conflicting evidence. Output one listed label.",
+        "criteria_order": ["baseline", "maximize_recon_surface", "fake_success_and_return_visits", "steer_to_honeytoken_credentials", "expose_decoy_internal_topology", "contain_in_fiction_and_instrument", "low_intensity_administration"],
+        "criteria": {
+          "baseline": "baseline",
+          "maximize_recon_surface": "maximize recon surface",
+          "fake_success_and_return_visits": "fake success and return visits",
+          "steer_to_honeytoken_credentials": "steer to honeytoken credentials",
+          "expose_decoy_internal_topology": "expose decoy internal topology",
+          "contain_in_fiction_and_instrument": "contain in fiction and instrument",
+          "low_intensity_administration": "low intensity administration"
+        }
+      },
+      "evidence_ref": {
+        "type": "choice",
+        "instructions": "Which supplied document is the best evidence? Choose one listed ID or NONE only.",
+        "criteria_rule": "sorted supplied document IDs, followed by NONE"
+      }
+    },
+    "serialization": {
+      "allowed_paths": [
+        "session.current_input",
+        "behavior.skill_level",
+        "behavior.confidence",
+        "behavior.observed_techniques",
+        "don_analysis.severity",
+        "don_analysis.tactics",
+        "don_analysis.observed_ttps",
+        "don_analysis.iocs",
+        "retrieval.documents[].doc_id",
+        "retrieval.documents[].title",
+        "retrieval.documents[].content_excerpt",
+        "retrieval.documents[].source",
+        "retrieval.documents[].retrieval_score"
+      ],
+      "document_sort": "lexicographic by doc_id",
+      "free_form_retrieval_prose": false,
+      "additional_fields": false
+    },
+    "caller_rules": [
+      "INSUFFICIENT -> ABSTAIN + baseline",
+      "CONFLICTING -> ABSTAIN + baseline",
+      "invalid evidence_ref -> ABSTAIN + baseline",
+      "SUFFICIENT + NONE -> ABSTAIN + baseline",
+      "malformed output -> ABSTAIN + baseline",
+      "only SUFFICIENT + valid supplied evidence_ref may SELECT",
+      "confidence never overrides these rules"
+    ],
+    "confidence_policy": "UNCALIBRATED_DIAGNOSTIC_ONLY; no confidence threshold",
+    "option_order_policy": "fixed canonical order",
+    "strategy_vocabulary": ["baseline", "maximize_recon_surface", "fake_success_and_return_visits", "steer_to_honeytoken_credentials", "expose_decoy_internal_topology", "contain_in_fiction_and_instrument", "low_intensity_administration"]
+  },
+  "development_iterations": [
+    {"id": "v1_verbose", "strategy_order": "canonical", "raw_evidence_state_agreement": "16/24", "required_abstain_recall": "24/24 after caller enforcement", "inappropriate_abstain": "17/24", "selected": true},
+    {"id": "v2_reordered", "strategy_order": "reverse canonical", "raw_evidence_state_agreement": "12/24", "required_abstain_recall": "24/24 after caller enforcement", "inappropriate_abstain": "17/24", "selected": false},
+    {"id": "v3_semantic", "strategy_order": "canonical", "raw_evidence_state_agreement": "8/24", "required_abstain_recall": "24/24 after caller enforcement", "inappropriate_abstain": "17/24", "selected": false}
+  ],
+  "development_summary": {
+    "cases": 24,
+    "runs_per_iteration": 24,
+    "all_outputs_schema_valid": true,
+    "all_outputs_allow_list_valid": true,
+    "all_outputs_reference_valid": true,
+    "selection_basis": "highest raw evidence-state agreement; no validation results were observed when selecting",
+    "semantic_gate_status": "not_passed"
+  },
+  "holdout_boundary": {
+    "prior_ragin_cases_used": false,
+    "prior_labels_used": false,
+    "prior_predictions_used": false,
+    "effectiveness_artifacts_used": false
+  }
+}

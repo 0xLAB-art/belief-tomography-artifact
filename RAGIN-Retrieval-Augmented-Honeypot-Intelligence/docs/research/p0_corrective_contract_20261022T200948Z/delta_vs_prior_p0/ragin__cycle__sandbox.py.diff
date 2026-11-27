@@ -1,0 +1,173 @@
+--- a/ragin/cycle/sandbox.py (prior P0 snapshot)
++++ b/ragin/cycle/sandbox.py (current)
+@@ -24,7 +24,7 @@
+ from dataclasses import dataclass, field
+ from typing import Any
+ 
+-from ragin.capture_v4.privacy import privacy_minimize_record
++from ragin.capture_v4.privacy import bounded_redacted_text
+ from ragin.cycle.classification import normalize_classification
+ from ragin.cycle.harness import Harness
+ from ragin.cycle.session import EventType, Session
+@@ -38,24 +38,55 @@
+ _SOURCE_DEFAULT_MODEL = "glm-5.3-flash-free"
+ 
+ 
++_COMMAND_TEXT_LIMIT = 200
++
++
++def _command_trace(command: str) -> dict[str, Any]:
++    """Bounded, minimized command plus an independent full-command digest.
++
++    The minimizer runs over the complete command *before* truncation, so a
++    credential marker split at the limit cannot leak its tail. The raw command
++    is never written to the METRIC event; the full digest is the integrity
++    handle for matching the redacted row to the session's input event.
++    """
++    bounded = bounded_redacted_text(str(command), limit=_COMMAND_TEXT_LIMIT)
++    return {
++        "sha256": hashlib.sha256(str(command).encode()).hexdigest(),
++        "text": bounded["text"],
++        "chars": bounded["chars"],
++        "truncated": bounded["truncated"],
++        "availability": bounded["availability"],
++    }
++
++
+ def _redacted_command(command: str) -> str:
+-    """Redact credential-shaped text before it enters the durable event log.
+-
+-    Reuses the repository's canonical minimizer; the raw command is never
+-    written to the METRIC event.
+-    """
+-    minimized = privacy_minimize_record({"command": str(command)[:100]})
+-    return str(minimized.get("command", ""))
++    """Redact and bound a command before it enters the durable event log."""
++    return str(_command_trace(command)["text"])
+ 
+ 
+ def _model_trace(metadata: dict[str, Any]) -> dict[str, Any]:
+     observed = metadata.get("generator_model") or metadata.get("model")
+     if isinstance(observed, str) and observed.strip():
+-        return {"value": observed.strip(), "availability": "OBSERVED_BY_GENERATOR"}
++        return {
++            "value": observed.strip(),
++            "availability": "OBSERVED_BY_GENERATOR",
++            "runtime_model": None,
++            "runtime_model_availability": "NOT_OBSERVED",
++        }
+     configured = os.environ.get(_MODEL_ENV_VAR)
+     if isinstance(configured, str) and configured.strip():
+-        return {"value": configured.strip(), "availability": "CONFIGURED_NOT_OBSERVED"}
+-    return {"value": _SOURCE_DEFAULT_MODEL, "availability": "SOURCE_DEFAULT_NOT_OBSERVED"}
++        return {
++            "value": configured.strip(),
++            "availability": "CONFIGURED_NOT_OBSERVED",
++            "runtime_model": None,
++            "runtime_model_availability": "NOT_OBSERVED",
++        }
++    return {
++        "value": _SOURCE_DEFAULT_MODEL,
++        "availability": "SOURCE_DEFAULT_NOT_OBSERVED",
++        "runtime_model": None,
++        "runtime_model_availability": "NOT_OBSERVED",
++    }
+ 
+ 
+ def _usage_trace(metadata: dict[str, Any]) -> dict[str, Any]:
+@@ -133,6 +164,19 @@
+         or bool(reason)
+     )
+ 
++    served_text = bounded_redacted_text(safe_response, limit=500)
++    attempts = metadata.get("serving_attempts")
++    attempts = attempts if isinstance(attempts, list) else []
++    last_attempt = attempts[-1] if attempts and isinstance(attempts[-1], dict) else {}
++    decision_event_id = metadata.get("decision_event_id") or last_attempt.get("decision_event_id")
++    decision_event_sha256 = metadata.get("decision_event_sha256") or last_attempt.get("decision_event_sha256")
++    decision_selected = metadata.get("decision_selected") or last_attempt.get("decision_selected")
++    decision_availability = (
++        "OBSERVED_EVENT_REFERENCE"
++        if isinstance(decision_event_id, str) and decision_event_id not in {"", "NOT_VERIFIABLE"}
++        else "NOT_AVAILABLE"
++    )
++
+     return {
+         "schema": "ragin.interaction_trace.v1",
+         "status": status,
+@@ -140,6 +184,12 @@
+         "candidate_sha256": str(verification.get("candidate_sha256", "")),
+         "served_response_sha256": served_response_sha256,
+         "served_response_chars": len(safe_response),
++        # Bounded final text for audit. The SHA-256 above is over the actual
++        # bytes served, independent of this minimized/truncated projection.
++        "served_text": served_text["text"],
++        "served_text_chars": served_text["chars"],
++        "served_text_truncated": served_text["truncated"],
++        "served_text_availability": served_text["availability"],
+         "classification": {
+             "skill_level": classification.get("skill_level", "unknown"),
+             "confidence": classification.get("confidence"),
+@@ -150,6 +200,10 @@
+             "serve_path": serve_path,
+             "verification_passed": verification.get("passed") is True,
+             "selected_strategy": str(metadata.get("selected_strategy", "NOT_AVAILABLE")),
++            "event_id": str(decision_event_id) if decision_event_id else "NOT_AVAILABLE",
++            "event_sha256": str(decision_event_sha256) if decision_event_sha256 else "NOT_AVAILABLE",
++            "selected": decision_selected if isinstance(decision_selected, dict) else "NOT_AVAILABLE",
++            "availability": decision_availability,
+         },
+         "verification": {
+             "passed": verification.get("passed") is True,
+@@ -176,6 +230,10 @@
+         "candidate_sha256": "",
+         "served_response_sha256": "",
+         "served_response_chars": 0,
++        "served_text": "",
++        "served_text_chars": 0,
++        "served_text_truncated": False,
++        "served_text_availability": "NOT_AVAILABLE",
+         "classification": {"skill_level": "unknown", "confidence": None, "availability": "NOT_AVAILABLE"},
+         "evidence_refs": {
+             "doc_ids": [],
+@@ -184,7 +242,15 @@
+             "backend": "NOT_AVAILABLE",
+             "availability": "NOT_AVAILABLE",
+         },
+-        "decision": {"serve_path": "", "verification_passed": False, "selected_strategy": "NOT_AVAILABLE"},
++        "decision": {
++            "serve_path": "",
++            "verification_passed": False,
++            "selected_strategy": "NOT_AVAILABLE",
++            "event_id": "NOT_AVAILABLE",
++            "event_sha256": "NOT_AVAILABLE",
++            "selected": "NOT_AVAILABLE",
++            "availability": "NOT_AVAILABLE",
++        },
+         "verification": {"passed": None, "reason": [], "reason_availability": "NOT_RUN"},
+         "fallback": {"occurred": False, "reason": error},
+         "model_identity": _model_trace({}),
+@@ -333,6 +399,7 @@
+                 EventType.METRIC,
+                 {
+                     "command": _redacted_command(command),
++                    "command_trace": _command_trace(command),
+                     "processing_time_ms": 0.0,
+                     "persona_used": "",
+                     "artifacts_count": 0,
+@@ -368,6 +435,7 @@
+                 EventType.METRIC,
+                 {
+                     "command": _redacted_command(command),
++                    "command_trace": _command_trace(command),
+                     "processing_time_ms": elapsed_ms,
+                     "persona_used": "",
+                     "artifacts_count": 0,
+@@ -442,6 +510,7 @@
+             EventType.METRIC,
+             {
+                 "command": _redacted_command(command),
++                "command_trace": _command_trace(command),
+                 "processing_time_ms": elapsed_ms,
+                 "persona_used": response_dict.get("persona_used", ""),
+                 "artifacts_count": len(artifacts),

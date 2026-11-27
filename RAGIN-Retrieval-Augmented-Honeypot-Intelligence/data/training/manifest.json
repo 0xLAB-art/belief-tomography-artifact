@@ -1,0 +1,151 @@
+{
+  "seed": 42,
+  "per_class": {
+    "novice": 500,
+    "intermediate": 500,
+    "expert": 500,
+    "apt": 500
+  },
+  "total": 2000,
+  "feature_names": [
+    "command_complexity",
+    "tool_usage_diversity",
+    "persistence_techniques",
+    "lateral_movement_indicators",
+    "time_between_commands",
+    "unique_commands_ratio",
+    "privilege_escalation_attempts",
+    "network_scan_detected",
+    "credential_access_attempts",
+    "custom_tool_usage"
+  ],
+  "per_class_feature_means": {
+    "novice": {
+      "command_complexity": 0.1249,
+      "tool_usage_diversity": 0.8101,
+      "persistence_techniques": 0.0198,
+      "lateral_movement_indicators": 0.0,
+      "time_between_commands": 0.2161,
+      "unique_commands_ratio": 0.9273,
+      "privilege_escalation_attempts": 0.0094,
+      "network_scan_detected": 0.274,
+      "credential_access_attempts": 0.0806,
+      "custom_tool_usage": 0.0204
+    },
+    "intermediate": {
+      "command_complexity": 0.1712,
+      "tool_usage_diversity": 0.6993,
+      "persistence_techniques": 0.1104,
+      "lateral_movement_indicators": 0.0,
+      "time_between_commands": 0.1643,
+      "unique_commands_ratio": 0.9005,
+      "privilege_escalation_attempts": 0.0808,
+      "network_scan_detected": 0.854,
+      "credential_access_attempts": 0.232,
+      "custom_tool_usage": 0.1608
+    },
+    "expert": {
+      "command_complexity": 0.2044,
+      "tool_usage_diversity": 0.5549,
+      "persistence_techniques": 0.4612,
+      "lateral_movement_indicators": 0.3224,
+      "time_between_commands": 0.1154,
+      "unique_commands_ratio": 0.8175,
+      "privilege_escalation_attempts": 0.291,
+      "network_scan_detected": 0.9,
+      "credential_access_attempts": 0.3722,
+      "custom_tool_usage": 0.4388
+    },
+    "apt": {
+      "command_complexity": 0.2178,
+      "tool_usage_diversity": 0.5094,
+      "persistence_techniques": 0.7196,
+      "lateral_movement_indicators": 0.712,
+      "time_between_commands": 0.0927,
+      "unique_commands_ratio": 0.7877,
+      "privilege_escalation_attempts": 0.2726,
+      "network_scan_detected": 0.576,
+      "credential_access_attempts": 0.7274,
+      "custom_tool_usage": 0.5552
+    }
+  },
+  "sessions_sha256": "835ef55768e064f24a83a1d732810311b391878c3d0cb04d3a0644266ccbca03",
+  "generated_at": "2026-09-16T10:22:41.324134+00:00",
+  "profiles": {
+    "novice": {
+      "n_range": [
+        6,
+        14
+      ],
+      "dt_mu": 2.0,
+      "dt_sigma": 1.2,
+      "mix": {
+        "basic": 0.55,
+        "recon": 0.28,
+        "scan": 0.05,
+        "exploit": 0.04,
+        "creds": 0.05,
+        "privesc": 0.02,
+        "persist": 0.01
+      }
+    },
+    "intermediate": {
+      "n_range": [
+        15,
+        30
+      ],
+      "dt_mu": 0.8,
+      "dt_sigma": 0.8,
+      "mix": {
+        "basic": 0.22,
+        "recon": 0.28,
+        "scan": 0.18,
+        "exploit": 0.11,
+        "creds": 0.08,
+        "privesc": 0.07,
+        "persist": 0.04,
+        "compile": 0.02
+      }
+    },
+    "expert": {
+      "n_range": [
+        35,
+        60
+      ],
+      "dt_mu": -0.5,
+      "dt_sigma": 0.55,
+      "mix": {
+        "recon": 0.24,
+        "scan": 0.14,
+        "exploit": 0.19,
+        "privesc": 0.15,
+        "persist": 0.1,
+        "lateral": 0.06,
+        "creds": 0.05,
+        "defense": 0.04,
+        "compile": 0.03
+      }
+    },
+    "apt": {
+      "n_range": [
+        50,
+        90
+      ],
+      "dt_mu": -1.0,
+      "dt_sigma": 0.45,
+      "mix": {
+        "recon": 0.11,
+        "scan": 0.04,
+        "exploit": 0.12,
+        "privesc": 0.1,
+        "persist": 0.15,
+        "lateral": 0.12,
+        "creds": 0.1,
+        "exfil": 0.1,
+        "defense": 0.1,
+        "compile": 0.04,
+        "basic": 0.02
+      }
+    }
+  }
+}

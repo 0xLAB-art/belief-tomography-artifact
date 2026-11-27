@@ -1,0 +1,46 @@
+{
+    "Command": {
+        "CommandId": "73b5b449-f1ac-4786-aa45-25e60f9b8313",
+        "DocumentName": "AWS-RunShellScript",
+        "DocumentVersion": "$DEFAULT",
+        "Comment": "RAGIN phase3 CORE cert metadata no secrets",
+        "ExpiresAfter": "2026-10-11T20:21:04.692000+03:00",
+        "Parameters": {
+            "commands": [
+                "set -euo pipefail\necho RUN\ndate -u\necho CERTS_ETC\nfor f in /etc/ragin/tls/ca.crt /etc/ragin/tls/server.crt /etc/ragin/tls/server.key; do\n  if [ -f \"$f\" ]; then\n    echo FILE=$f\n    echo SIZE_BYTES=$(stat -c %s \"$f\" 2>/dev/null || echo stat_failed)\n    openssl x509 -noout -subject -issuer -dates -ext subjectAltName,extendedKeyUsage,keyId,authorityKeyIdentifier,keyUsage -in \"$f\" 2>/dev/null || echo PARSE_FAIL=$f\n    echo FINGERPRINT_SUM=$(openssl x509 -noout -fingerprint -sha256 -in \"$f\" 2>/dev/null || echo fingerprint_failed)\n    if [ \"$f\" = /etc/ragin/tls/server.key ] || [ \"$f\" = /etc/ragin/tls/edge.key ]; then\n      echo KEY_FILE_NOT_PRINTED=\"$f\"\n    fi\n  fi\ndone\necho DONE"
+            ]
+        },
+        "InstanceIds": [
+            "i-062a400b300f4f9e4"
+        ],
+        "Targets": [],
+        "RequestedDateTime": "2026-10-11T19:20:04.692000+03:00",
+        "Status": "Pending",
+        "StatusDetails": "Pending",
+        "OutputS3Region": "eu-north-1",
+        "OutputS3BucketName": "",
+        "OutputS3KeyPrefix": "",
+        "MaxConcurrency": "1",
+        "MaxErrors": "1",
+        "TargetCount": 1,
+        "CompletedCount": 0,
+        "ErrorCount": 0,
+        "DeliveryTimedOutCount": 0,
+        "ServiceRole": "",
+        "NotificationConfig": {
+            "NotificationArn": "",
+            "NotificationEvents": [],
+            "NotificationType": ""
+        },
+        "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "",
+            "CloudWatchOutputEnabled": false
+        },
+        "TimeoutSeconds": 60,
+        "AlarmConfiguration": {
+            "IgnorePollAlarmFailure": false,
+            "Alarms": []
+        },
+        "TriggeredAlarms": []
+    }
+}

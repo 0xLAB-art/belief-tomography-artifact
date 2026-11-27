@@ -1,0 +1,23 @@
+{
+  "schema": "ragin.ablation.track_a_frozen.v1",
+  "status": "DEVELOPMENT_ONLY_FROZEN_COMMANDS",
+  "created_utc": "2026-10-23T00:00:00Z",
+  "note": "Track A is a fixed-trace matched-command response evaluation. It cannot establish engagement, detection or time-to-suspicion. These development commands are for harness mechanics and are not a main-study stimulus set.",
+  "split": "development",
+  "matched_state": "same initial host-fiction state, same command sequence, same verifier profile for every arm",
+  "scenarios": [
+    {
+      "scenario_id": "dev-trackA-recon-01",
+      "commands": ["id", "cat /etc/passwd", "ls -la /root", "uname -a"]
+    },
+    {
+      "scenario_id": "dev-trackA-service-01",
+      "commands": ["whoami", "ps aux", "ss -ltn", "cat /etc/hosts"]
+    }
+  ],
+  "claims": {
+    "engagement": "NOT_ESTABLISHED",
+    "detection": "NOT_ESTABLISHED",
+    "pools_with_track_b": false
+  }
+}

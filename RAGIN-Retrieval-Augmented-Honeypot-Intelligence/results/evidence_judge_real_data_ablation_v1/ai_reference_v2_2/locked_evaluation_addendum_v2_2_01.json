@@ -1,0 +1,246 @@
+{
+  "ai_reviewer_call_coverage": {
+    "field_validation_errors": 21,
+    "fully_valid_calls": 3,
+    "recorded_calls": 6,
+    "scheduled_batches": 6,
+    "schema_valid_calls": 6
+  },
+  "analysis_script_sha256": "40faa78569addc95d156a2e6b05580fdcd0513783604792de6b3b6877ae379c8",
+  "bundle_binary_accuracy": {
+    "case_cluster_bootstrap": {
+      "bootstrap_replicates": 10000,
+      "ci95": [
+        0.3247863247863248,
+        0.49572649572649574
+      ],
+      "clusters": 117,
+      "estimate": 0.41025641025641024,
+      "seed": 20261014,
+      "unit": "case_id"
+    },
+    "denominator": 117,
+    "numerator": 48,
+    "value": 0.41025641025641024
+  },
+  "bundle_confusion": {
+    "NOT_SUFFICIENT|NOT_SUFFICIENT": 1,
+    "NOT_SUFFICIENT|SUFFICIENT": 69,
+    "SUFFICIENT|SUFFICIENT": 47
+  },
+  "bundle_evaluable": 117,
+  "bundle_exact_agreement": {
+    "case_cluster_bootstrap": {
+      "bootstrap_replicates": 10000,
+      "ci95": [
+        0.3247863247863248,
+        0.49572649572649574
+      ],
+      "clusters": 117,
+      "estimate": 0.41025641025641024,
+      "seed": 20261014,
+      "unit": "case_id"
+    },
+    "denominator": 117,
+    "numerator": 48,
+    "value": 0.41025641025641024
+  },
+  "bundle_reference_label_counts": {
+    "INSUFFICIENT": 70,
+    "SUFFICIENT": 47,
+    "UNKNOWN": 3
+  },
+  "bundle_unknown_excluded": 3,
+  "candidate_crosswalk": "SUPPORTED maps to DIRECT_SUPPORT; PARTIAL and IRRELEVANT map to matching labels; contradictory evidence has no distinct Judge output.",
+  "candidate_evaluable": 914,
+  "candidate_metrics": {
+    "binary_accuracy": {
+      "case_cluster_bootstrap": {
+        "bootstrap_replicates": 10000,
+        "ci95": [
+          0.24126637554585154,
+          0.35714285714285715
+        ],
+        "clusters": 117,
+        "estimate": 0.29978118161925604,
+        "seed": 20261014,
+        "unit": "case_id"
+      },
+      "denominator": 914,
+      "numerator": 274,
+      "value": 0.29978118161925604
+    },
+    "crosswalk_exact_agreement": {
+      "case_cluster_bootstrap": {
+        "bootstrap_replicates": 10000,
+        "ci95": [
+          0.04835164835164835,
+          0.08690869086908691
+        ],
+        "clusters": 117,
+        "estimate": 0.06673960612691467,
+        "seed": 20261014,
+        "unit": "case_id"
+      },
+      "denominator": 914,
+      "numerator": 61,
+      "value": 0.06673960612691467
+    },
+    "direct_support_precision": {
+      "case_cluster_bootstrap": {
+        "bootstrap_replicates": 10000,
+        "ci95": [
+          0.052704576976421634,
+          0.09553158705701079
+        ],
+        "clusters": 116,
+        "estimate": 0.07246376811594203,
+        "seed": 20261014,
+        "unit": "case_id"
+      },
+      "denominator": 690,
+      "numerator": 50,
+      "value": 0.07246376811594203
+    },
+    "direct_support_recall": {
+      "case_cluster_bootstrap": {
+        "bootstrap_replicates": 10000,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "clusters": 45,
+        "estimate": 1.0,
+        "seed": 20261014,
+        "unit": "case_id"
+      },
+      "denominator": 50,
+      "numerator": 50,
+      "value": 1.0
+    },
+    "false_rejection_of_direct_support_by_judge_label": {
+      "SUPPORTED": 0
+    },
+    "false_rejection_rate_over_direct_support": {
+      "case_cluster_bootstrap": {
+        "bootstrap_replicates": 10000,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "clusters": 45,
+        "estimate": 0.0,
+        "seed": 20261014,
+        "unit": "case_id"
+      },
+      "denominator": 50,
+      "numerator": 0,
+      "value": 0.0
+    },
+    "non_direct_specificity": {
+      "case_cluster_bootstrap": {
+        "bootstrap_replicates": 10000,
+        "ci95": [
+          0.20634920634920634,
+          0.3127906976744186
+        ],
+        "clusters": 117,
+        "estimate": 0.25925925925925924,
+        "seed": 20261014,
+        "unit": "case_id"
+      },
+      "denominator": 864,
+      "numerator": 224,
+      "value": 0.25925925925925924
+    },
+    "unsupported_admission_rate_over_non_direct_evaluable": {
+      "case_cluster_bootstrap": {
+        "bootstrap_replicates": 10000,
+        "ci95": [
+          0.6871378910776361,
+          0.7936145952109465
+        ],
+        "clusters": 117,
+        "estimate": 0.7407407407407407,
+        "seed": 20261014,
+        "unit": "case_id"
+      },
+      "denominator": 864,
+      "numerator": 640,
+      "value": 0.7407407407407407
+    },
+    "unsupported_direct_admissions_by_reference_label": {
+      "IRRELEVANT": 549,
+      "PARTIAL": 91
+    }
+  },
+  "candidate_reference_by_judge_confusion": {
+    "columns": [
+      "DIRECT_SUPPORT",
+      "IRRELEVANT",
+      "PARTIAL"
+    ],
+    "counts": {
+      "DIRECT_SUPPORT|DIRECT_SUPPORT": 50,
+      "IRRELEVANT|DIRECT_SUPPORT": 549,
+      "IRRELEVANT|IRRELEVANT": 11,
+      "IRRELEVANT|PARTIAL": 213,
+      "PARTIAL|DIRECT_SUPPORT": 91
+    },
+    "rows": [
+      "DIRECT_SUPPORT",
+      "IRRELEVANT",
+      "PARTIAL"
+    ]
+  },
+  "candidate_slots": 947,
+  "candidate_unknown_excluded": 33,
+  "case_count": 120,
+  "direct_support_binary_confusion": {
+    "counts": {
+      "DIRECT_SUPPORT|SUPPORTED": 50,
+      "NON_DIRECT_SUPPORT|NOT_SUPPORTED": 224,
+      "NON_DIRECT_SUPPORT|SUPPORTED": 640
+    },
+    "positive": "AI DIRECT_SUPPORT / Judge SUPPORTED"
+  },
+  "human_ground_truth": false,
+  "inference_limit": "All 120 cases originate from one HF-2024 source family; case-cluster intervals condition on that source family and do not estimate between-source-family uncertainty.",
+  "matched_arm_and_case_comparison_hashes": {
+    "results/evidence_judge_real_data_ablation_v1/matched_arm_results.json": {
+      "actual_sha256": "d67449c247741824c56d11548e39aca23e7ddaa9e578ce84706e7a7c84d0a572",
+      "expected_sha256": "d67449c247741824c56d11548e39aca23e7ddaa9e578ce84706e7a7c84d0a572",
+      "matches": true
+    },
+    "results/evidence_judge_real_data_final_paired_audit_v1/case_level_comparison.json": {
+      "actual_sha256": "853d4295030ec04f22beee8c6342e71ccba35c586e8a3ec2f51555fcadc524f9",
+      "expected_sha256": "853d4295030ec04f22beee8c6342e71ccba35c586e8a3ec2f51555fcadc524f9",
+      "matches": true
+    }
+  },
+  "matched_arm_source_sha256": "d67449c247741824c56d11548e39aca23e7ddaa9e578ce84706e7a7c84d0a572",
+  "missing_or_misaligned_candidate_cases": [],
+  "paired_arm_descriptives": {
+    "case_total": 120,
+    "gate_state_pairs": {
+      "NO_EVIDENCE|NO_EVIDENCE": 2,
+      "VALID_EVIDENCE|VALID_EVIDENCE": 118
+    },
+    "retained_candidate_sets_equal": 120,
+    "retained_candidate_total_arm_a": 523,
+    "retained_candidate_total_arm_b": 523
+  },
+  "reference_candidate_label_counts": {
+    "DIRECT_SUPPORT": 50,
+    "IRRELEVANT": 773,
+    "PARTIAL": 91,
+    "UNKNOWN": 33
+  },
+  "reference_manifest_sha256": "8a4687c6ccb436d56ebbc303cc7b1f97b62fba2bbc8e66fbedfd4a2b26c3e875",
+  "reference_sha256": "85dfaf83972fa6131b51996f052c43a09a7eddb1f8e4949a8b3fa910281187f8",
+  "reference_type": "SINGLE_FIXED_MODEL_AI_DERIVED_REVIEW",
+  "schema": "ragin.locked_evidence_support_evaluation.v2.2",
+  "single_model_dependence_warning": "All evidence-support labels are from one fixed Codex reviewer; metrics are descriptive and are not independent adjudication.",
+  "status": "LOCKED_DESCRIPTIVE_ANALYSIS",
+  "supersedes_preliminary_analysis_sha256": "33a962cd72e9682d2a0c5faadf7a634b5b41b07c53cfbe6881a2ad1ff0c78d27"
+}

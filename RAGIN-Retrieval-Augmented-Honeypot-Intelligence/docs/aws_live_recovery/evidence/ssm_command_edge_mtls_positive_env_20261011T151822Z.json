@@ -1,0 +1,46 @@
+{
+    "Command": {
+        "CommandId": "d3312001-e4c4-4c14-8d8c-3d45e3a72e8e",
+        "DocumentName": "AWS-RunShellScript",
+        "DocumentVersion": "$DEFAULT",
+        "Comment": "RAGIN EDGE live positive mTLS probe to CORE using env cert paths (no secrets)",
+        "ExpiresAfter": "2026-10-11T19:20:23.146000+03:00",
+        "Parameters": {
+            "commands": [
+                "set -euo pipefail\necho RUN\ndate -u\nCERT_FILE=\"${RAGIN_MTLS_CERT_FILE:-}\"\nKEY_FILE=\"${RAGIN_MTLS_KEY_FILE:-}\"\nCA_FILE=\"${RAGIN_MTLS_CA_FILE:-}\"\necho CERT_FILE=\"$CERT_FILE\"\necho KEY_FILE=\"$KEY_FILE\"\necho CA_FILE=\"$CA_FILE\"\nCERTS_READY=0\nif [ -n \"$CERT_FILE\" ] && [ -n \"$KEY_FILE\" ] && [ -n \"$CA_FILE\" ] && [ -f \"$CERT_FILE\" ] && [ -f \"$KEY_FILE\" ] && [ -f \"$CA_FILE\" ]; then\n  CERTS_READY=1\nfi\necho CERTS_READY=$CERTS_READY\nTMPDIR=$(mktemp -d)\necho TMPDIR=$TMPDIR\nif [ \"$CERTS_READY\" = \"1\" ] && command -v openssl >/dev/null 2>&1; then\n  echo \"ATTEMPT_OPENSSL_S_CLIENT_EDGE_TO_CORE\"\n  if openssl s_client -connect 172.31.17.217:8443 \\\n    -CAfile \"$CA_FILE\" \\\n    -cert \"$CERT_FILE\" \\\n    -key \"$KEY_FILE\" \\\n    -verify_return_error \\\n    -brief -no_ign_eof < /dev/null > \"${TMPDIR}/s_client_edge_to_core.txt\" 2>&1; then\n    echo S_CLIENT_EDGE_TO_CORE_EXIT=0\n  else\n    echo S_CLIENT_EDGE_TO_CORE_EXIT=$?\n  fi\n  echo \"--- s_client output head ---\"\n  head -n 80 \"${TMPDIR}/s_client_edge_to_core.txt\"\n  echo \"--- peer cert subject/issuer/eku san if returned (no keys) ---\"\n  if grep -q \"BEGIN CERTIFICATE\" \"${TMPDIR}/s_client_edge_to_core.txt\" 2>/dev/null; then\n    openssl x509 -noout -subject -issuer -ext subjectAltName,extendedKeyUsage,keyId,authorityKeyIdentifier \\\n      -in \"${TMPDIR}/s_client_edge_to_core.txt\" 2>/dev/null || echo PEER_CERT_PARSE_FAILED\n  else\n    echo PEER_CERT_NOT_RETURNED\n  fi\nelse\n  echo PROBE_SKIPPED=no_certs_or_no_openssl\nfi\nrm -rf \"${TMPDIR}\"\necho DONE"
+            ]
+        },
+        "InstanceIds": [
+            "i-05bc6aab0bd4260a7"
+        ],
+        "Targets": [],
+        "RequestedDateTime": "2026-10-11T18:18:23.146000+03:00",
+        "Status": "Pending",
+        "StatusDetails": "Pending",
+        "OutputS3Region": "eu-north-1",
+        "OutputS3BucketName": "",
+        "OutputS3KeyPrefix": "",
+        "MaxConcurrency": "1",
+        "MaxErrors": "1",
+        "TargetCount": 1,
+        "CompletedCount": 0,
+        "ErrorCount": 0,
+        "DeliveryTimedOutCount": 0,
+        "ServiceRole": "",
+        "NotificationConfig": {
+            "NotificationArn": "",
+            "NotificationEvents": [],
+            "NotificationType": ""
+        },
+        "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "",
+            "CloudWatchOutputEnabled": false
+        },
+        "TimeoutSeconds": 120,
+        "AlarmConfiguration": {
+            "IgnorePollAlarmFailure": false,
+            "Alarms": []
+        },
+        "TriggeredAlarms": []
+    }
+}

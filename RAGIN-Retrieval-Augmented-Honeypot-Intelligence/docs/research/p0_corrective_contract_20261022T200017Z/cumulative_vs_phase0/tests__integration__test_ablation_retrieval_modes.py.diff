@@ -1,0 +1,222 @@
+--- /dev/null
++++ b/tests/integration/test_ablation_retrieval_modes.py (current)
+@@ -0,0 +1,219 @@
++"""Structural tests for the opt-in B1/B3 retrieval modes.
++
++These tests use explicitly labelled fakes for the corpus, vector store, and
++embedding runtime. They do not download a model, run embedding inference, or
++open a provider socket. A real dense run remains model/store blocked; the
++tests only pin the configuration and channel-separation contract.
++"""
++
++from __future__ import annotations
++
++import sys
++import types
++
++import pytest
++
++from ragin.cycle.adapters import DonAdapter
++from ragin.decision_fusion_v4.evidence_export import build_evidence_bundle
++from ragin.don.rag_engine import ThreatRAGEngine
++
++
++class _FakeCorpus:
++    def __init__(self, corpus_path=None):
++        self._corpus_path = corpus_path
++        self.documents = [
++            {"doc_id": "T1003", "title": "whoami credential access", "text": "whoami credential access"}
++        ]
++
++    def load_corpus(self):
++        return len(self.documents)
++
++
++class _FakeVectorStore:
++    def __init__(self, store_path=None):
++        self.store_path = store_path
++        self.document_count = 1
++
++    def load(self, path=None):
++        return None
++
++    def search(self, query, top_k=10):
++        return [{"doc_id": "DENSE_ONLY", "title": "dense", "text": query, "score": 1.0}]
++
++
++class _Boom:
++    def __init__(self, *args, **kwargs):
++        raise AssertionError("this retriever must not be constructed")
++
++
++def _fake_dense_runtime(monkeypatch):
++    monkeypatch.setitem(sys.modules, "faiss", types.SimpleNamespace())
++    monkeypatch.setitem(sys.modules, "sentence_transformers", types.SimpleNamespace())
++
++
++def test_none_mode_constructs_no_retriever(monkeypatch):
++    monkeypatch.setenv("RAGIN_RAG_MODE", "none")
++    monkeypatch.setattr("ragin.don.rag_engine.IntelCorpus", _Boom)
++    monkeypatch.setattr("ragin.don.rag_engine.VectorStore", _Boom)
++
++    engine = ThreatRAGEngine(gateway_url="http://127.0.0.1:9")
++
++    assert engine._retrieval_mode == "none"
++    assert engine._vector_store is None
++    assert engine._corpus is None
++    assert engine.hybrid_search("whoami") == []
++    assert engine.search_threat_intel("whoami") == []
++    assert engine.keyword_search("whoami") == []
++    provenance = engine.retrieval_provenance
++    assert provenance["effective_backend"] == "none"
++    assert provenance["sparse_constructed"] is False
++    assert provenance["dense_constructed"] is False
++
++
++def test_bm25_mode_constructs_only_sparse_index(monkeypatch):
++    monkeypatch.setenv("RAGIN_RAG_MODE", "bm25")
++    monkeypatch.setattr("ragin.don.rag_engine.IntelCorpus", _FakeCorpus)
++    monkeypatch.setattr("ragin.don.rag_engine.VectorStore", _Boom)
++
++    engine = ThreatRAGEngine(gateway_url="http://127.0.0.1:9")
++
++    assert engine._retrieval_mode == "bm25"
++    assert engine._vector_store is None
++    assert engine._corpus is not None
++    assert engine.search_threat_intel("whoami") == []
++    assert engine.hybrid_search("whoami")[0]["doc_id"] == "T1003"
++    assert engine.retrieval_provenance["effective_backend"] == "bm25"
++
++
++def test_dense_missing_store_fails_configuration(monkeypatch, tmp_path):
++    monkeypatch.setenv("RAGIN_RAG_MODE", "dense")
++    monkeypatch.setenv("RAGIN_VECTOR_STORE_PATH", str(tmp_path / "missing"))
++    monkeypatch.setattr("ragin.don.rag_engine.IntelCorpus", _Boom)
++    with pytest.raises(RuntimeError, match="exact store|requires"):
++        ThreatRAGEngine(gateway_url="http://127.0.0.1:9")
++
++
++def test_dense_missing_local_model_fails_configuration(monkeypatch, tmp_path):
++    monkeypatch.setenv("RAGIN_RAG_MODE", "dense")
++    store = tmp_path / "store"
++    store.mkdir()
++    (store / "index.faiss").write_bytes(b"fake")
++    (store / "documents.json").write_text("[]", encoding="utf-8")
++    monkeypatch.setenv("RAGIN_VECTOR_STORE_PATH", str(store))
++    monkeypatch.delenv("RAGIN_EMBED_MODEL", raising=False)
++    _fake_dense_runtime(monkeypatch)
++    monkeypatch.setattr("ragin.don.rag_engine.IntelCorpus", _Boom)
++
++    with pytest.raises(RuntimeError, match="local model directory"):
++        ThreatRAGEngine(gateway_url="http://127.0.0.1:9")
++
++
++def test_dense_mode_uses_only_dense_channel(monkeypatch, tmp_path):
++    store = tmp_path / "store"
++    store.mkdir()
++    (store / "index.faiss").write_bytes(b"fake")
++    (store / "documents.json").write_text("[]", encoding="utf-8")
++    model = tmp_path / "model"
++    model.mkdir()
++    monkeypatch.setenv("RAGIN_RAG_MODE", "dense")
++    monkeypatch.setenv("RAGIN_VECTOR_STORE_PATH", str(store))
++    monkeypatch.setenv("RAGIN_EMBED_MODEL", str(model))
++    _fake_dense_runtime(monkeypatch)
++    monkeypatch.setattr("ragin.don.rag_engine.IntelCorpus", _Boom)
++    monkeypatch.setattr("ragin.don.rag_engine.VectorStore", _FakeVectorStore)
++
++    engine = ThreatRAGEngine(gateway_url="http://127.0.0.1:9")
++
++    def _forbidden_keyword(query):
++        raise AssertionError("dense-only mode must not call BM25")
++
++    engine.keyword_search = _forbidden_keyword
++    hits = engine.hybrid_search("whoami")
++    assert [hit["doc_id"] for hit in hits] == ["DENSE_ONLY"]
++    assert engine.retrieval_provenance["effective_backend"] == "dense"
++    assert engine.retrieval_provenance["dense_constructed"] is True
++    assert engine.retrieval_provenance["sparse_constructed"] is False
++
++
++def test_default_mode_remains_hybrid(monkeypatch, tmp_path):
++    monkeypatch.delenv("RAGIN_RAG_MODE", raising=False)
++    monkeypatch.setattr("ragin.don.rag_engine.IntelCorpus", _FakeCorpus)
++    monkeypatch.setattr("ragin.don.rag_engine.VectorStore", _FakeVectorStore)
++
++    engine = ThreatRAGEngine(gateway_url="http://127.0.0.1:9", vector_store_path=str(tmp_path))
++    assert engine._retrieval_mode == "hybrid"
++    assert engine.retrieval_provenance["effective_backend"] == "hybrid"
++    assert engine.retrieval_provenance["sparse_constructed"] is True
++    assert engine.retrieval_provenance["dense_constructed"] is True
++
++
++def test_don_adapter_passes_store_path_and_provenance(monkeypatch, tmp_path):
++    store = tmp_path / "store"
++    store.mkdir()
++    (store / "index.faiss").write_bytes(b"fake")
++    (store / "documents.json").write_text("[]", encoding="utf-8")
++    model = tmp_path / "model"
++    model.mkdir()
++    monkeypatch.setenv("RAGIN_RAG_MODE", "dense")
++    monkeypatch.setenv("RAGIN_EMBED_MODEL", str(model))
++    _fake_dense_runtime(monkeypatch)
++    monkeypatch.setattr("ragin.don.rag_engine.IntelCorpus", _Boom)
++    monkeypatch.setattr("ragin.don.rag_engine.VectorStore", _FakeVectorStore)
++
++    adapter = DonAdapter(gateway_url="http://127.0.0.1:9", vector_store_path=str(store))
++    assert adapter._engine.retrieval_provenance["effective_backend"] == "dense"
++
++
++def test_evidence_bundle_reports_observed_backend_not_static_hybrid():
++    class _Analysis:
++        intel_documents = []
++        classification = types.SimpleNamespace(value="malicious")
++        severity = types.SimpleNamespace(value="high")
++        confidence = 0.5
++        tactics = []
++        iocs = []
++
++    bundle = build_evidence_bundle(
++        _Analysis(),
++        {
++            "session_id": "s1",
++            "classification": {"skill_level": "expert", "confidence": 0.9},
++            "retrieval_provenance": {
++                "effective_backend": "dense",
++                "backend_source": "ENGINE_OBSERVED",
++                "requested_mode": "dense",
++                "sparse_documents": 0,
++                "dense_documents": 7,
++            },
++        },
++        "whoami",
++    )
++    retrieval = bundle["retrieval"]
++    assert retrieval["backend"] == "dense"
++    assert retrieval["backend_source"] == "ENGINE_OBSERVED"
++    assert retrieval["mode"] == "dense"
++    assert retrieval["dense_documents"] == 7
++    assert retrieval["retrieval_status"] == "SUCCESS"
++
++
++def test_evidence_bundle_marks_disabled_retrieval():
++    class _Analysis:
++        intel_documents = []
++        classification = types.SimpleNamespace(value="malicious")
++        severity = types.SimpleNamespace(value="high")
++        confidence = 0.5
++        tactics = []
++        iocs = []
++
++    bundle = build_evidence_bundle(
++        _Analysis(),
++        {
++            "session_id": "s1",
++            "classification": {"skill_level": "expert"},
++            "retrieval_provenance": {"effective_backend": "none", "requested_mode": "none"},
++        },
++        "whoami",
++    )
++    assert bundle["retrieval"]["backend"] == "none"
++    assert bundle["retrieval"]["retrieval_status"] == "DISABLED"
++    assert bundle["retrieval"]["trace_summary"]["usable_successful_retrieval"] is False

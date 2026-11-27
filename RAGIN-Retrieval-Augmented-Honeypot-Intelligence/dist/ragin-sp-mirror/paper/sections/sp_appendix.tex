@@ -1,0 +1,77 @@
+\appendices
+
+\section{Artifact and Protocol Summary}
+\label{app:artifacts}
+The release contains the source code, fixed scenario manifests, raw per-row
+results, and the audit scripts. It is published on artifact acceptance, and an
+anonymised mirror of exactly this file set is built by
+\path{scripts/build_anonymized_mirror.py}. This anonymous submission carries no
+locator, so the paths below are resolvable only against that mirror, and we do
+not ask a reviewer to treat the numbers as independently reproduced without it.
+The mirror is assembled from an explicit allowlist rather than a glob, its
+appendix targets are checked to resolve inside the bundle, and the build fails
+if any author identity, cloud identifier, or credential-shaped string survives.
+Credential redaction is format-preserving, so the mirrored probe corpora return
+identical verdicts to the originals---a reviewer running the bundled checks
+reproduces the paper's numbers rather than a redacted approximation. The
+principal files are
+\path{results/b4_baseline_zodiac_20260922.json} (paired grounding),
+\path{results/external_baseline_model_coherent.json} (same-model ladder),
+\path{results/verifier_redteam.json} (105-case deterministic suite),
+\path{results/verifier_redteam_supported_claims.json} (123 supported-claim cases),
+\path{results/verifier_redteam_cross_family.json} (Table~\ref{tab:verifier-cross-family}),
+\path{results/verifier_ci_cluster_bootstrap.json} (case-level intervals for the same battery),
+\path{results/verifier_harm_probe.json} (coherent-but-harmful boundary probe),
+\path{results/live_benchmark_zodiac_20260922.json} and
+\path{results/live_benchmark_zodiac_20260922_run2.json} (218-row campaigns), and
+\path{results/stability_run1_vs_run2.json}. Superseded or quota-blocked
+artifacts remain in the repository as history and are not used as current
+headline results.
+
+Three checks regenerate rather than merely store the paper's derived numbers.
+\path{scripts/bootstrap_ci.py} recomputes every paired interval and the live
+suite means from the persisted rows, and refuses to report a paired interval
+when the two arms fail its key-set, duplicate, or suite-membership audit.
+\path{scripts/verifier_ci_cluster_bootstrap.py} recomputes the induced-draft
+intervals by resampling cases, and asserts its own aggregation against the
+published per-family counts before reporting an interval.
+\path{scripts/gen_sp_figures.py} writes the values every figure plots, so a
+figure cannot drift from its artifact. Its \texttt{--check} mode fails when the
+committed figure values are stale, and it runs inside the figure geometry audit
+(\path{scripts/audit_figure_geometry.py}), so one command covers both figure
+geometry and figure provenance---necessary because the geometry audit renders
+whatever values it is handed and therefore cannot detect a stale value itself.
+
+\subsection{Consensus Rubrics and Scenarios}
+\label{app:rubrics}
+The eight consensus scenarios and the five-dimension 1--5 rubric are fixed
+in the released evaluation harness. Evaluator prompts receive the attacker
+input, expected persona, and complete served transcript, but no other
+evaluator's score. Registered canaries are scored as deployed bait, not real
+secrets; this rule is also applied by the offline judge audit.
+
+\subsection{Ground-Truth Scenario Suite}
+\label{app:scenarios}
+The suite covers identity, credential access, privilege escalation,
+metadata access, SQL injection, service discovery, reverse shell, and shadow
+dump scenarios. Danger signals are declared per scenario and are checked
+independently of the realism score.
+
+\subsection{Audit Records and Reproduction}
+\label{app:audit}
+Every gate decision is persisted in \path{results/hitl_audit_bench.jsonl}; the
+scoring, serve-provenance, stability, and figure audits write separate JSON
+artifacts. Offline checks require no network. The live protocol is the fixed
+218-row workload with two archived reruns; their independence is not claimed.
+Provider-backed reruns are currently unavailable, so these live numbers are
+archived evidence rather than a fresh reproduction. The held-out trajectory
+controller audit is recorded in
+\path{results/sp2027_rescue/behavior_trajectory_benchmark.json}; its risk-floor
+diagnostic is explicitly self-referential and is not used as an independent
+effectiveness claim.
+
+\subsection{Figure Geometry Audit}
+\label{app:figaudit}
+The five TikZ figures are re-rendered in isolation at 300\,dpi by
+\path{scripts/audit_figure_geometry.py}. The version-of-record audit reports
+zero crossing defects and 73 inventoried runs resolved to declared geometry.

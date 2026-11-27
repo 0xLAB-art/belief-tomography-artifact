@@ -1,0 +1,133 @@
+--- a/ragin/cycle/harness.py (prior P0 snapshot)
++++ b/ragin/cycle/harness.py (current)
+@@ -25,8 +25,9 @@
+ from dataclasses import dataclass, field
+ from typing import Any, Protocol
+ 
++from ragin.capture_v4.privacy import bounded_redacted_text
+ from ragin.cycle.hitl import ApprovalGateway, RequiresApprovalError
+-from ragin.cycle.session import EventType, Session
++from ragin.cycle.session import Event, EventType, Session
+ from ragin.cycle.verifier import FictionConsistencyVerifier
+ from ragin.decision_fusion_v4.config import resolve_arm
+ from ragin.decision_fusion_v4.evidence_export import failure_evidence_bundle
+@@ -187,9 +188,10 @@
+     events_emitted: int = 0
+     context: dict[str, Any] = field(default_factory=dict)
+ 
+-    def emit(self, event_type: EventType, data: dict, source: str) -> None:
+-        self.session.emit(event_type, data, source=source)
++    def emit(self, event_type: EventType, data: dict, source: str) -> Event:
++        event = self.session.emit(event_type, data, source=source)
+         self.events_emitted += 1
++        return event
+ 
+ 
+ class Harness:
+@@ -291,10 +293,22 @@
+ 
+     @staticmethod
+     def _serving_attempt(candidate: dict[str, Any], attempt: int) -> dict[str, Any]:
+-        metadata = candidate.get("metadata") if isinstance(candidate.get("metadata"), dict) else {}
++        raw_metadata = candidate.get("metadata")
++        metadata: dict[str, Any] = dict(raw_metadata) if isinstance(raw_metadata, dict) else {}
++        candidate_text = bounded_redacted_text(str(candidate.get("response_text", "")), limit=500)
+         return {
+             "attempt": attempt,
++            # Per-attempt candidate text is bounded and minimized before
++            # truncation. The raw-byte digest remains the independent
++            # integrity value; this field is for human/audit inspection only.
++            "candidate_text": candidate_text["text"],
++            "candidate_text_chars": candidate_text["chars"],
++            "candidate_text_truncated": candidate_text["truncated"],
++            "candidate_text_availability": candidate_text["availability"],
+             "selected_strategy": metadata.get("selected_strategy", "NOT_VERIFIABLE"),
++            "decision_event_id": metadata.get("decision_event_id", "NOT_VERIFIABLE"),
++            "decision_event_sha256": metadata.get("decision_event_sha256", "NOT_VERIFIABLE"),
++            "decision_selected": metadata.get("decision_selected", "NOT_VERIFIABLE"),
+             "strategy_delivered_to_generator": metadata.get("strategy_delivered_to_generator", "NOT_VERIFIABLE"),
+             "strategy_consumed_by_template": metadata.get("strategy_consumed_by_template", "NOT_VERIFIABLE"),
+             "actual_generator_invocation": metadata.get("actual_generator_invocation", "NOT_VERIFIABLE"),
+@@ -314,6 +328,44 @@
+             "commit_graph_after_sha256": None,
+             "outcome": "EXECUTION_FAILED",
+         }
++
++    @staticmethod
++    def _attach_decision_reference(ctx: _ProcessContext, candidate: dict[str, Any]) -> None:
++        """Attach the actual STRATEGY_UPDATE reference to a candidate.
++
++        The per-turn decision is already emitted as a durable event. This makes
++        the serving trace point at that event (and carries a small, explicit
++        selection projection) instead of inferring a decision from unrelated
++        metadata.
++        """
++        decision = ctx.context.get("policy_decision")
++        if not isinstance(decision, dict):
++            return
++        metadata = candidate.get("metadata")
++        if not isinstance(metadata, dict):
++            metadata = {}
++        selected = {
++            key: decision.get(key)
++            for key in (
++                "selected_response_strategy",
++                "policy_reason_code",
++                "gate_state",
++                "gate_reason",
++                "fallback_reason",
++                "arm",
++                "policy_version",
++            )
++            if key in decision
++        }
++        refs = decision.get("supporting_evidence_refs")
++        if isinstance(refs, list):
++            selected["supporting_evidence_refs"] = [str(item)[:128] for item in refs[:20]]
++        metadata.setdefault("decision_event_id", ctx.context.get("strategy_update_event_id", "NOT_VERIFIABLE"))
++        metadata.setdefault(
++            "decision_event_sha256", ctx.context.get("strategy_update_event_sha256", "NOT_VERIFIABLE")
++        )
++        metadata.setdefault("decision_selected", selected)
++        candidate["metadata"] = metadata
+ 
+     @staticmethod
+     def _attach_serving_trace(response: dict[str, Any], attempts: list[dict[str, Any]], outcome: str) -> None:
+@@ -560,10 +612,15 @@
+                 policy_decision["session_id"] = session.session_id
+                 policy_decision["arm"] = self._decision_arm
+                 ctx.context["policy_decision"] = policy_decision
+-                ctx.emit(EventType.STRATEGY_UPDATE, policy_decision, source="v4-policy")
++                strategy_event = ctx.emit(EventType.STRATEGY_UPDATE, policy_decision, source="v4-policy")
++                ctx.context["strategy_update_event_id"] = strategy_event.event_id
++                ctx.context["strategy_update_event_sha256"] = hashlib.sha256(
++                    json.dumps(policy_decision, sort_keys=True, default=str).encode()
++                ).hexdigest()
+             self.fiction(session.session_id, str(ctx.result.classification.get("skill_level", "novice")))
+             for attempt in range(1, self._max_retries + 2):
+                 candidate = self._strict_candidate(ctx, feedback, attempt)
++                self._attach_decision_reference(ctx, candidate)
+                 attempt_trace = self._serving_attempt(candidate, attempt)
+                 serving_attempts.append(attempt_trace)
+                 context = self._strict_verification_context(ctx)
+@@ -670,13 +727,19 @@
+             identity = self._host_store.pinned_identity if self._host_store is not None else None
+             fallback = ResponseGenerator()._generate_template(skill, attacker_input, feedback, identity)
+             fallback_candidate = {"response_text": fallback, "serve_path": "FALLBACK_VERIFIED", "fallback_served": True}
++            self._attach_decision_reference(ctx, fallback_candidate)
+             fallback_trace = self._serving_attempt(fallback_candidate, self._max_retries + 2)
+             fallback_trace["selected_strategy"] = (ctx.context.get("policy_decision") or {}).get("selected_response_strategy", "NOT_VERIFIABLE")
+             fallback_trace["strategy_consumed_by_template"] = False
+             fallback_trace["actual_generator_invocation"] = False
+             fallback_trace["fallback_reason"] = serving_attempts[-1].get("fallback_reason", "verified_serve_unavailable") if serving_attempts else "verified_serve_unavailable"
+             serving_attempts.append(fallback_trace)
+-            fallback_candidate["metadata"] = {"serving_outcome": "SAFE_FALLBACK_SERVED", "selected_strategy": fallback_trace["selected_strategy"], "strategy_consumed_by_template": False, "actual_generator_invocation": False, "fallback_reason": fallback_trace["fallback_reason"]}
++            raw_fallback_metadata = fallback_candidate.get("metadata")
++            fallback_metadata: dict[str, Any] = (
++                dict(raw_fallback_metadata) if isinstance(raw_fallback_metadata, dict) else {}
++            )
++            fallback_metadata.update({"serving_outcome": "SAFE_FALLBACK_SERVED", "selected_strategy": fallback_trace["selected_strategy"], "strategy_consumed_by_template": False, "actual_generator_invocation": False, "fallback_reason": fallback_trace["fallback_reason"]})
++            fallback_candidate["metadata"] = fallback_metadata
+             fallback_verification = self._strict_verify(fallback_candidate, self._strict_verification_context(ctx))
+             fallback_trace["verifier_verdict"] = dict(fallback_verification)
+             if fallback_verification.get("passed") is not True:

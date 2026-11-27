@@ -1,0 +1,66 @@
+=== pytest via .venv/bin/python - real repo counts ===
+timestamp: 2026-10-10T09:26:03Z
+cwd: /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence
+venv py: Python 3.12.3
+pytest module: 9.1.1
+--- run ---
+ssssssssss.....s........................................................ [  4%]
+........................................................................ [  8%]
+..............................ssssssssssssssssssssssssssssssssssssssssss [ 12%]
+sssssssssssssssssss.ssssssssssssssssssssssssssssssssssssssssssss........ [ 16%]
+........................................................................ [ 20%]
+........................................................................ [ 24%]
+........................................................................ [ 28%]
+........................................................................ [ 32%]
+........................................................................ [ 36%]
+........................................................................ [ 40%]
+........................................................................ [ 44%]
+........................................................................ [ 48%]
+........................................................................ [ 52%]
+........................................................................ [ 56%]
+........................................................................ [ 60%]
+........................................................................ [ 64%]
+........................................................................ [ 69%]
+........................................................................ [ 73%]
+........................................................................ [ 77%]
+........................................................................ [ 81%]
+........................................................................ [ 85%]
+........................................................................ [ 89%]
+........................................................................ [ 93%]
+........................................................................ [ 97%]
+.............................................                            [100%]
+=============================== warnings summary ===============================
+tests/test_e2e_comprehensive.py:25
+  /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/test_e2e_comprehensive.py:25: PytestUnknownMarkWarning: Unknown pytest.mark.e2e - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    pytestmark = [pytest.mark.e2e, pytest.mark.slow]
+
+tests/test_performance_benchmark.py:21
+  /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/test_performance_benchmark.py:21: PytestUnknownMarkWarning: Unknown pytest.mark.e2e - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    pytestmark = [pytest.mark.e2e, pytest.mark.slow]
+
+tests/test_security_validation.py:19
+  /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/test_security_validation.py:19: PytestUnknownMarkWarning: Unknown pytest.mark.e2e - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    pytestmark = [pytest.mark.e2e]
+
+tests/integration/test_pipeline.py: 3 warnings
+tests/unit/test_don.py: 6 warnings
+tests/unit/test_ttp_extraction_accuracy.py: 16 warnings
+  /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/.venv/lib/python3.12/site-packages/pydantic/main.py:263: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+
+tests/unit/test_timing_fingerprint.py::TestCowrieGapParsing::test_parses_gaps_from_synthetic_log
+tests/unit/test_timing_fingerprint.py::TestCowrieGapParsing::test_parses_gaps_from_synthetic_log
+tests/unit/test_timing_fingerprint.py::TestCowrieGapParsing::test_parses_gaps_from_synthetic_log
+  /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_timing_fingerprint.py:102: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+    .datetime.utcfromtimestamp(base + offset)
+
+tests/unit/test_timing_fingerprint.py::TestCowrieGapParsing::test_idle_gaps_dropped
+tests/unit/test_timing_fingerprint.py::TestCowrieGapParsing::test_idle_gaps_dropped
+tests/unit/test_timing_fingerprint.py::TestCowrieGapParsing::test_idle_gaps_dropped
+  /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/tests/unit/test_timing_fingerprint.py:122: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+    return dt.datetime.utcfromtimestamp(1_700_000_000.0 + t).strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z"
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+1657 passed, 116 skipped, 34 warnings in 111.67s (0:01:51)
+--- exit code captured via PIPESTATUS below ---
+=== end ===

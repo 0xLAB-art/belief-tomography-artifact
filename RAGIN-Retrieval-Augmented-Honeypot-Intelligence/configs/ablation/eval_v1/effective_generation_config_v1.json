@@ -1,0 +1,30 @@
+{
+  "applied_decoding": {
+    "max_tokens": 512,
+    "seed": 0,
+    "temperature": 0.0,
+    "top_p": 1.0
+  },
+  "config_sha256": "f0a29c6d874ffa7265afb6497a99c1486dcadf74b7f5edd2c7b56de3dba92c45",
+  "enforcement": {
+    "effect": "every generated request carries these decoding values; conflicting per-call overrides raise GenerationConfigError",
+    "layer": "ragin.gateway.client.GatewayClient.generate (contract-active branch)"
+  },
+  "generation_contract_version": "generation-contract-v1",
+  "max_retries": 1,
+  "model": "UNRESOLVED_FROZEN_GENERATOR",
+  "model_exposure": {
+    "mode_env": "RAGIN_REQUIRE_MODEL_EXPOSURE",
+    "require_model_exposure": true,
+    "status": "ENABLED"
+  },
+  "non_claims": [
+    "Configuration only: no provider was contacted and no model was loaded while producing this artifact.",
+    "The artifact records what RAGIN's generation client places on the wire. Whether a given backend honors top_p/seed is unverified until observed in a live run's request/response trace.",
+    "Model identity/weights availability is out of scope here and remains a separate preflight blocker (UNRESOLVED_MODEL)."
+  ],
+  "published_utc": "2026-10-23T07:45:06Z",
+  "schema": "ragin.generation.effective_config.v1",
+  "seed_status": "EXPLICIT",
+  "source": "ENV_VARS"
+}

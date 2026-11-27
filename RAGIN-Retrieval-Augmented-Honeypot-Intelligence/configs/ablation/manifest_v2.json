@@ -1,0 +1,112 @@
+{
+  "arms": {
+    "B0": {
+      "file": "b0_native_cowrie.json",
+      "status": "EXECUTABLE_LOCAL_TRANSPORT_ONLY"
+    },
+    "B1": {
+      "file": "b1_no_retrieval.json",
+      "status": "BLOCKED_MODEL_AND_FROZEN_GENERATOR"
+    },
+    "B2": {
+      "file": "b2_bm25.json",
+      "status": "BLOCKED_MODEL_AND_FROZEN_GENERATOR"
+    },
+    "B3": {
+      "file": "b3_dense.json",
+      "status": "BLOCKED_EXACT_STORE_MODEL_AND_FROZEN_GENERATOR"
+    },
+    "B4": {
+      "file": "b4_rule_decision.not_ready.json",
+      "status": "NOT_READY"
+    },
+    "B5": {
+      "file": "b5_finetuned_laya.not_ready.json",
+      "status": "NOT_READY"
+    }
+  },
+  "claim_boundary": {
+    "commands": "STARTUP_WIRING_ONLY_NOT_EXPERIMENT",
+    "decoding_compliance": "NOT_ESTABLISHED",
+    "generator_settings": "PROPOSED_NOT_ENFORCED",
+    "genuine_model_invocation": "NOT_ESTABLISHED",
+    "resource_enforcement": "JSON fields are not cgroup/container/scheduler enforcement",
+    "resource_fields": "PROPOSED_NOT_ENFORCED"
+  },
+  "execution_lock": "INCOMPLETE",
+  "execution_lock_reason": "Generator identity/prompt/price, allocation, codebook, data, exact store/model, and model hashes are not frozen.",
+  "files": {
+    "b0_native_cowrie.json": {
+      "bytes": 1444,
+      "sha256": "e6d8f6e25008b05efcafaf42faf9d00ec42edb6678ba9ac32f9847baebf9093e"
+    },
+    "b1_no_retrieval.json": {
+      "bytes": 3203,
+      "sha256": "4425459fa4efebac45cbb933c8087c144eb2ed263d40c70652d81f4f620f60cf"
+    },
+    "b2_bm25.json": {
+      "bytes": 3037,
+      "sha256": "678f384cd9fa3211116a794ee2a6ffdc1ce0a6e1dde23c9751a28f68c898e7bc"
+    },
+    "b3_dense.json": {
+      "bytes": 3593,
+      "sha256": "64e2b26c6c1c5e76fc8d308e5ca7e4b29036fd3b7a199298ebe5671e75aa056a"
+    },
+    "b4_rule_decision.not_ready.json": {
+      "bytes": 710,
+      "sha256": "42cce9643faa7350600289b8e7375bb218317e0a6d278e18bf8e66d55261c8c4"
+    },
+    "b5_finetuned_laya.not_ready.json": {
+      "bytes": 892,
+      "sha256": "a996ae5ad7916a7796346ee6ce7ada394ac1ce64fc8669a20820ea1e2b11a285"
+    },
+    "manifest_v1.prior_fabricated_timestamp.json": {
+      "bytes": 2343,
+      "sha256": "bce8d0786335ac3bde41d3c6276c8e43c5d814172332eff69026ef5447e3383d"
+    }
+  },
+  "generated_utc": "2026-10-22T20:25:19Z",
+  "generated_utc_basis": "actual system UTC at manifest generation; no midnight rounding",
+  "provider_calls": 0,
+  "provider_spend_usd": 0,
+  "schema": "ragin.ablation.config_manifest.v2",
+  "shared_b1_b3": {
+    "command_aware_v2": false,
+    "generator_identity": "UNRESOLVED_FROZEN_GENERATOR",
+    "generator_settings": {
+      "fallback": "none",
+      "fallback_status": "PROPOSED_NOT_ENFORCED",
+      "max_retries": 1,
+      "max_tokens": 512,
+      "not_exposed_by_runtime": [
+        "seed",
+        "top_p"
+      ],
+      "runtime_observed_defaults": {
+        "max_tokens": 4096,
+        "temperature": 0.7
+      },
+      "seed": 0,
+      "status": "PROPOSED_NOT_ENFORCED",
+      "temperature": 0.0,
+      "top_p": 1.0
+    },
+    "laya_enabled": false,
+    "persona": "data/host_fiction.json (hash UNRESOLVED)",
+    "prompt_template": "UNRESOLVED_FROZEN_PROMPT_V1",
+    "resource_budget": {
+      "budget_id": "B1_B3_SHARED_PROPOSED_BUDGET",
+      "cpu": 1,
+      "enforcement": "PROPOSED_NOT_ENFORCED",
+      "gpu": false,
+      "memory_mb": 2048
+    },
+    "verification": "FictionConsistencyVerifier+HostFictionVerifier, mandatory=true"
+  },
+  "supersedes": {
+    "note": "Prior manifest preserved byte-for-byte. Its frozen_utc=2026-10-22T00:00:00Z was fabricated precision and is not a freeze claim.",
+    "path": "configs/ablation/manifest_v1.prior_fabricated_timestamp.json",
+    "sha256": "bce8d0786335ac3bde41d3c6276c8e43c5d814172332eff69026ef5447e3383d"
+  },
+  "version": "v2"
+}

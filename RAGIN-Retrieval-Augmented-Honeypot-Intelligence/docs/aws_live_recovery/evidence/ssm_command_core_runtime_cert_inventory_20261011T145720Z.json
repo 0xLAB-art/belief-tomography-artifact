@@ -1,0 +1,46 @@
+{
+    "Command": {
+        "CommandId": "aa59036b-88b6-4811-950d-d3e3e88eaf1c",
+        "DocumentName": "AWS-RunShellScript",
+        "DocumentVersion": "$DEFAULT",
+        "Comment": "RAGIN CORE live runtime cert metadata",
+        "ExpiresAfter": "2026-10-11T18:58:21.573000+03:00",
+        "Parameters": {
+            "commands": [
+                "set -euo pipefail\necho RUN\ndate -u\necho RUN_TLS_DIR\nif [ -d /run/ragin/tls ]; then\n  echo DIR=/run/ragin/tls\n  find /run/ragin/tls -maxdepth 3 -type f 2>/dev/null | sort | head -n 200\nelse\n  echo DIR_MISSING=/run/ragin/tls\nfi\necho CERT_PUB_ONLY\nfor f in /run/ragin/tls/server.crt /run/ragin/tls/ca.crt /run/ragin/tls/client.crt /run/ragin/tls/*.crt /run/ragin/tls/*.pem; do\n  if [ -f \"$f\" ]; then\n    echo FILE_PUB=$f\n    openssl x509 -noout -subject -issuer -dates -ext subjectAltName,extendedKeyUsage,keyId,authorityKeyIdentifier -in \"$f\" 2>/dev/null || echo PARSE_FAIL=$f\n    echo FINGERPRINT_SUM=$(openssl x509 -noout -fingerprint -sha256 -in \"$f\" 2>/dev/null || echo fingerprint_failed)\n    echo SIZE_BYTES=$(stat -c %s \"$f\" 2>/dev/null || echo stat_failed)\n  fi\ndone\necho KEY_LIST_ONLY\nfor f in /run/ragin/tls/*.key /run/ragin/tls/*.pem; do\n  if [ -f \"$f\" ]; then\n    echo KEY_FILE=$f\n    echo KEY_SIZE_BYTES=$(stat -c %s \"$f\" 2>/dev/null || echo stat_failed)\n  fi\ndone\necho DONE"
+            ]
+        },
+        "InstanceIds": [
+            "i-062a400b300f4f9e4"
+        ],
+        "Targets": [],
+        "RequestedDateTime": "2026-10-11T17:57:21.573000+03:00",
+        "Status": "Pending",
+        "StatusDetails": "Pending",
+        "OutputS3Region": "eu-north-1",
+        "OutputS3BucketName": "",
+        "OutputS3KeyPrefix": "",
+        "MaxConcurrency": "1",
+        "MaxErrors": "1",
+        "TargetCount": 1,
+        "CompletedCount": 0,
+        "ErrorCount": 0,
+        "DeliveryTimedOutCount": 0,
+        "ServiceRole": "",
+        "NotificationConfig": {
+            "NotificationArn": "",
+            "NotificationEvents": [],
+            "NotificationType": ""
+        },
+        "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "",
+            "CloudWatchOutputEnabled": false
+        },
+        "TimeoutSeconds": 60,
+        "AlarmConfiguration": {
+            "IgnorePollAlarmFailure": false,
+            "Alarms": []
+        },
+        "TriggeredAlarms": []
+    }
+}

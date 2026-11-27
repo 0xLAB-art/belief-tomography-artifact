@@ -1,0 +1,133 @@
+{
+  "contract": {
+    "env": "RAGIN_TRANSCRIPT_CONTRACT",
+    "v1": "legacy default (server echo)",
+    "v2": "frontend echo, payload only"
+  },
+  "created_utc": "2026-10-23T05:54:39Z",
+  "evidence": {
+    "v1_run_preserved": "docs/research/persona_alignment_20261023T052609Z",
+    "v2_contract_checks": {
+      "frontend_echo_missing_turns": [],
+      "ok": true,
+      "served_payload_echo_turns": [],
+      "transcript_contract": "v2"
+    },
+    "v2_run": "docs/research/persona_alignment_20261023T054559Z",
+    "v2_status": "PARTIAL_ALIGNMENT",
+    "v2_trace_manifest_sha256": "23aeea3d13a2dd4ffae47ffa7bab85a23494c91155bb8a3962ad2bab82d12683"
+  },
+  "files": [
+    {
+      "change": "added",
+      "exists": true,
+      "path": "ragin/cycle/transcript_contract.py",
+      "purpose": "Versioned contract resolution (v1/v2), echo ownership, provenance record",
+      "sha256": "fb773b47394faeb0026b01eafb23b71f4cce4558ab9dfb752340cf4c76328510"
+    },
+    {
+      "change": "modified",
+      "exists": true,
+      "path": "ragin/hisoka/deception.py",
+      "purpose": "Contract-aware transcript styling, exact-echo strip, flag-vs-prose classification fix, draft echo strip under v2, contract in template meta",
+      "sha256": "d7c7c89195425e9a355566aaa59579bb11aa8cbf6c312c5ba1dcb3f2a3edfee1"
+    },
+    {
+      "change": "modified",
+      "exists": true,
+      "path": "ragin/cycle/harness.py",
+      "purpose": "Serving-boundary provenance: contract, echo owner, payload scope, payload byte count",
+      "sha256": "b3c0482511cbf0a19eb63eac80a1cd658f9b4d0b60ead7105b4b619ea551d3cd"
+    },
+    {
+      "change": "modified",
+      "exists": true,
+      "path": "scripts/prove_cowrie_persona_alignment_v1.py",
+      "purpose": "Runs under contract v2, records it, fails on served echo or missing frontend echo",
+      "sha256": "37508dd481f37f138dcd4e55a06aec53b38d6b7214ac97001869cdd0562252ed"
+    },
+    {
+      "change": "added",
+      "exists": true,
+      "path": "tests/unit/test_transcript_contract_v2.py",
+      "purpose": "11 regressions: contract resolution, v1 parity, v2 strip/prepend, multiline/empty/error, 5 turns, postprocess, flag classification, trace provenance",
+      "sha256": "acebc258cad0acab5138eb02ea423132f82ba161c7e69d91c5a26aced7615201"
+    },
+    {
+      "change": "added",
+      "exists": true,
+      "path": "docs/research/TRANSCRIPT_CONTRACT_AUDIT.md",
+      "purpose": "Echo-ownership audit with byte evidence, metric inventory, decision record",
+      "sha256": "22b26be74cdc08d02f7881c44db53fe9c9f0a6e46db91606018acbd9aa9386aa"
+    },
+    {
+      "change": "added",
+      "exists": true,
+      "path": "docs/research/TRANSCRIPT_CONTRACT_V2.md",
+      "purpose": "Normative v1/v2 contract specification and conformance list",
+      "sha256": "685952b92147ae4b3689b796b65ba94f80fb8b3f1b61e89c2d2a82ce4fbe3e45"
+    },
+    {
+      "change": "modified",
+      "exists": true,
+      "path": "docs/research/EXPERIMENT_READINESS_REPORT.md",
+      "purpose": "2026-10-23 superseding status section: B0-B3 executability, preflight result, confirmed/unresolved/blocked",
+      "sha256": "c1aebe9e602f2e090aa98a2053bd54af49168b19e13515d6e9be98ebdd0b6a51"
+    },
+    {
+      "change": "unchanged",
+      "exists": true,
+      "path": "docs/research/PERSONA_ALIGNMENT_ERRATUM_20261023.md",
+      "purpose": "Prior-phase correction, preserved",
+      "sha256": "e63de3c78ec90741323f18e4e37ac5d876a9300419e325075a312b76c9ff20cf"
+    },
+    {
+      "change": "unchanged",
+      "exists": true,
+      "path": "scripts/persona_prompt_patch.py",
+      "purpose": "Prior-phase prompt/cwd patch, exercised by the v2 evidence run",
+      "sha256": "5dd7213a7009fbb7d16f55f51dba14d084273956089afc935183f50bf867f284"
+    }
+  ],
+  "git_head": "7d8a32a",
+  "non_claims": [
+    "No generative model was loaded or called; no provider, AWS, JEV, download, pull or training.",
+    "No arm effect is measured; B1-B3 remain BLOCKED.",
+    "The 0.880 composite is not a text-quality measure and is not used as one."
+  ],
+  "phase": "transcript-contract + B0-B3 readiness",
+  "schema": "ragin.research.change_manifest.v1",
+  "verification": {
+    "frozen_inventory": {
+      "changed_during_window_data_and_paper": 0,
+      "changed_since_baseline": [
+        "results/apmix_probe_history.jsonl",
+        "results/apmix_quota_status.json"
+      ],
+      "checked": "data/, results/, paper/",
+      "note": "Both apmix files are rewritten by the systemd user timer ragin-apmix-watch.timer (scripts/check_apmix_catalog.py, twice daily 09:00/21:00 local). One row was appended during the phase window at 2026-10-23T06:01:00Z; the other uncommitted rows are earlier legitimate probes. An earlier draft of this note called them synthetic and the writer unattributed; that is corrected by docs/research/APMIX_WRITER_PROVENANCE_AUDIT.md. No experiment artifact, session log, or paper file changed.",
+      "writer_identified": "systemd --user timer ragin-apmix-watch.timer"
+    },
+    "graphify": {
+      "command": "graphify update .",
+      "exit": 0
+    },
+    "preflight": {
+      "command": "scripts/ablation_preflight_v1.py --env-check --generation-contract",
+      "execution_status": "NOT_READY",
+      "exit": 2
+    },
+    "pytest": {
+      "command": "pytest tests/unit/test_transcript_contract_v2.py tests/unit/test_persona_alignment_v1.py tests/unit/test_hisoka.py tests/unit/test_credential_baits.py tests/unit/test_strict_research_profile.py tests/unit/test_supported_claims.py tests/integration/test_strict_profile_harness.py tests/integration/test_runtime_truth_p0_fixes.py tests/unit/test_generation_contract_v1.py",
+      "exit": 0,
+      "reproduced_result": "359 passed (re-run of the exact command after the final source edit)",
+      "reproduced_utc": "2026-10-23T09:05:00Z",
+      "result": "359 passed"
+    },
+    "ruff": {
+      "exit": 0,
+      "files": "all changed files",
+      "result": "All checks passed"
+    }
+  }
+}

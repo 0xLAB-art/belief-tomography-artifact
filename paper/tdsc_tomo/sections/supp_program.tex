@@ -1,0 +1,85 @@
+\section{The Program at a Glance}
+\label{sec:supp-program}
+
+The table below is Table~1 of the main paper, moved here for space.
+
+\begin{table}[t]
+\centering\footnotesize
+\caption{The program at a glance: thirty registered experiments in four
+layers. \texttt{E1b} and \texttt{T3} are sub-protocols of \texttt{E1} and of
+the allocation benchmark; \texttt{E24} is a retired registry slot with no
+data (Data Availability). Registration is layered as the frozen record
+supports it: the instrument and foil layers registered before data are
+E2, E3, E5, E22, E25, E30, E31 (E14 same-commit, $37$\,s; E1/E1b the
+older calibration); E15/E16 and E26 are committed with
+their data, with registration timings disclosed in the ledger; E20,
+E21, E22-entry and E27/E28/E29 are minted after data; E23 and E25--E29
+are the six exploratory diagnostics (E24 is a retired slot with no data),
+registration frozen but in part post-data
+(Section~\ref{sec:limits}); the 24 confirmatory / 6 exploratory split is
+ours and applied retroactively. Every experiment is seeded and pinned to a
+frozen estimator.}
+\label{tab:program}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}p{0.17\columnwidth}p{0.23\columnwidth}p{0.52\columnwidth}@{}}
+\toprule
+Layer & Experiments & What it establishes \\
+\midrule
+Instrument & E1, E1b, T3, & What the instrument measures and how \\
+ & E17--E19, E22 & reliably: dose--response, test--retest, the \\
+ & & allocation objective, the audited verdict \\
+ & & channel, estimator and seed robustness, and \\
+ & & wording invariance of the probe library. \\
+Constructed foils & E4--E16, E20 & What certification, gaming, forgery, \\
+ & & composition, drift, allocation under a \\
+ & & learning attacker, and disclosure can and \\
+ & & cannot establish once ground truth is \\
+ & & controlled. \\
+Field & E2, E3, E21, E23, & Two registered field measurements on \\
+ & E25--E29 & frontier models behind an authenticated gateway and \\
+ & & on a live honeypot fleet, plus the \\
+ & & censoring floor, budget decomposition, and \\
+ & & repaired panel behind them. \\
+Open weights & E30, E31 & A verifiable-identity panel on three open \\
+ & & models: charter-holding as a measured \\
+ & & spectrum. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering\footnotesize
+\caption{Notation roster. Symbols are listed in order of first use; the
+formal definitions are in Section~\ref{sec:estimand} and the standing
+conventions of the extended theory.}
+\label{tab:notation}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}p{0.20\columnwidth}p{0.72\columnwidth}@{}}
+\toprule
+Symbol & Meaning \\
+\midrule
+$\beta(\pi;\Pi)$ & behavioral belief strength for proposition $\pi$ under probe family $\Pi$ \\
+$\hat\beta$ & its estimate, reported with Wilson intervals \\
+BCG & Belief--Claim Gap: charter-implied minus measured belief \\
+$\Delta\hat\beta$ & signed gap of an estimate against the design target \\
+$\Delta(B)$ & deception gain: shift in an adversary's measured profile \\
+$\Pi,\ \pi$ & probe family; proposition a probe asks about \\
+$N,\ M$ & i.i.d.\ observation horizon; interaction-turn budget \\
+$\TV$ & total variation distance \\
+$L$ & verdict-channel sensitivity (Lipschitz constant); $L=1$ for binary verdicts \\
+$\tau$ & certification tolerance on the session breach rate \\
+$c$ & censoring fraction of a measurement panel \\
+$p,\ q$ & per-probe verdict probabilities under the null and the alternative \\
+$\sigma_0$ & null standard deviation $\sqrt{p(1-p)/N_0}$ \\
+$\rho_0$ & reference width $z_{1-\beta_d/2}\,\sigma_0$ \\
+$\Delta_{\beta_d}$ & onset boundary $(z+z')\sigma_0=1.84\,\rho_0$ at $\beta_d=0.05$ \\
+$\delta$ & observable footprint of a deception \\
+$\beta_d,\ \gamma$ & tolerated false-alarm level ($0.05$); tolerated detection probability ($0.05$) \\
+$A_{\mathrm{rec}}$ & reconnaissance advantage conferred by publishing a profile \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The tomogram on constructed foils}
+
+

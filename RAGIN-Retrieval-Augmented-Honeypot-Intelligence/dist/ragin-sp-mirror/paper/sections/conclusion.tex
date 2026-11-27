@@ -1,0 +1,87 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+Honeypots have spent two decades recording attacker behavior without
+reasoning about it, and the arrival of generative models promised to close
+that gap while opening a worse one: a deception tool whose product is
+unverified improvisation. This paper argued that the right unit of design
+is not the generator but the \emph{loop} around it. \system couples
+behavioral profiling, retrieval-grounded planning, a fiction graph, and
+serving-time verification into a cycle in which every response is either
+verified against the session's deception state or served from vetted
+deterministic content, with a human gate on the highest-stakes material
+and an audit trail over every decision.
+
+The evaluation supports the division of labor the architecture claims,
+and the escalation analysis prices it rung by rung. On the served-text
+channel we report no capability gain: an echo guard built from our own scorer
+audit yields echo-corrected both-channel lower bounds of 0.479 technique and 0.243 actor for the archived campaign, so the
+raw ladder values that read $+0.116$ over a bare LLM are reported as what
+they are---archived, unguarded, and not reproducible under the guard.
+Retrieval grounding
+is the rung the analysis channel cannot lose: removing
+it costs $+0.154$ composite ($[+0.092, +0.221]$) and every detected TTP in
+the archived paired comparison,
+while leaving persona realism untouched, a null result the design predicts.
+The verifier earns its place on a different axis than quality: on the clean
+campaign it changed no draft, because the gate is not in the prompt and the
+served text is identical with it on or off. Its contribution is measured
+where drafts violate the fiction, and there it is bounded rather than
+absolute---targeted-check scoring catches 540 of the 572 violating drafts
+(32 misses); the serving path rejected 554 and admitted 18, refusing 17 of
+206 benign drafts; and both prompt-injection cases carry targeted-scoring
+misses, with one variant of one case passing the gate. The fiction graph and verifier maintain their
+properties under targeted
+adversarial pressure: zero contradictions across 45 re-queries, zero
+unverified serves across a 218-query live campaign, and an ablation
+battery in which each mechanism's removal costs the property it was added
+to provide. The deception holds a three-evaluator consensus of $3.86/5$ with
+$0.750$ exact agreement across personas of one judge model -- a
+within-model consistency measure rather than inter-annotator agreement
+-- and two archived full-campaign reruns reproduce the
+composite to $+0.005$ with the deterministic strata replicating exactly.
+At the top of the ladder, the result is a subtraction:
+kind-awareness fixed 12/13 real-log assessments and lifted bait exposure
+by 125\% in five clean paired replays drawn from seven attempted
+families (two excluded for attacker-LLM provider errors), added no measurable dwell
+time, and showed no marginal routing effect that the benchmark could
+resolve -- the held-out 200-session comparison sits at ceiling with no
+Jev output available on any of the 200 sessions -- so it left the serving
+path.
+A third rung on the same axis went the other way and was retained
+rather than removed: the Evidence Judge/filter was frozen and tested on
+a prospective 40-case cohort exercising the actual HTTP and SSH serving
+path, and on that frozen protocol it added no measurable value beyond the
+baseline gate (both arms $0.7500$ unsupported-admission, paired
+difference $0.0000$, $p=1.0000$, success criterion not met), so it was
+left behind the disabled-by-default boundary as an optional, separate
+stage rather than claimed. Each rung we retained paid for itself in its
+measured contribution; the rung we removed and the stage we retained as
+negative are the two results that carry furthest beyond this system.
+
+The limits are stated with the same directness. The deployment hears no ambient
+internet; the judge shares a provider with the generator; and the
+availability of generative components is structurally hostage to provider
+quota and alignment posture, a constraint the fallback path absorbs but
+does not remove. None of these limits is hidden by the loop; all of them
+are measured by it. The release package records the scenario sets, scoring
+harnesses, and persisted artifacts behind the bounded claims with
+repository-root paths and hashes. Provider-backed reruns and independent
+human validation remain external work, so archived live numbers must be
+described as evidence rather than fresh replication.
+
+We see three directions as the most productive next steps. First, unifying
+the host-keyed fiction of \S\ref{sec:hostfiction} with the longitudinal
+attacker memory, so that the two memory planes stop being separate systems
+and attacker-level adaptation can be verified with the same discipline as
+host-level consistency. Second, field evaluation on
+internet-reachable deployments, where the ambient-traffic axis this
+testbed excludes by scope choice becomes measurable, and the steering
+hypothesis, better bait, measurable attacker dwell, can be tested against
+adversaries who did not consent to be studied. Third, treating the ladder
+audit as an ongoing protocol: as the deterministic machinery matures,
+each intelligent rung should be re-priced against its cheapest
+certifiable competitor, and the loop should shrink accordingly.The system this paper releases is one where that audit has priced two
+intelligent rungs, executed one removal, and recorded one negative
+retention --- the serving path is smaller because of the first two and
+cleaner because it does not claim the third.

@@ -1,0 +1,91 @@
+{
+  "acquisition_stop_rule": "stop at >=260 structurally eligible provenance-verified independent native sessions; no semantic selection and no evaluation during acquisition",
+  "canonical_derivation": "final non-empty eligible input event by event order with lossless prior context",
+  "capture_contract": "ragin.real_capture_manifest.v1",
+  "dry_run": {
+    "broken_parent_rejected": true,
+    "canonical_derivation": true,
+    "cluster_id_stable": true,
+    "crash_recovery": "append-only registry remains readable after interrupted derived work",
+    "duplicate_registry_refused": true,
+    "eligible_for_study": 0,
+    "evaluation_executed": false,
+    "fixture_ineligible": true,
+    "invalid_flags_rejected": {
+      "replay": true,
+      "synthetic": true,
+      "test_fixture": true
+    },
+    "manifest_created": true,
+    "missing_manifest_rejected": true,
+    "privacy_redaction": true,
+    "raw_sealed": true,
+    "reference_annotation_started": false,
+    "registry_append": true,
+    "schema": "ragin.v4.prospective_capture_dry_run.v1",
+    "sessions": 1,
+    "tamper_detected": true
+  },
+  "effectiveness_seen": false,
+  "eligibility_rules": [
+    "manifest exists and hash verifies",
+    "native session ID",
+    "raw log exists and hash verifies",
+    "at least one usable input event",
+    "complete lineage",
+    "no prior study membership",
+    "canonical derivation reproducible",
+    "synthetic/replay/test_fixture all false"
+  ],
+  "implementation_sha256": {
+    "docs/decision_fusion/V4_REAL_CAPTURE_PRIVACY_POLICY.md": "a86489c8a73526bcd5c3a269950d17e06e7d405c64c812f86e5d5fd35e9fceea",
+    "ragin/capture_v4/__init__.py": "63f44c9ca210162ad758eac5e2e1e09fc2cfa910ae43effa77e21aae184183f0",
+    "ragin/capture_v4/lineage.py": "6a89bda4370bc4af64ee89609ac7776a4533ac21cf38d637db8f6c815031d910",
+    "ragin/capture_v4/manifest.py": "22b5c96c551434cdcf06bd44fb1978006c19f51ad93e7d763b1fc5d3c11f0465",
+    "ragin/capture_v4/privacy.py": "2ebf7646c087447ad622403350d14000cb21cb694cc8cc7abd3dba3418c09d2d",
+    "ragin/capture_v4/registry.py": "504df8c883a18ab650c01d34ca1424dc1ea4e9c0d22858fb1d177b6ae9066a21",
+    "scripts/v4_capture_dry_run.py": "90a5c37ad828b105f5a58417d0990dcd0df636f17b48db665b4ebaea35fabc5d",
+    "scripts/v4_capture_finalize.py": "e2e19c1f1d16ead858cae53c511fc5ae8b5a066228e8d18aff0e96941f6f7c7b",
+    "scripts/v4_capture_progress.py": "c7f352a86a627143d3669fa6f22a718c08f576619a8d0ccc2e670ac720b65015",
+    "scripts/v4_capture_validate.py": "8f8bac6bb3946bd3becadef32b70c937c733e925ca66eae320e52568782215cd",
+    "tests/unit/test_capture_v4.py": "dc5ffbe0b4d399920a497aae80469d2feae64150cd03349dc5612400c12a5f73"
+  },
+  "independence_rule": "one native capture session equals one independence_group_id; derived records do not create new groups",
+  "outcome_blind": true,
+  "policy_arms_invoked": false,
+  "privacy_policy_sha256": "a86489c8a73526bcd5c3a269950d17e06e7d405c64c812f86e5d5fd35e9fceea",
+  "progress_metrics": [
+    "total captured sessions",
+    "provenance-valid sessions",
+    "invalid sessions",
+    "source-class counts",
+    "unique native session IDs",
+    "unique source clusters",
+    "capture-day counts"
+  ],
+  "prospective_real_acquisition_started": false,
+  "raw_immutability_rule": "hash and seal raw log after closure; later changes are new derived artifacts and fail hash validation",
+  "real_eligible_sessions_collected_under_new_contract": 0,
+  "recovery_freeze_sha256": "c8806feb02fa5f65f0f9f599dc58d02bf56d7253531e27d49175455d0e635dd2",
+  "reference_annotation_started": false,
+  "reference_labels_created": false,
+  "registry_format": "data/prospective_v4/capture_registry.jsonl; append-only; duplicate capture/native IDs refused; metadata-only",
+  "schema": "ragin.v4.prospective_capture_readiness_freeze.v1",
+  "source_classes": [
+    "NATURAL_FIELD",
+    "CONTROLLED_REAL_HONEYPOT",
+    "CONTROLLED_REAL_ADMIN"
+  ],
+  "source_cluster": "keyed HMAC-SHA256 over permitted normalized source/network metadata; secret excluded from artifacts",
+  "source_mix_target": {
+    "controlled_real_admin_maximum": 40,
+    "controlled_real_honeypot_minimum": 220,
+    "total": 260
+  },
+  "tests": {
+    "command": "pytest -q tests/unit/test_capture_v4.py",
+    "failed": 0,
+    "passed": 10
+  },
+  "v4_effectiveness_execution_started": false
+}

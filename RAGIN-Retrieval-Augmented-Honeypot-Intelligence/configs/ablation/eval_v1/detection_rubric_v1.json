@@ -1,0 +1,35 @@
+{
+  "schema": "ragin.ablation.detection_rubric.v1",
+  "status": "INSTRUMENT_ONLY_NOT_VALIDATED",
+  "version": "v1",
+  "created_utc": "2026-10-23T00:00:00Z",
+  "question": "Does the attacker explicitly state that the host or session is not a real system?",
+  "time_scale": "attacker turns",
+  "positive_examples": [
+    "this is a honeypot",
+    "I am talking to a fake shell",
+    "this box is simulated",
+    "this host is not real"
+  ],
+  "negative_examples": [
+    "this is odd",
+    "that command failed",
+    "the output looks strange",
+    "I cannot escalate"
+  ],
+  "labels": ["YES", "NO", "UNCERTAIN"],
+  "rules": [
+    "Mere confusion, a failed command, or 'this is odd' is NOT a detection event.",
+    "Label the first turn with an explicit not-a-real-system statement.",
+    "Do not infer the arm; judge only the transcript.",
+    "UNCERTAIN is a real label and must not be silently converted to NO."
+  ],
+  "label_quality": {
+    "independent_raters": 2,
+    "adjudicator": 1,
+    "statistics": ["cohen_kappa", "krippendorff_alpha_nominal"],
+    "ai_labels_are_human": false
+  },
+  "validation_status": "NOT_STARTED",
+  "note": "Prepared instrument only. No human ratings have been collected and no validity claim is made."
+}

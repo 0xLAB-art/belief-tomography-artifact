@@ -1,0 +1,22 @@
+{
+    "CommandId": "cf7a38c7-a2d3-43df-b760-df275cb4e2d0",
+    "InstanceId": "i-05bc6aab0bd4260a7",
+    "Comment": "RAGIN EDGE live negative mTLS probes (no secrets)",
+    "DocumentName": "AWS-RunShellScript",
+    "DocumentVersion": "$DEFAULT",
+    "PluginName": "aws:runShellScript",
+    "ResponseCode": 0,
+    "ExecutionStartDateTime": "2026-10-11T15:23:00.930Z",
+    "ExecutionElapsedTime": "PT0.037S",
+    "ExecutionEndDateTime": "2026-10-11T15:23:00.930Z",
+    "Status": "Success",
+    "StatusDetails": "Success",
+    "StandardOutputContent": "RUN\nSun Oct 11 15:23:00 UTC 2026\nCERTS_READY=1\nTMPDIR=/tmp/tmp.z01zLSezAL\nCASE_1_MISSING_CERT\nCASE1_EXIT=0\nCASE1_HEAD_BEGIN\nConnecting to 172.31.17.217\nCan't use SSL_get_servername\nCONNECTION ESTABLISHED\nProtocol version: TLSv1.3\nCiphersuite: TLS_AES_256_GCM_SHA384\nRequested Signature Algorithms: id-ml-dsa-65:id-ml-dsa-87:id-ml-dsa-44:ECDSA+SHA256:ECDSA+SHA384:ECDSA+SHA512:ed25519:ed448:ecdsa_brainpoolP256r1_sha256:ecdsa_brainpoolP384r1_sha384:ecdsa_brainpoolP512r1_sha512:rsa_pss_pss_sha256:rsa_pss_pss_sha384:rsa_pss_pss_sha512:RSA-PSS+SHA256:RSA-PSS+SHA384:RSA-PSS+SHA512:RSA+SHA256:RSA+SHA384:RSA+SHA512\nPeer certificate: CN=172.31.17.217\nHash used: SHA256\nSignature type: rsa_pss_rsae_sha256\nVerification: OK\nNegotiated TLS1.3 group: X25519MLKEM768\nDONE\nCASE1_HEAD_END\nCASE_2_BAD_CA_CHAIN\nCASE2_EXIT=1\nCASE2_HEAD_BEGIN\n401744E0A5740000:error:80000002:system library:BIO_new_file:No such file or directory:../crypto/bio/bss_file.c:67:calling fopen(/tmp/tmp.z01zLSezAL/nonexistent_ca.crt, r)\n401744E0A5740000:error:10000080:BIO routines:BIO_new_file:no such file:../crypto/bio/bss_file.c:75:\n401744E0A5740000:error:05880020:x509 certificate routines:X509_load_cert_crl_file_ex:BIO lib:../crypto/x509/by_file.c:248:\nCASE2_HEAD_END\nDONE\n",
+    "StandardOutputUrl": "",
+    "StandardErrorContent": "",
+    "StandardErrorUrl": "",
+    "CloudWatchOutputConfig": {
+        "CloudWatchLogGroupName": "",
+        "CloudWatchOutputEnabled": false
+    }
+}

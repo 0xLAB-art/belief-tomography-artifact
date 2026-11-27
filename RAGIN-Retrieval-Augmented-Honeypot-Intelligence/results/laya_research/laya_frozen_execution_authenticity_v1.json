@@ -1,0 +1,50 @@
+{
+  "audit": "RAGIN_FROZEN_PREDICTION_EXECUTION_AUTHENTICITY_AUDIT_V1",
+  "artifact": "results/laya_research/frozen_predictions.jsonl",
+  "classification": "INFERENCE_PROVENANCE_UNVERIFIED",
+  "current_named_runner_path_classification": "VERIFIED_FIXTURE_OR_STUB_OUTPUT",
+  "historical_binding_limitation": "scripts/laya_frozen_runner.py is untracked; no historical runner hash, commit, checkpoint manifest, or execution log binds the frozen artifact to a particular source version.",
+  "checkpoint_model_backed_execution_verified": false,
+  "fixture_or_stub_path_in_current_named_runner": true,
+  "fallback_or_default_path_in_current_named_runner": true,
+  "trace": {
+    "runner_calls_LayaAssessmentAdapter": false,
+    "runner_calls_LayaRuntime": false,
+    "runner_imports_Router": false,
+    "runner_loads_checkpoint": false,
+    "runner_records_model_id": false,
+    "runner_records_checkpoint_hash_or_revision": false,
+    "runner_records_provider_identity": false,
+    "runner_invokes_inference": false,
+    "runner_constructs_typed_answer_literal": true,
+    "runner_sets_status_literal_SIGNAL": true
+  },
+  "observed_output_origin_in_current_named_runner": {
+    "status": "scripts/laya_frozen_runner.py:54 literal SIGNAL",
+    "answer": "scripts/laya_frozen_runner.py:53-65 literal noul/stage/severity object",
+    "latency": "scripts/laya_frozen_runner.py:51-66 timer around sleep and literal construction",
+    "input_dependence": "evidence argument is unused; all substantive outputs are constant across 307 rows"
+  },
+  "real_model_evidence_requirements": {
+    "checkpoint_or_model_id_in_frozen_artifact": false,
+    "checkpoint_hash_or_revision_in_frozen_artifact": false,
+    "router_initialization_in_historical_generator": false,
+    "inference_invocation_in_historical_generator": false,
+    "absence_of_fixture_injection": false,
+    "runtime_provider_identity": false,
+    "evidence_satisfies_model_backed_standard": false
+  },
+  "separate_real_path_exists_but_is_not_generator_proof": {
+    "runtime": "ragin/decision/laya_runtime.py:130-237",
+    "adapter": "ragin/decision/optional.py:46-113",
+    "real_path_calls_Router_predict": "ragin/decision/laya_runtime.py:174-185",
+    "real_path_has_pinned_revision": "ragin/decision/laya_runtime.py:37,140-171",
+    "relation_to_frozen_artifact": "No historical manifest or generator record links that real path to frozen_predictions.jsonl."
+  },
+  "controls": {
+    "reference_labels_opened": false,
+    "reference_join_performed": false,
+    "models_rerun": false,
+    "correctness_metrics_computed": false
+  }
+}

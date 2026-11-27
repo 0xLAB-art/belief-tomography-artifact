@@ -1,0 +1,106 @@
+--- /dev/null
++++ b/ragin/capture_v4/privacy.py (current)
+@@ -0,0 +1,103 @@
++import hashlib
++import hmac
++import ipaddress
++import re
++
++SENSITIVE_KEYS = {"password", "passwd", "secret", "token", "api_key", "apikey", "authorization", "credential"}
++IP_KEYS = {"ip", "source_ip", "src_ip", "remote_ip", "client_ip", "address"}
++
++def source_cluster_id(study_secret, normalized_source_identifier):
++    if not study_secret or not normalized_source_identifier:
++        return None
++    return hmac.new(study_secret.encode(), normalized_source_identifier.encode(), hashlib.sha256).hexdigest()
++
++def _looks_like_ip(value):
++    try:
++        ipaddress.ip_address(value)
++        return True
++    except ValueError:
++        return False
++
++def _redact_text(value):
++    """Redact credential-shaped substrings without changing their position.
++
++    The minimizer is deliberately conservative: it removes authentication
++    headers, bearer/basic tokens, assignment-shaped secrets, common cloud/API
++    token formats, URL userinfo, and IP literals.  Callers that need a bounded
++    value must minimize *first* and truncate second, so a truncation boundary
++    can never split a credential marker and leave its tail in the clear.
++    """
++    value = re.sub(
++        r"(?i)\b(authorization|proxy-authorization|cookie|set-cookie)\s*:\s*[^\r\n]+",
++        r"\1: [REDACTED]",
++        value,
++    )
++    value = re.sub(
++        r"(?i)\b(bearer|basic|token)\s+[A-Za-z0-9._~+/=-]{6,}",
++        r"\1 [REDACTED]",
++        value,
++    )
++    value = re.sub(
++        r"(?i)(password|passwd|token|api[_-]?key|secret|access[_-]?key|private[_-]?key)\s*=\s*\S+",
++        r"\1=[REDACTED]",
++        value,
++    )
++    value = re.sub(r"(?i)(sshpass\s+-p\s*)\S+", r"\1[REDACTED]", value)
++    value = re.sub(r"(?i)((?:--user|-u)\s+)[^\s:]+:[^\s]+", r"\1[REDACTED]", value)
++    value = re.sub(r"(?i)(\bhttps?://)[^/\s:@]+:[^/\s@]+@", r"\1[REDACTED]@", value)
++    value = re.sub(r"\bAKIA[0-9A-Z]{16}\b", "[REDACTED_AWS_KEY]", value)
++    value = re.sub(r"\bgh[pousr]_[A-Za-z0-9]{20,}\b", "[REDACTED_GITHUB_TOKEN]", value)
++    value = re.sub(r"\bsk-[A-Za-z0-9_-]{16,}\b", "[REDACTED_API_KEY]", value)
++    value = re.sub(r"\bxox[abprs]-[A-Za-z0-9-]{10,}\b", "[REDACTED_SLACK_TOKEN]", value)
++    value = re.sub(
++        r"\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{5,}\b",
++        "[REDACTED_JWT]",
++        value,
++    )
++    value = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", "[REDACTED_IP]", value)
++    return value
++
++
++def bounded_redacted_text(value: str, *, limit: int = 400) -> dict:
++    """Return a minimized then truncated text value with explicit metadata.
++
++    Minimization happens before truncation.  The returned ``text`` is never
++    longer than ``limit`` characters; ``chars`` is the minimized length and
++    ``truncated`` says whether truncation occurred.  The raw value is not
++    retained here; callers that need integrity keep a separate SHA-256 over
++    the original bytes.
++    """
++    if not isinstance(value, str):
++        return {"text": "", "chars": 0, "truncated": False, "availability": "NOT_AVAILABLE"}
++    minimized = privacy_minimize_record({"text": value}).get("text", "")
++    minimized = minimized if isinstance(minimized, str) else str(minimized)
++    bounded = minimized[: max(0, int(limit))]
++    return {
++        "text": bounded,
++        "chars": len(minimized),
++        "truncated": len(minimized) > len(bounded),
++        "availability": "REDACTED_MINIMIZED",
++    }
++
++def privacy_minimize_record(value, *, credential_hash_secret=None):
++    if isinstance(value, dict):
++        output = {}
++        for key, item in value.items():
++            lowered = str(key).lower()
++            if lowered in IP_KEYS:
++                output[key] = "[REDACTED_IP]"
++            elif lowered in SENSITIVE_KEYS:
++                if credential_hash_secret and isinstance(item, str):
++                    output[key + "_hmac_sha256"] = hmac.new(
++                        credential_hash_secret.encode(), item.encode(), hashlib.sha256
++                    ).hexdigest()
++                else:
++                    output[key] = "[REDACTED]"
++            else:
++                output[key] = privacy_minimize_record(item, credential_hash_secret=credential_hash_secret)
++        return output
++    if isinstance(value, list):
++        return [privacy_minimize_record(item, credential_hash_secret=credential_hash_secret) for item in value]
++    if isinstance(value, str):
++        return "[REDACTED_IP]" if _looks_like_ip(value) else _redact_text(value)
++    return value

@@ -1,0 +1,90 @@
+\section{Related Work}
+\label{sec:related}
+
+\subsection{Honeypot and Honeynet Architectures}
+Deception research has moved from single-service traps to orchestrated
+honeynets~\cite{spitzner2002}, with recent surveys cataloging managed
+deception fabrics and cloud-native deployment~\cite{lopez2024}, from
+multi-sensor platforms that aggregate dozens of low- and
+medium-interaction sensors in one stack to containerized honeynets that
+scale the same idea elastically. The survey's gap analysis is blunt: no
+widely deployed framework grounds its responses in real-time threat
+intelligence or differentiates behavior across attacker classes, which
+are the two capabilities G1 and \S\ref{sec:chrollo} exist to provide.
+What these architectures share is a static
+relationship between the decoy and its content: the deception is authored
+once, at deployment time. \system differs in kind, not degree: its served
+content is decided per session, and every decision passes a verification
+gate before reaching the wire.
+
+\subsection{Generative Models in Deception}
+LLM-backed honeypots are the closest line of work. GPT-driven SSH bots
+demonstrate that language models can hold convincing interactive
+sessions~\cite{valeros2024}; recent systems couple generation to
+retrieval for grounded responses~\cite{qiao2025,liang2025}, and agentic
+RAG pipelines have been proposed for
+CTI workflows~\cite{belmahjoub2025,gao2025}. This literature establishes
+that LLM honeypots are feasible and that grounding helps. What it does not
+establish is \emph{what happens when the generator is wrong}: the
+consistency, safety, and degradation questions that a security tool must
+answer before such a system can be left facing an attacker. Those
+questions are this paper's subject, and the fiction graph, serving-time
+verification, and deterministic fallback are our answers. LLMPot
+extends LLM emulation to industrial protocols with dynamic
+configuration~\cite{vasilatos2025llmpot}, strengthening the case for
+generative deception while leaving the serving-trust question open;
+independent honeypots whose state must remain consistent across
+distributed layers reach for explicit rule machinery of their
+own~\cite{guan2025cpds}. Recent runtime-enforcement work places the
+boundary similarly: the probabilistic component proposes, while an
+external, inspectable mechanism owns the safety
+decision~\cite{wang2026agentspec} --- \system applies that principle to
+served generative deception itself, where the verified object is the
+attacker-facing response rather than an agent action or a
+protocol state. The
+methodological difference is as important as the architectural one:
+Kouremetis et al.~\cite{kouremetis2024} and Qiao et al.~\cite{qiao2025}
+report prompt-engineering improvements, whereas
+our evaluation isolates each mechanism with paired ablations and reports
+the ablation that correctly produced a null result (\S\ref{sec:rq1}).
+
+\subsection{LLM Security and Alignment Pressure}
+Our provider-fragility observations connect to a broader alignment literature.
+Safety-aligned models refuse or deflect on adversarial-role prompts, and
+constitutional and RLHF training shapes exactly the refusal behavior our
+harness must route around~\cite{bai2022,ganguli2022,christiano2017}.
+Prompt-injection risks in retrieval pipelines motivate the corpus hygiene
+of \S\ref{sec:implementation}~\cite{greshake2023,perez2022}; structured-query
+and preference-optimization defenses harden the model against
+injected instructions~\cite{chen2025struq,chen2025secalign}, and
+retrieval-poisoning studies show that a handful of poisoned documents
+in a large corpus dominate retrieval
+rankings~\cite{zou2025poisonedrag,malladi2026ripeii}, with
+recent work beginning to attribute misleading generations to the
+responsible corpus evidence~\cite{zhang2026ragorigin}. Our curated,
+provenance-screened corpus and
+channel separation treat retrieved evidence as untrusted input, and
+multi-tool agent studies extend the attack surface from model output to
+orchestration state~\cite{li2026dissonances}. The step this paper adds
+is architectural: even a robust generator's output does not reach the
+wire before deterministic verification, so the boundary does not depend
+on robustness holding~\cite{chen2025struq,chen2025secalign}. And
+documented failures of ML-backed security tooling under distribution
+shift~\cite{reworr2024} reinforce the case for measured fallbacks over
+trusting generation. The deployment lesson we add is operational:
+treat the provider as an unreliable component with catalog drift, quota
+exhaustion, and alignment-induced timeouts as normal operating conditions.
+The reviewer-facing implication is a methodological one: evaluations of
+LLM-driven defenses should report provider instability as part of the
+results, because it shaped which experiments were even runnable.
+
+\subsection{CTI and Behavior Analysis}
+Hybrid RAG over threat intelligence has been shown effective for
+attribution and technique mapping~\cite{alsada2024,rajapaksha2024},
+and behavioral profiling of attacker sessions underpins
+honeypot-facing classification~\cite{lekssays2025}. Adaptive
+deception experiments show that attacker skill modulates effective
+strategy~\cite{kouremetis2024}, and honeytoken-based
+attribution motivates the canary-registered bait
+design. \system composes these primitives into a loop whose safety
+properties, rather than its raw capability, are the contribution.

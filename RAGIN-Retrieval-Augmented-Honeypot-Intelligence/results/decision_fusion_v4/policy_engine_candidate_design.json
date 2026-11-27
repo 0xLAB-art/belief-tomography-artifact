@@ -1,0 +1,68 @@
+{
+  "schema": "ragin.decision_fusion_v4.policy_engine_candidate_design.v1",
+  "status": "DESIGN_ONLY",
+  "subsystem": "EVIDENCE_GROUNDED_DECISION_FUSION",
+  "policy_task": "Choose exactly one bounded response strategy after the deterministic evidence gate returns VALID_EVIDENCE.",
+  "strategies": [
+    "baseline",
+    "maximize_recon_surface",
+    "fake_success_and_return_visits",
+    "steer_to_honeytoken_credentials",
+    "expose_decoy_internal_topology",
+    "contain_in_fiction_and_instrument",
+    "low_intensity_administration"
+  ],
+  "input_contract": {
+    "required_gate_state": "VALID_EVIDENCE",
+    "received": ["session.current_input", "chrollo", "don_analysis", "retrieval.vetted_documents"],
+    "raw_retrieval_prose_allowed": false,
+    "unvetted_documents_allowed": false,
+    "gate_decision_by_policy": false
+  },
+  "output_contract": {
+    "schema": "ragin.decision_fusion_v4.policy_decision.v1",
+    "policy_engine_id": "string",
+    "selected_response_strategy": "one allow-listed strategy",
+    "supporting_evidence_refs": "array of supplied doc_id values",
+    "policy_reason_code": "bounded enum string",
+    "input_digest": "sha256 string",
+    "malformed_output_action": "baseline"
+  },
+  "candidate_classes": {
+    "DETERMINISTIC_POLICY": {
+      "features": ["Chrollo skill/confidence/features", "Don classification/severity", "tactics/TTPs", "vetted document metadata"],
+      "mechanism": "explicit ordered rules with conservative baseline fallback",
+      "model_dependency": "none",
+      "latency_expectation": "lowest and stable",
+      "failure_modes": ["rule incompleteness", "manual conflict resolution burden", "distributional blind spots"],
+      "scientific_role": "mandatory first-class baseline"
+    },
+    "LIGHTWEIGHT_LEARNED_POLICY": {
+      "features": ["same structured contract features as deterministic policy"],
+      "candidate_families": ["multinomial logistic regression", "gradient-boosted trees", "shallow MLP"],
+      "locally_compatible_dependency": "scikit-learn is already a project dependency; shallow MLP requires a separately verified runtime",
+      "freeze_rule": "freeze feature map, preprocessing, seed, hyperparameters, and checkpoint before validation",
+      "failure_modes": ["synthetic-oracle overfit", "class imbalance", "spurious retrieval-score reliance", "poor abstention boundary if gate leakage occurs"],
+      "advancement_condition": "must measurably improve or match deterministic baseline without violating catastrophic or schema gates"
+    },
+    "LOCAL_INSTRUCTION_POLICY": {
+      "input": "vetted evidence bundle only",
+      "output": "strict finite strategy label validated by caller",
+      "compatible_runtime_candidates": [
+        "OpenAI-compatible local endpoint configured through the repository's local model settings",
+        "Ollama-compatible local endpoint used by existing benchmark plumbing"
+      ],
+      "model_selection_status": "NOT YET VERIFIED; exact model, quantization, context limit, and CPU/GPU availability must be inventoried and frozen before validation",
+      "failure_modes": ["instruction drift", "context sensitivity", "latency variance", "unsupported model availability", "strategy hallucination"],
+      "advancement_condition": "must beat or match deterministic baseline on preregistered contract metrics; no prompt tuning on validation"
+    }
+  },
+  "common_safety_wrapper": [
+    "Reject any policy call when gate_state is not VALID_EVIDENCE and return baseline.",
+    "Validate exact schema and allow-list at the caller boundary.",
+    "Validate every supporting_evidence_ref against supplied vetted doc_ids.",
+    "Never allow policy output to alter verifier results, HITL decisions, accepted-state commit, or serving authority.",
+    "On engine timeout, exception, or malformed output, return baseline."
+  ],
+  "comparison_rule": "Do not select a learned or instruction candidate by final validation performance alone; advance at most one such candidate only if all gates pass and it is not materially worse than deterministic baseline."
+}

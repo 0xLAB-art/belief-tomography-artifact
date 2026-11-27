@@ -1,0 +1,34 @@
+# cowrie.cfg — arm B (vanilla LLM honeypot) field frontend
+#
+# cowrie terminates the attacker's SSH session; its LLM backend forwards the
+# conversation to the arm-B backend service (bare_llm_backend), which serves
+# the raw generator: persona prompt + attacker input, no CTI retrieval, no
+# fiction graph, no deterministic verifier, no fail-closed fallback. Mirror
+# of cowrie.cfg.ragin (arm C) — all three arms present the same public face
+# (SSH on 22), only the backend differs: the study's controlled variable.
+#
+# Values below are container-internal; .env.field interpolation is done by
+# docker compose envsubst into /etc/cowrie/cowrie.cfg at container start.
+# BARE_API_KEY must equal the bare backend's API_KEY so the internal-net
+# hop stays authenticated (non-loopback bind).
+
+[honeypot]
+hostname = svr04
+backend = llm
+
+[ssh]
+version = SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.4
+listen_endpoints = tcp:2222:interface=0.0.0.0
+
+[llm]
+host = http://bare-llm:8084
+path = /v1/chat/completions
+api_key = CHANGE_ME_BACKEND_KEY
+model = ragin-bare
+max_tokens = 500
+temperature = 0.7
+debug = false
+
+[output_jsonlog]
+enabled = true
+logfile = /cowrie/cowrie-git/var/log/cowrie/cowrie.json

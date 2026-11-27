@@ -1,0 +1,36 @@
+{
+  "analysis_plan": [
+    "valid/invalid evidence and reason codes",
+    "reference and score diversity",
+    "strategy delivery/consumption/fallback",
+    "non-decorative response and state differences",
+    "verifier/HITL/commit safety",
+    "latency/errors/missing traces"
+  ],
+  "arms": [
+    "RAGIN_BASELINE",
+    "RAGIN_V4_SUBSTANTIVE_DETERMINISTIC",
+    "RAGIN_V4_SUBSTANTIVE_LOGISTIC"
+  ],
+  "comparison": "raw response hash, semantic response hash after removing only prompt/decorative marker lines, action signature, and fictional state hashes",
+  "don_version": "DON_COMMAND_AWARE_V2",
+  "environment": {
+    "RAGIN_DON_RETRIEVAL_VERSION": "DON_COMMAND_AWARE_V2",
+    "RAGIN_LAYA_ENABLED": "0",
+    "RAGIN_PROVIDER_ENABLED": "0",
+    "RAGIN_RAG_MODE": "offline",
+    "attacker_commands_executed": false,
+    "aws_or_network_changes": false,
+    "external_generation_calls": false
+  },
+  "expected_cases": 240,
+  "expected_records": 720,
+  "experiment_id": "HF2024_DON_V2_SUBSTANTIVE_FINAL_V1",
+  "holdout_path": "results/decision_fusion_v4/don_v2_substantive_final_v1/holdout_freeze.json",
+  "matched_inputs": "same frozen source command sequence and final input across arms; preceding commands are emitted as inert retrospective context",
+  "missing_data": "NOT_VERIFIABLE; never imputed",
+  "pipeline": "server_v2 -> Harness -> Chrollo -> Don V2 -> Evidence Gate -> V4 Policy -> substantive Hisoka generator -> mandatory verifier/HITL -> accepted-only fictional-state commit",
+  "schema": "ragin.v4.hf2024.don_v2_substantive_final.protocol_freeze.v1",
+  "selection_exclusions": "all three prior HF-2024 holdouts and their source groups/families",
+  "status": "FROZEN_BEFORE_EXECUTION"
+}

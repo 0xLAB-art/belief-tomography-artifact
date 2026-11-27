@@ -1,0 +1,36 @@
+{
+  "what": "investigation: 'deepseek underperforms the Sep-22 model on exact-match technique rubrics' \u2014 VERDICT: FALSE, the gap was a scorer-channel artifact",
+  "trigger": "Model-coherent rerun (2026-09-27) scored ragin_full at 0.6176 vs the Sep-22 reference 0.8474; initial hypothesis blamed the generator model change.",
+  "investigation": [
+    "Score distributions: Sep-22 official = 90x1.0 + 33x0.7-0.9 (zero rows at 0.0); deepseek repro = 60x1.0 + 11x0.3-0.6 + 52x0.0.",
+    "Draft-content diff on the biggest-drop rows: the Sep-22 stored response_preview for 'What is exfiltration over web service?' (expected T1567, scored 1.0) is literally 'webapp@web-srv-01:~$ What is exfiltration over web service? | bash: What: command not found' \u2014 a served echo failure scoring 1.0 is impossible under the W1 arms' served-text scorer.",
+    "Root cause: the Sep-22 campaign was scored by run_live_benchmark's internal _tech_score, which awards ttp_bonus=1.0 when the expected technique ID appears in outcome.ttps_extracted (the CTI-ANALYSIS channel), max()'d with the served-text score; my repro arms used the W1 arms' served-text-only scorer. Two different metrics were being compared as one."
+  ],
+  "decisive_numbers": {
+    "technique_suite": {
+      "sep22_official_scorer": 0.9598,
+      "sep22_rescored_served_text_only": 0.4927,
+      "sep22_rows_at_zero_under_served_text_scorer": "54/123",
+      "deepseek_repro_served_text": 0.5236,
+      "deepseek_rows_at_zero": "52/123",
+      "caveat": "Sep-22 rescore uses 200-char stored previews (60/123 truncated) \u2014 a slight underestimate that strengthens the conclusion"
+    },
+    "actor_suite": {
+      "sep22_official_scorer": 0.85,
+      "sep22_rescored_served_text_only": 0.6657,
+      "deepseek_repro_served_text": 0.68
+    },
+    "verdict": "Like-for-like on SERVED text, deepseek is EQUAL OR SLIGHTLY BETTER than the Sep-22 model (0.5236 vs 0.4927 technique; 0.68 vs 0.6657 actor). The 0.6176 vs 0.8474 composite gap is entirely the scorer channel: the Sep-22 official numbers credited the CTI-analysis machinery (ttps_extracted, candidate_actors from Don), which the W1-arm scorers never measure."
+  },
+  "paper_implications": [
+    "RETRACT: 'deepseek underperforms the Sep-22 generator on technique rubrics'.",
+    "The W1 comparison table mixed BOTH generator models AND scorer channels; every cross-arm claim must be re-based on one declared channel.",
+    "Reframe (stronger for the paper): the technique-suite served text rarely carries technique IDs because the deception surface behaves like a MACHINE (transcripts, not CTI essays) \u2014 correct honeypot behavior. The 0.9598 Sep-22 number measured the pipeline's CTI-intelligence channel (Don extraction), which is a separate capability from deception realism and should be reported as its own metric with its own channel declared.",
+    "Two legitimate reporting channels exist: SERVED-TEXT (deception realism) and CTI-ANALYSIS (intelligence value). Report them separately; never max() them into one composite without labeling."
+  ],
+  "sources": [
+    "results/live_benchmark_zodiac_20260922.json (official scorer + stored previews)",
+    "results/external_baseline_hostfiction_ragin_full_repro.json (deepseek served text)",
+    "ragin/benchmark/harness_bridge.py:_tech_score (analysis-channel bonus) vs scripts/run_external_baseline.py scorers (served-text only)"
+  ]
+}

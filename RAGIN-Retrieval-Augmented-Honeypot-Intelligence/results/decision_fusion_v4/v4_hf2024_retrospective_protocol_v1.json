@@ -1,0 +1,38 @@
+{
+  "N": 240,
+  "analysis_boundary": "retrospective observational comparison only; no prospective efficacy claim",
+  "exclusions": [
+    "old exploratory 120",
+    "old primary 169",
+    "40 prospective admin cases",
+    "V3 synthetic cases",
+    "V4 synthetic development/validation/smoke cases",
+    "published ATT&CK labels as ground truth",
+    "request_response replay responses as live behavior"
+  ],
+  "execution_prerequisite": "No arm execution until V4 preflight, execution configuration, and raw-output freeze pass",
+  "input_construction": {
+    "context": "preceding published nonempty commands only; no fabricated system responses or missing history",
+    "current_input": "final nonempty command in published ordered command list",
+    "native_session_claim": false,
+    "source_group_claim": "session_id treated as anonymized source-IP-group ID"
+  },
+  "limitations": [
+    "source-IP grouping induces statistical dependence within attacker infrastructure",
+    "repeated attacks and processing deduplication are source-dataset decisions",
+    "no native SSH session independence can be claimed",
+    "attack-only corpus cannot identify benign-administration classification or real attacker engagement",
+    "no live response behavior is observed in this retrospective input corpus"
+  ],
+  "observational_unit": "source-IP-group command sequence",
+  "period": "2024",
+  "schema": "ragin.v4.hf2024.retrospective_protocol.v1",
+  "selection": {
+    "material": "namespace || NUL || session_id || NUL || SHA256(final nonempty command)",
+    "method": "ascending SHA256",
+    "namespace": "RAGIN_V4_HF_2024_RETROSPECTIVE_V1",
+    "one_case_per_source_group": true
+  },
+  "source_audit_schema": "ragin.v4.hf2024.retrospective_source_audit.v1",
+  "status": "FROZEN_PRE_EXECUTION"
+}

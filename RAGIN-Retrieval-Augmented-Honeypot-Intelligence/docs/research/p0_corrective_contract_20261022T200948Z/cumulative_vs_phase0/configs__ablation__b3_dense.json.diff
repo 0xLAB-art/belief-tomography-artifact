@@ -1,0 +1,51 @@
+--- /dev/null
++++ b/configs/ablation/b3_dense.json (current)
+@@ -0,0 +1,48 @@
++{
++  "schema": "ragin.ablation.arm_config.v1",
++  "arm": "B3",
++  "label": "B1 + dense CTI retrieval (exact persisted store)",
++  "status": "BLOCKED_EXACT_STORE_MODEL_AND_FROZEN_GENERATOR",
++  "retrieval": {
++    "mode": "dense",
++    "env": {
++      "RAGIN_RAG_MODE": "dense",
++      "RAGIN_VECTOR_STORE_PATH": "UNRESOLVED_EXACT_STORE",
++      "RAGIN_EMBED_MODEL": "UNRESOLVED_LOCAL_MODEL_DIR"
++    },
++    "note": "Dense-only. No BM25 index is constructed or mixed. Missing store/model fails configuration; there is no silent BM25 fallback."
++  },
++  "generator": {
++    "kind": "frozen_external_or_local_llm",
++    "model": "UNRESOLVED_FROZEN_GENERATOR",
++    "decoding": {"temperature": 0.0, "top_p": 1.0, "max_tokens": 512, "seed": 0},
++    "max_retries": 1,
++    "prompt_template": "UNRESOLVED_FROZEN_PROMPT_V1",
++    "fallback": "none"
++  },
++  "verification": {
++    "kind": "FictionConsistencyVerifier+HostFictionVerifier",
++    "mandatory": true,
++    "fail_closed_supported_claims": false
++  },
++  "persona": {
++    "kind": "host_fiction",
++    "host_fiction_path": "data/host_fiction.json",
++    "host_fiction_sha256": "UNRESOLVED"
++  },
++  "resources": {
++    "runtime": "host .venv or ragin-python image",
++    "network": "provider endpoint required for generation; no public listener",
++    "cpu": 2,
++    "memory_mb": 4096,
++    "gpu": false
++  },
++  "command": "RAGIN_RAG_MODE=dense RAGIN_VECTOR_STORE_PATH=\"$EXACT_STORE\" RAGIN_EMBED_MODEL=\"$LOCAL_MODEL_DIR\" RAGIN_PROVIDER_ENABLED=1 RAGIN_LLM_BASE_URL=\"$PROVIDER_ENDPOINT\" RAGIN_LLM_API_KEY=\"$PROVIDER_KEY\" RAGIN_LAYA_ENABLED=0 RAGIN_DON_RETRIEVAL_VERSION= timeout 120 .venv/bin/python -m ragin.server_v2 --mode pipeline --port 8083",
++  "bounded_runtime_s": 120,
++  "prerequisites": [
++    "Exact store with index.faiss, documents.json, and a recorded hash.",
++    "Local embedding-model directory; no download.",
++    "Frozen generator endpoint/model/revision and price recorded.",
++    "Prompt template and host-fiction file hashed."
++  ]
++}

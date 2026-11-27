@@ -1,0 +1,37 @@
+{
+  "audit": "RAGIN_FROZEN_PREDICTION_EXECUTION_AUTHENTICITY_AUDIT_V1",
+  "comparison_type": "existing-artifact structural comparison only",
+  "frozen_artifact": {
+    "path": "results/laya_research/frozen_predictions.jsonl",
+    "sha256": "ca9f3c2c113da8e76b94627a1c2ebedcfc2261a4f1812667a6092d4ad785c106",
+    "n": 307,
+    "substantive_output_variation": false,
+    "latency_s": [0.0001, 0.0002],
+    "model_id_recorded": false,
+    "checkpoint_hash_recorded": false,
+    "runtime_identity_recorded": false
+  },
+  "independent_existing_real_inference": {
+    "documentation": "docs/laya_integration/REAL_MODEL_INFERENCE_RESULTS.md:3-16",
+    "raw_artifact": "results/laya_research/real_inference_cpu_pilot.jsonl",
+    "raw_artifact_recorded_revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+    "raw_artifact_recorded_weights_sha256": "891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c",
+    "raw_artifact_recorded_laya_version": "0.4.2",
+    "runtime": "CPU local Router path; documented in docs/laya_integration/REAL_MODEL_INFERENCE_RESULTS.md:18-39 and scripts/laya_real_inference_pilot.py:123-145",
+    "recorded_output_variation": "existing raw records contain non-constant typed answers across session inputs; this audit does not compute correctness",
+    "recorded_latency_characteristics": "first call includes route/load/infer; documented warm and per-case timings are seconds, not 0.0001-0.0002 seconds",
+    "model_loading_evidence": "checkpoint blob hash, revision, package/version, Router construction, raw records, and log are documented"
+  },
+  "active_runtime_supporting_evidence": {
+    "documentation": "docs/laya_integration/ACTIVE_RUNTIME_WIRING.md:21-63",
+    "existing_paired_artifact": "results/laya_research/paired_comparison.json",
+    "recorded_real_execution": "provider=laya, status=SIGNAL, laya_execution_proven=true, recorded latencies 5108.2 ms and 911.7 ms in paired_comparison.json:17-31"
+  },
+  "interpretation": "The separate real-inference evidence supports that a real Laya path exists elsewhere in the repository. Differences from the frozen artifact are supporting forensic evidence only; they are not used alone to classify the frozen artifact. The missing historical generator binding remains decisive for the conservative frozen-artifact classification.",
+  "controls": {
+    "reference_labels_opened": false,
+    "reference_join_performed": false,
+    "models_rerun": false,
+    "correctness_metrics_computed": false
+  }
+}

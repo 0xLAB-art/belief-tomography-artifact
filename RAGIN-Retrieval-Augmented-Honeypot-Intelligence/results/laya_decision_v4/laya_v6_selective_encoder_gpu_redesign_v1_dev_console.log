@@ -1,0 +1,69 @@
+[check] builder sha256 OK: c8b88bfef4ac109937ea10bf3106cb05f23ec9df516a7d49f9df0f4fa269fdb0
+[check] datasets manifest sha256 OK: 504648a1941b6637f3e43bb70a9ef6a72ffd667b14cd64cdf8caf92946baa73f
+[check] TR set sha256 OK: 78ac77843e030767117bfaf0e3056e2b4e64b64bde153066a225ad1b238322a5
+[check] DEV set sha256 OK: 7278c3bb0c90d22d9756bd19f26ac0adf4de75bf79f078591521e7ca65192491
+[check] training rows sha256 OK: 54ffcd417b3704eff3f90a8ea00fe99adee796904331fbba83a1f2084d29b35a
+[check] contract sha256 OK: c3fea3c979ed33b8831fcecee7e4ed8eea16bd9bf57bc23690071700c0feca9b
+[check] base checkpoint weights sha256 OK: 891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c
+[check] DEV cases: 60 (sufficient 27, required-abstain 33); runtime question defs built for all
+[check] dev subset (per archetype: case_ids sorted, keep the first ceil(2n/3)): 160 cases / 480 items
+        required_conflict        15 -> 10 kept
+        required_contradiction   15 -> 10 kept
+        required_ioc_only        30 -> 20 kept
+        required_missing         15 -> 10 kept
+        required_partial         15 -> 10 kept
+        required_weak            15 -> 10 kept
+        sufficient               135 -> 90 kept
+[check] subset rows sha256 (derived, not written): fe28c59c27ff8a000a50c60b81ac43abaa0d2d23d2b13a4c0b1b38fbf7935b1b
+[check] subset rows file not written yet (expected before the --dev run)
+[check] development artefact not written yet
+[dev] subset rows written: /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_decision_v4/laya_v6_selective_encoder_gpu_redesign_v1_dev_subset_rows_v1.jsonl (fe28c59c27ff8a000a50c60b81ac43abaa0d2d23d2b13a4c0b1b38fbf7935b1b)
+dry-run: 160 rows read, 480 valid items, skipped: {}
+dry-run: optimizer budget: 432 train item(s), effective batch up to 32 (micro_batch 2 x grad_accum 16), 112 optimizer updates over 8 epoch(s)
+[dev] subset dry_run OK: 160 rows, 480 items, 432 train / 48 calib, 112 optimizer updates, zero skips
+[dev] candidate A (soft-ce): training on the subset at the frozen dev config
+train items 432, calibration items 48, eval items 48 (calibration_slice), skipped {}, device cuda
+optimizer budget: 432 train item(s), effective batch up to 32 (micro_batch 2 x grad_accum 16), 112 optimizer updates over 8 epoch(s)
+Traceback (most recent call last):
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/scripts/laya_v6_selective_encoder_gpu_runner_v1.py", line 2446, in <module>
+    main()
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/scripts/laya_v6_selective_encoder_gpu_runner_v1.py", line 2427, in main
+    raise SystemExit(run_dev())
+                     ^^^^^^^^^
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/scripts/laya_v6_selective_encoder_gpu_runner_v1.py", line 986, in run_dev
+    report = train_candidate(tag, laya_train)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/scripts/laya_v6_selective_encoder_gpu_runner_v1.py", line 862, in train_candidate
+    result = laya_train.finetune(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/.venv-gpu/lib/python3.12/site-packages/laya/train.py", line 1129, in finetune
+    history = train_model(model, tok, train_items, config, dev, max_len, head_max_len,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/.venv-gpu/lib/python3.12/site-packages/laya/train.py", line 720, in train_model
+    scaler.step(optimizer)
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/.venv-gpu/lib/python3.12/site-packages/torch/amp/grad_scaler.py", line 478, in step
+    retval = self._maybe_opt_step(optimizer, optimizer_state, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/.venv-gpu/lib/python3.12/site-packages/torch/amp/grad_scaler.py", line 372, in _maybe_opt_step
+    retval = optimizer.step(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/.venv-gpu/lib/python3.12/site-packages/torch/optim/lr_scheduler.py", line 166, in wrapper
+    return func.__get__(opt, opt.__class__)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/.venv-gpu/lib/python3.12/site-packages/torch/optim/optimizer.py", line 533, in wrapper
+    out = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/.venv-gpu/lib/python3.12/site-packages/torch/optim/optimizer.py", line 81, in _use_grad
+    ret = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/.venv-gpu/lib/python3.12/site-packages/torch/optim/adam.py", line 248, in step
+    adam(
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/.venv-gpu/lib/python3.12/site-packages/torch/optim/optimizer.py", line 151, in maybe_fallback
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/.venv-gpu/lib/python3.12/site-packages/torch/optim/adam.py", line 971, in adam
+    func(
+  File "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/.venv-gpu/lib/python3.12/site-packages/torch/optim/adam.py", line 791, in _multi_tensor_adam
+    exp_avg_sq_sqrt = torch._foreach_sqrt(device_exp_avg_sqs)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 22.00 MiB. GPU 0 has a total capacity of 7.60 GiB of which 21.38 MiB is free. Including non-PyTorch memory, this process has 7.53 GiB memory in use. Of the allocated memory 6.95 GiB is allocated by PyTorch, and 453.33 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

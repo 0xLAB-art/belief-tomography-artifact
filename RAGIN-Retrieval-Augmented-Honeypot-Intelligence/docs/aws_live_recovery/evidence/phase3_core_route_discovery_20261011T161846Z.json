@@ -1,0 +1,46 @@
+{
+    "Command": {
+        "CommandId": "f9165574-5393-4bc5-aa75-c1369b466fe4",
+        "DocumentName": "AWS-RunShellScript",
+        "DocumentVersion": "$DEFAULT",
+        "Comment": "RAGIN phase3 discover server_v2 routes and middleware",
+        "ExpiresAfter": "2026-10-11T20:20:17.219000+03:00",
+        "Parameters": {
+            "commands": [
+                "set -euo pipefail\necho RUN\ndate -u\nSRC=\"/opt/ragin/ragin/server_v2.py\"\nif [ -f \"$SRC\" ]; then\n  echo SRC=$SRC\n  echo HASH=$(sha256sum \"$SRC\" | cut -d' ' -f1)\n  echo CREATE_APP_BEGIN\n  python3 - <<'PY'\nimport ast, pathlib, sys\np = pathlib.Path(\"/opt/ragin/ragin/server_v2.py\")\ntree = ast.parse(p.read_text(encoding=\"utf-8\"))\nhits = []\nfor node in ast.walk(tree):\n    if isinstance(node, ast.AsyncFunctionDef) or isinstance(node, ast.FunctionDef):\n        name = getattr(node, \"name\", None)\n        if not name:\n            continue\n        src = p.read_text(encoding=\"utf-8\")\n        line = src.splitlines()[node.lineno-1] if node.lineno else \"\"\n        hits.append((node.lineno, name, line.strip()[:120]))\nfor ln,name,line in hits:\n    print(f\"{ln}\\t{name}\\t{line}\")\nPY\n  echo CREATE_APP_END\n  echo ROUTE_REGISTRATION_GREP\n  grep -nE \"add_route|app\\.mount|route\\(|@app|include_router|add_head|add_get|add_post|add_put|add_delete|add_options|\\\"ragin|\\\"/v1|\\\"/api|/command|/chat|/session|/health|/ready|add_route.*command|add_route.*chat|add_route.*session|add_route.*health|add_route.*ready\" /opt/ragin/ragin/server_v2.py 2>/dev/null | head -n 200 || true\n  echo MIDDLEWARE_GREP\n  grep -nE \"def app\\(|middleware|before_request|after_request|requires|auth|verif|session|cors|rate|limit|parse|schema|request_id|RAGIN_MTLS|CLIENT_CERT|AllowedIdentities|require_auth|RAGIN_REQUIRE_AUTH\" /opt/ragin/ragin/server_v2.py 2>/dev/null | head -n 200 || true\n  echo SESSION_AND_REQUEST_ID_GREP\n  grep -nE \"request_id|session_id|correlation|X-Correlation|response_meta|websocket|request\\.json|await request|post\\(|put\\(|get\\(|delete\\(\" /opt/ragin/ragin/server_v2.py 2>/dev/null | head -n 200 || true\n  echo VERIFIER_GREP\n  grep -nE \"verif|FictionConsistencyVerifier|verifier|serve_path|GENERATED|fdist|fallback|candidate_sha256|approval|Verifier\" /opt/ragin/ragin/server_v2.py 2>/dev/null | head -n 200 || true\n  echo KEYCONFIG_GREP\n  grep -nE \"RAGIN_MTLS|ALLOWED_IDENTITIES|CLIENT_CERT|CERT_FILE|KEY_FILE|CA_FILE|commonname|verify|require|SPDY|OpenSSL|ssl.SSLContext|ssl.create_default_context|PROTOCOL_TLS_SERVER|CERT_REQUIRED|check_hostname\" /opt/ragin/ragin/server_v2.py 2>/dev/null | head -n 200 || true\nelse\n  echo SRC_MISSING=$SRC\nfi\necho DONE"
+            ]
+        },
+        "InstanceIds": [
+            "i-062a400b300f4f9e4"
+        ],
+        "Targets": [],
+        "RequestedDateTime": "2026-10-11T19:18:47.219000+03:00",
+        "Status": "Pending",
+        "StatusDetails": "Pending",
+        "OutputS3Region": "eu-north-1",
+        "OutputS3BucketName": "",
+        "OutputS3KeyPrefix": "",
+        "MaxConcurrency": "1",
+        "MaxErrors": "1",
+        "TargetCount": 1,
+        "CompletedCount": 0,
+        "ErrorCount": 0,
+        "DeliveryTimedOutCount": 0,
+        "ServiceRole": "",
+        "NotificationConfig": {
+            "NotificationArn": "",
+            "NotificationEvents": [],
+            "NotificationType": ""
+        },
+        "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "",
+            "CloudWatchOutputEnabled": false
+        },
+        "TimeoutSeconds": 90,
+        "AlarmConfiguration": {
+            "IgnorePollAlarmFailure": false,
+            "Alarms": []
+        },
+        "TriggeredAlarms": []
+    }
+}

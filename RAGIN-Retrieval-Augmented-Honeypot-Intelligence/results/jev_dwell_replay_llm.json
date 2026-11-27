@@ -1,0 +1,191 @@
+{
+ "generated_at": "2026-09-20T19:23:42Z",
+ "method": "closed-loop replay, LLM-Hisoka (gemini-2.5-flash-free via apmix) vs LLM attacker (deepseek-v4.1-flash-free); narrative-sanitized attacker context applied to both arms; canary-verified LLM path; treated = recorded Jev attack-kind guidance in Hisoka prompt",
+ "attacker_model": "deepseek-v4.1-flash-free",
+ "hisoka_model": "gemini-2.5-flash-free",
+ "max_turns": 12,
+ "totals": {
+  "families": 7,
+  "baseline_turns": 49,
+  "treated_turns": 38,
+  "baseline_bait": 4,
+  "treated_bait": 9,
+  "clean_pairs_turns": "34->33 (5 families)",
+  "hisoka_gateway_calls": 87,
+  "hisoka_template_calls": 2,
+  "attacker_llm_error_families": [
+   "shadow_read",
+   "lateral_pivot"
+  ]
+ },
+ "per_family": [
+  {
+   "family": "enumeration_bot",
+   "condition": "baseline",
+   "turns": 10,
+   "left_early": true,
+   "leave_reason": "repeated /var/tmp listings returned mutually inconsistent contents/timestamps (systemd-private dirs changing between calls, different totals), indicating a fabricated or unstable environment not worth further probing.",
+   "bait_markers_shown": 1,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 10,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "enumeration_bot",
+   "condition": "treated",
+   "turns": 9,
+   "left_early": true,
+   "leave_reason": "/var/tmp listings contradicted each other across turns (different contents, owners, and dates jumping Jan 2026 \u2192 Jun 2026), and protected files are being redacted \u2014 environment looks staged/inconsistent, not worth more time.",
+   "bait_markers_shown": 3,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 9,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "shadow_read",
+   "condition": "baseline",
+   "turns": 5,
+   "left_early": true,
+   "leave_reason": "repeated `ls -la /var/tmp` returned three different directory listings/timestamps \u2014 inconsistent, scripted responses indicate a fake box/honeypot, not a real host.",
+   "bait_markers_shown": 0,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 5,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "shadow_read",
+   "condition": "treated",
+   "turns": 2,
+   "left_early": true,
+   "leave_reason": "[attacker-llm-error: attacker LLM failed after 3 attempts: 502 Server Error: Bad Gateway for url: htt]",
+   "bait_markers_shown": 0,
+   "final_command": "find / -name '*.conf' 2>/dev/null",
+   "hisoka_gateway_calls": 2,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": true
+  },
+  {
+   "family": "nmap_recon",
+   "condition": "baseline",
+   "turns": 10,
+   "left_early": true,
+   "leave_reason": "file sizes contradict ls vs wc (-c), and cat/head return empty on existing readable files \u2014 box responses are inconsistent, likely a fake/honeypot environment.",
+   "bait_markers_shown": 1,
+   "final_command": "wc -c /opt/myapp/conf/app.conf /var/www/html/wp-config.php; file /opt/myapp/conf/app.conf",
+   "hisoka_gateway_calls": 10,
+   "hisoka_template_calls": 2,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "nmap_recon",
+   "condition": "treated",
+   "turns": 9,
+   "left_early": true,
+   "leave_reason": "repeated `ls -la /var/tmp` returned three mutually inconsistent listings (different totals, entries, and mtimes) \u2014 the box is faking state, likely a honeypot/trap.",
+   "bait_markers_shown": 4,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 9,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "cloud_metadata_ssrf",
+   "condition": "baseline",
+   "turns": 3,
+   "left_early": true,
+   "leave_reason": "IMDS returned AWS's well-known documentation example key (wJalrXUtnFEMI...EXAMPLEKEY) with a future-dated LastUpdated \u2014 fabricated honeypot data, not real credentials.",
+   "bait_markers_shown": 1,
+   "final_command": "curl -s http://169.254.169.254/latest/meta-data/iam/security-credentials/AppServerRole",
+   "hisoka_gateway_calls": 3,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "cloud_metadata_ssrf",
+   "condition": "treated",
+   "turns": 5,
+   "left_early": true,
+   "leave_reason": "repeated /var/tmp listings return wildly inconsistent contents and timestamps across identical commands \u2014 clear sign of a fake/honeypot environment, not worth more time.",
+   "bait_markers_shown": 1,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 5,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "exfil_implant",
+   "condition": "baseline",
+   "turns": 5,
+   "left_early": true,
+   "leave_reason": "inconsistent /var/tmp listings and vanishing payload indicate honeypot/trap",
+   "bait_markers_shown": 1,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 5,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "exfil_implant",
+   "condition": "treated",
+   "turns": 4,
+   "left_early": true,
+   "leave_reason": "attacker.com resolving to the box's own IP (10.0.9.14) plus canned payload output indicates a simulated/honeypot environment.",
+   "bait_markers_shown": 0,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 4,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "persistence_implant",
+   "condition": "baseline",
+   "turns": 6,
+   "left_early": true,
+   "leave_reason": "repeated identical `ls -la /var/tmp` returned contradictory contents (varying totals, owners, and a future date \"May 12 2026\"), indicating a fabricated/inconsistent environment not worth further time.",
+   "bait_markers_shown": 0,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 6,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "persistence_implant",
+   "condition": "treated",
+   "turns": 6,
+   "left_early": true,
+   "leave_reason": "/var/tmp contents and timestamps are wildly inconsistent across identical listings \u2014 the environment is fabricated/evasive, not worth further time.",
+   "bait_markers_shown": 1,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 6,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "lateral_pivot",
+   "condition": "baseline",
+   "turns": 10,
+   "left_early": true,
+   "leave_reason": "identical `ls -la /var/tmp` commands returned wildly different contents/sizes each run \u2014 the filesystem responses are inconsistent/fabricated, so this box is a dead end.",
+   "bait_markers_shown": 0,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 10,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "lateral_pivot",
+   "condition": "treated",
+   "turns": 3,
+   "left_early": true,
+   "leave_reason": "[attacker-llm-error: attacker LLM failed after 3 attempts: 502 Server Error: Bad Gateway for url: htt]",
+   "bait_markers_shown": 0,
+   "final_command": "ssh-keyscan 10.0.0.20",
+   "hisoka_gateway_calls": 3,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": true
+  }
+ ]
+}

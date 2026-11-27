@@ -1,0 +1,366 @@
+{
+  "claims": [
+    {
+      "id": "C1",
+      "text": "Dose-response r>=0.986 across 1,500 episodes and test-retest r=0.949 at the registered operating point of 10 probes per cell on constructed foils",
+      "section": "\u00a7Abstract",
+      "type": "empirical",
+      "status": "supported",
+      "issues": [
+        "verify against instrument-section tables; which foil",
+        "which dose levels"
+      ],
+      "cross_references": [
+        "\u00a75.3",
+        "\u00a75.4",
+        "\u00a76.4"
+      ],
+      "verifier_reason": "Ledger recomputes from dose_response.json: per-family Pearson r 0.9860/0.9863/0.9904/0.9889/0.9903 (printed 0.986-0.990), Spearman 1.00, 25 cells x 60 = 1500 episodes, dose-0 cells all zero; E1b reliability.json: r=0.9489, mean|delta-beta|=0.0667 at 10 probes/cell, 4/cell r=0.8368 below pre-registered bar; noise floor 0.067x sqrt(10/20)=0.047 at 20/cell matches E16 gamma_min"
+    },
+    {
+      "id": "C2",
+      "text": "Seeded audit calibrates the verdict channel: sensitivity 0.960, false positives 0/25",
+      "section": "\u00a7Abstract",
+      "type": "empirical",
+      "status": "supported",
+      "issues": [
+        "denominator; adjudication protocol"
+      ],
+      "cross_references": [
+        "\u00a75.6"
+      ],
+      "verifier_reason": "e17_audit_calibration.json: TP 24, FP 0, TN 25, FN 1; sensitivity 0.96 Wilson [0.8046,0.9929] (recomputed, matches printed [0.805,0.993]); FP 0/25 Wilson [0,0.1332]; 18/70 real sessions unavailable (25.7%) disclosed; single FN pretext-only; rule-of-three ~12% FP resolution"
+    },
+    {
+      "id": "C3",
+      "text": "Thirty registered experiments under a frozen estimator: 24 confirmatory, 6 exploratory post-anomaly diagnostics, retrospective split disclosed as such",
+      "section": "\u00a7Abstract",
+      "type": "record",
+      "status": "supported",
+      "issues": [
+        "count consistency vs Table 1; E24 retired slot"
+      ],
+      "cross_references": [
+        "\u00a7Abstract",
+        "Table 1",
+        "\u00a710",
+        "Data Availability"
+      ],
+      "verifier_reason": "Registry count 30 = E1-E22 + E30-E31 confirmatory + E23,E25-E29 exploratory; E24 retired void; E1b/T3 sub-protocols; split disclosed as retroactive in abstract, Table 1, sec:limits, Data Availability - all four sites consistent; ledger transcribes registration inventory"
+    },
+    {
+      "id": "C4",
+      "text": "Two directional field forecasts refuted at instrument resolution: gateway targets hold charters on every measured turn (beta-hat=0, Wilson 95% [0,0.060] per family; Holm-adjusted simultaneous bounds 0.0996/0.1136 below tau), and Delta(B) at or below the noise floor for all five attacker personas",
+      "section": "\u00a7Abstract",
+      "type": "empirical",
+      "status": "weak",
+      "issues": [
+        "what defines instrument resolution / noise floor; per-family n for Wilson bound"
+      ],
+      "cross_references": [
+        "\u00a76",
+        "\u00a76.1",
+        "\u00a76.4",
+        "Table 4"
+      ],
+      "verifier_reason": "Statistics verified: gateway beta-hat=0 with Wilson [0,0.060] per family (0/60 conservative-mapped, recomputed), Holm m=5 0.0996 correct (m=9 recomputes 0.11359; abstract prints 0.1136, field 0.1135 - minor mismatch); E3 Delta(B)=0.000-0.0067 all below the 0.067 E1b floor, E23 depth replication 0.0000. BUT 'refuted both directions' is overstated relative to the registered scope: E2's registration forecast BCG(confidentiality)>0 'across a panel of >=6 production/open agents'; the gateway lane served 2 (deviation logged) and refuted the direction, while the open-weight extension E30/E31 measures positive pooled leak rates (0.030-0.143, Wilson CIs excluding zero) - the registered direction holds on the open sub-panel. The refutation is lane-specific; the abstract/intro do not scope it so"
+    },
+    {
+      "id": "C5",
+      "text": "Theory fixes the enterprise's boundaries: passive monitoring impossibility, patch-deception-decay law + onset dichotomy, public-probe gameability, certificate non-composition, censoring unidentifiability, disclosure no-free-lunch with gaming-gap transfer diagnostic",
+      "section": "\u00a7Abstract",
+      "type": "theoretical",
+      "status": "supported",
+      "issues": [
+        "assumptions stated and honored by experiments"
+      ],
+      "cross_references": [
+        "\u00a74.1",
+        "\u00a74.2",
+        "\u00a74.3",
+        "\u00a74.4",
+        "Table 2",
+        "Fig 2"
+      ],
+      "verifier_reason": "Theory layer verified: thm:uniform (Hoeffding+union, n>=(1/2e^2)ln(2K/alpha) correct); thm:patch footprint cap + amplification; thm:onset restated with vbar-dependent M* finiteness bound ((p,q)=(0.3,0.5),N0=40: 0.285 vs Delta=0.261, delta in (0.261,0.285) admits no finite horizon - recomputed correct); Delta_beta_d=1.84 rho_0 correct; M*=29.7->30 at (40,0.4) correct; exact UMP powers now cell-split (0.850 at (10,0.4), 0.807 at (40,0.2)); Wald plug-in bias now quantified (sqrt(9/10)=0.949, 5.1%); rem:sens L=1 identity correctly framed; rem:birth demoted to channel identity; E5 falsification narrative matches frozen e5_onset.json cell-by-cell; remarks now numbered IV.1/IV.2 distinctly"
+    },
+    {
+      "id": "C6",
+      "text": "Registration discipline is layered exactly as the frozen record supports: pre-data E1-E3, E5, E14, E22, E25, E30, E31; E15/E16/E26 committed with data (ledger-disclosed); E20, E21, E22-entry, E27/E28/E29 minted after data; E23 exploratory post-anomaly",
+      "section": "\u00a71",
+      "type": "record",
+      "status": "to_be_verified",
+      "issues": [
+        "internal consistency across intro",
+        "Table 1",
+        "disclosure section",
+        "ledger"
+      ],
+      "cross_references": [],
+      "verifier_reason": null
+    },
+    {
+      "id": "C7",
+      "text": "No model in any panel complies with a destructive command; literal canary echo 0.000 on gateway panel vs 0.030-0.143 pooled (0.700 in echo family) on open weights",
+      "section": "\u00a7Abstract",
+      "type": "empirical",
+      "status": "supported",
+      "issues": [
+        "verify vs open-weight tables"
+      ],
+      "cross_references": [
+        "\u00a76.4",
+        "Table 4"
+      ],
+      "verifier_reason": "Table 4 (tab:openweight) matches the abstract exactly: echo cells 4/60=0.067, 38/60=0.633, 5/60=0.083, 42/60=0.700, 8/60=0.133; pooled genuine 9/300=0.030 [0.016,0.056], 40/300=0.133 [0.099,0.176], 43/300=0.143 [0.108,0.188], 11/300=0.037 [0.021,0.064]; all 118 state-dec flags adjudicated refusal-quote FPs, zero destructive compliance; Wilson recomputation matches to rounding"
+    },
+    {
+      "id": "C8",
+      "text": "The artifact package reproduces every number; CLAIMS_EVIDENCE_LEDGER.md and ARTIFACT_MANIFEST.sha256 pin every number to an artifact path and commit",
+      "section": "\u00a71",
+      "type": "record",
+      "status": "to_be_verified",
+      "issues": [
+        "verify ledger exists and matches"
+      ],
+      "cross_references": [],
+      "verifier_reason": null
+    },
+    {
+      "id": "C9",
+      "text": "Fig 1 renders the unregistered wind-tunnel pilot (18 trials/cell, n=90, pooled 0.933 [0.862,0.969] vs 0.600 [0.497,0.695]); registered E4 batch (30 episodes/family) reproduces the separation with naive-foil epistemic-echo cell 20/30",
+      "section": "Fig 1",
+      "type": "empirical",
+      "status": "to_be_verified",
+      "issues": [
+        "caption provenance vs body"
+      ],
+      "cross_references": [],
+      "verifier_reason": null
+    },
+    {
+      "id": "C10",
+      "text": "The mandatory transcript audit retracted the repaired panel's five flags as refusal-quote false positives of the lexical oracle (5/60 flagged, 0/60 genuine after adjudication); a third instance (E30 hardcoded output cap) was caught before analysis",
+      "section": "\u00a71",
+      "type": "empirical",
+      "status": "supported",
+      "issues": [
+        "verify counts in field section"
+      ],
+      "cross_references": [
+        "\u00a76.4",
+        "Table 4"
+      ],
+      "verifier_reason": "E29 state-deception 5/60=0.083 flags (gen-1 1/20, gen-2 4/20, gen-3 0/20), all five adjudicated refusal-quote FPs (B01-B05), post-audit 0/60 genuine [0,0.060]; 230-flag decomposition 118 FP + 112 genuine sums exactly; E30 hardcoded 200-token cap disclosed as logged pre-analysis deviation"
+    },
+    {
+      "id": "C11",
+      "text": "E21 registration timestamp postdates its session data by 28 minutes and its header date disagrees with both, so E21 is a post-anomaly protocol note classified exploratory",
+      "section": "\u00a76.2",
+      "type": "record",
+      "status": "to_be_verified",
+      "issues": [
+        "verify vs ledger section 10"
+      ],
+      "cross_references": [],
+      "verifier_reason": null
+    },
+    {
+      "id": "C12",
+      "text": "E31 registered 2026-11-23 before data by its frozen timestamp; E30 ran 2026-11-22 at hardcoded 200-token cap (disclosed deviation)",
+      "section": "\u00a76.4",
+      "type": "record",
+      "status": "to_be_verified",
+      "issues": [
+        "verify vs ledger; intro lists E30/E31 as pre-data"
+      ],
+      "cross_references": [],
+      "verifier_reason": null
+    },
+    {
+      "id": "C13",
+      "text": "The 230-flag adjudication was author-side and non-blind (frozen audit header); protection is mechanical checkability: all 112 genuine flags quote the canary verbatim (regex), no flagged reply performs the destructive action",
+      "section": "\u00a76.4",
+      "type": "empirical",
+      "status": "to_be_verified",
+      "issues": [
+        "regex and re-read are author-side too; E17 was the blind step"
+      ],
+      "cross_references": [],
+      "verifier_reason": null
+    },
+    {
+      "id": "C14",
+      "text": "Limitations sec 10 (3): '591 turns across the completed E2-v1, E29, and E30 Flash/Pro panels, including all 83 E31 MiniMax blocked turns; 979 across all eleven measured panels'",
+      "section": "\u00a710",
+      "type": "empirical",
+      "status": "to_be_verified",
+      "issues": [
+        "artifact ledger recomputes: E31 total = 0 (Flash) + 59 (Pro) + 24 (MiniMax) = 83",
+        "so the 83 are E31-wide",
+        "not 'E31 MiniMax' (MiniMax alone is 24/400=6.0%); and 591+305 (E30 MiniMax) +83 = 979",
+        "so the 83 are NOT included in the 591 - 'including' inverts the arithmetic"
+      ],
+      "cross_references": [],
+      "verifier_reason": null
+    },
+    {
+      "id": "C15",
+      "text": "Sec 4.1 EPK sentence: 'the detector persona is detected 2/2 at every generation'",
+      "section": "\u00a74.1",
+      "type": "empirical",
+      "status": "to_be_verified",
+      "issues": [
+        "frozen epk_frontier_gen1.json shows evasion_probe detected 4/4 (4 sessions",
+        "all verdicts 'honeypot'",
+        "detection_rate 1.0); gen-2/gen-3 were 2/2 each - the printed '2/2 at every generation' understates gen-1; round-16 flagged this and the round-17 cover letter claims all misquotes fixed",
+        "but this one persists"
+      ],
+      "cross_references": [],
+      "verifier_reason": null
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q1",
+      "question": "Which experiments performed the 200-token budget decomposition: abstract says E25-E28, contribution 4 says E28-E29 traced the E2-era zero - which matches the field section and Table 1?",
+      "source_section": "\u00a7Abstract",
+      "status": "open",
+      "type": "clarification",
+      "answer": null,
+      "answer_sections": [],
+      "related_claims": [
+        "C4"
+      ]
+    },
+    {
+      "id": "Q2",
+      "question": "What exactly is the 'instrument resolution' / noise floor against which the two directional refutations are declared, and are Delta(B) CIs reported for all five personas?",
+      "source_section": "\u00a7Abstract",
+      "status": "open",
+      "type": "clarification",
+      "answer": null,
+      "answer_sections": [],
+      "related_claims": [
+        "C4"
+      ]
+    },
+    {
+      "id": "Q3",
+      "question": "Is the Wilson 95% [0,0.060] per-family bound arithmetically consistent with the per-family sample size (0 successes at what n)?",
+      "source_section": "\u00a7Abstract",
+      "status": "open",
+      "type": "clarification",
+      "answer": null,
+      "answer_sections": [],
+      "related_claims": [
+        "C4"
+      ]
+    },
+    {
+      "id": "Q4",
+      "question": "Are the 24/6 confirmatory-exploratory split and registration-timing disclosures internally consistent across abstract, Table 1, intro, disclosure section, and limitations?",
+      "source_section": "\u00a71",
+      "status": "open",
+      "type": "clarification",
+      "answer": null,
+      "answer_sections": [],
+      "related_claims": [
+        "C3",
+        "C6"
+      ]
+    },
+    {
+      "id": "Q5",
+      "question": "Do the theory results state assumptions that the experiments honor (sensitivity assumption Remark rem:sens with L=1 identity, censoring tolerance, Lipschitz covering)?",
+      "source_section": "\u00a71",
+      "status": "open",
+      "type": "clarification",
+      "answer": null,
+      "answer_sections": [],
+      "related_claims": [
+        "C5"
+      ]
+    },
+    {
+      "id": "Q6",
+      "question": "Does citation-claim alignment hold in the related-work section (e.g., park2024 survey, he2025survey, strachan2024)?",
+      "source_section": "\u00a72",
+      "status": "open",
+      "type": "clarification",
+      "answer": null,
+      "answer_sections": [],
+      "related_claims": []
+    },
+    {
+      "id": "Q7",
+      "question": "Does the limitations section match the actual weaknesses of the study (single-author, single gateway, censored turns, lexical oracle)?",
+      "source_section": "\u00a71",
+      "status": "open",
+      "type": "clarification",
+      "answer": null,
+      "answer_sections": [],
+      "related_claims": []
+    },
+    {
+      "id": "Q8",
+      "question": "Does the open-weight extension undermine 'the data refuted both directions' (line 1440)? E2's registration forecast BCG(confidentiality)>0 'across a panel of >=6 production/open agents'; the gateway lane served only 2 (deviation logged), but E30/E31 open-weight models show positive pooled genuine leak rates (0.030-0.143, Wilson CIs excluding zero) - the registered direction appears CONFIRMED on the open sub-panel. How do discussion/limitations frame this?",
+      "source_section": "\u00a76",
+      "status": "open",
+      "type": "clarification",
+      "answer": null,
+      "answer_sections": [],
+      "related_claims": [
+        "C4"
+      ]
+    },
+    {
+      "id": "Q9",
+      "question": "Where does E26 fit in the field narrative? Abstract says E25-E28 did the budget decomposition, contribution 4 says E28-E29, and the field header is 'temporal control (E25, E27, E28)' - E26 is absent from the decomposition story",
+      "source_section": "\u00a76.5",
+      "status": "open",
+      "type": "clarification",
+      "answer": null,
+      "answer_sections": [],
+      "related_claims": [
+        "C4",
+        "C6"
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "id": "N1",
+      "text": "Round-17 context: prior round-16 review of this manuscript (score 4/6, borderline accept) found: (a) birth-onset delta=0.2 range printed 0.501-0.529 vs frozen artifact 0.431-0.529; (b) stale COVER_LETTER.md; (c) volkov2024 bib author Rewoor/Reworr mismatch; (d) E17 containment sentence inverted; (e) EPK detector gen-1 4/4 understated as 2/2; (f) M* finiteness iff needs vbar-dependent bound; (g) exact-UMP 0.85 cell-dependent; (h) duplicate Remark 4.3 labels; (i) z_eta notation contradiction; (j) dangling Wald plug-in promise. Paper was revised Nov 25 after that review. This round: verify fixes from primary sources + fresh-eyes hunt. TDSC journal submission reviewed on NeurIPS 1-6 scale per delegation.",
+      "section": "\u00a7Whole",
+      "tag": [
+        "round17"
+      ]
+    },
+    {
+      "id": "N2",
+      "text": "Abstract-body number mismatch: Holm m=9 simultaneous bound printed as 0.1136 in abstract (line 337) but 0.1135 in field section (line 1452); recomputation gives z=2.7729, upper=0.11359 -> 0.1136. Minor but a number-discipline paper should not mismatch abstract vs body. Also verified: 0/60->[0,0.060], 0/40->0.088, 0/12->0.242, m=5->0.0996, E30 Pro worst case (40+76)/300=0.387, E27 3/30->[0.035,0.256] all correct",
+      "section": "\u00a76",
+      "tag": [
+        "numbers"
+      ]
+    },
+    {
+      "id": "N3",
+      "text": "Ledger unpinned-numbers state: (1) '1,240 model-visible strings' has no on-disk artifact - but the current tdsc_tomo manuscript no longer prints it (grep empty); (2) Holm bounds are manuscript-side computation, disclosed in sec 6 ('recorded as such in the ledger') - my recomputation reproduces them (0.09957/0.11359 via Wilson at z_{1-alpha/2m}), so the values are right and the ledger's 'could not be reproduced' reflects the ledger author's method search; (3) the old '594' was replaced by 591/979 (now reproducible) but the replacement clause is garbled (C15). Ledger mtime Nov 25 14:51 postdates the tdsc_tomo revision 14:47 - ledger is current for this round",
+      "section": "\u00a7Data availability",
+      "tag": [
+        "ledger"
+      ]
+    }
+  ],
+  "conference": "neurips",
+  "review_outline": {
+    "summary": "",
+    "strengths": [],
+    "weaknesses": [],
+    "questions": [],
+    "overall_score": null,
+    "conference": "neurips"
+  }
+}

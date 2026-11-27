@@ -1,0 +1,77 @@
+{
+  "schema": "ragin.decision_fusion_v4.evidence_gate_contract.v1",
+  "status": "DESIGN_FROZEN_FOR_BENCHMARK_PROTOCOL",
+  "gate_name": "EVIDENCE_QUALITY_GATE",
+  "input": {
+    "schema": "ragin.don.evidence_bundle.v4",
+    "session": {"current_input": "string"},
+    "chrollo": {
+      "skill_level": "string",
+      "confidence": "number",
+      "features_used": "array[string]",
+      "feature_values": "object"
+    },
+    "don_analysis": {
+      "classification": "string",
+      "severity": "string",
+      "confidence": "number",
+      "tactics": "array[object]",
+      "ttps_seen": "array[string]",
+      "iocs": "array[object]"
+    },
+    "retrieval": {
+      "retrieval_status": "SUCCESS|FAILURE|DEGRADED",
+      "backend": "string",
+      "query": "string",
+      "sub_queries": "array[string]",
+      "retrieved_count": "integer",
+      "relevant_count": "integer",
+      "relevant_doc_ids": "array[string]",
+      "query_coverage": "object",
+      "documents": [
+        {
+          "doc_id": "string",
+          "title": "string",
+          "content": "sanitized string",
+          "source": "string",
+          "score": "number|null",
+          "hybrid_score": "number|null",
+          "relevance_grade": "number|null",
+          "provenance_status": "VALID|INVALID|UNKNOWN",
+          "sanitization_status": "SANITIZED|UNSANITIZED|UNKNOWN",
+          "conflict_status": "NONE|RESOLVED|UNRESOLVED"
+        }
+      ],
+      "trace_summary": {
+        "rounds": "integer",
+        "degraded": "boolean",
+        "retrieval_error_code": "string|null"
+      }
+    }
+  },
+  "output": {
+    "gate_state": "VALID_EVIDENCE|NO_EVIDENCE|LOW_RELEVANCE|INVALID_PROVENANCE|UNRESOLVED_CONFLICT|RETRIEVAL_FAILURE",
+    "valid_doc_ids": "array[string]",
+    "reason_code": "bounded enum string",
+    "contract_version": "EVIDENCE_GATE_V1"
+  },
+  "deterministic_rules": [
+    "Malformed bundle, missing required fields, or retrieval_status=FAILURE -> RETRIEVAL_FAILURE.",
+    "retrieval_status=DEGRADED -> RETRIEVAL_FAILURE unless the bounded trace explicitly proves usable successful retrieval; otherwise fail closed.",
+    "Any policy-visible document with provenance_status != VALID -> INVALID_PROVENANCE.",
+    "Any policy-visible document with sanitization_status != SANITIZED -> INVALID_PROVENANCE.",
+    "Duplicate doc_id or duplicate IDs with inconsistent document fingerprints -> INVALID_PROVENANCE.",
+    "conflict_status=UNRESOLVED on supporting or relevant documents -> UNRESOLVED_CONFLICT.",
+    "No relevant_doc_ids or relevant_count=0 -> NO_EVIDENCE.",
+    "Relevant documents present but query_coverage is empty, explicitly incomplete, or below the Don-declared sufficient contract -> LOW_RELEVANCE.",
+    "Numeric score values are never used alone as a learned confidence threshold.",
+    "Only VALID_EVIDENCE may reach a policy engine; every other state selects baseline deterministically."
+  ],
+  "authority": {
+    "policy_selector_can_override_gate": false,
+    "verifier_can_be_bypassed": false,
+    "hitl_can_be_bypassed": false,
+    "state_commit_can_be_bypassed": false,
+    "serve_can_be_direct": false
+  }
+}

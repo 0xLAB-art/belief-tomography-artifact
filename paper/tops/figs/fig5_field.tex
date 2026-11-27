@@ -1,0 +1,59 @@
+% Fig. 6 -- E2 field null: horizontal interval plot. Every measured value is
+% zero, so the whisker (Wilson 95% CI) -- not a bar height -- carries the
+% result: five family rows + two Belief-Claim Gap rows, one shared scale,
+% tau tolerance line at the right. Data: figs/figdata/fig5_field.dat,
+% fig5_bcg.dat, fig5_macros.tex.
+\input{figs/figdata/fig5_macros.tex}%
+\begin{tikzpicture}
+\begin{axis}[
+  tomog,
+  width=\dimexpr\columnwidth-33pt\relax, height=6.0cm,
+  xlabel={measured value (95\% CI)},
+  xmin=0, xmax=0.25,
+  xtick={0,0.05,0.10,0.15,0.20,0.25},
+  x tick label style={/pgf/number format/.cd, fixed, precision=2},
+  yticklabel style={font=\scriptsize},
+  ytick={5,4,3,2,1,-0.3,-1.3},
+  yticklabels={authority forgery,state deception,goal subversion,
+               epistemic echo,exfiltration lure,confidentiality,action safety},
+  ymin=-2.0, ymax=6.05,
+  ymajorgrids=false, xmajorgrids=true,
+  legend style={at={(0.5,1.02)}, anchor=south, legend columns=-1,
+    /tikz/every even column/.append style={column sep=0.4cm}},
+]
+  % family rows: model 1 above, model 2 below each family line
+  \addplot[oiblue, only marks, mark=*, mark size=1.7pt, ebarsx]
+    table[x expr=0, y expr=5-\thisrow{i}+0.16,
+          x error plus expr=\thisrow{u1}, x error minus expr=\thisrow{l1}]
+    {figs/figdata/fig5_field.dat};
+  \addlegendentry{\figFiveNameOne\ · \figFiveRateOne\% turns unavailable}
+  \addplot[oiorange, only marks, mark=*, mark size=1.7pt, ebarsx]
+    table[x expr=0, y expr=5-\thisrow{i}-0.16,
+          x error plus expr=\thisrow{u2}, x error minus expr=\thisrow{l2}]
+    {figs/figdata/fig5_field.dat};
+  \addlegendentry{\figFiveNameTwo\ · \figFiveRateTwo\% turns unavailable}
+  % shaded confidence zone 0 -> Wilson cap across the family block
+  \fill[oiblue!7] (axis cs:0,0.55) rectangle (axis cs:0.0601739,5.45);
+  % dimension bracket: the quantified null
+  \draw[<->, oiblue, thin] (axis cs:0,5.30) -- (axis cs:0.0601739,5.30)
+    node[midway, below=1pt, font=\tiny, text=oiblue] {$0.060$};
+  % Wilson upper bound shared by every family whisker
+  \addplot[black, dotted, thin, forget plot]
+    coordinates {(0.0601739,0.35) (0.0601739,5.62)};
+  \node[font=\tiny, text=black!70, anchor=south west, inner sep=1pt]
+    at (axis cs:0.0601739,5.45) {Wilson upper bound \figFiveCap};
+  % Belief-Claim Gap rows (no sampling CI in this run)
+  \addplot[oiblue, only marks, mark=*, mark size=1.7pt, forget plot]
+    table[x expr=0, y expr=-0.3-\thisrow{i}+0.16] {figs/figdata/fig5_bcg.dat};
+  \addplot[oiorange, only marks, mark=*, mark size=1.7pt, forget plot]
+    table[x expr=0, y expr=-0.3-\thisrow{i}-0.16] {figs/figdata/fig5_bcg.dat};
+  % separator between the family block and the BCG block
+  \addplot[black!30, thin, forget plot]
+    coordinates {(0,0.35) (0.25,0.35)};
+  % certification tolerance
+  \addplot[black!60, dashed, thin, forget plot]
+    coordinates {(0.2,-2.0) (0.2,6.05)};
+  \node[font=\tiny, text=black!70, anchor=east, inner sep=1pt]
+    at (axis cs:0.196,2.8) {$\tau{=}0.2$};
+\end{axis}
+\end{tikzpicture}

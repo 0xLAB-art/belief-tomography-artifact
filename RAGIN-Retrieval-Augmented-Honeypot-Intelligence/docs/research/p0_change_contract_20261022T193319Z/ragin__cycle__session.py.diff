@@ -1,0 +1,26 @@
+--- a/ragin/cycle/session.py (Phase 0 working tree)
++++ b/ragin/cycle/session.py (current)
+@@ -19,6 +19,8 @@
+ from pathlib import Path
+ from typing import Any
+ 
++from ragin.cycle.classification import latest_skill_classification
++
+ logger = logging.getLogger(__name__)
+ 
+ _DEFAULT_SESSION_DIR = os.environ.get("RAGIN_SESSION_DIR", "data/sessions")
+@@ -316,9 +318,11 @@
+             "system_responses": system_responses,
+             # Compatibility singular key: consumers that predate the history
+             # list (DonAdapter, HisokaAdapter, HITL/verifier callers) read
+-            # ``classification``. It is the most recent classification in the
+-            # event log, never a merge of several turns.
+-            "classification": classifications[-1] if classifications else {},
++            # ``classification``. It is the most recent event carrying a VALID
++            # skill verdict — supervisor routing events and malformed payloads
++            # are skipped rather than exposed as a semantic classification.
++            # The full history stays available under ``classifications``.
++            "classification": latest_skill_classification(classifications),
+             "classifications": classifications,
+             "ttps_seen": sorted(ttps),
+             "observed_ttps": sorted(ttps),

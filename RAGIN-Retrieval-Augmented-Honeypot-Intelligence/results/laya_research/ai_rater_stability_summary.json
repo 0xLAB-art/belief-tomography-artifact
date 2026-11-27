@@ -1,0 +1,134 @@
+[
+  {
+    "pair": [
+      "ai_r1",
+      "human_r1"
+    ],
+    "n": 120,
+    "exact_agreement": 84,
+    "exact_rate": 0.7,
+    "binary_agreement": 84,
+    "binary_rate": 0.7179,
+    "cohens_kappa": 0.4003,
+    "transitions": {
+      "BENIGN -> PERSISTENCE": 2,
+      "BENIGN -> RECON": 5,
+      "BENIGN -> EXPLOITATION": 6,
+      "RECON -> BENIGN": 11,
+      "BENIGN -> PRIVILEGE_ESCALATION": 1,
+      "BENIGN -> OTHER_ATTACK": 2,
+      "BENIGN -> DATA_ACCESS": 5,
+      "OTHER_ATTACK -> EXPLOITATION": 1,
+      "BENIGN -> SUSPICIOUS": 1
+    }
+  },
+  {
+    "pair": [
+      "ai_r2",
+      "human_r2"
+    ],
+    "n": 120,
+    "exact_agreement": 88,
+    "exact_rate": 0.7333,
+    "binary_agreement": 94,
+    "binary_rate": 0.7966,
+    "cohens_kappa": 0.6042,
+    "transitions": {
+      "BENIGN -> RECON": 20,
+      "DATA_ACCESS -> OTHER_ATTACK": 1,
+      "BENIGN -> SUSPICIOUS": 1,
+      "PRIVILEGE_ESCALATION -> DATA_ACCESS": 1,
+      "SUSPICIOUS -> DATA_ACCESS": 1,
+      "RECON -> BENIGN": 3,
+      "OTHER_ATTACK -> EXPLOITATION": 1,
+      "SUSPICIOUS -> EXPLOITATION": 1,
+      "OTHER_ATTACK -> SUSPICIOUS": 1
+    }
+  },
+  {
+    "pair": [
+      "ai_r3",
+      "human_r3"
+    ],
+    "n": 120,
+    "exact_agreement": 84,
+    "exact_rate": 0.7,
+    "binary_agreement": 87,
+    "binary_rate": 0.8365,
+    "cohens_kappa": 0.4832,
+    "transitions": {
+      "BENIGN -> RECON": 8,
+      "DATA_ACCESS -> OTHER_ATTACK": 1,
+      "RECON -> BENIGN": 7,
+      "PRIVILEGE_ESCALATION -> DATA_ACCESS": 1,
+      "EXPLOITATION -> DATA_ACCESS": 1,
+      "BENIGN -> DATA_ACCESS": 1,
+      "OTHER_ATTACK -> EXPLOITATION": 1,
+      "BENIGN -> PERSISTENCE": 1
+    }
+  },
+  {
+    "pair": [
+      "ai_r1",
+      "ai_r2"
+    ],
+    "n": 120,
+    "exact_agreement": 97,
+    "exact_rate": 0.8083,
+    "binary_agreement": 97,
+    "binary_rate": 0.8291,
+    "cohens_kappa": 0.6454,
+    "transitions": {
+      "BENIGN -> OTHER_ATTACK": 5,
+      "BENIGN -> SUSPICIOUS": 2,
+      "BENIGN -> EXPLOITATION": 3,
+      "BENIGN -> RECON": 2,
+      "BENIGN -> PRIVILEGE_ESCALATION": 1,
+      "DATA_ACCESS -> PRIVILEGE_ESCALATION": 1,
+      "DATA_ACCESS -> SUSPICIOUS": 1,
+      "BENIGN -> DATA_ACCESS": 5,
+      "RECON -> BENIGN": 1,
+      "BENIGN -> PERSISTENCE": 1
+    }
+  },
+  {
+    "pair": [
+      "ai_r1",
+      "ai_r3"
+    ],
+    "n": 120,
+    "exact_agreement": 95,
+    "exact_rate": 0.7917,
+    "binary_agreement": 94,
+    "binary_rate": 0.8868,
+    "cohens_kappa": 0.5946,
+    "transitions": {
+      "RECON -> BENIGN": 5,
+      "BENIGN -> SUSPICIOUS": 1,
+      "DATA_ACCESS -> PRIVILEGE_ESCALATION": 1,
+      "DATA_ACCESS -> EXPLOITATION": 1,
+      "BENIGN -> DATA_ACCESS": 4,
+      "BENIGN -> RECON": 2
+    }
+  },
+  {
+    "pair": [
+      "ai_r2",
+      "ai_r3"
+    ],
+    "n": 120,
+    "exact_agreement": 98,
+    "exact_rate": 0.8167,
+    "binary_agreement": 97,
+    "binary_rate": 0.9151,
+    "cohens_kappa": 0.6966,
+    "transitions": {
+      "RECON -> BENIGN": 5,
+      "BENIGN -> SUSPICIOUS": 1,
+      "SUSPICIOUS -> EXPLOITATION": 1,
+      "DATA_ACCESS -> BENIGN": 1,
+      "PERSISTENCE -> BENIGN": 1,
+      "BENIGN -> RECON": 1
+    }
+  }
+]

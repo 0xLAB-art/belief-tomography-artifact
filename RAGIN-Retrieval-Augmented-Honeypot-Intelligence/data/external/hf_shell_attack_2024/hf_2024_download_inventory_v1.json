@@ -1,0 +1,54 @@
+{
+  "schema": "ragin.v4.external_hf_2024_download_inventory.v1",
+  "status": "DOWNLOAD_AND_METADATA_AUDIT_ONLY_NOT_PREREGISTERED_HOLDOUT",
+  "source_repo": "zyw-286/shell-attack-evolution-dataset",
+  "source_revision_commit": "d201aafbbcbb5347078ca64f06c5428fa6814bc9",
+  "downloaded_at_utc": "2026-10-14T07:16:57.944209+00:00",
+  "license": "CC-BY-4.0 (as listed on source dataset card)",
+  "files": {
+    "sessions/2024.jsonl": {
+      "sha256": "7ea4b916841708c36dbe24f95b882f06335e85ed2e77bdc70ba985c9c9653752",
+      "bytes": 7206955,
+      "status": "downloaded",
+      "relative_path": "d201aafbbcbb5347078ca64f06c5428fa6814bc9/sessions/2024.jsonl"
+    },
+    "commands/2024.jsonl": {
+      "sha256": "80fa73d03f37b50e853e12a60c3cdd79886892aeebaae5d3c22b4b09738fec30",
+      "bytes": 1079890,
+      "status": "downloaded",
+      "relative_path": "d201aafbbcbb5347078ca64f06c5428fa6814bc9/commands/2024.jsonl"
+    },
+    "raw_samples/cowrie_ssh_2024_sample.jsonl": {
+      "sha256": "2fae56a0f7b2b02b24a99b887c2fd751a6fe0919b50f620aedad210372e72f51",
+      "bytes": 97088,
+      "status": "downloaded",
+      "relative_path": "d201aafbbcbb5347078ca64f06c5428fa6814bc9/raw_samples/cowrie_ssh_2024_sample.jsonl"
+    },
+    "README.md": {
+      "sha256": "5425d21a8a939d5c846e421f58c28d2b2d2e02a284d33390d756890f0435871a",
+      "bytes": 12499,
+      "status": "downloaded",
+      "relative_path": "d201aafbbcbb5347078ca64f06c5428fa6814bc9/README.md"
+    }
+  },
+  "metadata_summary": {
+    "sessions/2024.jsonl": {
+      "row_count": 6658,
+      "invalid_structure_rows": 0,
+      "unique_published_source_group_ids": 6658,
+      "duplicate_published_source_group_ids": 0,
+      "missing_group_ids": 0,
+      "total_command_entries": 33259,
+      "empty_or_invalid_command_entries": 0,
+      "rows_containing_source_ip_field": 6658,
+      "research_unit_warning": "Published session_id represents commands grouped by attacker source IP, not a native Cowrie connection/session."
+    },
+    "commands/2024.jsonl": {
+      "row_count": 4236,
+      "invalid_structure_rows": 0
+    }
+  },
+  "privacy": "Source JSONL may contain attacker IPs and embedded credentials; keep private. Never publish raw source file or source IP.",
+  "security": "Downloaded attacker commands are inert strings. Never execute or replay them.",
+  "scientific_boundary": "2024 data are retrospective source-IP aggregates, not newly collected native Cowrie sessions. No V4 arm or reference label was run or computed. Original prospective holdout remains blocked."
+}

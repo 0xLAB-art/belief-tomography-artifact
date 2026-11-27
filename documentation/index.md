@@ -1,0 +1,43 @@
+# Belief–Claim Gap — Artifact Documentation
+
+Complete research artifact repository for the manuscript
+
+> **Measuring the Belief–Claim Gap: Active Black-Box Tomography of Autonomous Agents and the Limits of Certification**
+>
+> IEEE Transactions on Dependable and Secure Computing — submitted 2026.
+> Author identity withheld for review (single-anonymous submission).
+
+This repository is the **complete, self-contained deposit**: the frozen
+experiment record, both manuscript builds, the full measurement-platform
+mirror, and the **live-fleet honeypot data itself** — every file hash-pinned
+by two SHA-256 manifests.
+
+## At a glance
+
+| | |
+|---|---|
+| Registered experiments | 30 (E1–E31 registry; E24 retired void before registration) |
+| Frozen deposit | 395 files, SHA-256 manifest, byte-exact verification |
+| Full deposit | 46,775 files · ~1.2 GB, every file hash-pinned |
+| Manuscripts | IEEE TDSC 13 pp + 22 pp supplement · ACM TOPS mirror 45 pp — both compile from the repo |
+| Live-fleet data | 15,409 served sessions · 15,404 field records · 42,076 pre-NAT connections · full Cowrie logs (2026-10-08 → 11-27) |
+| Headline audit | 230 oracle flags adjudicated: 118 refusal-quote FPs + 112 genuine canary echoes · blinded re-audit κ = 0.96 |
+
+## Quick start
+
+```bash
+git clone https://github.com/0xLAB-art/belief-tomography-artifact.git
+cd belief-tomography-artifact
+./verify.sh                    # → 395 frozen + 46,772 supplementary files OK
+bash checks/quick_counts.sh    # → reproduces the 230-flag audit + censoring table
+```
+
+## Where to go next
+
+- [Verification](verifying.md) — run the manifest checks yourself
+- [Repository map](repo_map.md) — what lives where
+- [Ledger guide](guide.md) — how every printed number is checked
+- [Experiment index](experiments_index.md) — the E1–E31 registry
+- [Reviewer bundle](reviewer_bundle.md) — the shortest path to the headline numbers
+- [Data & privacy](data_privacy.md) — the live-fleet export and every redaction
+- [License](license.md) — Apache 2.0, whole repository

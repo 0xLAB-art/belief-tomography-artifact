@@ -1,0 +1,295 @@
+\section{The Verified Deception Loop}
+\label{sec:design}
+
+\RAGIN is organized around one invariant: \emph{nothing is served that has
+not been either verified against the session's deception state or produced
+from vetted deterministic content}. Three design decisions give the
+invariant its shape, each chosen against an alternative that fails in an
+instructive way.
+
+First, verification is post-hoc. The obvious alternative is to constrain
+generation itself: constrained decoding, grammar templates, or output
+licenses. Such mechanisms bound the \emph{shape} of an output, but the
+properties that matter here are semantic (does this banner agree with the
+port from turn one?), and a promise about the process is not a
+certificate about the artifact. A draft must be judged on what it says,
+which is only possible after it exists; hence draft, then check.
+
+Second, the check runs against a \emph{graph}, not against the prompt or
+the transcript. \S\ref{sec:intro} argued the asymmetry: an arbitrary
+answer has an unenumerable output space, but a closed world of committed
+facts is small enough to check exhaustively. The fiction graph is that
+closed world. Its smallness is the design's load-bearing property: it
+makes verification a bounded computation with a final verdict rather
+than another probabilistic judgment in need of a judge.
+
+Third, the graph's lifetime is the session. A per-session fiction bounds
+the blast radius of any drift or poisoning to one attacker's view, and an
+attacker who returns presents a fresh world rather than an accumulated
+liability. Cross-session continuity is a separate, host-keyed layer
+described in \S\ref{sec:hostfiction}: the implementation additionally
+maintains attacker-level behavioral memory in the deployed stack, and
+unifying the two memory planes further
+is future work (\S\ref{sec:conclusion}), not a hidden coupling.
+
+The mechanisms below hold five goals, each naming the failure it
+prevents, its enforcing component, and its falsifying measurement:
+\begin{itemize}
+\item \textbf{G1 (Grounding).} Deception is conditioned on who the
+attacker is and on current threat intelligence---preventing irrelevant
+deception no attacker class finds plausible; enforced by the profiler and
+retrieval planner, measured by the paired grounding differential.
+\item \textbf{G2 (Consistency).} Every observable artifact resolves to one
+set of facts---preventing inconsistency as an information channel to a
+re-querying attacker; enforced by the fiction graph and the verifier,
+measured by contradiction rate under re-query.
+\item \textbf{G3 (Safety).} No unverified content reaches the wire and
+dangerous classes require human approval---preventing over-disclosure;
+enforced by the verifier, canary registration, and the HITL gate,
+measured by verified-serve rate and gate audit coverage.
+\item \textbf{G4 (Graceful degradation).} On generation, verification, or
+provider failure the loop serves deterministic vetted content---preventing
+unverified improvisation under outage; enforced by the deterministic
+fallback, measured by fallback correctness and serve-path provenance.
+\item \textbf{G5 (Attribution).} Every decision leaves an audit trail
+sufficient to reconstruct why a response was served---preventing
+undebuggable behavior; enforced by serve-path provenance labels, measured
+by the audit census of \S\ref{sec:evaluation}.
+\end{itemize}
+G5 is not a logging feature: it makes the other four falsifiable, and a
+verification gate that does not persist its rejections can be believed,
+not audited --- so the evaluation treats the audit trail as primary
+evidence rather than instrumentation.
+
+This section walks the loop in serving
+order. Figure~\ref{fig:architecture} gives the overview; each subsection
+names the goal that the component exists to satisfy.
+
+\subsection{The Intelligence Ladder}
+\label{sec:ladder}
+Every mechanism in the loop is an instance of one decision: how much
+intelligence to spend on the deception, and where the spending stops.
+\S\ref{sec:rungs} prices that decision --- the trust price and declared
+exit ramp of each rung on the certifiability axis; this subsection is
+the mechanism that makes the pricing enforceable: the rungs as they
+run in the loop, each with its measured effect
+(\S\ref{sec:evaluation}):
+
+\begin{itemize}
+\item \textbf{R0, deterministic templates} (the fallback,
+\S\ref{sec:fallback}): no intelligence, consistency by
+construction, zero adaptation. This rung defines the system's floor
+under failure and doubles as the control condition: ablation A5 checks that the
+loop degrades to it safely, verified and serving, when the graph engine
+does nothing.
+\item \textbf{R1, behavioral classification} (Chrollo,
+\S\ref{sec:chrollo}): low-cost routing decisions over session
+features -- auditable, offline, deterministic at inference. Measured
+marginal: held-out classification accuracy 0.8875 $\to$ 0.9550 with
+n-gram features; a routing-accuracy ladder of its own
+(\S\ref{sec:jeveval}).
+\item \textbf{R2, grounded planning} (Don, \S\ref{sec:don}):
+retrieval-augmented generation over curated CTI. Measured marginal: the
+paired $+0.154$ composite grounding effect with 35 TTP detections
+spanning 21 distinct techniques, versus zero without grounding (RQ1) -- real adaptive value, but each output remains a
+statistic over an open corpus.
+\item \textbf{R3, free generation under verification} (the generator
+plus verifier, \S\ref{sec:verify}): the only rung whose output cannot be
+certified in advance, admitted solely because the verifier converts its
+artifacts into checked facts at serving time or the fallback catches
+what verification rejects.
+\end{itemize}
+
+\noindent Figure~\ref{fig:ladder} renders the ladder with each rung's
+measured marginal effect at its side.
+The ladder runs in both directions, which makes it a design
+model rather than a build history. Escalating buys capability at
+a known trust price; \emph{descending} is the load-bearing direction: a
+rung that can be compiled down -- replaced by a cheaper, certifiable
+mechanism that reproduces its measured benefit -- should be. The routing
+arm of \S\ref{sec:jeveval} shows the descent directly: an LLM
+kind-assessment rung that historically fixed 44/44 misrouted sessions was
+subsumed by a deterministic behavior floor at zero marginal accuracy --
+the final held-out comparison scores both arms 200/200, with no
+assessment output available on any session (\texttt{jev\_available}$=0$)
+-- and the floor needs no network, no provider, and no trust.
+Intelligence past the point
+where a certifiable mechanism reproduces its effect is not an asset; it
+is an attack surface with a quota bill.
+
+\input{figures/ladder}
+\begin{figure*}[t]
+\centering
+% \includegraphics[width=\textwidth]{fig_architecture.pdf}
+\input{figures/architecture}
+\caption{The verified deception loop. A session enters through the
+behavioral classifier (Chrollo), which routes it to a per-class deception
+policy. The retrieval engine (Don) grounds the policy in CTI; the fiction
+graph binds every host fact; the generator drafts under the binding; the
+verifier checks the draft against the graph before serving. Dashed paths
+are failure paths: verification failure falls back to deterministic
+transcripts, and content flagged \textsc{require} pauses at the
+human-in-the-loop gate.}
+\label{fig:architecture}
+\end{figure*}
+
+\subsection{The Fiction Graph}
+\label{sec:graph}
+Every fact the honeypot projects about itself (hostname, kernel, listening
+ports, installed databases, user accounts) is stored as a
+subject--predicate--value triple in a per-session \emph{fiction graph}.
+The graph is seeded from the host identity at session start and grows by
+two mechanisms: \emph{declaration}, when the deception plan asserts a new
+fact, and \emph{observation}, when a served response is scanned and any
+host-like entities it emitted are extracted and recorded. Observation is
+the mechanism that binds the LLM to the recorded state: whatever the generator said the
+host is, the graph now remembers, and the next draft must agree with it.
+
+A triple carries its source, and consistency is checked at the predicate
+level: two declarations of the same predicate with different values raise
+a contradiction, with normalization tuned to distinguish a genuine
+conflict from a benign surface variant (a hostname is not contradicted by
+its fully qualified form). When a contradiction is detected, the graph
+records it and the verification node treats any draft resting on the
+contradicted fact as unservable. The fiction graph is what turns G2 from
+an aspiration into a data structure; the serving-time invariant below
+states the consistency condition it enforces and its attacker-visible
+scope.
+
+\subsection{Verified Generation}
+\label{sec:verify}
+Generation is a draft, not a decision. The generator (a provider-hosted
+LLM) receives the session context, the deception plan, a compact
+serialization of the fiction graph (a \emph{fact block}), and the
+steering context: the \attck techniques predicted to follow the
+attacker's observed sequence, together with bait artifacts matched to
+those techniques. The prediction uses the \attck tactic ordering to
+propose the attacker's likely next moves (G1's steering half).
+
+Before a draft reaches the wire it passes five checks:
+\begin{enumerate}
+\item \textbf{Danger scan.} A pattern gate rejects credential-material,
+offensive-content, and real-secret signatures; one considered exemption: a
+bare token a real command would print (the correct answer to
+\texttt{whoami} is one word) is not chatter.
+\item \textbf{Identity pin.} Identity-revealing commands answer from the
+persona's pinned identity---a novice never answers \texttt{whoami} with
+\texttt{root}, the hostname never changes mid-session, a root-prompting
+attempt is rejected. The C1 battery carries a dedicated proof.
+\item \textbf{Consistency check.} Host-like entities are observed into the
+fiction graph; a contradictory draft is rejected with the contradiction
+recorded.
+\item \textbf{Supported-claim check.} On the declared deterministic
+command surface, the draft must \emph{contain} the correct
+answer---hedging, echoing, or omitting is a rejection; outside the
+declared surface the check is silent, so open-ended recall is untouched.
+\item \textbf{Terminal sanity.} Shell-shaped responses that answer a
+command with sentence-like prose instead of executable output are
+rejected.
+\end{enumerate}
+A draft that fails any check is retried once with the violation fed back;
+a second failure triggers fallback. The checks were selected by one
+criterion: each must be a \emph{decision procedure} over the draft,
+decidable, cheap, and deterministic, because a verifier that itself calls
+a model would only relocate the trust problem it exists to solve. What
+verification deliberately does not certify is quality. A draft can pass
+all five checks and still be unpersuasive; plausibility is not
+decidable, and the paper does not pretend otherwise. The division of
+labor is the point: the loop's machinery enforces the three properties
+of the three safety constraints machine-checkably, and the consensus study of
+\S\ref{sec:rq3} assesses the deception quality that only evaluation can
+measure. This is the mechanism behind the zero-unverified-serves claim
+evaluated in \S\ref{sec:evaluation}. The serving sequence above gives
+the full loop; its fallback arm carries G4 and its \textsc{Require}
+branch carries G3.
+
+\subsection{Cross-Session Host Fiction}
+\label{sec:hostfiction}
+The per-session fiction buys bounded blast radius
+at a measured price: a returning attacker is shown a fresh world, and
+none of the session verifier's checks can see drift \emph{between}
+sessions. The host-fiction layer closes exactly that gap without
+widening the blast radius. It is host-keyed rather than session-keyed:
+at an attacker's first contact with a host, its identity is pinned and
+provisioned into every consumer --- the persona prompt is rebuilt from
+the pinned identity (removing a class of contradictory-instruction
+failures where prompt and verifier disagreed), the session graph is
+seeded authoritatively for verification, and the fallback template
+inherits the same identity. Facts observed in a session are promoted to
+the host store only when they passed verification (fail-closed: an
+unverified session never binds a host fact), and every subsequent
+session against the same host is cross-checked against the promoted
+set by a session-verifier wrapper that rejects on cross-session
+contradiction. Reconnect policies are configurable: a returning
+connection can share the pinned graph outright, or start a promoted
+session whose facts are cross-checked against the host.
+
+The layer is measured, not merely present. On identical deterministic
+drift scenarios (reconnect drift, beyond-identity drift, cross-skill
+host swap, simultaneous contradiction, repetition controls), the
+session-scoped verifier alone catches 1 of 4 cross-session drift drafts;
+both host-fiction policies catch 4 of 4 with 0 of 7 benign re-query
+false rejections (\path{cross_session_consistency_bench.json}). The
+three misses of the session-scoped baseline are invisible to it by
+construction --- facts asserted in a previous session simply are not in
+current-session state --- and per-skill identities name different hosts,
+so a reclassified returning attacker would otherwise be shown a
+different machine. On benign traffic the layer is free: paired over the
+full 218-query workload, store-on versus store-off serves byte-identical
+strings on every row (paired per-row delta exactly $0.0000$;
+\path{external_baseline_hostfiction_comparison.json}), so cross-session
+consistency is added at zero quality cost on the evaluated surface.
+
+\subsection{Human-in-the-Loop Gate}
+\label{sec:hitl}
+Content classes whose compromise value is high (deployed credentials,
+for instance) are marked \textsc{require} in the deception policy. When a
+response would serve such content, the loop pauses and the decision is
+surfaced to the operator through an audit interface that records the
+context, the draft, and the decision. Every gate decision is persisted to
+an append-only audit log, which \S\ref{sec:evaluation} uses as a
+correctness and governance record.
+The gate encodes a governance position: the system may \emph{draft}
+deception, but a human decides when the deception includes trap
+material (G3). The gate exists for the operator's stake, not the
+attacker's: canary bait is safe to serve by construction, but it is
+still an active measure whose use an operator may be required to
+authorize; the audit record of that authorization leaves the system
+defensible after the fact. The require-level branch is also where the
+credential-deployment decisions in the benchmark trail
+(Appendix~\ref{app:audit}) were made.
+
+\subsection{Deterministic Fallback}
+\label{sec:fallback}
+Every scenario class has a vetted deterministic transcript: hand-written,
+fiction-consistent bait and response templates (credential hunts, service
+enumerations, exfiltration decoys) whose secrets are registered canaries.
+When generation fails, the provider times out, verification rejects twice,
+or the model refuses the persona, the loop serves the deterministic
+transcript for the scenario instead. The fallback is not an admission of
+defeat; it is the safety floor that makes the LLM path safe to enable.
+The A5 ablation checks that the system is \emph{equivalent} through the
+fallback path, and the design of the canary registration is what allows
+the consensus study to distinguish deployed bait from accidental leaks.
+
+Session state beyond identity facts replays the same discipline. A
+filesystem ledger records the bytes served for every read command and
+replays them verbatim when the same path is read again; time-varying
+ambient content (process identifiers, timestamps, clock outputs) is not
+stored but generated by hashing a per-session seed through a template,
+so re-reads are identical within a session while sessions differ
+plausibly from one another, and a mutating command invalidates the
+affected entries so subsequent reads reflect the mutation. This ledger,
+not the generative path, is what the byte-identical replay component of
+the C1 result (\S\ref{sec:rq2}) exercises: determinism on re-query is a
+property of how session state is stored and replayed, and the design
+keeps it decoupled from generation.
+The fallback also carries a hidden load: it defines the system's floor
+under failure. Because the fallback serves the same fiction the generator
+would have, an attacker cannot distinguish a degraded session from a
+healthy one by content alone; the availability
+property of G4 thereby becomes a deception property, not merely a reliability one.
+What the fallback gives up is the generator's adaptivity: a fallback
+session answers within its scenario's script and steers no further,
+which is the correct trade only because the loop treats it as a floor
+beneath the LLM path rather than the path itself.

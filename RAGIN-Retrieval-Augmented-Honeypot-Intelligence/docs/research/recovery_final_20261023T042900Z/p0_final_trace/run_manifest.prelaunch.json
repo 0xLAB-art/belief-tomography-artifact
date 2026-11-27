@@ -1,0 +1,241 @@
+{
+  "commands": [
+    "whoami",
+    "id",
+    "uname -a"
+  ],
+  "container": {
+    "name": "ragin-p0-loopback-1219944-20261023T042644Z",
+    "network": "host"
+  },
+  "created_utc": "20261023T042644Z",
+  "derived_from": {
+    "path": "scripts/run_p0_loopback_ssh_trace_v1.py",
+    "sha256": "4a982e090bcd1f7b363ed03b0de0b691ebc1c6be9449fd0ea1036f866fed03f8"
+  },
+  "egress": {
+    "host_network": true,
+    "limitation": "Docker host networking is used for loopback-only listeners; hard egress blocking would require host firewall/namespace work and is not claimed.",
+    "netns_attempt": "NOT_USED; exact blocker in trace_summary.isolation.netns",
+    "network_namespace_egress_block": false
+  },
+  "environment_policy": {
+    "base": "allow-list, not os.environ.copy()",
+    "env_keys": [
+      "ALL_PROXY",
+      "API_KEY",
+      "GATEWAY_URL",
+      "HF_HUB_OFFLINE",
+      "HOME",
+      "HTTPS_PROXY",
+      "HTTP_PROXY",
+      "LANG",
+      "LC_ALL",
+      "NO_PROXY",
+      "PATH",
+      "PYTHONNOUSERSITE",
+      "PYTHONUNBUFFERED",
+      "RAGIN_BIND_HOST",
+      "RAGIN_DON_RETRIEVAL_VERSION",
+      "RAGIN_FIELD_EXPORT_DIR",
+      "RAGIN_HISOKA_GATEWAY_URL",
+      "RAGIN_HOST_FICTION_PATH",
+      "RAGIN_JEVI_ENABLED",
+      "RAGIN_LAYA_ENABLED",
+      "RAGIN_LAYA_EVAL_REQUIRE_REAL_MODEL",
+      "RAGIN_LLM_BASE_URL",
+      "RAGIN_PROVIDER_ENABLED",
+      "RAGIN_RAG_MODE",
+      "RAGIN_REQUIRE_AUTH",
+      "RAGIN_REQUIRE_PROVIDER",
+      "RAGIN_RUNTIME_MODE",
+      "RAGIN_SESSION_DIR",
+      "RAGIN_VERIFIER_DEADLINE_S",
+      "RAGIN_VERIFIER_PROFILE",
+      "TMPDIR",
+      "TRANSFORMERS_OFFLINE",
+      "all_proxy",
+      "http_proxy",
+      "https_proxy",
+      "no_proxy"
+    ],
+    "env_redacted": {
+      "ALL_PROXY": "",
+      "API_KEY": "[REDACTED]",
+      "GATEWAY_URL": "http://127.0.0.1:9",
+      "HF_HUB_OFFLINE": "1",
+      "HOME": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/docs/research/recovery_final_20261023T042900Z/p0_final_trace/home",
+      "HTTPS_PROXY": "",
+      "HTTP_PROXY": "",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "NO_PROXY": "127.0.0.1,localhost",
+      "PATH": "/home/elaref/.local/bin:/home/elaref/bin:/home/elaref/.codex/packages/app-server-daemon/releases/0.163.0-x86_64-unknown-linux-musl/codex-path:/home/elaref/.codex/tmp/arg0-linux/codex-arg0VBAuMn:/home/elaref/.codex/tmp/arg0-linux/codex-arg0puGyzV:/home/elaref/.codex/packages/standalone/releases/0.163.0-x86_64-unknown-linux-musl/codex-path:/home/elaref/.local/bin:/home/elaref/.nvm/versions/node/v26.10.0/bin:/home/elaref/.local/bin:/run/user/1000/fnm_multishells/525012_1792694185048/bin:/home/elaref/.local/share/fnm:/run/user/1000/fnm_multishells/525011_1792694185046/bin:/home/elaref/.local/share/fnm:/home/elaref/.grok/bin:/home/elaref/.bun/bin:/home/elaref/.strix/bin:/home/elaref/.codex/packages/standalone/current/bin:/home/elaref/.opencode/bin:/home/elaref/.local/bin:/home/elaref/.local/share/pipx/venvs/opencode/bin:/home/elaref/.local/bin:/home/elaref/.juliaup/bin:/home/elaref/.cargo/bin:/home/elaref/.local/bin:/home/elaref/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/elaref/go/bin:/usr/local/bin:/home/elaref/go/bin:/usr/local/bin:/home/elaref/go/bin:/home/elaref/go/bin:/usr/local/bin",
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONUNBUFFERED": "1",
+      "RAGIN_BIND_HOST": "127.0.0.1",
+      "RAGIN_DON_RETRIEVAL_VERSION": "",
+      "RAGIN_FIELD_EXPORT_DIR": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/docs/research/recovery_final_20261023T042900Z/p0_final_trace/field_export",
+      "RAGIN_HISOKA_GATEWAY_URL": "http://127.0.0.1:9",
+      "RAGIN_HOST_FICTION_PATH": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/docs/research/recovery_final_20261023T042900Z/p0_final_trace/host_fiction.json",
+      "RAGIN_JEVI_ENABLED": "0",
+      "RAGIN_LAYA_ENABLED": "0",
+      "RAGIN_LAYA_EVAL_REQUIRE_REAL_MODEL": "0",
+      "RAGIN_LLM_BASE_URL": "http://127.0.0.1:9",
+      "RAGIN_PROVIDER_ENABLED": "[REDACTED]",
+      "RAGIN_RAG_MODE": "none",
+      "RAGIN_REQUIRE_AUTH": "[REDACTED]",
+      "RAGIN_REQUIRE_PROVIDER": "[REDACTED]",
+      "RAGIN_RUNTIME_MODE": "RAGIN_V4_SUBSTANTIVE_DETERMINISTIC",
+      "RAGIN_SESSION_DIR": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/docs/research/recovery_final_20261023T042900Z/p0_final_trace/sessions",
+      "RAGIN_VERIFIER_DEADLINE_S": "1.0",
+      "RAGIN_VERIFIER_PROFILE": "research_strict_v1",
+      "TMPDIR": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/docs/research/recovery_final_20261023T042900Z/p0_final_trace/tmp",
+      "TRANSFORMERS_OFFLINE": "1",
+      "all_proxy": "",
+      "http_proxy": "",
+      "https_proxy": "",
+      "no_proxy": "127.0.0.1,localhost"
+    },
+    "inherited_credentials": "removed/never copied",
+    "laya_enabled": false,
+    "provider_enabled": false,
+    "proxy_vars": "cleared",
+    "rag_mode": "none",
+    "runtime_mode": "RAGIN_V4_SUBSTANTIVE_DETERMINISTIC"
+  },
+  "git": {
+    "dirty": true,
+    "head": "7d8a32aded7f4d168015aaa7f648f3367d3edad1",
+    "status_file": "git_status.txt",
+    "status_line_count": 3069,
+    "status_sha256": "2e41b970517a7bc035e431b6ede4168388a7877b7480a32c26a62abfaac9fdd3"
+  },
+  "image": {
+    "id": "sha256:710f1e4601a663ac8591f58a42b44e4cd3b7ea170c7e6cdb9e54c430a30cd459",
+    "name": "cowrie/cowrie:latest"
+  },
+  "negative_command": "cat /etc/sudoers",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "ports": {
+    "server": 46651,
+    "ssh": 50511
+  },
+  "provenance": {
+    "generator": "DETERMINISTIC_STRATEGY_RUNTIME",
+    "llm_inference": "NOT_ESTABLISHED",
+    "note": "Deterministic runtime output is not a model result and does not establish LLM inference.",
+    "provider_backed": false,
+    "retrieval": "RAGIN_RAG_MODE=none (no dense/sparse index)",
+    "serving": "REAL_SANDBOX_HARNESS_VERIFIER",
+    "transport": "REAL_SSH_COWRIE_TO_SERVER_V2"
+  },
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "run_id": "20261023T042644Z-1219944",
+  "schema": "ragin.p0.loopback_trace.prelaunch.v2",
+  "script_sha256": "9c2282bcbbe0894b81dcc9451fa26e4d2a130d17369a8ba0cfc8bcc5d99c3909",
+  "source_hashes": {
+    "configs/ablation/manifest_v1.json": {
+      "bytes": 2343,
+      "sha256": "bce8d0786335ac3bde41d3c6276c8e43c5d814172332eff69026ef5447e3383d"
+    },
+    "docs/research/CAUSAL_ABLATION_PROTOCOL.md": {
+      "bytes": 22408,
+      "sha256": "c64db9185ba550cfe65de9da461f21d0cfd10763837ff6b5bb15e5a5b5f84adc"
+    },
+    "ragin/capture_v4/privacy.py": {
+      "bytes": 4434,
+      "sha256": "328d227310c5fafaa5237c98f203082f9004752be710d63dd5a387a2a8472382"
+    },
+    "ragin/cycle/adapters.py": {
+      "bytes": 31028,
+      "sha256": "a00f1bf753285b34847562db2f610be93d8dd8e415fc3040c9310ac9cb0e671c"
+    },
+    "ragin/cycle/classification.py": {
+      "bytes": 3691,
+      "sha256": "d86ab64489f8819b15e6ac4ddcdc79863ee492b73326cd18e1c157a0dd352730"
+    },
+    "ragin/cycle/harness.py": {
+      "bytes": 70428,
+      "sha256": "cd6122fd11d24c514d1efff2eb92aed7db03637cfb5d000bdd840567fe584314"
+    },
+    "ragin/cycle/provider_transport.py": {
+      "bytes": 15174,
+      "sha256": "9b6af18d9666cb22fd485ff7e38d58c991ef5f86c5bdeb8275f8dfb28ac9f9ca"
+    },
+    "ragin/cycle/sandbox.py": {
+      "bytes": 24813,
+      "sha256": "c0d9c3a6367093542448a5455ab3e448732908ff3431e5773a8146b6f77f28db"
+    },
+    "ragin/cycle/session.py": {
+      "bytes": 11797,
+      "sha256": "72f8c66b9c6b84618dcc62607859fe81d1e9d63d6d7766da02d6dd0a74693b12"
+    },
+    "ragin/cycle/strict_research.py": {
+      "bytes": 12591,
+      "sha256": "5cff1d20b01eb76b89da1a7cb580defa1f8cb625832daf12da5fcc813ad53692"
+    },
+    "ragin/cycle/verification_deadline.py": {
+      "bytes": 15046,
+      "sha256": "67dd7a45757cb1dc7bebebe0f3c41e5cfe7928b9c225cbc6e16f2e16030f62d1"
+    },
+    "ragin/cycle/verifier.py": {
+      "bytes": 15210,
+      "sha256": "0e4e917fbd76e93b3d2611712dfa54c83a64e43026da88864ad2409f9dfced4d"
+    },
+    "ragin/decision_fusion_v4/evidence_export.py": {
+      "bytes": 10182,
+      "sha256": "bd2910d5cd0cdc8af9f7e998ffe29a88d36455c2016dddd8c5148f6526d3c419"
+    },
+    "ragin/don/intel_corpus.py": {
+      "bytes": 7367,
+      "sha256": "76ac0938396612db281e8e56af253ab646655eb8e2e18584bf16753ab7537e84"
+    },
+    "ragin/don/rag_engine.py": {
+      "bytes": 41135,
+      "sha256": "ded5ede13c6804988a9136b190bf4e59f17da50aab19202046018d616054e905"
+    },
+    "ragin/don/vector_store.py": {
+      "bytes": 7561,
+      "sha256": "4189ce343613c9ecf314ac9218f123ce771dbc4faaa90f8ea598f277d7394fef"
+    },
+    "ragin/gateway/client.py": {
+      "bytes": 21312,
+      "sha256": "1a13ab4a5542e1e6ede4aeb017215bbe45b1c28b427ee8dc6c2d7af7d2242b54"
+    },
+    "ragin/gateway/generation.py": {
+      "bytes": 14398,
+      "sha256": "9e7601c6cc3ae4f5d607c0940db07ea02a32e9b27e6a8aaa5b0c52728ce450cb"
+    },
+    "ragin/graph/host_fiction.py": {
+      "bytes": 17715,
+      "sha256": "eb694ee3ad93f1f95dc00ab65d4865cf2a48654cafcb8792a2698e78c8dfadee"
+    },
+    "ragin/hisoka/deceiver.py": {
+      "bytes": 36074,
+      "sha256": "f4968b01ca54b63da1d50203088c18f3b5eb801f2145967a0113dc73e564f297"
+    },
+    "ragin/hisoka/deception.py": {
+      "bytes": 180181,
+      "sha256": "8f8c9b8537bd775360dbd497a26ffb26ab55eb1934d5dd184d3aa23e8ece6c7d"
+    },
+    "ragin/server_v2.py": {
+      "bytes": 48260,
+      "sha256": "a50a6674f2e2f8530841719e5f4df5a3b418614a1f22e0595393dfc45c019052"
+    },
+    "scripts/run_p0_loopback_ssh_trace_v1.py": {
+      "bytes": 35250,
+      "sha256": "4a982e090bcd1f7b363ed03b0de0b691ebc1c6be9449fd0ea1036f866fed03f8"
+    },
+    "scripts/run_p0_loopback_ssh_trace_v2.py": {
+      "bytes": 45907,
+      "sha256": "9c2282bcbbe0894b81dcc9451fa26e4d2a130d17369a8ba0cfc8bcc5d99c3909"
+    }
+  },
+  "verification_policy": {
+    "deadline_s": 1.0,
+    "profile": "research_strict_v1",
+    "source": "env",
+    "strict_contract": "exact finite command/claim allow-list"
+  }
+}

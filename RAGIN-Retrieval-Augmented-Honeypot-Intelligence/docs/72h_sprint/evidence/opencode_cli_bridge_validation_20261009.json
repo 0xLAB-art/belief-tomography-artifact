@@ -1,0 +1,61 @@
+{
+  "timestamp_utc": "2026-10-09T04:00:16Z",
+  "component": "RAGIN OpenCode CLI bridge",
+  "implementation": {
+    "script": "scripts/opencode_proxy.py",
+    "safe_agent_config": "scripts/opencode_cli_bridge_safe_config.json",
+    "bind": "127.0.0.1:8731",
+    "backend": "installed opencode CLI via opencode run",
+    "opencode_version": "1.18.35",
+    "model": "opencode/ling-3.1-flash-free",
+    "legacy_apmix_credential_forwarded": false,
+    "public_listener_enabled": false,
+    "aws_mutation": false
+  },
+  "local_bridge_checks": {
+    "health": "PASS",
+    "model_catalog": "PASS",
+    "bounded_completion": "FAIL_CLOSED",
+    "bounded_completion_error": "backend_unavailable"
+  },
+  "safe_agent_checks": {
+    "bash": "DENY_RULE_PRESENT",
+    "file_tools": "DENY_RULE_PRESENT",
+    "web_tools": "DENY_RULE_PRESENT",
+    "task_tools": "DENY_RULE_PRESENT",
+    "external_directory": "DENY_RULE_PRESENT"
+  },
+  "real_cli_probe": {
+    "status": "BLOCKED",
+    "result": "provider HTTP 403",
+    "reason": "OpenCode free tier requires execution from within OpenCode",
+    "generated_response": false,
+    "paid_request_confirmed": false
+  },
+  "interactive_tui_probe": {
+    "status": "BLOCKED",
+    "invocation": "opencode /tmp --mini with a real pseudo-terminal",
+    "model": "opencode/ling-3.1-flash-free",
+    "result": "same provider HTTP 403",
+    "generated_response": false
+  },
+  "acp_probe": {
+    "status": "BLOCKED",
+    "initialize": "PASS",
+    "session_creation": "PASS",
+    "model_selection": "PASS",
+    "prompt": "provider HTTP 403"
+  },
+  "minimal_agent_safety_probe": {
+    "status": "REJECTED_FOR_DEPLOYMENT",
+    "configuration": "agent without tools or permission restrictions",
+    "provider_response": "model text returned at reported zero cost",
+    "tool_probe": "bash command executed successfully",
+    "reason": "default OpenCode tool permissions remain available; unsafe for attacker-derived input"
+  },
+  "tests": {
+    "unit": "7 passed",
+    "ruff": "passed",
+    "py_compile": "passed"
+  }
+}

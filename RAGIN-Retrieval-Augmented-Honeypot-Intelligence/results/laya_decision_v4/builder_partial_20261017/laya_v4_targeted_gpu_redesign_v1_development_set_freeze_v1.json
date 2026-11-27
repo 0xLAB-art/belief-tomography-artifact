@@ -1,0 +1,3676 @@
+{
+  "schema": "laya_v4_targeted_gpu_redesign_v1.dev_set_freeze.v1",
+  "status": "FROZEN_BEFORE_TRAINING_CALLS",
+  "date": "2026-10-17",
+  "study": "laya_v4_targeted_gpu_redesign_v1",
+  "oracle_type": "synthetic_contract_oracle_not_real_world_ground_truth",
+  "oracle_policy": "Synthetic contract oracles authored before training/evaluation; fresh v2 material; not real-world truth.",
+  "case_count": 60,
+  "cases": [
+    {
+      "case_id": "DEV-001",
+      "name": "sufficient_identity",
+      "archetype": "sufficient",
+      "scenario": "identity",
+      "state": {
+        "session": {
+          "current_input": "cat /run/identity/operator-v2/session.json"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.58,
+          "observed_techniques": [
+            "T1087.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1087.002"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Identity Boundary Evidence",
+              "content_excerpt": "The principal lookup from 10.99.227.23 crosses the identity boundary on ci-15; steering it to decoy credentials preserves observation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.89
+            },
+            {
+              "doc_id": "D2",
+              "title": "Token Inspection Trail",
+              "content_excerpt": "The session inspection for operator-v2 follows the monitored identity path and supports a honeytoken engagement.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.84
+            },
+            {
+              "doc_id": "D3",
+              "title": "Certificate Inventory",
+              "content_excerpt": "Certificate inventory for 192.0.2.36 was refreshed during the routine control window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.19
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "steer_to_honeytoken_credentials"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-002",
+      "name": "sufficient_identity",
+      "archetype": "sufficient",
+      "scenario": "identity",
+      "state": {
+        "session": {
+          "current_input": "vaultctl inspect --principal svc-id --scope jump-14"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.73,
+          "observed_techniques": [
+            "T1552.004"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1552.004"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Identity Boundary Evidence",
+              "content_excerpt": "The principal lookup from 10.61.131.211 crosses the identity boundary on jump-14; steering it to decoy credentials preserves observation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.91
+            },
+            {
+              "doc_id": "D2",
+              "title": "Token Inspection Trail",
+              "content_excerpt": "The session inspection for svc-id follows the monitored identity path and supports a honeytoken engagement.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Change Calendar",
+              "content_excerpt": "The approved change calendar for jump-14 records no exceptional activity this cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.23
+            },
+            {
+              "doc_id": "D4",
+              "title": "Patch Evidence",
+              "content_excerpt": "Patch verification on jump-14 completed without a failed package.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.24
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "steer_to_honeytoken_credentials"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-003",
+      "name": "sufficient_identity",
+      "archetype": "sufficient",
+      "scenario": "identity",
+      "state": {
+        "session": {
+          "current_input": "ldapwhoami -H ldaps://ci-15:34548"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.7,
+          "observed_techniques": [
+            "T1552.004"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1552.004"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Identity Boundary Evidence",
+              "content_excerpt": "The principal lookup from 10.99.217.91 crosses the identity boundary on ci-15; steering it to decoy credentials preserves observation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Token Inspection Trail",
+              "content_excerpt": "The session inspection for operator-v2 follows the monitored identity path and supports a honeytoken engagement.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.85
+            },
+            {
+              "doc_id": "D3",
+              "title": "Endpoint Health Record",
+              "content_excerpt": "The endpoint health record for operator-v2 remained within its normal operating band.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.28
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "steer_to_honeytoken_credentials"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-004",
+      "name": "sufficient_artifact",
+      "archetype": "sufficient",
+      "scenario": "artifact",
+      "state": {
+        "session": {
+          "current_input": "curl -X PUT https://edge-11:51273/artifacts/check"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.96,
+          "observed_techniques": [
+            "T1195.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0042"
+          ],
+          "observed_ttps": [
+            "T1195.002"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Staged Artifact Signal",
+              "content_excerpt": "The package retrieval against edge-11 should receive a staged success signal that keeps the actor on the observable artifact path.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.87
+            },
+            {
+              "doc_id": "D2",
+              "title": "Return Fetch Marker",
+              "content_excerpt": "The repeated release fetch from 192.0.2.91 is consistent with an engineered return-visit cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.79
+            },
+            {
+              "doc_id": "D3",
+              "title": "Access Review Memo",
+              "content_excerpt": "The quarterly access review for release lists no unresolved exceptions.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.34
+            },
+            {
+              "doc_id": "D4",
+              "title": "Storage Capacity Note",
+              "content_excerpt": "Storage capacity guidance for edge-11 recommends review during the next planning cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.18
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "fake_success_and_return_visits"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-005",
+      "name": "sufficient_artifact",
+      "archetype": "sufficient",
+      "scenario": "artifact",
+      "state": {
+        "session": {
+          "current_input": "artifactctl pull --job 51 --dest /srv/stage"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.65,
+          "observed_techniques": [
+            "T1608.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0042"
+          ],
+          "observed_ttps": [
+            "T1608.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Staged Artifact Signal",
+              "content_excerpt": "The package retrieval against gw-18 should receive a staged success signal that keeps the actor on the observable artifact path.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.89
+            },
+            {
+              "doc_id": "D2",
+              "title": "Return Fetch Marker",
+              "content_excerpt": "The repeated release fetch from 10.99.105 is consistent with an engineered return-visit cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.83
+            },
+            {
+              "doc_id": "D3",
+              "title": "Storage Capacity Note",
+              "content_excerpt": "Storage capacity guidance for gw-18 recommends review during the next planning cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.19
+            },
+            {
+              "doc_id": "D4",
+              "title": "Patch Evidence",
+              "content_excerpt": "Patch verification on gw-18 completed without a failed package.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.28
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "fake_success_and_return_visits"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-006",
+      "name": "sufficient_artifact",
+      "archetype": "sufficient",
+      "scenario": "artifact",
+      "state": {
+        "session": {
+          "current_input": "curl -X PUT https://app-17:26687/artifacts/check"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.9,
+          "observed_techniques": [
+            "T1608.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0042"
+          ],
+          "observed_ttps": [
+            "T1608.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Staged Artifact Signal",
+              "content_excerpt": "The package retrieval against app-17 should receive a staged success signal that keeps the actor on the observable artifact path.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.9
+            },
+            {
+              "doc_id": "D2",
+              "title": "Return Fetch Marker",
+              "content_excerpt": "The repeated release fetch from 172.31.209 is consistent with an engineered return-visit cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.82
+            },
+            {
+              "doc_id": "D3",
+              "title": "Certificate Inventory",
+              "content_excerpt": "Certificate inventory for 172.31.209 was refreshed during the routine control window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.22
+            },
+            {
+              "doc_id": "D4",
+              "title": "Endpoint Health Record",
+              "content_excerpt": "The endpoint health record for svc-build remained within its normal operating band.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.28
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "fake_success_and_return_visits"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-007",
+      "name": "sufficient_scheduler",
+      "archetype": "sufficient",
+      "scenario": "scheduler",
+      "state": {
+        "session": {
+          "current_input": "systemctl cat sync-204.service"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.88,
+          "observed_techniques": [
+            "T1053.005"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0003"
+          ],
+          "observed_ttps": [
+            "T1053.005"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Scheduled Task Containment",
+              "content_excerpt": "The task mutation on store-13 should remain inside the instrumented fiction while every activation is recorded.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.87
+            },
+            {
+              "doc_id": "D2",
+              "title": "Activation Trace",
+              "content_excerpt": "The scheduler event for svc-build matches the contained task path used for safe observation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.84
+            },
+            {
+              "doc_id": "D3",
+              "title": "Change Calendar",
+              "content_excerpt": "The approved change calendar for store-13 records no exceptional activity this cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.24
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "contain_in_fiction_and_instrument"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-008",
+      "name": "sufficient_scheduler",
+      "archetype": "sufficient",
+      "scenario": "scheduler",
+      "state": {
+        "session": {
+          "current_input": "schtasks /query /tn Sync-157"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.76,
+          "observed_techniques": [
+            "T1053.005"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0003"
+          ],
+          "observed_ttps": [
+            "T1053.005"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Scheduled Task Containment",
+              "content_excerpt": "The task mutation on db-12 should remain inside the instrumented fiction while every activation is recorded.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.89
+            },
+            {
+              "doc_id": "D2",
+              "title": "Activation Trace",
+              "content_excerpt": "The scheduler event for svc-build matches the contained task path used for safe observation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Service Ownership",
+              "content_excerpt": "Service ownership records identify svc-build as the responsible operator for db-12.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.21
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "contain_in_fiction_and_instrument"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-009",
+      "name": "sufficient_scheduler",
+      "archetype": "sufficient",
+      "scenario": "scheduler",
+      "state": {
+        "session": {
+          "current_input": "launchdctl print system/com.example.sync"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.86,
+          "observed_techniques": [
+            "T1053.005"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0003"
+          ],
+          "observed_ttps": [
+            "T1053.005"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Scheduled Task Containment",
+              "content_excerpt": "The task mutation on edge-11 should remain inside the instrumented fiction while every activation is recorded.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Activation Trace",
+              "content_excerpt": "The scheduler event for svc-id matches the contained task path used for safe observation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Storage Capacity Note",
+              "content_excerpt": "Storage capacity guidance for edge-11 recommends review during the next planning cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.17
+            },
+            {
+              "doc_id": "D4",
+              "title": "Change Calendar",
+              "content_excerpt": "The approved change calendar for edge-11 records no exceptional activity this cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.22
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "contain_in_fiction_and_instrument"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-010",
+      "name": "sufficient_archive",
+      "archetype": "sufficient",
+      "scenario": "archive",
+      "state": {
+        "session": {
+          "current_input": "sqlite3 /srv/cache/index.db .dump"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.79,
+          "observed_techniques": [
+            "T1560.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0009"
+          ],
+          "observed_ttps": [
+            "T1560.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Archive Decoy Route",
+              "content_excerpt": "The archive access from store-13 is best redirected to a honeytoken collection path that remains observable.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.85
+            },
+            {
+              "doc_id": "D2",
+              "title": "Export Staging Signal",
+              "content_excerpt": "The staged export for auditor supports continued monitored engagement through decoy records.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.8
+            },
+            {
+              "doc_id": "D3",
+              "title": "Endpoint Health Record",
+              "content_excerpt": "The endpoint health record for auditor remained within its normal operating band.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.28
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "steer_to_honeytoken_credentials"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-011",
+      "name": "sufficient_archive",
+      "archetype": "sufficient",
+      "scenario": "archive",
+      "state": {
+        "session": {
+          "current_input": "7z a /tmp/pack-153.7z /srv/reports"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.95,
+          "observed_techniques": [
+            "T1560.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0009"
+          ],
+          "observed_ttps": [
+            "T1560.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Archive Decoy Route",
+              "content_excerpt": "The archive access from edge-11 is best redirected to a honeytoken collection path that remains observable.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.9
+            },
+            {
+              "doc_id": "D2",
+              "title": "Export Staging Signal",
+              "content_excerpt": "The staged export for operator-v2 supports continued monitored engagement through decoy records.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Certificate Inventory",
+              "content_excerpt": "Certificate inventory for 10.61.144 was refreshed during the routine control window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.18
+            },
+            {
+              "doc_id": "D4",
+              "title": "Service Ownership",
+              "content_excerpt": "Service ownership records identify operator-v2 as the responsible operator for edge-11.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.22
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "steer_to_honeytoken_credentials"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-012",
+      "name": "sufficient_archive",
+      "archetype": "sufficient",
+      "scenario": "archive",
+      "state": {
+        "session": {
+          "current_input": "7z a /tmp/pack-170.7z /srv/reports"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.87,
+          "observed_techniques": [
+            "T1005"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0009"
+          ],
+          "observed_ttps": [
+            "T1005"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Archive Decoy Route",
+              "content_excerpt": "The archive access from app-17 is best redirected to a honeytoken collection path that remains observable.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Export Staging Signal",
+              "content_excerpt": "The staged export for auditor supports continued monitored engagement through decoy records.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Service Ownership",
+              "content_excerpt": "Service ownership records identify auditor as the responsible operator for app-17.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.21
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "steer_to_honeytoken_credentials"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-013",
+      "name": "sufficient_topology2",
+      "archetype": "sufficient",
+      "scenario": "topology2",
+      "state": {
+        "session": {
+          "current_input": "snmpwalk -v2c -c public edge-11"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.58,
+          "observed_techniques": [
+            "T1018"
+          ]
+        },
+        "don_analysis": {
+          "severity": "medium",
+          "tactics": [
+            "TA0043"
+          ],
+          "observed_ttps": [
+            "T1018"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Decoy Service Map",
+              "content_excerpt": "The service enumeration across 192.0.2.197 is best answered with a decoy topology that absorbs further discovery.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.91
+            },
+            {
+              "doc_id": "D2",
+              "title": "Discovery Redirect",
+              "content_excerpt": "The repeated probes from 10.88.240.19 match a path where the decoy map redirects enumeration away from production.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.83
+            },
+            {
+              "doc_id": "D3",
+              "title": "Patch Evidence",
+              "content_excerpt": "Patch verification on edge-11 completed without a failed package.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.26
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "maximize_recon_surface"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-014",
+      "name": "sufficient_topology2",
+      "archetype": "sufficient",
+      "scenario": "topology2",
+      "state": {
+        "session": {
+          "current_input": "rpcinfo -p jump-14"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.74,
+          "observed_techniques": [
+            "T1046"
+          ]
+        },
+        "don_analysis": {
+          "severity": "medium",
+          "tactics": [
+            "TA0043"
+          ],
+          "observed_ttps": [
+            "T1046"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Decoy Service Map",
+              "content_excerpt": "The service enumeration across 10.88.84 is best answered with a decoy topology that absorbs further discovery.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Discovery Redirect",
+              "content_excerpt": "The repeated probes from 10.99.84.111 match a path where the decoy map redirects enumeration away from production.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.83
+            },
+            {
+              "doc_id": "D3",
+              "title": "Change Calendar",
+              "content_excerpt": "The approved change calendar for jump-14 records no exceptional activity this cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.22
+            },
+            {
+              "doc_id": "D4",
+              "title": "Endpoint Health Record",
+              "content_excerpt": "The endpoint health record for operator-v2 remained within its normal operating band.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.3
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "maximize_recon_surface"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-015",
+      "name": "sufficient_topology2",
+      "archetype": "sufficient",
+      "scenario": "topology2",
+      "state": {
+        "session": {
+          "current_input": "netexec smb 172.31.83.0/24"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.78,
+          "observed_techniques": [
+            "T1018"
+          ]
+        },
+        "don_analysis": {
+          "severity": "medium",
+          "tactics": [
+            "TA0043"
+          ],
+          "observed_ttps": [
+            "T1018"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Decoy Service Map",
+              "content_excerpt": "The service enumeration across 172.31.83 is best answered with a decoy topology that absorbs further discovery.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.89
+            },
+            {
+              "doc_id": "D2",
+              "title": "Discovery Redirect",
+              "content_excerpt": "The repeated probes from 172.31.86.84 match a path where the decoy map redirects enumeration away from production.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.84
+            },
+            {
+              "doc_id": "D3",
+              "title": "Change Calendar",
+              "content_excerpt": "The approved change calendar for store-13 records no exceptional activity this cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.21
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "maximize_recon_surface"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-016",
+      "name": "sufficient_config",
+      "archetype": "sufficient",
+      "scenario": "config",
+      "state": {
+        "session": {
+          "current_input": "configctl lint /etc/service/168.yaml"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.56,
+          "observed_techniques": [
+            "T1082"
+          ]
+        },
+        "don_analysis": {
+          "severity": "low",
+          "tactics": [],
+          "observed_ttps": [
+            "T1082"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Routine Config Check",
+              "content_excerpt": "The configuration check on ci-15 matches routine administration and calls for low-intensity handling.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.9
+            },
+            {
+              "doc_id": "D2",
+              "title": "Maintenance Context",
+              "content_excerpt": "The validation run for svc-id aligns with the maintenance runbook and should leave the environment unchanged.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Endpoint Health Record",
+              "content_excerpt": "The endpoint health record for svc-id remained within its normal operating band.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.28
+            },
+            {
+              "doc_id": "D4",
+              "title": "Certificate Inventory",
+              "content_excerpt": "Certificate inventory for 10.99.61 was refreshed during the routine control window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.21
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "low_intensity_administration",
+          "baseline"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-017",
+      "name": "sufficient_config",
+      "archetype": "sufficient",
+      "scenario": "config",
+      "state": {
+        "session": {
+          "current_input": "healthcheck --host gw-18 --port 24808"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.77,
+          "observed_techniques": [
+            "T1082"
+          ]
+        },
+        "don_analysis": {
+          "severity": "low",
+          "tactics": [],
+          "observed_ttps": [
+            "T1082"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Routine Config Check",
+              "content_excerpt": "The configuration check on gw-18 matches routine administration and calls for low-intensity handling.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.89
+            },
+            {
+              "doc_id": "D2",
+              "title": "Maintenance Context",
+              "content_excerpt": "The validation run for svc-id aligns with the maintenance runbook and should leave the environment unchanged.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.86
+            },
+            {
+              "doc_id": "D3",
+              "title": "Service Ownership",
+              "content_excerpt": "Service ownership records identify svc-id as the responsible operator for gw-18.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.23
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "low_intensity_administration",
+          "baseline"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-018",
+      "name": "sufficient_config",
+      "archetype": "sufficient",
+      "scenario": "config",
+      "state": {
+        "session": {
+          "current_input": "healthcheck --host db-12 --port 30498"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.94,
+          "observed_techniques": [
+            "T1082"
+          ]
+        },
+        "don_analysis": {
+          "severity": "low",
+          "tactics": [],
+          "observed_ttps": [
+            "T1082"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Routine Config Check",
+              "content_excerpt": "The configuration check on db-12 matches routine administration and calls for low-intensity handling.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Maintenance Context",
+              "content_excerpt": "The validation run for release aligns with the maintenance runbook and should leave the environment unchanged.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.83
+            },
+            {
+              "doc_id": "D3",
+              "title": "Service Ownership",
+              "content_excerpt": "Service ownership records identify release as the responsible operator for db-12.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.22
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "low_intensity_administration",
+          "baseline"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-019",
+      "name": "sufficient_repository",
+      "archetype": "sufficient",
+      "scenario": "repository",
+      "state": {
+        "session": {
+          "current_input": "hg log -l 10"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.63,
+          "observed_techniques": [
+            "T1083"
+          ]
+        },
+        "don_analysis": {
+          "severity": "medium",
+          "tactics": [
+            "TA0007"
+          ],
+          "observed_ttps": [
+            "T1083"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Project Story Continuity",
+              "content_excerpt": "The file discovery on store-13 follows the planted project story; instrumented fiction preserves safe observation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.9
+            },
+            {
+              "doc_id": "D2",
+              "title": "Repository Engagement",
+              "content_excerpt": "The repository reads by operator-v2 match the contained project path maintained for monitoring.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.83
+            },
+            {
+              "doc_id": "D3",
+              "title": "Access Review Memo",
+              "content_excerpt": "The quarterly access review for operator-v2 lists no unresolved exceptions.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.35
+            },
+            {
+              "doc_id": "D4",
+              "title": "Certificate Inventory",
+              "content_excerpt": "Certificate inventory for 172.31.5 was refreshed during the routine control window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.2
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "expose_decoy_internal_topology"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-020",
+      "name": "sufficient_repository",
+      "archetype": "sufficient",
+      "scenario": "repository",
+      "state": {
+        "session": {
+          "current_input": "hg log -l 10"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.58,
+          "observed_techniques": [
+            "T1083"
+          ]
+        },
+        "don_analysis": {
+          "severity": "medium",
+          "tactics": [
+            "TA0007"
+          ],
+          "observed_ttps": [
+            "T1083"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Project Story Continuity",
+              "content_excerpt": "The file discovery on app-17 follows the planted project story; instrumented fiction preserves safe observation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Repository Engagement",
+              "content_excerpt": "The repository reads by release match the contained project path maintained for monitoring.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.83
+            },
+            {
+              "doc_id": "D3",
+              "title": "Storage Capacity Note",
+              "content_excerpt": "Storage capacity guidance for app-17 recommends review during the next planning cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.19
+            },
+            {
+              "doc_id": "D4",
+              "title": "Change Calendar",
+              "content_excerpt": "The approved change calendar for app-17 records no exceptional activity this cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.23
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "expose_decoy_internal_topology"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-021",
+      "name": "sufficient_repository",
+      "archetype": "sufficient",
+      "scenario": "repository",
+      "state": {
+        "session": {
+          "current_input": "sed -n '1,80p' CHANGELOG.md"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.89,
+          "observed_techniques": [
+            "T1083"
+          ]
+        },
+        "don_analysis": {
+          "severity": "medium",
+          "tactics": [
+            "TA0007"
+          ],
+          "observed_ttps": [
+            "T1083"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Project Story Continuity",
+              "content_excerpt": "The file discovery on app-17 follows the planted project story; instrumented fiction preserves safe observation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.9
+            },
+            {
+              "doc_id": "D2",
+              "title": "Repository Engagement",
+              "content_excerpt": "The repository reads by auditor match the contained project path maintained for monitoring.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Service Ownership",
+              "content_excerpt": "Service ownership records identify auditor as the responsible operator for app-17.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.22
+            },
+            {
+              "doc_id": "D4",
+              "title": "Patch Evidence",
+              "content_excerpt": "Patch verification on app-17 completed without a failed package.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.25
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "expose_decoy_internal_topology"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-022",
+      "name": "sufficient_service",
+      "archetype": "sufficient",
+      "scenario": "service",
+      "state": {
+        "session": {
+          "current_input": "curl -s http://gw-18:6486/internal/health"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.57,
+          "observed_techniques": [
+            "T1190"
+          ]
+        },
+        "don_analysis": {
+          "severity": "critical",
+          "tactics": [
+            "TA0001"
+          ],
+          "observed_ttps": [
+            "T1190"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Service Boundary Containment",
+              "content_excerpt": "The service probing against gw-18 should remain in the instrumented fiction while post-access actions are recorded.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.9
+            },
+            {
+              "doc_id": "D2",
+              "title": "Protocol Trace",
+              "content_excerpt": "The protocol sequence from 10.99.226.86 matches a contained service interaction that preserves evidence quality.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Proxy Telemetry",
+              "content_excerpt": "Proxy telemetry for 10.99.174 stayed within the expected request distribution.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.19
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "contain_in_fiction_and_instrument"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-023",
+      "name": "sufficient_service",
+      "archetype": "sufficient",
+      "scenario": "service",
+      "state": {
+        "session": {
+          "current_input": "rpcclient -U % db-12"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.9,
+          "observed_techniques": [
+            "T1021"
+          ]
+        },
+        "don_analysis": {
+          "severity": "critical",
+          "tactics": [
+            "TA0001"
+          ],
+          "observed_ttps": [
+            "T1021"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Service Boundary Containment",
+              "content_excerpt": "The service probing against db-12 should remain in the instrumented fiction while post-access actions are recorded.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Protocol Trace",
+              "content_excerpt": "The protocol sequence from 10.61.152.131 matches a contained service interaction that preserves evidence quality.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.83
+            },
+            {
+              "doc_id": "D3",
+              "title": "Endpoint Health Record",
+              "content_excerpt": "The endpoint health record for release remained within its normal operating band.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.29
+            },
+            {
+              "doc_id": "D4",
+              "title": "Proxy Telemetry",
+              "content_excerpt": "Proxy telemetry for 192.0.2.70 stayed within the expected request distribution.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.18
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "contain_in_fiction_and_instrument"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-024",
+      "name": "sufficient_service",
+      "archetype": "sufficient",
+      "scenario": "service",
+      "state": {
+        "session": {
+          "current_input": "curl -s http://store-13:48245/internal/health"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.57,
+          "observed_techniques": [
+            "T1190"
+          ]
+        },
+        "don_analysis": {
+          "severity": "critical",
+          "tactics": [
+            "TA0001"
+          ],
+          "observed_ttps": [
+            "T1190"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Service Boundary Containment",
+              "content_excerpt": "The service probing against store-13 should remain in the instrumented fiction while post-access actions are recorded.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.91
+            },
+            {
+              "doc_id": "D2",
+              "title": "Protocol Trace",
+              "content_excerpt": "The protocol sequence from 10.88.103.179 matches a contained service interaction that preserves evidence quality.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Change Calendar",
+              "content_excerpt": "The approved change calendar for store-13 records no exceptional activity this cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.24
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "contain_in_fiction_and_instrument"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-025",
+      "name": "sufficient_database",
+      "archetype": "sufficient",
+      "scenario": "database",
+      "state": {
+        "session": {
+          "current_input": "SELECT name FROM catalog_191"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.62,
+          "observed_techniques": [
+            "T1505"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0009"
+          ],
+          "observed_ttps": [
+            "T1505"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Decoy Query Result",
+              "content_excerpt": "The database collection pattern on edge-11 is best answered with a staged result that draws the actor back to the monitored path.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.85
+            },
+            {
+              "doc_id": "D2",
+              "title": "Repeat Query Cycle",
+              "content_excerpt": "The repeated catalog queries from operator-v2 support an engineered return-visit cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.77
+            },
+            {
+              "doc_id": "D3",
+              "title": "Proxy Telemetry",
+              "content_excerpt": "Proxy telemetry for 172.31.214 stayed within the expected request distribution.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.17
+            },
+            {
+              "doc_id": "D4",
+              "title": "Access Review Memo",
+              "content_excerpt": "The quarterly access review for operator-v2 lists no unresolved exceptions.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.33
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "fake_success_and_return_visits"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-026",
+      "name": "sufficient_database",
+      "archetype": "sufficient",
+      "scenario": "database",
+      "state": {
+        "session": {
+          "current_input": "SELECT name FROM catalog_233"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.57,
+          "observed_techniques": [
+            "T1505"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0009"
+          ],
+          "observed_ttps": [
+            "T1505"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Decoy Query Result",
+              "content_excerpt": "The database collection pattern on gw-18 is best answered with a staged result that draws the actor back to the monitored path.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.83
+            },
+            {
+              "doc_id": "D2",
+              "title": "Repeat Query Cycle",
+              "content_excerpt": "The repeated catalog queries from operator-v2 support an engineered return-visit cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.8
+            },
+            {
+              "doc_id": "D3",
+              "title": "Service Ownership",
+              "content_excerpt": "Service ownership records identify operator-v2 as the responsible operator for gw-18.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.24
+            },
+            {
+              "doc_id": "D4",
+              "title": "Storage Capacity Note",
+              "content_excerpt": "Storage capacity guidance for gw-18 recommends review during the next planning cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.2
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "fake_success_and_return_visits"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-027",
+      "name": "sufficient_database",
+      "archetype": "sufficient",
+      "scenario": "database",
+      "state": {
+        "session": {
+          "current_input": "mongo --host store-13 --eval 'db.stats()'"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.89,
+          "observed_techniques": [
+            "T1505"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0009"
+          ],
+          "observed_ttps": [
+            "T1505"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Decoy Query Result",
+              "content_excerpt": "The database collection pattern on store-13 is best answered with a staged result that draws the actor back to the monitored path.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.87
+            },
+            {
+              "doc_id": "D2",
+              "title": "Repeat Query Cycle",
+              "content_excerpt": "The repeated catalog queries from analyst-r support an engineered return-visit cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.77
+            },
+            {
+              "doc_id": "D3",
+              "title": "Endpoint Health Record",
+              "content_excerpt": "The endpoint health record for analyst-r remained within its normal operating band.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.29
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "fake_success_and_return_visits"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "DEV-028",
+      "name": "required_missing_identity",
+      "archetype": "required_missing",
+      "scenario": "identity",
+      "state": {
+        "session": {
+          "current_input": "oauth2-probe --tenant 10.99.201 --subject svc-build"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.77,
+          "observed_techniques": [
+            "T1087.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1087.002"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": []
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-029",
+      "name": "required_missing_identity",
+      "archetype": "required_missing",
+      "scenario": "identity",
+      "state": {
+        "session": {
+          "current_input": "vaultctl inspect --principal auditor --scope gw-18"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.77,
+          "observed_techniques": [
+            "T1087.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1087.002"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": []
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-030",
+      "name": "required_missing_artifact",
+      "archetype": "required_missing",
+      "scenario": "artifact",
+      "state": {
+        "session": {
+          "current_input": "bundle-sign --input /tmp/build-59.tgz"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.9,
+          "observed_techniques": [
+            "T1195.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0042"
+          ],
+          "observed_ttps": [
+            "T1195.002"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": []
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-031",
+      "name": "required_missing_artifact",
+      "archetype": "required_missing",
+      "scenario": "artifact",
+      "state": {
+        "session": {
+          "current_input": "bundle-sign --input /tmp/build-12.tgz"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.63,
+          "observed_techniques": [
+            "T1608.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0042"
+          ],
+          "observed_ttps": [
+            "T1608.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": []
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-032",
+      "name": "required_weak_identity",
+      "archetype": "required_weak",
+      "scenario": "identity",
+      "state": {
+        "session": {
+          "current_input": "oauth2-probe --tenant 172.31.15 --subject svc-build"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.79,
+          "observed_techniques": [
+            "T1087.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1087.002"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Annual Risk Circular",
+              "content_excerpt": "An organization-wide risk circular that names no host and contains no incident-specific evidence.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.89
+            },
+            {
+              "doc_id": "D2",
+              "title": "Technique Digest",
+              "content_excerpt": "A general technique digest with no linkage to the current session or retrieved documents.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.83
+            },
+            {
+              "doc_id": "D3",
+              "title": "General Operations Manual",
+              "content_excerpt": "A generic operations manual with no reference to the observed host, actor, or session.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D4",
+              "title": "Certificate Inventory",
+              "content_excerpt": "Certificate inventory for 172.31.15 was refreshed during the routine control window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.2
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-033",
+      "name": "required_weak_identity",
+      "archetype": "required_weak",
+      "scenario": "identity",
+      "state": {
+        "session": {
+          "current_input": "oauth2-probe --tenant 192.0.2.95 --subject release"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.6,
+          "observed_techniques": [
+            "T1552.004"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1552.004"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Technique Digest",
+              "content_excerpt": "A general technique digest with no linkage to the current session or retrieved documents.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.86
+            },
+            {
+              "doc_id": "D2",
+              "title": "General Operations Manual",
+              "content_excerpt": "A generic operations manual with no reference to the observed host, actor, or session.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D3",
+              "title": "Annual Risk Circular",
+              "content_excerpt": "An organization-wide risk circular that names no host and contains no incident-specific evidence.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D4",
+              "title": "Proxy Telemetry",
+              "content_excerpt": "Proxy telemetry for 192.0.2.95 stayed within the expected request distribution.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.17
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-034",
+      "name": "required_weak_artifact",
+      "archetype": "required_weak",
+      "scenario": "artifact",
+      "state": {
+        "session": {
+          "current_input": "artifactctl pull --job 57 --dest /srv/stage"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.7,
+          "observed_techniques": [
+            "T1608.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0042"
+          ],
+          "observed_ttps": [
+            "T1608.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Technique Digest",
+              "content_excerpt": "A general technique digest with no linkage to the current session or retrieved documents.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.87
+            },
+            {
+              "doc_id": "D2",
+              "title": "Annual Risk Circular",
+              "content_excerpt": "An organization-wide risk circular that names no host and contains no incident-specific evidence.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.9
+            },
+            {
+              "doc_id": "D3",
+              "title": "General Operations Manual",
+              "content_excerpt": "A generic operations manual with no reference to the observed host, actor, or session.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.87
+            },
+            {
+              "doc_id": "D4",
+              "title": "Certificate Inventory",
+              "content_excerpt": "Certificate inventory for 10.88.79 was refreshed during the routine control window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.2
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-035",
+      "name": "required_weak_artifact",
+      "archetype": "required_weak",
+      "scenario": "artifact",
+      "state": {
+        "session": {
+          "current_input": "registry fetch 192.0.2.168/release:197"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.64,
+          "observed_techniques": [
+            "T1608.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0042"
+          ],
+          "observed_ttps": [
+            "T1608.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Technique Digest",
+              "content_excerpt": "A general technique digest with no linkage to the current session or retrieved documents.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.85
+            },
+            {
+              "doc_id": "D2",
+              "title": "Annual Risk Circular",
+              "content_excerpt": "An organization-wide risk circular that names no host and contains no incident-specific evidence.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D3",
+              "title": "General Operations Manual",
+              "content_excerpt": "A generic operations manual with no reference to the observed host, actor, or session.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.89
+            },
+            {
+              "doc_id": "D4",
+              "title": "Service Ownership",
+              "content_excerpt": "Service ownership records identify svc-build as the responsible operator for jump-14.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.23
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-036",
+      "name": "required_partial_identity",
+      "archetype": "required_partial",
+      "scenario": "identity",
+      "state": {
+        "session": {
+          "current_input": "ldapwhoami -H ldaps://edge-11:46810"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.86,
+          "observed_techniques": [
+            "T1087.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1087.002"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Incomplete Principal Trace",
+              "content_excerpt": "Only one identity lookup is visible for edge-11; the excerpt omits the follow-up and is insufficient for a handling decision.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.63
+            },
+            {
+              "doc_id": "D2",
+              "title": "Patch Evidence",
+              "content_excerpt": "Patch verification on edge-11 completed without a failed package.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.24
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-037",
+      "name": "required_partial_identity",
+      "archetype": "required_partial",
+      "scenario": "identity",
+      "state": {
+        "session": {
+          "current_input": "oauth2-probe --tenant 10.88.183 --subject auditor"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.59,
+          "observed_techniques": [
+            "T1552.004"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1552.004"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Incomplete Principal Trace",
+              "content_excerpt": "Only one identity lookup is visible for edge-11; the excerpt omits the follow-up and is insufficient for a handling decision.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.61
+            },
+            {
+              "doc_id": "D2",
+              "title": "Service Ownership",
+              "content_excerpt": "Service ownership records identify auditor as the responsible operator for edge-11.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.24
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-038",
+      "name": "required_partial_artifact",
+      "archetype": "required_partial",
+      "scenario": "artifact",
+      "state": {
+        "session": {
+          "current_input": "bundle-sign --input /tmp/build-65.tgz"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.7,
+          "observed_techniques": [
+            "T1195.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0042"
+          ],
+          "observed_ttps": [
+            "T1195.002"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Partial Artifact Trace",
+              "content_excerpt": "A package request is visible for edge-11, but no completion evidence is present to support a response strategy.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.56
+            },
+            {
+              "doc_id": "D2",
+              "title": "Endpoint Health Record",
+              "content_excerpt": "The endpoint health record for svc-build remained within its normal operating band.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.3
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-039",
+      "name": "required_partial_artifact",
+      "archetype": "required_partial",
+      "scenario": "artifact",
+      "state": {
+        "session": {
+          "current_input": "artifactctl pull --job 13 --dest /srv/stage"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.65,
+          "observed_techniques": [
+            "T1195.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0042"
+          ],
+          "observed_ttps": [
+            "T1195.002"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Partial Artifact Trace",
+              "content_excerpt": "A package request is visible for app-17, but no completion evidence is present to support a response strategy.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.6
+            },
+            {
+              "doc_id": "D2",
+              "title": "Certificate Inventory",
+              "content_excerpt": "Certificate inventory for 10.88.140 was refreshed during the routine control window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.21
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-040",
+      "name": "required_conflict_identity",
+      "archetype": "required_conflict",
+      "scenario": "identity",
+      "state": {
+        "session": {
+          "current_input": "vaultctl inspect --principal release --scope store-13"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.74,
+          "observed_techniques": [
+            "T1087.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1087.002"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Identity Boundary Evidence",
+              "content_excerpt": "The principal lookup from 192.0.2.222.123 crosses the identity boundary on store-13; steering it to decoy credentials preserves observation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Token Inspection Trail",
+              "content_excerpt": "The session inspection for release follows the monitored identity path and supports a honeytoken engagement.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.83
+            },
+            {
+              "doc_id": "D3",
+              "title": "Directory Repair Job",
+              "content_excerpt": "The identity lookup on store-13 is emitted by the scheduled directory repair job during its maintenance window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.73
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "CONFLICTING",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-041",
+      "name": "required_conflict_identity",
+      "archetype": "required_conflict",
+      "scenario": "identity",
+      "state": {
+        "session": {
+          "current_input": "cat /run/identity/release/session.json"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.58,
+          "observed_techniques": [
+            "T1087.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1087.002"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Identity Boundary Evidence",
+              "content_excerpt": "The principal lookup from 10.99.214.87 crosses the identity boundary on store-13; steering it to decoy credentials preserves observation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.89
+            },
+            {
+              "doc_id": "D2",
+              "title": "Token Inspection Trail",
+              "content_excerpt": "The session inspection for release follows the monitored identity path and supports a honeytoken engagement.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.84
+            },
+            {
+              "doc_id": "D3",
+              "title": "Directory Repair Job",
+              "content_excerpt": "The identity lookup on store-13 is emitted by the scheduled directory repair job during its maintenance window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.69
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "CONFLICTING",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-042",
+      "name": "required_conflict_artifact",
+      "archetype": "required_conflict",
+      "scenario": "artifact",
+      "state": {
+        "session": {
+          "current_input": "artifactctl pull --job 2 --dest /srv/stage"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.66,
+          "observed_techniques": [
+            "T1608.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0042"
+          ],
+          "observed_ttps": [
+            "T1608.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Staged Artifact Signal",
+              "content_excerpt": "The package retrieval against edge-11 should receive a staged success signal that keeps the actor on the observable artifact path.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.85
+            },
+            {
+              "doc_id": "D2",
+              "title": "Return Fetch Marker",
+              "content_excerpt": "The repeated release fetch from 172.31.202 is consistent with an engineered return-visit cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Release Promotion Bot",
+              "content_excerpt": "The artifact operations on edge-11 match the release promotion bot's scheduled publication window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.67
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "CONFLICTING",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-043",
+      "name": "required_conflict_artifact",
+      "archetype": "required_conflict",
+      "scenario": "artifact",
+      "state": {
+        "session": {
+          "current_input": "registry fetch 10.88.64/release:47"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.59,
+          "observed_techniques": [
+            "T1608.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0042"
+          ],
+          "observed_ttps": [
+            "T1608.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Staged Artifact Signal",
+              "content_excerpt": "The package retrieval against app-17 should receive a staged success signal that keeps the actor on the observable artifact path.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.89
+            },
+            {
+              "doc_id": "D2",
+              "title": "Return Fetch Marker",
+              "content_excerpt": "The repeated release fetch from 10.88.64 is consistent with an engineered return-visit cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.83
+            },
+            {
+              "doc_id": "D3",
+              "title": "Release Promotion Bot",
+              "content_excerpt": "The artifact operations on app-17 match the release promotion bot's scheduled publication window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.68
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "CONFLICTING",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-044",
+      "name": "required_contradiction_identity",
+      "archetype": "required_contradiction",
+      "scenario": "identity",
+      "state": {
+        "session": {
+          "current_input": "oauth2-probe --tenant 172.31.26 --subject auditor"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.94,
+          "observed_techniques": [
+            "T1552.004"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1552.004"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Decoy Query Result",
+              "content_excerpt": "The database collection pattern on ci-15 is best answered with a staged result that draws the actor back to the monitored path.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Repeat Query Cycle",
+              "content_excerpt": "The repeated catalog queries from auditor support an engineered return-visit cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.77
+            },
+            {
+              "doc_id": "D3",
+              "title": "Certificate Inventory",
+              "content_excerpt": "Certificate inventory for 172.31.26 was refreshed during the routine control window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.18
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "CONFLICTING",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-045",
+      "name": "required_contradiction_identity",
+      "archetype": "required_contradiction",
+      "scenario": "identity",
+      "state": {
+        "session": {
+          "current_input": "vaultctl inspect --principal release --scope jump-14"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.78,
+          "observed_techniques": [
+            "T1552.004"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1552.004"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Decoy Query Result",
+              "content_excerpt": "The database collection pattern on jump-14 is best answered with a staged result that draws the actor back to the monitored path.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Repeat Query Cycle",
+              "content_excerpt": "The repeated catalog queries from release support an engineered return-visit cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.77
+            },
+            {
+              "doc_id": "D3",
+              "title": "Change Calendar",
+              "content_excerpt": "The approved change calendar for jump-14 records no exceptional activity this cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.25
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "CONFLICTING",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-046",
+      "name": "required_contradiction_artifact",
+      "archetype": "required_contradiction",
+      "scenario": "artifact",
+      "state": {
+        "session": {
+          "current_input": "bundle-sign --input /tmp/build-241.tgz"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.72,
+          "observed_techniques": [
+            "T1608.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0042"
+          ],
+          "observed_ttps": [
+            "T1608.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Decoy Query Result",
+              "content_excerpt": "The database collection pattern on app-17 is best answered with a staged result that draws the actor back to the monitored path.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.86
+            },
+            {
+              "doc_id": "D2",
+              "title": "Repeat Query Cycle",
+              "content_excerpt": "The repeated catalog queries from auditor support an engineered return-visit cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.78
+            },
+            {
+              "doc_id": "D3",
+              "title": "Change Calendar",
+              "content_excerpt": "The approved change calendar for app-17 records no exceptional activity this cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.23
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "CONFLICTING",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-047",
+      "name": "required_contradiction_artifact",
+      "archetype": "required_contradiction",
+      "scenario": "artifact",
+      "state": {
+        "session": {
+          "current_input": "registry fetch 192.0.2.86/release:245"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.82,
+          "observed_techniques": [
+            "T1195.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0042"
+          ],
+          "observed_ttps": [
+            "T1195.002"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Decoy Query Result",
+              "content_excerpt": "The database collection pattern on ci-15 is best answered with a staged result that draws the actor back to the monitored path.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Repeat Query Cycle",
+              "content_excerpt": "The repeated catalog queries from svc-build support an engineered return-visit cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Access Review Memo",
+              "content_excerpt": "The quarterly access review for svc-build lists no unresolved exceptions.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.36
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "CONFLICTING",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-048",
+      "name": "required_ioc_only_identity",
+      "archetype": "required_ioc_only",
+      "scenario": "identity",
+      "state": {
+        "session": {
+          "current_input": "vaultctl inspect --principal release --scope ci-15"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.68,
+          "observed_techniques": [
+            "T1552.004"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1552.004"
+          ],
+          "iocs": [
+            "10.99.73.117"
+          ]
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Proxy Telemetry",
+              "content_excerpt": "Proxy telemetry for 172.31.72 stayed within the expected request distribution.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.17
+            },
+            {
+              "doc_id": "D2",
+              "title": "Certificate Inventory",
+              "content_excerpt": "Certificate inventory for 172.31.72 was refreshed during the routine control window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.19
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-049",
+      "name": "required_ioc_only_identity",
+      "archetype": "required_ioc_only",
+      "scenario": "identity",
+      "state": {
+        "session": {
+          "current_input": "ldapwhoami -H ldaps://ci-15:33858"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.96,
+          "observed_techniques": [
+            "T1087.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1087.002"
+          ],
+          "iocs": [
+            "10.99.232.179"
+          ]
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Proxy Telemetry",
+              "content_excerpt": "Proxy telemetry for 172.31.20 stayed within the expected request distribution.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.16
+            },
+            {
+              "doc_id": "D2",
+              "title": "Certificate Inventory",
+              "content_excerpt": "Certificate inventory for 172.31.20 was refreshed during the routine control window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.2
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-050",
+      "name": "required_ioc_only_artifact",
+      "archetype": "required_ioc_only",
+      "scenario": "artifact",
+      "state": {
+        "session": {
+          "current_input": "curl -X PUT https://store-13:35814/artifacts/check"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.84,
+          "observed_techniques": [
+            "T1608.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0042"
+          ],
+          "observed_ttps": [
+            "T1608.001"
+          ],
+          "iocs": [
+            "10.88.21.249"
+          ]
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Patch Evidence",
+              "content_excerpt": "Patch verification on store-13 completed without a failed package.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.26
+            },
+            {
+              "doc_id": "D2",
+              "title": "Access Review Memo",
+              "content_excerpt": "The quarterly access review for analyst-r lists no unresolved exceptions.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.33
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-051",
+      "name": "required_ioc_only_artifact",
+      "archetype": "required_ioc_only",
+      "scenario": "artifact",
+      "state": {
+        "session": {
+          "current_input": "bundle-sign --input /tmp/build-122.tgz"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.83,
+          "observed_techniques": [
+            "T1608.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0042"
+          ],
+          "observed_ttps": [
+            "T1608.001"
+          ],
+          "iocs": [
+            "172.31.249.248"
+          ]
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Access Review Memo",
+              "content_excerpt": "The quarterly access review for release lists no unresolved exceptions.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.36
+            },
+            {
+              "doc_id": "D2",
+              "title": "Change Calendar",
+              "content_excerpt": "The approved change calendar for store-13 records no exceptional activity this cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.23
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-052",
+      "name": "required_partial_scheduler",
+      "archetype": "required_partial",
+      "scenario": "scheduler",
+      "state": {
+        "session": {
+          "current_input": "atq -l"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.83,
+          "observed_techniques": [
+            "T1053.006"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0003"
+          ],
+          "observed_ttps": [
+            "T1053.006"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Partial Scheduler View",
+              "content_excerpt": "One task line is visible on app-17; the excerpt omits the execution result and cannot justify containment.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.6
+            },
+            {
+              "doc_id": "D2",
+              "title": "Service Ownership",
+              "content_excerpt": "Service ownership records identify svc-id as the responsible operator for app-17.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.24
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-053",
+      "name": "required_partial_scheduler",
+      "archetype": "required_partial",
+      "scenario": "scheduler",
+      "state": {
+        "session": {
+          "current_input": "schtasks /query /tn Sync-9"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.66,
+          "observed_techniques": [
+            "T1053.005"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0003"
+          ],
+          "observed_ttps": [
+            "T1053.005"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Partial Scheduler View",
+              "content_excerpt": "One task line is visible on store-13; the excerpt omits the execution result and cannot justify containment.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.57
+            },
+            {
+              "doc_id": "D2",
+              "title": "Change Calendar",
+              "content_excerpt": "The approved change calendar for store-13 records no exceptional activity this cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.23
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-054",
+      "name": "required_partial_scheduler",
+      "archetype": "required_partial",
+      "scenario": "scheduler",
+      "state": {
+        "session": {
+          "current_input": "launchdctl print system/com.example.sync"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.63,
+          "observed_techniques": [
+            "T1053.005"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0003"
+          ],
+          "observed_ttps": [
+            "T1053.005"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Partial Scheduler View",
+              "content_excerpt": "One task line is visible on gw-18; the excerpt omits the execution result and cannot justify containment.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.58
+            },
+            {
+              "doc_id": "D2",
+              "title": "Access Review Memo",
+              "content_excerpt": "The quarterly access review for operator-v2 lists no unresolved exceptions.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.32
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-055",
+      "name": "required_partial_archive",
+      "archetype": "required_partial",
+      "scenario": "archive",
+      "state": {
+        "session": {
+          "current_input": "7z a /tmp/pack-103.7z /srv/reports"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.63,
+          "observed_techniques": [
+            "T1005"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0009"
+          ],
+          "observed_ttps": [
+            "T1005"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Partial Archive View",
+              "content_excerpt": "A single archive listing is visible for ci-15; destination and use are absent from the excerpt.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.55
+            },
+            {
+              "doc_id": "D2",
+              "title": "Certificate Inventory",
+              "content_excerpt": "Certificate inventory for 172.31.31 was refreshed during the routine control window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.19
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-056",
+      "name": "required_partial_archive",
+      "archetype": "required_partial",
+      "scenario": "archive",
+      "state": {
+        "session": {
+          "current_input": "sqlite3 /srv/cache/index.db .dump"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.59,
+          "observed_techniques": [
+            "T1005"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0009"
+          ],
+          "observed_ttps": [
+            "T1005"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Partial Archive View",
+              "content_excerpt": "A single archive listing is visible for edge-11; destination and use are absent from the excerpt.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.56
+            },
+            {
+              "doc_id": "D2",
+              "title": "Service Ownership",
+              "content_excerpt": "Service ownership records identify svc-build as the responsible operator for edge-11.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.22
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-057",
+      "name": "required_partial_archive",
+      "archetype": "required_partial",
+      "scenario": "archive",
+      "state": {
+        "session": {
+          "current_input": "restic snapshots --repo /srv/archive"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.68,
+          "observed_techniques": [
+            "T1005"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0009"
+          ],
+          "observed_ttps": [
+            "T1005"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Partial Archive View",
+              "content_excerpt": "A single archive listing is visible for jump-14; destination and use are absent from the excerpt.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.6
+            },
+            {
+              "doc_id": "D2",
+              "title": "Proxy Telemetry",
+              "content_excerpt": "Proxy telemetry for 172.31.27 stayed within the expected request distribution.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.18
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-058",
+      "name": "required_partial_topology2",
+      "archetype": "required_partial",
+      "scenario": "topology2",
+      "state": {
+        "session": {
+          "current_input": "dig +short _kerberos._tcp.10.99.101.internal"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.78,
+          "observed_techniques": [
+            "T1046"
+          ]
+        },
+        "don_analysis": {
+          "severity": "medium",
+          "tactics": [
+            "TA0043"
+          ],
+          "observed_ttps": [
+            "T1046"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Partial Service View",
+              "content_excerpt": "Only one service response appears for db-12; the excerpt cannot establish systematic topology discovery.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.58
+            },
+            {
+              "doc_id": "D2",
+              "title": "Endpoint Health Record",
+              "content_excerpt": "The endpoint health record for svc-id remained within its normal operating band.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.3
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-059",
+      "name": "required_partial_topology2",
+      "archetype": "required_partial",
+      "scenario": "topology2",
+      "state": {
+        "session": {
+          "current_input": "snmpwalk -v2c -c public gw-18"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.96,
+          "observed_techniques": [
+            "T1018"
+          ]
+        },
+        "don_analysis": {
+          "severity": "medium",
+          "tactics": [
+            "TA0043"
+          ],
+          "observed_ttps": [
+            "T1018"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Partial Service View",
+              "content_excerpt": "Only one service response appears for gw-18; the excerpt cannot establish systematic topology discovery.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.55
+            },
+            {
+              "doc_id": "D2",
+              "title": "Access Review Memo",
+              "content_excerpt": "The quarterly access review for analyst-r lists no unresolved exceptions.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.34
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "DEV-060",
+      "name": "required_partial_topology2",
+      "archetype": "required_partial",
+      "scenario": "topology2",
+      "state": {
+        "session": {
+          "current_input": "snmpwalk -v2c -c public db-12"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.63,
+          "observed_techniques": [
+            "T1046"
+          ]
+        },
+        "don_analysis": {
+          "severity": "medium",
+          "tactics": [
+            "TA0043"
+          ],
+          "observed_ttps": [
+            "T1046"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Partial Service View",
+              "content_excerpt": "Only one service response appears for db-12; the excerpt cannot establish systematic topology discovery.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.59
+            },
+            {
+              "doc_id": "D2",
+              "title": "Certificate Inventory",
+              "content_excerpt": "Certificate inventory for 172.31.187 was refreshed during the routine control window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.19
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    }
+  ]
+}

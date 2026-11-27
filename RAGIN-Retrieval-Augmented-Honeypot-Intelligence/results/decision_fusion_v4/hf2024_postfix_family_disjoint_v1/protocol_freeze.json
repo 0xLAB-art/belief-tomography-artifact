@@ -1,0 +1,28 @@
+{
+  "analysis_endpoints": [
+    "gate_state",
+    "selected_strategy",
+    "strategy_delivery",
+    "strategy_consumption",
+    "template_id",
+    "response_sha256",
+    "verification",
+    "approval",
+    "latency_ms",
+    "errors"
+  ],
+  "arms": [
+    "RAGIN_BASELINE",
+    "RAGIN_V4_DETERMINISTIC",
+    "RAGIN_V4_LOGISTIC"
+  ],
+  "attacker_commands_executed": false,
+  "expected_records": 720,
+  "experiment_id": "HF2024_POSTFIX_FAMILY_DISJOINT_V1",
+  "external_generation_calls": false,
+  "frozen_before_execution": true,
+  "holdout_path": "results/decision_fusion_v4/hf2024_postfix_family_disjoint_v1/holdout_freeze.json",
+  "pipeline": "Chrollo -> Don -> Evidence Gate -> Policy -> Hisoka Template Generator -> Verifier/HITL",
+  "reference_free": true,
+  "schema": "ragin.v4.hf2024.postfix.protocol_freeze.v1"
+}

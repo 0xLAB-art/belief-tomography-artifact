@@ -1,0 +1,31 @@
+{
+  "preregistered_at": "2026-10-12T21:45:00Z",
+  "status": "preregistered_before_independent_labels",
+  "rule": {
+    "name": "LAYA_GATED",
+    "type": "invoke_Laya_only_when_Chrollo_confidence_below_threshold",
+    "threshold": {
+      "field": "Chrollo confidence",
+      "operator": "<",
+      "value": 0.65
+    },
+    "optional_ambiguous_extension": {
+      "enabled": false,
+      "note": "If later enabled, it must be documented as a separate post-hoc/exploratory rule."
+    }
+  },
+  "rationale": "Threshold chosen from existing development/synthetic evidence only, before inspecting independent held-out labels.",
+  "dev_basis_note": "Status after reconciliation: no documented dev/synthetic basis for 0.65 was found in the repository. The threshold is therefore retained as a PREREGISTERED EXPLORATORY threshold, not a justified one. It was not changed in light of confirmatory data or human labels.",
+  "threshold_status": "PREREGISTERED_EXPLORATORY",
+  "constraints": {
+    "no_threshold_tuning_on_held_out": true,
+    "no_silent_change_after_preregistration": true,
+    "any_second_threshold_is_post_hoc": true
+  },
+  "interaction_rule_for_advisory_Laya": {
+    "arm": "Chrollo + Laya advisory",
+    "decision_combination_not_yet_finalized_for_binary_metric": true,
+    "note": "Advisory Laya must not silently overwrite Chrollo. A combination rule must be defined explicitly before reporting C/D results."
+  },
+  "file_sha256_before_labels": "a8ac0ae24db427f1bc72e38524a74b9ce291c6ef30c219b8f725b61ee402917f"
+}

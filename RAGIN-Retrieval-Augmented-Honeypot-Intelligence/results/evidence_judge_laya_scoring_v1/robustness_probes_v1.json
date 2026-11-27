@@ -1,0 +1,73 @@
+{
+  "frozen_thresholds_sha256": "4ab4d57ceb789ff50153710a3a0e5feadd489cea32f9fbe5ea60699dbe71ba63",
+  "malformed_output_selftest": {
+    "errors": [
+      "output parse failure"
+    ],
+    "passed": true
+  },
+  "recorded_at_utc": "2026-10-14T18:30:12Z",
+  "schema": "ragin.laya_scorer_robustness_probes.v1",
+  "simulated_timeout_selftest": {
+    "errors": [
+      "simulated timeout"
+    ],
+    "passed": true
+  },
+  "truncation": {
+    "call": {
+      "batch_id": "truncation_probes",
+      "command": [
+        "codex",
+        "exec",
+        "--ephemeral",
+        "--json",
+        "--skip-git-repo-check",
+        "-m",
+        "gpt-5.6-luna",
+        "-o",
+        "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/evidence_judge_laya_scoring_v1/runs/S1/truncation_probes/final_message.json",
+        "--output-schema",
+        "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/evidence_judge_laya_scoring_v1/output_schema_v1.json",
+        "-C",
+        "/tmp",
+        "-"
+      ],
+      "exit_code": 0,
+      "final_message_sha256": "13d3732a8d6e5a66712c55683d938ae571117b299c406608d5181f6adfe01946",
+      "finished_at_utc": "2026-10-14T18:30:12Z",
+      "json_valid": true,
+      "model_id": "gpt-5.6-luna",
+      "rater_id": "S1",
+      "request_chars": 3706,
+      "started_at_utc": "2026-10-14T18:29:59Z",
+      "stderr_sha256": "2d03d2221e4ff9dfdeb87b3998d8a8f92b4af6aa2abe559351b69910c3543410",
+      "stdout_sha256": "cfa0118d5df5b539684a37a768eba69aeeb6a45781fc4b45f66bfbfa28ce2aa8",
+      "validation_errors": [],
+      "wall_seconds": 12.590611782998167
+    },
+    "results": [
+      {
+        "all_unknown": true,
+        "expected": {
+          "DONV2-T1082": "UNKNOWN"
+        },
+        "labels": {
+          "DONV2-T1082": "UNKNOWN"
+        },
+        "probe_id": "truncation-direct-001"
+      },
+      {
+        "all_unknown": true,
+        "expected": {
+          "DONV2-T1082": "UNKNOWN"
+        },
+        "labels": {
+          "DONV2-T1082": "UNKNOWN"
+        },
+        "probe_id": "truncation-direct-002"
+      }
+    ],
+    "unknown_probe_count": 2
+  }
+}

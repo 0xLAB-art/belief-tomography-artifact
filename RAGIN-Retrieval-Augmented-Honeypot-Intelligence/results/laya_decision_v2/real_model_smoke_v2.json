@@ -1,0 +1,73 @@
+{
+  "schema": "ragin.laya_decision_v2.real_model_smoke.v2",
+  "created_at": "2026-10-13",
+  "purpose": "runtime and bounded-seam smoke only; no accuracy or effectiveness metric",
+  "inputs_are_outside_existing_120_and_fresh_holdout": true,
+  "inputs_are_dedicated_smoke_only": true,
+  "real_model_executed": true,
+  "input_dependent_output_observed": true,
+  "workflow_decision_effect_observed": true,
+  "verifier_still_mandatory": true,
+  "manifest": {
+    "checkpoint": "/home/elaref/.cache/huggingface/hub/models--convaiinnovations--laya/snapshots/55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/model.safetensors",
+    "checkpoint_verified": true,
+    "device": "cpu",
+    "fallback_possible": true,
+    "fixture_injection_present": false,
+    "model": "english",
+    "model_hash": "891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c",
+    "model_initialized": true,
+    "package_version": "0.4.2",
+    "real_inference_entrypoint": "ragin.decision.laya_runtime:LayaRuntime.infer -> laya.Router.predict",
+    "repository": "convaiinnovations/laya",
+    "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+    "runtime_verified": true,
+    "source_repository": "https://huggingface.co/convaiinnovations/laya"
+  },
+  "rows": [
+    {
+      "attack_probability": 0.3318,
+      "availability": true,
+      "error": null,
+      "input_sha256": "b3c85acb58ecc7fb902e47e821d14d1bda9314b4690bd012f55510bbc706a05c",
+      "is_attack": false,
+      "latency_ms": 8148.011,
+      "name": "benign_administrative",
+      "real_model_verified": true,
+      "selected_response_strategy": "low_intensity_administration",
+      "selected_workflow_branch": "LAYA_NON_ATTACK_STRATEGY",
+      "severity": 1.5613,
+      "stage": "benign_administration"
+    },
+    {
+      "attack_probability": 0.8804,
+      "availability": true,
+      "error": null,
+      "input_sha256": "7cdc563f33a83c7588267d52f8a56bdd345fcf800c5793145e4afb5e2c3f451e",
+      "is_attack": true,
+      "latency_ms": 1422.525,
+      "name": "clearly_adversarial",
+      "real_model_verified": true,
+      "selected_response_strategy": "fake_success_and_return_visits",
+      "selected_workflow_branch": "LAYA_ATTACK_STRATEGY",
+      "severity": 2.0964,
+      "stage": "persistence"
+    },
+    {
+      "attack_probability": 0.069,
+      "availability": true,
+      "error": null,
+      "input_sha256": "4ca66482c8bf8822448af12b335f53539c21911210cddd40733644759c28be8f",
+      "is_attack": false,
+      "latency_ms": 1187.374,
+      "name": "ambiguous",
+      "real_model_verified": true,
+      "selected_response_strategy": "low_intensity_administration",
+      "selected_workflow_branch": "LAYA_NON_ATTACK_STRATEGY",
+      "severity": 1.3564,
+      "stage": "benign_administration"
+    }
+  ],
+  "no_accuracy_computed": true,
+  "no_policy_tuning_performed": true
+}

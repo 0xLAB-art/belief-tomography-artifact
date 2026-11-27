@@ -1,0 +1,61 @@
+{
+  "active_generation_provider": "local deterministic Hisoka ResponseGenerator template/fast-path",
+  "boundaries": [
+    {
+      "boundary": "ChrolloAdapter.classify -> classification.laya_decision",
+      "modifies_generation_input": true,
+      "passed_forward": true,
+      "read": true,
+      "value": "selected_response_strategy and selected_workflow_branch"
+    },
+    {
+      "boundary": "Harness._strict_candidate -> Hisoka context",
+      "modifies_generation_input": true,
+      "passed_forward": true,
+      "read": true,
+      "value": "classification including laya_decision"
+    },
+    {
+      "boundary": "Hisoka context -> _jev_signal_from_context",
+      "modifies_generation_input": true,
+      "passed_forward": true,
+      "read": true,
+      "value": "selected_response_strategy"
+    },
+    {
+      "boundary": "AdaptiveDeceiver -> local ResponseGenerator",
+      "modifies_effective_candidate": true,
+      "passed_forward": true,
+      "read": true,
+      "value": "response_strategy argument and bounded strategy suffix"
+    },
+    {
+      "active_provider_consumes": true,
+      "boundary": "local ResponseGenerator -> candidate",
+      "modifies_effective_candidate": true,
+      "passed_forward": true,
+      "read": true,
+      "value": "strategy-sensitive deterministic transcript"
+    }
+  ],
+  "direct_laya_serving": false,
+  "provider_consumes_modified_input": true,
+  "schema": "ragin.laya_decision_v2.strategy_consumption_callgraph.v2",
+  "seam": [
+    "ChrolloAdapter.classify",
+    "classification.laya_decision",
+    "Harness._strict_candidate",
+    "Hisoka context",
+    "response strategy reader",
+    "local ResponseGenerator",
+    "candidate"
+  ],
+  "source_sha256": {
+    "ragin/cycle/adapters.py": "471cb937ea32b486ee08834b6e00de031ecd48ae8b63b86007365f5a3e2d152f",
+    "ragin/cycle/harness.py": "5b69826788ea979990e568ad76e9683dd284702eaec854c3ed8764d612248868",
+    "ragin/hisoka/deceiver.py": "c5628e80d46d4576124b1608ee925a0f694187f8a365c6712f4555b54e909dd9",
+    "ragin/hisoka/deception.py": "9f753b3c4a571f23ce295c7eb0f26ec73fe702bd307a000d902f6fb65fa70f05",
+    "scripts/laya_decision_v2_exploratory_120.py": "be01f4be859016e677577dcc8c729aa1e9830e7d66d3f4c8de143b7d846f9c75"
+  },
+  "verifier_mandatory": true
+}

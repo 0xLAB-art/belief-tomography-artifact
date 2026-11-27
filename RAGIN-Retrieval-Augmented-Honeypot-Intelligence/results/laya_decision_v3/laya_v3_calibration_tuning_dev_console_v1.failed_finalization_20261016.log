@@ -1,0 +1,33 @@
+[check] builder sha256 OK: e6e20d6951a2c0c0e2a34cd7f4211f990629fff01e1ef80bbd5c1ff5a17baabf
+[check] datasets manifest sha256 OK: 97d2c3c41e367564d5d74861c54a559bd19ced5e4e76d4e6a45dc8033e48fe6c
+[check] TR set sha256 OK: 8369483818b527219d5e4871ea4d71d1fc748fce70247c38f15bfeb66d1d9bf0
+[check] DEV set sha256 OK: e5efb3531ccd2423c640e12616ed38f88a46e9ffd7eedcecead4c7c29c0a0bbd
+[check] training rows sha256 OK: b6fa8a129b1cfdd66a4733716dc268f3ab9579772c165549d0b9599253676dca
+[check] contract sha256 OK: c3fea3c979ed33b8831fcecee7e4ed8eea16bd9bf57bc23690071700c0feca9b
+[check] base checkpoint weights sha256 OK: 891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c
+[check] DEV cases: 30 (sufficient 18, required-abstain 12); runtime question defs built for all
+[check] dev subset (per archetype: case_ids sorted, keep the first ceil(2n/3)): 93 cases / 279 items
+        required_conflict         8 ->  6 kept
+        required_contradiction    8 ->  6 kept
+        required_ioc_only        10 ->  7 kept
+        required_missing          8 ->  6 kept
+        required_partial          8 ->  6 kept
+        required_weak            10 ->  7 kept
+        sufficient               70 -> 47 kept
+        sufficient_lowscore       4 ->  3 kept
+        sufficient_multi          2 ->  2 kept
+        sufficient_single         4 ->  3 kept
+[check] subset rows sha256 (derived, not written): 74cbf3099319acd61a60888e4396381d635f6da554aac8287653f738023f5d7f
+[check] subset rows file not written yet (expected before the --dev run)
+[check] development artefact not written yet
+[dev] subset rows written: /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_decision_v3/laya_v3_calibration_tuning_dev_subset_rows_v1.jsonl (74cbf3099319acd61a60888e4396381d635f6da554aac8287653f738023f5d7f)
+dry-run: 93 rows read, 279 valid items, skipped: {}
+dry-run: optimizer budget: 252 train item(s), effective batch up to 32 (micro_batch 8 x grad_accum 4), 32 optimizer updates over 4 epoch(s)
+[dev] subset dry_run OK: 93 rows, 279 items, 252 train / 27 calib, 32 optimizer updates, zero skips
+[dev] candidate A (soft-ce): training on the subset at the frozen dev config
+train items 252, calibration items 27, eval items 27 (calibration_slice), skipped {}, device cpu
+optimizer budget: 252 train item(s), effective batch up to 32 (micro_batch 8 x grad_accum 4), 32 optimizer updates over 4 epoch(s)
+epoch 1/4 mean loss 1.2304
+epoch 2/4 mean loss 1.2092
+epoch 3/4 mean loss 1.2020
+epoch 4/4 mean loss 1.1822

@@ -1,0 +1,2275 @@
+{
+ "annotator": "B",
+ "model": "opencode/mimo-v2.6-flash-free",
+ "annotations": {
+  "R0172": {
+   "ok": true,
+   "row_id": "R0172",
+   "notes": "Service list and listening-socket output directly answer the query and read like authentic shell output with consistent PIDs.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0171": {
+   "ok": true,
+   "row_id": "R0171",
+   "notes": "Log-tail output answers the query but contains an unfilled {host} template placeholder that breaks realism.",
+   "realism": "partial",
+   "served_on_topic": "yes"
+  },
+  "R0079": {
+   "ok": true,
+   "row_id": "R0079",
+   "notes": "Analysis records T1133 exactly, but served text is only a shell 'command not found' echo of the query with no substantive content.",
+   "requested": "T1133",
+   "identified": [
+    "T1133"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0091": {
+   "ok": true,
+   "row_id": "R0091",
+   "notes": "Analysis names only the parent technique T1543 rather than sub-technique T1543.001, and the ps listing merely echoes the query tangentially.",
+   "requested": "T1543.001",
+   "identified": [
+    "T1543"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0128": {
+   "ok": true,
+   "row_id": "R0128",
+   "notes": "Candidate actors name Fin7 (matching the requested actor), but served text is just a 'command not found' echo giving no detail on retail attack patterns.",
+   "requested": "FIN7",
+   "identified": [
+    "fin7"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0121": {
+   "ok": true,
+   "row_id": "R0121",
+   "notes": "Exact sub-technique present in extracted_techniques; served text is a realistic command-not-found transcript of the query itself.",
+   "requested": "T1562.001",
+   "identified": [
+    "T1027",
+    "T1562",
+    "T1562.001"
+   ],
+   "identification": "correct",
+   "served_on_topic": "yes"
+  },
+  "R0191": {
+   "ok": true,
+   "row_id": "R0191",
+   "notes": "Deception item: ulimit -a output directly answers the open-file-descriptor question with a realistic 1024 value.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0080": {
+   "ok": true,
+   "row_id": "R0080",
+   "notes": "Analysis names parent T1078 but not sub-technique T1078.001; served text exposes hardcoded credentials rather than default-credential use.",
+   "requested": "T1078.001",
+   "identified": [
+    "T1005",
+    "T1078",
+    "T1552",
+    "T1566"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0190": {
+   "ok": true,
+   "row_id": "R0190",
+   "notes": "Served last/wtmp login listing has no relation to nginx 5xx log filtering, though it reads like authentic shell output.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  },
+  "R0186": {
+   "ok": true,
+   "row_id": "R0186",
+   "notes": "crontab -l output covers cron jobs but not the requested /etc/cron.d/ directories; output itself is plausible.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0149": {
+   "ok": true,
+   "row_id": "R0149",
+   "notes": "Query conflates two distinct groups (LuckyMouse/APT41); analysis names only APT41 and served text is a command-not-found error.",
+   "requested": "unclear",
+   "identified": [
+    "apt41"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0097": {
+   "ok": true,
+   "row_id": "R0097",
+   "notes": "Precise sub-technique T1562.001 is present in analysis, but served text is an unrelated bash error.",
+   "requested": "T1562.001",
+   "identified": [
+    "T1027",
+    "T1562",
+    "T1562.001"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0213": {
+   "ok": true,
+   "row_id": "R0213",
+   "notes": "sudo -l/id output is plausible machine output touching privilege context but shows no audit log entries as asked.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0211": {
+   "ok": true,
+   "row_id": "R0211",
+   "notes": "getenforce/sestatus authenticly answer the enforcing question but web file contexts (ls -Z) are never shown.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0180": {
+   "ok": true,
+   "row_id": "R0180",
+   "notes": "Served text is a who/last-style login listing unrelated to packet capture, with a mismatched wtmp footer.",
+   "realism": "partial",
+   "served_on_topic": "no"
+  },
+  "R0162": {
+   "ok": true,
+   "row_id": "R0162",
+   "notes": "Served ss output directly shows local database listeners, but the analysis record identifies nothing.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0029": {
+   "ok": true,
+   "row_id": "R0029",
+   "notes": "T1055 is correctly included, but the served process listing does not address process injection.",
+   "requested": "T1055",
+   "identified": [
+    "T1027",
+    "T1055",
+    "T1566"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0045": {
+   "ok": true,
+   "row_id": "R0045",
+   "notes": "T1083 is present, and the ls output demonstrates discovery but does not explain the technique.",
+   "requested": "T1083",
+   "identified": [
+    "T1046",
+    "T1083"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0044": {
+   "ok": true,
+   "row_id": "R0044",
+   "notes": "T1018 correctly identified, but served text is only a shell error echoing the query.",
+   "requested": "T1018",
+   "identified": [
+    "T1018",
+    "T1046"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0036": {
+   "ok": true,
+   "row_id": "R0036",
+   "notes": "T1003 correctly identified, but served text exposes file-based credentials rather than explaining dumping.",
+   "requested": "T1003",
+   "identified": [
+    "T1003",
+    "T1003.008"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0179": {
+   "ok": true,
+   "row_id": "R0179",
+   "notes": "docker ps output is authentic-looking but shows no resource usage and includes a stopped container.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0165": {
+   "ok": true,
+   "row_id": "R0165",
+   "notes": "Addresses applied patches, but the 'Installed patches' section is not authentic output of apt list --upgradable.",
+   "realism": "partial",
+   "served_on_topic": "yes"
+  },
+  "R0174": {
+   "ok": true,
+   "row_id": "R0174",
+   "notes": "T1053 fits the scheduled-task query and the crontab output is realistic, though the candidate actor list is spurious noise.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0052": {
+   "ok": true,
+   "row_id": "R0052",
+   "notes": "Analysis has parent T1550 but not the precise sub-technique T1550.002; served text is only a command-not-found echo of the query.",
+   "requested": "T1550.002",
+   "identified": [
+    "carbanak",
+    "hafnium",
+    "apt37",
+    "unc3886",
+    "salt typhoon",
+    "T1005",
+    "T1021",
+    "T1550"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0199": {
+   "ok": true,
+   "row_id": "R0199",
+   "notes": "Served last/wtmp login output does not address the syslog kernel-error query, but reads like genuine terminal output.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  },
+  "R0011": {
+   "ok": true,
+   "row_id": "R0011",
+   "notes": "Analysis correctly extracts T1059 but served shell error only echoes the query with no relevant content.",
+   "requested": "T1059",
+   "identified": [
+    "T1059",
+    "T1204"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0175": {
+   "ok": true,
+   "row_id": "R0175",
+   "notes": "Served `last` login output instead of any file-modification search, but reads like authentic output of a misconfigured command.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  },
+  "R0065": {
+   "ok": true,
+   "row_id": "R0065",
+   "notes": "Analysis names parent T1567 rather than precise T1567.002, and served service/port listing does not address exfiltration over web service.",
+   "requested": "T1567.002",
+   "identified": [
+    "T1041",
+    "T1567"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0061": {
+   "ok": true,
+   "row_id": "R0061",
+   "notes": "Analysis extracts only parent T1071, and served resolv.conf is DNS-related but never describes the C2 technique.",
+   "requested": "T1071.004",
+   "identified": [
+    "T1071"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0058": {
+   "ok": true,
+   "row_id": "R0058",
+   "notes": "Query targets DNS C2 (T1071.004) but analysis stops at T1071 and served text only shows resolver config.",
+   "requested": "T1071.004",
+   "identified": [
+    "T1071"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0111": {
+   "ok": true,
+   "row_id": "R0111",
+   "notes": "Analysis correctly extracts T1539; served text is only a command-not-found echo of the query with no substantive answer.",
+   "requested": "T1539",
+   "identified": [
+    "T1539"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0005": {
+   "ok": true,
+   "row_id": "R0005",
+   "notes": "T1078 present but buried among unrelated T1566; id-command output does not explain the technique.",
+   "requested": "T1078",
+   "identified": [
+    "T1078",
+    "T1566"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0150": {
+   "ok": true,
+   "row_id": "R0150",
+   "notes": "Actor correctly identified; served text is only a command-not-found echo offering no information.",
+   "requested": "APT37",
+   "identified": [
+    "apt37"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0140": {
+   "ok": true,
+   "row_id": "R0140",
+   "notes": "Actor correctly identified; served text is only a command-not-found echo offering no information.",
+   "requested": "UNC3886",
+   "identified": [
+    "unc3886"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0166": {
+   "ok": true,
+   "row_id": "R0166",
+   "notes": "ps-style process listing directly answers the query and reads like authentic machine output; deception item has no technique/actor target.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0077": {
+   "ok": true,
+   "row_id": "R0077",
+   "notes": "Analysis captures the precise sub-technique, but the served text is only a failed shell echo of the query.",
+   "requested": "T1195.002",
+   "identified": [
+    "T1195",
+    "T1195.002"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0136": {
+   "ok": true,
+   "row_id": "R0136",
+   "notes": "Revil appears only as one of several unrelated candidate actors and the transcript is a bare command-not-found.",
+   "requested": "REVIL",
+   "identified": [
+    "sandworm",
+    "revil",
+    "darkside"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0110": {
+   "ok": true,
+   "row_id": "R0110",
+   "notes": "Identification matches, but the served transcript dumps env credentials and never addresses keylogging.",
+   "requested": "T1056",
+   "identified": [
+    "T1056"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0093": {
+   "ok": true,
+   "row_id": "R0093",
+   "notes": "Analysis stops at the parent technique T1548 instead of sub-technique T1548.001, though sudo output is on topic.",
+   "requested": "T1548.001",
+   "identified": [
+    "T1548"
+   ],
+   "identification": "partial",
+   "served_on_topic": "yes"
+  },
+  "R0114": {
+   "ok": true,
+   "row_id": "R0114",
+   "notes": "T1133 is buried among unrelated T1021/T1566 entries and the service/port listing shows no VPN service.",
+   "requested": "T1133",
+   "identified": [
+    "T1021",
+    "T1133",
+    "T1566"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0037": {
+   "ok": true,
+   "row_id": "R0037",
+   "notes": "Analysis correctly maps brute force to T1110, but the served shell dump of env/credentials files never addresses brute forcing.",
+   "requested": "T1110",
+   "identified": [
+    "T1110"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0073": {
+   "ok": true,
+   "row_id": "R0073",
+   "notes": "Analysis correctly identifies T1586 (plus sub-technique), while the served text is only a bash 'command not found' echoing the query.",
+   "requested": "T1586",
+   "identified": [
+    "T1586",
+    "T1586.001"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0014": {
+   "ok": true,
+   "row_id": "R0014",
+   "notes": "Analysis names the exact sub-technique T1059.001, but the served command-not-found response provides no explanation of PowerShell execution.",
+   "requested": "T1059.001",
+   "identified": [
+    "T1059",
+    "T1059.001"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0209": {
+   "ok": true,
+   "row_id": "R0209",
+   "notes": "dpkg-style package/version listing answers the query and matches authentic output, though only 6 lines appear despite 'head -12'.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0043": {
+   "ok": true,
+   "row_id": "R0043",
+   "notes": "Analysis includes T1087 Account Discovery (with an unrelated T1046 extra), but served text is just a command-not-found error.",
+   "requested": "T1087",
+   "identified": [
+    "T1046",
+    "T1087"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0195": {
+   "ok": true,
+   "row_id": "R0195",
+   "notes": "Served transcript dumps env secrets and never addresses the md5sum integrity-check query; analysis empty.",
+   "realism": "partial",
+   "served_on_topic": "no"
+  },
+  "R0063": {
+   "ok": true,
+   "row_id": "R0063",
+   "notes": "Analysis correctly extracts T1573, but served text is only a bash command-not-found error.",
+   "requested": "T1573",
+   "identified": [
+    "T1573"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0009": {
+   "ok": true,
+   "row_id": "R0009",
+   "notes": "Requested sub-technique present in analysis; served text is an unrelated command-not-found error.",
+   "requested": "T1195.002",
+   "identified": [
+    "T1195",
+    "T1195.002"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0048": {
+   "ok": true,
+   "row_id": "R0048",
+   "notes": "T1021 correctly identified in analysis while served text is just a shell error.",
+   "requested": "T1021",
+   "identified": [
+    "T1021"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0123": {
+   "ok": true,
+   "row_id": "R0123",
+   "notes": "Analysis names T1564, but served output is an id command result unrelated to the query.",
+   "requested": "T1564",
+   "identified": [
+    "T1564"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0003": {
+   "ok": true,
+   "row_id": "R0003",
+   "notes": "Analysis correctly extracts T1190; served text is only a shell 'command not found' echo that never addresses the technique.",
+   "requested": "T1190",
+   "identified": [
+    "T1190"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0100": {
+   "ok": true,
+   "row_id": "R0100",
+   "notes": "Query names sub-technique T1027.002 but analysis only records parent T1027; served text just echoes the query as an unexecuted command.",
+   "requested": "T1027.002",
+   "identified": [
+    "T1027"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0001": {
+   "ok": true,
+   "row_id": "R0001",
+   "notes": "Requested sub-technique T1566.001 recorded only as parent T1566, and served text is a non-answering command-not-found echo.",
+   "requested": "T1566.001",
+   "identified": [
+    "T1566"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0006": {
+   "ok": true,
+   "row_id": "R0006",
+   "notes": "Analysis correctly identifies T1078, but served id-output text is unrelated to the query.",
+   "requested": "T1078",
+   "identified": [
+    "T1078"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0160": {
+   "ok": true,
+   "row_id": "R0160",
+   "notes": "ip addr output authentically answers the network-configuration query; no CTI identification requested or attempted.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0017": {
+   "ok": true,
+   "row_id": "R0017",
+   "notes": "Crontab listing directly illustrates scheduled-task persistence; T1053 identified.",
+   "requested": "T1053",
+   "identified": [
+    "T1053",
+    "T1547"
+   ],
+   "identification": "correct",
+   "served_on_topic": "yes"
+  },
+  "R0015": {
+   "ok": true,
+   "row_id": "R0015",
+   "notes": "T1203 identified but served text is only an error echo that does not explain it.",
+   "requested": "T1203",
+   "identified": [
+    "T1106",
+    "T1203"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0159": {
+   "ok": true,
+   "row_id": "R0159",
+   "notes": "HTTP response with server banner answers the query and reads like slightly customized real output.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0007": {
+   "ok": true,
+   "row_id": "R0007",
+   "notes": "Only parent technique T1566 noted, missing requested sub-technique; served text is an error echo.",
+   "requested": "T1566.002",
+   "identified": [
+    "T1566"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0054": {
+   "ok": true,
+   "row_id": "R0054",
+   "notes": "T1113 correctly identified but tcpdump packet capture is unrelated to screen capture.",
+   "requested": "T1113",
+   "identified": [
+    "T1113"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0163": {
+   "ok": true,
+   "row_id": "R0163",
+   "notes": "os-release output directly answers the OS question and reads like a genuine shell session.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0154": {
+   "ok": true,
+   "row_id": "R0154",
+   "notes": "Analysis correctly names Apt20; served text is an unrelated shell error that answers nothing.",
+   "requested": "APT20",
+   "identified": [
+    "apt20"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0200": {
+   "ok": true,
+   "row_id": "R0200",
+   "notes": "Transcript is authentic-looking but only lists the webapp user's crontab, not root's or cron.d/.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0075": {
+   "ok": true,
+   "row_id": "R0075",
+   "notes": "T1588 present among extras in analysis, but the served shell error never addresses the technique.",
+   "requested": "T1588",
+   "identified": [
+    "T1586",
+    "T1586.001",
+    "T1588"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0069": {
+   "ok": true,
+   "row_id": "R0069",
+   "notes": "T1489 (Service Stop) correctly identified, yet the served service listings do not explain the impact technique.",
+   "requested": "T1489",
+   "identified": [
+    "T1486",
+    "T1489"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0173": {
+   "ok": true,
+   "row_id": "R0173",
+   "notes": "Query asks for SSH config with no technique/actor named, analysis empty, and a natural-language-as-command error is plausible machine output but conveys no SSH content.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0025": {
+   "ok": true,
+   "row_id": "R0025",
+   "notes": "T1068 (Exploitation for Privilege Escalation) is present among related priv-esc techniques; served shell enumeration is privilege-escalation-adjacent but never explains exploitation.",
+   "requested": "T1068",
+   "identified": [
+    "T1068",
+    "T1078",
+    "T1134",
+    "T1548"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0112": {
+   "ok": true,
+   "row_id": "R0112",
+   "notes": "Analysis records exactly T1558 as requested, but the served text is only a command-not-found echo with no golden-ticket content.",
+   "requested": "T1558",
+   "identified": [
+    "T1558"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0184": {
+   "ok": true,
+   "row_id": "R0184",
+   "notes": "env output directly exposes an API_TOKEN as asked, reading like authentic shell output with a minor misconfiguration.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0152": {
+   "ok": true,
+   "row_id": "R0152",
+   "notes": "Turla appears but is mixed with an unrelated Apt27 candidate, and the served text only echoes the query as a failed command.",
+   "requested": "TURLA",
+   "identified": [
+    "apt27",
+    "TURLA"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0039": {
+   "ok": true,
+   "row_id": "R0039",
+   "notes": "Only parent T1003 plus wrong sub-technique .008 identified, and served text leaks file credentials without addressing LSASS.",
+   "requested": "T1003.001",
+   "identified": [
+    "T1003",
+    "T1003.008"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0051": {
+   "ok": true,
+   "row_id": "R0051",
+   "notes": "T1021 identified correctly; served text shows running services and listening ports but never explains the technique.",
+   "requested": "T1021",
+   "identified": [
+    "T1021"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0125": {
+   "ok": true,
+   "row_id": "R0125",
+   "notes": "Analysis names Apt28/Fancy Bear correctly; served text is a command-not-found error.",
+   "requested": "APT28",
+   "identified": [
+    "apt28",
+    "fancy bear"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0022": {
+   "ok": true,
+   "row_id": "R0022",
+   "notes": "Analysis names only parent T1053 (plus unrelated T1547), and crontab output is cron persistence (T1053.003), not the Windows Scheduled Task sub-technique.",
+   "requested": "T1053.005",
+   "identified": [
+    "T1053",
+    "T1547"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0038": {
+   "ok": true,
+   "row_id": "R0038",
+   "notes": "T1003 is identified, but the served env-file credential display is credential exposure rather than OS credential dumping.",
+   "requested": "T1003",
+   "identified": [
+    "T1003",
+    "T1003.008"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0113": {
+   "ok": true,
+   "row_id": "R0113",
+   "notes": "T1555 appears in extracted_techniques, though the served text shows plaintext env-file secrets, not password-manager access.",
+   "requested": "T1555",
+   "identified": [
+    "T1005",
+    "T1552",
+    "T1555"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0196": {
+   "ok": true,
+   "row_id": "R0196",
+   "notes": "ss -tan output plausibly shows no established 3306 connections, so the transcript addresses the query despite the empty analysis.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0167": {
+   "ok": true,
+   "row_id": "R0167",
+   "notes": "who-style output answers the query authentically, with only a minor tell that the 'wtmp begins' line usually comes from last.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0115": {
+   "ok": true,
+   "row_id": "R0115",
+   "notes": "Query names T1195 explicitly and analysis extracts it, but served text is only a bash 'command not found' echo with no substantive answer.",
+   "requested": "T1195",
+   "identified": [
+    "T1195"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0169": {
+   "ok": true,
+   "row_id": "R0169",
+   "notes": "ip link/ip addr output directly answers the network-interface query and reads like authentic shell output.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0053": {
+   "ok": true,
+   "row_id": "R0053",
+   "notes": "Analysis names parent technique T1021 rather than the requested sub-technique T1021.002; served text is an unhelpful command-not-found echo.",
+   "requested": "T1021.002",
+   "identified": [
+    "T1021"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0068": {
+   "ok": true,
+   "row_id": "R0068",
+   "notes": "Impact via data encryption maps to T1486 and analysis extracts it, but served text does not address the question.",
+   "requested": "T1486",
+   "identified": [
+    "T1486"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0131": {
+   "ok": true,
+   "row_id": "R0131",
+   "notes": "Cozy Bear is present in candidate_actors, but served text is only a command-not-found echo.",
+   "requested": "COZY BEAR",
+   "identified": [
+    "apt29",
+    "cozy bear"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0181": {
+   "ok": true,
+   "row_id": "R0181",
+   "notes": "Served iptables -L -v output with counters directly answers the query; no analysis attempted.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0210": {
+   "ok": true,
+   "row_id": "R0210",
+   "notes": "Served a process list (ps-style) with no listening ports or socket bindings at all.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  },
+  "R0118": {
+   "ok": true,
+   "row_id": "R0118",
+   "notes": "Analysis lists T1199 but served text is unrelated systemctl/ss output about local services.",
+   "requested": "T1199",
+   "identified": [
+    "T1199",
+    "T1566"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0095": {
+   "ok": true,
+   "row_id": "R0095",
+   "notes": "Analysis correctly names T1210 while served sudo -l/id output says nothing about driver exploitation.",
+   "requested": "T1210",
+   "identified": [
+    "T1210"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0178": {
+   "ok": true,
+   "row_id": "R0178",
+   "notes": "Served last/wtmp login sessions touch authentication activity but not syslog error patterns.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0092": {
+   "ok": true,
+   "row_id": "R0092",
+   "notes": "T1574 correctly extracted; served transcript only echoes the query and shows group membership, not DLL side-load detail.",
+   "requested": "T1574",
+   "identified": [
+    "T1547",
+    "T1574"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0094": {
+   "ok": true,
+   "row_id": "R0094",
+   "notes": "Analysis names parent T1548 but not sub-technique .003; sudo -l output is privilege-escalation adjacent without addressing UAC bypass.",
+   "requested": "T1548.003",
+   "identified": [
+    "T1078",
+    "T1134",
+    "T1548"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0183": {
+   "ok": true,
+   "row_id": "R0183",
+   "notes": "lsmod and dmesg tail directly answer the recent kernel-module question with plausible output.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0033": {
+   "ok": true,
+   "row_id": "R0033",
+   "notes": "T1140 correctly identified, but the served shell error provides no content about deobfuscation.",
+   "requested": "T1140",
+   "identified": [
+    "T1027",
+    "T1140"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0189": {
+   "ok": true,
+   "row_id": "R0189",
+   "notes": "Shell treats the natural-language request as a command, giving no auth.log information.",
+   "realism": "partial",
+   "served_on_topic": "no"
+  },
+  "R0204": {
+   "ok": true,
+   "row_id": "R0204",
+   "notes": "Authentic-looking iptables listing with packet counts answers the rule query, though analysis extracted nothing and output lacks -v flag.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0055": {
+   "ok": true,
+   "row_id": "R0055",
+   "notes": "Analysis correctly maps query to T1005, but served text is only a shell 'command not found' error.",
+   "requested": "T1005",
+   "identified": [
+    "T1005"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0064": {
+   "ok": true,
+   "row_id": "R0064",
+   "notes": "Analysis plausibly maps HTTPS exfiltration to T1041, but the served ps output is unrelated to the query.",
+   "requested": "T1041",
+   "identified": [
+    "T1041"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0040": {
+   "ok": true,
+   "row_id": "R0040",
+   "notes": "T1110 present among extra techniques; served credential-file dump doesn't address password brute forcing.",
+   "requested": "T1110",
+   "identified": [
+    "T1005",
+    "T1110",
+    "T1552"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0012": {
+   "ok": true,
+   "row_id": "R0012",
+   "notes": "Analysis identifies the exact requested technique, but served text is an unrelated shell error.",
+   "requested": "T1059",
+   "identified": [
+    "T1059"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0013": {
+   "ok": true,
+   "row_id": "R0013",
+   "notes": "Query names PowerShell execution (T1059.001) and analysis extracts both parent and sub-technique; bash error only echoes the query.",
+   "requested": "T1059.001",
+   "identified": [
+    "T1059",
+    "T1059.001"
+   ],
+   "identification": "correct",
+   "served_on_topic": "yes"
+  },
+  "R0148": {
+   "ok": true,
+   "row_id": "R0148",
+   "notes": "Analysis correctly lists Apt50 as the actor, while served text is just a shell 'command not found' echo of the query.",
+   "requested": "APT50",
+   "identified": [
+    "apt50"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0182": {
+   "ok": true,
+   "row_id": "R0182",
+   "notes": "Served ps output shows processes but no I/O-wait or per-process I/O data, so it only loosely touches the query; analysis contains no CTI fields as expected.",
+   "realism": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0085": {
+   "ok": true,
+   "row_id": "R0085",
+   "notes": "Query explicitly names T1059 and analysis extracts T1059; served text is a shell error echoing the query.",
+   "requested": "T1059",
+   "identified": [
+    "T1059"
+   ],
+   "identification": "correct",
+   "served_on_topic": "yes"
+  },
+  "R0133": {
+   "ok": true,
+   "row_id": "R0133",
+   "notes": "Analysis identifies Hafnium correctly; served text is only a bash 'command not found' echo with no substantive answer.",
+   "requested": "HAFNIUM",
+   "identified": [
+    "hafnium"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0206": {
+   "ok": true,
+   "row_id": "R0206",
+   "notes": "Shows load averages but never provides the baseline for comparison.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0218": {
+   "ok": true,
+   "row_id": "R0218",
+   "notes": "Apt upgradable list with USN patches directly answers the patch question in authentic shell form.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0198": {
+   "ok": true,
+   "row_id": "R0198",
+   "notes": "Returns login/wtmp output instead of cron modifications, with no prompt or issued command.",
+   "realism": "partial",
+   "served_on_topic": "no"
+  },
+  "R0072": {
+   "ok": true,
+   "row_id": "R0072",
+   "notes": "Analysis names Compromise Accounts (T1586) but served text is only a command-not-found error.",
+   "requested": "T1586",
+   "identified": [
+    "T1586",
+    "T1586.001"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0076": {
+   "ok": true,
+   "row_id": "R0076",
+   "notes": "T1195 present among extras, while served text is an unrelated command-not-found error.",
+   "requested": "T1195",
+   "identified": [
+    "T1195",
+    "T1566"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0134": {
+   "ok": true,
+   "row_id": "R0134",
+   "notes": "Actor correctly identified in analysis, but served text is only a bash command-not-found error.",
+   "requested": "SANDWORM",
+   "identified": [
+    "sandworm"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0082": {
+   "ok": true,
+   "row_id": "R0082",
+   "notes": "Analysis extracts the exact requested technique; served error output does not address it.",
+   "requested": "T1203",
+   "identified": [
+    "T1203"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0137": {
+   "ok": true,
+   "row_id": "R0137",
+   "notes": "Candidate actor matches APT37 (case variant), but served text is an irrelevant shell error.",
+   "requested": "APT37",
+   "identified": [
+    "apt37"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0101": {
+   "ok": true,
+   "row_id": "R0101",
+   "notes": "Precise sub-technique present among extracted techniques; served `id` output is off-topic.",
+   "requested": "T1204.001",
+   "identified": [
+    "T1204",
+    "T1204.001"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0205": {
+   "ok": true,
+   "row_id": "R0205",
+   "notes": "No analysis content and shell error is plausible machine output but does not address the SSH key check.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  },
+  "R0217": {
+   "ok": true,
+   "row_id": "R0217",
+   "notes": "Served text is authentic-looking `last` login output showing users and timestamps, but not sudo usage; analysis contains no findings.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0156": {
+   "ok": true,
+   "row_id": "R0156",
+   "notes": "Actor correctly extracted from query, but served text is only a bash command-not-found error.",
+   "requested": "CHARMING KITTEN",
+   "identified": [
+    "charming kitten"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0147": {
+   "ok": true,
+   "row_id": "R0147",
+   "notes": "Actor correctly extracted, but served text is only a bash command-not-found error.",
+   "requested": "EARTH LUSCA",
+   "identified": [
+    "earth lusca"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0142": {
+   "ok": true,
+   "row_id": "R0142",
+   "notes": "OceanLotus is the same actor as APT32; served text is only a command-not-found error.",
+   "requested": "APT32 OCEANLOTUS",
+   "identified": [
+    "oceanlotus"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0035": {
+   "ok": true,
+   "row_id": "R0035",
+   "notes": "Requested T1562 present but alongside unrelated T1027; served text is only a command-not-found error.",
+   "requested": "T1562",
+   "identified": [
+    "T1027",
+    "T1562"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0062": {
+   "ok": true,
+   "row_id": "R0062",
+   "notes": "T1102 present in analysis but served text is unrelated service/port listing.",
+   "requested": "T1102",
+   "identified": [
+    "T1071",
+    "T1102"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0139": {
+   "ok": true,
+   "row_id": "R0139",
+   "notes": "Solarwinds alias captures the family but exact UNC2452 name is absent and buried among unrelated actors.",
+   "requested": "UNC2452",
+   "identified": [
+    "solarwinds",
+    "cozy bear",
+    "fancy bear",
+    "hafnium",
+    "TURLA"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0145": {
+   "ok": true,
+   "row_id": "R0145",
+   "notes": "APT36 identified correctly while served text is only a bash command-not-found error.",
+   "requested": "TRANSPARENT TRIBE",
+   "identified": [
+    "apt36"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0127": {
+   "ok": true,
+   "row_id": "R0127",
+   "notes": "Actor correctly named in analysis but served text gives no topical content.",
+   "requested": "VOLT TYPHOON",
+   "identified": [
+    "volt typhoon"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0049": {
+   "ok": true,
+   "row_id": "R0049",
+   "notes": "Remote Services (T1021) identified; served systemd/ss output does not explain lateral movement.",
+   "requested": "T1021",
+   "identified": [
+    "T1021"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0105": {
+   "ok": true,
+   "row_id": "R0105",
+   "notes": "Analysis names only the parent credential-dumping family T1003, not DCSync T1003.006, and the served transcript shows local env/credential files with no DCSync or domain relevance.",
+   "requested": "T1003.006",
+   "identified": [
+    "T1003"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0106": {
+   "ok": true,
+   "row_id": "R0106",
+   "notes": "Right family T1003 is present but not the precise sub-technique, buried with T1005/T1552; reading .dbpass loosely touches password stores.",
+   "requested": "T1003.007",
+   "identified": [
+    "T1003",
+    "T1005",
+    "T1552"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0027": {
+   "ok": true,
+   "row_id": "R0027",
+   "notes": "T1068 explicitly extracted among extras, while the sudo -l/id transcript only indirectly illustrates privilege-escalation context without explaining the technique.",
+   "requested": "T1068",
+   "identified": [
+    "T1068",
+    "T1078",
+    "T1134",
+    "T1548"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0060": {
+   "ok": true,
+   "row_id": "R0060",
+   "notes": "T1573 (Encrypted Channel) correctly extracted, but the served command-not-found error contains no topical content about C2 encryption.",
+   "requested": "T1573",
+   "identified": [
+    "T1071",
+    "T1573"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0124": {
+   "ok": true,
+   "row_id": "R0124",
+   "notes": "Candidate actors correctly name Salt Typhoon, but the shell command-not-found output never addresses telecom targeting.",
+   "requested": "SALT TYPHOON",
+   "identified": [
+    "salt typhoon"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0197": {
+   "ok": true,
+   "row_id": "R0197",
+   "notes": "ps output does not address swap usage; empty analysis; text itself reads like authentic terminal output.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  },
+  "R0155": {
+   "ok": true,
+   "row_id": "R0155",
+   "notes": "Analysis correctly names APT43; bash error only echoes query with no relevant content.",
+   "requested": "APT43",
+   "identified": [
+    "apt43"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0201": {
+   "ok": true,
+   "row_id": "R0201",
+   "notes": "sysctl output directly answers the congestion control and qdisc question authentically.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0132": {
+   "ok": true,
+   "row_id": "R0132",
+   "notes": "Analysis includes Fancy Bear (and its alias APT28); served text is just a command-not-found error.",
+   "requested": "FANCY BEAR",
+   "identified": [
+    "apt28",
+    "fancy bear"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0177": {
+   "ok": true,
+   "row_id": "R0177",
+   "notes": "ps output shows processes but no network connections or socket owners; text itself looks like genuine terminal output.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  },
+  "R0086": {
+   "ok": true,
+   "row_id": "R0086",
+   "notes": "Analysis names parent technique T1021 but not the precise RDP sub-technique T1021.001; served text only echoes the query as a failed command.",
+   "requested": "T1021.001",
+   "identified": [
+    "T1021"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0002": {
+   "ok": true,
+   "row_id": "R0002",
+   "notes": "Analysis correctly maps spear phishing to T1566, but the served text is only a bash command-not-found echo with no topical content.",
+   "requested": "T1566",
+   "identified": [
+    "T1566"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0143": {
+   "ok": true,
+   "row_id": "R0143",
+   "notes": "Candidate actors contain Lazarus Group (query's APT38 is an alias), but served text is an unrelated shell error echoing the query.",
+   "requested": "LAZARUS GROUP",
+   "identified": [
+    "lazarus group"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0141": {
+   "ok": true,
+   "row_id": "R0141",
+   "notes": "Actor matches modulo casing, while the served ls output says nothing about DarkHotel.",
+   "requested": "DARKHOTEL",
+   "identified": [
+    "darkhotel"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0215": {
+   "ok": true,
+   "row_id": "R0215",
+   "notes": "Deception item with no actor/technique to identify; the w/who output with a wtmp begin timestamp is a realistic misconfigured reply only loosely related to uptime.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0116": {
+   "ok": true,
+   "row_id": "R0116",
+   "notes": "Only the parent T1539 was extracted, not the requested sub-technique T1539.001, and the shell error gives no topical content.",
+   "requested": "T1539.001",
+   "identified": [
+    "T1539"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0185": {
+   "ok": true,
+   "row_id": "R0185",
+   "notes": "The HTTP header dump never mentions the SELinux context but reads like authentic misconfigured machine output.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  },
+  "R0034": {
+   "ok": true,
+   "row_id": "R0034",
+   "notes": "T1211 is present among the extracted techniques, but the served shell error does not address the question.",
+   "requested": "T1211",
+   "identified": [
+    "T1027",
+    "T1211"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0031": {
+   "ok": true,
+   "row_id": "R0031",
+   "notes": "T1070 covers indicator removal in defense evasion as requested; the shell error provides no topical answer.",
+   "requested": "T1070",
+   "identified": [
+    "T1027",
+    "T1070"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0008": {
+   "ok": true,
+   "row_id": "R0008",
+   "notes": "Only the parent T1566 was extracted rather than T1566.001, and the shell error does not address phishing.",
+   "requested": "T1566.001",
+   "identified": [
+    "T1566"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0138": {
+   "ok": true,
+   "row_id": "R0138",
+   "notes": "Analysis names Apt27 among candidates, but served text is only a bash command-not-found error.",
+   "requested": "APT27",
+   "identified": [
+    "apt27",
+    "TURLA"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0024": {
+   "ok": true,
+   "row_id": "R0024",
+   "notes": "sudo -l NOPASSWD output directly illustrates sudo privilege abuse; only parent T1548 identified, not sub-technique T1548.003.",
+   "requested": "T1548.003",
+   "identified": [
+    "T1078",
+    "T1134",
+    "T1548"
+   ],
+   "identification": "partial",
+   "served_on_topic": "yes"
+  },
+  "R0188": {
+   "ok": true,
+   "row_id": "R0188",
+   "notes": "ss -tan output shows two TIME_WAIT connections, plausibly answering the query.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0194": {
+   "ok": true,
+   "row_id": "R0194",
+   "notes": "Served sudo -l/id/hostname session is authentic-looking but never lists listening ports.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  },
+  "R0030": {
+   "ok": true,
+   "row_id": "R0030",
+   "notes": "Analysis correctly extracts T1027, but served text is only an unrelated command menu.",
+   "requested": "T1027",
+   "identified": [
+    "T1027"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0010": {
+   "ok": true,
+   "row_id": "R0010",
+   "notes": "Analysis records the requested sub-technique, but served text is only a command-not-found error that never addresses the query.",
+   "requested": "T1195.002",
+   "identified": [
+    "T1195",
+    "T1195.002"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0056": {
+   "ok": true,
+   "row_id": "R0056",
+   "notes": "T1114 correctly extracted, yet served text is a bare bash error with no explanation of the technique.",
+   "requested": "T1114",
+   "identified": [
+    "T1114"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0187": {
+   "ok": true,
+   "row_id": "R0187",
+   "notes": "Served ps-style output is authentic-looking and shows per-process RSS but is neither sorted nor limited to top 5.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0126": {
+   "ok": true,
+   "row_id": "R0126",
+   "notes": "Actor correctly identified in analysis, but served text is only a command-not-found error unrelated to the question.",
+   "requested": "LAZARUS GROUP",
+   "identified": [
+    "lazarus group"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0193": {
+   "ok": true,
+   "row_id": "R0193",
+   "notes": "Plausible auditd service/status output, but auditctl -s shows status rather than the configured rules the query asked for.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0108": {
+   "ok": true,
+   "row_id": "R0108",
+   "notes": "T1080 present alongside related Discovery techniques, but served text is only an unrelated directory listing.",
+   "requested": "T1080",
+   "identified": [
+    "T1033",
+    "T1046",
+    "T1080"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0129": {
+   "ok": true,
+   "row_id": "R0129",
+   "notes": "Analysis lists Apt29/Cozy Bear correctly, but served text is just a command-not-found echo with no topical content.",
+   "requested": "APT29",
+   "identified": [
+    "apt29",
+    "cozy bear",
+    "fancy bear",
+    "hafnium",
+    "TURLA"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0144": {
+   "ok": true,
+   "row_id": "R0144",
+   "notes": "Carbanak is present in candidates, yet served text is an unrelated shell error echoing the query.",
+   "requested": "CARBANAK",
+   "identified": [
+    "fin7",
+    "carbanak"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0216": {
+   "ok": true,
+   "row_id": "R0216",
+   "notes": "Authentic-looking dmesg output showing hardware/ECC/NVMe errors directly answers the request.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0019": {
+   "ok": true,
+   "row_id": "R0019",
+   "notes": "T1543 identified correctly, but served ps output shows processes without addressing attacker persistence technique.",
+   "requested": "T1543",
+   "identified": [
+    "T1543",
+    "T1547"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0151": {
+   "ok": true,
+   "row_id": "R0151",
+   "notes": "APT27 present but buried with unrelated Turla; served text is only a shell error echoing the query.",
+   "requested": "APT27",
+   "identified": [
+    "apt27",
+    "TURLA"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0070": {
+   "ok": true,
+   "row_id": "R0070",
+   "notes": "T1490 correctly extracted alongside one extra, but served text is a command-not-found error with no topical content.",
+   "requested": "T1490",
+   "identified": [
+    "T1486",
+    "T1490"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0212": {
+   "ok": true,
+   "row_id": "R0212",
+   "notes": "resolv.conf output covers the DNS resolver half of the query but shows no exfiltration indicators; output reads like authentic host terminal.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0023": {
+   "ok": true,
+   "row_id": "R0023",
+   "notes": "T1543 correctly identified; service/port listings are machine-transcript evidence related to services but never explain the technique.",
+   "requested": "T1543",
+   "identified": [
+    "T1543",
+    "T1547"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0146": {
+   "ok": true,
+   "row_id": "R0146",
+   "notes": "Actor correctly identified from the query alone, while served text is only a bash command-not-found echo.",
+   "requested": "GHOSTEMPEROR",
+   "identified": [
+    "ghostemperor"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0099": {
+   "ok": true,
+   "row_id": "R0099",
+   "notes": "Analysis records only the parent T1564 rather than the requested sub-technique, and the served text is just an unrelated id dump.",
+   "requested": "T1564.004",
+   "identified": [
+    "T1564"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0107": {
+   "ok": true,
+   "row_id": "R0107",
+   "notes": "Analysis nails T1482, but the served text is only a 'command not found' echo of the query with no substance.",
+   "requested": "T1482",
+   "identified": [
+    "T1482"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0202": {
+   "ok": true,
+   "row_id": "R0202",
+   "notes": "Query names no technique or actor; analysis surfaces credential-access TTPs relevant to a shadow-file check, and the shadow dump reads like genuine machine output.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0026": {
+   "ok": true,
+   "row_id": "R0026",
+   "notes": "Analysis identifies exactly T1548 and the sudo -l NOPASSWD transcript directly demonstrates elevation-control abuse.",
+   "requested": "T1548",
+   "identified": [
+    "T1548"
+   ],
+   "identification": "correct",
+   "served_on_topic": "yes"
+  },
+  "R0135": {
+   "ok": true,
+   "row_id": "R0135",
+   "notes": "Darkside appears in candidate actors, but the served text is a bare id command output unrelated to the actor query.",
+   "requested": "DARKSIDE",
+   "identified": [
+    "darkside"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0067": {
+   "ok": true,
+   "row_id": "R0067",
+   "notes": "Analysis contains T1567; served transcript shows web-facing nginx ports but never explains the technique.",
+   "requested": "T1567",
+   "identified": [
+    "T1041",
+    "T1567"
+   ],
+   "identification": "correct",
+   "served_on_topic": "yes"
+  },
+  "R0122": {
+   "ok": true,
+   "row_id": "R0122",
+   "notes": "Only parent T1003 listed, missing the requested .005 sub-technique; served text is a command-not-found echo of the query.",
+   "requested": "T1003.005",
+   "identified": [
+    "T1003"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0084": {
+   "ok": true,
+   "row_id": "R0084",
+   "notes": "T1059 exactly identified but served text is just a bash command-not-found refusal with no content.",
+   "requested": "T1059",
+   "identified": [
+    "T1059"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0016": {
+   "ok": true,
+   "row_id": "R0016",
+   "notes": "Parent T1053 present without .005; crontab listing is directly on-topic for scheduled-task execution.",
+   "requested": "T1053.005",
+   "identified": [
+    "T1053"
+   ],
+   "identification": "partial",
+   "served_on_topic": "yes"
+  },
+  "R0050": {
+   "ok": true,
+   "row_id": "R0050",
+   "notes": "T1550 (alternate authentication material) is identified among extras; served text is only a command-not-found refusal.",
+   "requested": "T1550",
+   "identified": [
+    "T1021",
+    "T1550"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0032": {
+   "ok": true,
+   "row_id": "R0032",
+   "notes": "T1036 (masquerading) is extracted; command-not-found echo is an authentic misconfigured-machine reply to the query.",
+   "requested": "T1036",
+   "identified": [
+    "T1027",
+    "T1036"
+   ],
+   "identification": "correct",
+   "served_on_topic": "yes"
+  },
+  "R0158": {
+   "ok": true,
+   "row_id": "R0158",
+   "notes": "Candidate actor Cobalt matches Cobalt Group, but the served text only echoes the query into bash with no content about the actor.",
+   "requested": "COBALT GROUP",
+   "identified": [
+    "cobalt"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0081": {
+   "ok": true,
+   "row_id": "R0081",
+   "notes": "T1199 is directly extracted; served text is a bare command-not-found error with no topical substance.",
+   "requested": "T1199",
+   "identified": [
+    "T1199",
+    "T1566"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0096": {
+   "ok": true,
+   "row_id": "R0096",
+   "notes": "T1068 is extracted and the sudo/id transcript is plausibly privilege-escalation reconnaissance, but it never addresses exploitation.",
+   "requested": "T1068",
+   "identified": [
+    "T1068",
+    "T1078",
+    "T1134",
+    "T1548"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0120": {
+   "ok": true,
+   "row_id": "R0120",
+   "notes": "T1546 is extracted, yet the served text is only a command-not-found error unrelated to WMI persistence.",
+   "requested": "T1546",
+   "identified": [
+    "T1546",
+    "T1547"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0042": {
+   "ok": true,
+   "row_id": "R0042",
+   "notes": "Analysis correctly maps network service scanning to T1046, but the served transcript only enumerates local listening ports rather than scanning.",
+   "requested": "T1046",
+   "identified": [
+    "T1046"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0098": {
+   "ok": true,
+   "row_id": "R0098",
+   "notes": "Technique ID is captured precisely, but the served text is only a command-not-found error that echoes the query.",
+   "requested": "T1562.002",
+   "identified": [
+    "T1562",
+    "T1562.002"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0117": {
+   "ok": true,
+   "row_id": "R0117",
+   "notes": "Silver ticket sub-technique is identified correctly, yet the served transcript is just an unhelpful command-not-found error.",
+   "requested": "T1558.003",
+   "identified": [
+    "T1558",
+    "T1558.003"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0102": {
+   "ok": true,
+   "row_id": "R0102",
+   "notes": "Only the T1003 parent technique is extracted, and the served text shows env-file credential theft rather than SAM hive dumping.",
+   "requested": "T1003.002",
+   "identified": [
+    "T1003",
+    "T1005",
+    "T1552"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0057": {
+   "ok": true,
+   "row_id": "R0057",
+   "notes": "T1005 is identified correctly but the served text is solely a command-not-found error with no topical content.",
+   "requested": "T1005",
+   "identified": [
+    "T1005"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0089": {
+   "ok": true,
+   "row_id": "R0089",
+   "notes": "Analysis finds parent technique T1136 not the precise .001 sub-technique; served text is only a shell error.",
+   "requested": "T1136.001",
+   "identified": [
+    "T1136",
+    "T1547"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0087": {
+   "ok": true,
+   "row_id": "R0087",
+   "notes": "Exact technique identified; served text is an unrelated command-not-found error.",
+   "requested": "T1047",
+   "identified": [
+    "T1047"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0041": {
+   "ok": true,
+   "row_id": "R0041",
+   "notes": "T1552 is the right family but not the .004 sub-technique, while the served cat of env/pass files directly demonstrates unsecured credentials in files.",
+   "requested": "T1552.004",
+   "identified": [
+    "T1005",
+    "T1552"
+   ],
+   "identification": "partial",
+   "served_on_topic": "yes"
+  },
+  "R0059": {
+   "ok": true,
+   "row_id": "R0059",
+   "notes": "T1071 correctly identified from the described concept; served text is only an error echo of the query.",
+   "requested": "T1071",
+   "identified": [
+    "T1071"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0130": {
+   "ok": true,
+   "row_id": "R0130",
+   "notes": "Actor correctly identified; served text is a command-not-found error with no actor content.",
+   "requested": "APT41",
+   "identified": [
+    "apt41"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0109": {
+   "ok": true,
+   "row_id": "R0109",
+   "notes": "T1539 identified correctly, but served text shows env/DB credential files rather than browser session harvesting.",
+   "requested": "T1539",
+   "identified": [
+    "T1005",
+    "T1539",
+    "T1552"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0192": {
+   "ok": true,
+   "row_id": "R0192",
+   "notes": "Plain ps output never checks capabilities, though it reads like authentic machine output.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0214": {
+   "ok": true,
+   "row_id": "R0214",
+   "notes": "Shadow file lines with change dates answer the query and look authentic; analysis attributes unrelated credential-dump TTPs.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0066": {
+   "ok": true,
+   "row_id": "R0066",
+   "notes": "T1041 correctly extracted; served text is a plausible command-not-found transcript echoing the query.",
+   "requested": "T1041",
+   "identified": [
+    "T1041"
+   ],
+   "identification": "correct",
+   "served_on_topic": "yes"
+  },
+  "R0018": {
+   "ok": true,
+   "row_id": "R0018",
+   "notes": "T1547 correctly extracted from a realistic shell refusal transcript.",
+   "requested": "T1547",
+   "identified": [
+    "T1547"
+   ],
+   "identification": "correct",
+   "served_on_topic": "yes"
+  },
+  "R0078": {
+   "ok": true,
+   "row_id": "R0078",
+   "notes": "Analysis extracts T1190 exactly; served transcript shows the queried public-facing web server.",
+   "requested": "T1190",
+   "identified": [
+    "T1190"
+   ],
+   "identification": "correct",
+   "served_on_topic": "yes"
+  },
+  "R0088": {
+   "ok": true,
+   "row_id": "R0088",
+   "notes": "Only the parent technique T1547 is recorded, and the served text is just a command-not-found error.",
+   "requested": "T1547.001",
+   "identified": [
+    "T1547"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0170": {
+   "ok": true,
+   "row_id": "R0170",
+   "notes": "df -h output directly answers the disk-space question and reads like authentic machine output.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0164": {
+   "ok": true,
+   "row_id": "R0164",
+   "notes": "iptables -L output addresses the firewall query plausibly, with only cosmetic column quirks.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0020": {
+   "ok": true,
+   "row_id": "R0020",
+   "notes": "Account-creation persistence maps to T1136 which is present; served text is only a command-not-found error.",
+   "requested": "T1136",
+   "identified": [
+    "T1136",
+    "T1547"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0157": {
+   "ok": true,
+   "row_id": "R0157",
+   "notes": "Analysis correctly names Dragonfly, but served text is only a command-not-found error that does not address the query.",
+   "requested": "DRAGONFLY",
+   "identified": [
+    "dragonfly"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0176": {
+   "ok": true,
+   "row_id": "R0176",
+   "notes": "Deception query names no technique/actor; served crontab output is authentic-looking but covers only the webapp user, not all users as asked.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0074": {
+   "ok": true,
+   "row_id": "R0074",
+   "notes": "Requested T1583 present in extracted techniques, but served text is a command-not-found error.",
+   "requested": "T1583",
+   "identified": [
+    "T1583",
+    "T1586",
+    "T1586.001"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0071": {
+   "ok": true,
+   "row_id": "R0071",
+   "notes": "T1486 correctly identified in analysis; served text only echoes a bash command-not-found error.",
+   "requested": "T1486",
+   "identified": [
+    "T1486"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0046": {
+   "ok": true,
+   "row_id": "R0046",
+   "notes": "T1082 present among extracted techniques; served text is an unrelated command-not-found error.",
+   "requested": "T1082",
+   "identified": [
+    "T1046",
+    "T1082"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0153": {
+   "ok": true,
+   "row_id": "R0153",
+   "notes": "Analysis names Seedworm but served text is only a shell 'command not found' error.",
+   "requested": "SEEDWORM",
+   "identified": [
+    "seedworm"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0090": {
+   "ok": true,
+   "row_id": "R0090",
+   "notes": "Identified parent T1136 rather than sub-technique T1136.002, and served text is an unrelated command-not-found error.",
+   "requested": "T1136.002",
+   "identified": [
+    "T1136",
+    "T1547"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0208": {
+   "ok": true,
+   "row_id": "R0208",
+   "notes": "Served wtmp/login listing instead of cron inspection, but reads like plausible misconfigured machine output.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  },
+  "R0103": {
+   "ok": true,
+   "row_id": "R0103",
+   "notes": "Only generic T1003 recorded, and served text shows env-file credential reads rather than NTDS.dit dumping.",
+   "requested": "T1003.003",
+   "identified": [
+    "T1003"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0047": {
+   "ok": true,
+   "row_id": "R0047",
+   "notes": "T1046 correctly identified; served text lists local listening ports rather than describing network scanning.",
+   "requested": "T1046",
+   "identified": [
+    "T1046"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0207": {
+   "ok": true,
+   "row_id": "R0207",
+   "notes": "Docker listing is plausible machine output but shows no resource limits and includes a stopped container.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0161": {
+   "ok": true,
+   "row_id": "R0161",
+   "notes": "dpkg grep transcript directly lists deployed security tools in realistic format.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0104": {
+   "ok": true,
+   "row_id": "R0104",
+   "notes": "Analysis names only parent T1003 and unrequested actors; served text shows file-based credential access, not LSA/registry.",
+   "requested": "T1003.004",
+   "identified": [
+    "T1003"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0203": {
+   "ok": true,
+   "row_id": "R0203",
+   "notes": "ps-style output is realistic but lacks PPID column and shows no zombie/defunct processes.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0083": {
+   "ok": true,
+   "row_id": "R0083",
+   "notes": "Analysis captured only parent T1204; served text is just a 'command not found' error echoing the query.",
+   "requested": "T1204.002",
+   "identified": [
+    "T1204"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0168": {
+   "ok": true,
+   "row_id": "R0168",
+   "notes": "Query is about cron jobs (not a technique/actor); crontab output answers it authentically.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0004": {
+   "ok": true,
+   "row_id": "R0004",
+   "notes": "T1133 external remote services identified correctly; served text only shows running services/listening ports without addressing attacker usage.",
+   "requested": "T1133",
+   "identified": [
+    "T1021",
+    "T1133"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0021": {
+   "ok": true,
+   "row_id": "R0021",
+   "notes": "Only parent technique T1547 extracted, not sub-technique .001; served text is just a command-not-found refusal.",
+   "requested": "T1547.001",
+   "identified": [
+    "T1547"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0119": {
+   "ok": true,
+   "row_id": "R0119",
+   "notes": "T1203 present among techniques; served text is an irrelevant command-not-found refusal.",
+   "requested": "T1203",
+   "identified": [
+    "T1203",
+    "T1204"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0028": {
+   "ok": true,
+   "row_id": "R0028",
+   "notes": "Only parent T1548 extracted, missing .003 sub-technique; served text does not address the query.",
+   "requested": "T1548.003",
+   "identified": [
+    "T1548"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  }
+ }
+}

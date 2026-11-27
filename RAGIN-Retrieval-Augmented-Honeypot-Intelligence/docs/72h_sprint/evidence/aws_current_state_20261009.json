@@ -1,0 +1,48 @@
+{
+  "observed_utc": "2026-10-09",
+  "region": "eu-north-1",
+  "account": "REDACTED_ACCOUNT",
+  "vpc": "vpc-044a70ed680faff8b",
+  "instances": {
+    "RAGIN-CORE": {
+      "id": "i-062a400b300f4f9e4",
+      "state": "running",
+      "type": "m7i-flex.large",
+      "private_ip": "172.31.17.217",
+      "public_ip": "REDACTED_FLEET_HOST",
+      "subnet": "subnet-0f8d7698fde97f83b",
+      "security_group": "sg-03486d70769d21e4e",
+      "imds_tokens": "required",
+      "imds_hop_limit": 1,
+      "ssm": "Online"
+    },
+    "RAGIN-EDGE": {
+      "id": "i-05bc6aab0bd4260a7",
+      "state": "running",
+      "type": "t3.micro",
+      "private_ip": "172.31.35.203",
+      "public_ip": "REDACTED_FLEET_HOST",
+      "subnet": "subnet-04d02e21747154d7a",
+      "security_group": "sg-077b8f78668f4f646",
+      "imds_tokens": "required",
+      "imds_hop_limit": 1,
+      "ssm": "Online"
+    }
+  },
+  "private_management": {
+    "eic_endpoint": "eice-023d2c69cb6690c48",
+    "state": "create-complete",
+    "subnet": "subnet-07fae34b3db734bb2",
+    "security_group": "sg-05f6e3f406f0c9be2",
+    "private_route_table": "rtb-04bf376f929483d4c",
+    "private_route": "172.31.0.0/16 local"
+  },
+  "storage": {
+    "core_root": {"volume": "vol-0537ee06e67f63cc5", "size_gib": 40, "encrypted": false},
+    "edge_root": {"volume": "vol-05925e722a36cd345", "size_gib": 20, "encrypted": false}
+  },
+  "flow_logs": "none_observed",
+  "cost_explorer_2026_10_02_to_2026_10_09_unblended": "0 USD per returned day",
+  "sg_egress": "0.0.0.0/0 on both dedicated RAGIN security groups",
+  "public_exposure": "no public Cowrie or RAGIN application listener opened"
+}

@@ -1,0 +1,96 @@
+{
+  "freeze_version": "expert_ai_panel_preregistration_freeze_v1",
+  "freeze_status": "FROZEN_PRE_ANNOTATION",
+  "freeze_date": "2026-10-13",
+  "panel_type": "MULTI_MODEL_INDEPENDENT_AI_SESSIONS",
+  "annotation_started": false,
+  "annotation_completed": false,
+  "case_count": 120,
+  "case_set": "FROZEN_V3",
+  "resource_constraint_reason": "Preserve remaining model-usage quota while maintaining model diversity.",
+  "frontier_models_reserved": true,
+  "annotation_task_uses_cost_aware_models": true,
+  "assignments": {
+    "expert_ai_01": {
+      "assigned_model": "GPT-6-Luna",
+      "reasoning_effort": "MEDIUM"
+    },
+    "expert_ai_02": {
+      "assigned_model": "GPT-5.6-Sol",
+      "reasoning_effort": "MEDIUM"
+    },
+    "expert_ai_03": {
+      "assigned_model": "GPT-5.6-Terra",
+      "reasoning_effort": "MEDIUM"
+    }
+  },
+  "preserved_scientific_rules": [
+    "three separate sessions",
+    "separate contexts",
+    "separate shuffled packet order",
+    "no repository access",
+    "no web search",
+    "no communication between annotators",
+    "same V3 taxonomy",
+    "same V3 semantic instructions",
+    "same aggregation policy"
+  ],
+  "model_assignment_gate": {
+    "observed_model_verification_required": true,
+    "mismatch": {
+      "model_assignment_violation": true,
+      "run_validity": "INVALID_MODEL_ASSIGNMENT",
+      "silent_substitution": false
+    }
+  },
+  "integrity_inputs": {
+    "protocol": {
+      "path": "docs/laya_integration/EXPERT_AI_REFERENCE_STANDARD_PROTOCOL_V1.md",
+      "sha256": "1ade4fa5c114bf9fca4d71415fa059bb8e0958a737611d66994fa6ae2857a09d"
+    },
+    "manifest": {
+      "path": "results/laya_research/expert_ai_panel_manifest_v1.json",
+      "sha256": "06a872f8d0c0cc605a38d1ca8671c7e8be1105ed6143356a7369683c944bf0ed"
+    },
+    "workspaces": [
+      {
+        "session_id": "expert_ai_01",
+        "run_metadata_template": {
+          "path": "results/laya_research/expert_ai_workspaces/expert_ai_01/RUN_METADATA_TEMPLATE.json",
+          "sha256": "5c13ae2b3341dba3e40cf770b1f47ea9029251834a2600e684699ef65ca85604"
+        },
+        "annotator_prompt": {
+          "path": "results/laya_research/expert_ai_workspaces/expert_ai_01/ANNOTATOR_PROMPT.md",
+          "sha256": "1b5f854648adf869add976808cb0569b4cc59f83c7fb904ce70a2e14ba5af022"
+        }
+      },
+      {
+        "session_id": "expert_ai_02",
+        "run_metadata_template": {
+          "path": "results/laya_research/expert_ai_workspaces/expert_ai_02/RUN_METADATA_TEMPLATE.json",
+          "sha256": "f75a1626e7625b0a289365f72d8f29ebbd3e1fdbd83613da83982c3011cad5c3"
+        },
+        "annotator_prompt": {
+          "path": "results/laya_research/expert_ai_workspaces/expert_ai_02/ANNOTATOR_PROMPT.md",
+          "sha256": "cac94f2dcb1037ec20c904f7966bd3502294f998d68b56f2480ad822f501992b"
+        }
+      },
+      {
+        "session_id": "expert_ai_03",
+        "run_metadata_template": {
+          "path": "results/laya_research/expert_ai_workspaces/expert_ai_03/RUN_METADATA_TEMPLATE.json",
+          "sha256": "4509453174b15978a5bf40f434026c31acd3e43df5aa06be4a2a789eb065f9d8"
+        },
+        "annotator_prompt": {
+          "path": "results/laya_research/expert_ai_workspaces/expert_ai_03/ANNOTATOR_PROMPT.md",
+          "sha256": "ad57190ddafe2751ba223637672f1d8237d06e9eea818e87947b99fe116fe8e2"
+        }
+      }
+    ]
+  },
+  "annotation_boundary": {
+    "previous_case_level_annotations_accessed_for_this_freeze": false,
+    "predictions_accessed_for_this_freeze": false,
+    "ground_truth_accessed_for_this_freeze": false
+  }
+}

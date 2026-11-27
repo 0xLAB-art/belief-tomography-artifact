@@ -1,0 +1,38 @@
+{
+  "schema": "ragin.evidence_support_ai_annotation_run_amendment.v1",
+  "amended_at_utc": "2026-10-14T16:25:38Z",
+  "input_freeze_sha256": "425e3282effff74069dacab759054c9a450509d93f41ab932c8cd115a48b4c57",
+  "protocol_sha256": "3977accab8e98711db1a5c1ee84623a18091f4331062dd74eca3c018d9c2512e",
+  "prompt_sha256": "2e221fee07e5d9f4f884ed59dbad5aa6057fe8ba115b50547f72ad717e61dc71",
+  "model_catalog_sha256": "d5c3191e97c4a7eba1916e2daf1c163fa0a8d55b4488607bc80e92a8c19968ef",
+  "runner_path": "scripts/evidence_support_ai_reference_v1.py",
+  "runner_sha256": "7c6d6e4cf77cdbef8e687e66efb6667c488b1f07e8a65618ce3e4ce1550bd102",
+  "reason": "The OpenRouter endpoint returned HTTP-200 error envelopes for provider overload, which the first runner version misclassified as empty content. One subsequent batch request was interrupted without a captured response while diagnosing the long wait.",
+  "scope_change": "None. Model IDs, prompt, batch inputs, label schema, aggregation, and source packet are unchanged.",
+  "observed_provider_errors": [
+    {
+      "rater_id": "AI-R1",
+      "batch_index": 1,
+      "attempt": 1,
+      "provider_error_code": 503,
+      "provider_error_message": "Upstream error from Nvidia: Service temporarily overloaded",
+      "raw_response_sha256": "bc17bdfef2bfd11124e8aaa0dfe8137db89dba6a50551d24985c90ce79a66af2"
+    },
+    {
+      "rater_id": "AI-R1",
+      "batch_index": 2,
+      "attempt": 1,
+      "provider_error_code": 503,
+      "provider_error_message": "Upstream error from Nvidia: Service temporarily overloaded",
+      "raw_response_sha256": "7286b586f81d3b09262ea8ee59ab5ba80ec4a09b0fcd6a3a5917afdd76190de0"
+    }
+  ],
+  "interrupted_request": {
+    "rater_id": "AI-R1",
+    "batch_index": 3,
+    "request_body_sha256": "c7e4321890cd395352ad0110fb9f598918224ef557fc213b007655533e642b5a",
+    "status": "sent, response not captured; retry only exact frozen request"
+  },
+  "recovery": "Classify provider error envelopes explicitly and allow only the two exact retries already declared in the frozen protocol. Prior raw responses remain immutable.",
+  "usable_annotation_outputs_before_amendment": 0
+}

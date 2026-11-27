@@ -1,0 +1,721 @@
+{
+  "instructions": "Assign one taxonomy label or UNRESOLVED. Do not infer an expected answer.",
+  "allowed_labels": [
+    "BENIGN",
+    "RECON",
+    "SUSPICIOUS",
+    "EXPLOITATION",
+    "PRIVILEGE_ESCALATION",
+    "DATA_ACCESS",
+    "PERSISTENCE",
+    "OTHER_ATTACK",
+    "UNCERTAIN",
+    "UNRESOLVED"
+  ],
+  "cases": [
+    {
+      "case_id": "f2135da32462",
+      "evidence": "Access target via trusted relationship T1199 initial access",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "UNCERTAIN",
+          "note": "Generic trusted relationship access phrase lacks a concrete action or evidence of relationship abuse."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "OTHER_ATTACK",
+          "note": "Evidence describes carrying out an access or attack technique, without enough detail for a narrower impact label."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "OTHER_ATTACK",
+          "note": "Explicit trusted-relationship initial access is stated."
+        }
+      ]
+    },
+    {
+      "case_id": "284c37e21b6f",
+      "evidence": "Achieve execution via WMI T1047 on remote endpoint",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "UNCERTAIN",
+          "note": "Mentions remote WMI execution without a command, payload, or demonstrated attack behavior."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "BENIGN",
+          "note": "Text asks for information or shows routine system status; no attack action is evidenced."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "OTHER_ATTACK",
+          "note": "Explicit remote WMI execution is stated."
+        }
+      ]
+    },
+    {
+      "case_id": "19595b9defea",
+      "evidence": "Execute Python script T1059 for command and scripting",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "UNCERTAIN",
+          "note": "Requests an unspecified Python script; technique identifier does not reveal its behavior."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "EXPLOITATION",
+          "note": "Evidence states an active exploit, injected query, payload, or command execution action."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "OTHER_ATTACK",
+          "note": "Explicit Python script execution is stated."
+        }
+      ]
+    },
+    {
+      "case_id": "696bc28d12ab",
+      "evidence": "Which users have sudo access and their last sudo timestamps?",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Requests sudo access and usage timestamps; an account audit without abuse shown."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Requests sudo-access and timestamp information."
+        }
+      ]
+    },
+    {
+      "case_id": "e9d7fd684ef2",
+      "evidence": "user@host:~$ find /etc -name '*.conf' 2>/dev/null | head -n 20\n/etc/xattr.conf\n/etc/modules-load.d/cups-filters.conf\n/etc/modules-load.d/modules.conf\n/etc/lighttpd/conf-enabled/90-javascript-alias.conf\n/etc/lighttpd/conf-available/90-javascript-alias.conf\n/etc/apport/crashdb.conf\n/etc/dkms/framework.conf\n/etc/conky/conky.conf\n/etc/conky/conky_no_x11.conf\n/etc/inxi.conf\n/etc/pam.conf\n/etc/sysctl.d/10-console-messages.conf\n/etc/sysctl.d/10-kernel-hardening.conf\n/etc/sysctl.d/99-sysctl.conf\n/etc/sysctl.d/10-map-count.conf\n/etc/sysctl.d/10-bufferbloat.conf\n/etc/sysctl.d/10-zeropage.conf\n/etc/sysctl.d/99-userns.conf\n/etc/sysctl.d/10-magic-sysrq.conf\n/etc/sysctl.d/10-network-security.conf\nuser@host:~$ cat /proc/version\nLinux version 7.0.0-34-generic (buildd@lcy02-amd64-117) (x86_64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #34~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Sep  4 15:38:29 UTC 2",
+      "neutral_context": "Observed command sequence containing multiple commands.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Lists configuration file paths and reads kernel version; no sensitive file contents or attack action."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Shows configuration-file and kernel-version output."
+        }
+      ]
+    },
+    {
+      "case_id": "62858210e1be",
+      "evidence": "Show me the current iptables rules with packet and byte counters",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Requests current firewall rules and counters; configuration monitoring."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Requests iptables rules and counters."
+        }
+      ]
+    },
+    {
+      "case_id": "33a06fdd0a8a",
+      "evidence": "What is the DNS resolver config and exfiltration indicators?",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Requests DNS configuration and exfiltration indicators; inspection rather than exfiltration."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Requests DNS resolver configuration and indicators."
+        }
+      ]
+    },
+    {
+      "case_id": "2ebc1972a455",
+      "evidence": "Describe T1003.001 OS Credential Dumping LSASS memory",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Requests a description of LSASS dumping; no memory dump operation."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "DATA_ACCESS",
+          "note": "Evidence requests or performs collection of credentials or sensitive system/user data."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Describes credential dumping conceptually."
+        }
+      ]
+    },
+    {
+      "case_id": "0a1631f174eb",
+      "evidence": "What processes are listening on privileged ports below 1024?",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Requests processes listening on low ports; routine service inspection alone."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Requests processes listening on privileged ports."
+        }
+      ]
+    },
+    {
+      "case_id": "d35ac996d465",
+      "evidence": "What is defense evasion via process injection?",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Asks about process injection as evasion; no injection operation."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "OTHER_ATTACK",
+          "note": "Evidence describes carrying out an access or attack technique, without enough detail for a narrower impact label."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Asks about process injection conceptually."
+        }
+      ]
+    },
+    {
+      "case_id": "16cb0880a2cb",
+      "evidence": "List all Docker containers currently running and their resource usage",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Requests running containers and resource usage; routine operational inspection."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Requests current Docker container and resource information."
+        }
+      ]
+    },
+    {
+      "case_id": "fd65c582c594",
+      "evidence": "Check whether any cron job has been modified in the last 7 days across all users",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Checks cron modification history; no scheduled task is installed."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Checks recently modified cron jobs."
+        }
+      ]
+    },
+    {
+      "case_id": "3382fcf5cfed",
+      "evidence": "Describe T1046 Network Service Discovery scanning",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Requests description of service discovery scanning; no scan performed."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Describes network service discovery conceptually."
+        }
+      ]
+    },
+    {
+      "case_id": "b67c56f26222",
+      "evidence": "Show all established connections to port 3306 MySQL from which source IPs?",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Requests existing MySQL connection sources; ordinary network monitoring."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Requests established database connection information."
+        }
+      ]
+    },
+    {
+      "case_id": "e4e12ed202b2",
+      "evidence": "Embedded content macro T1203 client execution",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "UNCERTAIN",
+          "note": "Names a macro and client execution technique without a payload or concrete exploit behavior."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "EXPLOITATION",
+          "note": "Evidence states an active exploit, injected query, payload, or command execution action."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "OTHER_ATTACK",
+          "note": "Explicit malicious macro client execution is stated."
+        }
+      ]
+    },
+    {
+      "case_id": "5a6878345104",
+      "evidence": "Show me the network interfaces and their configurations",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Requests interface configurations; ordinary network inventory alone."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Requests network-interface configuration."
+        }
+      ]
+    },
+    {
+      "case_id": "cd05ba19d2bb",
+      "evidence": "Keylogging T1056 for credential capture on endpoint",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "DATA_ACCESS",
+          "note": "Specifies keylogging for credential capture; no captured credentials shown."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "OTHER_ATTACK",
+          "note": "Evidence describes carrying out an access or attack technique, without enough detail for a narrower impact label."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "DATA_ACCESS",
+          "note": "Explicit keylogging for credential capture is stated."
+        }
+      ]
+    },
+    {
+      "case_id": "7e590931dfa8",
+      "evidence": "Leverage default credentials T1078.001 for initial access",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "UNCERTAIN",
+          "note": "Mentions using default credentials for access without a target, authentication attempt, or bypass evidence."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "OTHER_ATTACK",
+          "note": "Evidence describes carrying out an access or attack technique, without enough detail for a narrower impact label."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "OTHER_ATTACK",
+          "note": "Explicit use of default credentials for initial access."
+        }
+      ]
+    },
+    {
+      "case_id": "b8b12778c351",
+      "evidence": "Check if any cron jobs were added in last 48 hours",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Checks recent cron additions; does not create or modify scheduled execution."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Checks for recently added cron jobs."
+        }
+      ]
+    },
+    {
+      "case_id": "71f70f1d5dab",
+      "evidence": "Describe collection via screen capture",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Requests a description of screen capture collection; no capture operation."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "DATA_ACCESS",
+          "note": "Evidence requests or performs collection of credentials or sensitive system/user data."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Describes screen-capture collection conceptually."
+        }
+      ]
+    },
+    {
+      "case_id": "4ead15e5c85b",
+      "evidence": "What third-party packages are installed and their versions?",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Requests installed package versions; ordinary software inventory alone."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Requests installed package and version information."
+        }
+      ]
+    },
+    {
+      "case_id": "e3a8981929e6",
+      "evidence": "Persistence via T1574 Hijack Execution Flow DLL side-load",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "UNCERTAIN",
+          "note": "Names DLL side-loading persistence without a file change, command, or concrete mechanism being applied."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "BENIGN",
+          "note": "Text asks for information or shows routine system status; no attack action is evidenced."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "PERSISTENCE",
+          "note": "Explicit DLL side-loading persistence is stated."
+        }
+      ]
+    },
+    {
+      "case_id": "85e362153fb9",
+      "evidence": "SELECT * FROM users WHERE 1=1 OR 1=1",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "DATA_ACCESS",
+          "note": "SQL statement selects all rows from users using a true predicate; injection context and results are absent."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "EXPLOITATION",
+          "note": "Evidence states an active exploit, injected query, payload, or command execution action."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "EXPLOITATION",
+          "note": "SQL tautology payload indicates injection exploitation."
+        }
+      ]
+    },
+    {
+      "case_id": "de020058d388",
+      "evidence": "deploy a reverse shell on port 4444",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "OTHER_ATTACK",
+          "note": "Requests deploying a reverse shell on port 4444; remote command channel setup, with no result shown."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "EXPLOITATION",
+          "note": "Evidence states an active exploit, injected query, payload, or command execution action."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "OTHER_ATTACK",
+          "note": "Explicit reverse-shell deployment is stated."
+        }
+      ]
+    },
+    {
+      "case_id": "f1aae1c198d1",
+      "evidence": "Access VPN T1133 external remote services initial access",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "UNCERTAIN",
+          "note": "Mentions VPN access and a technique identifier without showing bypass, credential abuse, or a concrete command."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "OTHER_ATTACK",
+          "note": "Evidence describes carrying out an access or attack technique, without enough detail for a narrower impact label."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "OTHER_ATTACK",
+          "note": "Explicit external VPN access is stated."
+        }
+      ]
+    },
+    {
+      "case_id": "177f12fec88d",
+      "evidence": "List all active firewall rules with hit counts",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Requests firewall rules and hit counters; ordinary configuration inspection."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Requests active firewall rules and counters."
+        }
+      ]
+    },
+    {
+      "case_id": "edb3b3b9ce8e",
+      "evidence": "What OS is installed on the servers?",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Asks which OS is installed; ordinary inventory query alone."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Asks which operating system is installed."
+        }
+      ]
+    },
+    {
+      "case_id": "88837c8a2ebc",
+      "evidence": "What is T1190 Exploit Public-Facing Application?",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Asks for a public-facing application exploit technique definition; no exploit request."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "EXPLOITATION",
+          "note": "Evidence states an active exploit, injected query, payload, or command execution action."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Asks for the definition of an ATT&CK technique."
+        }
+      ]
+    },
+    {
+      "case_id": "c2f9e8c4c74e",
+      "evidence": "Check last password changes for all users in /etc/shadow",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Requests password change dates specifically; no password hash extraction requested."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "DATA_ACCESS",
+          "note": "Evidence requests or performs collection of credentials or sensitive system/user data."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "DATA_ACCESS",
+          "note": "Requests password-change data from /etc/shadow."
+        }
+      ]
+    },
+    {
+      "case_id": "528850ef9193",
+      "evidence": "What web server are you running?",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Asks for the running web server; ordinary service identification alone."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Asks which web server is running."
+        }
+      ]
+    },
+    {
+      "case_id": "0cefcd8a03b7",
+      "evidence": "Show me the crontab for all users on this system",
+      "neutral_context": "Observed command sequence.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "BENIGN",
+          "note": "Requests existing user crontabs; no persistence modification shown."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "RECON",
+          "note": "Evidence enumerates local configuration, services, accounts, network state, or scheduled jobs."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "BENIGN",
+          "note": "Requests users' crontab entries."
+        }
+      ]
+    },
+    {
+      "case_id": "1bb93b1e99a7",
+      "evidence": "asdfjqyz\nasdfjqyz",
+      "neutral_context": "Observed command sequence containing multiple commands.",
+      "annotations": [
+        {
+          "rater": "RATER_A",
+          "label": "UNCERTAIN",
+          "note": "Repeated unknown command token has no defined behavior or output."
+        },
+        {
+          "rater": "RATER_B",
+          "label": "BENIGN",
+          "note": "Text is an instruction-like or malformed string; it shows no executed attack behavior."
+        },
+        {
+          "rater": "RATER_C",
+          "label": "UNCERTAIN",
+          "note": "Uninterpretable repeated token has no defensible class."
+        }
+      ]
+    }
+  ]
+}

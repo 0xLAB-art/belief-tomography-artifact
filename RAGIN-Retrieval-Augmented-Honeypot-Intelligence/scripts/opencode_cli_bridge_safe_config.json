@@ -1,0 +1,30 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "ragin-safe": {
+      "description": "RAGIN text completion agent with all tools disabled",
+      "mode": "primary",
+      "permission": {
+        "*": "deny",
+        "bash": "deny",
+        "edit": "deny",
+        "external_directory": "deny",
+        "glob": "deny",
+        "grep": "deny",
+        "list": "deny",
+        "read": "deny",
+        "question": "deny",
+        "skill": "deny",
+        "task": "deny",
+        "todowrite": "deny",
+        "lsp": "deny",
+        "websearch": "deny",
+        "webfetch": "deny",
+        "write": "deny"
+      },
+      "tools": {
+        "*": false
+      }
+    }
+  }
+}

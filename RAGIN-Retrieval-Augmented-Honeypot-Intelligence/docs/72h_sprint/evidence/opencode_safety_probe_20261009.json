@@ -1,0 +1,17 @@
+{
+  "timestamp_utc": "2026-10-09T04:27:52Z",
+  "component": "OpenCode CLI completion safety boundary",
+  "model": "opencode/ling-3.1-flash-free",
+  "configuration": "minimal custom agent without tools or permission restrictions",
+  "provider_result": "short model response returned",
+  "reported_cost": 0,
+  "tool_probe": {
+    "request": "execute a bounded printf command through the bash tool",
+    "result": "bash tool executed successfully",
+    "deployment_decision": "REJECTED"
+  },
+  "conclusion": "The minimal configuration retains default OpenCode tool permissions and is unsafe for attacker-derived RAGIN input. The deny-all configuration remains required but is rejected by the free-tier provider with HTTP 403.",
+  "aws_mutation": false,
+  "public_exposure": false,
+  "secrets_recorded": false
+}

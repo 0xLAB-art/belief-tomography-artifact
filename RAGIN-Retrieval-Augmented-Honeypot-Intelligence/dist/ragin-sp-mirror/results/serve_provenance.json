@@ -1,0 +1,109 @@
+{
+  "what": "Serve-path provenance for the live campaigns: share of served responses produced by verified generation (LLM draft + verifier) vs served from vetted deterministic content (protocol/bait fast-paths and, in the limiting case, fallback transcripts)",
+  "method": "latency split: gateway round-trip dominates any LLM-in-the-loop turn; vetted fast-paths complete well under 4 s. Threshold sensitivity reported.",
+  "threshold_ms": 4000,
+  "runs": [
+    {
+      "source": "live_benchmark_zodiac_20260922.json",
+      "threshold_ms": 4000,
+      "per_suite": {
+        "CTI technique": {
+          "llm_verified": 100,
+          "vetted_deterministic": 23,
+          "n": 123,
+          "llm_verified_pct": 81.3,
+          "vetted_deterministic_pct": 18.7
+        },
+        "CTI actor": {
+          "llm_verified": 35,
+          "vetted_deterministic": 0,
+          "n": 35,
+          "llm_verified_pct": 100.0,
+          "vetted_deterministic_pct": 0.0
+        },
+        "Persona": {
+          "llm_verified": 57,
+          "vetted_deterministic": 3,
+          "n": 60,
+          "llm_verified_pct": 95.0,
+          "vetted_deterministic_pct": 5.0
+        }
+      },
+      "total": {
+        "llm_verified": 192,
+        "vetted_deterministic": 26,
+        "n": 218,
+        "llm_verified_pct": 88.1,
+        "vetted_deterministic_pct": 11.9
+      }
+    },
+    {
+      "source": "live_benchmark_zodiac_20260922_run2.json",
+      "threshold_ms": 4000,
+      "per_suite": {
+        "CTI technique": {
+          "llm_verified": 99,
+          "vetted_deterministic": 24,
+          "n": 123,
+          "llm_verified_pct": 80.5,
+          "vetted_deterministic_pct": 19.5
+        },
+        "CTI actor": {
+          "llm_verified": 35,
+          "vetted_deterministic": 0,
+          "n": 35,
+          "llm_verified_pct": 100.0,
+          "vetted_deterministic_pct": 0.0
+        },
+        "Persona": {
+          "llm_verified": 56,
+          "vetted_deterministic": 4,
+          "n": 60,
+          "llm_verified_pct": 93.3,
+          "vetted_deterministic_pct": 6.7
+        }
+      },
+      "total": {
+        "llm_verified": 190,
+        "vetted_deterministic": 28,
+        "n": 218,
+        "llm_verified_pct": 87.2,
+        "vetted_deterministic_pct": 12.8
+      }
+    }
+  ],
+  "threshold_sensitivity": {
+    "2000": [
+      {
+        "source": "live_benchmark_zodiac_20260922.json",
+        "llm_verified_pct": 88.1
+      },
+      {
+        "source": "live_benchmark_zodiac_20260922_run2.json",
+        "llm_verified_pct": 88.1
+      }
+    ],
+    "6000": [
+      {
+        "source": "live_benchmark_zodiac_20260922.json",
+        "llm_verified_pct": 86.7
+      },
+      {
+        "source": "live_benchmark_zodiac_20260922_run2.json",
+        "llm_verified_pct": 82.6
+      }
+    ],
+    "10000": [
+      {
+        "source": "live_benchmark_zodiac_20260922.json",
+        "llm_verified_pct": 77.1
+      },
+      {
+        "source": "live_benchmark_zodiac_20260922_run2.json",
+        "llm_verified_pct": 67.0
+      }
+    ]
+  },
+  "fallback_serves": "zero: no row in either run records a failed verifier verdict (the fail-safe template swap never engaged); the vetted split is the loop's designed deterministic rung, not degradation",
+  "reading": "the composite (0.880) is therefore ~88% a measure of verified generative quality and ~12% of vetted deterministic content quality \u2014 both serve paths are part of the system's contract, and the paper reports the split rather than letting the composite blur it"
+}

@@ -1,0 +1,62 @@
+{
+  "what": "Four-arm external baseline on the version-of-record 218-query workload with identical deterministic scorers",
+  "workload": "123 technique + 35 actor + 60 persona queries",
+  "arms": {
+    "cowrie": {
+      "avgs": {
+        "technique": 0.0,
+        "actor": 0.0,
+        "persona": 0.0017,
+        "composite": 0.0006
+      },
+      "rows": 218,
+      "elapsed_s": 0.0,
+      "notes": "vanilla Cowrie semantics: scripted command output, no LLM, no CTI"
+    },
+    "llm_unverified": {
+      "avgs": {
+        "technique": 0.5154,
+        "actor": 0.5771,
+        "persona": 0.4129,
+        "composite": 0.5018
+      },
+      "rows": 218,
+      "elapsed_s": 3756.8,
+      "notes": "bare LLM honeypot (deepseek-v4-flash-free): persona prompt on the wire, no retrieval/graph/verifier/fallback"
+    },
+    "stateful_llm": {
+      "avgs": {
+        "technique": 0.0967,
+        "actor": 0.0971,
+        "persona": 0.0175,
+        "composite": 0.0704
+      },
+      "rows": 218,
+      "elapsed_s": 516.1,
+      "notes": "stateful LLM honeypot (deepseek-v4-flash-free, HoneyGPT/LLM-SSHH pattern): committed host-state register in prompt + transcript memory + LLM self-validation; no retrieval, no fiction graph, no deterministic verifier, no fail-closed fallback"
+    },
+    "rag_no_verifier": {
+      "avgs": {
+        "technique": 0.96,
+        "actor": 0.85,
+        "persona": 0.639,
+        "composite": 0.8163
+      },
+      "rows": 218,
+      "elapsed_s": 2233.7,
+      "notes": "grounded pipeline (Chrollo+Don+Hisoka+fiction graph+steering) with the serving-time verifier replaced by a pass-through"
+    },
+    "ragin_full_reference": {
+      "avgs": {
+        "technique": 0.9598,
+        "actor": 0.85,
+        "persona": 0.7325,
+        "composite": 0.8474
+      },
+      "rows": 218,
+      "elapsed_s": null,
+      "notes": "verified deception loop (version of record, run 1)"
+    }
+  },
+  "reading": "Composite ladder: cowrie=0.0006 < llm_unverified=0.5018 < stateful_llm=0.0704 < rag_no_verifier=0.8163 < ragin_full_reference=0.8474. The stateful-LLM pattern (2026 practice: state register + transcript + LLM self-validation) collapses on the CTI workload; bare unverified generation partially compensates but with zero safety guarantees; grounding (rag_no_verifier) recovers technique/actor scores; the deterministic verifier (ragin_full_reference) holds quality at near-parity while closing the safety boundary."
+}

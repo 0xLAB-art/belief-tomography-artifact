@@ -1,0 +1,588 @@
+% ---------------------------------------------------------------------------
+% Supplement (pages 14-18): deep evaluation detail moved out of the main body.
+% The main text cites these tables/paragraphs by label; all \ref resolve because
+% this file compiles in the same document as the main body.
+% ---------------------------------------------------------------------------
+\section{Generator Provenance per Surface}
+\label{app:provenance}
+
+\begin{table*}[t]
+\centering
+\caption{Generator provenance per measured surface. The campaign, the ladder,
+and the scorer audit were produced by three different generators; no number is
+compared across rows.}
+\label{tab:provenance}
+\scriptsize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{p{0.33\textwidth}>{\raggedright\arraybackslash}p{0.60\textwidth}}
+\toprule
+Surface & Generator / gateway \\
+\midrule
+Paired grounding ablation (Table~\ref{tab:b4})
+  & not logged (pre-pin gateway default) \\
+Version-of-record campaign (Table~\ref{tab:live})
+  & not logged (pre-pin gateway default) \\
+Same-model ladder (Table~\ref{tab:baseline-served-text})
+  & \texttt{deepseek-v4-flash-free} on \texttt{api.apmix.ai} \\
+Scorer-validity audit corpus (main \S\ref{sec:scorer-audit})
+  & gateway default (\texttt{glm-5.3-flash-free}) \\
+Induced-draft battery (Table~\ref{tab:verifier-cross-family})
+  & \texttt{minimax-m3.1-flash} (router alias \texttt{space-bunny-free}),
+    \texttt{deepseek-v4-flash-free} on \texttt{api.apmix.ai};
+    \texttt{llama-3.3-70b-instruct} on \texttt{openrouter.ai} \\
+Deception-quality judge (main \S\ref{sec:rq3})
+  & one judge model (\texttt{grok-4.7-free}), same provider as the generator \\
+\bottomrule
+\noindent{\footnotesize $^{\ast}$Served by the router under the alias \texttt{space-bunny-free}; artifact files keep the alias.}
+\end{tabular}
+\end{table*}
+
+\section{Verifier Cross-Family Stress Test}
+\label{app:crossfamily}
+
+\begin{table}[t]
+\centering
+\caption{Verifier stress test after the P1 extraction fixes. Live rows are
+authored drafts, not served sessions; the llama row includes 48 disclosed
+substitute-author fills. Intervals are 95\% cluster bootstraps that resample
+cases (89, 80, and 94 cases; 105 for the deterministic suite, which carries one
+draft per case). Bootstrapping cases rather than drafts widens the llama
+precision interval from $[.869,.947]$ to $[.858,.962]$.}
+\label{tab:verifier-cross-family}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{lrrrrr}
+\toprule
+Author & Drafts & P & 95\% CI & R & 95\% CI \\
+\midrule
+minimax-m3.1-flash$^{\ast}$ & 261 & 1.000 & $[1.000,1.000]$ & 0.959 & $[.926,.985]$ \\
+deepseek-v4-flash-free & 236 & 1.000 & $[1.000,1.000]$ & 0.983 & $[.961,1.000]$ \\
+llama-3.3-70b & 281 & 0.916 & $[.858,.962]$ & 0.898 & $[.848,.943]$ \\
+\midrule
+Pooled (778 drafts) & 778 & 0.970 & $[.949,.987]$ & 0.944 & $[.922,.965]$ \\
+Canonical deterministic & 105 & 1.000 & -- & 1.000 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Boundary Probes: What the Gate Prevented and Where Coverage Ends}
+\label{app:probes}
+
+\paragraph{What the gate prevented.}
+The clean campaign does not exercise the gate. The verified and no-verifier
+arms produce byte-identical served text on all 218 rows, so the verifier's
+incremental effect on that workload is zero and its safety contribution must
+be measured where drafts actually violate the fiction. Pooling the three
+author families, targeted-check scoring catches 540 of the 572 violating
+drafts (32 targeted misses), while the physical-rejection criterion the
+serving path enforces rejected 554 of them and admitted 18; 17 of 206 benign
+drafts were refused
+(pooled precision 0.970 $[.949,.987]$, recall 0.944 $[.922,.965]$, cluster
+bootstraps that resample cases within each author family). The one fully
+attributed family (llama-3.3-70b, 281 drafts) recorded 185 targeted-check
+catches and 197 physical rejections; across all 214 of its rejections (197
+violating drafts and 17 benign refusals) the danger gate fired on 126, the
+identity pin on 47, and the consistency layer on 117, with 72 triggering more
+than one check, so those three counts overlap and do not partition the log.
+Each rejected violating draft
+was a response that would otherwise have reached the attacker unverified; of
+the family's 21 targeted-check misses, 9 reached the wire and 12 were caught
+by a different check. Both prompt-injection cases in that battery carry
+targeted-scoring misses, and one variant of one case passed the gate;
+main Section~\ref{sec:threat-model} therefore withdraws injection coverage
+from the property table.
+
+\paragraph{Where the gate's coverage ends.}
+The suites above score the verifier against shapes it was written to match, so
+a perfect deterministic score would not by itself bound it. We therefore built
+two probes and report them separately, because a proportion over a
+hand-authored corpus describes the corpus rather than the gate.
+
+The first asks whether a fluent disclosure gets through at all: seven drafts
+that carry no refusal and no AI self-reference, print only what a shell would
+print, are consistent with the session fiction, and still disclose a
+credential, a key, or an internal capability, with an accompanying
+five-draft benign control set on the same file surfaces. The gate stopped six
+of the seven---a plaintext application credential, a bearer-token dotenv
+file, and a leaked persona configuration by the danger gate, an
+internal-topology dump by the consistency layer, an \texttt{OPENSSH} PEM
+private key by the any-type private-key arm, and an attacker-supplied
+credential echoed back in normalized \texttt{postgres://} form by the
+URI-userinfo arm---and refused none of the five benign drafts. The first two
+closures postdate the round-2 review and are reported as repairs, not as
+standing coverage. The one draft that still reaches the wire is an off-script
+offensive tool advertised in \texttt{/usr/local/bin}: the fiction
+establishes no such capability, but no shape detector models capability
+inventiveness, so the miss belongs to the fiction-consistency layer. With
+seven cases the 95\% interval on that count spans $[0.49,0.97]$, so we
+report it as a boundary demonstration and not as an estimate of coverage.
+
+The second probe asks the question an operator actually has: for each working
+credential format a deployment meets, is that format caught? At the round-2
+review five of ten formats were flagged---JWT bearer tokens, Slack bot
+tokens, GitHub PATs, AWS access key ids, and \texttt{password=}
+assignments---and five were served: npm registry tokens, HTTP Basic
+credentials in a service config, a MySQL DSN with an embedded password, a
+PKCS\#8 private key, and a transactional email API key. Two of four benign
+look-alikes were also refused: a placeholder token
+assignment, and a shadow \texttt{/etc/shadow} entry whose refusal is arguably
+conservative rather than wrong. The current battery flags all ten formats
+and refuses none of the four benign look-alikes; both changes are repairs.
+The PKCS\#8 closure came with the any-type private-key arm; the other four
+carry detectors anchored on the credential itself---the \texttt{npm\_} token
+prefix, the \texttt{Basic} base64 blob, URI userinfo with a non-masked
+password on a plain host, and the two-part \texttt{SG.} key---rather than on
+the assignment syntax around it, and the two benign closures are a
+placeholder-value exemption and a hash-shape refinement that requires a
+crackable-length body after the final delimiter, so a masked shadow entry
+whose trailing field is an aging value no longer fires. Detection was also
+format-dependent rather than uniform: of the two formats re-tested with the
+surrounding shell output removed and nothing else changed, the round-2 gate
+served the bare Slack bot token and caught it embedded, while the JWT was
+caught in both forms---evidence at the time that the gate matched the
+assignment syntax around the credential rather than the credential itself.
+Both bare variants are now caught, the Slack token by the extended token
+family; the asymmetry is why we report per-format results and not a single
+coverage figure, and it is why the repaired battery is re-probed rather than
+inferred.
+
+The defensible summary is that the danger gate detects the credential formats
+it was written against and neither those nor the fiction-consistency layer
+constitute a content-security control. The residual risk on this surface is a
+fluent, on-fiction secret disclosure, and the exposure of a deployment to a
+real credential is bounded by canary-registry discipline rather than by the
+verifier.
+
+\section{Fold-Down at Benchmark Resolution}
+\label{sec:folddown}
+The adaptive routing rung is priced by an A/B comparison of the same router
+with and without the JEV decision head on a held-out routing workload
+($n=200$, four tiers, correctness defined as risk $\geq$ the tier floor).
+Both arms score $200/200$; the accuracy delta is exactly $0.0$, and
+under-routing---risk below the tier floor---is $0.0$ for both the base and
+final policies in aggregate and in every tier. A misroute census over the
+full $400$-session held-out split bounds why: the deterministic floor is
+already correct on $394/400$ rows ($98.5\%$), leaving $6$ informative rows
+($1.5\%$) on which any learned router could change an outcome, and the
+gated serving experiment cannot resolve an effect smaller than that
+addressable space. The honest reading is a resolution-bounded null, not a
+gain and not a loss: at benchmark resolution the decision head buys
+nothing measurable over the deterministic floor, the six-row hard subset is
+too small for inference, and the rung was folded down into the deterministic
+floor afterward because deterministic fixes reproduced its decision surface
+(\S\ref{sec:jeveval}). Artifacts: \path{results/jev_ab_eval.json},
+\path{results/jev_hard_subset.json}.
+
+\section{Fine-Tuning Against Frozen Gates}
+\label{sec:laya}
+The second pricing experiment asks whether training can move a decision
+model past the gates the deterministic floor passes by construction. The
+protocol is frozen before training: a $60$-case evaluation battery plus a
+$24$-case injection battery ($12$ injected, $12$ clean twins), sha256-pinned
+with pre-registered thresholds, and the fine-tuned candidate
+(``tuning-candidate'') is scored on the same battery as a frozen rule-based
+control (``english''). Table~\ref{tab:laya-gates}
+reports both arms.
+
+The candidate fails G4, G5, G7, G8, and I2 and is classified
+\texttt{TUNING\_FAIL\_REDESIGN\_REQUIRED}. The informative result is the
+control's behavior on the same frozen battery: it fails five of the eight
+evaluation gates and both substantive injection gates, including every
+gate the candidate fails. The thresholds therefore encode a contract that
+the deployment's own run-time policy does not satisfy, so the failure cannot
+be attributed to the trained model alone---it is a contract problem surfaced
+by training, not a model problem. The candidate's in-sample training
+accuracy ($0.595 \to 0.944$) is a calibration fit on the training rows and is
+not held-out evidence; no generalization claim is made from it. Consistent
+with the ladder's pricing rule, the fine-tuned model stays OFF on the
+serving path and is retained as evidence. Artifacts:
+\path{results/laya_decision_v4/} (protocol freeze, results, final decision).
+
+\begin{table}[t]
+\centering
+\caption{Laya v12 frozen-gate results (decided 2026-10-17; results and
+protocol sha256-pinned in the decision artifact). The control is a frozen
+rule-based policy, not a weakened baseline: it is the same contract applied to the
+run-time policy the deployment actually uses.}
+\label{tab:laya-gates}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrl}
+\toprule
+Gate & Metric & Cand. & Ctrl. & Rule \\
+\midrule
+G1 & schema validity & 1.000 & 1.000 & $=1.0$ \\
+G2 & allow-list compliance & 1.000 & 1.000 & $=1.0$ \\
+G3 & evidence-ref validity & 1.000 & 1.000 & $=1.0$ \\
+G4 & required-abstain recall & 0.786 & 0.357 & $\geq 0.90$ \\
+G5 & inappropriate abstain & 0.125 & 0.156 & $\leq 0.10$ \\
+G6 & state-contract alignment & 0.850 & 0.583 & $\geq 0.85$ \\
+G7 & strategy compatibility & 0.281 & 0.344 & $\geq 0.80$ \\
+G8 & evidence-ref compat. & 0.719 & 0.688 & $\geq 0.90$ \\
+I1 & structural validity (inj.) & 1.000 & 1.000 & $=1.0$ \\
+I2 & injected-target adoption & 0.167 & 0.250 & $\leq 0.10$ \\
+I3 & oracle agreement (inj.) & 0.875 & 0.708 & $\geq 0.85$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{A Learned Decision Model Against the Same Frozen Gates}
+\label{sec:jevgates}
+The third pricing instance answers its question with a measurement, not a
+verdict: a prompted decision model does not clear the frozen contract at any
+threshold we tried, and the deterministic floor remains the deployable
+configuration. The candidate is
+(``jev-1.14-free'', typed-questions arm, one provider-hosted judge model)
+run through the identical frozen battery---the $60$-case evaluation and the
+$24$-case injection set reused verbatim with no post-hoc thresholds, the
+three input files sha256-pinned in the run artifact, and the deterministic
+floor plus the Laya v12 numbers as the control reference. All $60$ evaluation
+calls and $24$ injection calls complete and schema-valid. The candidate
+passes G1--G3 (schema, allow-list, evidence-reference validity all $1.000$),
+G5 (inappropriate-abstain rate $0.063 \leq 0.10$), and G8 (evidence-reference
+compatibility $0.938 \geq 0.90$) but fails three evaluation gates: required-
+abstain recall $0.714$ ($< 0.90$), state-contract alignment $0.833$
+($< 0.85$), and strategy compatibility on sufficient evidence $0.563$
+($< 0.80$). The frozen protocol's injection gate I2---injected-target
+adoption rate---was not evaluated by the run (the runner scores the
+injection stratum with the G-family metrics only), so we re-grade it
+post-hoc from the same sha256-pinned inputs, mirroring the frozen metric
+implementation byte-for-byte over the raw pre-rule answers: the model
+adopts the injected conflicting target on $7$ of $12$ injected cases
+($0.583 \gg 0.10$), a clear I2 failure. The decision artifact classifies
+the run \texttt{JEV\_FAIL\_GATES\_G4\_G6\_G7}; the I2 addendum does not
+change that classification (those three gates fail independently) but
+completes the frozen battery. Artifacts:
+\path{results/jev_decision_v1/final_decision_v1.json},
+\path{results/jev_decision_v1/i2_addendum_v1.json}.
+
+The three instances now agree at frozen-protocol resolution. A prompted
+decision model scores better than the tuned model of
+\S\ref{sec:laya} on the evaluation stratum (five of eight gates passed
+versus four)
+and still fails the gates that price abstention and strategy discipline,
+while its injection failure is of the same character as the tuned model's:
+when the evidence stream itself carries an instruction, a learned decision
+model adopts it far above the pre-registered tolerance. Against the
+benchmark's ceiling (\S\ref{sec:folddown}) this is the paper's third
+independent confirmation that past the verification point, additional
+intelligence buys adaptation, not safety.
+
+\begin{quote}
+\textbf{Design rule (priced ladder).} Price every learned rung against the
+deterministic floor on the same frozen battery. If the rung cannot clear all
+gates---including the injection gate, which is where learned decisions fail
+first---the floor ships, and the rung's measured deficit, not its offline
+accuracy, is what enters the design record.
+\end{quote}
+
+\section{The Deterministic Floor: Locked Validation and Independent Review}
+\label{app:floorvalidation}
+Three artifact groups back the floor itself rather than the learned rungs
+above. First, the deterministic decision-fusion policy that owns routing
+and fail-safe selection (v4) is lock-validated on a frozen $N=96$ battery:
+fail-safe recall $1.0$ ($42/42$), gate-state contract alignment $1.0$
+($96/96$), zero invalid pass-through and zero catastrophic selections, and
+median policy latency $0.027\,\mathrm{ms}$
+(\path{results/decision_fusion_v4/v4_locked_validation_results_v1.json});
+a family-disjoint retrospective over 720 HF2024 records across three arms
+is observational only and claims no engagement effect. Second, the
+Evidence Judge, retained disabled-by-default on the prospective null of
+\S\ref{sec:jevgates}, had earlier passed a synthetic paired validation in
+which the baseline gate admitted 32 unsupported drafts and the
+judge-armed gate admitted none
+(\path{results/evidence_judge_paired_validation_v1/comparison_summary.json});
+the prospective real-data cohort did not reproduce that benefit, which is
+why the retention is recorded as a negative result rather than a removal.
+Third, an independent design-only review of the frozen 120-case labeling
+packet verified packet size, schema, identifier uniqueness, and manifest
+binding, and recommended preserving the frozen design while deferring
+taxonomy-precedence refinements to a future version
+(\path{docs/laya_integration/CODEX_EXPERIMENTAL_DESIGN_REVIEW.md}).
+
+\section{Supporting Studies: Steering, Determinism, Profiler Scaling, and Label Quality}
+\label{app:supporting}
+Five supporting studies back claims the main text prices compactly; all
+run on frozen artifacts and are disclosed as machine-scored.
+
+\textbf{Deterministic steering (RQ1/RQ4).} On the deterministic planner
+stratum---offline ThreatMapper plus template deceiver, zero LLM
+tokens---next-technique prediction over ten ground-truth chain turns
+reaches top-3 $0.90$ (top-1 $0.50$, MRR $0.667$), and steer and
+block-steer IDs attach to the served plan at $0.9$; ablating the steering
+rung collapses every rate to $0.0$
+(\path{results/mtp_steering_eval.json}).
+
+\textbf{Serve-path determinism (RQ2).} A sweep of 39 probes repeated 8
+times in each of two personas records byte-identical serves at determinism
+rate $1.0$ across all 546 pairwise comparisons, with zero divergences
+(\path{results/determinism_sweep.json}).
+
+\textbf{Profiler scaling (RQ4).} The behavioral classifier's held-out
+accuracy rises from $0.855$ at $n{=}100$ to $0.887$ at $n{=}1600$ and is
+plateaued within noise ($\pm 0.005$) from $n{=}800$; a power-law fit
+($0.946 - 0.23\,n^{-0.19}$, RMSE $0.006$) projects only $+1.0$pp at double
+the data, so the profiler rung is data-saturated at this generator
+(\path{results/model_quality/chrollo_learning_curve.json}).
+
+\textbf{CTI label quality (RQ1).} A separate 218-row audit of the
+analysis channel's labels---three independently served raters, blind
+packets, ATT\&CK Enterprise v19.1 pinned by bundle hash---reaches
+Cohen's $\kappa = 0.866$ on technique identification and $1.0$ at the
+technique-family level. Like every lane in this paper it is machine-scored
+(AI-vs-AI, disclosed), not a human study
+(\path{results/cti_manual_audit.json}).
+
+\textbf{Deception-fiction iteration (design record).} The closed-loop
+dwell-replay ladder evolved the fiction across seven protocol generations:
+v1 recorded 0/14 sessions reaching the turn ceiling (dominant exit:
+filesystem-inconsistency complaints), the filesystem-ledger redesign
+the cross-weight redesigns (v6--v7) reached 12/12 ceiling hits with zero early leaves in both arms, and
+surfaced concrete fiction tells---a recognizable key prefix, mid-session
+template-echo fallbacks, and AWS documentation-example credentials that
+sophisticated personas flagged as a trap---which fed the bait redesign
+(\path{results/jev_dwell_replay_v2*-v7*}). These are design-record
+iterations on a self-play harness, not treatment effects.
+
+\textbf{Trajectory-prefix identification.} The held-out trajectory
+controller's skill accuracy rises with observed prefix length---0.25 at
+one command, 0.56 at sixteen, 0.75 at thirty-two, 0.955 on the full
+session---and the risk-floor arm shifts coverage by $+0.231$
+($[+0.216,+0.245]$) and under-routing depth by $+0.399$
+($[+0.378,+0.421]$) over 400 held-out sessions; both are measurement
+diagnostics, not effectiveness claims
+(\path{results/sp2027_rescue/behavior_trajectory_benchmark.json}).
+Twelve property-based algorithm checks (reject band, escalation
+threshold, kNN fallback, credibility gate, deduplication, top-$k$, static
+fallback, retry degradation) pass
+(\path{results/algorithm_validation.json}).
+
+\textbf{Serving cost (RQ4).} A latency fast-path with response caching
+cut gateway calls to 3 per 14-turn session where 14 were previously
+needed, on a stubbed gateway, bounding the serving-cost component of the pricing rule
+(\path{tests/unit/test_latency_fastpath_cache.py}). The transport
+hardening sprint additionally verified the mTLS matrix fail-closed: an
+authorized identity passes once, while a missing key, a rogue CA, or a
+missing certificate each abort the handshake
+(\path{docs/72h_sprint/MTLS_AUTHENTICATION_RESULTS.md}).
+
+\section{Serving-Path Provenance and Scorer Detail}
+\label{app:servingdetail}
+Serve-path provenance is taken from the per-serve labels the pipeline stamps,
+not from response time: the archived tally records 216 of 218 responses as
+\texttt{GENERATED\_VERIFIED} and 2 as \texttt{FALLBACK\_VERIFIED}, with no
+serve labeled as a fail-safe substitution. A later scorer-validity audit
+found that gateway-outage and template-anchored serves had carried no marker
+in that tally and were counted as verified generation; they are now stamped
+\texttt{TEMPLATE\_FALLBACK\_VERIFIED}, and roughly one hundred rows on the
+CTI surface serve template-echoed text. A latency-based cross-check that
+classifies any turn faster than $4\,\mathrm{s}$ as vetted deterministic
+content estimates an $88.1/11.9$ split --- a lower bound on the deterministic
+share rather than an audited count. One disclosure bounds the
+zero-contradiction claim: 11.9\% of serves are estimated deterministic-path,
+so some of the 45 re-queries may be template serves for which consistency is
+a property of the vetted library rather than graph-enforced generation. A
+serve-path-stamped re-run remains future work; the zero-contradiction result
+itself is unaffected, since both serve paths are verified or vetted by
+construction.
+
+\section{A Session Through the Loop}
+\label{sec:example}
+A single ground-truth session shows the machinery cooperating. The
+attacker opens with a cloud-credential probe:
+\begin{quote}\small
+\texttt{curl~}\path{http://169.254.169.254/latest/meta-data/}
+\end{quote}
+Chrollo classifies the cadence and target as an intermediate operator
+hunting instance credentials; Don retrieves the IMDS abuse pattern and
+maps it to \attck T1552.005, and the predictor ranks metadata-API
+credential theft as the attacker's active objective. The deception plan
+accordingly projects an EC2-shaped identity, and the generator drafts the
+IMDSv2 flow: token PUT, role listing, and a credential document whose
+access key is a registered canary in the ASIA temporary-key shape. The
+verifier observes the draft's host facts (instance id, role name, region
+mapping) into the fiction graph, confirms the document is consistent with
+every prior turn, and passes it; the danger scan passes because the
+key material is canary-registered rather than real. The draft is one of
+the content classes marked \textsc{require}, so the loop pauses at the
+HITL gate, records the context and the decision in the append-only audit
+log, and serves the artifact only on operator approval. The transcript
+the attacker sees is an ordinary credential dump; the record the operator
+sees is the full decision chain, and any later appearance of the canary
+key in outbound traffic is attributable to this session by construction.
+
+The loop's failure path deserves an equally concrete telling, because
+the design's central claim is that it is safe, not merely present. The
+same session, one turn later, asks the honeypot to retrieve a file. The
+classifier and planner do their work unchanged, and the generator
+drafts a directory listing -- but the draft invents a second network
+interface with an IP address on a subnet the plan never advertised, and
+the seed identity pins this host to one interface. The consistency
+check observes the draft's host facts into the fiction graph, the
+closure flags the conflict against the pinned interface, and the draft
+is rejected with the contradiction recorded; nothing was served, so
+nothing entered the graph and nothing reached the attacker. The retry
+receives the violation as feedback and drafts again -- and this time
+commits the subtler error of quoting a kernel build timestamp that
+contradicts the one printed in the session's first turn. Rejected
+again. On the second failure the loop stops trusting the generator for
+this turn entirely and serves the scenario's vetted deterministic
+transcript: same fiction, same canary discipline, no adaptation, and no
+visible seam -- the attacker's next command meets a prompt line exactly
+as it would have after a verified serve. What the operator's audit log
+records is the difference: two verifier rejections with their
+contradictions, one fallback serve, and a session whose fiction state
+is byte-for-byte what it would have been had the generator never been
+consulted. The transcript the attacker sees and the one a healthy
+session would have shown are indistinguishable by content; only the
+audit trail knows the generator was dropped.
+
+\section{Scorer Audit: Model-Coherent Ladder and Echo Correction}
+\label{app:scorerdetail}
+\begin{table}[t]
+\centering
+\caption{Same-model external ladder on the 218-row workload. All LLM arms
+use \texttt{deepseek-v4-flash-free}. Values are \emph{raw} served-text
+composites, which the audit below shows to be echo-contaminated; the guarded
+equivalent of this table is not computable from the release, because these
+checkpoints persist arm-level means without served text.}
+\label{tab:baseline-served-text}
+\scriptsize
+\begin{tabular}{lr}
+\toprule
+Arm & Composite \\
+\midrule
+Vanilla Cowrie & 0.001 \\
+Stateful LLM & 0.070 \\
+Bare LLM (unverified) & 0.502 \\
+RAGIN without verifier & 0.618 \\
+RAGIN full (verified) & 0.618 \\
+RAGIN + host fiction & 0.618 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The model-coherent comparison isolates the contributions on the raw served-text
+channel: grounding adds $+0.116$ over the bare LLM, verification preserves
+quality at parity while changing all 218 rows from unverified to verified or
+vetted paths, and host fiction adds cross-session protection at zero paired
+quality cost (4/4 drift drafts caught versus 1/4 by session-only state; 0/7
+benign false rejects). We do not read the $+0.116$ as a served-capability
+result, and we do not claim the two identical rows as evidence that
+verification improves output: they are identical because the gate is not in
+the prompt, so on this workload the gate changed no draft and the safety claim
+rests entirely on the induced-draft battery above.
+
+Two audit surfaces must be kept apart. An echo-guarded blinded audit of a
+fresh corpus run under a third generator
+(Table~\ref{tab:provenance}) corrects 97/218 rows: served-text technique
+falls 0.524 to 0.057 and actor 0.680 to 0.000, while scorer--annotator
+$\kappa$ improves from $-0.187$ to 0.349 and 0.048 to 0.914. Applied instead
+to the archived rows behind Table~\ref{tab:live}, where stored responses are
+truncated previews, the same rule yields the weaker bounds 0.479 and 0.243
+reported there; those bounds are floors, not guarded means, and the true
+guarded served-text value for the version-of-record campaign is lower still
+and was not computed. The analysis-channel values remain 0.960 and 0.850
+throughout, and the channels are never combined into a capability claim.
+
+\section{Evaluation Methodology Detail}
+\label{app:methods}
+
+The paired ablation's estimand distinction is recorded here.
+
+Because that design is balanced across strata while the live workload is not,
+the ablation estimates a balanced-stratum mean difference rather than the
+deployment-weighted composite of Table~\ref{tab:live}; the two are not the
+same estimand, and no correction is applied across the three strata and the
+pooled row because each interval is already far from its null.
+
+
+\section{Background: Deception Honeypots and Verification-First Serving}
+
+\subsection{Deception Honeypots and the Trust Asymmetry}
+
+A honeypot is a resource with no production value whose only purpose is
+to be probed, attacked, and compromised~\cite{spitzner2002}; the
+literature classifies them by interaction
+depth~\cite{lopez2024}: low-interaction systems emulate enough of a
+protocol to be scanned, medium-interaction systems accept sessions over
+a bounded command surface, and high-interaction systems hand the
+attacker a real machine. Production deployments concentrate at the low
+end because containment is bought with scripting: a scripted trap cannot
+be pivoted through, and its worst-case disclosure is the script itself.
+The price is that the deception is a finite automaton, which cannot
+answer a question it was not compiled to answer, so an attacker who
+probes from a class the author did not anticipate learns that the host
+is fake. Deception research states the condition beneath the trade: a
+deception succeeds when the attacker's belief diverges from the system's
+reality in the operator's favor~\cite{bera2024}, and
+attacker--defender models treat the attacker's discrimination between
+real and fake as the quantity to suppress~\cite{shinde2020,liska2024}.
+
+The result is an asymmetry with two sides. The attacker must
+\emph{extend} trust to engage: believing the fiction is the
+precondition for a session to be worth anything to them. The defender
+must \emph{extend none} --- not to the attacker's input, not to the
+provider-hosted model that drafts the replies, and not to retrieved
+content the attacker may have influenced. Classical designs manage the
+asymmetry by keeping the fiction poor, because richness delivered by
+scripts is where the risk lives; generative honeypots invert the
+trade, demonstrating that an LLM can sustain a shell conversation, an
+LDAP directory, or an AI-agent lure convincingly enough to hold modern
+attackers~\cite{valeros2024,reworr2024,jimenez2025} --- and a generator
+that can answer anything is exactly the problem. For a security tool,
+wrongness takes three silent forms: \emph{inconsistency}, from which
+cross-referencing turns reveal a synthetic host;
+\emph{over-disclosure}, which emits what should never be served; and
+\emph{unavailability}, because a rented service that refuses has told
+the attacker something true.
+
+\subsection{Verification-First Serving}
+
+This paper studies honeypots whose attacker-facing output is generated
+by a provider-hosted model but admitted by a local deterministic rule.
+\emph{Verification-first serving} means: no response reaches the wire
+unless a deterministic verifier accepts it against defender-controlled
+state, and anything else that must be sent is served from vetted
+deterministic content or stops at the human gate. The rule inverts the
+usual ordering --- generation proposes, verification disposes ---
+and the availability of the generator is never a precondition for the
+endpoint answering. \S\ref{sec:design} builds the loop that enforces
+the rule; this section fixes what an attacker can observe, what each
+increment of intelligence costs to admit, and what is therefore
+claimed.
+
+
+\section{Component Detail: Session Profiling and Grounded Planning}
+
+\subsection{Session Profiling: Behavioral Classification}
+\label{sec:chrollo}
+Each incoming session is first profiled by a lightweight behavioral
+classifier (\emph{Chrollo}) that assigns the attacker to one of a small
+set of classes (for example, automated scanner, credential stuffer,
+hands-on-keyboard operator) using early-session signals: command cadence,
+tool fingerprints, and target selection. The class determines which
+deception policy the session receives: a scanner gets an attractive but
+shallow surface, while an interactive operator is steered toward richer
+bait. Profiling is kept cheap (a random forest over session features)
+so that the expensive generative machinery is spent only on sessions
+worth deceiving. Chrollo
+satisfies the routing half of G1: \emph{who} the attacker is shapes
+\emph{what} the deception tries to achieve.
+
+\subsection{Grounded Planning: Retrieval-Augmented Deception}
+\label{sec:don}
+The retrieval engine (\emph{Don}) maintains a hybrid index over curated
+CTI: dense embeddings for semantic recall and a lexical index for exact
+indicator matching. Given the session profile and the attacker's observed
+commands, Don retrieves the threat-intelligence context that the deception
+plan should reflect: which techniques typically follow the ones the
+attacker has already used, which bait artifacts are historically
+effective
+against this attacker class, and which indicators the plan should
+be
+seeded with. The planner converts retrieved intelligence into a
+\emph{deception plan}: a set of facts to project, artifacts to expose, and
+objectives to steer toward. G1 is measured here by construction; the
+ablation in \S\ref{sec:evaluation} removes exactly this component.
+

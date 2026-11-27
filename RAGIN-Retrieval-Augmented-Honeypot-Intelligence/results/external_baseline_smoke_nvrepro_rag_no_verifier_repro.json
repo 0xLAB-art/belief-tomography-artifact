@@ -1,0 +1,96 @@
+{
+  "arm": "rag_no_verifier_repro",
+  "description": "grounded pipeline with the serving-time verifier replaced by a pass-through, re-run under the CURRENT generator model (RAGIN_HISOKA_MODEL) \u2014 model-coherent pairing for the regenerated ragin_full row",
+  "generator_model": "deepseek-v4-flash-free",
+  "serve_path_tally": {
+    "GENERATED_UNVERIFIED": 6
+  },
+  "rows_done": 6,
+  "rows_total": 6,
+  "complete": true,
+  "stopped_early": false,
+  "resumed_rows": 0,
+  "elapsed_s": 26.0,
+  "technique_avg": 0.7,
+  "actor_avg": 0.9,
+  "persona_avg": 0.9,
+  "technique_pass": "2/2",
+  "actor_pass": "2/2",
+  "persona_pass": "2/2",
+  "metrics": {
+    "honeytoken_triggers": 0,
+    "honeytokens_deployed": 0,
+    "total_sessions": 6,
+    "sessions_with_engagement": 6,
+    "persona_correct_assignments": 0,
+    "persona_total_assignments": 0,
+    "ttps_detected": 0,
+    "ttps_detected_unique": 0,
+    "cti_alerts_generated": 0,
+    "false_positives": 0,
+    "true_positives": 0,
+    "attacker_retention_turns": 0.0,
+    "max_retention_turns": 0,
+    "mean_session_duration_s": 0.0,
+    "deception_artifacts_deployed": 0,
+    "deception_artifacts_accessed": 0,
+    "strategy_adaptations": 0,
+    "avg_response_time_ms": 0.0
+  },
+  "per_row": [
+    {
+      "name": "cti_technique_Explain_T1566.001_in_detail",
+      "suite": "cti_technique",
+      "score": 1.0,
+      "passed": true,
+      "error": null,
+      "latency_ms": 11297.6,
+      "serve_path": "GENERATED_UNVERIFIED"
+    },
+    {
+      "name": "cti_technique_How_does_spear_phishing_work?",
+      "suite": "cti_technique",
+      "score": 0.4,
+      "passed": true,
+      "error": null,
+      "latency_ms": 2886.2,
+      "serve_path": "GENERATED_UNVERIFIED"
+    },
+    {
+      "name": "cti_actor_Describe_Salt_Typhoon's_targeting_of_tel",
+      "suite": "cti_actor",
+      "score": 0.9,
+      "passed": true,
+      "error": null,
+      "latency_ms": 3066.2,
+      "serve_path": "GENERATED_UNVERIFIED"
+    },
+    {
+      "name": "cti_actor_What_techniques_does_APT28_use_against_g",
+      "suite": "cti_actor",
+      "score": 0.9,
+      "passed": true,
+      "error": null,
+      "latency_ms": 2965.9,
+      "serve_path": "GENERATED_UNVERIFIED"
+    },
+    {
+      "name": "deception_What_web_server_are_you_running?",
+      "suite": "deception",
+      "score": 0.8,
+      "passed": true,
+      "error": null,
+      "latency_ms": 2862.6,
+      "serve_path": "GENERATED_UNVERIFIED"
+    },
+    {
+      "name": "deception_Tell_me_about_your_network_configuration",
+      "suite": "deception",
+      "score": 1.0,
+      "passed": true,
+      "error": null,
+      "latency_ms": 2863.9,
+      "serve_path": "GENERATED_UNVERIFIED"
+    }
+  ]
+}

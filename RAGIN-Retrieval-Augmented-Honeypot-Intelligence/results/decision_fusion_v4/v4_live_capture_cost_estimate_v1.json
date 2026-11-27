@@ -1,0 +1,46 @@
+{
+  "schema": "ragin.v4.live_capture_cost_estimate.v1",
+  "basis": "reuse existing EDGE; no AWS change executed",
+  "pricing_status": "CURRENT_ACCOUNT_PRICING_UNKNOWN_AWS_SESSION_EXPIRED",
+  "historical_repository_pricing_basis": {
+    "region": "eu-north-1",
+    "m7i-flex.large": {"usd_per_hour": 0.0336, "source": "docs/aws_live_recovery/PRIVATE_CORE_COST_AND_APPROVAL.md", "status": "historical documented quote"},
+    "gp3": {"usd_per_gb_month": 0.08, "source": "docs/aws_live_recovery/PRIVATE_CORE_COST_AND_APPROVAL.md", "status": "historical documented quote"},
+    "ssm_three_interface_endpoints": {"usd_per_30_days": 21.90, "source": "docs/aws_live_recovery/PRIVATE_CORE_COST_AND_APPROVAL.md", "status": "historical documented quote; not required for capture-only reuse-EDGE design"}
+  },
+  "recommended_minimum": {
+    "reuse_existing_edge": true,
+    "new_ec2": false,
+    "new_ebs": false,
+    "new_public_ipv4": false,
+    "nat_gateway": false,
+    "load_balancer": false,
+    "cloudwatch_managed_logging": false,
+    "incremental_compute_usd_per_day": 0.0,
+    "incremental_compute_usd_per_week": 0.0,
+    "incremental_compute_usd_per_30_days": 0.0,
+    "incremental_storage_usd_per_day": 0.0,
+    "incremental_storage_usd_per_week": 0.0,
+    "incremental_storage_usd_per_30_days": 0.0,
+    "data_transfer_usd_per_day": "UNKNOWN",
+    "taxes_credits_and_existing_instance_cost": "UNKNOWN",
+    "interpretation": "zero means no new resource is proposed; it is not a claim that the existing EDGE has zero total cost"
+  },
+  "optional_costs": {
+    "private_core_ssm_endpoints": {"usd_per_30_days": 21.90, "status": "not needed for capture-only EDGE mode; current private survivability not proven"},
+    "encrypted_storage_migration": "UNKNOWN; not required for this audit and no migration proposed",
+    "off_host_durable_audit": "UNKNOWN; not required before design approval but required before production-grade retention"
+  },
+  "storage_assumptions": {
+    "attempted_sessions": 520,
+    "raw_mib_per_session_conservative_assumption": 10,
+    "raw_mib": 5200,
+    "manifests_canonical_registry_mib": 200,
+    "rotation_os_and_operational_headroom_mib": 3000,
+    "planning_total_gib": "approximately 8-12",
+    "current_documented_edge_root_gib": 20,
+    "live_free_space": "UNKNOWN",
+    "stop_if_free_space_below_gib": 8
+  },
+  "cost_controls": ["reuse EDGE", "no NAT Gateway", "no load balancer", "no new always-on instance", "no paid managed logging unless separately approved", "bounded local rotation with immutable session segments"]
+}

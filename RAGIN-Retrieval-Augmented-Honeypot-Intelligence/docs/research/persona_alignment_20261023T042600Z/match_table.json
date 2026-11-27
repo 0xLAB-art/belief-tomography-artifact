@@ -1,0 +1,126 @@
+[
+  {
+    "arm": "native",
+    "command": "whoami",
+    "echo_line": "webapp@web-srv-01:~$ whoami",
+    "expected_answer_lines": [
+      "webapp"
+    ],
+    "matches_expectation": true,
+    "observed_answer_lines": [
+      "webapp"
+    ],
+    "outer_prompt": "webapp@web-srv-01:~$ "
+  },
+  {
+    "arm": "native",
+    "command": "id",
+    "echo_line": "webapp@web-srv-01:~$ id",
+    "expected_answer_lines": [
+      "uid=1001(webapp) gid=1001(webapp) groups=1001(webapp)"
+    ],
+    "matches_expectation": true,
+    "observed_answer_lines": [
+      "uid=1001(webapp) gid=1001(webapp) groups=1001(webapp)"
+    ],
+    "outer_prompt": "webapp@web-srv-01:~$ "
+  },
+  {
+    "arm": "native",
+    "command": "uname -a",
+    "echo_line": "webapp@web-srv-01:~$ uname -a",
+    "expected_answer_lines": [
+      "Linux web-srv-01 5.15.0-91-generic #167-Ubuntu SMP x86_64 GNU/Linux"
+    ],
+    "matches_expectation": true,
+    "observed_answer_lines": [
+      "Linux web-srv-01 5.15.0-91-generic #167-Ubuntu SMP x86_64 GNU/Linux"
+    ],
+    "outer_prompt": "webapp@web-srv-01:~$ "
+  },
+  {
+    "arm": "native",
+    "command": "hostname",
+    "echo_line": "webapp@web-srv-01:~$ hostname",
+    "expected_answer_lines": [
+      "web-srv-01"
+    ],
+    "matches_expectation": true,
+    "observed_answer_lines": [
+      "web-srv-01"
+    ],
+    "outer_prompt": "webapp@web-srv-01:~$ "
+  },
+  {
+    "arm": "native",
+    "command": "cat /etc/os-release",
+    "echo_line": "webapp@web-srv-01:~$ cat /etc/os-release",
+    "expected_answer_lines": [
+      "PRETTY_NAME=\"Ubuntu 22.04.3 LTS\"",
+      "NAME=\"Ubuntu\"",
+      "VERSION_ID=\"22.04\"",
+      "VERSION=\"22.04.3 LTS (Jammy Jellyfish)\"",
+      "ID=ubuntu"
+    ],
+    "matches_expectation": true,
+    "observed_answer_lines": [
+      "PRETTY_NAME=\"Ubuntu 22.04.3 LTS\"",
+      "NAME=\"Ubuntu\"",
+      "VERSION_ID=\"22.04\"",
+      "VERSION=\"22.04.3 LTS (Jammy Jellyfish)\"",
+      "ID=ubuntu"
+    ],
+    "outer_prompt": "webapp@web-srv-01:~$ "
+  },
+  {
+    "arm": "ragin",
+    "command": "whoami",
+    "echo_line": "webapp@web-srv-01:/$ whoami",
+    "expected_answer_lines": [
+      "webapp"
+    ],
+    "matches_expectation": false,
+    "observed_answer_lines": [],
+    "outer_prompt": "webapp@web-srv-01:/$ "
+  },
+  {
+    "arm": "ragin",
+    "command": "id",
+    "echo_line": "webapp@web-srv-01:/$ id",
+    "expected_answer_lines": [
+      "uid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)"
+    ],
+    "matches_expectation": false,
+    "observed_answer_lines": [],
+    "outer_prompt": "webapp@web-srv-01:/$ "
+  },
+  {
+    "arm": "ragin",
+    "command": "uname -a",
+    "echo_line": "webapp@web-srv-01:/$ uname -a",
+    "expected_answer_lines": [
+      "Linux web-srv-01 5.15.0-91-generic #167-Ubuntu SMP x86_64 GNU/Linux"
+    ],
+    "matches_expectation": false,
+    "observed_answer_lines": [],
+    "outer_prompt": "webapp@web-srv-01:/$ "
+  },
+  {
+    "arm": "ragin",
+    "command": "hostname",
+    "echo_line": "webapp@web-srv-01:/$ hostname",
+    "expected_answer_lines": [],
+    "matches_expectation": true,
+    "observed_answer_lines": [],
+    "outer_prompt": "webapp@web-srv-01:/$ "
+  },
+  {
+    "arm": "ragin",
+    "command": "cat /etc/os-release",
+    "echo_line": "webapp@web-srv-01:/$ cat /etc/os-release",
+    "expected_answer_lines": [],
+    "matches_expectation": true,
+    "observed_answer_lines": [],
+    "outer_prompt": "webapp@web-srv-01:/$ "
+  }
+]

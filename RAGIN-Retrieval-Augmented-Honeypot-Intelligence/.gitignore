@@ -1,0 +1,91 @@
+# Environment files - NEVER commit secrets
+.env
+.env.*
+!.env.example
+
+# Agent session state / Claude - NEVER commit
+.claude/
+.claw/
+.omc/
+
+# Elsevier journal submission dir - excluded per user
+ESWA-S-26-45224/
+
+# Secrets - NEVER commit
+RAGIN_KEY.pem
+*.pem
+
+# Python caches / generated
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.pytest_cache/
+.coverage
+
+# Virtual envs
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+build/
+
+# Rust build artifacts (5.5G target dir)
+target/
+**/target/
+
+# RAGIN_KEY.pem was already covered above
+
+# Build artifacts / local tool caches
+gateway.tar
+imc_vpn.pdf
+graphify-out/
+
+# Field runtime exports + collector targets (data lives on endpoints)
+data/field/
+
+# Manual-audit blinding key — NEVER commit (unblinds annotator A/B)
+results/cti_audit_blinding_key.json
+
+# Checkpoint/resume state is runtime, not provenance
+results/*checkpoint*.json
+
+# Stray local audit scratch + host-local monitor log
+audit_output.json
+audit_results.json
+logs/health_monitor.log
+
+# Field env EXAMPLE tracks shape only (placeholders); real .env.field stays local
+!.env.field.example
+
+# Azure field endpoint records (public IPs) — private ops log only
+results/azure_field_endpoints.jsonl
+results/azure_field_prefixes/
+
+# LaTeX build byproducts (main.pdf is tracked; intermediates are not)
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
+.mimosa/
+
+# Evidence source snapshots live OUTSIDE the repo (moved 2026-10-26, see
+# docs/MASTER_PLAN_2026-10-24.md Phase 4): ../evidence_snapshots_archive/
+# Freeze scripts (scripts/freeze_recovery_final_v1.py) may regenerate them
+# locally; they must never be tracked again.
+source_bytes/
+source_snapshot*/

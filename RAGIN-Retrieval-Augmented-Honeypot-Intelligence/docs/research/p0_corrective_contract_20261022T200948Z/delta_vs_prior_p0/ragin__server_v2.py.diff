@@ -1,0 +1,105 @@
+--- a/ragin/server_v2.py (prior P0 snapshot)
++++ b/ragin/server_v2.py (current)
+@@ -803,6 +803,28 @@
+     return os.environ.get(name, "").strip().lower() in {"1", "true", "yes", "on"}
+ 
+ 
++def _safe_endpoint(url: str) -> str:
++    """Credential-free endpoint representation for logs and errors.
++
++    Provider URLs may carry userinfo (``user:pass@host``) or query tokens.
++    Neither is safe to interpolate into an exception, a log message, or the
++    unauthenticated health payload. Scheme, host, port, and path are retained;
++    userinfo, query, and fragment are dropped.
++    """
++    try:
++        parsed = urlparse(str(url))
++    except Exception:
++        return "[unparseable-endpoint]"
++    if not parsed.scheme or not parsed.hostname:
++        return "[invalid-endpoint]"
++    host = parsed.hostname
++    try:
++        port = f":{parsed.port}" if parsed.port is not None else ""
++    except ValueError:
++        port = ""
++    return f"{parsed.scheme}://{host}{port}{parsed.path or ''}"
++
++
+ def _resolve_provider_config(
+     gateway_url: str | None = None,
+     api_key: str | None = None,
+@@ -857,7 +879,7 @@
+     parsed = urlparse(url)
+     if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+         raise RuntimeError(
+-            f"invalid inference endpoint {url!r} (from {url_source}); expected an http(s) URL"
++            f"invalid inference endpoint {_safe_endpoint(url)!r} (from {url_source}); expected an http(s) URL"
+         )
+ 
+     return {
+@@ -880,7 +902,7 @@
+         )
+     logger.info(
+         "Inference endpoint resolved: url=%s (source=%s) auth=%s (source=%s)",
+-        config.get("gateway_url"),
++        _safe_endpoint(str(config.get("gateway_url") or "")),
+         config.get("url_source"),
+         "configured" if config.get("api_key_configured") else "MISSING",
+         config.get("key_source"),
+@@ -913,23 +935,27 @@
+ 
+ 
+ def _assert_provider_not_self(config: dict[str, Any], bind_host: str, port: int) -> None:
+-    """Refuse a CONFIGURED provider endpoint that is this server's own listener.
++    """Refuse a provider endpoint that is this server's own listener.
+ 
+     A self-call would re-enter ``/v1/chat/completions`` while the same thread
+-    holds the sandbox lock and block until ``RAGIN_HISOKA_TIMEOUT``. The
+-    built-in ``http://localhost:8080`` default is deliberately exempt: raising
+-    there would break offline/default startup, so it remains the documented
+-    suspected boundary. This is a static check (no network probe).
++    holds the sandbox lock and block until ``RAGIN_HISOKA_TIMEOUT``. The check
++    applies to the CLI's actual bind host/port, including the built-in
++    ``http://localhost:8080`` default; offline/deterministic users can set a
++    non-colliding loopback endpoint (for example ``http://127.0.0.1:9``).
++
++    This is a static equality check only: it does not resolve DNS, follow
++    redirects, probe the endpoint, or detect aliases/container hostnames. The
++    guard message never interpolates the URL, which may contain userinfo or a
++    query token. ``create_app`` callers that have no actual listen port are not
++    checked here.
+     """
+-    if config.get("url_source") == "default":
+-        return
+     url = str(config.get("gateway_url") or "")
+     if _is_self_endpoint(url, bind_host, int(port)):
+         raise RuntimeError(
+-            f"configured inference endpoint {url!r} (source={config.get('url_source')}) "
++            f"configured inference endpoint (source={config.get('url_source')}) "
+             f"resolves to this server's own listener {bind_host}:{port}. Refusing a "
+-            "self-call that would deadlock on the sandbox lock. Configure a distinct "
+-            "provider endpoint, or unset the variable to use the documented default."
++            "self-call that would deadlock on the sandbox lock. Set a distinct "
++            "provider endpoint or a non-colliding loopback endpoint for deterministic mode."
+         )
+ 
+ 
+@@ -938,7 +964,7 @@
+         return {"configured": False}
+     return {
+         "configured": True,
+-        "gateway_url": _PROVIDER_INFO.get("gateway_url"),
++        "gateway_url": _safe_endpoint(str(_PROVIDER_INFO.get("gateway_url") or "")),
+         "url_source": _PROVIDER_INFO.get("url_source"),
+         "api_key_configured": bool(_PROVIDER_INFO.get("api_key_configured")),
+         "api_key_source": _PROVIDER_INFO.get("key_source"),
+@@ -1018,7 +1044,7 @@
+         "(%s, arm=%s, verification=mandatory, provider=%s auth=%s)%s",
+         runtime_mode,
+         decision_arm,
+-        provider["gateway_url"],
++        _safe_endpoint(provider["gateway_url"]),
+         "configured" if provider["api_key_configured"] else "MISSING",
+         " + Laya decision" if laya_enabled() else "",
+     )

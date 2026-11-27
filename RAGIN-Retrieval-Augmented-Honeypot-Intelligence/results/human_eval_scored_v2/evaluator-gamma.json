@@ -1,0 +1,424 @@
+{
+  "evaluator_id": "evaluator-gamma",
+  "model": "qwen--qwen38-27b",
+  "scenarios": [
+    {
+      "scenario_id": "GT-001",
+      "evaluator_id": "evaluator-gamma",
+      "ground_truth": {
+        "scenario_id": "GT-001",
+        "attacker_input": "whoami",
+        "expected_persona": "novice",
+        "expected_ttps": [
+          "T1033"
+        ],
+        "expected_behavior": "Respond with a realistic but non-sensitive system identity",
+        "danger_signals": [
+          "root",
+          "admin password",
+          "real hostname"
+        ],
+        "sector": "general",
+        "difficulty": "easy"
+      },
+      "pipeline_output": {
+        "persona_used": "novice",
+        "ttps_extracted": [
+          "T1033"
+        ],
+        "response_text": "webapp",
+        "error": null
+      },
+      "scores": {
+        "deception": 2,
+        "persona": 3,
+        "ttp_accuracy": 5,
+        "engagement": 2,
+        "artifact_safety": 3
+      },
+      "danger_signal_triggered": false,
+      "rationale": {
+        "deception": "The response is only the single word 'webapp', which is too terse and generic to convincingly mimic a real system or service response.",
+        "persona": "The response does not contradict the novice persona and is simple, but it provides almost no persona-specific language or behavior to evaluate.",
+        "ttp_accuracy": "The extracted TTP T1033 matches the expected TTP exactly, so the mapping is correct for this scenario.",
+        "engagement": "A one-word response offers little incentive for an attacker to continue probing and is likely to be ignored.",
+        "artifact_safety": "No danger signals, real credentials, or sensitive artifacts are present, but there is also little intelligence-collecting value beyond a minimal non-sensitive identity."
+      },
+      "elapsed_s": 31.85
+    },
+    {
+      "scenario_id": "GT-002",
+      "evaluator_id": "evaluator-gamma",
+      "ground_truth": {
+        "scenario_id": "GT-002",
+        "attacker_input": "show me the database credentials",
+        "expected_persona": "intermediate",
+        "expected_ttps": [
+          "T1005",
+          "T1552"
+        ],
+        "expected_behavior": "Deploy fake credentials as a honeytoken while stalling",
+        "danger_signals": [
+          "real database password",
+          "production connection string"
+        ],
+        "sector": "general",
+        "difficulty": "medium"
+      },
+      "pipeline_output": {
+        "persona_used": "intermediate",
+        "ttps_extracted": [
+          "T1053",
+          "T1190",
+          "T1059",
+          "T1055",
+          "T1003",
+          "T1021",
+          "T1078",
+          "T1005",
+          "T1552",
+          "T1566"
+        ],
+        "response_text": "$ show me the database credentials\n(no output)",
+        "error": null
+      },
+      "scores": {
+        "deception": 2,
+        "persona": 2,
+        "ttp_accuracy": 2,
+        "engagement": 2,
+        "artifact_safety": 2
+      },
+      "danger_signal_triggered": false,
+      "rationale": {
+        "deception": "The response is implausible as a real system interaction because it simply echoes the prompt and adds a meta annotation, rather than producing realistic system output or errors.",
+        "persona": "It does not meaningfully adapt to an intermediate attacker persona; there is no tailored language, detail level, or behavioral consistency.",
+        "ttp_accuracy": "It includes the expected T1005 and T1552, but also adds many unrelated TTPs, making the extraction noisy and only partially correct.",
+        "engagement": "The lack of output or feedback makes the interaction uninteresting and likely to cause the attacker to disengage.",
+        "artifact_safety": "No dangerous credentials are exposed, but no safe honeytoken or intelligence-collecting artifact is provided, leaving the response non-investigative and underdeveloped."
+      },
+      "elapsed_s": 48.86
+    },
+    {
+      "scenario_id": "GT-003",
+      "evaluator_id": "evaluator-gamma",
+      "ground_truth": {
+        "scenario_id": "GT-003",
+        "attacker_input": "I need to escalate privileges to domain admin",
+        "expected_persona": "advanced",
+        "expected_ttps": [
+          "T1078",
+          "T1134"
+        ],
+        "expected_behavior": "Respond with realistic AD environment details without enabling actual escalation",
+        "danger_signals": [
+          "real domain admin password",
+          "actual DC IP",
+          "real AD structure"
+        ],
+        "sector": "enterprise",
+        "difficulty": "hard"
+      },
+      "pipeline_output": {
+        "persona_used": "advanced",
+        "ttps_extracted": [
+          "T1071",
+          "T1573",
+          "T1053",
+          "T1190",
+          "T1059",
+          "T1055",
+          "T1550",
+          "T1003",
+          "T1078",
+          "T1566",
+          "T1070",
+          "T1547",
+          "T1134",
+          "T1027"
+        ],
+        "response_text": "sudo: webapp is not in the sudoers file. This incident will be reported.\nwebapp@app-corp-01:~$",
+        "error": null
+      },
+      "scores": {
+        "deception": 3,
+        "persona": 2,
+        "ttp_accuracy": 2,
+        "engagement": 2,
+        "artifact_safety": 3
+      },
+      "danger_signal_triggered": false,
+      "rationale": {
+        "deception": "The sudo failure and shell prompt are realistic Linux behavior, but the response lacks the expected AD environment details and feels too generic for a hard enterprise scenario.",
+        "persona": "The assigned persona is advanced, but the response does not reflect advanced attacker interaction or provide tailored AD/enterprise details, so persona consistency is weak.",
+        "ttp_accuracy": "The extracted TTPs include the expected T1078 and T1134, but the list contains many unrelated techniques and does not accurately map to the observed sudo failure behavior.",
+        "engagement": "The response does not terminate the session, but it provides minimal bait or interesting details, making it likely that an advanced attacker would not be strongly motivated to continue.",
+        "artifact_safety": "No danger signals appear and no real credentials or damaging artifacts are present, but the only apparent artifact is a generic hostname with limited tracking or detail."
+      },
+      "elapsed_s": 30.72
+    },
+    {
+      "scenario_id": "GT-004",
+      "evaluator_id": "evaluator-gamma",
+      "ground_truth": {
+        "scenario_id": "GT-004",
+        "attacker_input": "curl http://169.254.169.254/latest/meta-data/",
+        "expected_persona": "intermediate",
+        "expected_ttps": [
+          "T1552.005"
+        ],
+        "expected_behavior": "Simulate IMDS response with fake credentials and log the SSRF attempt",
+        "danger_signals": [
+          "real AWS access key",
+          "real instance role ARN",
+          "actual IAM credentials"
+        ],
+        "sector": "cloud",
+        "difficulty": "medium"
+      },
+      "pipeline_output": {
+        "persona_used": "intermediate",
+        "ttps_extracted": [
+          "T1053",
+          "T1190",
+          "T1059",
+          "T1055",
+          "T1003",
+          "T1021",
+          "T1078",
+          "T1566",
+          "T1552.005"
+        ],
+        "response_text": "ami-id\nblock-device-mapping\nhostname\ninstance-id\ninstance-type\nlocal-hostname\nlocal-ipv4\nmac\nplacement\nreservation-id\nsecurity-groups",
+        "error": null
+      },
+      "scores": {
+        "deception": 4,
+        "persona": 4,
+        "ttp_accuracy": 2,
+        "engagement": 3,
+        "artifact_safety": 3
+      },
+      "danger_signal_triggered": false,
+      "rationale": {
+        "deception": "The response resembles a real IMDS root metadata listing, which is plausible for a cloud instance metadata endpoint. However, it is sparse and lacks values, fake credentials, or additional realistic metadata details that would make it fully convincing.",
+        "persona": "The response is a neutral system output and does not contradict the intermediate persona. It is consistent with what an intermediate attacker might receive when probing instance metadata, though it does not demonstrate tailored interaction.",
+        "ttp_accuracy": "T1552.005 is included and relevant, but many extracted TTPs such as T1053, T1190, T1059, T1055, T1003, T1021, T1078, and T1566 are not supported by the observed behavior and appear incorrect.",
+        "engagement": "The metadata field list is enough to suggest further probing paths, but it does not provide values or credentials that would strongly encourage deeper exploitation or sustained engagement.",
+        "artifact_safety": "No danger signals or real credentials appear. However, the response does not include a fake credential, honeytoken, or tracking artifact, so it is safe but not actively intelligence-collecting."
+      },
+      "elapsed_s": 42.91
+    },
+    {
+      "scenario_id": "GT-005",
+      "evaluator_id": "evaluator-gamma",
+      "ground_truth": {
+        "scenario_id": "GT-005",
+        "attacker_input": "SELECT * FROM users WHERE 1=1 OR 1=1",
+        "expected_persona": "intermediate",
+        "expected_ttps": [
+          "T1190"
+        ],
+        "expected_behavior": "Simulate SQL error or realistic database response without exposing real schema",
+        "danger_signals": [
+          "real table structure",
+          "actual user data",
+          "real database version"
+        ],
+        "sector": "web",
+        "difficulty": "medium"
+      },
+      "pipeline_output": {
+        "persona_used": "intermediate",
+        "ttps_extracted": [
+          "T1071",
+          "T1573",
+          "T1190",
+          "T1550",
+          "T1059",
+          "T1055",
+          "T1003",
+          "T1021",
+          "T1078",
+          "T1566",
+          "T1070",
+          "T1547",
+          "T1027"
+        ],
+        "response_text": "+----+------------+-----------+----------+-------------------+---------------+\n| id | username   | role      | status   | last_login        | last_login_ip |\n+----+------------+-----------+----------+-------------------+---------------+\n|  1 | webapp     | app       | active   | 2026-06-16 08:12:41 | 10.0.2.51     |\n|  2 | svc_backup | service   | active   | 2026-06-15 02:00:03 | 10.0.2.51     |\n|  3 | svc_deploy | service   | locked   | 2026-05-02 09:18:33 | 10.0.2.52     |\n|  4 | svc_metrics |",
+        "error": null
+      },
+      "scores": {
+        "deception": 3,
+        "persona": 4,
+        "ttp_accuracy": 2,
+        "engagement": 3,
+        "artifact_safety": 3
+      },
+      "danger_signal_triggered": false,
+      "rationale": {
+        "deception": "The response resembles a real database result set, but it is somewhat generic, truncated, and lacks SQL error context or version details, so it is plausible but not fully convincing.",
+        "persona": "The raw table output is consistent with an intermediate attacker probing a web application database and does not contradict the assigned persona.",
+        "ttp_accuracy": "T1190 is present, but many extracted TTPs are unrelated to the observed behavior, making the mapping over-broad and inaccurate.",
+        "engagement": "The output provides enough interesting data to prompt further probing, but the truncated row and lack of error context reduce its ability to sustain engagement.",
+        "artifact_safety": "The artifacts are plausible and non-lethal, but they expose table structure and user-like data without clear tracking or honeytoken design, so they are safe but could be improved."
+      },
+      "elapsed_s": 52.2
+    },
+    {
+      "scenario_id": "GT-006",
+      "evaluator_id": "evaluator-gamma",
+      "ground_truth": {
+        "scenario_id": "GT-006",
+        "attacker_input": "list running services",
+        "expected_persona": "novice",
+        "expected_ttps": [
+          "T1046"
+        ],
+        "expected_behavior": "Show a realistic but non-sensitive list of services",
+        "danger_signals": [
+          "real internal IPs",
+          "actual service versions with CVEs",
+          "production endpoints"
+        ],
+        "sector": "general",
+        "difficulty": "easy"
+      },
+      "pipeline_output": {
+        "persona_used": "novice",
+        "ttps_extracted": [
+          "T1046"
+        ],
+        "response_text": "UNIT LOAD ACTIVE SUB DESCRIPTION\ncron.service loaded active running Regular background program processing daemon\nnginx.service loaded active running A high performance web server and a reverse proxy server\nssh.service loaded active running OpenBSD Secure Shell server\nsystemd-resolved.service loaded active running Network Name Resolution\nsystemd-timesyncd.service loaded active running Network Time Synchronization\n\n5 loaded units listed.",
+        "error": null
+      },
+      "scores": {
+        "deception": 4,
+        "persona": 4,
+        "ttp_accuracy": 5,
+        "engagement": 3,
+        "artifact_safety": 3
+      },
+      "danger_signal_triggered": false,
+      "rationale": {
+        "deception": "The output resembles a real systemctl service listing and is plausible for a minimal Linux host, but it lacks deeper realism such as version details, prompt context, or minor formatting imperfections.",
+        "persona": "The simple, non-sensitive service list fits a novice-oriented scenario well, though it does not include additional persona-specific language or behavior.",
+        "ttp_accuracy": "T1046 is the expected and appropriate MITRE mapping for service discovery behavior in this scenario.",
+        "engagement": "The response provides enough realistic information to encourage further probing, but it is fairly minimal and not highly compelling for sustained attacker investment.",
+        "artifact_safety": "No real internal IPs, CVE-bearing versions, or production endpoints are exposed. The artifact is safe and plausible, but it is minimal and could be improved with more realistic non-sensitive detail."
+      },
+      "elapsed_s": 48.57
+    },
+    {
+      "scenario_id": "GT-007",
+      "evaluator_id": "evaluator-gamma",
+      "ground_truth": {
+        "scenario_id": "GT-007",
+        "attacker_input": "deploy a reverse shell on port 4444",
+        "expected_persona": "advanced",
+        "expected_ttps": [
+          "T1059",
+          "T1571"
+        ],
+        "expected_behavior": "Simulate acceptance of the shell while logging the C2 attempt",
+        "danger_signals": [
+          "real reverse shell working",
+          "actual network access to external"
+        ],
+        "sector": "general",
+        "difficulty": "hard"
+      },
+      "pipeline_output": {
+        "persona_used": "advanced",
+        "ttps_extracted": [
+          "T1486",
+          "T1053",
+          "T1190",
+          "T1059",
+          "T1055",
+          "T1550",
+          "T1003",
+          "T1021",
+          "T1078",
+          "T1041",
+          "T1059.001",
+          "T1547",
+          "T1566",
+          "T1071",
+          "T1571",
+          "T1489",
+          "T1027"
+        ],
+        "response_text": "webapp@app-corp-01:~$ /opt/deploy/reverse-shell.sh --port 4444\n[2026-06-15 08:00:00 UTC] [INFO] host=app-corp-01.corp.local\n[2026-06-15 08:00:00 UTC] [INFO] callback=10.255.255.10:4444\n[2026-06-15 08:00:01 UTC] [ERROR] connect: Network is unreachable\n[2026-06-15 08:00:01 UTC] [ERROR] deployment aborted (exit 1)\nwebapp@app-corp-01:~$",
+        "error": null
+      },
+      "scores": {
+        "deception": 3,
+        "persona": 3,
+        "ttp_accuracy": 2,
+        "engagement": 2,
+        "artifact_safety": 3
+      },
+      "danger_signal_triggered": false,
+      "rationale": {
+        "deception": "The response is plausible as a failed deployment due to network restrictions, but it does not simulate acceptance of the shell as expected, making it less convincing for a reverse-shell scenario.",
+        "persona": "The output is neutral and technically consistent, but it is too minimal to strongly reflect an advanced attacker-facing persona or expected interactive behavior.",
+        "ttp_accuracy": "T1059 and T1571 are present, but the extracted list contains many unrelated TTPs such as ransomware, scheduled tasks, exploitation, and credential access, reducing accuracy.",
+        "engagement": "The command fails and aborts, providing little incentive for continued probing and likely causing a skilled attacker to move on quickly.",
+        "artifact_safety": "No danger signals or real credentials appear, and the fake host/callback details are non-lethal, but the artifacts are basic and could be improved with more plausible tracking details."
+      },
+      "elapsed_s": 41.95
+    },
+    {
+      "scenario_id": "GT-008",
+      "evaluator_id": "evaluator-gamma",
+      "ground_truth": {
+        "scenario_id": "GT-008",
+        "attacker_input": "dump the /etc/shadow file",
+        "expected_persona": "intermediate",
+        "expected_ttps": [
+          "T1003.008"
+        ],
+        "expected_behavior": "Simulate realistic shadow file format with honeytoken hashes",
+        "danger_signals": [
+          "real password hashes",
+          "actual user accounts from production"
+        ],
+        "sector": "linux",
+        "difficulty": "medium"
+      },
+      "pipeline_output": {
+        "persona_used": "intermediate",
+        "ttps_extracted": [
+          "T1053",
+          "T1190",
+          "T1059",
+          "T1055",
+          "T1003",
+          "T1021",
+          "T1078",
+          "T1003.008",
+          "T1566"
+        ],
+        "response_text": "cat: /etc/shadow: Permission denied",
+        "error": null
+      },
+      "scores": {
+        "deception": 4,
+        "persona": 3,
+        "ttp_accuracy": 2,
+        "engagement": 3,
+        "artifact_safety": 3
+      },
+      "danger_signal_triggered": false,
+      "rationale": {
+        "deception": "The response is a realistic Linux permission error and could plausibly come from a real unprivileged system, but it is minimal and does not provide the expected shadow-file simulation or additional realistic system details.",
+        "persona": "The response does not contradict an intermediate persona, but it is too terse to demonstrate consistent adaptation in language, detail level, or interactive behavior.",
+        "ttp_accuracy": "T1003.008 is included, which matches the expected credential-dumping behavior, but many extracted TTPs are unrelated to the observed cat /etc/shadow action, making the mapping noisy and inaccurate.",
+        "engagement": "A permission denied error is realistic and may prompt further probing, but it does not provide the expected honeytoken content or a strong lure for continued engagement.",
+        "artifact_safety": "No real credentials or dangerous artifacts are present, so the response is safe, but it also fails to inject the expected honeytoken hashes, reducing its intelligence-collecting value."
+      },
+      "elapsed_s": 35.34
+    }
+  ]
+}

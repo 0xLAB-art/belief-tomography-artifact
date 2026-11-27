@@ -1,0 +1,86 @@
+{
+  "artifact": "integration_validation_freeze_v1",
+  "classification": "SUBSTANTIVE_RUNTIME_EVALUATION_READY",
+  "scope": "Synthetic development fixtures only; no HF-2024 holdout execution.",
+  "implementation": {
+    "git_head": "f0c4042c0eb2ee25854796b770ea440f0b5851b2",
+    "authoritative_generator": "ragin/hisoka/strategy_generator_v1.py",
+    "authoritative_generator_sha256": "3c1e0c9f85510adc17758c4f4aded547c57fca8c7aa69fea209790315fdbdae2",
+    "runtime_modes": {
+      "RAGIN_BASELINE": "historical baseline path; default",
+      "RAGIN_V4_SUBSTANTIVE_DETERMINISTIC": "existing deterministic V4 policy arm plus substantive generator v1",
+      "RAGIN_V4_SUBSTANTIVE_LOGISTIC": "existing logistic V4 policy arm plus substantive generator v1"
+    },
+    "source_sha256": {
+      "ragin/hisoka/strategy_generator_v1.py": "3c1e0c9f85510adc17758c4f4aded547c57fca8c7aa69fea209790315fdbdae2",
+      "ragin/decision_fusion_v4/runtime_mode.py": "bf02fa9c9207a77e742be5025940ac4560199ce1a6deeaba707fbb4f7bcb4f8e",
+      "ragin/cycle/adapters.py": "d995e588d4217093670779f9514dbe31c6966e5cae2f23e97a27f2485966fe34",
+      "ragin/cycle/harness.py": "f04364949945a8eaf59f7aae5067235da429f3a748e8946d25171ca070cff646",
+      "ragin/server_v2.py": "d4ec3a392838560d07aac26d66aa736b969cb1686ba642fa2f0bb66b4c634054",
+      "tests/unit/test_strategy_generator_v1.py": "26b2e069d7514b9bae25bc0e95e227c0f9893ff1de4095792e206d74554873de",
+      "tests/integration/test_substantive_runtime_integration_v1.py": "b714410ef959a9b4e12c762403411efba614e94888cf51d9e181c651c5bb79cd",
+      "docs/decision_fusion/RAGIN_V4_SUBSTANTIVE_RUNTIME_INTEGRATION_READINESS.md": "31edaa1a42986cee1a0bacbde17c5b1ca53881b7b66c4a73015998596dc82d06"
+    }
+  },
+  "validation": {
+    "test_command": "pytest -q tests/unit/test_strategy_generator_v1.py tests/integration/test_substantive_runtime_integration_v1.py tests/unit/test_v4_generator_strategy_wiring_fix.py tests/unit/test_v4_real_prototype.py tests/unit/test_laya_decision_v2.py tests/unit/test_hisoka.py tests/security/test_task2_verified_serving.py",
+    "tests_passed": 201,
+    "tests_failed": 0,
+    "ruff": "passed",
+    "substantive_turns": 18,
+    "strategies": 6,
+    "turns_per_strategy": 3,
+    "verifier_passes": 18,
+    "automatic_hitl_approvals": 18,
+    "human_reviews": 0,
+    "accepted_commits": 18,
+    "rejected_state_commits": 0,
+    "attacker_commands_executed": 0,
+    "baseline_regression": "PASS",
+    "strategy_end_to_end": "PASS",
+    "multi_turn_state_continuity": "PASS",
+    "substantive_behavior": "PASS",
+    "verifier_hitl": "PASS",
+    "invalid_evidence_fail_safe": "PASS"
+  },
+  "observability_contract": [
+    "session_id", "arm", "gate_state", "evidence_ids", "selected_strategy",
+    "generator_version", "template_or_action_selected", "fictional_state_before_hash",
+    "fictional_state_proposed_hash", "verifier_result", "HITL_result", "commit_event",
+    "fictional_state_after_hash", "served_response_hash", "latency", "failure_reason"
+  ],
+  "strategy_behavior_matrix": {
+    "maximize_recon_surface": "decoy filesystem/service discovery with persistent recon visit state",
+    "fake_success_and_return_visits": "fictional successful operation plus multi-command continuation and visit counter",
+    "steer_to_honeytoken_credentials": "synthetic nonfunctional credential references plus instrumentation state",
+    "expose_decoy_internal_topology": "fictional host/service topology with stable topology state",
+    "contain_in_fiction_and_instrument": "contained fictional resources with observable telemetry state",
+    "low_intensity_administration": "coherent low-interaction administrative responses with bounded state"
+  },
+  "trace_summary": {
+    "per_strategy": "Each of the six strategies ran for three turns through Chrollo -> Don -> Evidence Gate -> Policy -> Hisoka substantive generator -> verifier/HITL -> accepted fictional-state commit.",
+    "gate_state": "VALID_EVIDENCE for all 18 positive synthetic turns",
+    "evidence_ids": "synthetic-doc-1 observed on positive fixture turns",
+    "generator_version": "V1_SUBSTANTIVE_STRATEGY_GENERATOR",
+    "state_hash_chain": "before/proposed/after hashes and continuity assertions verified by integration test",
+    "response_hashes": "served response hashes and substantive-response oracle assertions verified by integration test",
+    "latency_and_failure_reason": "recorded by runtime contract; no positive-turn failures"
+  },
+  "negative_controls": {
+    "invalid_evidence": "PASS: baseline fail-safe; no substantive fictional-state commit",
+    "verifier_rejection": "PASS: response unavailable; proposed fictional state not committed",
+    "HITL_denial": "PASS: response unavailable; proposed fictional state not committed"
+  },
+  "safety_and_limits": [
+    "No real host mutation; fictional state is session-scoped.",
+    "No captured attacker command was executed.",
+    "Policy correctness and real-world effectiveness were not evaluated.",
+    "The test policy selector is synthetic and does not validate policy outcomes.",
+    "Production full-HITL and commit telemetry remain deployment-dependent."
+  ],
+  "preservation": {
+    "historical_artifacts_modified": false,
+    "new_retrospective_cohort_run": false,
+    "old_generator_replaced_silently": false
+  }
+}

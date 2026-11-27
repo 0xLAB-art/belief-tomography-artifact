@@ -1,0 +1,66 @@
+{
+  "canonical_record_sha256": "1a5e0bd88871fdcb37b1d5ad2cfeb1525d030a0734904cca83b148c873a1c63e",
+  "capture_id": "admin-033-a20f3d71d4594fd8b0ca1b46b2da4766",
+  "derivation_tool": "v4_controlled_admin_capture.py",
+  "derivation_tool_sha256": "d59b176bf441329630e45db76cdac7274eef5aa4ee1141c7ec906d614e9bc2f1",
+  "derivation_version": "v1:d0e0539d3fb3d7ba5108f319e2868506b3463e170b868f8f8b1d61d8b953843a",
+  "derived_at_utc": "2026-10-14T06:38:38.520844Z",
+  "independence_group_id": "admin-033-a20f3d71d4594fd8b0ca1b46b2da4766",
+  "native_session_id": "admin-033-a20f3d71d4594fd8b0ca1b46b2da4766",
+  "prior_session_context": [
+    {
+      "data": {
+        "transport": "local-bash-session"
+      },
+      "event_type": "session_start",
+      "timestamp": "2026-10-14T06:38:38.505945Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "id -u",
+      "output": "1000\n",
+      "timestamp": "2026-10-14T06:38:38.507305Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "id -g",
+      "output": "1000\n",
+      "timestamp": "2026-10-14T06:38:38.508083Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "id -G",
+      "output": "1000 4 24 27 30 46 100 114 982 984 995\n",
+      "timestamp": "2026-10-14T06:38:38.508860Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "uname -srmo",
+      "output": "Linux 7.0.0-38-generic x86_64 GNU/Linux\n",
+      "timestamp": "2026-10-14T06:38:38.509494Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "nproc",
+      "output": "12\n",
+      "timestamp": "2026-10-14T06:38:38.510127Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "free -h",
+      "output": "               total        used        free      shared  buff/cache   available\nMem:            15Gi       8.3Gi       1.8Gi       598Mi       6.2Gi       7.0Gi\nSwap:          4.3Gi       4.3Gi       412Ki\n",
+      "timestamp": "2026-10-14T06:38:38.511364Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "df -h /tmp",
+      "output": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/nvme0n1p6  186G  162G   15G  92% /\n",
+      "timestamp": "2026-10-14T06:38:38.512415Z"
+    }
+  ],
+  "raw_parent_sha256": "fed0855829ce5e3b21f04218c5a984b82763b7acacbf8502637122a6f1e36e09",
+  "schema": "ragin.real_canonical_session.v1",
+  "selected_input": "stat -c '%A %U %G %n' /tmp",
+  "selected_input_event_index": 8,
+  "source_cluster_id": null
+}

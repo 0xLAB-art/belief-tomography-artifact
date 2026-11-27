@@ -1,0 +1,51 @@
+{
+  "analysis_plan": [
+    "freeze selected cases and input hashes",
+    "freeze retrieval evidence and blinded packet",
+    "run matched arms",
+    "freeze outputs",
+    "score only if independent labels are later supplied"
+  ],
+  "arms": {
+    "A": "Don V2 retrieval -> Evidence Gate",
+    "B": "Don V2 retrieval -> Evidence Judge V1 -> Evidence Gate"
+  },
+  "data_source": "HF-2024 pinned source-IP command aggregates",
+  "eligible_families_before_selection": 887,
+  "experiment_id": "EVIDENCE_JUDGE_REAL_ABLATION_V1",
+  "frozen_settings": {
+    "gate_version": "EVIDENCE_GATE_V1",
+    "generator_run": false,
+    "judge_version": "EVIDENCE_JUDGE_V1",
+    "policy_active": false,
+    "retrieval_corpus": "data/corpus/command_aware_v2.jsonl",
+    "retrieval_version": "DON_COMMAND_AWARE_V2"
+  },
+  "observation_unit": "one selected HF-2024 source-group command sequence; not asserted to be a native SSH session",
+  "previous_families_excluded": 571,
+  "previous_holdout_paths": [
+    "results/decision_fusion_v4/v4_hf2024_retrospective_holdout_freeze_v1.json",
+    "results/decision_fusion_v4/v4_hf2024_retrospective_holdout_freeze_v1a.json",
+    "results/decision_fusion_v4/hf2024_postfix_family_disjoint_v1/holdout_freeze.json",
+    "results/decision_fusion_v4/hf2024_substantive_final_v1/holdout_freeze.json"
+  ],
+  "previous_source_groups_excluded": 934,
+  "reference_rule": "No self-generated labels, judge outputs, gate outcomes, or prior model outputs may serve as reference labels.",
+  "reference_status": "REFERENCE_UNAVAILABLE",
+  "retrieval_freeze": {
+    "candidate_count_per_case": "top_k candidates from frozen trace",
+    "retrieval_corpus_sha256": "d1a2f015eae91c91702fa9ccc5cdbdb8a074d7cb05e62d93208a30919cb242f4",
+    "retrieval_executed_before_arm_comparison": true,
+    "retrieval_trace_version": "DON_COMMAND_AWARE_V2"
+  },
+  "same_source_retrospective": true,
+  "schema": "ragin.evidence_judge_real_ablation.protocol.v1",
+  "selection_conditioning": "none on gate, judge, policy, labels, or outcomes",
+  "selection_rule": "exclude prior source groups and normalized command families, then sort family keys by SHA256(JSON([EXPERIMENT_ID, family, normalized_family])) and choose one record per first 120 families by deterministic record hash",
+  "separate_prospective_cowrie_available": false,
+  "source_path": "data/external/hf_shell_attack_2024/d201aafbbcbb5347078ca64f06c5428fa6814bc9/sessions/2024.jsonl",
+  "source_revision": "d201aafbbcbb5347078ca64f06c5428fa6814bc9",
+  "source_rows": 6658,
+  "source_sha256": "7ea4b916841708c36dbe24f95b882f06335e85ed2e77bdc70ba985c9c9653752",
+  "status": "SAME_SOURCE_RETROSPECTIVE_REFERENCE_PENDING"
+}

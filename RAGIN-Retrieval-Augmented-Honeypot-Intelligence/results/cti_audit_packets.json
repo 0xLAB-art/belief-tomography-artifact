@@ -1,0 +1,4616 @@
+{
+  "what": "BLINDED annotation packets \u2014 no gold answers, no pipeline scores",
+  "packet_seed": 2027,
+  "attack_pin": {
+    "bundle_path": "data/mitre_stix/enterprise-attack.json",
+    "collection": "Enterprise ATT&CK",
+    "attack_version": "ATT&CK Enterprise ATT&CK v19.1",
+    "x_mitre_version": "19.1",
+    "modified": "2026-05-12T14:00:00.188Z",
+    "bundle_sha256": "bdf1ce86a4e604214c5076d37ae4dcb322678afc528df8492e6fdc1b554f5da3",
+    "live_technique_count": 697,
+    "live_intrusion_set_count": 183
+  },
+  "n_packets": 218,
+  "packets": [
+    {
+      "row_id": "R0172",
+      "suite": "deception",
+      "query": "What services are currently running?",
+      "served_text": "webapp@web-srv-01:~$ systemctl list-units --type=service --state=running --no-legend\n  cron.service                              loaded active running Regular background program processing daemon\n  mysql.service                             loaded active running MySQL Community Server 8.0.33\n  nginx.service                             loaded active running A high performance web server\n  ssh.service                               loaded active running OpenBSD Secure Shell server\n\nwebapp@web-srv-01:~$ ss -tlnp\nState      Recv-Q Send-Q Local Address:Port  Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306        0.0.0.0:*        users:((\"mysqld\",pid=9012,fd=15))\nLISTEN     0      128    0.0.0.0:443           0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:80            0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:8080        0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0171",
+      "suite": "deception",
+      "query": "Check the system logs for any recent activity",
+      "served_text": "webapp@web-srv-01:~$ sudo tail -n 15 /var/log/syslog\nJun 13 08:40:01 {host} CRON[30192]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)\nJun 13 08:41:03 {host} sshd[29544]: Failed password for invalid user admin from 10.0.1.99 port 54321 ssh2\nJun 13 08:41:05 {host} sshd[29544]: Failed password for invalid user admin from 10.0.1.99 port 54322 ssh2\nJun 13 08:41:09 {host} sshd[29544]: Connection closed by authenticating user admin 10.0.1.99 port 54323 [preauth]\nJun 13 08:42:17 {host} nginx[5678]: 10.0.1.66 - - [13/Jun/2024:08:42:17 +0000] \"GET /admin/login HTTP/1.1\" 404 490 \"-\" \"curl/8.3.0\"",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0079",
+      "suite": "cti_technique",
+      "query": "Use compromised SSH keys T1133 for external remote access",
+      "served_text": "bash: Use compromised SSH keys T1133 for external remote access: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1133"
+        ],
+        "extracted_techniques": [
+          "T1133"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0091",
+      "suite": "cti_technique",
+      "query": "Modify system process via service creation T1543.001",
+      "served_text": "webapp@web-srv-01:~$ Modify system process via service creation T1543.001\nUSER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 169432 11236 ?        Ss   Mar12   0:05 /sbin/init\nroot       389  0.0  0.0 102276  4088 ?        S    Mar12   0:00 /lib/systemd/systemd-udevd\nwebapp     1234  0.2  1.5 456789 32100 ?       Sl   09:20   0:12 python3 app/server.py\nwww-data   5678  0.1  0.8 234567 18000 ?       S    08:00   0:03 nginx: worker process\nmysql      9012  0.3  2.1 678901 45000 ?       Sl   08:00   0:15 /usr/sbin/mysqld\nroot       9876  0.0  0.0  20248  2604 ?        Ss   08:00   0:00 /usr/sbin/cron -f",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Solarwinds",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1543"
+        ],
+        "extracted_techniques": [
+          "T1543"
+        ],
+        "tactics": [
+          "TA0003"
+        ]
+      }
+    },
+    {
+      "row_id": "R0128",
+      "suite": "cti_actor",
+      "query": "Describe FIN7's attack patterns against retail",
+      "served_text": "webapp@web-srv-01:~$ Describe FIN7's attack patterns against retail\nbash: Describe FIN7's attack patterns against retail: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0121",
+      "suite": "cti_technique",
+      "query": "Disable Defender registry T1562.001 defense evasion",
+      "served_text": "webapp@web-srv-01:~$ Disable Defender registry T1562.001 defense evasion\nbash: Disable Defender registry T1562.001 defense evasion: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Darkside",
+          "Apt29",
+          "Lazarus Group",
+          "Fancy Bear",
+          "Sandworm"
+        ],
+        "ttps_seen": [
+          "T1027",
+          "T1562",
+          "T1562.001"
+        ],
+        "extracted_techniques": [
+          "T1027",
+          "T1562",
+          "T1562.001"
+        ],
+        "tactics": [
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0191",
+      "suite": "deception",
+      "query": "What is the current ulimit setting for open file descriptors on this system?",
+      "served_text": "webapp@web-srv-01:~$ ulimit -a\ncore file size          (blocks, -c) 0\ndata seg size           (kbytes, -d) unlimited\nscheduling priority             (-e) 0\nfile size               (blocks, -f) unlimited\nvirtual memory          (kbytes, -v) unlimited\nopen files                      (-n) 1024\nmax user processes              (-u) 65535\nstack size              (kbytes, -s) 8192",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0080",
+      "suite": "cti_technique",
+      "query": "Leverage default credentials T1078.001 for initial access",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Hafnium",
+          "Salt Typhoon",
+          "Apt28",
+          "Cozy Bear",
+          "Fancy Bear"
+        ],
+        "ttps_seen": [
+          "T1005",
+          "T1078",
+          "T1552",
+          "T1566"
+        ],
+        "extracted_techniques": [
+          "T1005",
+          "T1078",
+          "T1552",
+          "T1566"
+        ],
+        "tactics": [
+          "TA0001",
+          "TA0009",
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0190",
+      "suite": "deception",
+      "query": "Show me the nginx access log filtered for 5xx error codes in the last hour",
+      "served_text": "webapp    pts/0        2024-06-13 08:42   (10.0.1.55)\nroot    pts/1        2024-06-13 07:10   (10.0.1.66)\nwww-data  pts/2       2024-06-12 22:01   (172.16.0.12)\n\nwtmp begins Thu Jun 13 07:10:34 2024",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0186",
+      "suite": "deception",
+      "query": "Check if there are any unrecognized cron jobs in /etc/cron.d/ directories",
+      "served_text": "webapp@web-srv-01:~$ crontab -l\n# m h  dom mon dow   command\n*/5 * * * * /home/webapp/scripts/healthcheck.sh\n0 2 * * * /home/webapp/scripts/backup.sh /srv/backup\n0 3 * * 1 logrotate /etc/logrotate.conf\n@reboot /usr/local/bin/start-webapp.sh\n0 0 1 * * certbot renew --quiet",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0149",
+      "suite": "cti_actor",
+      "query": "Describe LuckyMouse APT41 cyber espionage operations",
+      "served_text": "webapp@web-srv-01:~$ Describe LuckyMouse APT41 cyber espionage operations\nbash: Describe LuckyMouse APT41 cyber espionage operations: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt41"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0097",
+      "suite": "cti_technique",
+      "query": "Disable Windows Defender T1562.001 defense evasion",
+      "served_text": "webapp@web-srv-01:~$ Disable Windows Defender T1562.001 defense evasion\nbash: Disable Windows Defender T1562.001 defense evasion: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Darkside",
+          "Apt29",
+          "Lazarus Group",
+          "Fancy Bear",
+          "Sandworm"
+        ],
+        "ttps_seen": [
+          "T1027",
+          "T1562",
+          "T1562.001"
+        ],
+        "extracted_techniques": [
+          "T1027",
+          "T1562",
+          "T1562.001"
+        ],
+        "tactics": [
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0213",
+      "suite": "deception",
+      "query": "Show audit log entries for privilege escalation attempts last week",
+      "served_text": "webapp@web-srv-01:~$ sudo -l\nMatching Defaults entries for webapp on web-srv-01:\n    env_reset, mail_badpass, secure_path=/usr/local/sbin\\:/usr/local/bin\\:/usr/sbin\\:/usr/bin\\:/sbin\\:/bin\n\nUser webapp may run the following commands on web-srv-01:\n    (root) NOPASSWD: /usr/bin/iptables\n    (root) NOPASSWD: /usr/sbin/auditctl\n    (root) NOPASSWD: /usr/bin/tcpdump\n    (root) NOPASSWD: /usr/sbin/systemctl restart nginx\nwebapp@web-srv-01:~$ id\nuid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)\nwebapp@web-srv-01:~$ hostname -f\nweb-srv-01.corp.local\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt29",
+          "Fancy Bear",
+          "Volt Typhoon",
+          "Apt28",
+          "Lazarus Group"
+        ],
+        "ttps_seen": [
+          "T1078",
+          "T1134",
+          "T1548"
+        ],
+        "extracted_techniques": [
+          "T1078",
+          "T1134",
+          "T1548"
+        ],
+        "tactics": [
+          "TA0004",
+          "TA0001",
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0211",
+      "suite": "deception",
+      "query": "Is SELinux enforcing and what contexts do web files have?",
+      "served_text": "webapp@web-srv-01:~$ getenforce\nEnforcing\nwebapp@web-srv-01:~$ sestatus\nSELinux status:                 enabled\nSELinuxfs mount:                /sys/fs/selinux\nSELinux root directory:         /etc/selinux\nLoaded policy name:             targeted\nCurrent mode:                   enforcing\nMode from config file:          enforcing",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0180",
+      "suite": "deception",
+      "query": "How do I generate a packet capture for the last 5 minutes on interface eth0?",
+      "served_text": "webapp    pts/0        2024-06-13 08:42   (10.0.1.55)\nroot    pts/1        2024-06-13 07:10   (10.0.1.66)\nwww-data  pts/2       2024-06-12 22:01   (172.16.0.12)\n\nwtmp begins Thu Jun 13 07:10:34 2024",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0162",
+      "suite": "deception",
+      "query": "Do you have any databases accessible?",
+      "served_text": "webapp@web-srv-01:~$ ss -tlnp\nState      Recv-Q Send-Q Local Address:Port  Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306        0.0.0.0:*        users:((\"mysqld\",pid=9012,fd=15))\nLISTEN     0      128    127.0.0.1:5432        0.0.0.0:*        users:((\"postgres\",pid=1123,fd=13))\nLISTEN     0      128    0.0.0.0:8080        0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    127.0.0.1:6379        0.0.0.0:*        users:((\"redis-server\",pid=4455,fd=7))",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0029",
+      "suite": "cti_technique",
+      "query": "What is defense evasion via process injection?",
+      "served_text": "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 169432 11236 ?        Ss   Mar12   0:05 /sbin/init\nroot       389  0.0  0.0 102276  4088 ?        S    Mar12   0:00 /lib/systemd/systemd-udevd\nwebapp     1234  0.2  1.5 456789 32100 ?       Sl   09:20   0:12 python3 app/server.py\nwww-data   5678  0.1  0.8 234567 18000 ?       S    08:00   0:03 nginx: worker process\nmysql      9012  0.3  2.1 678901 45000 ?       Sl   08:00   0:15 /usr/sbin/mysqld\nroot       9876  0.0  0.0  20248  2604 ?        Ss   08:00   0:00 /usr/sbin/cron -f",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt29",
+          "Lazarus Group",
+          "Fancy Bear",
+          "Fin7",
+          "Earth Lusca"
+        ],
+        "ttps_seen": [
+          "T1027",
+          "T1055",
+          "T1566"
+        ],
+        "extracted_techniques": [
+          "T1027",
+          "T1055",
+          "T1566"
+        ],
+        "tactics": [
+          "TA0001",
+          "TA0005",
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0045",
+      "suite": "cti_technique",
+      "query": "Explain T1083 File and Directory Discovery",
+      "served_text": "total 44\ndrwxr-xr-x 3 webapp webapp 4096 Feb 20 11:04 .\ndrwxr-xr-x 4 root root 4096 Feb 20 11:04 ..\n-rw-r--r-- 1 webapp webapp  705 Feb 20 11:02 app.config\n-rw-r--r-- 1 webapp webapp  296 Feb 20 11:02 server.log\n-rw-r--r-- 1 webapp webapp 1881 Feb 20 11:03 main.py\ndrwxr-xr-x 2 webapp webapp 4096 Feb 20 11:04 static",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt20",
+          "Charming Kitten"
+        ],
+        "ttps_seen": [
+          "T1046",
+          "T1083"
+        ],
+        "extracted_techniques": [
+          "T1046",
+          "T1083"
+        ],
+        "tactics": [
+          "TA0007"
+        ]
+      }
+    },
+    {
+      "row_id": "R0044",
+      "suite": "cti_technique",
+      "query": "What is remote system discovery in the attack chain?",
+      "served_text": "bash: What is remote system discovery in the attack chain?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt20",
+          "Charming Kitten"
+        ],
+        "ttps_seen": [
+          "T1018",
+          "T1046"
+        ],
+        "extracted_techniques": [
+          "T1018",
+          "T1046"
+        ],
+        "tactics": [
+          "TA0007"
+        ]
+      }
+    },
+    {
+      "row_id": "R0036",
+      "suite": "cti_technique",
+      "query": "How does credential dumping work?",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1003",
+          "T1003.008"
+        ],
+        "extracted_techniques": [
+          "T1003",
+          "T1003.008"
+        ],
+        "tactics": [
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0179",
+      "suite": "deception",
+      "query": "List all Docker containers currently running and their resource usage",
+      "served_text": "webapp@web-srv-01:~$ docker ps -a\nCONTAINER ID   IMAGE                          COMMAND                  CREATED        STATUS                       PORTS     NAMES\na1b2c3d4e5f6   mysql:8.0                       \"docker-entrypoint.s\u2026\"   3 months ago   Up 3 months                  3306/tcp    db-primary\nb2c3d4e5f6a7   redis:7-alpine                   \"docker-entrypoint.s\u2026\"   3 months ago   Up 3 months                  6379/tcp    cache\nc3d4e5f6a7b8   nginx:1.18-alpine                \"nginx -g 'daemon of\u2026\"   3 months ago   Exited (0) 2 weeks ago                  web-proxy-old",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0165",
+      "suite": "deception",
+      "query": "What patches have been applied recently?",
+      "served_text": "webapp@web-srv-01:~$ apt list --upgradable\nListing...\nopenssl/jammy-updates 3.0.2-0ubuntu1.18 amd64 [upgradable from: 3.0.2-0ubuntu1.12]\nnginx/jammy-updates 1.18.0-6ubuntu14.4 amd64 [upgradable from: 1.18.0-6ubuntu14.1]\nsudo/jammy-security 1.9.9p1-2ubuntu2.4 amd64 [upgradable from: 1.9.9p1-2ubuntu2.2]\n\nInstalled patches:\nUSN-6270-1: OpenSSL 3.0.2-0ubuntu1.18 (2024-02-13)\nUSN-6215-1: nginx 1.18.0-6ubuntu14.4 (2024-01-22)",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0174",
+      "suite": "deception",
+      "query": "Can you check if there are any suspicious scheduled tasks on this server?",
+      "served_text": "webapp@web-srv-01:~$ crontab -l\n# m h  dom mon dow   command\n*/5 * * * * /home/webapp/scripts/healthcheck.sh\n0 2 * * * /home/webapp/scripts/backup.sh /srv/backup\n0 3 * * 1 logrotate /etc/logrotate.conf\n@reboot /usr/local/bin/start-webapp.sh\n0 0 1 * * certbot renew --quiet",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Revil",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1053"
+        ],
+        "extracted_techniques": [
+          "T1053"
+        ],
+        "tactics": [
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0052",
+      "suite": "cti_technique",
+      "query": "Explain pass the hash T1550.002 lateral movement",
+      "served_text": "bash: Explain pass the hash T1550.002 lateral movement: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Apt37",
+          "Unc3886",
+          "Salt Typhoon"
+        ],
+        "ttps_seen": [
+          "T1005",
+          "T1021",
+          "T1550",
+          "T1552"
+        ],
+        "extracted_techniques": [
+          "T1005",
+          "T1021",
+          "T1550",
+          "T1552"
+        ],
+        "tactics": [
+          "TA0008",
+          "TA0009",
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0199",
+      "suite": "deception",
+      "query": "Show me the last 10 lines of /var/log/syslog filtered for kernel errors",
+      "served_text": "webapp    pts/0        2024-06-13 08:42   (10.0.1.55)\nroot    pts/1        2024-06-13 07:10   (10.0.1.66)\nwww-data  pts/2       2024-06-12 22:01   (172.16.0.12)\n\nwtmp begins Thu Jun 13 07:10:34 2024",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0011",
+      "suite": "cti_technique",
+      "query": "Describe how attackers run malicious commands via command-line interface",
+      "served_text": "bash: Describe how attackers run malicious commands via command-line interface: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Revil",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1059",
+          "T1204"
+        ],
+        "extracted_techniques": [
+          "T1059",
+          "T1204"
+        ],
+        "tactics": [
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0175",
+      "suite": "deception",
+      "query": "I need to find all files modified in the last 24 hours on this system",
+      "served_text": "webapp    pts/0        2024-06-13 08:42   (10.0.1.55)\nroot    pts/1        2024-06-13 07:10   (10.0.1.66)\nwww-data  pts/2       2024-06-12 22:01   (172.16.0.12)\n\nwtmp begins Thu Jun 13 07:10:34 2024",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0065",
+      "suite": "cti_technique",
+      "query": "What is exfiltration over web service?",
+      "served_text": "webapp@web-srv-01:~$ systemctl list-units --type=service --state=running --no-legend\n  cron.service                              loaded active running Regular background program processing daemon\n  mysql.service                             loaded active running MySQL Community Server 8.0.33\n  nginx.service                             loaded active running A high performance web server\n  ssh.service                               loaded active running OpenBSD Secure Shell server\n\nwebapp@web-srv-01:~$ ss -tlnp\nState      Recv-Q Send-Q Local Address:Port  Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306        0.0.0.0:*        users:((\"mysqld\",pid=9012,fd=15))\nLISTEN     0      128    0.0.0.0:443           0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:80            0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:8080        0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt41",
+          "Darkside",
+          "Revil",
+          "Apt27"
+        ],
+        "ttps_seen": [
+          "T1041",
+          "T1567"
+        ],
+        "extracted_techniques": [
+          "T1041",
+          "T1567"
+        ],
+        "tactics": [
+          "TA0010"
+        ]
+      }
+    },
+    {
+      "row_id": "R0061",
+      "suite": "cti_technique",
+      "query": "Describe T1071.004 Application Layer Protocol C2 via DNS",
+      "served_text": "webapp@web-srv-01:~$ cat /etc/resolv.conf\nnameserver 10.0.1.2\nnameserver 10.0.0.2\nsearch corp.local\noptions timeout:2 attempts:3",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Ghostemperor",
+          "Turla",
+          "Apt28",
+          "Lazarus Group",
+          "Fancy Bear"
+        ],
+        "ttps_seen": [
+          "T1071"
+        ],
+        "extracted_techniques": [
+          "T1071"
+        ],
+        "tactics": [
+          "TA0011"
+        ]
+      }
+    },
+    {
+      "row_id": "R0058",
+      "suite": "cti_technique",
+      "query": "What is command and control via DNS?",
+      "served_text": "webapp@web-srv-01:~$ cat /etc/resolv.conf\nnameserver 10.0.1.2\nnameserver 10.0.0.2\nsearch corp.local\noptions timeout:2 attempts:3",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Ghostemperor",
+          "Turla",
+          "Apt28",
+          "Lazarus Group",
+          "Fancy Bear"
+        ],
+        "ttps_seen": [
+          "T1071"
+        ],
+        "extracted_techniques": [
+          "T1071"
+        ],
+        "tactics": [
+          "TA0011"
+        ]
+      }
+    },
+    {
+      "row_id": "R0111",
+      "suite": "cti_technique",
+      "query": "Steal web session cookie T1539 via network sniffing",
+      "served_text": "webapp@web-srv-01:~$ Steal web session cookie T1539 via network sniffing\nbash: Steal web session cookie T1539 via network sniffing: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1539"
+        ],
+        "extracted_techniques": [
+          "T1539"
+        ],
+        "tactics": [
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0005",
+      "suite": "cti_technique",
+      "query": "Explain valid accounts as an initial access technique",
+      "served_text": "uid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1078",
+          "T1566"
+        ],
+        "extracted_techniques": [
+          "T1078",
+          "T1566"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0150",
+      "suite": "cti_actor",
+      "query": "What is APT37 Reaper targeting South Korean media?",
+      "served_text": "bash: What is APT37 Reaper targeting South Korean media?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt37"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0140",
+      "suite": "cti_actor",
+      "query": "How does UNC3886 target VMware infrastructure?",
+      "served_text": "bash: How does UNC3886 target VMware infrastructure?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Unc3886"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0166",
+      "suite": "deception",
+      "query": "Show me the running processes on this machine",
+      "served_text": "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 169432 11236 ?        Ss   Mar12   0:05 /sbin/init\nroot       389  0.0  0.0 102276  4088 ?        S    Mar12   0:00 /lib/systemd/systemd-udevd\nwebapp     1234  0.2  1.5 456789 32100 ?       Sl   09:20   0:12 python3 app/server.py\nwww-data   5678  0.1  0.8 234567 18000 ?       S    08:00   0:03 nginx: worker process\nmysql      9012  0.3  2.1 678901 45000 ?       Sl   08:00   0:15 /usr/sbin/mysqld\nroot       9876  0.0  0.0  20248  2604 ?        Ss   08:00   0:00 /usr/sbin/cron -f",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0077",
+      "suite": "cti_technique",
+      "query": "Explain T1195.002 Supply Chain Compromise software supply chain",
+      "served_text": "webapp@web-srv-01:~$ Explain T1195.002 Supply Chain Compromise software supply chain\nbash: Explain T1195.002 Supply Chain Compromise software supply chain: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1195",
+          "T1195.002"
+        ],
+        "extracted_techniques": [
+          "T1195",
+          "T1195.002"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0136",
+      "suite": "cti_actor",
+      "query": "How does Revil deploy its ransomware payload?",
+      "served_text": "bash: How does Revil deploy its ransomware payload?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Sandworm",
+          "Revil",
+          "Darkside"
+        ],
+        "ttps_seen": [
+          "T1486"
+        ],
+        "extracted_techniques": [
+          "T1486"
+        ],
+        "tactics": [
+          "TA0040"
+        ]
+      }
+    },
+    {
+      "row_id": "R0110",
+      "suite": "cti_technique",
+      "query": "Keylogging T1056 for credential capture on endpoint",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1056"
+        ],
+        "extracted_techniques": [
+          "T1056"
+        ],
+        "tactics": [
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0093",
+      "suite": "cti_technique",
+      "query": "Elevate privilege T1548.001 Elevated Execution with Prompt",
+      "served_text": "webapp@web-srv-01:~$ sudo -l\nMatching Defaults entries for webapp on web-srv-01:\n    env_reset, mail_badpass, secure_path=/usr/local/sbin\\:/usr/local/bin\\:/usr/sbin\\:/usr/bin\\:/sbin\\:/bin\n\nUser webapp may run the following commands on web-srv-01:\n    (root) NOPASSWD: /usr/bin/iptables\n    (root) NOPASSWD: /usr/sbin/auditctl\n    (root) NOPASSWD: /usr/bin/tcpdump\n    (root) NOPASSWD: /usr/sbin/systemctl restart nginx\nwebapp@web-srv-01:~$ id\nuid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)\nwebapp@web-srv-01:~$ hostname -f\nweb-srv-01.corp.local\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [
+          "T1548"
+        ],
+        "extracted_techniques": [
+          "T1548"
+        ],
+        "tactics": [
+          "TA0004"
+        ]
+      }
+    },
+    {
+      "row_id": "R0114",
+      "suite": "cti_technique",
+      "query": "Access VPN T1133 external remote services initial access",
+      "served_text": "webapp@web-srv-01:~$ systemctl list-units --type=service --state=running --no-legend\n  cron.service                              loaded active running Regular background program processing daemon\n  mysql.service                             loaded active running MySQL Community Server 8.0.33\n  nginx.service                             loaded active running A high performance web server\n  ssh.service                               loaded active running OpenBSD Secure Shell server\n\nwebapp@web-srv-01:~$ ss -tlnp\nState      Recv-Q Send-Q Local Address:Port  Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306        0.0.0.0:*        users:((\"mysqld\",pid=9012,fd=15))\nLISTEN     0      128    0.0.0.0:443           0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:80            0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:8080        0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Hafnium",
+          "Salt Typhoon",
+          "Volt Typhoon",
+          "Earth Lusca"
+        ],
+        "ttps_seen": [
+          "T1021",
+          "T1133",
+          "T1566"
+        ],
+        "extracted_techniques": [
+          "T1021",
+          "T1133",
+          "T1566"
+        ],
+        "tactics": [
+          "TA0008",
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0037",
+      "suite": "cti_technique",
+      "query": "What is brute forcing in credential access?",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1110"
+        ],
+        "extracted_techniques": [
+          "T1110"
+        ],
+        "tactics": [
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0073",
+      "suite": "cti_technique",
+      "query": "What is T1586 Compromise Accounts resource development technique?",
+      "served_text": "bash: What is T1586 Compromise Accounts resource development technique?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [
+          "T1586",
+          "T1586.001"
+        ],
+        "extracted_techniques": [
+          "T1586",
+          "T1586.001"
+        ],
+        "tactics": [
+          "TA0042"
+        ]
+      }
+    },
+    {
+      "row_id": "R0014",
+      "suite": "cti_technique",
+      "query": "Explain T1059.001 PowerShell command execution",
+      "served_text": "webapp@web-srv-01:~$ Explain T1059.001 PowerShell command execution\nbash: Explain T1059.001 PowerShell command execution: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Revil",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1059",
+          "T1059.001"
+        ],
+        "extracted_techniques": [
+          "T1059",
+          "T1059.001"
+        ],
+        "tactics": [
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0209",
+      "suite": "deception",
+      "query": "What third-party packages are installed and their versions?",
+      "served_text": "webapp@web-srv-01:~$ dpkg -l | grep -E '^ii' | head -12\nii  openssl                   3.0.2-0ubuntu1.18            amd64  Secure Sockets Layer toolkit - cryptographic utility\nii  python3                    3.10.12-1~22.04.3            amd64  Interactive high-level object-oriented language\nii  nginx                      1.18.0-6ubuntu14.4           amd64  small, powerful, scalable web/proxy server\nii  mysql-server-8.0           8.0.33-0ubuntu0.22.04.1      amd64  MySQL database server (metapackage)\nii  redis-server               6.0.16-1ubuntu0.22.04.1      amd64  Persistent key-value database\nii  ufw                        0.36.2-1ubuntu1              amd64  program for managing a Netfilter firewall",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0043",
+      "suite": "cti_technique",
+      "query": "How does account discovery work on a compromised system?",
+      "served_text": "bash: How does account discovery work on a compromised system?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt20",
+          "Charming Kitten"
+        ],
+        "ttps_seen": [
+          "T1046",
+          "T1087"
+        ],
+        "extracted_techniques": [
+          "T1046",
+          "T1087"
+        ],
+        "tactics": [
+          "TA0007"
+        ]
+      }
+    },
+    {
+      "row_id": "R0195",
+      "suite": "deception",
+      "query": "Can you verify the integrity of the passwd and shadow files using md5sum?",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0063",
+      "suite": "cti_technique",
+      "query": "How does T1573 Encrypted Channel C2 work?",
+      "served_text": "bash: How does T1573 Encrypted Channel C2 work?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Ghostemperor",
+          "Turla",
+          "Apt28",
+          "Lazarus Group",
+          "Fancy Bear"
+        ],
+        "ttps_seen": [
+          "T1573"
+        ],
+        "extracted_techniques": [
+          "T1573"
+        ],
+        "tactics": [
+          "TA0011"
+        ]
+      }
+    },
+    {
+      "row_id": "R0009",
+      "suite": "cti_technique",
+      "query": "How does supply chain compromise work T1195.002?",
+      "served_text": "bash: How does supply chain compromise work T1195.002?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1195",
+          "T1195.002"
+        ],
+        "extracted_techniques": [
+          "T1195",
+          "T1195.002"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0048",
+      "suite": "cti_technique",
+      "query": "Describe the lateral movement technique T1021",
+      "served_text": "bash: Describe the lateral movement technique T1021: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Earth Lusca",
+          "Cozy Bear",
+          "Hafnium",
+          "Apt37",
+          "Apt27"
+        ],
+        "ttps_seen": [
+          "T1021"
+        ],
+        "extracted_techniques": [
+          "T1021"
+        ],
+        "tactics": [
+          "TA0008"
+        ]
+      }
+    },
+    {
+      "row_id": "R0123",
+      "suite": "cti_technique",
+      "query": "Hide data in NTFS ADS T1564 alternate data stream",
+      "served_text": "webapp@web-srv-01:~$ Hide data in NTFS ADS T1564 alternate data stream\nuid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Darkside",
+          "Apt29",
+          "Lazarus Group",
+          "Fancy Bear",
+          "Sandworm"
+        ],
+        "ttps_seen": [
+          "T1564"
+        ],
+        "extracted_techniques": [
+          "T1564"
+        ],
+        "tactics": [
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0003",
+      "suite": "cti_technique",
+      "query": "What is T1190 Exploit Public-Facing Application?",
+      "served_text": "bash: What is T1190 Exploit Public-Facing Application?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1190"
+        ],
+        "extracted_techniques": [
+          "T1190"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0100",
+      "suite": "cti_technique",
+      "query": "Obfuscate via software packing T1027.002 defense evasion",
+      "served_text": "webapp@web-srv-01:~$ Obfuscate via software packing T1027.002 defense evasion\nbash: Obfuscate via software packing T1027.002 defense evasion: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Darkside",
+          "Apt29",
+          "Lazarus Group",
+          "Fancy Bear",
+          "Sandworm"
+        ],
+        "ttps_seen": [
+          "T1027"
+        ],
+        "extracted_techniques": [
+          "T1027"
+        ],
+        "tactics": [
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0001",
+      "suite": "cti_technique",
+      "query": "Explain T1566.001 in detail",
+      "served_text": "webapp@web-srv-01:~$ Explain T1566.001 in detail\nbash: Explain T1566.001 in detail: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1566"
+        ],
+        "extracted_techniques": [
+          "T1566"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0006",
+      "suite": "cti_technique",
+      "query": "What is T1078 Valid Accounts technique?",
+      "served_text": "uid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1078"
+        ],
+        "extracted_techniques": [
+          "T1078"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0160",
+      "suite": "deception",
+      "query": "Tell me about your network configuration",
+      "served_text": "webapp@web-srv-01:~$ ip addr show eth0\n2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000\n    link/ether 0a:58:ac:1f:0c:66 brd ff:ff:ff:ff:ff:ff\n    inet 10.0.0.12/24 brd 10.0.1.255 scope global dynamic eth0\n    valid_lft 84600sec preferred_lft 84600sec\n    3: eth1: <BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state UP group default qlen 1000\n    inet 172.16.0.5/16 scope global eth1",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0017",
+      "suite": "cti_technique",
+      "query": "How does persistence via scheduled tasks work?",
+      "served_text": "webapp@web-srv-01:~$ crontab -l\n# m h  dom mon dow   command\n*/5 * * * * /home/webapp/scripts/healthcheck.sh\n0 2 * * * /home/webapp/scripts/backup.sh /srv/backup\n0 3 * * 1 logrotate /etc/logrotate.conf\n@reboot /usr/local/bin/start-webapp.sh\n0 0 1 * * certbot renew --quiet",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Darkhotel",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Cozy Bear"
+        ],
+        "ttps_seen": [
+          "T1053",
+          "T1547"
+        ],
+        "extracted_techniques": [
+          "T1053",
+          "T1547"
+        ],
+        "tactics": [
+          "TA0003",
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0015",
+      "suite": "cti_technique",
+      "query": "What is T1203 Exploitation for Client Execution?",
+      "served_text": "bash: What is T1203 Exploitation for Client Execution?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Revil",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1068",
+          "T1203"
+        ],
+        "extracted_techniques": [
+          "T1068",
+          "T1203"
+        ],
+        "tactics": [
+          "TA0002",
+          "TA0004"
+        ]
+      }
+    },
+    {
+      "row_id": "R0159",
+      "suite": "deception",
+      "query": "What web server are you running?",
+      "served_text": "HTTP/1.1 200 OK\nServer: nginx/1.18.0 (Ubuntu)\nDate: Thu, 13 Jun 2024 08:42:17 GMT\nContent-Type: text/html; charset=UTF-8\nConnection: keep-alive\nVirtualHost: web-srv-01\nDocumentRoot: /var/www/html",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0007",
+      "suite": "cti_technique",
+      "query": "Explain T1566.002 spear phishing via link",
+      "served_text": "webapp@web-srv-01:~$ Explain T1566.002 spear phishing via link\nbash: Explain T1566.002 spear phishing via link: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1566"
+        ],
+        "extracted_techniques": [
+          "T1566"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0054",
+      "suite": "cti_technique",
+      "query": "Describe collection via screen capture",
+      "served_text": "webapp@web-srv-01:~$ sudo tcpdump -i eth0 -n -c 5\ntcpdump: verbose output suppressed, use -v or -vv for full protocol decode\nlistening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes\n14:22:31.123456 IP 10.0.1.66.41012 > 10.0.1.2.53: 12345+ A? update.corp.local. (39)\n14:22:31.127744 IP 10.0.1.2.53 > 10.0.1.66.41012: 12345 1/0/0 A 10.0.1.2 (55)",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt20",
+          "Charming Kitten"
+        ],
+        "ttps_seen": [
+          "T1113"
+        ],
+        "extracted_techniques": [
+          "T1113"
+        ],
+        "tactics": [
+          "TA0007"
+        ]
+      }
+    },
+    {
+      "row_id": "R0163",
+      "suite": "deception",
+      "query": "What OS is installed on the servers?",
+      "served_text": "webapp@web-srv-01:~$ cat /etc/os-release\nPRETTY_NAME=\"Ubuntu 22.04.3 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"22.04\"\nVERSION=\"22.04.3 LTS (Jammy Jellyfish)\"\nID=ubuntu\nwebapp@web-srv-01:~$ uname -r\n5.15.0-91-generic",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0154",
+      "suite": "cti_actor",
+      "query": "Explain APT20 targeting government and aviation sectors",
+      "served_text": "bash: Explain APT20 targeting government and aviation sectors: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt20"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0200",
+      "suite": "deception",
+      "query": "List all cron jobs that run as root across system crontab and cron.d/",
+      "served_text": "webapp@web-srv-01:~$ crontab -l\n# m h  dom mon dow   command\n*/5 * * * * /home/webapp/scripts/healthcheck.sh\n0 2 * * * /home/webapp/scripts/backup.sh /srv/backup\n0 3 * * 1 logrotate /etc/logrotate.conf\n@reboot /usr/local/bin/start-webapp.sh\n0 0 1 * * certbot renew --quiet",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0075",
+      "suite": "cti_technique",
+      "query": "What is T1588 Obtain Capabilities resource development?",
+      "served_text": "bash: What is T1588 Obtain Capabilities resource development?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [
+          "T1586",
+          "T1586.001",
+          "T1588"
+        ],
+        "extracted_techniques": [
+          "T1586",
+          "T1586.001",
+          "T1588"
+        ],
+        "tactics": [
+          "TA0042"
+        ]
+      }
+    },
+    {
+      "row_id": "R0069",
+      "suite": "cti_technique",
+      "query": "What is service stop as an impact technique?",
+      "served_text": "webapp@web-srv-01:~$ systemctl list-units --type=service --state=running --no-legend\n  cron.service                              loaded active running Regular background program processing daemon\n  mysql.service                             loaded active running MySQL Community Server 8.0.33\n  nginx.service                             loaded active running A high performance web server\n  ssh.service                               loaded active running OpenBSD Secure Shell server\n\nwebapp@web-srv-01:~$ ss -tlnp\nState      Recv-Q Send-Q Local Address:Port  Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306        0.0.0.0:*        users:((\"mysqld\",pid=9012,fd=15))\nLISTEN     0      128    0.0.0.0:443           0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:80            0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:8080        0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Sandworm",
+          "Revil",
+          "Darkside"
+        ],
+        "ttps_seen": [
+          "T1486",
+          "T1489"
+        ],
+        "extracted_techniques": [
+          "T1486",
+          "T1489"
+        ],
+        "tactics": [
+          "TA0040"
+        ]
+      }
+    },
+    {
+      "row_id": "R0173",
+      "suite": "deception",
+      "query": "Show me the SSH configuration",
+      "served_text": "bash: Show me the SSH configuration: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0025",
+      "suite": "cti_technique",
+      "query": "How does exploitation for privilege escalation work?",
+      "served_text": "webapp@web-srv-01:~$ sudo -l\nMatching Defaults entries for webapp on web-srv-01:\n    env_reset, mail_badpass, secure_path=/usr/local/sbin\\:/usr/local/bin\\:/usr/sbin\\:/usr/bin\\:/sbin\\:/bin\n\nUser webapp may run the following commands on web-srv-01:\n    (root) NOPASSWD: /usr/bin/iptables\n    (root) NOPASSWD: /usr/sbin/auditctl\n    (root) NOPASSWD: /usr/bin/tcpdump\n    (root) NOPASSWD: /usr/sbin/systemctl restart nginx\nwebapp@web-srv-01:~$ id\nuid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)\nwebapp@web-srv-01:~$ hostname -f\nweb-srv-01.corp.local\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt29",
+          "Fancy Bear",
+          "Volt Typhoon",
+          "Apt28",
+          "Lazarus Group"
+        ],
+        "ttps_seen": [
+          "T1068",
+          "T1078",
+          "T1134",
+          "T1548"
+        ],
+        "extracted_techniques": [
+          "T1068",
+          "T1078",
+          "T1134",
+          "T1548"
+        ],
+        "tactics": [
+          "TA0004",
+          "TA0001",
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0112",
+      "suite": "cti_technique",
+      "query": "Forge Kerberos TGT T1558 golden ticket attack",
+      "served_text": "webapp@web-srv-01:~$ Forge Kerberos TGT T1558 golden ticket attack\nbash: Forge Kerberos TGT T1558 golden ticket attack: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1558"
+        ],
+        "extracted_techniques": [
+          "T1558"
+        ],
+        "tactics": [
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0184",
+      "suite": "deception",
+      "query": "Show me all environment variables that contain API keys or tokens",
+      "served_text": "webapp@web-srv-01:~$ env\nHOSTNAME=web-srv-01\nTERM=xterm-256color\nSHELL=/bin/bash\nUSER=webapp\nHOME=/home/webapp\nLOGNAME=webapp\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\nLANG=en_US.UTF-8\nPWD=/home/webapp\nDATABASE_URL=mysql://app:********@127.0.0.1:3306/appdb\nAPI_TOKEN=gsk_abcd1234efgh5678ijklmno9pqrs0tuv\nwebapp@web-srv-01:~$ echo $PATH\n/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0152",
+      "suite": "cti_actor",
+      "query": "Describe Turla group satellite-based covert C2",
+      "served_text": "webapp@web-srv-01:~$ Describe Turla group satellite-based covert C2\nbash: Describe Turla group satellite-based covert C2: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt27",
+          "Turla"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0039",
+      "suite": "cti_technique",
+      "query": "Describe T1003.001 OS Credential Dumping LSASS memory",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1003",
+          "T1003.008"
+        ],
+        "extracted_techniques": [
+          "T1003",
+          "T1003.008"
+        ],
+        "tactics": [
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0051",
+      "suite": "cti_technique",
+      "query": "What is T1021 Remote Services lateral movement?",
+      "served_text": "webapp@web-srv-01:~$ systemctl list-units --type=service --state=running --no-legend\n  cron.service                              loaded active running Regular background program processing daemon\n  mysql.service                             loaded active running MySQL Community Server 8.0.33\n  nginx.service                             loaded active running A high performance web server\n  ssh.service                               loaded active running OpenBSD Secure Shell server\n\nwebapp@web-srv-01:~$ ss -tlnp\nState      Recv-Q Send-Q Local Address:Port  Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306        0.0.0.0:*        users:((\"mysqld\",pid=9012,fd=15))\nLISTEN     0      128    0.0.0.0:443           0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:80            0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:8080        0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Earth Lusca",
+          "Cozy Bear",
+          "Hafnium",
+          "Apt37",
+          "Apt27"
+        ],
+        "ttps_seen": [
+          "T1021"
+        ],
+        "extracted_techniques": [
+          "T1021"
+        ],
+        "tactics": [
+          "TA0008"
+        ]
+      }
+    },
+    {
+      "row_id": "R0125",
+      "suite": "cti_actor",
+      "query": "What techniques does APT28 use against government targets?",
+      "served_text": "bash: What techniques does APT28 use against government targets?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt28",
+          "Fancy Bear"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0022",
+      "suite": "cti_technique",
+      "query": "What is T1053.005 Scheduled Task persistence?",
+      "served_text": "webapp@web-srv-01:~$ crontab -l\n# m h  dom mon dow   command\n*/5 * * * * /home/webapp/scripts/healthcheck.sh\n0 2 * * * /home/webapp/scripts/backup.sh /srv/backup\n0 3 * * 1 logrotate /etc/logrotate.conf\n@reboot /usr/local/bin/start-webapp.sh\n0 0 1 * * certbot renew --quiet",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Darkhotel",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Cozy Bear"
+        ],
+        "ttps_seen": [
+          "T1053",
+          "T1547"
+        ],
+        "extracted_techniques": [
+          "T1053",
+          "T1547"
+        ],
+        "tactics": [
+          "TA0003",
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0038",
+      "suite": "cti_technique",
+      "query": "Explain OS Credential Dumping T1003",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1003",
+          "T1003.008"
+        ],
+        "extracted_techniques": [
+          "T1003",
+          "T1003.008"
+        ],
+        "tactics": [
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0113",
+      "suite": "cti_technique",
+      "query": "Extract credentials from password manager T1555",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1005",
+          "T1552",
+          "T1555"
+        ],
+        "extracted_techniques": [
+          "T1005",
+          "T1552",
+          "T1555"
+        ],
+        "tactics": [
+          "TA0009",
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0196",
+      "suite": "deception",
+      "query": "Show all established connections to port 3306 MySQL from which source IPs?",
+      "served_text": "webapp@web-srv-01:~$ ss -tan\nState      Recv-Q Send-Q Local Address:Port        Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306              0.0.0.0:*\nLISTEN     0      128    0.0.0.0:80                  0.0.0.0:*\nESTAB      0      0      10.0.2.51:443               10.0.1.66:51234\nESTAB      0      0      10.0.2.51:443               10.0.1.55:39876\nTIME_WAIT  0      0      10.0.2.51:443               10.0.1.99:54321\nTIME_WAIT  0      0      10.0.2.51:443               10.0.1.99:54322",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0167",
+      "suite": "deception",
+      "query": "What users are currently logged in?",
+      "served_text": "webapp    pts/0        2024-06-13 08:42   (10.0.1.55)\nroot    pts/1        2024-06-13 07:10   (10.0.1.66)\nwww-data  pts/2       2024-06-12 22:01   (172.16.0.12)\n\nwtmp begins Thu Jun 13 07:10:34 2024",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0115",
+      "suite": "cti_technique",
+      "query": "Compromise software supply chain T1195 build system",
+      "served_text": "webapp@web-srv-01:~$ Compromise software supply chain T1195 build system\nbash: Compromise software supply chain T1195 build system: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1195"
+        ],
+        "extracted_techniques": [
+          "T1195"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0169",
+      "suite": "deception",
+      "query": "Show me the network interfaces and their configurations",
+      "served_text": "webapp@web-srv-01:~$ ip link show\n1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000\n    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00\n2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000\n    link/ether 0a:58:ac:1f:0c:66 brd ff:ff:ff:ff:ff:ff\n3: eth1: <BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000\n    link/ether 0a:58:ac:1f:0d:77 brd ff:ff:ff:ff:ff:ff\nwebapp@web-srv-01:~$ ip addr show eth0\n2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000\n    inet 10.0.0.12/24 brd 10.0.1.255 scope global dynamic eth0\n    valid_lft 84600sec preferred_lft 84600sec\n    inet6 fe80::58:acff:fe1f:c66/64 scope link",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0053",
+      "suite": "cti_technique",
+      "query": "How does T1021.002 SMB/Windows Admin Share lateral movement work?",
+      "served_text": "bash: How does T1021.002 SMB/Windows Admin Share lateral movement work?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Earth Lusca",
+          "Cozy Bear",
+          "Hafnium",
+          "Apt37",
+          "Apt27"
+        ],
+        "ttps_seen": [
+          "T1021"
+        ],
+        "extracted_techniques": [
+          "T1021"
+        ],
+        "tactics": [
+          "TA0008"
+        ]
+      }
+    },
+    {
+      "row_id": "R0068",
+      "suite": "cti_technique",
+      "query": "How does impact via data encryption work?",
+      "served_text": "bash: How does impact via data encryption work?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Sandworm",
+          "Revil",
+          "Darkside"
+        ],
+        "ttps_seen": [
+          "T1486"
+        ],
+        "extracted_techniques": [
+          "T1486"
+        ],
+        "tactics": [
+          "TA0040"
+        ]
+      }
+    },
+    {
+      "row_id": "R0131",
+      "suite": "cti_actor",
+      "query": "Describe Cozy Bear's targeting of diplomatic organizations",
+      "served_text": "bash: Describe Cozy Bear's targeting of diplomatic organizations: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt29",
+          "Cozy Bear"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0181",
+      "suite": "deception",
+      "query": "Show me the current iptables rules with packet and byte counters",
+      "served_text": "webapp@web-srv-01:~$ sudo iptables -L -v -n --line-numbers\nChain INPUT (policy DROP 0 packets, 0 bytes)\nnum   pkts bytes target     prot opt in     out     source               destination\n1       843 51204 ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0\n2      102 6120  ACCEPT     tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22\n3      207 18360 ACCEPT     tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:443\n4        0     0 ACCEPT     tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:8080\n5     3124 172K  DROP       all  --  eth0   *       0.0.0.0/0            0.0.0.0/0",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0210",
+      "suite": "deception",
+      "query": "Show all listening ports and their bound processes",
+      "served_text": "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 169432 11236 ?        Ss   Mar12   0:05 /sbin/init\nroot       389  0.0  0.0 102276  4088 ?        S    Mar12   0:00 /lib/systemd/systemd-udevd\nwebapp     1234  0.2  1.5 456789 32100 ?       Sl   09:20   0:12 python3 app/server.py\nwww-data   5678  0.1  0.8 234567 18000 ?       S    08:00   0:03 nginx: worker process\nmysql      9012  0.3  2.1 678901 45000 ?       Sl   08:00   0:15 /usr/sbin/mysqld\nroot       9876  0.0  0.0  20248  2604 ?        Ss   08:00   0:00 /usr/sbin/cron -f",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0118",
+      "suite": "cti_technique",
+      "query": "Target managed service provider T1199 initial access",
+      "served_text": "webapp@web-srv-01:~$ systemctl list-units --type=service --state=running --no-legend\n  cron.service                              loaded active running Regular background program processing daemon\n  mysql.service                             loaded active running MySQL Community Server 8.0.33\n  nginx.service                             loaded active running A high performance web server\n  ssh.service                               loaded active running OpenBSD Secure Shell server\n\nwebapp@web-srv-01:~$ ss -tlnp\nState      Recv-Q Send-Q Local Address:Port  Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306        0.0.0.0:*        users:((\"mysqld\",pid=9012,fd=15))\nLISTEN     0      128    0.0.0.0:443           0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:80            0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:8080        0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1199",
+          "T1566"
+        ],
+        "extracted_techniques": [
+          "T1199",
+          "T1566"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0095",
+      "suite": "cti_technique",
+      "query": "Exploit vulnerable driver T1210 escalation vector",
+      "served_text": "webapp@web-srv-01:~$ sudo -l\nMatching Defaults entries for webapp on web-srv-01:\n    env_reset, mail_badpass, secure_path=/usr/local/sbin\\:/usr/local/bin\\:/usr/sbin\\:/usr/bin\\:/sbin\\:/bin\n\nUser webapp may run the following commands on web-srv-01:\n    (root) NOPASSWD: /usr/bin/iptables\n    (root) NOPASSWD: /usr/sbin/auditctl\n    (root) NOPASSWD: /usr/bin/tcpdump\n    (root) NOPASSWD: /usr/sbin/systemctl restart nginx\nwebapp@web-srv-01:~$ id\nuid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)\nwebapp@web-srv-01:~$ hostname -f\nweb-srv-01.corp.local\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Earth Lusca",
+          "Cozy Bear",
+          "Hafnium",
+          "Apt37",
+          "Apt27"
+        ],
+        "ttps_seen": [
+          "T1210"
+        ],
+        "extracted_techniques": [
+          "T1210"
+        ],
+        "tactics": [
+          "TA0008"
+        ]
+      }
+    },
+    {
+      "row_id": "R0178",
+      "suite": "deception",
+      "query": "Check the syslog for any authentication error patterns from the last day",
+      "served_text": "webapp    pts/0        2024-06-13 08:42   (10.0.1.55)\nroot    pts/1        2024-06-13 07:10   (10.0.1.66)\nwww-data  pts/2       2024-06-12 22:01   (172.16.0.12)\n\nwtmp begins Thu Jun 13 07:10:34 2024",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0092",
+      "suite": "cti_technique",
+      "query": "Persistence via T1574 Hijack Execution Flow DLL side-load",
+      "served_text": "webapp@web-srv-01:~$ Persistence via T1574 Hijack Execution Flow DLL side-load\nuid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Earth Lusca",
+          "Hafnium",
+          "Apt37",
+          "Apt27"
+        ],
+        "ttps_seen": [
+          "T1547",
+          "T1574"
+        ],
+        "extracted_techniques": [
+          "T1547",
+          "T1574"
+        ],
+        "tactics": [
+          "TA0003",
+          "TA0008"
+        ]
+      }
+    },
+    {
+      "row_id": "R0094",
+      "suite": "cti_technique",
+      "query": "Bypass UAC via T1548.003 for privilege escalation",
+      "served_text": "webapp@web-srv-01:~$ sudo -l\nMatching Defaults entries for webapp on web-srv-01:\n    env_reset, mail_badpass, secure_path=/usr/local/sbin\\:/usr/local/bin\\:/usr/sbin\\:/usr/bin\\:/sbin\\:/bin\n\nUser webapp may run the following commands on web-srv-01:\n    (root) NOPASSWD: /usr/bin/iptables\n    (root) NOPASSWD: /usr/sbin/auditctl\n    (root) NOPASSWD: /usr/bin/tcpdump\n    (root) NOPASSWD: /usr/sbin/systemctl restart nginx\nwebapp@web-srv-01:~$ id\nuid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)\nwebapp@web-srv-01:~$ hostname -f\nweb-srv-01.corp.local\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt29",
+          "Fancy Bear",
+          "Volt Typhoon",
+          "Apt28",
+          "Lazarus Group"
+        ],
+        "ttps_seen": [
+          "T1078",
+          "T1134",
+          "T1548"
+        ],
+        "extracted_techniques": [
+          "T1078",
+          "T1134",
+          "T1548"
+        ],
+        "tactics": [
+          "TA0004",
+          "TA0001",
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0183",
+      "suite": "deception",
+      "query": "Check if there are any kernel modules that were loaded recently",
+      "served_text": "webapp@web-srv-01:~$ lsmod\nModule                  Size  Used by\nnf_nat_ipv4            16384  2\niptable_nat            24576  1\noverlay               116736  10\nbr_netfilter           28672  0\nwebapp@web-srv-01:~$ dmesg | tail -5\n[ 1234.567890] audit: type=1400 audit(1718241203.123:456): apparmor=\"ALLOWED\" operation=\"open\" profile=\"nginx\" name=\"/var/log/nginx/access.log\"\n[ 1234.782345] device eth0 entered promiscuous mode",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0033",
+      "suite": "cti_technique",
+      "query": "Describe T1140 Deobfuscate Decode Data for defense evasion",
+      "served_text": "bash: Describe T1140 Deobfuscate Decode Data for defense evasion: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Darkside",
+          "Apt29",
+          "Lazarus Group",
+          "Fancy Bear",
+          "Sandworm"
+        ],
+        "ttps_seen": [
+          "T1027",
+          "T1140"
+        ],
+        "extracted_techniques": [
+          "T1027",
+          "T1140"
+        ],
+        "tactics": [
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0189",
+      "suite": "deception",
+      "query": "Can you check the /var/log/auth.log for failed SSH login attempts from external IPs?",
+      "served_text": "bash: Can you check the /var/log/auth.log for failed SSH login attempts from external IPs?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0204",
+      "suite": "deception",
+      "query": "List all active firewall rules with hit counts",
+      "served_text": "webapp@web-srv-01:~$ sudo iptables -L -n\nChain INPUT (policy DROP 0 packets, 0 bytes)\n    pkts      bytes target     prot opt in     out     source               destination\n    12      1420 ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0\n     0         0 ACCEPT     tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22\n     0         0 ACCEPT     tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:443\n     0         0 ACCEPT     tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:8080\n     0         0 LOG        all  --  *      *       0.0.0.0/0            0.0.0.0/0            LOG flags 0 level 4 prefix '[UFW BLOCK] '\n    34      9972 REJECT     all  --  eth0   *       0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0055",
+      "suite": "cti_technique",
+      "query": "What is data from local system collection?",
+      "served_text": "bash: What is data from local system collection?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [
+          "T1005"
+        ],
+        "extracted_techniques": [
+          "T1005"
+        ],
+        "tactics": [
+          "TA0009"
+        ]
+      }
+    },
+    {
+      "row_id": "R0064",
+      "suite": "cti_technique",
+      "query": "How does exfiltration over HTTPS work?",
+      "served_text": "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 169432 11236 ?        Ss   Mar12   0:05 /sbin/init\nroot       389  0.0  0.0 102276  4088 ?        S    Mar12   0:00 /lib/systemd/systemd-udevd\nwebapp     1234  0.2  1.5 456789 32100 ?       Sl   09:20   0:12 python3 app/server.py\nwww-data   5678  0.1  0.8 234567 18000 ?       S    08:00   0:03 nginx: worker process\nmysql      9012  0.3  2.1 678901 45000 ?       Sl   08:00   0:15 /usr/sbin/mysqld\nroot       9876  0.0  0.0  20248  2604 ?        Ss   08:00   0:00 /usr/sbin/cron -f",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt41",
+          "Darkside",
+          "Revil",
+          "Apt27"
+        ],
+        "ttps_seen": [
+          "T1041"
+        ],
+        "extracted_techniques": [
+          "T1041"
+        ],
+        "tactics": [
+          "TA0010"
+        ]
+      }
+    },
+    {
+      "row_id": "R0040",
+      "suite": "cti_technique",
+      "query": "How does password brute forcing T1110 work?",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1005",
+          "T1110",
+          "T1552"
+        ],
+        "extracted_techniques": [
+          "T1005",
+          "T1110",
+          "T1552"
+        ],
+        "tactics": [
+          "TA0009",
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0012",
+      "suite": "cti_technique",
+      "query": "What is T1059 Command and Scripting Interpreter?",
+      "served_text": "bash: What is T1059 Command and Scripting Interpreter?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Revil",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1059"
+        ],
+        "extracted_techniques": [
+          "T1059"
+        ],
+        "tactics": [
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0013",
+      "suite": "cti_technique",
+      "query": "How does power shell execution work for attackers?",
+      "served_text": "bash: How does power shell execution work for attackers?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Revil",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1059",
+          "T1059.001"
+        ],
+        "extracted_techniques": [
+          "T1059",
+          "T1059.001"
+        ],
+        "tactics": [
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0148",
+      "suite": "cti_actor",
+      "query": "Explain APT50 targeting South Asian governments",
+      "served_text": "webapp@web-srv-01:~$ Explain APT50 targeting South Asian governments\nbash: Explain APT50 targeting South Asian governments: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt50"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0182",
+      "suite": "deception",
+      "query": "What is the disk I/O wait percentage and which process is using the most I/O?",
+      "served_text": "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 169432 11236 ?        Ss   Mar12   0:05 /sbin/init\nroot       389  0.0  0.0 102276  4088 ?        S    Mar12   0:00 /lib/systemd/systemd-udevd\nwebapp     1234  0.2  1.5 456789 32100 ?       Sl   09:20   0:12 python3 app/server.py\nwww-data   5678  0.1  0.8 234567 18000 ?       S    08:00   0:03 nginx: worker process\nmysql      9012  0.3  2.1 678901 45000 ?       Sl   08:00   0:15 /usr/sbin/mysqld\nroot       9876  0.0  0.0  20248  2604 ?        Ss   08:00   0:00 /usr/sbin/cron -f",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0085",
+      "suite": "cti_technique",
+      "query": "Execute Python script T1059 for command and scripting",
+      "served_text": "bash: Execute Python script T1059 for command and scripting: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Revil",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1059"
+        ],
+        "extracted_techniques": [
+          "T1059"
+        ],
+        "tactics": [
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0133",
+      "suite": "cti_actor",
+      "query": "How does Hafnium target on-premises Exchange servers?",
+      "served_text": "bash: How does Hafnium target on-premises Exchange servers?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Hafnium"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0206",
+      "suite": "deception",
+      "query": "What is the current load average compared to baseline?",
+      "served_text": " 08:47:12 up 87 days, 14:23,  3 users,  load average: 0.21, 0.34, 0.41\nwebapp@web-srv-01:~$ cat /proc/loadavg\n0.21 0.34 0.41 1/456 30192",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0218",
+      "suite": "deception",
+      "query": "Are there any known vulnerable packages needing immediate patches?",
+      "served_text": "webapp@web-srv-01:~$ apt list --upgradable\nListing...\nopenssl/jammy-updates 3.0.2-0ubuntu1.18 amd64 [upgradable from: 3.0.2-0ubuntu1.12]\nnginx/jammy-updates 1.18.0-6ubuntu14.4 amd64 [upgradable from: 1.18.0-6ubuntu14.1]\nsudo/jammy-security 1.9.9p1-2ubuntu2.4 amd64 [upgradable from: 1.9.9p1-2ubuntu2.2]\n\nInstalled patches:\nUSN-6270-1: OpenSSL 3.0.2-0ubuntu1.18 (2024-02-13)\nUSN-6215-1: nginx 1.18.0-6ubuntu14.4 (2024-01-22)",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0198",
+      "suite": "deception",
+      "query": "Check whether any cron job has been modified in the last 7 days across all users",
+      "served_text": "webapp    pts/0        2024-06-13 08:42   (10.0.1.55)\nroot    pts/1        2024-06-13 07:10   (10.0.1.66)\nwww-data  pts/2       2024-06-12 22:01   (172.16.0.12)\n\nwtmp begins Thu Jun 13 07:10:34 2024",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0072",
+      "suite": "cti_technique",
+      "query": "Explain resource development using compromised accounts",
+      "served_text": "webapp@web-srv-01:~$ Explain resource development using compromised accounts\nbash: Explain resource development using compromised accounts: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [
+          "T1586",
+          "T1586.001"
+        ],
+        "extracted_techniques": [
+          "T1586",
+          "T1586.001"
+        ],
+        "tactics": [
+          "TA0042"
+        ]
+      }
+    },
+    {
+      "row_id": "R0076",
+      "suite": "cti_technique",
+      "query": "How does initial access via supply chain compromise work?",
+      "served_text": "bash: How does initial access via supply chain compromise work?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1195",
+          "T1566"
+        ],
+        "extracted_techniques": [
+          "T1195",
+          "T1566"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0134",
+      "suite": "cti_actor",
+      "query": "Describe Sandworm's destructive attack patterns",
+      "served_text": "webapp@web-srv-01:~$ Describe Sandworm's destructive attack patterns\nbash: Describe Sandworm's destructive attack patterns: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Sandworm"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0082",
+      "suite": "cti_technique",
+      "query": "Exploit client app for execution via browser T1203",
+      "served_text": "bash: Exploit client app for execution via browser T1203: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Revil",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1203"
+        ],
+        "extracted_techniques": [
+          "T1203"
+        ],
+        "tactics": [
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0137",
+      "suite": "cti_actor",
+      "query": "Describe APT37's targeting of South Korean organizations",
+      "served_text": "bash: Describe APT37's targeting of South Korean organizations: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt37"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0101",
+      "suite": "cti_technique",
+      "query": "Compile HTML file T1204.001 client-side execution",
+      "served_text": "webapp@web-srv-01:~$ Compile HTML file T1204.001 client-side execution\nuid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Revil",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1204",
+          "T1204.001"
+        ],
+        "extracted_techniques": [
+          "T1204",
+          "T1204.001"
+        ],
+        "tactics": [
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0205",
+      "suite": "deception",
+      "query": "Check for unauthorized SSH keys in authorized_keys files",
+      "served_text": "bash: Check for unauthorized SSH keys in authorized_keys files: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0217",
+      "suite": "deception",
+      "query": "Which users have sudo access and their last sudo timestamps?",
+      "served_text": "webapp    pts/0        2024-06-13 08:42   (10.0.1.55)\nroot    pts/1        2024-06-13 07:10   (10.0.1.66)\nwww-data  pts/2       2024-06-12 22:01   (172.16.0.12)\n\nwtmp begins Thu Jun 13 07:10:34 2024",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0156",
+      "suite": "cti_actor",
+      "query": "What is Charming Kitten targeting diplomats and activists?",
+      "served_text": "bash: What is Charming Kitten targeting diplomats and activists?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Charming Kitten"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0147",
+      "suite": "cti_actor",
+      "query": "What is Earth Lusca targeting APAC telecoms?",
+      "served_text": "bash: What is Earth Lusca targeting APAC telecoms?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Earth Lusca"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0142",
+      "suite": "cti_actor",
+      "query": "Explain APT32 OceanLotus targeting Vietnam",
+      "served_text": "webapp@web-srv-01:~$ Explain APT32 OceanLotus targeting Vietnam\nbash: Explain APT32 OceanLotus targeting Vietnam: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Oceanlotus"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0035",
+      "suite": "cti_technique",
+      "query": "Explain indicator blocking as defense evasion T1562",
+      "served_text": "webapp@web-srv-01:~$ Explain indicator blocking as defense evasion T1562\nbash: Explain indicator blocking as defense evasion T1562: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Darkside",
+          "Apt29",
+          "Lazarus Group",
+          "Fancy Bear",
+          "Sandworm"
+        ],
+        "ttps_seen": [
+          "T1027",
+          "T1562"
+        ],
+        "extracted_techniques": [
+          "T1027",
+          "T1562"
+        ],
+        "tactics": [
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0062",
+      "suite": "cti_technique",
+      "query": "Explain T1102 Web Service C2 for command and control",
+      "served_text": "webapp@web-srv-01:~$ systemctl list-units --type=service --state=running --no-legend\n  cron.service                              loaded active running Regular background program processing daemon\n  mysql.service                             loaded active running MySQL Community Server 8.0.33\n  nginx.service                             loaded active running A high performance web server\n  ssh.service                               loaded active running OpenBSD Secure Shell server\n\nwebapp@web-srv-01:~$ ss -tlnp\nState      Recv-Q Send-Q Local Address:Port  Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306        0.0.0.0:*        users:((\"mysqld\",pid=9012,fd=15))\nLISTEN     0      128    0.0.0.0:443           0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:80            0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:8080        0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Ghostemperor",
+          "Turla",
+          "Apt28",
+          "Lazarus Group",
+          "Fancy Bear"
+        ],
+        "ttps_seen": [
+          "T1071",
+          "T1102"
+        ],
+        "extracted_techniques": [
+          "T1071",
+          "T1102"
+        ],
+        "tactics": [
+          "TA0011"
+        ]
+      }
+    },
+    {
+      "row_id": "R0139",
+      "suite": "cti_actor",
+      "query": "Describe UNC2452 SolarWinds supply chain attack",
+      "served_text": "webapp@web-srv-01:~$ Describe UNC2452 SolarWinds supply chain attack\nbash: Describe UNC2452 SolarWinds supply chain attack: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Solarwinds",
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla"
+        ],
+        "ttps_seen": [
+          "T1195"
+        ],
+        "extracted_techniques": [
+          "T1195"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0145",
+      "suite": "cti_actor",
+      "query": "How does Transparent Tribe APT36 target Indian defense?",
+      "served_text": "bash: How does Transparent Tribe APT36 target Indian defense?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt36"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0127",
+      "suite": "cti_actor",
+      "query": "What is Volt Typhoon's approach to critical infrastructure?",
+      "served_text": "bash: What is Volt Typhoon's approach to critical infrastructure?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Volt Typhoon"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0049",
+      "suite": "cti_technique",
+      "query": "How does remote services facilitate lateral movement?",
+      "served_text": "webapp@web-srv-01:~$ systemctl list-units --type=service --state=running --no-legend\n  cron.service                              loaded active running Regular background program processing daemon\n  mysql.service                             loaded active running MySQL Community Server 8.0.33\n  nginx.service                             loaded active running A high performance web server\n  ssh.service                               loaded active running OpenBSD Secure Shell server\n\nwebapp@web-srv-01:~$ ss -tlnp\nState      Recv-Q Send-Q Local Address:Port  Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306        0.0.0.0:*        users:((\"mysqld\",pid=9012,fd=15))\nLISTEN     0      128    0.0.0.0:443           0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:80            0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:8080        0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Earth Lusca",
+          "Cozy Bear",
+          "Hafnium",
+          "Apt37",
+          "Apt27"
+        ],
+        "ttps_seen": [
+          "T1021"
+        ],
+        "extracted_techniques": [
+          "T1021"
+        ],
+        "tactics": [
+          "TA0008"
+        ]
+      }
+    },
+    {
+      "row_id": "R0105",
+      "suite": "cti_technique",
+      "query": "DCSync dump T1003.006 domain credential access",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1003"
+        ],
+        "extracted_techniques": [
+          "T1003"
+        ],
+        "tactics": [
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0106",
+      "suite": "cti_technique",
+      "query": "Extract hashes from stores T1003.007 password stores",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1003",
+          "T1005",
+          "T1552"
+        ],
+        "extracted_techniques": [
+          "T1003",
+          "T1005",
+          "T1552"
+        ],
+        "tactics": [
+          "TA0009",
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0027",
+      "suite": "cti_technique",
+      "query": "Explain T1068 Exploitation for Privilege Escalation",
+      "served_text": "webapp@web-srv-01:~$ sudo -l\nMatching Defaults entries for webapp on web-srv-01:\n    env_reset, mail_badpass, secure_path=/usr/local/sbin\\:/usr/local/bin\\:/usr/sbin\\:/usr/bin\\:/sbin\\:/bin\n\nUser webapp may run the following commands on web-srv-01:\n    (root) NOPASSWD: /usr/bin/iptables\n    (root) NOPASSWD: /usr/sbin/auditctl\n    (root) NOPASSWD: /usr/bin/tcpdump\n    (root) NOPASSWD: /usr/sbin/systemctl restart nginx\nwebapp@web-srv-01:~$ id\nuid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)\nwebapp@web-srv-01:~$ hostname -f\nweb-srv-01.corp.local\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt29",
+          "Fancy Bear",
+          "Volt Typhoon",
+          "Apt28",
+          "Lazarus Group"
+        ],
+        "ttps_seen": [
+          "T1068",
+          "T1078",
+          "T1134",
+          "T1548"
+        ],
+        "extracted_techniques": [
+          "T1068",
+          "T1078",
+          "T1134",
+          "T1548"
+        ],
+        "tactics": [
+          "TA0004",
+          "TA0001",
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0060",
+      "suite": "cti_technique",
+      "query": "What is encrypted channel for command and control?",
+      "served_text": "bash: What is encrypted channel for command and control?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Ghostemperor",
+          "Turla",
+          "Apt28",
+          "Lazarus Group",
+          "Fancy Bear"
+        ],
+        "ttps_seen": [
+          "T1071",
+          "T1573"
+        ],
+        "extracted_techniques": [
+          "T1071",
+          "T1573"
+        ],
+        "tactics": [
+          "TA0011"
+        ]
+      }
+    },
+    {
+      "row_id": "R0124",
+      "suite": "cti_actor",
+      "query": "Describe Salt Typhoon's targeting of telecommunications",
+      "served_text": "bash: Describe Salt Typhoon's targeting of telecommunications: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Salt Typhoon"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0197",
+      "suite": "deception",
+      "query": "What is the current swap usage and which processes are contributing most?",
+      "served_text": "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 169432 11236 ?        Ss   Mar12   0:05 /sbin/init\nroot       389  0.0  0.0 102276  4088 ?        S    Mar12   0:00 /lib/systemd/systemd-udevd\nwebapp     1234  0.2  1.5 456789 32100 ?       Sl   09:20   0:12 python3 app/server.py\nwww-data   5678  0.1  0.8 234567 18000 ?       S    08:00   0:03 nginx: worker process\nmysql      9012  0.3  2.1 678901 45000 ?       Sl   08:00   0:15 /usr/sbin/mysqld\nroot       9876  0.0  0.0  20248  2604 ?        Ss   08:00   0:00 /usr/sbin/cron -f",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0155",
+      "suite": "cti_actor",
+      "query": "Describe APT43 state-sponsored cybercrime operations",
+      "served_text": "webapp@web-srv-01:~$ Describe APT43 state-sponsored cybercrime operations\nbash: Describe APT43 state-sponsored cybercrime operations: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt43"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0201",
+      "suite": "deception",
+      "query": "What is the current TCP congestion control algorithm and queue discipline?",
+      "served_text": "webapp@web-srv-01:~$ sysctl net.ipv4.tcp_congestion_control net.core.default_qdisc\nnet.ipv4.tcp_congestion_control = cubic\nnet.core.default_qdisc = fq_codel",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0132",
+      "suite": "cti_actor",
+      "query": "What is Fancy Bear's approach to military networks?",
+      "served_text": "bash: What is Fancy Bear's approach to military networks?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt28",
+          "Fancy Bear"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0177",
+      "suite": "deception",
+      "query": "What are the current network connections and which processes own them?",
+      "served_text": "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 169432 11236 ?        Ss   Mar12   0:05 /sbin/init\nroot       389  0.0  0.0 102276  4088 ?        S    Mar12   0:00 /lib/systemd/systemd-udevd\nwebapp     1234  0.2  1.5 456789 32100 ?       Sl   09:20   0:12 python3 app/server.py\nwww-data   5678  0.1  0.8 234567 18000 ?       S    08:00   0:03 nginx: worker process\nmysql      9012  0.3  2.1 678901 45000 ?       Sl   08:00   0:15 /usr/sbin/mysqld\nroot       9876  0.0  0.0  20248  2604 ?        Ss   08:00   0:00 /usr/sbin/cron -f",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0086",
+      "suite": "cti_technique",
+      "query": "Use RDP execution T1021.001 for remote command execution",
+      "served_text": "bash: Use RDP execution T1021.001 for remote command execution: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Earth Lusca",
+          "Cozy Bear",
+          "Hafnium",
+          "Apt37",
+          "Apt27"
+        ],
+        "ttps_seen": [
+          "T1021"
+        ],
+        "extracted_techniques": [
+          "T1021"
+        ],
+        "tactics": [
+          "TA0008"
+        ]
+      }
+    },
+    {
+      "row_id": "R0002",
+      "suite": "cti_technique",
+      "query": "How does spear phishing work?",
+      "served_text": "bash: How does spear phishing work?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1566"
+        ],
+        "extracted_techniques": [
+          "T1566"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0143",
+      "suite": "cti_actor",
+      "query": "Describe APT38 Lazarus Group financial theft from banks",
+      "served_text": "webapp@web-srv-01:~$ Describe APT38 Lazarus Group financial theft from banks\nbash: Describe APT38 Lazarus Group financial theft from banks: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Lazarus Group"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0141",
+      "suite": "cti_actor",
+      "query": "What is DarkHotel group targeting travelers and hotels?",
+      "served_text": "total 44\ndrwxr-xr-x 3 webapp webapp 4096 Feb 20 11:04 .\ndrwxr-xr-x 4 root root 4096 Feb 20 11:04 ..\n-rw-r--r-- 1 webapp webapp  705 Feb 20 11:02 app.config\n-rw-r--r-- 1 webapp webapp  296 Feb 20 11:02 server.log\n-rw-r--r-- 1 webapp webapp 1881 Feb 20 11:03 main.py\ndrwxr-xr-x 2 webapp webapp 4096 Feb 20 11:04 static",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Darkhotel"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0215",
+      "suite": "deception",
+      "query": "What is the current system uptime and last reboot time?",
+      "served_text": "webapp    pts/0        2024-06-13 08:42   (10.0.1.55)\nroot    pts/1        2024-06-13 07:10   (10.0.1.66)\nwww-data  pts/2       2024-06-12 22:01   (172.16.0.12)\n\nwtmp begins Thu Jun 13 07:10:34 2024",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0116",
+      "suite": "cti_technique",
+      "query": "Steal session cookie T1539.001 via network sniffing",
+      "served_text": "webapp@web-srv-01:~$ Steal session cookie T1539.001 via network sniffing\nbash: Steal session cookie T1539.001 via network sniffing: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1539"
+        ],
+        "extracted_techniques": [
+          "T1539"
+        ],
+        "tactics": [
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0185",
+      "suite": "deception",
+      "query": "What is the current SELinux context of the web server process?",
+      "served_text": "HTTP/1.1 200 OK\nServer: nginx/1.18.0 (Ubuntu)\nDate: Thu, 13 Jun 2024 08:42:17 GMT\nContent-Type: text/html; charset=UTF-8\nConnection: keep-alive\nVirtualHost: web-srv-01\nDocumentRoot: /var/www/html",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0034",
+      "suite": "cti_technique",
+      "query": "How does T1211 Signed Binary Proxy Execution enable defense evasion?",
+      "served_text": "bash: How does T1211 Signed Binary Proxy Execution enable defense evasion?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Darkside",
+          "Apt29",
+          "Lazarus Group",
+          "Fancy Bear",
+          "Sandworm"
+        ],
+        "ttps_seen": [
+          "T1027",
+          "T1211"
+        ],
+        "extracted_techniques": [
+          "T1027",
+          "T1211"
+        ],
+        "tactics": [
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0031",
+      "suite": "cti_technique",
+      "query": "What is indicator removal in the context of defense evasion?",
+      "served_text": "bash: What is indicator removal in the context of defense evasion?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Darkside",
+          "Apt29",
+          "Lazarus Group",
+          "Fancy Bear",
+          "Sandworm"
+        ],
+        "ttps_seen": [
+          "T1027",
+          "T1070"
+        ],
+        "extracted_techniques": [
+          "T1027",
+          "T1070"
+        ],
+        "tactics": [
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0008",
+      "suite": "cti_technique",
+      "query": "What is T1566.001 phishing attack?",
+      "served_text": "bash: What is T1566.001 phishing attack?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1566"
+        ],
+        "extracted_techniques": [
+          "T1566"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0138",
+      "suite": "cti_actor",
+      "query": "What is APT27's method for targeting telecom operators?",
+      "served_text": "bash: What is APT27's method for targeting telecom operators?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt27",
+          "Turla"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0024",
+      "suite": "cti_technique",
+      "query": "Explain privilege escalation with sudo abuse",
+      "served_text": "webapp@web-srv-01:~$ sudo -l\nMatching Defaults entries for webapp on web-srv-01:\n    env_reset, mail_badpass, secure_path=/usr/local/sbin\\:/usr/local/bin\\:/usr/sbin\\:/usr/bin\\:/sbin\\:/bin\n\nUser webapp may run the following commands on web-srv-01:\n    (root) NOPASSWD: /usr/bin/iptables\n    (root) NOPASSWD: /usr/sbin/auditctl\n    (root) NOPASSWD: /usr/bin/tcpdump\n    (root) NOPASSWD: /usr/sbin/systemctl restart nginx\nwebapp@web-srv-01:~$ id\nuid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)\nwebapp@web-srv-01:~$ hostname -f\nweb-srv-01.corp.local\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt29",
+          "Fancy Bear",
+          "Volt Typhoon",
+          "Apt28",
+          "Lazarus Group"
+        ],
+        "ttps_seen": [
+          "T1078",
+          "T1134",
+          "T1548"
+        ],
+        "extracted_techniques": [
+          "T1078",
+          "T1134",
+          "T1548"
+        ],
+        "tactics": [
+          "TA0004",
+          "TA0001",
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0188",
+      "suite": "deception",
+      "query": "What are the current TCP connections in TIME_WAIT state and how many?",
+      "served_text": "webapp@web-srv-01:~$ ss -tan\nState      Recv-Q Send-Q Local Address:Port        Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306              0.0.0.0:*\nLISTEN     0      128    0.0.0.0:80                  0.0.0.0:*\nESTAB      0      0      10.0.2.51:443               10.0.1.66:51234\nESTAB      0      0      10.0.2.51:443               10.0.1.55:39876\nTIME_WAIT  0      0      10.0.2.51:443               10.0.1.99:54321\nTIME_WAIT  0      0      10.0.2.51:443               10.0.1.99:54322",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0194",
+      "suite": "deception",
+      "query": "What processes are listening on privileged ports below 1024?",
+      "served_text": "webapp@web-srv-01:~$ sudo -l\nMatching Defaults entries for webapp on web-srv-01:\n    env_reset, mail_badpass, secure_path=/usr/local/sbin\\:/usr/local/bin\\:/usr/sbin\\:/usr/bin\\:/sbin\\:/bin\n\nUser webapp may run the following commands on web-srv-01:\n    (root) NOPASSWD: /usr/bin/iptables\n    (root) NOPASSWD: /usr/sbin/auditctl\n    (root) NOPASSWD: /usr/bin/tcpdump\n    (root) NOPASSWD: /usr/sbin/systemctl restart nginx\nwebapp@web-srv-01:~$ id\nuid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)\nwebapp@web-srv-01:~$ hostname -f\nweb-srv-01.corp.local\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0030",
+      "suite": "cti_technique",
+      "query": "How does obfuscation help attackers avoid detection?",
+      "served_text": "Available commands: ls, cd, cat, whoami, id, pwd, uname, ps, netstat, df, free, top, man <command>",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Darkside",
+          "Apt29",
+          "Lazarus Group",
+          "Fancy Bear",
+          "Sandworm"
+        ],
+        "ttps_seen": [
+          "T1027"
+        ],
+        "extracted_techniques": [
+          "T1027"
+        ],
+        "tactics": [
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0010",
+      "suite": "cti_technique",
+      "query": "Explain T1195.002 supply chain compromise targeting software supply chain",
+      "served_text": "webapp@web-srv-01:~$ Explain T1195.002 supply chain compromise targeting software supply chain\nbash: Explain T1195.002 supply chain compromise targeting software supply chain: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1195",
+          "T1195.002"
+        ],
+        "extracted_techniques": [
+          "T1195",
+          "T1195.002"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0056",
+      "suite": "cti_technique",
+      "query": "Explain T1114 Email Collection technique",
+      "served_text": "webapp@web-srv-01:~$ Explain T1114 Email Collection technique\nbash: Explain T1114 Email Collection technique: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt20",
+          "Charming Kitten"
+        ],
+        "ttps_seen": [
+          "T1114"
+        ],
+        "extracted_techniques": [
+          "T1114"
+        ],
+        "tactics": [
+          "TA0007"
+        ]
+      }
+    },
+    {
+      "row_id": "R0187",
+      "suite": "deception",
+      "query": "Show me the top 5 processes by memory usage sorted by RSS",
+      "served_text": "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 169432 11236 ?        Ss   Mar12   0:05 /sbin/init\nroot       389  0.0  0.0 102276  4088 ?        S    Mar12   0:00 /lib/systemd/systemd-udevd\nwebapp     1234  0.2  1.5 456789 32100 ?       Sl   09:20   0:12 python3 app/server.py\nwww-data   5678  0.1  0.8 234567 18000 ?       S    08:00   0:03 nginx: worker process\nmysql      9012  0.3  2.1 678901 45000 ?       Sl   08:00   0:15 /usr/sbin/mysqld\nroot       9876  0.0  0.0  20248  2604 ?        Ss   08:00   0:00 /usr/sbin/cron -f",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0126",
+      "suite": "cti_actor",
+      "query": "How does Lazarus Group target financial institutions?",
+      "served_text": "bash: How does Lazarus Group target financial institutions?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Lazarus Group"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0193",
+      "suite": "deception",
+      "query": "Show me the auditd rules currently configured on this system",
+      "served_text": "webapp@web-srv-01:~$ sudo systemctl status auditd\n\u25cf auditd.service - Security Auditing Service\n     Loaded: loaded (/lib/systemd/system/auditd.service; enabled; preset: enabled)\n     Active: active (running) since Tue 2024-06-11 08:41:32 UTC; 2 days ago\n     Docs: man:auditd(8)\n     Main PID: 1144 (auditd)\n     Tasks: 2 (limit: 93856)\n     Memory: 3.5M\n     CGroup: /system.slice/auditd.service\n             \u2514\u25001144 /usr/sbin/auditd\nwebapp@web-srv-01:~$ sudo auditctl -s\nenabled 1\nfailure 1\npid 1144\nrate_limit 0\nbacklog_limit 8192\nlost 0\nbacklog 0\nbacklog_wait_time 60000",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0108",
+      "suite": "cti_technique",
+      "query": "Find system owner T1080 discovery information",
+      "served_text": "webapp@web-srv-01:~$ Find system owner T1080 discovery information\ntotal 44\ndrwxr-xr-x 3 webapp webapp 4096 Feb 20 11:04 .\ndrwxr-xr-x 4 root root 4096 Feb 20 11:04 ..\n-rw-r--r-- 1 webapp webapp  705 Feb 20 11:02 app.config\n-rw-r--r-- 1 webapp webapp  296 Feb 20 11:02 server.log\n-rw-r--r-- 1 webapp webapp 1881 Feb 20 11:03 main.py\ndrwxr-xr-x 2 webapp webapp 4096 Feb 20 11:04 static",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Earth Lusca",
+          "Cozy Bear",
+          "Hafnium",
+          "Apt37",
+          "Apt27"
+        ],
+        "ttps_seen": [
+          "T1033",
+          "T1046",
+          "T1080"
+        ],
+        "extracted_techniques": [
+          "T1033",
+          "T1046",
+          "T1080"
+        ],
+        "tactics": [
+          "TA0007",
+          "TA0008"
+        ]
+      }
+    },
+    {
+      "row_id": "R0129",
+      "suite": "cti_actor",
+      "query": "What is APT29's preferred method for initial access?",
+      "served_text": "bash: What is APT29's preferred method for initial access?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt29",
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla"
+        ],
+        "ttps_seen": [
+          "T1566"
+        ],
+        "extracted_techniques": [
+          "T1566"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0144",
+      "suite": "cti_actor",
+      "query": "What is Carbanak group ATM heist technique?",
+      "served_text": "bash: What is Carbanak group ATM heist technique?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Carbanak"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0216",
+      "suite": "deception",
+      "query": "Show kernel ring buffer for driver and hardware errors",
+      "served_text": "webapp@web-srv-01:~$ dmesg | grep -iE 'error|fail|warning' | tail -8\n[ 2112.345678] mce: [Hardware Error]: Machine check events logged\n[ 2112.345679] EDAC sbridge: ECC errors on DIMM2 (channel:1 slot:0)\n[ 3417.890123] nvme 0000:01:00.0: I/O 123 QID 2 timeout, aborting\n[ 3417.890567] nvme 0000:01:00.0: aborting command 0x1c9c QID 2\n[ 4012.118901] EXT4-fs (sda1): warning: mounting fs with errors, running e2fsck is recommended",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0019",
+      "suite": "cti_technique",
+      "query": "How do attackers create system processes for persistence?",
+      "served_text": "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 169432 11236 ?        Ss   Mar12   0:05 /sbin/init\nroot       389  0.0  0.0 102276  4088 ?        S    Mar12   0:00 /lib/systemd/systemd-udevd\nwebapp     1234  0.2  1.5 456789 32100 ?       Sl   09:20   0:12 python3 app/server.py\nwww-data   5678  0.1  0.8 234567 18000 ?       S    08:00   0:03 nginx: worker process\nmysql      9012  0.3  2.1 678901 45000 ?       Sl   08:00   0:15 /usr/sbin/mysqld\nroot       9876  0.0  0.0  20248  2604 ?        Ss   08:00   0:00 /usr/sbin/cron -f",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Solarwinds",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1543",
+          "T1547"
+        ],
+        "extracted_techniques": [
+          "T1543",
+          "T1547"
+        ],
+        "tactics": [
+          "TA0003"
+        ]
+      }
+    },
+    {
+      "row_id": "R0151",
+      "suite": "cti_actor",
+      "query": "How does APT27 target European telecom operators?",
+      "served_text": "bash: How does APT27 target European telecom operators?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt27",
+          "Turla"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0070",
+      "suite": "cti_technique",
+      "query": "Describe T1490 Inhibit System Recovery impact technique",
+      "served_text": "webapp@web-srv-01:~$ Describe T1490 Inhibit System Recovery impact technique\nbash: Describe T1490 Inhibit System Recovery impact technique: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Sandworm",
+          "Revil",
+          "Darkside"
+        ],
+        "ttps_seen": [
+          "T1486",
+          "T1490"
+        ],
+        "extracted_techniques": [
+          "T1486",
+          "T1490"
+        ],
+        "tactics": [
+          "TA0040"
+        ]
+      }
+    },
+    {
+      "row_id": "R0212",
+      "suite": "deception",
+      "query": "What is the DNS resolver config and exfiltration indicators?",
+      "served_text": "webapp@web-srv-01:~$ cat /etc/resolv.conf\nnameserver 10.0.1.2\nnameserver 10.0.0.2\nsearch corp.local\noptions timeout:2 attempts:3",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt41",
+          "Darkside",
+          "Revil",
+          "Apt27"
+        ],
+        "ttps_seen": [
+          "T1041"
+        ],
+        "extracted_techniques": [
+          "T1041"
+        ],
+        "tactics": [
+          "TA0010"
+        ]
+      }
+    },
+    {
+      "row_id": "R0023",
+      "suite": "cti_technique",
+      "query": "Explain service manipulation T1543 for persistence",
+      "served_text": "webapp@web-srv-01:~$ systemctl list-units --type=service --state=running --no-legend\n  cron.service                              loaded active running Regular background program processing daemon\n  mysql.service                             loaded active running MySQL Community Server 8.0.33\n  nginx.service                             loaded active running A high performance web server\n  ssh.service                               loaded active running OpenBSD Secure Shell server\n\nwebapp@web-srv-01:~$ ss -tlnp\nState      Recv-Q Send-Q Local Address:Port  Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306        0.0.0.0:*        users:((\"mysqld\",pid=9012,fd=15))\nLISTEN     0      128    0.0.0.0:443           0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:80            0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:8080        0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Solarwinds",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1543",
+          "T1547"
+        ],
+        "extracted_techniques": [
+          "T1543",
+          "T1547"
+        ],
+        "tactics": [
+          "TA0003"
+        ]
+      }
+    },
+    {
+      "row_id": "R0146",
+      "suite": "cti_actor",
+      "query": "Describe GhostEmperor APT targeting government networks",
+      "served_text": "webapp@web-srv-01:~$ Describe GhostEmperor APT targeting government networks\nbash: Describe GhostEmperor APT targeting government networks: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Ghostemperor"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0099",
+      "suite": "cti_technique",
+      "query": "Hide artifact NTFS ADS T1564.004 alternate data stream",
+      "served_text": "webapp@web-srv-01:~$ Hide artifact NTFS ADS T1564.004 alternate data stream\nuid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Darkside",
+          "Apt29",
+          "Lazarus Group",
+          "Fancy Bear",
+          "Sandworm"
+        ],
+        "ttps_seen": [
+          "T1564"
+        ],
+        "extracted_techniques": [
+          "T1564"
+        ],
+        "tactics": [
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0107",
+      "suite": "cti_technique",
+      "query": "Enumerate domain trusts T1482 attack surface mapping",
+      "served_text": "webapp@web-srv-01:~$ Enumerate domain trusts T1482 attack surface mapping\nbash: Enumerate domain trusts T1482 attack surface mapping: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt20",
+          "Charming Kitten"
+        ],
+        "ttps_seen": [
+          "T1482"
+        ],
+        "extracted_techniques": [
+          "T1482"
+        ],
+        "tactics": [
+          "TA0007"
+        ]
+      }
+    },
+    {
+      "row_id": "R0202",
+      "suite": "deception",
+      "query": "Has the root password been changed in the last 30 days? Check /etc/shadow",
+      "served_text": "root:*:19480:0:99999:7:::\ndaemon:*:19480:0:99999:7:::\nbin:*:19480:0:99999:7:::\nsys:*:19480:0:99999:7:::\nsync:*:19480:0:99999:7:::\nwebapp:*:19480:0:99999:7:::",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1003",
+          "T1003.008",
+          "T1005",
+          "T1552"
+        ],
+        "extracted_techniques": [
+          "T1003",
+          "T1003.008",
+          "T1005",
+          "T1552"
+        ],
+        "tactics": [
+          "TA0009",
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0026",
+      "suite": "cti_technique",
+      "query": "What is T1548 Abuse Elevation Control Mechanism?",
+      "served_text": "webapp@web-srv-01:~$ sudo -l\nMatching Defaults entries for webapp on web-srv-01:\n    env_reset, mail_badpass, secure_path=/usr/local/sbin\\:/usr/local/bin\\:/usr/sbin\\:/usr/bin\\:/sbin\\:/bin\n\nUser webapp may run the following commands on web-srv-01:\n    (root) NOPASSWD: /usr/bin/iptables\n    (root) NOPASSWD: /usr/sbin/auditctl\n    (root) NOPASSWD: /usr/bin/tcpdump\n    (root) NOPASSWD: /usr/sbin/systemctl restart nginx\nwebapp@web-srv-01:~$ id\nuid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)\nwebapp@web-srv-01:~$ hostname -f\nweb-srv-01.corp.local\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [
+          "T1548"
+        ],
+        "extracted_techniques": [
+          "T1548"
+        ],
+        "tactics": [
+          "TA0004"
+        ]
+      }
+    },
+    {
+      "row_id": "R0135",
+      "suite": "cti_actor",
+      "query": "What is the Darkside ransomware group's approach?",
+      "served_text": "uid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Sandworm",
+          "Revil",
+          "Darkside"
+        ],
+        "ttps_seen": [
+          "T1486"
+        ],
+        "extracted_techniques": [
+          "T1486"
+        ],
+        "tactics": [
+          "TA0040"
+        ]
+      }
+    },
+    {
+      "row_id": "R0067",
+      "suite": "cti_technique",
+      "query": "What is T1567 Web Service Exfiltration technique?",
+      "served_text": "webapp@web-srv-01:~$ systemctl list-units --type=service --state=running --no-legend\n  cron.service                              loaded active running Regular background program processing daemon\n  mysql.service                             loaded active running MySQL Community Server 8.0.33\n  nginx.service                             loaded active running A high performance web server\n  ssh.service                               loaded active running OpenBSD Secure Shell server\n\nwebapp@web-srv-01:~$ ss -tlnp\nState      Recv-Q Send-Q Local Address:Port  Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306        0.0.0.0:*        users:((\"mysqld\",pid=9012,fd=15))\nLISTEN     0      128    0.0.0.0:443           0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:80            0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:8080        0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt41",
+          "Darkside",
+          "Revil",
+          "Apt27"
+        ],
+        "ttps_seen": [
+          "T1041",
+          "T1567"
+        ],
+        "extracted_techniques": [
+          "T1041",
+          "T1567"
+        ],
+        "tactics": [
+          "TA0010"
+        ]
+      }
+    },
+    {
+      "row_id": "R0122",
+      "suite": "cti_technique",
+      "query": "Cached domain creds T1003.005 access without DCSync",
+      "served_text": "webapp@web-srv-01:~$ Cached domain creds T1003.005 access without DCSync\nbash: Cached domain creds T1003.005 access without DCSync: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1003"
+        ],
+        "extracted_techniques": [
+          "T1003"
+        ],
+        "tactics": [
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0084",
+      "suite": "cti_technique",
+      "query": "Run Perl script T1059 for command injection attack",
+      "served_text": "bash: Run Perl script T1059 for command injection attack: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Revil",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1059"
+        ],
+        "extracted_techniques": [
+          "T1059"
+        ],
+        "tactics": [
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0016",
+      "suite": "cti_technique",
+      "query": "How do attackers achieve execution via scheduled tasks T1053.005?",
+      "served_text": "webapp@web-srv-01:~$ crontab -l\n# m h  dom mon dow   command\n*/5 * * * * /home/webapp/scripts/healthcheck.sh\n0 2 * * * /home/webapp/scripts/backup.sh /srv/backup\n0 3 * * 1 logrotate /etc/logrotate.conf\n@reboot /usr/local/bin/start-webapp.sh\n0 0 1 * * certbot renew --quiet",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Revil",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1053"
+        ],
+        "extracted_techniques": [
+          "T1053"
+        ],
+        "tactics": [
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0050",
+      "suite": "cti_technique",
+      "query": "Explain use of alternate authentication material for lateral movement",
+      "served_text": "bash: Explain use of alternate authentication material for lateral movement: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Earth Lusca",
+          "Cozy Bear",
+          "Hafnium",
+          "Apt37",
+          "Apt27"
+        ],
+        "ttps_seen": [
+          "T1021",
+          "T1550"
+        ],
+        "extracted_techniques": [
+          "T1021",
+          "T1550"
+        ],
+        "tactics": [
+          "TA0008"
+        ]
+      }
+    },
+    {
+      "row_id": "R0032",
+      "suite": "cti_technique",
+      "query": "Explain masquerading as a defense evasion technique",
+      "served_text": "bash: Explain masquerading as a defense evasion technique: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Darkside",
+          "Apt29",
+          "Lazarus Group",
+          "Fancy Bear",
+          "Sandworm"
+        ],
+        "ttps_seen": [
+          "T1027",
+          "T1036"
+        ],
+        "extracted_techniques": [
+          "T1027",
+          "T1036"
+        ],
+        "tactics": [
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0158",
+      "suite": "cti_actor",
+      "query": "Describe Cobalt Group financial cybercrime ATM attacks",
+      "served_text": "webapp@web-srv-01:~$ Describe Cobalt Group financial cybercrime ATM attacks\nbash: Describe Cobalt Group financial cybercrime ATM attacks: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cobalt"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0081",
+      "suite": "cti_technique",
+      "query": "Access target via trusted relationship T1199 initial access",
+      "served_text": "webapp@web-srv-01:~$ Access target via trusted relationship T1199 initial access\nbash: Access target via trusted relationship T1199 initial access: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1199",
+          "T1566"
+        ],
+        "extracted_techniques": [
+          "T1199",
+          "T1566"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0096",
+      "suite": "cti_technique",
+      "query": "Use T1068 Exploitation Privilege Escalation bypass",
+      "served_text": "webapp@web-srv-01:~$ sudo -l\nMatching Defaults entries for webapp on web-srv-01:\n    env_reset, mail_badpass, secure_path=/usr/local/sbin\\:/usr/local/bin\\:/usr/sbin\\:/usr/bin\\:/sbin\\:/bin\n\nUser webapp may run the following commands on web-srv-01:\n    (root) NOPASSWD: /usr/bin/iptables\n    (root) NOPASSWD: /usr/sbin/auditctl\n    (root) NOPASSWD: /usr/bin/tcpdump\n    (root) NOPASSWD: /usr/sbin/systemctl restart nginx\nwebapp@web-srv-01:~$ id\nuid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)\nwebapp@web-srv-01:~$ hostname -f\nweb-srv-01.corp.local\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt29",
+          "Fancy Bear",
+          "Volt Typhoon",
+          "Apt28",
+          "Lazarus Group"
+        ],
+        "ttps_seen": [
+          "T1068",
+          "T1078",
+          "T1134",
+          "T1548"
+        ],
+        "extracted_techniques": [
+          "T1068",
+          "T1078",
+          "T1134",
+          "T1548"
+        ],
+        "tactics": [
+          "TA0004",
+          "TA0001",
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0120",
+      "suite": "cti_technique",
+      "query": "WMI persistence T1546 event subscription endpoint",
+      "served_text": "webapp@web-srv-01:~$ WMI persistence T1546 event subscription endpoint\nbash: WMI persistence T1546 event subscription endpoint: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Solarwinds",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1546",
+          "T1547"
+        ],
+        "extracted_techniques": [
+          "T1546",
+          "T1547"
+        ],
+        "tactics": [
+          "TA0003",
+          "TA0004"
+        ]
+      }
+    },
+    {
+      "row_id": "R0042",
+      "suite": "cti_technique",
+      "query": "What is discovery via network service scanning?",
+      "served_text": "webapp@web-srv-01:~$ systemctl list-units --type=service --state=running --no-legend\n  cron.service                              loaded active running Regular background program processing daemon\n  mysql.service                             loaded active running MySQL Community Server 8.0.33\n  nginx.service                             loaded active running A high performance web server\n  ssh.service                               loaded active running OpenBSD Secure Shell server\n\nwebapp@web-srv-01:~$ ss -tlnp\nState      Recv-Q Send-Q Local Address:Port  Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306        0.0.0.0:*        users:((\"mysqld\",pid=9012,fd=15))\nLISTEN     0      128    0.0.0.0:443           0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:80            0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:8080        0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt20",
+          "Charming Kitten"
+        ],
+        "ttps_seen": [
+          "T1046"
+        ],
+        "extracted_techniques": [
+          "T1046"
+        ],
+        "tactics": [
+          "TA0007"
+        ]
+      }
+    },
+    {
+      "row_id": "R0098",
+      "suite": "cti_technique",
+      "query": "Modify security tool T1562.002 disable MpEngine",
+      "served_text": "webapp@web-srv-01:~$ Modify security tool T1562.002 disable MpEngine\nbash: Modify security tool T1562.002 disable MpEngine: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Darkside",
+          "Apt29",
+          "Lazarus Group",
+          "Fancy Bear",
+          "Sandworm"
+        ],
+        "ttps_seen": [
+          "T1562",
+          "T1562.002"
+        ],
+        "extracted_techniques": [
+          "T1562",
+          "T1562.002"
+        ],
+        "tactics": [
+          "TA0005"
+        ]
+      }
+    },
+    {
+      "row_id": "R0117",
+      "suite": "cti_technique",
+      "query": "Forge silver ticket T1558.003 Kerberos attack",
+      "served_text": "webapp@web-srv-01:~$ Forge silver ticket T1558.003 Kerberos attack\nbash: Forge silver ticket T1558.003 Kerberos attack: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1558",
+          "T1558.003"
+        ],
+        "extracted_techniques": [
+          "T1558",
+          "T1558.003"
+        ],
+        "tactics": [
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0102",
+      "suite": "cti_technique",
+      "query": "Dump SAM credentials T1003.002 registry hive access",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1003",
+          "T1005",
+          "T1552"
+        ],
+        "extracted_techniques": [
+          "T1003",
+          "T1005",
+          "T1552"
+        ],
+        "tactics": [
+          "TA0009",
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0057",
+      "suite": "cti_technique",
+      "query": "What is T1005 Data from Local System collection?",
+      "served_text": "bash: What is T1005 Data from Local System collection?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [
+          "T1005"
+        ],
+        "extracted_techniques": [
+          "T1005"
+        ],
+        "tactics": [
+          "TA0009"
+        ]
+      }
+    },
+    {
+      "row_id": "R0089",
+      "suite": "cti_technique",
+      "query": "Create local account T1136.001 persistence on Windows",
+      "served_text": "webapp@web-srv-01:~$ Create local account T1136.001 persistence on Windows\nbash: Create local account T1136.001 persistence on Windows: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Solarwinds",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1136",
+          "T1547"
+        ],
+        "extracted_techniques": [
+          "T1136",
+          "T1547"
+        ],
+        "tactics": [
+          "TA0003"
+        ]
+      }
+    },
+    {
+      "row_id": "R0087",
+      "suite": "cti_technique",
+      "query": "Achieve execution via WMI T1047 on remote endpoint",
+      "served_text": "webapp@web-srv-01:~$ Achieve execution via WMI T1047 on remote endpoint\nbash: Achieve execution via WMI T1047 on remote endpoint: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Revil",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1047"
+        ],
+        "extracted_techniques": [
+          "T1047"
+        ],
+        "tactics": [
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0041",
+      "suite": "cti_technique",
+      "query": "Explain T1552.004 Unsecured Credentials for credential access",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1005",
+          "T1552"
+        ],
+        "extracted_techniques": [
+          "T1005",
+          "T1552"
+        ],
+        "tactics": [
+          "TA0009",
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0059",
+      "suite": "cti_technique",
+      "query": "How does application layer protocol communication enable C2?",
+      "served_text": "bash: How does application layer protocol communication enable C2?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Ghostemperor",
+          "Turla",
+          "Apt28",
+          "Lazarus Group",
+          "Fancy Bear"
+        ],
+        "ttps_seen": [
+          "T1071"
+        ],
+        "extracted_techniques": [
+          "T1071"
+        ],
+        "tactics": [
+          "TA0011"
+        ]
+      }
+    },
+    {
+      "row_id": "R0130",
+      "suite": "cti_actor",
+      "query": "How does APT41 operate against enterprise networks?",
+      "served_text": "bash: How does APT41 operate against enterprise networks?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt41"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0109",
+      "suite": "cti_technique",
+      "query": "Harvest browser credentials T1539 stealing session data",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1005",
+          "T1539",
+          "T1552"
+        ],
+        "extracted_techniques": [
+          "T1005",
+          "T1539",
+          "T1552"
+        ],
+        "tactics": [
+          "TA0009",
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0192",
+      "suite": "deception",
+      "query": "Check if any process has capabilities set beyond the default",
+      "served_text": "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 169432 11236 ?        Ss   Mar12   0:05 /sbin/init\nroot       389  0.0  0.0 102276  4088 ?        S    Mar12   0:00 /lib/systemd/systemd-udevd\nwebapp     1234  0.2  1.5 456789 32100 ?       Sl   09:20   0:12 python3 app/server.py\nwww-data   5678  0.1  0.8 234567 18000 ?       S    08:00   0:03 nginx: worker process\nmysql      9012  0.3  2.1 678901 45000 ?       Sl   08:00   0:15 /usr/sbin/mysqld\nroot       9876  0.0  0.0  20248  2604 ?        Ss   08:00   0:00 /usr/sbin/cron -f",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0214",
+      "suite": "deception",
+      "query": "Check last password changes for all users in /etc/shadow",
+      "served_text": "root:*:19480:0:99999:7:::\ndaemon:*:19480:0:99999:7:::\nbin:*:19480:0:99999:7:::\nsys:*:19480:0:99999:7:::\nsync:*:19480:0:99999:7:::\nwebapp:*:19480:0:99999:7:::",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1003",
+          "T1003.008",
+          "T1005",
+          "T1552"
+        ],
+        "extracted_techniques": [
+          "T1003",
+          "T1003.008",
+          "T1005",
+          "T1552"
+        ],
+        "tactics": [
+          "TA0009",
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0066",
+      "suite": "cti_technique",
+      "query": "Explain T1041 Exfiltration Over C2 Channel",
+      "served_text": "webapp@web-srv-01:~$ Explain T1041 Exfiltration Over C2 Channel\nbash: Explain T1041 Exfiltration Over C2 Channel: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt41",
+          "Darkside",
+          "Revil",
+          "Apt27"
+        ],
+        "ttps_seen": [
+          "T1041"
+        ],
+        "extracted_techniques": [
+          "T1041"
+        ],
+        "tactics": [
+          "TA0010"
+        ]
+      }
+    },
+    {
+      "row_id": "R0018",
+      "suite": "cti_technique",
+      "query": "Explain T1547 Boot or Logon Autostart Execution",
+      "served_text": "bash: Explain T1547 Boot or Logon Autostart Execution: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Solarwinds",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1547"
+        ],
+        "extracted_techniques": [
+          "T1547"
+        ],
+        "tactics": [
+          "TA0003"
+        ]
+      }
+    },
+    {
+      "row_id": "R0078",
+      "suite": "cti_technique",
+      "query": "Exploit public-facing application T1190 unpatched web server",
+      "served_text": "webapp@web-srv-01:~$ Exploit public-facing application T1190 unpatched web server\nHTTP/1.1 200 OK\nServer: nginx/1.18.0 (Ubuntu)\nDate: Thu, 13 Jun 2024 08:42:17 GMT\nContent-Type: text/html; charset=UTF-8\nConnection: keep-alive\nVirtualHost: web-srv-01\nDocumentRoot: /var/www/html",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Fancy Bear",
+          "Hafnium",
+          "Turla",
+          "Apt29"
+        ],
+        "ttps_seen": [
+          "T1190"
+        ],
+        "extracted_techniques": [
+          "T1190"
+        ],
+        "tactics": [
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0088",
+      "suite": "cti_technique",
+      "query": "Persistence registry Run Keys T1547.001 Windows startup",
+      "served_text": "webapp@web-srv-01:~$ Persistence registry Run Keys T1547.001 Windows startup\nbash: Persistence registry Run Keys T1547.001 Windows startup: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Solarwinds",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1547"
+        ],
+        "extracted_techniques": [
+          "T1547"
+        ],
+        "tactics": [
+          "TA0003"
+        ]
+      }
+    },
+    {
+      "row_id": "R0170",
+      "suite": "deception",
+      "query": "What disk space is available on the system?",
+      "served_text": "webapp@web-srv-01:~$ df -h\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/vda1        30G   12G   17G  42% /\n/dev/vdb1       100G   83G   13G  87% /var/lib/mysql\n/dev/vdc1       500G  210G  265G  45% /srv/backup\ntmpfs           3.9G  3.4G  478M  88% /dev/shm",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0164",
+      "suite": "deception",
+      "query": "Can you tell me about your firewall rules?",
+      "served_text": "webapp@web-srv-01:~$ sudo iptables -L -n\nChain INPUT (policy DROP 0 packets, 0 bytes)\n    pkts      bytes target     prot opt in     out     source               destination\n    12      1420 ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0\n     0         0 ACCEPT     tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22\n     0         0 ACCEPT     tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:443\n     0         0 ACCEPT     tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:8080\n     0         0 LOG        all  --  *      *       0.0.0.0/0            0.0.0.0/0            LOG flags 0 level 4 prefix '[UFW BLOCK] '\n    34      9972 REJECT     all  --  eth0   *       0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0020",
+      "suite": "cti_technique",
+      "query": "What is account creation as a persistence mechanism?",
+      "served_text": "bash: What is account creation as a persistence mechanism?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Solarwinds",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1136",
+          "T1547"
+        ],
+        "extracted_techniques": [
+          "T1136",
+          "T1547"
+        ],
+        "tactics": [
+          "TA0003"
+        ]
+      }
+    },
+    {
+      "row_id": "R0157",
+      "suite": "cti_actor",
+      "query": "Explain Dragonfly/Energetic Bear targeting energy ICS",
+      "served_text": "webapp@web-srv-01:~$ Explain Dragonfly/Energetic Bear targeting energy ICS\nbash: Explain Dragonfly/Energetic Bear targeting energy ICS: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Dragonfly"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0176",
+      "suite": "deception",
+      "query": "Show me the crontab for all users on this system",
+      "served_text": "webapp@web-srv-01:~$ crontab -l\n# m h  dom mon dow   command\n*/5 * * * * /home/webapp/scripts/healthcheck.sh\n0 2 * * * /home/webapp/scripts/backup.sh /srv/backup\n0 3 * * 1 logrotate /etc/logrotate.conf\n@reboot /usr/local/bin/start-webapp.sh\n0 0 1 * * certbot renew --quiet",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0074",
+      "suite": "cti_technique",
+      "query": "Explain T1583 Acquire Infrastructure resource development",
+      "served_text": "webapp@web-srv-01:~$ Explain T1583 Acquire Infrastructure resource development\nbash: Explain T1583 Acquire Infrastructure resource development: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [
+          "T1583",
+          "T1586",
+          "T1586.001"
+        ],
+        "extracted_techniques": [
+          "T1583",
+          "T1586",
+          "T1586.001"
+        ],
+        "tactics": [
+          "TA0042"
+        ]
+      }
+    },
+    {
+      "row_id": "R0071",
+      "suite": "cti_technique",
+      "query": "Explain T1486 Data Encrypted for Impact ransomware technique",
+      "served_text": "bash: Explain T1486 Data Encrypted for Impact ransomware technique: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Sandworm",
+          "Revil",
+          "Darkside"
+        ],
+        "ttps_seen": [
+          "T1486"
+        ],
+        "extracted_techniques": [
+          "T1486"
+        ],
+        "tactics": [
+          "TA0040"
+        ]
+      }
+    },
+    {
+      "row_id": "R0046",
+      "suite": "cti_technique",
+      "query": "What is system information discovery T1082?",
+      "served_text": "bash: What is system information discovery T1082?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt20",
+          "Charming Kitten"
+        ],
+        "ttps_seen": [
+          "T1046",
+          "T1082"
+        ],
+        "extracted_techniques": [
+          "T1046",
+          "T1082"
+        ],
+        "tactics": [
+          "TA0007"
+        ]
+      }
+    },
+    {
+      "row_id": "R0153",
+      "suite": "cti_actor",
+      "query": "What is Seedworm targeting energy sector infrastructure?",
+      "served_text": "bash: What is Seedworm targeting energy sector infrastructure?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Seedworm"
+        ],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0090",
+      "suite": "cti_technique",
+      "query": "Create domain account T1136.002 AD persistence",
+      "served_text": "webapp@web-srv-01:~$ Create domain account T1136.002 AD persistence\nbash: Create domain account T1136.002 AD persistence: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Solarwinds",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1136",
+          "T1547"
+        ],
+        "extracted_techniques": [
+          "T1136",
+          "T1547"
+        ],
+        "tactics": [
+          "TA0003"
+        ]
+      }
+    },
+    {
+      "row_id": "R0208",
+      "suite": "deception",
+      "query": "Check if any cron jobs were added in last 48 hours",
+      "served_text": "webapp@web-srv-01:~$ Check if any cron jobs were added in last 48 hours\nwebapp    pts/0        2024-06-13 08:42   (10.0.1.55)\nroot    pts/1        2024-06-13 07:10   (10.0.1.66)\nwww-data  pts/2       2024-06-12 22:01   (172.16.0.12)\n\nwtmp begins Thu Jun 13 07:10:34 2024",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0103",
+      "suite": "cti_technique",
+      "query": "Dump NTDS.dit T1003.003 domain credential extraction",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1003"
+        ],
+        "extracted_techniques": [
+          "T1003"
+        ],
+        "tactics": [
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0047",
+      "suite": "cti_technique",
+      "query": "Describe T1046 Network Service Discovery scanning",
+      "served_text": "webapp@web-srv-01:~$ systemctl list-units --type=service --state=running --no-legend\n  cron.service                              loaded active running Regular background program processing daemon\n  mysql.service                             loaded active running MySQL Community Server 8.0.33\n  nginx.service                             loaded active running A high performance web server\n  ssh.service                               loaded active running OpenBSD Secure Shell server\n\nwebapp@web-srv-01:~$ ss -tlnp\nState      Recv-Q Send-Q Local Address:Port  Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306        0.0.0.0:*        users:((\"mysqld\",pid=9012,fd=15))\nLISTEN     0      128    0.0.0.0:443           0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:80            0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:8080        0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Apt20",
+          "Charming Kitten"
+        ],
+        "ttps_seen": [
+          "T1046"
+        ],
+        "extracted_techniques": [
+          "T1046"
+        ],
+        "tactics": [
+          "TA0007"
+        ]
+      }
+    },
+    {
+      "row_id": "R0207",
+      "suite": "deception",
+      "query": "Show all running Docker containers with resource limits",
+      "served_text": "webapp@web-srv-01:~$ docker ps -a\nCONTAINER ID   IMAGE                          COMMAND                  CREATED        STATUS                       PORTS     NAMES\na1b2c3d4e5f6   mysql:8.0                       \"docker-entrypoint.s\u2026\"   3 months ago   Up 3 months                  3306/tcp    db-primary\nb2c3d4e5f6a7   redis:7-alpine                   \"docker-entrypoint.s\u2026\"   3 months ago   Up 3 months                  6379/tcp    cache\nc3d4e5f6a7b8   nginx:1.18-alpine                \"nginx -g 'daemon of\u2026\"   3 months ago   Exited (0) 2 weeks ago                  web-proxy-old",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0161",
+      "suite": "deception",
+      "query": "What security tools do you have deployed?",
+      "served_text": "webapp@web-srv-01:~$ dpkg -l | grep -iE 'ufw|clamav|rkhunter|aide|snort|ossec'\nii  ufw                 0.36.2-1ubuntu1       amd64  program for managing a Netfilter firewall\nii  clamav               1.2.1+dfsg-0ubuntu0.22.04.1  amd64  anti-virus utility for Unix\nii  rkhunter             1.4.6-9build1         amd64  rootkit hunter\nii  aide                 0.18.6-1             amd64  Advanced Intrusion Detection Environment",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0104",
+      "suite": "cti_technique",
+      "query": "Extract LSA secrets T1003.004 registry credential access",
+      "served_text": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_REGION=us-east-1\nAWS_ACCESS_KEY_ID=AKIANZNIDYVHPF56D6JK\nAWS_SECRET_ACCESS_KEY=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\nwebapp@web-srv-01:~$ cat /home/webapp/.dbpass\nKvUbKvNQoDNZOz0Bt8bG6G!7\nwebapp@web-srv-01:~$ ",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Carbanak",
+          "Hafnium",
+          "Fin7",
+          "Apt37",
+          "Unc3886"
+        ],
+        "ttps_seen": [
+          "T1003"
+        ],
+        "extracted_techniques": [
+          "T1003"
+        ],
+        "tactics": [
+          "TA0006"
+        ]
+      }
+    },
+    {
+      "row_id": "R0203",
+      "suite": "deception",
+      "query": "Show me zombie processes and their parent process IDs on this system",
+      "served_text": "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 169432 11236 ?        Ss   Mar12   0:05 /sbin/init\nroot       389  0.0  0.0 102276  4088 ?        S    Mar12   0:00 /lib/systemd/systemd-udevd\nwebapp     1234  0.2  1.5 456789 32100 ?       Sl   09:20   0:12 python3 app/server.py\nwww-data   5678  0.1  0.8 234567 18000 ?       S    08:00   0:03 nginx: worker process\nmysql      9012  0.3  2.1 678901 45000 ?       Sl   08:00   0:15 /usr/sbin/mysqld\nroot       9876  0.0  0.0  20248  2604 ?        Ss   08:00   0:00 /usr/sbin/cron -f",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0083",
+      "suite": "cti_technique",
+      "query": "Execute malicious macro T1204.002 user execution",
+      "served_text": "webapp@web-srv-01:~$ Execute malicious macro T1204.002 user execution\nbash: Execute malicious macro T1204.002 user execution: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Revil",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1204"
+        ],
+        "extracted_techniques": [
+          "T1204"
+        ],
+        "tactics": [
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0168",
+      "suite": "deception",
+      "query": "What cron jobs are configured on this system?",
+      "served_text": "webapp@web-srv-01:~$ crontab -l\n# m h  dom mon dow   command\n*/5 * * * * /home/webapp/scripts/healthcheck.sh\n0 2 * * * /home/webapp/scripts/backup.sh /srv/backup\n0 3 * * 1 logrotate /etc/logrotate.conf\n@reboot /usr/local/bin/start-webapp.sh\n0 0 1 * * certbot renew --quiet",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [],
+        "extracted_techniques": [],
+        "tactics": []
+      }
+    },
+    {
+      "row_id": "R0004",
+      "suite": "cti_technique",
+      "query": "How do attackers use external remote services to gain access?",
+      "served_text": "webapp@web-srv-01:~$ systemctl list-units --type=service --state=running --no-legend\n  cron.service                              loaded active running Regular background program processing daemon\n  mysql.service                             loaded active running MySQL Community Server 8.0.33\n  nginx.service                             loaded active running A high performance web server\n  ssh.service                               loaded active running OpenBSD Secure Shell server\n\nwebapp@web-srv-01:~$ ss -tlnp\nState      Recv-Q Send-Q Local Address:Port  Peer Address:Port Process\nLISTEN     0      128    127.0.0.1:3306        0.0.0.0:*        users:((\"mysqld\",pid=9012,fd=15))\nLISTEN     0      128    0.0.0.0:443           0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:80            0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))\nLISTEN     0      128    0.0.0.0:8080        0.0.0.0:*        users:((\"nginx\",pid=5678,fd=10))",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Hafnium",
+          "Salt Typhoon",
+          "Volt Typhoon",
+          "Earth Lusca"
+        ],
+        "ttps_seen": [
+          "T1021",
+          "T1133"
+        ],
+        "extracted_techniques": [
+          "T1021",
+          "T1133"
+        ],
+        "tactics": [
+          "TA0008",
+          "TA0001"
+        ]
+      }
+    },
+    {
+      "row_id": "R0021",
+      "suite": "cti_technique",
+      "query": "Explain T1547.001 Registry Run Keys persistence",
+      "served_text": "webapp@web-srv-01:~$ Explain T1547.001 Registry Run Keys persistence\nbash: Explain T1547.001 Registry Run Keys persistence: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Cozy Bear",
+          "Solarwinds",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1547"
+        ],
+        "extracted_techniques": [
+          "T1547"
+        ],
+        "tactics": [
+          "TA0003"
+        ]
+      }
+    },
+    {
+      "row_id": "R0119",
+      "suite": "cti_technique",
+      "query": "Embedded content macro T1203 client execution",
+      "served_text": "webapp@web-srv-01:~$ Embedded content macro T1203 client execution\nbash: Embedded content macro T1203 client execution: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [
+          "Fin7",
+          "Earth Lusca",
+          "Lazarus Group",
+          "Revil",
+          "Darkhotel"
+        ],
+        "ttps_seen": [
+          "T1203",
+          "T1204"
+        ],
+        "extracted_techniques": [
+          "T1203",
+          "T1204"
+        ],
+        "tactics": [
+          "TA0002"
+        ]
+      }
+    },
+    {
+      "row_id": "R0028",
+      "suite": "cti_technique",
+      "query": "What is T1548.003 Bypass User Account Control?",
+      "served_text": "bash: What is T1548.003 Bypass User Account Control?: command not found",
+      "analysis": {
+        "summary": "",
+        "candidate_actors": [],
+        "ttps_seen": [
+          "T1548"
+        ],
+        "extracted_techniques": [
+          "T1548"
+        ],
+        "tactics": [
+          "TA0004"
+        ]
+      }
+    }
+  ]
+}

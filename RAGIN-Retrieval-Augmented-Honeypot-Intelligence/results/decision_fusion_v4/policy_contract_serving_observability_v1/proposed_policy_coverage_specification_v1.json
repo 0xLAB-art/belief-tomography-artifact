@@ -1,0 +1,47 @@
+{
+  "activation": "forbidden until separately reviewed and frozen",
+  "external_relationship_documents": [
+    "DONV2-REL-CURL",
+    "DONV2-REL-SSH",
+    "DONV2-REL-WGET"
+  ],
+  "fail_safe": "invalid, contradictory, unsupported, or insufficient evidence selects baseline",
+  "rules": [
+    {
+      "ambiguity": "abstain when command context is insufficient",
+      "rationale": "system and file discovery are reconnaissance-compatible fictional behaviors",
+      "strategy": "maximize_recon_surface",
+      "techniques": [
+        "T1082",
+        "T1083"
+      ]
+    },
+    {
+      "ambiguity": "do not infer execution from transfer alone",
+      "rationale": "download/transfer behavior must remain fictional and instrumented",
+      "strategy": "contain_in_fiction_and_instrument",
+      "techniques": [
+        "T1105"
+      ]
+    },
+    {
+      "ambiguity": "abstain without additional supported behavior",
+      "rationale": "Unix shell is a command interpreter, not a sufficient behavior objective",
+      "strategy": "baseline",
+      "techniques": [
+        "T1059.004"
+      ]
+    },
+    {
+      "ambiguity": "abstain unless supported by additional evidence",
+      "rationale": "file deletion alone does not justify a substantive deception strategy",
+      "strategy": "baseline",
+      "techniques": [
+        "T1070.004"
+      ]
+    }
+  ],
+  "schema": "ragin.v4.proposed.policy_coverage_specification.v1",
+  "source_basis": "Don V2 corpus metadata and recorded command-grounded evidence; requires independent review before activation",
+  "status": "PROPOSED_NOT_ACTIVATED"
+}

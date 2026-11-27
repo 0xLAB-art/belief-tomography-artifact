@@ -1,0 +1,83 @@
+=== PHASE 0: kill prior listeners ===
+=== PHASE 1: start opencode proxy daemon ===
+proxy pid=2579019
+proxy-health-ok after 2s
+=== proxy /health ===
+{"status":"ok","backend":"opencode-cli"}
+=== proxy /v1/models ===
+{"object":"list","data":[{"id":"opencode/space-bunny-free","object":"model","owned_by":"opencode-cli"}]}
+=== PHASE 2: direct proxy completion (proves gateway alive + model match) ===
+direct_proxy_curl_exit=0
+=== direct proxy response headers ===
+HTTP/1.0 200 OK
+Server: RAGIN-OpenCode-CLI-Bridge/1.0 Python/3.12.3
+Date: Fri, 09 Oct 2026 16:51:52 GMT
+Content-Type: application/json
+Content-Length: 283
+
+
+=== direct proxy response body ===
+{"id":"chatcmpl-ragin-f0788851533a440abdc5aeb295ba4bf3","object":"chat.completion","created":1791564712,"model":"opencode/space-bunny-free","choices":[{"index":0,"message":{"role":"assistant","content":"PROOF_DIRECT"},"finish_reason":"stop"}],"usage":{"completion_time_ms":6082.005}}
+=== PHASE 3: start authoritative pipeline daemon (with RAGIN_HISOKA_MODEL set) ===
+pipeline pid=2579240
+pipeline-health-ok after 4s
+=== pipeline /health ===
+{"component": "pipeline", "status": "healthy", "timestamp": 1791564715.7753067, "harness": "active", "pipeline": ["chrollo", "don", "hisoka"], "active_sessions": 0}
+=== PHASE 4: pipeline completion (authoritative GENERATED_VERIFIED path) ===
+pipeline_curl_exit=0
+=== pipeline response headers ===
+HTTP/1.1 200 OK
+X-Session-Id: ses-2e6f89da68c74259
+X-Session-Token: 
+Content-Type: application/json; charset=utf-8
+X-Response-Time: 16.371s
+Content-Length: 325
+Date: Fri, 09 Oct 2026 16:52:12 GMT
+Server: Python/3.12 aiohttp/3.14.3
+
+
+=== pipeline response body ===
+{"id": "chatcmpl-ses-2e6f89da68c74259-1", "object": "chat.completion", "created": 1791564732, "model": "opencode/space-bunny-free", "choices": [{"index": 0, "message": {"role": "assistant", "content": "PIPELINE_WIRE_PROOF"}, "finish_reason": "stop"}], "usage": {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}}
+=== PHASE 5: logs (proxy + pipeline) ===
+--- proxy log tail ---
+--- pipeline log tail ---
+2026-10-09 19:52:01,447 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-09 19:52:01,459 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig.json=&etag=%2272b987fd805cfa2b58c4c8c952b274a11bfd5a00%22 "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4845.26it/s]
+2026-10-09 19:52:01,779 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-10-09 19:52:01,925 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-10-09 19:52:02,071 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-10-09 19:52:02,220 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-10-09 19:52:02,367 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-09 19:52:02,378 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Ftokenizer_config.json=&etag=%22c79f2b6a0cea6f4b564fed1938984bace9d30ff0%22 "HTTP/1.1 200 OK"
+2026-10-09 19:52:02,528 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-09 19:52:02,538 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig.json=&etag=%2272b987fd805cfa2b58c4c8c952b274a11bfd5a00%22 "HTTP/1.1 200 OK"
+2026-10-09 19:52:02,686 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-09 19:52:02,697 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig.json=&etag=%2272b987fd805cfa2b58c4c8c952b274a11bfd5a00%22 "HTTP/1.1 200 OK"
+2026-10-09 19:52:02,848 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-09 19:52:02,860 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Ftokenizer_config.json=&etag=%22c79f2b6a0cea6f4b564fed1938984bace9d30ff0%22 "HTTP/1.1 200 OK"
+2026-10-09 19:52:03,014 httpx INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-09 19:52:03,164 httpx INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-09 19:52:03,359 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-09 19:52:03,371 httpx INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%22d1514c3162bbe87b343f565fadc62e6c06f04f03%22 "HTTP/1.1 200 OK"
+2026-10-09 19:52:03,524 httpx INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+2026-10-09 19:52:03,675 httpx INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-09 19:52:03,678 ragin.don.vector_store INFO VectorStore initialised (dim=384, model=all-MiniLM-L6-v2)
+2026-10-09 19:52:12,138 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,139 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-2e6f89da68c74259
+2026-10-09 19:52:12,151 aiohttp.access INFO 127.0.0.1 [09/Oct/2026:19:51:55 +0300] "POST /v1/chat/completions HTTP/1.1" 200 566 "-" "curl/8.5.0"

@@ -1,0 +1,36 @@
+{
+  "schema_version": "v3_sanitization_policy",
+  "written_before_v3_generation": true,
+  "input_scope": [
+    "blind_annotation_confirmatory.json",
+    "confirmatory_case_ids.txt",
+    "confirmatory_subset_manifest.json",
+    "leakage_review_v2.json for private dependence documentation only"
+  ],
+  "remove_or_neutralize": [
+    {
+      "class": "attacker_command_context",
+      "rule": "Replace any Existing SSH session transcript file with N attacker command(s) context with Observed command sequence for N=1 or Observed command sequence containing multiple commands for N>1."
+    },
+    {
+      "class": "real_linux_source_role_context",
+      "rule": "Replace Real Linux administration-style transcript (...) with neutral observed command-sequence context."
+    },
+    {
+      "class": "historical_controlled_session_context",
+      "rule": "Remove login, account, controlled-session, and historical provenance wording and replace with neutral observed command-sequence context."
+    }
+  ],
+  "prompt_normalization": {
+    "regex_class": "line-start shell prompt username@hostname followed by :~:, :/ or :#",
+    "replacement": "user@host:",
+    "scope": "global across every evidence field; no case-specific exception"
+  },
+  "hostname_username_policy": "Decorative prompt identities are normalized. Usernames, hostnames, paths, destinations, and account arguments inside behavioral evidence are preserved unless they match the decorative prompt rule.",
+  "behavior_preservation": [
+    "Do not rewrite commands or arguments.",
+    "Do not rewrite outputs, paths, network targets, exploit syntax, payload behavior, or privilege operations.",
+    "Only context framing and decorative prompt tokens may change."
+  ],
+  "outcome_independence": "No labels, predictions, disagreement, ground truth, or evaluation output are read or used for editing decisions."
+}

@@ -1,0 +1,16 @@
+{
+  "schema": "ragin.laya_decision_v2.ab_analysis_design.v2",
+  "unit": "matched input case",
+  "arms": ["RAGIN_BASELINE", "RAGIN_LAYA_DECISION"],
+  "matching": "Each case is run through both arms with identical input, generation configuration, and seeds where the provider supports deterministic seeds.",
+  "provider_determinism": "Record provider determinism availability per case; if unavailable, report that the arms are matched inputs but not perfect counterfactual replicas.",
+  "binary_paired_test": "exact two-sided McNemar",
+  "continuous_or_count_test": {
+    "method": "paired bootstrap",
+    "replicates": 10000,
+    "confidence_level": 0.95,
+    "bootstrap_unit": "case; use session-cluster bootstrap if a reliable session grouping is available"
+  },
+  "multiple_testing": "Report the preregistered primary outcomes first and label secondary outcomes as secondary; no post-hoc outcome-driven metric selection.",
+  "effectiveness_not_run_in_v2_session": true
+}

@@ -1,0 +1,162 @@
+{
+  "arms": {
+    "A_judge_off": {
+      "description": "baseline Don evidence (CommandAwareRetrieverV2 retrieval) with the evidence judge and judge filtering disabled; EvidenceQualityGate applied to the Don evidence bundle",
+      "evidence_judge": "disabled (judge not invoked)",
+      "evidence_judge_filtering": "disabled",
+      "gate": "EvidenceQualityGate (EVIDENCE_GATE_V1)"
+    },
+    "B_judge_on": {
+      "description": "identical Don evidence plus DeterministicEvidenceJudge (DETERMINISTIC_COMMAND_GROUNDED_V1) and judge filtering; the same EvidenceQualityGate applied to the filtered bundle",
+      "evidence_judge": "DETERMINISTIC_COMMAND_GROUNDED_V1 (score >= 0.72 SUPPORT, >= 0.45 PARTIAL, < 0.45 CONTRADICTORY; provenance and context-missing rules per judge contract)",
+      "evidence_judge_filtering": "enabled (EVIDENCE_JUDGE_FILTERING_V1)",
+      "gate": "EvidenceQualityGate (EVIDENCE_GATE_V1), unchanged"
+    },
+    "arm_order": "counterbalanced by capture_id parity (even: A then B; odd: B then A), recorded per case",
+    "held_identical_within_contrast": {
+      "generator": "V1_SUBSTANTIVE_STRATEGY_GENERATOR deterministic, seed 0, runtime RAGIN_V4_SUBSTANTIVE_DETERMINISTIC",
+      "hitl": "ApprovalGateway REQUIRE (deterministic recorded decisions)",
+      "host_fiction": "disabled (RAGIN_HOST_FICTION=0)",
+      "laya": "disabled (RAGIN_LAYA_ENABLED=0; not in this pipeline path)",
+      "policy": "RAGIN_V4_DETERMINISTIC (frozen; policy model and thresholds hash-locked; logistic model locked for exploratory estimand E3 only)",
+      "provider": "closed-port deterministic gateway (127.0.0.1:1); provider-backed serving is secondary-mode only and excluded from the confirmatory primary",
+      "retrieval": "CommandAwareRetrieverV2 over the frozen corpus (identical candidates in both arms)",
+      "verifier": "FictionConsistencyVerifier (mandatory verification on)"
+    }
+  },
+  "cases": {
+    "N": 40,
+    "manifest": "results/step6_matched_evaluation_protocol_v1/selected_cases_v1.json",
+    "manifest_sha256": "fb7a2fa24883ffdc9a3ccf197d2a2199c0c358d09695071899151960c08f3031",
+    "session_isolation": "one isolated session per (case, arm); session_id = sha256(EXPERIMENT_ID, case_id, arm); no cross-case or cross-arm state carryover",
+    "source": "controlled-real-admin prospective captures (synthetic evidence, real capture protocol)",
+    "untouched_holdout": {
+      "N": 40,
+      "manifest": "results/step6_matched_evaluation_protocol_v1/holdout_freeze_v1.json",
+      "manifest_sha256": "083157eff7d1aea2debe798058cc81565dcec258661d989079224306afbc0227"
+    }
+  },
+  "data_sources": {
+    "cases": "the 40 frozen controlled-real-admin captures (selected_cases_v1.json)",
+    "corpus": {
+      "file_count": 2,
+      "manifest_sha256": "d0f49cb869efe587549f4c79448f856700673aee922d117657ba19b6fbf3d234",
+      "path": "data/corpus"
+    },
+    "unavailable": [
+      {
+        "cohort": "laya_real_169",
+        "status": "UNAVAILABLE (model execution artifacts absent); manifest inputs used for disjointness only"
+      },
+      {
+        "cohort": "hf2024_120_evidence_judge_audit",
+        "status": "used cohort (disjointness only); not a case source for this study"
+      }
+    ]
+  },
+  "design": "within-case matched contrast on the prospective controlled-real-admin cohort",
+  "execution": {
+    "abort_policy": "any source/code/corpus hash mismatch against freeze_manifest_v1.json aborts execution before any case runs",
+    "assertions_at_execution": [
+      "policy code and model hash identical across arms",
+      "retrieval corpus hash identical across arms",
+      "reference freeze file hash unchanged between construction and join",
+      "no arm label present in any reference-construction input",
+      "raw arm outputs are frozen before any reference-label or outcome join"
+    ],
+    "pipeline": "Chrollo -> Don (retrieval + optional judge/filter) -> EvidenceGate -> V4 deterministic policy -> substantive generator -> FictionConsistencyVerifier -> ApprovalGateway -> commit -> serving",
+    "record_contract": "per-turn records carry the Step 5 required-evidence field groups (15 groups) plus arm, reference join keys and groundedness fields",
+    "runner": "Step 7 execution script (to be written after this freeze; must assert this manifest's hashes before any call)"
+  },
+  "experiment_id": "ragin.step6.matched_judge_contrast.v1",
+  "frozen_at": "2026-10-15T05:19:30.368351+00:00",
+  "missingness_and_failures": {
+    "complete_pair_rule": "primary analyses use complete (A, B) case pairs; incomplete pairs are counted and reported with reasons",
+    "crash_rule": "a crashed case/arm is rerun with the identical frozen inputs and seed; the rerun and the crash are both recorded",
+    "downgrade": "if incomplete pairs exceed 10% of N, P1 and P2 are reported as descriptive only",
+    "provider_failure_reporting": "every provider call records attempts and errors; provider failures never substitute outcomes \u2014 closed-port deterministic serving is the confirmatory mode"
+  },
+  "multiplicity": {
+    "familywise_alpha": 0.05,
+    "gatekeeping": "P1 first at alpha 0.05 two-sided; P2 tested only if P1 rejects (fixed sequence); secondaries BH q 0.10 descriptive; E3 separate exploratory bucket"
+  },
+  "outcomes": {
+    "E3_exploratory_policy_contrast": {
+      "analysis": "paired per-case P1 outcome difference between policy arms under arm B wiring, reported with CI only; no confirmatory claim; promoting it requires its own protocol amendment with its own multiplicity budget",
+      "name": "policy contrast (RAGIN_V4_DETERMINISTIC vs RAGIN_V4_LOGISTIC)",
+      "separation_guarantee": "the judge contrast (A vs B) holds the policy fixed; any policy comparison is reported in a distinct section and never pooled with A-vs-B contrasts",
+      "status": "separate exploratory estimand, NOT part of the judge contrast"
+    },
+    "P1_primary_evidence_quality": {
+      "admitted_definition": "candidate doc id present in the arm's gate valid_doc_ids (policy-visible evidence set)",
+      "ci": "paired bootstrap percentile CI (20000 draws, seed 20261015)",
+      "contrast": "paired difference B minus A across all N cases",
+      "definition": "U_i = |admitted candidates whose reference label is not DIRECT_SUPPORT| / |admitted candidates| in arm X for case i; a case with zero admitted candidates contributes U_i = 0 and is flagged abstention (co-reported)",
+      "name": "unsupported-evidence admission fraction",
+      "success_criterion": "p < 0.05 AND point estimate <= -0.15 (the preregistered smallest effect size of interest)",
+      "test": "two-sided paired permutation (sign-flip, 100000 draws, seed 20261015)",
+      "unit": "case"
+    },
+    "P2_co_primary_working_system_utility": {
+      "ci": "paired bootstrap percentile CI (20000 draws, seed 20261015)",
+      "contrast": "paired difference B minus A across all N cases",
+      "definition": "G_i = fraction of served turns in case i whose response was served as a V4-consumed strategy (serving_outcome STRATEGY_CONSUMED_AND_SERVED) AND every policy-visible supporting evidence id is reference-DIRECT_SUPPORT; fallback, no-serve and ungrounded serves count 0",
+      "hierarchy": "tested only if P1 rejects at alpha 0.05 (fixed-sequence gatekeeping)",
+      "justification_separate_from_P1": "P1 measures admission quality at the gate boundary; P2 measures whether the working system actually serves strategies grounded in validated evidence. It is sensitive to the proposed change (filtering alters the policy-visible set and therefore grounding) and is not the ceiling'd accepted-non-fallback rate: on the frozen historical cohort accepted-non-fallback sat at its ceiling while unsupported admissions were 0.741, so groundedness retains headroom.",
+      "name": "reference-grounded strategy consumption rate",
+      "test": "two-sided paired permutation (sign-flip, 100000 draws, seed 20261015)",
+      "unit": "case"
+    },
+    "key_secondaries": {
+      "abstention_rate": "fraction of cases whose gate state is not VALID_EVIDENCE; non-inferiority margin +0.10",
+      "false_rejection_rate": "fraction of reference-DIRECT_SUPPORT candidates excluded by the arm's admission path (arm B) or missing from retrieval-relevance admission (arm A); non-inferiority margin +0.05 (B minus A upper CI bound)",
+      "gate_validity_flip_rate": "fraction of cases where A and B gate states differ",
+      "judge_reference_confusion_matrix": "judge labels vs reference labels at candidate level (descriptive)",
+      "multiplicity": "Benjamini-Hochberg q = 0.10 within the secondary family; secondaries support (never establish) claims",
+      "operational": "fallback/retry/error counts, provider attempts, per-stage and end-to-end latency, response length (descriptive)",
+      "policy_correct_when_referenced": "fraction of served V4-consumed turns whose selected strategy is supported by the case's reference-backed tactics (descriptive)",
+      "response_consistency": "within-case response hash/length consistency and arm-difference summaries (descriptive)",
+      "safety": "verifier bypasses, unauthorized commits, unsafe evidence promotion, arm-state leakage, and rejected-update invariants (descriptive)"
+    }
+  },
+  "plan_step": "Step 6 \u2014 matched controlled evaluation protocol (docs/PAPER_REMAINING_STEPS_2026-10-14.md)",
+  "reference": {
+    "blinding": "reference construction runs and is frozen + hash-locked BEFORE any arm outcome is joined",
+    "files_locked": [
+      "results/evidence_judge_real_data_ablation_v1/ai_reference_v2_2/CODEX_REFERENCE_PROTOCOL_V2_2.md",
+      "results/evidence_judge_real_data_ablation_v1/ai_reference_v2_2/output_schema.json",
+      "results/evidence_judge_real_data_ablation_v1/ai_reference_v2_2/reference_freeze_manifest_v2_2.json",
+      "results/evidence_judge_real_data_ablation_v1/ai_reference_v2_1/AI_PRIMARY_PROMPT_V2.txt",
+      "scripts/evidence_support_codex_reference_v2_2.py",
+      "scripts/locked_evidence_support_evaluation_v2_2.py"
+    ],
+    "input_freeze": "results/step6_matched_evaluation_protocol_v1/reference_input_freeze_v1.json",
+    "input_freeze_sha256": "6205bc7a505b49768527d5714af533480812de92b148af87275bb83c88faf5c9",
+    "input_freeze_status": "INPUTS_FROZEN_LABELS_PENDING_RETRIEVAL_PACKET",
+    "labels": "per-candidate support label in {DIRECT_SUPPORT, PARTIAL_SUPPORT, IRRELEVANT, CONTRADICTORY, UNKNOWN} plus bundle sufficiency, per the v2_2 output schema",
+    "model_identity": "gpt-5.6-luna via Codex CLI; AI-derived reference, not human ground truth or independent consensus",
+    "protocol": "Step 3 blinded AI reference (v2_2): constructed from input, context and retrieval candidates only, with all arm identifiers, gate outputs and policy outputs stripped",
+    "reference_type": "AI_DERIVED_ADJUDICATED_REFERENCE",
+    "retrieval_freeze": "results/step6_matched_evaluation_protocol_v1/retrieval_evidence_freeze_v1.json",
+    "retrieval_freeze_sha256": "8207080a050f0d1555f8ca9b2608308358b20caee9549552766ec35f3a5af5f9",
+    "retrieval_freeze_status": "FROZEN_BEFORE_ARM_OUTCOMES",
+    "unsupported_definition": "candidate admitted while its reference label is not DIRECT_SUPPORT (PARTIAL_SUPPORT counted as unsupported in the primary; a PARTIAL-as-supported sensitivity analysis is preregistered as secondary)"
+  },
+  "schema": "ragin.step6.matched_evaluation_protocol.v1",
+  "statistics": {
+    "bootstrap_draws": 20000,
+    "clustering": "primary inference is case-level; candidate labels never treated as independent observations; source_cluster_id and independence_group_id are reported and used for sensitivity grouping when nontrivial",
+    "observation_unit": "case; paired A/B differences, with candidate-level summaries clustered by case and source/independence group where available",
+    "permutation_draws": 100000,
+    "power_note": "required n=24 for delta*=0.15 at central sigma 0.25; frozen N=40; sensitivity across sigma grid is preregistered and reported regardless of outcome",
+    "power_table": "results/step6_matched_evaluation_protocol_v1/power_analysis_v1.json",
+    "seed": 20261015,
+    "test": "paired sign-flip permutation, two-sided"
+  },
+  "status": "FROZEN_BEFORE_CONFIRMATORY_CALLS",
+  "thresholds": {
+    "gate": "EVIDENCE_GATE_V1 thresholds as frozen in ragin/decision_fusion_v4/benchmark.py (hash-locked)",
+    "judge": "judge score thresholds as frozen in ragin/don/evidence_judge.py (hash-locked)",
+    "strategy_filter": "strategy-specific tactic/TP matching thresholds as frozen in ragin/decision_fusion_v4/policy.py (hash-locked)"
+  }
+}

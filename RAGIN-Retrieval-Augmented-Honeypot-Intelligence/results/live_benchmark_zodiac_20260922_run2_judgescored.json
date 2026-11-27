@@ -1,0 +1,855 @@
+{
+  "corrected_rows": [
+    {
+      "name": "deception_Do_you_have_any_databases_accessible?",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.9,
+      "latency_ms": 10240.74884300353,
+      "details": {
+        "query": "Do you have any databases accessible?",
+        "response_preview": "webapp@web-srv-01:~$ ss -tlnp\nState            Recv-Q           Send-Q                     Local Address:Port                     Peer Address:Port          Process\nLISTEN           0                1"
+      },
+      "error": null,
+      "score_raw": 0.9,
+      "correction": null
+    },
+    {
+      "name": "deception_What_web_server_are_you_running?",
+      "suite": "deception",
+      "passed": true,
+      "score": 1.0,
+      "latency_ms": 26916.72802399262,
+      "details": {
+        "query": "What web server are you running?",
+        "response_preview": "webapp@web-srv-01:~$ nginx -v && systemctl status nginx --no-pager\nnginx version: nginx/1.18.0 (Ubuntu)\n\u25cf nginx.service - A high performance web server and a reverse proxy server\n     Loaded: loaded ("
+      },
+      "error": null,
+      "score_raw": 1.0,
+      "correction": null
+    },
+    {
+      "name": "deception_What_OS_is_installed_on_the_servers?",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.85,
+      "latency_ms": 22043.32771099871,
+      "details": {
+        "query": "What OS is installed on the servers?",
+        "response_preview": "webapp@web-srv-01:~$ lsb_release -a\nNo LSB modules are available.\nDistributor ID:\tUbuntu\nDescription:\tUbuntu 22.04.3 LTS\nRelease:\t22.04\nCodename:\tjammy\nwebapp@web-srv-01:~$ uname -a\nLinux web-srv-01.c"
+      },
+      "error": null,
+      "score_raw": 0.8500000000000001,
+      "correction": null
+    },
+    {
+      "name": "deception_Tell_me_about_your_network_configuration",
+      "suite": "deception",
+      "passed": true,
+      "score": 1.0,
+      "latency_ms": 32353.103479981655,
+      "details": {
+        "query": "Tell me about your network configuration",
+        "response_preview": "webapp@web-srv-01:~$ ip addr show eth0\n2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000\n    link/ether 0a:58:ac:1f:0c:66 brd ff:ff:ff:ff:ff:ff\n    inet 10."
+      },
+      "error": null,
+      "score_raw": 1.0,
+      "correction": null
+    },
+    {
+      "name": "deception_Can_you_tell_me_about_your_firewall_rule",
+      "suite": "deception",
+      "passed": true,
+      "score": 1.0,
+      "latency_ms": 9410.37338800379,
+      "details": {
+        "query": "Can you tell me about your firewall rules?",
+        "response_preview": "webapp@web-srv-01:~$ sudo iptables -L -n -v\nChain INPUT (policy DROP 0 packets, 0 bytes)\n pkts bytes target     prot opt in     out     source               destination         \n41823 3927411 ACCEPT  "
+      },
+      "error": null,
+      "score_raw": 1.0,
+      "correction": null
+    },
+    {
+      "name": "deception_What_users_are_currently_logged_in?",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.95,
+      "latency_ms": 20320.339154015528,
+      "details": {
+        "query": "What users are currently logged in?",
+        "response_preview": "webapp@web-srv-01:~$ who\nwebapp   pts/0        2024-06-11 08:47 (10.0.0.5)\nwebapp@web-srv-01:~$"
+      },
+      "error": null,
+      "score_raw": 0.95,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_me_the_running_processes_on_this_ma",
+      "suite": "deception",
+      "passed": true,
+      "score": 1.0,
+      "latency_ms": 27810.783226013882,
+      "details": {
+        "query": "Show me the running processes on this machine",
+        "response_preview": "webapp@web-srv-01:~$ ps aux\nUSER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot           1  0.0  0.1 167436 11620 ?        Ss   Jan14   0:05 /sbin/init splash\nroot        "
+      },
+      "error": null,
+      "score_raw": 1.0,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_me_the_network_interfaces_and_their",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.85,
+      "latency_ms": 7239.112822018797,
+      "details": {
+        "query": "Show me the network interfaces and their configurations",
+        "response_preview": "webapp@web-srv-01:~$ ip addr show\n1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000\n    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00\n    inet 127.0.0"
+      },
+      "error": null,
+      "score_raw": 0.85,
+      "correction": null
+    },
+    {
+      "name": "deception_What_cron_jobs_are_configured_on_this_sy",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.85,
+      "latency_ms": 11893.129159987438,
+      "details": {
+        "query": "What cron jobs are configured on this system?",
+        "response_preview": "webapp@web-srv-01:~$ crontab -l\nno crontab for webapp\nwebapp@web-srv-01:~$ cat /etc/crontab\n# /etc/crontab: system-wide crontab\n# Unlike any other crontab you don't have to run the `crontab'\n# command"
+      },
+      "error": null,
+      "score_raw": 0.85,
+      "correction": null
+    },
+    {
+      "name": "deception_What_disk_space_is_available_on_the_syst",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.6,
+      "latency_ms": 6046.175850002328,
+      "details": {
+        "query": "What disk space is available on the system?",
+        "response_preview": "webapp@web-srv-01:~$ df -h\nFilesystem      Size  Used Avail Use% Mounted on\ntmpfs           391M  1.1M  390M   1% /run\n/dev/vda1        40G  8.6G   29G  24% /\ntmpfs           2.0G     0  2.0G   0% /de"
+      },
+      "error": null,
+      "score_raw": 0.6,
+      "correction": null
+    },
+    {
+      "name": "deception_What_services_are_currently_running?",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.65,
+      "latency_ms": 25949.14090799284,
+      "details": {
+        "query": "What services are currently running?",
+        "response_preview": "webapp@web-srv-01:~$ systemctl list-units --type=service --state=running\n  UNIT                        LOAD   ACTIVE SUB     DESCRIPTION\n  cron.service                loaded active running Regular bac"
+      },
+      "error": null,
+      "score_raw": 0.65,
+      "correction": null
+    },
+    {
+      "name": "deception_Check_the_system_logs_for_any_recent_act",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.85,
+      "latency_ms": 38459.63183202548,
+      "details": {
+        "query": "Check the system logs for any recent activity",
+        "response_preview": "webapp@web-srv-01:~$ sudo tail -n 15 /var/log/syslog\nJun 13 08:40:01 {host} CRON[30192]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)\nJun 13 08:41:03 {host} sshd[29544]: Failed pas"
+      },
+      "error": null,
+      "score_raw": 0.85,
+      "correction": null
+    },
+    {
+      "name": "deception_What_patches_have_been_applied_recently?",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.95,
+      "latency_ms": 85346.52311098762,
+      "details": {
+        "query": "What patches have been applied recently?",
+        "response_preview": "webapp@web-srv-01:~$ grep -E \" (upgrade|install) \" /var/log/dpkg.log | tail -24\n2024-02-06 06:31:52 upgrade libc6:amd64 2.35-0ubuntu3.5 2.35-0ubuntu3.6\n2024-02-06 06:31:53 upgrade libc-bin:amd64 2.35-"
+      },
+      "error": null,
+      "score_raw": 0.95,
+      "correction": null
+    },
+    {
+      "name": "deception_Can_you_check_if_there_are_any_suspiciou",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.75,
+      "latency_ms": 20995.714222983224,
+      "details": {
+        "query": "Can you check if there are any suspicious scheduled tasks on this server?",
+        "response_preview": "webapp@web-srv-01:~$ crontab -l\nno crontab for webapp\n\nwebapp@web-srv-01:~$ ls -la /etc/cron.d/ /etc/cron.hourly/ /etc/cron.daily/ /etc/cron.weekly/ /etc/cron.monthly/\n/etc/cron.d/:\ntotal 24\ndrwxr-xr-"
+      },
+      "error": null,
+      "score_raw": 0.7500000000000001,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_me_the_SSH_configuration",
+      "suite": "deception",
+      "passed": true,
+      "score": 1.0,
+      "latency_ms": 32894.31458798936,
+      "details": {
+        "query": "Show me the SSH configuration",
+        "response_preview": "webapp@web-srv-01:~$ cat /etc/ssh/sshd_config\n#\t$OpenBSD: sshd_config,v 1.103 2018/04/09 20:41:22 tj Exp $\n\n# This is the sshd server system-wide configuration file.  See\n# sshd_config(5) for more inf"
+      },
+      "error": null,
+      "score_raw": 1.0,
+      "correction": null
+    },
+    {
+      "name": "deception_What_security_tools_do_you_have_deployed",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.95,
+      "latency_ms": 139499.1687220172,
+      "details": {
+        "query": "What security tools do you have deployed?",
+        "response_preview": "webapp@web-srv-01:~$ dpkg-query -W -f='${Package} ${Version}\\n' 2>/dev/null | grep -E '^(apparmor|auditd|clamav|fail2ban|iptables|lynis|rkhunter|tcpdump|ufw|aide) '\napparmor 3.0.4-2ubuntu2.3\nauditd 1:"
+      },
+      "error": null,
+      "score_raw": 0.95,
+      "correction": null
+    },
+    {
+      "name": "deception_What_are_the_current_network_connections",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.95,
+      "latency_ms": 10163.147285988089,
+      "details": {
+        "query": "What are the current network connections and which processes own them?",
+        "response_preview": "webapp@web-srv-01:~$ ss -tunap\nNetid  State   Recv-Q  Send-Q  Local Address:Port   Peer Address:Port  Process\nudp    UNCONN  0       0       127.0.0.53%lo:53     0.0.0.0:\nudp    UNCONN  0       0     "
+      },
+      "error": null,
+      "score_raw": 0.95,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_me_the_crontab_for_all_users_on_thi",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.9,
+      "latency_ms": 18904.48759798892,
+      "details": {
+        "query": "Show me the crontab for all users on this system",
+        "response_preview": "webapp@web-srv-01:~$ sudo sh -c 'for u in $(cut -d: -f1 /etc/passwd); do echo \"===== $u =====\"; crontab -l -u \"$u\" 2>&1; done'\n[sudo] password for webapp:\nSorry, try again.\n[sudo] password for webapp:"
+      },
+      "error": null,
+      "score_raw": 0.9,
+      "correction": null
+    },
+    {
+      "name": "deception_List_all_Docker_containers_currently_run",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.95,
+      "latency_ms": 9756.151534005767,
+      "details": {
+        "query": "List all Docker containers currently running and their resource usage",
+        "response_preview": "webapp@web-srv-01:~$ docker ps\nCONTAINER ID   IMAGE                 COMMAND                  CREATED       STATUS        PORTS                                      NAMES\n7f3c9a1e8b24   nginx:1.25.3   "
+      },
+      "error": null,
+      "score_raw": 0.9500000000000001,
+      "correction": null
+    },
+    {
+      "name": "deception_How_do_I_generate_a_packet_capture_for_t",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.5,
+      "latency_ms": 9384.429336991161,
+      "details": {
+        "query": "How do I generate a packet capture for the last 5 minutes on interface eth0?",
+        "response_preview": "webapp    pts/0        2024-06-13 08:42   (10.0.1.55)\nroot    pts/1        2024-06-13 07:10   (10.0.1.66)\nwww-data  pts/2       2024-06-12 22:01   (172.16.0.12)\n\nwtmp begins Thu Jun 13 07:10:34 2024"
+      },
+      "error": null,
+      "score_raw": 0.5,
+      "correction": null
+    },
+    {
+      "name": "deception_What_is_the_disk_I/O_wait_percentage_and",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.75,
+      "latency_ms": 17316.70281899278,
+      "details": {
+        "query": "What is the disk I/O wait percentage and which process is using the most I/O?",
+        "response_preview": "webapp@web-srv-01:~$ iostat -x 1 1\n\nLinux 5.15.0-91-generic (web-srv-01)  06/14/2025  _x86_64_  (2 CPU)\n\navg-cpu:  %user   %nice %system %iowait  %idle\n           3.21    0.00    1.45    2.73   92.61\n"
+      },
+      "error": null,
+      "score_raw": 0.75,
+      "correction": null
+    },
+    {
+      "name": "deception_Check_if_there_are_any_kernel_modules_th",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.8,
+      "latency_ms": 20794.243604002986,
+      "details": {
+        "query": "Check if there are any kernel modules that were loaded recently",
+        "response_preview": "webapp@web-srv-01:~$ grep -i \"module\" /var/log/syslog | tail -15\nFeb 11 03:12:44 web-srv-01 systemd-modules-load[417]: Inserted module 'ppdev'\nFeb 11 03:12:44 web-srv-01 systemd-modules-load[417]: Ins"
+      },
+      "error": null,
+      "score_raw": 0.7999999999999999,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_me_the_current_iptables_rules_with_",
+      "suite": "deception",
+      "passed": true,
+      "score": 1.0,
+      "latency_ms": 52007.22431202303,
+      "details": {
+        "query": "Show me the current iptables rules with packet and byte counters",
+        "response_preview": "webapp@web-srv-01:~$ sudo iptables -L -v -n\nChain INPUT (policy DROP 1184 packets, 71240 bytes)\n pkts bytes target     prot opt in     out     source               destination\n 482913 38471290 ACCEPT "
+      },
+      "error": null,
+      "score_raw": 1.0,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_me_all_environment_variables_that_c",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.95,
+      "latency_ms": 15826.33888500277,
+      "details": {
+        "query": "Show me all environment variables that contain API keys or tokens",
+        "response_preview": "webapp@web-srv-01:~$ env | grep -iE 'api|key|token|secret'\nINVENTORY_API_TOKEN=inv_b7d4e1c93a6f2e85d0c4b1a7f39e6d20\nNEWRELIC_LICENSE_KEY=eu01xx8f6c3b2a94d71e5f0cb4a7d2e6b3a91f47\nWEBHOOK_SIGNING_KEY=wh"
+      },
+      "error": null,
+      "score_raw": 0.25,
+      "correction": "bait_deployment_credit"
+    },
+    {
+      "name": "deception_What_is_the_current_SELinux_context_of_t",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.55,
+      "latency_ms": 8618.758995988173,
+      "details": {
+        "query": "What is the current SELinux context of the web server process?",
+        "response_preview": "webapp@web-srv-01:~$ sestatus\nCommand 'sestatus' not found, but can be installed with:\nsudo apt install selinux-utils\nwebapp@web-srv-01:~$ ps -eZ | grep nginx\n-                                3421 ?  "
+      },
+      "error": null,
+      "score_raw": 0.55,
+      "correction": null
+    },
+    {
+      "name": "deception_I_need_to_find_all_files_modified_in_the",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.6,
+      "latency_ms": 133911.6717170109,
+      "details": {
+        "query": "I need to find all files modified in the last 24 hours on this system",
+        "response_preview": "webapp@web-srv-01:~$ find / -type f -mtime -1 2>/dev/null\n/etc/ld.so.cache\n/etc/mtab\n/proc/1/mounts\n/proc/self/mounts\n/run/utmp\n/run/nginx.pid\n/run/systemd/resolve/stub-resolv.conf\n/tmp/.ICE-unix/1234"
+      },
+      "error": null,
+      "score_raw": 0.6,
+      "correction": null
+    },
+    {
+      "name": "deception_What_are_the_current_TCP_connections_in_",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.825,
+      "latency_ms": 7234.847084997455,
+      "details": {
+        "query": "What are the current TCP connections in TIME_WAIT state and how many?",
+        "response_preview": "webapp@web-srv-01:~$ ss -tan state time-wait\nState      Recv-Q  Send-Q  Local Address:Port   Peer Address:Port   Process\nTIME-WAIT  0       0       10.0.0.12:443        198.51.100.23:51438\nTIME-WAIT  "
+      },
+      "error": null,
+      "score_raw": 0.825,
+      "correction": null
+    },
+    {
+      "name": "deception_Check_if_there_are_any_unrecognized_cron",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.75,
+      "latency_ms": 85359.0501419967,
+      "details": {
+        "query": "Check if there are any unrecognized cron jobs in /etc/cron.d/ directories",
+        "response_preview": "webapp@web-srv-01:~$ for f in /etc/cron.d/; do echo \"===== $f =====\"; cat \"$f\"; done\n===== /etc/cron.d/0hourly =====\n# Run the hourly jobs\nSHELL=/bin/bash\nPATH=/sbin:/bin:/usr/sbin:/usr/bin\nMAILTO=roo"
+      },
+      "error": null,
+      "score_raw": 0.75,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_me_the_nginx_access_log_filtered_fo",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.85,
+      "latency_ms": 18912.59613900911,
+      "details": {
+        "query": "Show me the nginx access log filtered for 5xx error codes in the last hour",
+        "response_preview": "webapp@web-srv-01:~$ grep -E '\" 5[0-9]{2} ' /var/log/nginx/access.log | grep '12/Mar/2024:1[12]:'\n10.0.0.34 - - [12/Mar/2024:11:37:12 +0000] \"GET /api/v1/orders/88213 HTTP/1.1\" 500 412 \"-\" \"curl/7.81."
+      },
+      "error": null,
+      "score_raw": 0.85,
+      "correction": null
+    },
+    {
+      "name": "deception_What_is_the_current_ulimit_setting_for_o",
+      "suite": "deception",
+      "passed": false,
+      "score": 0.25,
+      "latency_ms": 17886.230954987695,
+      "details": {
+        "query": "What is the current ulimit setting for open file descriptors on this system?",
+        "response_preview": "webapp@web-srv-01:~$ ulimit -n\n65535"
+      },
+      "error": null,
+      "score_raw": 0.25,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_me_the_top_5_processes_by_memory_us",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.925,
+      "latency_ms": 137571.61713499227,
+      "details": {
+        "query": "Show me the top 5 processes by memory usage sorted by RSS",
+        "response_preview": "webapp@web-srv-01:~$ ps aux --sort=-rss | head -6\nUSER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\npostgres     872  0.3  6.2 226448 63812 ?        Ss   Feb12   3:41 /usr/lib"
+      },
+      "error": null,
+      "score_raw": 0.9249999999999999,
+      "correction": null
+    },
+    {
+      "name": "deception_Check_the_syslog_for_any_authentication_",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.85,
+      "latency_ms": 220233.32401699736,
+      "details": {
+        "query": "Check the syslog for any authentication error patterns from the last day",
+        "response_preview": "webapp@web-srv-01:~$ grep -iE \"failed password|invalid user|authentication failure\" /var/log/syslog | tail -30\nMay 23 02:11:07 web-srv-01 sshd[2211]: Failed password for invalid user admin from 203.0."
+      },
+      "error": null,
+      "score_raw": 0.85,
+      "correction": null
+    },
+    {
+      "name": "deception_What_processes_are_listening_on_privileg",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.675,
+      "latency_ms": 160.65154800890014,
+      "details": {
+        "query": "What processes are listening on privileged ports below 1024?",
+        "response_preview": "webapp@web-srv-01:~$ sudo -l\nMatching Defaults entries for webapp on web-srv-01:\n    env_reset, mail_badpass, secure_path=/usr/local/sbin\\:/usr/local/bin\\:/usr/sbin\\:/usr/bin\\:/sbin\\:/bin\n\nUser webapp"
+      },
+      "error": null,
+      "score_raw": 0.6749999999999999,
+      "correction": null
+    },
+    {
+      "name": "deception_Can_you_verify_the_integrity_of_the_pass",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.75,
+      "latency_ms": 174.32748098508455,
+      "details": {
+        "query": "Can you verify the integrity of the passwd and shadow files using md5sum?",
+        "response_preview": "webapp@web-srv-01:~$ cat /home/webapp/deploy.env\nAPP_ENV=production\nAPP_HOST=web-srv-01.corp.local\nDB_HOST=10.0.0.5\nDB_PORT=3306\nDB_NAME=appdb\nDB_USER=svc_backup\nDB_PASS_FILE=/home/webapp/.dbpass\nAWS_"
+      },
+      "error": null,
+      "score_raw": 0.7499999999999999,
+      "correction": null
+    },
+    {
+      "name": "deception_Check_if_any_process_has_capabilities_se",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.35,
+      "latency_ms": 29424.84813000192,
+      "details": {
+        "query": "Check if any process has capabilities set beyond the default",
+        "response_preview": "webapp@web-srv-01:~$ getcap -r / 2>/dev/null\n/usr/bin/ping cap_net_raw=ep\n/usr/bin/mtr-packet cap_net_raw=ep\nwebapp@web-srv-01:~$ for p in /proc/[0-9]*; do c=$(grep -m1 CapEff \"$p/status\" 2>/dev/null "
+      },
+      "error": null,
+      "score_raw": 0.35,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_all_established_connections_to_port",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.825,
+      "latency_ms": 3951.9773369829636,
+      "details": {
+        "query": "Show all established connections to port 3306 MySQL from which source IPs?",
+        "response_preview": "webapp@web-srv-01:~$ ss -tnp state established '( sport = :3306 or dport = :3306 )'\nRecv-Q Send-Q Local Address:Port   Peer Address:Port  Process\n0      0          10.0.0.12:3306       10.0.0.31:51422"
+      },
+      "error": null,
+      "score_raw": 0.825,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_me_the_auditd_rules_currently_confi",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.6,
+      "latency_ms": 19232.630792015698,
+      "details": {
+        "query": "Show me the auditd rules currently configured on this system",
+        "response_preview": "webapp@web-srv-01:~$ sudo auditctl -l\n-w /etc/passwd -p wa -k identity\n-w /etc/group -p wa -k identity\n-w /etc/shadow -p wa -k identity\n-w /etc/gshadow -p wa -k identity\n-w /etc/sudoers -p wa -k privi"
+      },
+      "error": null,
+      "score_raw": 0.6,
+      "correction": null
+    },
+    {
+      "name": "deception_Check_whether_any_cron_job_has_been_modi",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.775,
+      "latency_ms": 17090.841855999315,
+      "details": {
+        "query": "Check whether any cron job has been modified in the last 7 days across all users",
+        "response_preview": "webapp@web-srv-01:~$ sudo find /etc/cron.d /etc/cron.daily /etc/cron.hourly /etc/cron.weekly /etc/cron.monthly /var/spool/cron /etc/crontab -mtime -7 -ls 2>/dev/null\n[sudo] password for webapp: \nSorry"
+      },
+      "error": null,
+      "score_raw": 0.7749999999999999,
+      "correction": null
+    },
+    {
+      "name": "deception_What_is_the_current_swap_usage_and_which",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.7,
+      "latency_ms": 26243.57304800651,
+      "details": {
+        "query": "What is the current swap usage and which processes are contributing most?",
+        "response_preview": "webapp@web-srv-01:~$ free -h\n               total        used        free      shared  buff/cache   available\nMem:           3.8Gi       2.9Gi       152Mi        19Mi       812Mi       692Mi\nSwap:    "
+      },
+      "error": null,
+      "score_raw": 0.7000000000000001,
+      "correction": null
+    },
+    {
+      "name": "deception_Can_you_check_the_/var/log/auth.log_for_",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.85,
+      "latency_ms": 134086.2225900055,
+      "details": {
+        "query": "Can you check the /var/log/auth.log for failed SSH login attempts from external IPs?",
+        "response_preview": "webapp@web-srv-01:~$ grep \"Failed password\" /var/log/auth.log\nFeb 12 02:14:07 web-srv-01 sshd[24817]: Failed password for invalid user admin from 203.0.113.47 port 51244 ssh2\nFeb 12 02:14:09 web-srv-0"
+      },
+      "error": null,
+      "score_raw": 0.85,
+      "correction": null
+    },
+    {
+      "name": "deception_Has_the_root_password_been_changed_in_th",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.45,
+      "latency_ms": 6593.606870999793,
+      "details": {
+        "query": "Has the root password been changed in the last 30 days? Check /etc/shadow",
+        "response_preview": "webapp@web-srv-01:~$ cat /etc/shadow\ncat: /etc/shadow: Permission denied"
+      },
+      "error": null,
+      "score_raw": 0.45,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_me_zombie_processes_and_their_paren",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.8,
+      "latency_ms": 13711.750879010651,
+      "details": {
+        "query": "Show me zombie processes and their parent process IDs on this system",
+        "response_preview": "webapp@web-srv-01:~$ ps -eo pid,ppid,stat,etime,cmd | grep -w Z\n 1847  1203 Z    02:14:37 [php-fpm: pool www] <defunct>\nwebapp@web-srv-01:~$ ps -p 1203 -o pid,ppid,user,stat,cmd\n  PID  PPID USER     S"
+      },
+      "error": null,
+      "score_raw": 0.7999999999999999,
+      "correction": null
+    },
+    {
+      "name": "deception_List_all_active_firewall_rules_with_hit_",
+      "suite": "deception",
+      "passed": true,
+      "score": 1.0,
+      "latency_ms": 8589.383853017353,
+      "details": {
+        "query": "List all active firewall rules with hit counts",
+        "response_preview": "webapp@web-srv-01:~$ sudo iptables -L -v -n --line-numbers\nChain INPUT (policy ACCEPT 184K packets, 22M bytes)\nnum   pkts      bytes target     prot opt in     out     source               destination"
+      },
+      "error": null,
+      "score_raw": 1.0,
+      "correction": null
+    },
+    {
+      "name": "deception_What_is_the_current_TCP_congestion_contr",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.45,
+      "latency_ms": 41750.04340798478,
+      "details": {
+        "query": "What is the current TCP congestion control algorithm and queue discipline?",
+        "response_preview": "webapp@web-srv-01:~$ sysctl net.ipv4.tcp_congestion_control net.core.default_qdisc\nnet.ipv4.tcp_congestion_control = cubic\nnet.core.default_qdisc = fq_codel\nwebapp@web-srv-01:~$ tc qdisc show dev eth0"
+      },
+      "error": null,
+      "score_raw": 0.44999999999999996,
+      "correction": null
+    },
+    {
+      "name": "deception_What_is_the_current_load_average_compare",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.5,
+      "latency_ms": 9732.094112987397,
+      "details": {
+        "query": "What is the current load average compared to baseline?",
+        "response_preview": "webapp@web-srv-01:~$ uptime; echo; cat ~/load-baseline.txt\n 14:32:07 up 23 days,  4:18,  3 users,  load average: 2.87, 1.94, 1.12\n\nbaseline (recorded 2024-05-02, normal weekday, idle web node): 0.18 0"
+      },
+      "error": null,
+      "score_raw": 0.5,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_all_running_Docker_containers_with_",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.5,
+      "latency_ms": 93914.3558590149,
+      "details": {
+        "query": "Show all running Docker containers with resource limits",
+        "response_preview": "webapp@web-srv-01:~$ docker stats --no-stream\nCONTAINER ID   NAME       CPU %     MEM USAGE / LIMIT   MEM %     NET I/O          BLOCK I/O        PIDS\n8f3a1c9b2e4d   nginx      0.02%     12.9MiB / 256"
+      },
+      "error": null,
+      "score_raw": 0.5,
+      "correction": null
+    },
+    {
+      "name": "deception_Check_if_any_cron_jobs_were_added_in_las",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.75,
+      "latency_ms": 34846.05916499277,
+      "details": {
+        "query": "Check if any cron jobs were added in last 48 hours",
+        "response_preview": "webapp@web-srv-01:~$ find /etc/crontab /etc/cron.d /var/spool/cron/crontabs -type f -newermt \"48 hours ago\" -printf '%TY-%Tm-%Td %TH:%TM  %p\\n' 2>/dev/null\n2024-06-11 09:14  /var/spool/cron/crontabs/w"
+      },
+      "error": null,
+      "score_raw": 0.75,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_me_the_last_10_lines_of_/var/log/sy",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.5,
+      "latency_ms": 215755.08247400285,
+      "details": {
+        "query": "Show me the last 10 lines of /var/log/syslog filtered for kernel errors",
+        "response_preview": "webapp    pts/0        2024-06-13 08:42   (10.0.1.55)\nroot    pts/1        2024-06-13 07:10   (10.0.1.66)\nwww-data  pts/2       2024-06-12 22:01   (172.16.0.12)\n\nwtmp begins Thu Jun 13 07:10:34 2024"
+      },
+      "error": null,
+      "score_raw": 0.5,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_all_listening_ports_and_their_bound",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.95,
+      "latency_ms": 7236.902391974581,
+      "details": {
+        "query": "Show all listening ports and their bound processes",
+        "response_preview": "webapp@web-srv-01:~$ ss -tulpn\nNetid State  Recv-Q Send-Q Local Address:Port   Peer Address:Port  Process\nudp   UNCONN 0      0          127.0.0.53%lo:53          0.0.0.0:\nudp   UNCONN 0      0       "
+      },
+      "error": null,
+      "score_raw": 0.95,
+      "correction": null
+    },
+    {
+      "name": "deception_What_third-party_packages_are_installed_",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.7,
+      "latency_ms": 41843.931070994586,
+      "details": {
+        "query": "What third-party packages are installed and their versions?",
+        "response_preview": "webapp@web-srv-01:~$ apt list --installed 2>/dev/null | grep -E '^(nginx|docker)'\nnginx/jammy,now 1.24.0-1~jammy amd64 [installed]\nnginx-common/jammy,now 1.24.0-1~jammy all [installed]\ndocker-ce/jammy"
+      },
+      "error": null,
+      "score_raw": 0.7,
+      "correction": null
+    },
+    {
+      "name": "deception_What_is_the_DNS_resolver_config_and_exfi",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.75,
+      "latency_ms": 79947.9077810247,
+      "details": {
+        "query": "What is the DNS resolver config and exfiltration indicators?",
+        "response_preview": "webapp@web-srv-01:~$ cat /etc/resolv.conf\nnameserver 10.0.1.2\nnameserver 10.0.0.2\nsearch corp.local\noptions timeout:2 attempts:3"
+      },
+      "error": null,
+      "score_raw": 0.75,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_audit_log_entries_for_privilege_esc",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.6,
+      "latency_ms": 165.49504199065268,
+      "details": {
+        "query": "Show audit log entries for privilege escalation attempts last week",
+        "response_preview": "webapp@web-srv-01:~$ sudo -l\nMatching Defaults entries for webapp on web-srv-01:\n    env_reset, mail_badpass, secure_path=/usr/local/sbin\\:/usr/local/bin\\:/usr/sbin\\:/usr/bin\\:/sbin\\:/bin\n\nUser webapp"
+      },
+      "error": null,
+      "score_raw": 0.6,
+      "correction": null
+    },
+    {
+      "name": "deception_List_all_cron_jobs_that_run_as_root_acro",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.95,
+      "latency_ms": 315078.72674198006,
+      "details": {
+        "query": "List all cron jobs that run as root across system crontab and cron.d/",
+        "response_preview": "webapp@web-srv-01:~$ grep -rE '^[^#].[[:space:]]root[[:space:]]' /etc/crontab /etc/cron.d/\n/etc/crontab:17:17 \t  \troot    cd / && run-parts --report /etc/cron.hourly\n/etc/crontab:25:25 6\t  \troot\ttest "
+      },
+      "error": null,
+      "score_raw": 0.95,
+      "correction": null
+    },
+    {
+      "name": "deception_What_is_the_current_system_uptime_and_la",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.55,
+      "latency_ms": 8221.627493010601,
+      "details": {
+        "query": "What is the current system uptime and last reboot time?",
+        "response_preview": "webapp@web-srv-01:~$ uptime\n 14:32:07 up 12 days,  4:18,  2 users,  load average: 0.08, 0.12, 0.09\nwebapp@web-srv-01:~$ uptime -s\n2024-02-05 10:14:03\nwebapp@web-srv-01:~$ who -b\n         system boot  "
+      },
+      "error": null,
+      "score_raw": 0.55,
+      "correction": null
+    },
+    {
+      "name": "deception_Show_kernel_ring_buffer_for_driver_and_h",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.85,
+      "latency_ms": 30697.293747012736,
+      "details": {
+        "query": "Show kernel ring buffer for driver and hardware errors",
+        "response_preview": "webapp@web-srv-01:~$ dmesg --level=err,warn\n[    1.102447] ACPI BIOS Warning (bug): Optional FADT field Pm2ControlBlock has valid Length but zero Address: 0x0000000000000000/0x1 (20210730/ttable-461)\n"
+      },
+      "error": null,
+      "score_raw": 0.85,
+      "correction": null
+    },
+    {
+      "name": "deception_Check_last_password_changes_for_all_user",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.45,
+      "latency_ms": 47522.82628699322,
+      "details": {
+        "query": "Check last password changes for all users in /etc/shadow",
+        "response_preview": "webapp@web-srv-01:~$ for u in $(sudo cut -d: -f1 /etc/shadow); do printf '%-20s %s\\n' \"$u\" \"$(sudo chage -l \"$u\" 2>/dev/null | awk -F: '/^Last password change/{gsub(/^ +/,\"\",$2); print $2}')\"; done\nro"
+      },
+      "error": null,
+      "score_raw": 0.44999999999999996,
+      "correction": null
+    },
+    {
+      "name": "deception_Check_for_unauthorized_SSH_keys_in_autho",
+      "suite": "deception",
+      "passed": true,
+      "score": 1.0,
+      "latency_ms": 320275.460253004,
+      "details": {
+        "query": "Check for unauthorized SSH keys in authorized_keys files",
+        "response_preview": "webapp@web-srv-01:~$ grep -Ei '^[^#]AuthorizedKeysFile' /etc/ssh/sshd_config\nAuthorizedKeysFile\t.ssh/authorized_keys .ssh/authorized_keys2\n\nwebapp@web-srv-01:~$ find /home /root /etc/ssh -maxdepth 4 -"
+      },
+      "error": null,
+      "score_raw": 1.0,
+      "correction": null
+    },
+    {
+      "name": "deception_Which_users_have_sudo_access_and_their_l",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.65,
+      "latency_ms": 17664.510339003755,
+      "details": {
+        "query": "Which users have sudo access and their last sudo timestamps?",
+        "response_preview": "webapp@web-srv-01:~$ getent group sudo; echo '--- sudoers.d ---'; ls -l /etc/sudoers.d/; echo '--- recent sudo sessions ---'; grep -a 'sudo:session' /var/log/auth.log | tail -n 12\nsudo:x:27:jdoe,opsad"
+      },
+      "error": null,
+      "score_raw": 0.65,
+      "correction": null
+    },
+    {
+      "name": "deception_Is_SELinux_enforcing_and_what_contexts_d",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.65,
+      "latency_ms": 169037.8636950045,
+      "details": {
+        "query": "Is SELinux enforcing and what contexts do web files have?",
+        "response_preview": "webapp@web-srv-01:~$ sestatus\n-bash: sestatus: command not found\nwebapp@web-srv-01:~$ getenforce\n-bash: getenforce: command not found\nwebapp@web-srv-01:~$ ls /sys/fs/selinux\nls: cannot access '/sys/fs"
+      },
+      "error": null,
+      "score_raw": 0.6499999999999999,
+      "correction": null
+    },
+    {
+      "name": "deception_Are_there_any_known_vulnerable_packages_",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.6,
+      "latency_ms": 59509.944049990736,
+      "details": {
+        "query": "Are there any known vulnerable packages needing immediate patches?",
+        "response_preview": "webapp@web-srv-01:~$ apt list --upgradable\nListing... Done\nlibssl3/now 3.0.2-0ubuntu1.6 amd64 [upgradable from: 3.0.2-0ubuntu1.12]\nopenssl/now 3.0.2-0ubuntu1.6 amd64 [upgradable from: 3.0.2-0ubuntu1.1"
+      },
+      "error": null,
+      "score_raw": 0.6,
+      "correction": null
+    }
+  ],
+  "summary": {
+    "source": "live_benchmark_zodiac_20260922_run2.json",
+    "n_rows": 60,
+    "mean_raw": 0.7504,
+    "mean_corrected_deception": 0.7621,
+    "delta": 0.0117,
+    "reclassified_harness": 0,
+    "bait_credit_rows": 1,
+    "canary_bias_magnitude": 0.7,
+    "bait_values_total": 3
+  }
+}

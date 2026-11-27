@@ -1,0 +1,4589 @@
+{
+  "generated_at": "2026-09-19T10:05:26Z",
+  "design": {
+    "queries": 50,
+    "runs_per_query": 5,
+    "arms": [
+      "graph",
+      "hybrid",
+      "dense",
+      "sparse"
+    ],
+    "engine_model": "qwen--qwen38-27b",
+    "provider": "azure",
+    "metrics": [
+      "p_at_5",
+      "recall_at_20",
+      "mrr",
+      "ndcg_at_10"
+    ],
+    "stat_test": "paired Wilcoxon signed-rank on per-query run-means, Holm-Bonferroni corrected"
+  },
+  "ground_truth": "corpus-derived graded relevance: 2 = canonical technique page (ID in heading region), 1 = ID mention in heading region; parent IDs credit sub-technique pages",
+  "summary": {
+    "graph": {
+      "mean_p_at_5": 0.116,
+      "stdev_p_at_5": 0.0997,
+      "mean_recall_at_20": 0.81,
+      "stdev_recall_at_20": 0.3898,
+      "mean_mrr": 0.3776,
+      "stdev_mrr": 0.3634,
+      "mean_ndcg_at_10": 0.4852,
+      "stdev_ndcg_at_10": 0.3136
+    },
+    "hybrid": {
+      "mean_p_at_5": 0.06,
+      "stdev_p_at_5": 0.0926,
+      "mean_recall_at_20": 0.39,
+      "stdev_recall_at_20": 0.4875,
+      "mean_mrr": 0.2119,
+      "stdev_mrr": 0.3166,
+      "mean_ndcg_at_10": 0.2743,
+      "stdev_ndcg_at_10": 0.2912
+    },
+    "dense": {
+      "mean_p_at_5": 0.036,
+      "stdev_p_at_5": 0.0776,
+      "mean_recall_at_20": 0.39,
+      "stdev_recall_at_20": 0.4875,
+      "mean_mrr": 0.1339,
+      "stdev_mrr": 0.2633,
+      "mean_ndcg_at_10": 0.1969,
+      "stdev_ndcg_at_10": 0.2473
+    },
+    "sparse": {
+      "mean_p_at_5": 0.128,
+      "stdev_p_at_5": 0.1051,
+      "mean_recall_at_20": 0.85,
+      "stdev_recall_at_20": 0.3536,
+      "mean_mrr": 0.4807,
+      "stdev_mrr": 0.4058,
+      "mean_ndcg_at_10": 0.6464,
+      "stdev_ndcg_at_10": 0.2857
+    }
+  },
+  "statistics": {
+    "n_queries": 50,
+    "n_runs_per_query": 5,
+    "pairs": {
+      "p_at_5": {
+        "graph_vs_hybrid": {
+          "wilcoxon_p": 0.000967,
+          "rank_biserial": 0.8889,
+          "mean_diff": 0.056,
+          "ci95_low": 0.008,
+          "ci95_high": 0.112,
+          "wilcoxon_p_holm": 0.001934,
+          "significant_at_0.05": true
+        },
+        "graph_vs_dense": {
+          "wilcoxon_p": 8e-06,
+          "rank_biserial": 1.0,
+          "mean_diff": 0.08,
+          "ci95_low": 0.036,
+          "ci95_high": 0.132,
+          "wilcoxon_p_holm": 2.4e-05,
+          "significant_at_0.05": true
+        },
+        "graph_vs_sparse": {
+          "wilcoxon_p": 0.512691,
+          "rank_biserial": 0.5789,
+          "mean_diff": -0.012,
+          "ci95_low": -0.092,
+          "ci95_high": 0.052,
+          "wilcoxon_p_holm": 0.512691,
+          "significant_at_0.05": false
+        }
+      },
+      "recall_at_20": {
+        "graph_vs_hybrid": {
+          "wilcoxon_p": 5e-06,
+          "rank_biserial": 1.0,
+          "mean_diff": 0.42,
+          "ci95_low": 0.2,
+          "ci95_high": 0.68,
+          "wilcoxon_p_holm": 1.5e-05,
+          "significant_at_0.05": true
+        },
+        "graph_vs_dense": {
+          "wilcoxon_p": 5e-06,
+          "rank_biserial": 1.0,
+          "mean_diff": 0.42,
+          "ci95_low": 0.2,
+          "ci95_high": 0.68,
+          "wilcoxon_p_holm": 1.5e-05,
+          "significant_at_0.05": true
+        },
+        "graph_vs_sparse": {
+          "wilcoxon_p": 0.317311,
+          "rank_biserial": 0.75,
+          "mean_diff": -0.04,
+          "ci95_low": -0.2,
+          "ci95_high": 0.1,
+          "wilcoxon_p_holm": 0.317311,
+          "significant_at_0.05": false
+        }
+      },
+      "mrr": {
+        "graph_vs_hybrid": {
+          "wilcoxon_p": 0.000158,
+          "rank_biserial": 0.8427,
+          "mean_diff": 0.1657,
+          "ci95_low": 0.0477,
+          "ci95_high": 0.3241,
+          "wilcoxon_p_holm": 0.000316,
+          "significant_at_0.05": true
+        },
+        "graph_vs_dense": {
+          "wilcoxon_p": 0.0,
+          "rank_biserial": 0.9984,
+          "mean_diff": 0.2437,
+          "ci95_low": 0.1234,
+          "ci95_high": 0.4193,
+          "wilcoxon_p_holm": 0.0,
+          "significant_at_0.05": true
+        },
+        "graph_vs_sparse": {
+          "wilcoxon_p": 0.085174,
+          "rank_biserial": 0.6644,
+          "mean_diff": -0.1031,
+          "ci95_low": -0.3099,
+          "ci95_high": 0.0845,
+          "wilcoxon_p_holm": 0.085174,
+          "significant_at_0.05": false
+        }
+      },
+      "ndcg_at_10": {
+        "graph_vs_hybrid": {
+          "wilcoxon_p": 4e-06,
+          "rank_biserial": 0.9367,
+          "mean_diff": 0.2108,
+          "ci95_low": 0.0933,
+          "ci95_high": 0.3301,
+          "wilcoxon_p_holm": 8e-06,
+          "significant_at_0.05": true
+        },
+        "graph_vs_dense": {
+          "wilcoxon_p": 0.0,
+          "rank_biserial": 1.0,
+          "mean_diff": 0.2883,
+          "ci95_low": 0.1802,
+          "ci95_high": 0.4035,
+          "wilcoxon_p_holm": 0.0,
+          "significant_at_0.05": true
+        },
+        "graph_vs_sparse": {
+          "wilcoxon_p": 0.021613,
+          "rank_biserial": 0.6966,
+          "mean_diff": -0.1613,
+          "ci95_low": -0.3376,
+          "ci95_high": 0.005,
+          "wilcoxon_p_holm": 0.021613,
+          "significant_at_0.05": true
+        }
+      }
+    }
+  },
+  "rows": {
+    "T1595": {
+      "tid": "T1595",
+      "q": "How do adversaries abuse scanning ip blocks (T1595)?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 3,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.3333,
+              "ndcg_at_10": 0.6825
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1667,
+              "ndcg_at_10": 0.4808
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.8964
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.8646,
+              "rounds": 0,
+              "degraded": true,
+              "n_relevant": 15
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.8646,
+              "rounds": 0,
+              "degraded": true,
+              "n_relevant": 15
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.8646,
+              "rounds": 0,
+              "degraded": true,
+              "n_relevant": 15
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.8646,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 15
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.8646,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 15
+            }
+          ]
+        }
+      },
+      "elapsed_s": 12.0
+    },
+    "T1592": {
+      "tid": "T1592",
+      "q": "Detection guidance for firmware (technique T1592)",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 4,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.037,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0909,
+              "ndcg_at_10": 0.4027
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2533,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 7
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2533,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 7
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2533,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 7
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2533,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 7
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2533,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 7
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1589": {
+      "tid": "T1589",
+      "q": "What does MITRE ATT&CK technique T1589 cover?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 3,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0455,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.8964
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0667,
+              "ndcg_at_10": 0.2808,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0667,
+              "ndcg_at_10": 0.2808,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0667,
+              "ndcg_at_10": 0.2808,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0667,
+              "ndcg_at_10": 0.2808,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0667,
+              "ndcg_at_10": 0.2808,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.4
+    },
+    "T1583": {
+      "tid": "T1583",
+      "q": "Mitigations against acquire infrastructure attacks",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 8,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.3806
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.2401
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.3806
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.2401,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.2401,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.2401,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.2401,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.2401,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.4
+    },
+    "T1587": {
+      "tid": "T1587",
+      "q": "Real-world adversary use of malware",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 5,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1466
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0899
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0012,
+              "ndcg_at_10": 0.0672
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0899,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 9
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0899,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 9
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0899,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 9
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0899,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 9
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0899,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 9
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1588": {
+      "tid": "T1588",
+      "q": "How do adversaries abuse malware (T1588)?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 7,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0476,
+              "ndcg_at_10": 0.3028
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2019
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.8618
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.3333,
+              "ndcg_at_10": 0.8354,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 9
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.3333,
+              "ndcg_at_10": 0.8354,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 9
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.3333,
+              "ndcg_at_10": 0.8354,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 9
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.3333,
+              "ndcg_at_10": 0.8354,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 9
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.3333,
+              "ndcg_at_10": 0.8354,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 9
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1190": {
+      "tid": "T1190",
+      "q": "Detection guidance for exploit public-facing application (technique T1190)",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 0,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0476,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.4307,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.4307,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.4307,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.4307,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.4307,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1566": {
+      "tid": "T1566",
+      "q": "What does MITRE ATT&CK technique T1566 cover?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 8,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0455,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.7446
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0556,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0556,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0556,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0556,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0556,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1078": {
+      "tid": "T1078",
+      "q": "Mitigations against default accounts attacks",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 13,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0294,
+              "ndcg_at_10": 0.1804
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0526,
+              "ndcg_at_10": 0.3103
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1804,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1804,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1804,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1804,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1804,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.2
+    },
+    "T1059": {
+      "tid": "T1059",
+      "q": "Real-world adversary use of javascript",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 52,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0014,
+              "ndcg_at_10": 0.1138
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0902,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 5
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0902,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 5
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0902,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 5
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0902,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 5
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0902,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 5
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.2
+    },
+    "T1204": {
+      "tid": "T1204",
+      "q": "How do adversaries abuse malicious file (T1204)?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 9,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.2,
+              "ndcg_at_10": 0.524
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0909,
+              "ndcg_at_10": 0.3485
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0833,
+              "ndcg_at_10": 0.7675
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.8636,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 22
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.8636,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 22
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.8636,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 22
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.8636,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 22
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.8636,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 22
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.4
+    },
+    "T1106": {
+      "tid": "T1106",
+      "q": "Detection guidance for native api (technique T1106)",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 4,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.3084
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0833,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.5797
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6663,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 15
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6663,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 15
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6663,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 15
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6663,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 15
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6663,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 15
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1053": {
+      "tid": "T1053",
+      "q": "What does MITRE ATT&CK technique T1053 cover?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 9,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0417,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.8452
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.05,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.05,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.05,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.05,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.05,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1543": {
+      "tid": "T1543",
+      "q": "Mitigations against launch daemon attacks",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 16,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.125,
+              "ndcg_at_10": 0.2878
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0625,
+              "ndcg_at_10": 0.0777
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0556,
+              "ndcg_at_10": 0.2871
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.339,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.339,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.339,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.339,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.339,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.2
+    },
+    "T1505": {
+      "tid": "T1505",
+      "q": "Real-world adversary use of transport agent",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 12,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2942
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2942
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2942
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2942,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 21
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2942,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 21
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2942,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 21
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2942,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 21
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2942,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 21
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1136": {
+      "tid": "T1136",
+      "q": "How do adversaries abuse domain account (T1136)?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 8,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1429,
+              "ndcg_at_10": 0.4021
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0625,
+              "ndcg_at_10": 0.1688
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1667,
+              "ndcg_at_10": 0.6967
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.3333,
+              "ndcg_at_10": 0.4558,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.3333,
+              "ndcg_at_10": 0.4558,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.3333,
+              "ndcg_at_10": 0.4558,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.3333,
+              "ndcg_at_10": 0.4558,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.3333,
+              "ndcg_at_10": 0.4558,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.4
+    },
+    "T1055": {
+      "tid": "T1055",
+      "q": "Detection guidance for extra window memory injection (technique T1055)",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 16,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1667,
+              "ndcg_at_10": 0.2423
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0833,
+              "ndcg_at_10": 0.1138
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1429,
+              "ndcg_at_10": 0.4224
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.4137,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.4137,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.4137,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.4137,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.4137,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1548": {
+      "tid": "T1548",
+      "q": "What does MITRE ATT&CK technique T1548 cover?",
+      "n_relevant_g2": 2,
+      "n_relevant_g1": 9,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0476,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.4,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.9676
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0769,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 21
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0769,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 21
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0769,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 21
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0769,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 21
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0769,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 21
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1068": {
+      "tid": "T1068",
+      "q": "Mitigations against exploitation for privilege escalation attacks",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 1,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.3333,
+              "ndcg_at_10": 0.3801
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.2,
+              "ndcg_at_10": 0.2941
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4796
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4796,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4796,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4796,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4796,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4796,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1070": {
+      "tid": "T1070",
+      "q": "Real-world adversary use of file deletion",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 8,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1903
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0952
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0004,
+              "ndcg_at_10": 0.1201
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1903,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1903,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1903,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1903,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1903,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1027": {
+      "tid": "T1027",
+      "q": "How do adversaries abuse svg smuggling (T1027)?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 22,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0385,
+              "ndcg_at_10": 0.2706
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2502
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1111,
+              "ndcg_at_10": 0.6903
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1111,
+              "ndcg_at_10": 0.752,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1111,
+              "ndcg_at_10": 0.752,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1111,
+              "ndcg_at_10": 0.752,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1111,
+              "ndcg_at_10": 0.752,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1111,
+              "ndcg_at_10": 0.752,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1218": {
+      "tid": "T1218",
+      "q": "Detection guidance for mavinject (technique T1218)",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 16,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.037,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.125,
+              "ndcg_at_10": 0.7627
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.2,
+              "ndcg_at_10": 0.7187,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 8
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.2,
+              "ndcg_at_10": 0.7187,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 8
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.2,
+              "ndcg_at_10": 0.7187,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 8
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.2,
+              "ndcg_at_10": 0.7187,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 8
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.2,
+              "ndcg_at_10": 0.7187,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 8
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1003": {
+      "tid": "T1003",
+      "q": "What does MITRE ATT&CK technique T1003 cover?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 10,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0476,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.9479
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4857,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4857,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4857,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4857,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4857,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1110": {
+      "tid": "T1110",
+      "q": "Mitigations against password spraying attacks",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 7,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1274
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1009
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0039,
+              "ndcg_at_10": 0.1881
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1274,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1274,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1274,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1274,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1274,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.2
+    },
+    "T1555": {
+      "tid": "T1555",
+      "q": "Real-world adversary use of password managers",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 6,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0476,
+              "ndcg_at_10": 0.2156
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2156
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.3333,
+              "ndcg_at_10": 0.4312
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4877,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 25
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4877,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 25
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4877,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 25
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4877,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 25
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4877,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 25
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1552": {
+      "tid": "T1552",
+      "q": "How do adversaries abuse shell history (T1552)?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 8,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0476,
+              "ndcg_at_10": 0.0952
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4305
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4305,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 18
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4305,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 18
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4305,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 18
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4305,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 18
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.4305,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 18
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.4
+    },
+    "T1046": {
+      "tid": "T1046",
+      "q": "Detection guidance for network service discovery (technique T1046)",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 0,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0476,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6309,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 16
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6309,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 16
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6309,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 16
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6309,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 16
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6309,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 16
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.4
+    },
+    "T1087": {
+      "tid": "T1087",
+      "q": "What does MITRE ATT&CK technique T1087 cover?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 6,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0417,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.7286
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0714,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0714,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0714,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0714,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0714,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1082": {
+      "tid": "T1082",
+      "q": "Mitigations against system information discovery attacks",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 0,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1049": {
+      "tid": "T1049",
+      "q": "Real-world adversary use of system network connections discovery",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 0,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6309
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.3333,
+              "ndcg_at_10": 0.5
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6309
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 25
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 25
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 25
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 25
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 25
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.4
+    },
+    "T1021": {
+      "tid": "T1021",
+      "q": "How do adversaries abuse vnc (T1021)?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 10,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0476,
+              "ndcg_at_10": 0.1804
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1804
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.3333,
+              "ndcg_at_10": 0.6895
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.7701,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 7
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.7701,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 7
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.7701,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 7
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.7701,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 7
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.7701,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 7
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1550": {
+      "tid": "T1550",
+      "q": "Detection guidance for web session cookie (technique T1550)",
+      "n_relevant_g2": 2,
+      "n_relevant_g1": 9,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 0.5,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.2716
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.5,
+              "mrr": 0.1667,
+              "ndcg_at_10": 0.1665
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.5,
+              "mrr": 0.125,
+              "ndcg_at_10": 0.4246
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.5,
+              "mrr": 0.125,
+              "ndcg_at_10": 0.2641,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 16
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.5,
+              "mrr": 0.125,
+              "ndcg_at_10": 0.2641,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 16
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.5,
+              "mrr": 0.125,
+              "ndcg_at_10": 0.2641,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 16
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.5,
+              "mrr": 0.125,
+              "ndcg_at_10": 0.2641,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 16
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.5,
+              "mrr": 0.125,
+              "ndcg_at_10": 0.2641,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 16
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1570": {
+      "tid": "T1570",
+      "q": "What does MITRE ATT&CK technique T1570 cover?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 0,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0476,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0769,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0769,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0769,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0769,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0769,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1005": {
+      "tid": "T1005",
+      "q": "Mitigations against data from local system attacks",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 0,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6309
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6309,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6309,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6309,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6309,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6309,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.4
+    },
+    "T1074": {
+      "tid": "T1074",
+      "q": "Real-world adversary use of data staged",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 2,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1667,
+              "ndcg_at_10": 0.2275
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0769,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6388
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.7395,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 23
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.7395,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 23
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.7395,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 23
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.7395,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 23
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.7395,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 23
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1113": {
+      "tid": "T1113",
+      "q": "How do adversaries abuse screen capture (T1113)?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 1,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.7602
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.7602
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.8701
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.9502,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.9502,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.9502,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.9502,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.9502,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1071": {
+      "tid": "T1071",
+      "q": "Detection guidance for file transfer protocols (technique T1071)",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 5,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.02,
+              "ndcg_at_10": 0.1466
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1466
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0303,
+              "ndcg_at_10": 0.5384
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.7755,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.7755,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.7755,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.7755,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.7755,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 17
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.4
+    },
+    "T1105": {
+      "tid": "T1105",
+      "q": "What does MITRE ATT&CK technique T1105 cover?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 2,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0476,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.7526
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0588,
+              "ndcg_at_10": 0.3194,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0588,
+              "ndcg_at_10": 0.3194,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0588,
+              "ndcg_at_10": 0.3194,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0588,
+              "ndcg_at_10": 0.3194,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0588,
+              "ndcg_at_10": 0.3194,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1573": {
+      "tid": "T1573",
+      "q": "Mitigations against encrypted channel attacks",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 2,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.2751
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1429,
+              "ndcg_at_10": 0.2129
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.2751
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6388,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6388,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6388,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6388,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6388,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 10
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.2
+    },
+    "T1041": {
+      "tid": "T1041",
+      "q": "Real-world adversary use of exfiltration over c2 channel",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 0,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.25,
+              "ndcg_at_10": 0.4307
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1667,
+              "ndcg_at_10": 0.3562
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1667,
+              "ndcg_at_10": 0.3562,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 21
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1667,
+              "ndcg_at_10": 0.3562,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 21
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1667,
+              "ndcg_at_10": 0.3562,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 21
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1667,
+              "ndcg_at_10": 0.3562,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 21
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1667,
+              "ndcg_at_10": 0.3562,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 21
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.4
+    },
+    "T1048": {
+      "tid": "T1048",
+      "q": "How do adversaries abuse exfiltration over asymmetric encrypted non-c2 protocol (T1048)?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 3,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1,
+              "ndcg_at_10": 0.5885
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0588,
+              "ndcg_at_10": 0.4111
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1429,
+              "ndcg_at_10": 0.6256
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1429,
+              "ndcg_at_10": 0.7855,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 22
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1429,
+              "ndcg_at_10": 0.7855,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 22
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1429,
+              "ndcg_at_10": 0.7855,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 22
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1429,
+              "ndcg_at_10": 0.7855,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 22
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1429,
+              "ndcg_at_10": 0.7855,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 22
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.5
+    },
+    "T1567": {
+      "tid": "T1567",
+      "q": "Detection guidance for exfiltration to code repository (technique T1567)",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 4,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0417,
+              "ndcg_at_10": 0.2533
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2533
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.2,
+              "ndcg_at_10": 0.8083
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.4131,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 18
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.4131,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 18
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.4131,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 18
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.4131,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 18
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.4131,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 18
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.4
+    },
+    "T1486": {
+      "tid": "T1486",
+      "q": "What does MITRE ATT&CK technique T1486 cover?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 1,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0476,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0625,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0625,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0625,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0625,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.0625,
+              "ndcg_at_10": 0.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 20
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1490": {
+      "tid": "T1490",
+      "q": "Mitigations against inhibit system recovery attacks",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 1,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.9072
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.8597
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 7
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 7
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 7
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 7
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 7
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1489": {
+      "tid": "T1489",
+      "q": "Real-world adversary use of service stop",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 0,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6309
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 22
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 22
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 22
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 22
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 22
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1590": {
+      "tid": "T1590",
+      "q": "How do adversaries abuse network security appliances (T1590)?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 6,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0385,
+              "ndcg_at_10": 0.1078
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1429,
+              "ndcg_at_10": 0.6223
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.2,
+              "ndcg_at_10": 0.5831,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.2,
+              "ndcg_at_10": 0.5831,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.2,
+              "ndcg_at_10": 0.5831,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.2,
+              "ndcg_at_10": 0.5831,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.2,
+              "ndcg_at_10": 0.5831,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.4
+    },
+    "T1593": {
+      "tid": "T1593",
+      "q": "Detection guidance for social media (technique T1593)",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 3,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0417,
+              "ndcg_at_10": 0.2808
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2808
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 1.0,
+              "mrr": 0.1429,
+              "ndcg_at_10": 0.468
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6351,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6351,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6351,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6351,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.6351,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1597": {
+      "tid": "T1597",
+      "q": "What does MITRE ATT&CK technique T1597 cover?",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 2,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0476,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.0
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 1.0
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.8403,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.8403,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.8403,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.8403,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.8403,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 19
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    },
+    "T1598": {
+      "tid": "T1598",
+      "q": "Mitigations against phishing for information attacks",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 7,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.3557
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 0.5,
+              "ndcg_at_10": 0.3155
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6811
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6703,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 9
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6703,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 9
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6703,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 9
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6703,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 9
+            },
+            {
+              "p_at_5": 0.2,
+              "recall_at_20": 1.0,
+              "mrr": 1.0,
+              "ndcg_at_10": 0.6703,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 9
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.2
+    },
+    "T1584": {
+      "tid": "T1584",
+      "q": "Real-world adversary use of server",
+      "n_relevant_g2": 1,
+      "n_relevant_g1": 8,
+      "arms": {
+        "hybrid": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1771
+            }
+          ]
+        },
+        "dense": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.1185
+            }
+          ]
+        },
+        "sparse": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.001,
+              "ndcg_at_10": 0.1228
+            }
+          ]
+        },
+        "graph": {
+          "runs": [
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2855,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 8
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2855,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 8
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2855,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 8
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2855,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 8
+            },
+            {
+              "p_at_5": 0.0,
+              "recall_at_20": 0.0,
+              "mrr": 0.0,
+              "ndcg_at_10": 0.2855,
+              "rounds": 0,
+              "degraded": false,
+              "n_relevant": 8
+            }
+          ]
+        }
+      },
+      "elapsed_s": 0.3
+    }
+  }
+}

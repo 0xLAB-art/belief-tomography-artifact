@@ -1,0 +1,57 @@
+\section{Ethics Considerations}
+\label{sec:ethics}
+
+This section addresses the ethical dimensions of deploying an
+attacker-facing deception system and studying it.
+
+\textbf{Deployment legality and containment.} The honeypot is deployed on
+infrastructure the authors own and operate, on a research network reached
+through a management plane, with an egress allowlist verified by
+configuration audit: the system cannot initiate outbound connections, so
+no attacker-controlled content can leave the deception surface. One
+predecessor deployment was publicly reachable and interacted with two
+genuinely external attackers; those session transcripts were processed
+for the aggregate counts reported in \S\ref{sec:advworkload} and not
+retained beyond the aggregate. The authors made no institutional-review
+filing: the deployment involves no human subjects under the
+venue's definition (no human participants were studied, recruited, or
+deceived by a human operator), attacker activity on the authors' own
+honeypot is the studied phenomenon, and the relevant safeguards are the
+containment and privacy measures this section records. The authors will
+provide the full configuration-audit trail on request. The
+deployment serves AI-generated deception content to parties who connect
+to it; the system is nonetheless engineered so that nothing it serves can
+contain a real credential: every secret-shape value the fiction can emit
+is canary-registered (\S\ref{sec:verify}), making any disclosure a
+measured, attributable event rather than a leak. Across the entire
+deployment record (279 exported LLM-served sessions, 127 inbound ambient
+sessions), zero real credentials left the host and the gate refused 43
+natural-traffic drafts fail-closed.
+
+\textbf{Attacker privacy.} All attacker identifiers (IP addresses) are
+salted and hashed at the collection boundary (sha256(ip+salt), 12-hex
+truncation); raw addresses never leave the collection host, are not
+present in any released artifact (verified by redaction audit), and
+session transcripts are retained only for the measurement window. No
+attacker-identifying information beyond the hashed source address and
+shell activity on the honeypot itself is collected or stored.
+
+\textbf{Human subjects.} No human subjects were studied: all attacker
+workloads are AI-generated (disclosed throughout), no human raters
+participated in any label in this release, and no human-interaction data
+beyond the two predecessor-deployment sessions---whose full transcripts
+were not retained---is analyzed.
+
+\textbf{Dual-use considerations.} The released artifacts include the
+verifier, the fiction-graph schema, and measurement harnesses, but not
+the deception content library or canary values; the deception corpus is
+required to reproduce the realism numbers and is published only as
+redacted previews. The system's defensive purpose (bounding what a
+deception endpoint may serve) dominates its offensive surface: the
+verifier's misses are published precisely so that defenders can reason
+about the residual risk rather than replicate the bypasses.
+
+\textbf{Provider constraints.} The free-tier inference providers used
+impose content filters that blocked 41.4\% of replayed attacker commands;
+these constraints were recorded and reported, never engineered around
+(\S\ref{sec:jeveval}).

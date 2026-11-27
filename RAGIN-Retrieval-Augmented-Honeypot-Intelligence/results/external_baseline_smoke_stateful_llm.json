@@ -1,0 +1,175 @@
+{
+  "arm": "stateful_llm",
+  "description": "stateful LLM honeypot (deepseek-v4-flash-free, HoneyGPT/LLM-SSHH pattern): committed host-state register in prompt + transcript memory + LLM self-validation; no retrieval, no fiction graph, no deterministic verifier, no fail-closed fallback",
+  "state_register": {
+    "hostname": "web-srv-01",
+    "kernel": "5.15.0-91-generic",
+    "os": "Ubuntu 22.04.4 LTS",
+    "arch": "x86_64",
+    "current_user": "webapp",
+    "users": "root, webapp, deploy",
+    "web_root": "/var/www/app",
+    "database": "mysql @ db-01.internal"
+  },
+  "self_validation_tally": {
+    "consistent": 15,
+    "regenerated": 0,
+    "served_despite_contradiction": 0,
+    "generation_error": 3
+  },
+  "elapsed_s": 228.9,
+  "technique_avg": 0.0,
+  "actor_avg": 0.1167,
+  "persona_avg": 0.0833,
+  "technique_pass": "0/6",
+  "actor_pass": "1/6",
+  "persona_pass": "0/6",
+  "metrics": {
+    "honeytoken_triggers": 0,
+    "honeytokens_deployed": 0,
+    "total_sessions": 18,
+    "sessions_with_engagement": 8,
+    "persona_correct_assignments": 0,
+    "persona_total_assignments": 0,
+    "ttps_detected": 0,
+    "ttps_detected_unique": 0,
+    "cti_alerts_generated": 0,
+    "false_positives": 0,
+    "true_positives": 0,
+    "attacker_retention_turns": 0.0,
+    "max_retention_turns": 0,
+    "mean_session_duration_s": 0.0,
+    "deception_artifacts_deployed": 0,
+    "deception_artifacts_accessed": 0,
+    "strategy_adaptations": 0,
+    "avg_response_time_ms": 0.0
+  },
+  "per_row": [
+    {
+      "name": "cti_technique_Explain_T1566.001_in_detail",
+      "suite": "cti_technique",
+      "score": 0.0,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "cti_technique_How_does_spear_phishing_work?",
+      "suite": "cti_technique",
+      "score": 0.0,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "cti_technique_What_is_T1190_Exploit_Public-Facing_Appl",
+      "suite": "cti_technique",
+      "score": 0.0,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "cti_technique_How_do_attackers_use_external_remote_ser",
+      "suite": "cti_technique",
+      "score": 0.0,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "cti_technique_Explain_valid_accounts_as_an_initial_acc",
+      "suite": "cti_technique",
+      "score": 0.0,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "cti_technique_What_is_T1078_Valid_Accounts_technique?",
+      "suite": "cti_technique",
+      "score": 0.0,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "cti_actor_Describe_Salt_Typhoon's_targeting_of_tel",
+      "suite": "cti_actor",
+      "score": 0.0,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "cti_actor_What_techniques_does_APT28_use_against_g",
+      "suite": "cti_actor",
+      "score": 0.3,
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "cti_actor_How_does_Lazarus_Group_target_financial_",
+      "suite": "cti_actor",
+      "score": 0.1,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "cti_actor_What_is_Volt_Typhoon's_approach_to_criti",
+      "suite": "cti_actor",
+      "score": 0.1,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "cti_actor_Describe_FIN7's_attack_patterns_against_",
+      "suite": "cti_actor",
+      "score": 0.1,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "cti_actor_What_is_APT29's_preferred_method_for_ini",
+      "suite": "cti_actor",
+      "score": 0.1,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "deception_What_web_server_are_you_running?",
+      "suite": "deception",
+      "score": 0.0,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "deception_Tell_me_about_your_network_configuration",
+      "suite": "deception",
+      "score": 0.15,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "deception_What_security_tools_do_you_have_deployed",
+      "suite": "deception",
+      "score": 0.15,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "deception_Do_you_have_any_databases_accessible?",
+      "suite": "deception",
+      "score": 0.0,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "deception_What_OS_is_installed_on_the_servers?",
+      "suite": "deception",
+      "score": 0.0,
+      "passed": false,
+      "error": null
+    },
+    {
+      "name": "deception_Can_you_tell_me_about_your_firewall_rule",
+      "suite": "deception",
+      "score": 0.2,
+      "passed": false,
+      "error": null
+    }
+  ]
+}

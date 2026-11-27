@@ -1,0 +1,103 @@
+{
+  "schema": "ragin.decision_fusion_v4.real_prototype_implementation_freeze.v1",
+  "status": "IMPLEMENTED_FROZEN_BEFORE_REAL_EVALUATION",
+  "architecture": "Session -> Chrollo -> Don -> immutable policy-boundary evidence bundle -> Evidence Quality Gate -> PolicySelector -> plan -> Hisoka -> HITL -> deterministic verification -> accepted-only commit -> serve",
+  "arms": [
+    "RAGIN_BASELINE",
+    "RAGIN_V4_DETERMINISTIC",
+    "RAGIN_V4_LOGISTIC"
+  ],
+  "defaults": {
+    "authoritative_ragin_default": "RAGIN_BASELINE",
+    "v4_enabled_without_explicit_selector": "RAGIN_V4_DETERMINISTIC",
+    "laya_active_path": false
+  },
+  "contracts": {
+    "evidence_bundle": "ragin.don.evidence_bundle.v4",
+    "policy_decision": "ragin.decision_fusion_v4.policy_decision.v1",
+    "gate_states": [
+      "VALID_EVIDENCE",
+      "NO_EVIDENCE",
+      "LOW_RELEVANCE",
+      "INVALID_PROVENANCE",
+      "UNRESOLVED_CONFLICT",
+      "RETRIEVAL_FAILURE"
+    ],
+    "allowed_strategies": [
+      "baseline",
+      "maximize_recon_surface",
+      "fake_success_and_return_visits",
+      "steer_to_honeytoken_credentials",
+      "expose_decoy_internal_topology",
+      "contain_in_fiction_and_instrument",
+      "low_intensity_administration"
+    ],
+    "invalid_gate_behavior": "baseline_without_policy_engine_invocation",
+    "invalid_policy_behavior": "baseline",
+    "verification_authority": "deterministic_verifier",
+    "commit_authority": "accepted_only_finalize"
+  },
+  "frozen_candidates": {
+    "deterministic": {
+      "policy_engine_id": "deterministic_policy_v1",
+      "rule_table_version": "deterministic_v1",
+      "rule_table_hash": "ad5c9b4f5050814fb251f37d4aa6b6a4c7bde08da09484bd348127f56d328667"
+    },
+    "logistic": {
+      "policy_engine_id": "logistic_policy_v4",
+      "model_path": "results/decision_fusion_v4/v4_selected_logistic_policy.joblib",
+      "model_sha256": "4056337ad6a41132a73a89fc0ef3b18cf41b10086bb0f25f7e6fc953bbd0a6a8",
+      "feature_map_version": "candidate_freeze_v1",
+      "preprocessing": "DictVectorizer(sparse=False)",
+      "refit_at_serve": false
+    }
+  },
+  "runtime_files_sha256": {
+    "ragin/decision_fusion_v4/config.py": "3aa7fe04ccf7b3896769cd17576d4bddaa48580dbd3a2e96d509786fb802b049",
+    "ragin/decision_fusion_v4/evidence_export.py": "ea66281656f28e992f6aa5dbebe43e5ac99628088d4a9fa4d8ac6c83ccc67878",
+    "ragin/decision_fusion_v4/policy.py": "9d3862d13ab3c5679b80935e37d3ff4ee0795fa56a95f28a56c58074d7e1261d",
+    "ragin/decision_fusion_v4/matched_runner.py": "862f50755fc618107e6c099091810df052d8abb7678e4bbcc58c7d465c63f739",
+    "ragin/decision_fusion_v4/benchmark.py": "eb8285576733eb88b23194aaca82355b41f422e9d61219a424911ff98e7dcb35",
+    "ragin/decision_fusion_v4/__init__.py": "3116312a7e4720bcbd790041e204e24fee9c3269c041016f16abb97fb16737b6",
+    "ragin/cycle/adapters.py": "65f28de3ac040b6846f5985948142e8d6000f11a4eb7734981e6b25324798e85",
+    "ragin/cycle/graph.py": "83659cf7e3dd658705fd19bf8c64b6e3933eaf212a8caf01813d35fbf9029372",
+    "results/decision_fusion_v4/v4_selected_logistic_policy.joblib": "4056337ad6a41132a73a89fc0ef3b18cf41b10086bb0f25f7e6fc953bbd0a6a8"
+  },
+  "verification_files_sha256": {
+    "tests/unit/test_v4_real_prototype.py": "66f4f5e2bc6e0b489ece6bc65bd31595b75d2261269f2ed2e52ee9806d919864",
+    "tests/unit/test_decision_fusion_v4.py": "ee1b314d9ba583cbd7e2f9aace4fc642ad36c91ca1eb6fca501db186f40b22ca",
+    "scripts/run_v4_synthetic_integration_smoke.py": "7236ad67ac43200c660fa4785e367ac7b1b6a799233ad9eed6feb74bcbeb9d06",
+    "results/decision_fusion_v4/v4_synthetic_integration_smoke_v1.json": "04a6216edf862d0ff47e5e5eb9c8eac85604f98a831e1427cc2450969ef7fdde"
+  },
+  "future_evaluation_protocol": {
+    "path": "results/decision_fusion_v4/v4_future_evaluation_protocol_v1.json",
+    "sha256": "b719666320e3020815062d82aca38b9f8297296f78834d308bd22f8762c00f85",
+    "real_holdout_created": false,
+    "real_outputs_observed": false,
+    "real_effectiveness_computed": false
+  },
+  "synthetic_smoke": {
+    "path": "results/decision_fusion_v4/v4_synthetic_integration_smoke_v1.json",
+    "old_120_used": false,
+    "old_169_used": false,
+    "v3_cases_used": false,
+    "both_v4_arms_verified": true,
+    "invalid_evidence_blocked": true,
+    "strategy_reached_generator": true,
+    "verification_mandatory": true,
+    "accepted_only_commit": true
+  },
+  "tests": {
+    "command": "pytest -q tests/unit/test_v4_real_prototype.py tests/unit/test_decision_fusion_v4.py tests/unit/test_cycle_graph.py tests/unit/test_adapters.py",
+    "passed": 48,
+    "failed": 0,
+    "ruff_available": false
+  },
+  "freeze_scope_excludes": [
+    "exploratory_120",
+    "primary_169",
+    "new_real_holdout",
+    "real_reference_labels",
+    "real_effectiveness_analysis"
+  ]
+}

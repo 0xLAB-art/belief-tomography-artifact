@@ -1,0 +1,35 @@
+{
+  "audit": "RAGIN_FROZEN_PREDICTION_EXECUTION_AUTHENTICITY_AUDIT_V1",
+  "artifact": "results/laya_research/frozen_predictions.jsonl",
+  "artifact_sha256": "ca9f3c2c113da8e76b94627a1c2ebedcfc2261a4f1812667a6092d4ad785c106",
+  "repository_current_head_context": {
+    "commit": "f0c4042c0eb2ee25854796b770ea440f0b5851b2",
+    "committer_date": "2026-10-10T06:42:55+03:00",
+    "subject": "fix(harness): pass deception_response into strict verifier context so verifier prompt sees candidate content",
+    "association_with_artifact": "not established"
+  },
+  "tracking": {
+    "scripts/laya_frozen_runner.py": "UNTRACKED",
+    "results/laya_research/frozen_predictions.jsonl": "UNTRACKED",
+    "results/laya_research/confirmatory_predictions_recovered_from_broad_pool_v1.jsonl": "UNTRACKED"
+  },
+  "git_history": {
+    "runner_follow_history": "no entries; file is not tracked",
+    "frozen_prediction_follow_history": "no entries; file is not tracked",
+    "historical_runner_version": "NOT_ESTABLISHED",
+    "historical_runner_hash": "NOT_RECORDED",
+    "historical_generator_commit": "NOT_ASSOCIATED"
+  },
+  "filesystem_timing_context": {
+    "runner_mtime": "2026-10-12 21:45:06.913938435 +0300",
+    "broad_artifact_mtime": "2026-10-12 21:47:19.449646447 +0300",
+    "recovered_subset_mtime": "2026-10-13 19:47:35.680607204 +0300",
+    "interpretation": "filesystem times are chronology evidence only, not a cryptographic generator binding"
+  },
+  "existing_manifest_evidence": {
+    "broad_pool_provenance": "results/laya_research/broad_prediction_pool_provenance_audit_v1.json records the artifact hash and pre-reference chronology but explicitly records hash only, not inspected generator identity",
+    "recovery_manifest": "results/laya_research/recovered_prediction_derivation_manifest_v1.json records model_inference_performed=false for subset recovery, not the historical broad-pool generator",
+    "prior_recovery_freeze": "results/laya_research/pre_reference_prediction_recovery_freeze_v1.json preserves the previous interpretation and does not record a generator commit"
+  },
+  "conclusion": "The current named runner is a source-level hard-coded stub and its mtime precedes the broad artifact, but the historical code version that generated the artifact cannot be proven from Git or a generator manifest."
+}

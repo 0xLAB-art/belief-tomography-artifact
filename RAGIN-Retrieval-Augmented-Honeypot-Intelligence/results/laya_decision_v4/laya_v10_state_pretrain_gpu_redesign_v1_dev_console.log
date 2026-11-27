@@ -1,0 +1,232 @@
+[check] builder sha256 OK: c8b88bfef4ac109937ea10bf3106cb05f23ec9df516a7d49f9df0f4fa269fdb0
+[check] datasets manifest sha256 OK: 0277fa07c205eb5e9e6f695fcecdefaecaaf5fb019d802f84e4dad2eb35b49b1
+[check] TR set sha256 OK: 78ac77843e030767117bfaf0e3056e2b4e64b64bde153066a225ad1b238322a5
+[check] DEV set sha256 OK: 7278c3bb0c90d22d9756bd19f26ac0adf4de75bf79f078591521e7ca65192491
+[check] training rows sha256 OK: 14d9f4921fe716ef66e55feba60953dec93d06977b2f2bfcc5de236d9a29d2be
+[check] contract sha256 OK: c3fea3c979ed33b8831fcecee7e4ed8eea16bd9bf57bc23690071700c0feca9b
+[check] base checkpoint weights sha256 OK: 891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c
+[check] DEV cases: 60 (sufficient 27, required-abstain 33); runtime question defs built for all
+[check] dev subset (per archetype: case_ids sorted, keep the first ceil(2n/3)): 160 cases / 480 items
+        required_conflict        15 -> 10 kept
+        required_contradiction   15 -> 10 kept
+        required_ioc_only        30 -> 20 kept
+        required_missing         15 -> 10 kept
+        required_partial         15 -> 10 kept
+        required_weak            15 -> 10 kept
+        sufficient               135 -> 90 kept
+[check] subset rows sha256 (derived, not written): a9ebf57084941398a59bca5f3ef4a120ed9e1e294bb73b528bb95df45a859512
+[check] subset rows file not written yet (expected before the --dev run)
+[check] development artefact not written yet
+[dev] subset rows written: /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_decision_v4/laya_v10_state_pretrain_gpu_redesign_v1_dev_subset_rows_v1.jsonl (a9ebf57084941398a59bca5f3ef4a120ed9e1e294bb73b528bb95df45a859512)
+dry-run: 160 rows read, 480 valid items, skipped: {}
+dry-run: optimizer budget: 432 train item(s), effective batch up to 32 (micro_batch 2 x grad_accum 16), 112 optimizer updates over 8 epoch(s)
+[dev] subset dry_run OK: 160 rows, 480 items, 432 train / 48 calib, 112 optimizer updates, zero skips
+[dev] candidate A (soft-ce): training on the subset at the frozen dev config
+train items 432, calibration items 48, eval items 48 (calibration_slice), skipped {}, device cuda
+optimizer budget: 432 train item(s), effective batch up to 32 (micro_batch 2 x grad_accum 16), 112 optimizer updates over 8 epoch(s)
+epoch 1/8 step 100 loss 1.7463
+epoch 1/8 step 200 loss 0.5939
+epoch 1/8 mean loss 0.8846
+epoch 2/8 step 100 loss 0.7225
+epoch 2/8 step 200 loss 0.2902
+epoch 2/8 mean loss 0.7569
+epoch 3/8 step 100 loss 0.2086
+epoch 3/8 step 200 loss 0.3161
+epoch 3/8 mean loss 0.6150
+epoch 4/8 step 100 loss 0.0729
+epoch 4/8 step 200 loss 1.0037
+epoch 4/8 mean loss 0.5190
+epoch 5/8 step 100 loss 0.1939
+epoch 5/8 step 200 loss 1.1264
+epoch 5/8 mean loss 0.4186
+epoch 6/8 step 100 loss 1.1308
+epoch 6/8 step 200 loss 0.0025
+epoch 6/8 mean loss 0.3698
+epoch 7/8 step 100 loss 0.0012
+epoch 7/8 step 200 loss 0.4700
+epoch 7/8 mean loss 0.3063
+epoch 8/8 step 100 loss 0.0017
+epoch 8/8 step 200 loss 0.0389
+epoch 8/8 mean loss 0.3447
+
+=== Calibration Evidence (in-sample calibration slice, 48 items; not held-out) ===
+Metric                 Before         After          Delta         
+-----------------------------------------------------------------
+Accuracy               0.6875         0.8333         +0.1458       
+Loss                   0.9687         0.3481         -0.6206       
+ECE                    0.2357         0.1306         -0.1051       
+Brier (multi-class)    0.5751         0.2057         -0.3694       
+Brier (top-1)          0.2758         0.0954         -0.1804       
+Mean Confidence        0.4518         0.8319         +0.3801       
+-----------------------------------------------------------------
+
+[dev] candidate A (soft-ce): trained 413.4 s; epoch loss [0.884583, 0.756945, 0.614984, 0.519013, 0.418577, 0.369836, 0.306285, 0.344665]; warnings 1 (collapse 0); checkpoint models/laya_v10_state_pretrain_gpu_redesign_v1_dev_softce_v1
+[dev]   warning x1 [RuntimeWarning]: laya.train: choice calibration: fitted on only 48 calibration items
+[dev-a-softce] DEV-001 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D1'] (4677.6 ms)
+[dev-a-softce] DEV-002 run 1 -> SELECT strategy=maximize_recon_surface refs=['D1'] (102.7 ms)
+[dev-a-softce] DEV-003 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D1'] (95.5 ms)
+[dev-a-softce] DEV-004 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D1'] (97.1 ms)
+[dev-a-softce] DEV-005 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D1'] (95.9 ms)
+[dev-a-softce] DEV-006 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D2'] (105.8 ms)
+[dev-a-softce] DEV-007 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D1'] (103.1 ms)
+[dev-a-softce] DEV-008 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D2'] (107.0 ms)
+[dev-a-softce] DEV-009 run 1 -> SELECT strategy=maximize_recon_surface refs=['D4'] (104.1 ms)
+[dev-a-softce] DEV-010 run 1 -> SELECT strategy=low_intensity_administration refs=['D3'] (107.8 ms)
+[dev-a-softce] DEV-011 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D3'] (104.1 ms)
+[dev-a-softce] DEV-012 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D3'] (104.9 ms)
+[dev-a-softce] DEV-013 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D2'] (108.0 ms)
+[dev-a-softce] DEV-014 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D2'] (104.3 ms)
+[dev-a-softce] DEV-015 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D1'] (108.9 ms)
+[dev-a-softce] DEV-016 run 1 -> SELECT strategy=low_intensity_administration refs=['D2'] (88.0 ms)
+[dev-a-softce] DEV-017 run 1 -> SELECT strategy=low_intensity_administration refs=['D1'] (103.3 ms)
+[dev-a-softce] DEV-018 run 1 -> SELECT strategy=low_intensity_administration refs=['D4'] (106.9 ms)
+[dev-a-softce] DEV-019 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D1'] (87.4 ms)
+[dev-a-softce] DEV-020 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D1'] (87.5 ms)
+[dev-a-softce] DEV-021 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D2'] (95.7 ms)
+[dev-a-softce] DEV-022 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D3'] (90.7 ms)
+[dev-a-softce] DEV-023 run 1 -> SELECT strategy=low_intensity_administration refs=['D1'] (105.8 ms)
+[dev-a-softce] DEV-024 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D3'] (87.0 ms)
+[dev-a-softce] DEV-025 run 1 -> SELECT strategy=baseline refs=['D2'] (90.2 ms)
+[dev-a-softce] DEV-026 run 1 -> SELECT strategy=expose_decoy_internal_topology refs=['D4'] (104.8 ms)
+[dev-a-softce] DEV-027 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D2'] (93.9 ms)
+[dev-a-softce] DEV-028 run 1 -> ABSTAIN strategy=baseline refs=[] (57.6 ms)
+[dev-a-softce] DEV-029 run 1 -> ABSTAIN strategy=baseline refs=[] (58.6 ms)
+[dev-a-softce] DEV-030 run 1 -> ABSTAIN strategy=baseline refs=[] (58.2 ms)
+[dev-a-softce] DEV-031 run 1 -> ABSTAIN strategy=baseline refs=[] (58.6 ms)
+[dev-a-softce] DEV-032 run 1 -> SELECT strategy=baseline refs=['D3'] (103.8 ms)
+[dev-a-softce] DEV-033 run 1 -> ABSTAIN strategy=baseline refs=[] (106.2 ms)
+[dev-a-softce] DEV-034 run 1 -> ABSTAIN strategy=baseline refs=[] (106.1 ms)
+[dev-a-softce] DEV-035 run 1 -> ABSTAIN strategy=baseline refs=[] (105.5 ms)
+[dev-a-softce] DEV-036 run 1 -> ABSTAIN strategy=baseline refs=[] (83.0 ms)
+[dev-a-softce] DEV-037 run 1 -> ABSTAIN strategy=baseline refs=[] (81.9 ms)
+[dev-a-softce] DEV-038 run 1 -> ABSTAIN strategy=baseline refs=[] (80.2 ms)
+[dev-a-softce] DEV-039 run 1 -> ABSTAIN strategy=baseline refs=[] (80.2 ms)
+[dev-a-softce] DEV-040 run 1 -> ABSTAIN strategy=baseline refs=[] (98.0 ms)
+[dev-a-softce] DEV-041 run 1 -> ABSTAIN strategy=baseline refs=[] (98.1 ms)
+[dev-a-softce] DEV-042 run 1 -> ABSTAIN strategy=baseline refs=[] (95.1 ms)
+[dev-a-softce] DEV-043 run 1 -> ABSTAIN strategy=baseline refs=[] (95.2 ms)
+[dev-a-softce] DEV-044 run 1 -> ABSTAIN strategy=baseline refs=[] (95.5 ms)
+[dev-a-softce] DEV-045 run 1 -> ABSTAIN strategy=baseline refs=[] (94.4 ms)
+[dev-a-softce] DEV-046 run 1 -> ABSTAIN strategy=baseline refs=[] (95.0 ms)
+[dev-a-softce] DEV-047 run 1 -> ABSTAIN strategy=baseline refs=[] (94.2 ms)
+[dev-a-softce] DEV-048 run 1 -> ABSTAIN strategy=baseline refs=[] (81.3 ms)
+[dev-a-softce] DEV-049 run 1 -> SELECT strategy=low_intensity_administration refs=['D1'] (82.4 ms)
+[dev-a-softce] DEV-050 run 1 -> ABSTAIN strategy=baseline refs=[] (82.8 ms)
+[dev-a-softce] DEV-051 run 1 -> ABSTAIN strategy=baseline refs=[] (83.0 ms)
+[dev-a-softce] DEV-052 run 1 -> ABSTAIN strategy=baseline refs=[] (80.6 ms)
+[dev-a-softce] DEV-053 run 1 -> ABSTAIN strategy=baseline refs=[] (80.4 ms)
+[dev-a-softce] DEV-054 run 1 -> ABSTAIN strategy=baseline refs=[] (78.9 ms)
+[dev-a-softce] DEV-055 run 1 -> ABSTAIN strategy=baseline refs=[] (78.7 ms)
+[dev-a-softce] DEV-056 run 1 -> ABSTAIN strategy=baseline refs=[] (79.3 ms)
+[dev-a-softce] DEV-057 run 1 -> ABSTAIN strategy=baseline refs=[] (80.5 ms)
+[dev-a-softce] DEV-058 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D1'] (80.3 ms)
+[dev-a-softce] DEV-059 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D2'] (79.0 ms)
+[dev-a-softce] DEV-060 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D1'] (78.8 ms)
+[dev] candidate A eval: alignment 0.7833; required-abstain recall 0.8485; inappropriate-abstain 0.0000; balance 1.8485; structural_ok=True
+[dev] candidate B (rlcd): training on the subset at the frozen dev config
+train items 432, calibration items 48, eval items 48 (calibration_slice), skipped {}, device cuda
+optimizer budget: 432 train item(s), effective batch up to 32 (micro_batch 2 x grad_accum 16), 112 optimizer updates over 8 epoch(s)
+epoch 1/8 step 100 loss 2.8780
+epoch 1/8 step 200 loss 0.0913
+epoch 1/8 mean loss 0.9324
+epoch 2/8 step 100 loss 1.2764
+epoch 2/8 step 200 loss 0.5068
+epoch 2/8 mean loss 1.0180
+epoch 3/8 step 100 loss -0.4115
+epoch 3/8 step 200 loss 0.5319
+epoch 3/8 mean loss 0.8298
+epoch 4/8 step 100 loss 0.0405
+epoch 4/8 step 200 loss 2.0918
+epoch 4/8 mean loss 0.7594
+epoch 5/8 step 100 loss -0.0262
+epoch 5/8 step 200 loss 6.0620
+epoch 5/8 mean loss 1.0354
+epoch 6/8 step 100 loss 0.3653
+epoch 6/8 step 200 loss -0.0000
+epoch 6/8 mean loss 0.8927
+epoch 7/8 step 100 loss -0.0000
+epoch 7/8 step 200 loss 0.7806
+epoch 7/8 mean loss 1.1331
+epoch 8/8 step 100 loss -0.0359
+epoch 8/8 step 200 loss 0.3299
+epoch 8/8 mean loss 1.1406
+
+=== Calibration Evidence (in-sample calibration slice, 48 items; not held-out) ===
+Metric                 Before         After          Delta         
+-----------------------------------------------------------------
+Accuracy               0.6875         0.8125         +0.1250       
+Loss                   0.9687         0.5333         -0.4354       
+ECE                    0.2357         0.1422         -0.0935       
+Brier (multi-class)    0.5751         0.3023         -0.2728       
+Brier (top-1)          0.2758         0.1366         -0.1392       
+Mean Confidence        0.4518         0.7414         +0.2896       
+-----------------------------------------------------------------
+
+[dev] candidate B (rlcd): trained 453.1 s; epoch loss [0.932411, 1.017969, 0.829843, 0.759422, 1.035446, 0.892653, 1.133097, 1.140608]; warnings 2 (collapse 0); checkpoint models/laya_v10_state_pretrain_gpu_redesign_v1_dev_rlcd_v1
+[dev]   warning x1 [RuntimeWarning]: laya.train: choice calibration: fitted on only 48 calibration items
+[dev]   warning x1 [RuntimeWarning]: laya.train: choice calibration: the fitted temperature 5 is on the [0.5, 5] clamp
+[dev-b-rlcd] DEV-001 run 1 -> SELECT strategy=maximize_recon_surface refs=['D2'] (4763.7 ms)
+[dev-b-rlcd] DEV-002 run 1 -> SELECT strategy=expose_decoy_internal_topology refs=['D1'] (108.0 ms)
+[dev-b-rlcd] DEV-003 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D2'] (96.5 ms)
+[dev-b-rlcd] DEV-004 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D1'] (98.6 ms)
+[dev-b-rlcd] DEV-005 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D3'] (97.2 ms)
+[dev-b-rlcd] DEV-006 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D1'] (105.5 ms)
+[dev-b-rlcd] DEV-007 run 1 -> SELECT strategy=maximize_recon_surface refs=['D3'] (104.3 ms)
+[dev-b-rlcd] DEV-008 run 1 -> SELECT strategy=low_intensity_administration refs=['D1'] (105.9 ms)
+[dev-b-rlcd] DEV-009 run 1 -> SELECT strategy=low_intensity_administration refs=['D2'] (104.3 ms)
+[dev-b-rlcd] DEV-010 run 1 -> SELECT strategy=low_intensity_administration refs=['D1'] (106.4 ms)
+[dev-b-rlcd] DEV-011 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D2'] (106.3 ms)
+[dev-b-rlcd] DEV-012 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D1'] (107.5 ms)
+[dev-b-rlcd] DEV-013 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D1'] (108.9 ms)
+[dev-b-rlcd] DEV-014 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D1'] (117.1 ms)
+[dev-b-rlcd] DEV-015 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D1'] (114.5 ms)
+[dev-b-rlcd] DEV-016 run 1 -> SELECT strategy=low_intensity_administration refs=['D1'] (92.5 ms)
+[dev-b-rlcd] DEV-017 run 1 -> SELECT strategy=baseline refs=['D3'] (105.2 ms)
+[dev-b-rlcd] DEV-018 run 1 -> SELECT strategy=low_intensity_administration refs=['D4'] (108.2 ms)
+[dev-b-rlcd] DEV-019 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D1'] (89.6 ms)
+[dev-b-rlcd] DEV-020 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D1'] (91.3 ms)
+[dev-b-rlcd] DEV-021 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D2'] (90.3 ms)
+[dev-b-rlcd] DEV-022 run 1 -> SELECT strategy=low_intensity_administration refs=['D1'] (93.0 ms)
+[dev-b-rlcd] DEV-023 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D1'] (105.9 ms)
+[dev-b-rlcd] DEV-024 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D2'] (91.4 ms)
+[dev-b-rlcd] DEV-025 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D2'] (89.6 ms)
+[dev-b-rlcd] DEV-026 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D3'] (108.7 ms)
+[dev-b-rlcd] DEV-027 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D2'] (96.9 ms)
+[dev-b-rlcd] DEV-028 run 1 -> ABSTAIN strategy=baseline refs=[] (64.0 ms)
+[dev-b-rlcd] DEV-029 run 1 -> ABSTAIN strategy=baseline refs=[] (59.5 ms)
+[dev-b-rlcd] DEV-030 run 1 -> ABSTAIN strategy=baseline refs=[] (65.7 ms)
+[dev-b-rlcd] DEV-031 run 1 -> ABSTAIN strategy=baseline refs=[] (65.4 ms)
+[dev-b-rlcd] DEV-032 run 1 -> SELECT strategy=low_intensity_administration refs=['D2'] (108.2 ms)
+[dev-b-rlcd] DEV-033 run 1 -> ABSTAIN strategy=baseline refs=[] (107.0 ms)
+[dev-b-rlcd] DEV-034 run 1 -> ABSTAIN strategy=baseline refs=[] (110.0 ms)
+[dev-b-rlcd] DEV-035 run 1 -> ABSTAIN strategy=baseline refs=[] (109.7 ms)
+[dev-b-rlcd] DEV-036 run 1 -> ABSTAIN strategy=baseline refs=[] (82.3 ms)
+[dev-b-rlcd] DEV-037 run 1 -> ABSTAIN strategy=baseline refs=[] (82.2 ms)
+[dev-b-rlcd] DEV-038 run 1 -> ABSTAIN strategy=baseline refs=[] (84.0 ms)
+[dev-b-rlcd] DEV-039 run 1 -> ABSTAIN strategy=baseline refs=[] (87.5 ms)
+[dev-b-rlcd] DEV-040 run 1 -> ABSTAIN strategy=baseline refs=[] (104.3 ms)
+[dev-b-rlcd] DEV-041 run 1 -> SELECT strategy=expose_decoy_internal_topology refs=['D2'] (101.2 ms)
+[dev-b-rlcd] DEV-042 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D2'] (97.9 ms)
+[dev-b-rlcd] DEV-043 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D2'] (98.0 ms)
+[dev-b-rlcd] DEV-044 run 1 -> ABSTAIN strategy=baseline refs=[] (96.8 ms)
+[dev-b-rlcd] DEV-045 run 1 -> ABSTAIN strategy=baseline refs=[] (99.6 ms)
+[dev-b-rlcd] DEV-046 run 1 -> ABSTAIN strategy=baseline refs=[] (98.5 ms)
+[dev-b-rlcd] DEV-047 run 1 -> ABSTAIN strategy=baseline refs=[] (98.8 ms)
+[dev-b-rlcd] DEV-048 run 1 -> ABSTAIN strategy=baseline refs=[] (83.6 ms)
+[dev-b-rlcd] DEV-049 run 1 -> SELECT strategy=low_intensity_administration refs=['D2'] (83.4 ms)
+[dev-b-rlcd] DEV-050 run 1 -> ABSTAIN strategy=baseline refs=[] (82.1 ms)
+[dev-b-rlcd] DEV-051 run 1 -> ABSTAIN strategy=baseline refs=[] (80.9 ms)
+[dev-b-rlcd] DEV-052 run 1 -> ABSTAIN strategy=baseline refs=[] (81.0 ms)
+[dev-b-rlcd] DEV-053 run 1 -> ABSTAIN strategy=baseline refs=[] (81.8 ms)
+[dev-b-rlcd] DEV-054 run 1 -> ABSTAIN strategy=baseline refs=[] (82.5 ms)
+[dev-b-rlcd] DEV-055 run 1 -> ABSTAIN strategy=baseline refs=[] (79.7 ms)
+[dev-b-rlcd] DEV-056 run 1 -> ABSTAIN strategy=baseline refs=[] (80.4 ms)
+[dev-b-rlcd] DEV-057 run 1 -> ABSTAIN strategy=baseline refs=[] (82.4 ms)
+[dev-b-rlcd] DEV-058 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D1'] (81.7 ms)
+[dev-b-rlcd] DEV-059 run 1 -> ABSTAIN strategy=baseline refs=[] (80.8 ms)
+[dev-b-rlcd] DEV-060 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D1'] (80.3 ms)
+[dev] candidate B eval: alignment 0.7667; required-abstain recall 0.7879; inappropriate-abstain 0.0000; balance 1.7879; structural_ok=True
+[dev] development artefact: /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_decision_v4/laya_v10_state_pretrain_gpu_redesign_v1_development_v1.json
+[dev] development sha256: 9f87ab9997fddbe6e30e61c0514bd7c4a2c6b46861546783d683f987f915359a
+[dev] outcome: DEV_STOP_REDESIGN_REQUIRED
+[dev] STOP: no selectable candidate: alignment >= 0.85 and zero structural failures not met by any candidate

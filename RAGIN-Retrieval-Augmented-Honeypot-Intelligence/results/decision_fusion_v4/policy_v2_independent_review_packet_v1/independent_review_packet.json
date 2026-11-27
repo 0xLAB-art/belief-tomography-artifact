@@ -1,0 +1,253 @@
+{
+  "activated": false,
+  "automated_review": {
+    "effectiveness_claim": false,
+    "human_judgment": false,
+    "tests_failed": 0,
+    "tests_passed": 159
+  },
+  "baseline_preferred": [
+    "invalid or missing provenance",
+    "unresolved conflict",
+    "incomplete coverage",
+    "unsupported technique or behavior",
+    "ambiguous parse",
+    "transfer without independently observed execution relationship",
+    "shell or deletion behavior without additional supported context"
+  ],
+  "candidate": "EVIDENCE_GROUNDED_DETERMINISTIC_V2",
+  "counterexamples": [
+    "T1059.004 Unix shell alone abstains",
+    "T1070.004 file deletion alone abstains",
+    "T1105 transfer without execution relationship abstains",
+    "relationship-only documents without explicit technique fields do not activate a rule",
+    "ambiguous or conflicting evidence abstains"
+  ],
+  "coverage_matrix": [
+    {
+      "abstention": "transfer alone, ambiguous parse, invalid evidence, conflict, or missing relationship",
+      "assumptions": "execution relationship is a static observed feature, not proof that execution occurred",
+      "context_required": [
+        "behavior indicators",
+        "current and preceding command projection",
+        "relationship feature"
+      ],
+      "observed_behavior": "download or transfer plus independently observed execution relationship",
+      "predicate": "T1105 in grounded techniques AND download_execution_relationship is true",
+      "rationale": "containment and instrumentation are appropriate for a transfer/execution relationship without changing real infrastructure",
+      "required_evidence": [
+        "command-grounded document with T1105",
+        "download_execution_relationship=true",
+        "valid provenance and complete gate"
+      ],
+      "rule_id": "DONV2_T1105_EXECUTION_RELATIONSHIP",
+      "sources": [
+        "https://attack.mitre.org/techniques/T1105"
+      ],
+      "strategy": "contain_in_fiction_and_instrument"
+    },
+    {
+      "abstention": "credential technique without command context, ambiguity, conflict, or invalid evidence",
+      "assumptions": "credential-access-compatible behavior is not proof of malicious intent",
+      "context_required": [
+        "credential indicators or credential path category",
+        "current command projection"
+      ],
+      "observed_behavior": "credential-file or credential-tool access with credential context",
+      "predicate": "grounded techniques intersect {T1003,T1552.001} AND credential context is present",
+      "rationale": "only synthetic decoy credentials are exposed and instrumented",
+      "required_evidence": [
+        "T1003 or T1552.001 command-grounded evidence",
+        "credential_access_indicator or credentials path category",
+        "valid provenance and complete gate"
+      ],
+      "rule_id": "DONV2_CREDENTIAL_CONTEXT",
+      "sources": [
+        "https://attack.mitre.org/techniques/T1552/001"
+      ],
+      "strategy": "steer_to_honeytoken_credentials"
+    },
+    {
+      "abstention": "crontab text without persistence context, ambiguity, conflict, or invalid evidence",
+      "assumptions": "the rule does not claim persistence succeeded on a real host",
+      "context_required": [
+        "persistence indicator",
+        "current and preceding command projection"
+      ],
+      "observed_behavior": "cron persistence behavior with persistence indicator",
+      "predicate": "T1053.003 in grounded techniques AND persistence_indicator is present",
+      "rationale": "fictional operation continuity is limited to the contained simulator",
+      "required_evidence": [
+        "T1053.003 command-grounded evidence",
+        "persistence_indicator",
+        "valid provenance and complete gate"
+      ],
+      "rule_id": "DONV2_CRON_PERSISTENCE",
+      "sources": [
+        "https://attack.mitre.org/techniques/T1053/003"
+      ],
+      "strategy": "fake_success_and_return_visits"
+    },
+    {
+      "abstention": "network-related text without network context, ambiguity, conflict, or invalid evidence",
+      "assumptions": "network discovery does not establish attacker intent",
+      "context_required": [
+        "network path category",
+        "current command projection"
+      ],
+      "observed_behavior": "network configuration discovery with network context",
+      "predicate": "T1016 in grounded techniques AND network path category is present",
+      "rationale": "only fictional host/service topology is revealed",
+      "required_evidence": [
+        "T1016 command-grounded evidence",
+        "network path category",
+        "environment-discovery indicator",
+        "valid provenance and complete gate"
+      ],
+      "rule_id": "DONV2_NETWORK_TOPOLOGY",
+      "sources": [
+        "https://attack.mitre.org/techniques/T1016"
+      ],
+      "strategy": "expose_decoy_internal_topology"
+    },
+    {
+      "abstention": "discovery technique without observed discovery context, ambiguity, conflict, or invalid evidence",
+      "assumptions": "discovery-compatible behavior is not treated as malicious intent",
+      "context_required": [
+        "environment-discovery indicator",
+        "current and preceding command projection"
+      ],
+      "observed_behavior": "system, file, directory, or service discovery",
+      "predicate": "grounded techniques intersect {T1007,T1082,T1083} AND environment_discovery is present",
+      "rationale": "the generator returns consistent fictional discovery results",
+      "required_evidence": [
+        "T1007, T1082, or T1083 command-grounded evidence",
+        "environment_discovery indicator",
+        "valid provenance and complete gate"
+      ],
+      "rule_id": "DONV2_DISCOVERY_SURFACE",
+      "sources": [
+        "https://attack.mitre.org/techniques/T1082",
+        "https://attack.mitre.org/techniques/T1083",
+        "https://attack.mitre.org/techniques/T1007"
+      ],
+      "strategy": "maximize_recon_surface"
+    },
+    {
+      "abstention": "any forbidden indicator, ambiguity, conflict, invalid evidence, or unsupported behavior",
+      "assumptions": "classification and severity are contextual features, not independent truth labels",
+      "context_required": [
+        "classification",
+        "severity",
+        "behavior indicators"
+      ],
+      "observed_behavior": "explicitly benign administrative context without malicious behavior indicators",
+      "predicate": "classification is benign AND severity is info AND forbidden indicator set is empty",
+      "rationale": "low-interaction administrative response avoids unnecessary escalation",
+      "required_evidence": [
+        "valid command-grounded evidence",
+        "classification=benign",
+        "severity=info",
+        "no credential, persistence, download, or execution indicator"
+      ],
+      "rule_id": "DONV2_BENIGN_ADMINISTRATION",
+      "sources": [
+        "Don V2 evidence bundle contract; no single technique is sufficient"
+      ],
+      "strategy": "low_intensity_administration"
+    },
+    {
+      "abstention": "baseline is the required abstention",
+      "assumptions": "none",
+      "context_required": [
+        "complete evidence and context trace"
+      ],
+      "observed_behavior": "valid evidence without a supported policy predicate",
+      "predicate": "none of the non-baseline predicates match",
+      "rationale": "preserve fail-safe behavior and avoid intent fabrication",
+      "required_evidence": [
+        "valid gate but no complete rule match"
+      ],
+      "rule_id": "ABSTAIN_UNSUPPORTED_BEHAVIOR",
+      "sources": [
+        "ragin/decision_fusion_v4/policy_v2.py"
+      ],
+      "strategy": "baseline"
+    }
+  ],
+  "examples": [
+    {
+      "decision": {
+        "rule_id": "DONV2_DISCOVERY_SURFACE",
+        "strategy": "maximize_recon_surface"
+      },
+      "evidence_id": "synthetic-T1083",
+      "example": "synthetic file discovery",
+      "observed_context": {
+        "ambiguity": "none",
+        "behavior_indicators": [
+          "environment_discovery"
+        ]
+      }
+    },
+    {
+      "decision": {
+        "rule_id": "ABSTAIN_UNSUPPORTED_BEHAVIOR",
+        "strategy": "baseline"
+      },
+      "evidence_id": "synthetic-T1105",
+      "example": "synthetic transfer only",
+      "observed_context": {
+        "behavior_indicators": [
+          "download_indicator"
+        ],
+        "download_execution_relationship": false
+      }
+    },
+    {
+      "decision": {
+        "rule_id": "ABSTAIN_AMBIGUOUS_CONTEXT",
+        "strategy": "baseline"
+      },
+      "evidence_id": "synthetic-T1083",
+      "example": "synthetic ambiguous parse",
+      "observed_context": {
+        "ambiguity": "insufficient_context",
+        "behavior_indicators": [
+          "environment_discovery"
+        ]
+      }
+    },
+    {
+      "decision": {
+        "rule_id": "ABSTAIN_INVALID_EVIDENCE",
+        "strategy": "baseline"
+      },
+      "evidence_id": "synthetic-T1083",
+      "example": "synthetic invalid provenance",
+      "observed_context": {
+        "provenance_status": "UNKNOWN"
+      }
+    }
+  ],
+  "historical_artifacts_unchanged": true,
+  "human_review": {
+    "conflicts": null,
+    "notes": null,
+    "reviewer_identity": null,
+    "status": "PENDING",
+    "verdict": null
+  },
+  "safety_requirements": [
+    "inert command input",
+    "no real host mutation",
+    "synthetic decoy resources only",
+    "mandatory verifier",
+    "mandatory HITL policy",
+    "accepted-only fictional-state commit",
+    "complete per-attempt serving trace",
+    "baseline fail-safe"
+  ],
+  "schema": "ragin.v4.policy_v2.independent_review_packet.v1",
+  "status": "READY_FOR_INDEPENDENT_REVIEW"
+}

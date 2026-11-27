@@ -1,0 +1,44 @@
+{
+  "schema": "ragin.v4.controlled_admin_capture_protocol.v1",
+  "status": "FROZEN_BEFORE_SESSION_1",
+  "environment": {
+    "source_class": "CONTROLLED_REAL_ADMIN",
+    "environment_identity": "sha256:local-linux-zodiac-01af466feb100306498c86aa6bad1815e33036019aa34d4362c20f374ea5c829",
+    "environment_type": "current local Linux host",
+    "network_policy": "read-only local inspection; no outbound connection commands",
+    "operator_identity_policy": "operator identity is not stored in study artifacts"
+  },
+  "procedure": {
+    "session_boundary_rule": "one separately started /bin/bash --noprofile --norc child process per native session; process closure ends the session",
+    "input_selection_rule": "all commands in the predeclared profile are executed in order; no semantic selection",
+    "context_rule": "capture session_start, every operator_input with native output, and session_end",
+    "profile_assignment_rule": "session ordinal modulo four; fixed before execution",
+    "profiles": {
+      "A": ["id -u", "id -g", "id -G", "uname -srmo", "nproc", "free -h", "df -h /tmp", "stat -c '%A %U %G %n' /tmp"],
+      "B": ["pwd", "printf '%s\\n' \"$PWD\"", "ls -ld /tmp /var/tmp", "find /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20", "du -sh /tmp 2>/dev/null", "df -h /"],
+      "C": ["ps -eo pid,comm --sort=comm | head -n 20", "ip -brief link", "ss -ltnH 2>/dev/null | head -n 20", "systemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20", "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20"],
+      "D": ["command -v python3", "python3 --version", "command -v git", "git --version 2>/dev/null", "command -v docker", "docker --version 2>/dev/null", "getconf _NPROCESSORS_ONLN", "ulimit -a | head -n 20"]
+    }
+  },
+  "permitted_activity_categories": ["system identification", "CPU and memory status", "filesystem status", "process inspection", "network-interface inspection", "service status", "package/tool presence", "permissions inspection", "container/service presence"],
+  "prohibited_activity": ["network scanning", "outbound connection attempts", "credential access", "secret access", "file mutation", "package installation", "service mutation", "LLM generation", "replay", "copied transcript", "benchmark fixture"],
+  "provenance_fields": ["capture_id", "native_session_id", "source_class", "collector_name", "collector_version", "collector_sha256", "deployment_id", "environment_id", "capture_started_at_utc", "capture_ended_at_utc", "raw_log_path", "raw_log_sha256", "raw_log_size_bytes", "event_count", "input_event_count", "source_transport", "synthetic", "replay", "test_fixture", "eligible_for_real_evaluation", "capture_manifest_created_at_utc", "capture_manifest_sha256", "parent_capture_id"],
+  "privacy": {
+    "raw_ip_in_registry": false,
+    "credential_material": "redact in canonical records; no credential-access commands permitted",
+    "operator_identifiers": "not recorded",
+    "policy_reference": "docs/decision_fusion/V4_REAL_CAPTURE_PRIVACY_POLICY.md"
+  },
+  "limits": {
+    "maximum_eligible_sessions": 40,
+    "one_native_session_one_independence_group": true,
+    "semantic_selection": false,
+    "model_execution": false,
+    "v4_evaluation": false,
+    "reference_annotation": false,
+    "effectiveness_analysis": false
+  },
+  "failure_policy": "any missing manifest, raw/hash mismatch, duplicate native ID, missing input event, lineage failure, privacy failure, synthetic/replay/fixture flag, or interrupted capture is ineligible and remains in the audit trail",
+  "protocol_sha256_scope": "canonical JSON of this file",
+  "created_before_session_1": true
+}

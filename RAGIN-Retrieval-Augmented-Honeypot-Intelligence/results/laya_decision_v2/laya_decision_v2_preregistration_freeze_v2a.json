@@ -1,0 +1,53 @@
+{
+  "authoritative_generation_provider": {
+    "configuration": {
+      "external_provider": false,
+      "gateway": null,
+      "max_tokens": null,
+      "temperature": null
+    },
+    "model": "none",
+    "provenance": "ability_to_execute_the_preregistered_intervention",
+    "provider": "local deterministic Hisoka ResponseGenerator template/fast-path",
+    "seed_support": "deterministic by input/session fiction state",
+    "version": "repository implementation"
+  },
+  "baseline_preservation_tests": [
+    "test_laya_off_preserves_baseline_classification_path",
+    "test_laya_failure_falls_back_to_baseline",
+    "test_malformed_and_no_signal_preserve_baseline",
+    "test_timeout_preserves_baseline",
+    "test_local_generator_consumes_attack_and_non_attack_strategies",
+    "test_laya_strategy_reaches_adaptive_deceiver_candidate"
+  ],
+  "chronology": [
+    "V2 preregistration",
+    "exploratory 120",
+    "manipulation failure discovered",
+    "engineering compliance repair",
+    "V2a freeze",
+    "untouched primary 169 holdout"
+  ],
+  "fresh_holdout_accessed": false,
+  "fresh_holdout_inference_run": false,
+  "fresh_holdout_labels_accessed": false,
+  "implementation_amendment": "laya_decision_v2_implementation_amendment_v2a.json",
+  "inherited_unchanged": {
+    "ab_statistical_design": "inherited from ab_analysis_design_v2.json",
+    "decision_policy_hash": "95b29d203cf2e149ec4d0dc8ff740f4525b245d04ad575de476361e4854ec8e9",
+    "holdout_planned_n": 169,
+    "holdout_selection": "inherited from fresh_holdout_selection_preregistration_v2.json",
+    "metrics": "inherited from metrics_preregistration_v2.json",
+    "stage_mappings": "inherited from decision_policy_preregistration_v2.json",
+    "threshold": 0.5
+  },
+  "manipulation_smoke": "manipulation_smoke_v2a.json",
+  "schema": "ragin.laya_decision_v2.preregistration_freeze.v2a",
+  "source_hashes": {
+    "ragin/cycle/adapters.py": "471cb937ea32b486ee08834b6e00de031ecd48ae8b63b86007365f5a3e2d152f",
+    "ragin/cycle/harness.py": "5b69826788ea979990e568ad76e9683dd284702eaec854c3ed8764d612248868",
+    "ragin/hisoka/deceiver.py": "c5628e80d46d4576124b1608ee925a0f694187f8a365c6712f4555b54e909dd9",
+    "ragin/hisoka/deception.py": "9f753b3c4a571f23ce295c7eb0f26ec73fe702bd307a000d902f6fb65fa70f05"
+  },
+  "version": "LAYA_DECISION_MODEL_V2a"
+}

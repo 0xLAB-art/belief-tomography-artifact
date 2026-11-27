@@ -1,0 +1,140 @@
+--- a/ragin/cycle/adapters.py (Phase 0)
++++ b/ragin/cycle/adapters.py (current)
+@@ -294,7 +294,8 @@
+ 
+ def _extract_evidence(session_context: dict[str, Any]) -> dict[str, Any]:
+     commands: list[str] = []
+-    for inp in session_context.get("attacker_inputs", []):
++    raw_inputs = session_context.get("attacker_inputs")
++    for inp in raw_inputs if isinstance(raw_inputs, list) else []:
+         if isinstance(inp, dict):
+             commands.append(str(inp.get("command", inp.get("input", str(inp)))))
+         else:
+@@ -313,18 +314,34 @@
+     Native:   analyze(classification_result: AnalysisRequest, session_log: list) -> ThreatAnalysis
+     """
+ 
+-    def __init__(self, engine: Any = None, gateway_url: str | None = None, api_key: str | None = None) -> None:
++    def __init__(
++        self,
++        engine: Any = None,
++        gateway_url: str | None = None,
++        api_key: str | None = None,
++        vector_store_path: str | None = None,
++    ) -> None:
+         if engine is None:
+             from ragin.don.rag_engine import ThreatRAGEngine
+ 
+-            engine = ThreatRAGEngine(gateway_url=gateway_url, api_key=api_key)
++            engine = ThreatRAGEngine(
++                gateway_url=gateway_url,
++                api_key=api_key,
++                vector_store_path=vector_store_path,
++            )
+         self._engine = engine
+ 
+     def analyze(self, attacker_input: str, session_context: dict[str, Any]) -> dict[str, Any]:
++        from ragin.cycle.classification import normalize_classification
+         from ragin.decision_fusion_v4.evidence_export import build_evidence_bundle, failure_evidence_bundle
+         from ragin.don.models import AnalysisRequest, ClassificationLabel
+ 
+-        classification_str = session_context.get("classification", {}).get("skill_level", "unknown")
++        # Historical/replayed contexts can carry a non-dict, null, or
++        # out-of-vocabulary classification. Normalize before any attribute
++        # access so a malformed payload yields "no verdict" instead of
++        # raising outside the try block (and never a fabricated skill level).
++        classification = normalize_classification(session_context.get("classification"))
++        classification_str = classification.get("skill_level", "unknown")
+         classification_map = {
+             "novice": ClassificationLabel.BENIGN,
+             "intermediate": ClassificationLabel.SUSPICIOUS,
+@@ -332,13 +349,16 @@
+             "expert": ClassificationLabel.MALICIOUS,
+         }
+         classification_label = classification_map.get(classification_str, ClassificationLabel.SUSPICIOUS)
+-        confidence = session_context.get("classification", {}).get("confidence", 0.5)
++        confidence = float(classification.get("confidence", 0.5))
+ 
+         raw_session_id = session_context.get("session_id", "unknown")
+         # AnalysisRequest.session_id must be alphanumeric (Pydantic validator)
+-        clean_session_id = "".join(c for c in raw_session_id if c.isalnum())[:128]
+-
+-        features = dict(session_context.get("features", {}))
++        clean_session_id = "".join(c for c in str(raw_session_id) if c.isalnum())[:128]
++        if not clean_session_id:
++            clean_session_id = "unknown"
++
++        raw_features = session_context.get("features")
++        features = dict(raw_features) if isinstance(raw_features, dict) else {}
+         if attacker_input:
+             features.setdefault("attacker_input", attacker_input)
+ 
+@@ -349,15 +369,28 @@
+             features=features,
+         )
+ 
++        raw_inputs = session_context.get("attacker_inputs")
++        raw_responses = session_context.get("system_responses")
+         session_log = []
+-        for inp in session_context.get("attacker_inputs", []):
++        for inp in raw_inputs if isinstance(raw_inputs, list) else []:
+             session_log.append({"role": "attacker", "content": inp})
+-        for resp in session_context.get("system_responses", []):
++        for resp in raw_responses if isinstance(raw_responses, list) else []:
+             session_log.append({"role": "system", "content": resp})
+         if attacker_input:
+             session_log.append({"role": "attacker", "content": attacker_input})
+ 
+         evidence = _extract_evidence(session_context)
++        # Downstream evidence export also indexes classification as a mapping;
++        # hand it the normalized dict so a historical string/null payload does
++        # not raise after the analysis already succeeded.
++        safe_evidence_context = {
++            **session_context,
++            "classification": classification,
++            "features": features,
++        }
++        provenance = getattr(self._engine, "retrieval_provenance", None)
++        if isinstance(provenance, dict):
++            safe_evidence_context["retrieval_provenance"] = provenance
+ 
+         try:
+             result = self._engine.analyze(req, session_log)
+@@ -408,7 +441,7 @@
+             # This previously received the Don payload (whose "classification"
+             # is benign/suspicious/malicious), so skill_level always degraded to
+             # "unknown" and the evidence export disagreed with the CTI call.
+-            payload["evidence_bundle"] = build_evidence_bundle(result, session_context, attacker_input)
++            payload["evidence_bundle"] = build_evidence_bundle(result, safe_evidence_context, attacker_input)
+             return payload
+         except Exception as e:
+             logger.warning("Don analyze failed: %s", e)
+@@ -430,7 +463,10 @@
+                 "extracted_techniques": [],
+                 "error": str(e),
+             }
+-            payload["evidence_bundle"] = failure_evidence_bundle({**session_context, "classification": payload}, attacker_input, str(e))
++            failure_context = {**session_context, "classification": payload}
++            if isinstance(provenance, dict):
++                failure_context["retrieval_provenance"] = provenance
++            payload["evidence_bundle"] = failure_evidence_bundle(failure_context, attacker_input, str(e))
+             return payload
+ 
+ 
+@@ -514,10 +550,13 @@
+ 
+     def _fallback(self, attacker_input: str, context: dict[str, Any], reason: str) -> dict[str, Any]:
+         result = self._baseline.generate_response(attacker_input, context)
+-        result.setdefault("metadata", {})
+-        decision = context.get("policy_decision") if isinstance(context.get("policy_decision"), dict) else {}
++        raw_metadata = result.get("metadata")
++        metadata: dict[str, Any] = dict(raw_metadata) if isinstance(raw_metadata, dict) else {}
++        result["metadata"] = metadata
++        raw_decision = context.get("policy_decision")
++        decision: dict[str, Any] = dict(raw_decision) if isinstance(raw_decision, dict) else {}
+         selected = str(decision.get("selected_response_strategy", "baseline"))
+-        result["metadata"].update(
++        metadata.update(
+             {
+                 "generator_version": "V1_SUBSTANTIVE_STRATEGY_GENERATOR",
+                 "runtime_mode": self.runtime_mode,

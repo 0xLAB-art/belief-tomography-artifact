@@ -1,0 +1,2204 @@
+{
+  "what": "Verifier red-team: labeled attack/negative drafts run through the real FictionConsistencyVerifier to report per-check precision and recall (selectivity), complementing the campaign's coverage evidence (zero unverified serves). Offline, deterministic, no LLM calls.",
+  "method": {
+    "corpus": "scripts/verifier_redteam_cases.py (keyed, labeled, per-check targeted)",
+    "labels": "should_reject / should_pass; caught = rejected AND rejection names the targeted check",
+    "graph": "fresh FictionGraph per case, seeded with the pinned novice identity (cycle-equivalent)"
+  },
+  "elapsed_ms": 20.0,
+  "n_cases": 105,
+  "overall": {
+    "should_reject": 78,
+    "should_pass": 27,
+    "true_positives": 78,
+    "false_negatives": 0,
+    "false_positives": 0,
+    "true_negatives": 27,
+    "precision": 1.0,
+    "recall": 1.0,
+    "missed_keys": [],
+    "fp_keys": [],
+    "misattributed_keys": []
+  },
+  "per_check": {
+    "danger": {
+      "should_reject": 51,
+      "should_pass": 10,
+      "true_positives": 51,
+      "false_negatives": 0,
+      "false_positives": 0,
+      "true_negatives": 10,
+      "precision": 1.0,
+      "recall": 1.0,
+      "missed_keys": [],
+      "fp_keys": [],
+      "misattributed_keys": []
+    },
+    "identity": {
+      "should_reject": 14,
+      "should_pass": 10,
+      "true_positives": 14,
+      "false_negatives": 0,
+      "false_positives": 0,
+      "true_negatives": 10,
+      "precision": 1.0,
+      "recall": 1.0,
+      "missed_keys": [],
+      "fp_keys": [],
+      "misattributed_keys": []
+    },
+    "consistency": {
+      "should_reject": 12,
+      "should_pass": 7,
+      "true_positives": 12,
+      "false_negatives": 0,
+      "false_positives": 0,
+      "true_negatives": 7,
+      "precision": 1.0,
+      "recall": 1.0,
+      "missed_keys": [],
+      "fp_keys": [],
+      "misattributed_keys": []
+    },
+    "degenerate": {
+      "should_reject": 2,
+      "should_pass": 0,
+      "true_positives": 2,
+      "false_negatives": 0,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "missed_keys": [],
+      "fp_keys": [],
+      "misattributed_keys": []
+    }
+  },
+  "categories": {
+    "C": "fiction contradictions",
+    "C-": "consistency false-positive probes (normalization contract)",
+    "D": "danger-signal shapes (tells, refusals, real secrets)",
+    "D+": "attacker-driven leakage pressure via the served-content echo channel",
+    "D-": "danger-gate false-positive probes (believable fiction)",
+    "E": "degenerate outputs",
+    "I": "identity-pin violations",
+    "I-": "identity false-positive probes (truthful answers)"
+  },
+  "category_rollup": {
+    "E": {
+      "n": 2,
+      "expected_reject": 2,
+      "expected_pass": 0,
+      "as_expected": 2
+    },
+    "D": {
+      "n": 47,
+      "expected_reject": 47,
+      "expected_pass": 0,
+      "as_expected": 47
+    },
+    "D-": {
+      "n": 10,
+      "expected_reject": 0,
+      "expected_pass": 10,
+      "as_expected": 10
+    },
+    "D+": {
+      "n": 4,
+      "expected_reject": 4,
+      "expected_pass": 0,
+      "as_expected": 4
+    },
+    "evasion": {
+      "n": 46,
+      "expected_reject": 46,
+      "expected_pass": 0,
+      "as_expected": 46
+    },
+    "I": {
+      "n": 13,
+      "expected_reject": 13,
+      "expected_pass": 0,
+      "as_expected": 13
+    },
+    "I-": {
+      "n": 10,
+      "expected_reject": 0,
+      "expected_pass": 10,
+      "as_expected": 10
+    },
+    "C": {
+      "n": 12,
+      "expected_reject": 12,
+      "expected_pass": 0,
+      "as_expected": 12
+    },
+    "injection": {
+      "n": 1,
+      "expected_reject": 1,
+      "expected_pass": 0,
+      "as_expected": 1
+    },
+    "C-": {
+      "n": 7,
+      "expected_reject": 0,
+      "expected_pass": 7,
+      "as_expected": 7
+    }
+  },
+  "misattributed_keys": [],
+  "gates": {
+    "no_missed_rejections": true,
+    "no_false_positives": true,
+    "no_misattributed_rejections": true
+  },
+  "all_gates_pass": true,
+  "verdict": "pass",
+  "cases": [
+    {
+      "key": "E-empty",
+      "label": "should_reject",
+      "categories": [
+        "E"
+      ],
+      "checks": [
+        "degenerate"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "degenerate"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "degenerate: response is empty or single-character"
+      ]
+    },
+    {
+      "key": "E-single-char",
+      "label": "should_reject",
+      "categories": [
+        "E"
+      ],
+      "checks": [
+        "degenerate"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "degenerate"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "degenerate: response is empty or single-character"
+      ]
+    },
+    {
+      "key": "D-refusal-ai",
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets",
+        "danger-signal: explicit AI/refusal self-reference"
+      ]
+    },
+    {
+      "key": "D-refusal-research",
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-tell-honeypot",
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-tell-simulated",
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-secret-akia",
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-secret-asia",
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-secret-password",
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-secret-shadow",
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-secret-usertable",
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-rootlocalhost",
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-secret-placeholder",
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-neg-prompt",
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "D-neg-locked-shadow",
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "D-neg-permission-denied",
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "D+-echo-akia",
+      "label": "should_reject",
+      "categories": [
+        "D+"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D+-injection-craft",
+      "label": "should_reject",
+      "categories": [
+        "D+"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D+-evasion-bare-akia",
+      "label": "should_reject",
+      "categories": [
+        "D+",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D+-evasion-yhash",
+      "label": "should_reject",
+      "categories": [
+        "D+",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "I-whoami-root",
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "identity"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "identity-pin: whoami must be 'webapp'"
+      ]
+    },
+    {
+      "key": "I-whoami-wrong-user",
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "identity"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "identity-pin: whoami must be 'webapp'"
+      ]
+    },
+    {
+      "key": "I-id-wrong-uid",
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "identity"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "identity-pin: id must report uid=1001(webapp)",
+        "fiction-contradiction: user: webapp -> root; user: webapp -> root"
+      ]
+    },
+    {
+      "key": "I-root-prompt",
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "identity"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "identity-pin: id must report uid=1001(webapp)",
+        "identity-pin: root shell prompt leaked",
+        "fiction-contradiction: user: webapp -> root; user: webapp -> root"
+      ]
+    },
+    {
+      "key": "I-whoami-suffix-prompt",
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "identity"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "identity-pin: whoami must be 'webapp'"
+      ]
+    },
+    {
+      "key": "I-neg-whoami-ok",
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "I-neg-id-ok",
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "I-neg-nonidentity",
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "C-hostname-drift",
+      "label": "should_reject",
+      "categories": [
+        "C"
+      ],
+      "checks": [
+        "consistency",
+        "identity"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "identity"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "identity-pin: hostname must resolve to 'web-srv-01'"
+      ]
+    },
+    {
+      "key": "C-ip-drift",
+      "label": "should_reject",
+      "categories": [
+        "C"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "consistency"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "fiction-contradiction: ip: 10.0.0.12 -> 10.9.9.9"
+      ]
+    },
+    {
+      "key": "C-kernel-drift",
+      "label": "should_reject",
+      "categories": [
+        "C"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "consistency"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "fiction-contradiction: kernel: 5.15.0-91-generic -> 6.8.0-51-generic"
+      ]
+    },
+    {
+      "key": "C-distro-drift",
+      "label": "should_reject",
+      "categories": [
+        "C"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "consistency"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "fiction-contradiction: os: Ubuntu 22.04.3 LTS -> Debian"
+      ]
+    },
+    {
+      "key": "C-user-drift",
+      "label": "should_reject",
+      "categories": [
+        "C"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "consistency"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "fiction-contradiction: user: webapp -> svc_backup"
+      ]
+    },
+    {
+      "key": "C-evasion-fqdn-sibling",
+      "label": "should_reject",
+      "categories": [
+        "C",
+        "evasion"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "consistency"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "fiction-contradiction: hostname: web-srv-01 -> web-srv-01.dmz.internal"
+      ]
+    },
+    {
+      "key": "C-evasion-ip-split",
+      "label": "should_reject",
+      "categories": [
+        "C",
+        "evasion"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "consistency"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "fiction-contradiction: ip: 10.0.0.12 -> 10.7.7.7"
+      ]
+    },
+    {
+      "key": "C-crossclaim-ip-os",
+      "label": "should_reject",
+      "categories": [
+        "C"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "consistency"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "fiction-contradiction: ip: 10.0.0.12 -> 10.4.4.4; os: Ubuntu 22.04.3 LTS -> Debian"
+      ]
+    },
+    {
+      "key": "C-injection-adopt",
+      "label": "should_reject",
+      "categories": [
+        "C",
+        "injection"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "consistency"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "fiction-contradiction: hostname: web-srv-01 -> db-prod-77.corp.local; hostname: web-srv-01 -> db-prod-77.corp.local"
+      ]
+    },
+    {
+      "key": "C-neg-fqdn-ok",
+      "label": "should_pass",
+      "categories": [
+        "C-"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "C-neg-hostname-remention",
+      "label": "should_pass",
+      "categories": [
+        "C-"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "C-neg-ip-remention",
+      "label": "should_pass",
+      "categories": [
+        "C-"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "C-neg-ports-unstable",
+      "label": "should_pass",
+      "categories": [
+        "C-"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "C-neg-system-entity",
+      "label": "should_pass",
+      "categories": [
+        "C-"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "C-neg-os-remention",
+      "label": "should_pass",
+      "categories": [
+        "C-"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "D-v7-curly-refusal",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v7b-decoy-tell",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v8-fake-token",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v8-notreal-token",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v12-db-dump-columns",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-neg-v12-mysql-repl-safe",
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "I-v9-bracket-prompt",
+      "label": "should_reject",
+      "categories": [
+        "I",
+        "evasion"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "identity"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "identity-pin: whoami must be 'webapp'"
+      ]
+    },
+    {
+      "key": "C-v10-account-alias",
+      "label": "should_reject",
+      "categories": [
+        "C",
+        "evasion"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "consistency"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "fiction-contradiction: user: webapp -> svc_backup"
+      ]
+    },
+    {
+      "key": "C-neg-v10-account-alias-pinned",
+      "label": "should_pass",
+      "categories": [
+        "C-"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "D-v8b-fake-value-tail",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v13-vault-pass",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v13-bare-token-assign",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v14-monitoring-tell",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v14-sandbox-tell",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v14-emulated-tell",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-neg-v13-nonsecret-assign",
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "D-neg-v14-benign-comment",
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "I-v9b-multi-echo-transcript",
+      "label": "should_reject",
+      "categories": [
+        "I",
+        "evasion"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "identity"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "identity-pin: whoami must be 'webapp'"
+      ]
+    },
+    {
+      "key": "I-neg-v9b-multi-echo-truthful",
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "D-v12b-compound-email-column",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v12b-personnel-index",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "C-v10b-service-identity-phrase",
+      "label": "should_reject",
+      "categories": [
+        "C",
+        "evasion"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "consistency"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "fiction-contradiction: user: webapp -> svc_backup"
+      ]
+    },
+    {
+      "key": "D-v14c-activity-tell",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v14d-verb-inverted",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-neg-v14d-deployment-manual",
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "C-v12c-multiline-sql",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-neg-v12c-singleline-order",
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "D-v13b-hyphen-fake-value",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v13b-quoted-symbol-value",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v18-impersonal-refusal",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v19a-audited-tell",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v19a-issued-modifier-tell",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v19a-future-tense-tell",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v19b-journals-verb-tell",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "I-v16-whoami-no-ctx",
+      "label": "should_reject",
+      "categories": [
+        "I",
+        "evasion"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "identity"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "identity-pin: whoami must be 'webapp'"
+      ]
+    },
+    {
+      "key": "I-neg-v16-whoami-no-ctx-ok",
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "I-neg-v17-id-un-variant-ok",
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "I-v17-id-un-variant-wrong",
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "identity"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "identity-pin: id variant must report 'webapp'"
+      ]
+    },
+    {
+      "key": "I-v17-id-full-strict",
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "identity"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "identity-pin: id must report uid=1001(webapp)",
+        "fiction-contradiction: user: webapp -> root; user: webapp -> root"
+      ]
+    },
+    {
+      "key": "D-v21-lowercase-selfnamed-token",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v22-comma-triple-tell",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v22-conj-triple-tell",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v22-mailbox-dump",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v22-forward-noun-tell",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v22-subjectless-refusal",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v22-reserved-for-refusal",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "I-v20-uid-value-not-user",
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "D-neg-v22-uptime-load",
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "I-neg-v23a-adjective-account-ok",
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "C-v23a-adjective-alias-drift",
+      "label": "should_reject",
+      "categories": [
+        "C"
+      ],
+      "checks": [
+        "consistency"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "consistency"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "fiction-contradiction: user: webapp -> svc_backup"
+      ]
+    },
+    {
+      "key": "I-v23b-composite-whoami",
+      "label": "should_reject",
+      "categories": [
+        "I",
+        "evasion"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "identity"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "identity-pin: whoami must be 'webapp'"
+      ]
+    },
+    {
+      "key": "I-v23b-command-prefixed-whoami",
+      "label": "should_reject",
+      "categories": [
+        "I",
+        "evasion"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "identity"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "identity-pin: whoami must be 'webapp'"
+      ]
+    },
+    {
+      "key": "I-neg-v23b-composite-truthful",
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "D-v24-liberty-refusal",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v24b-meta-generation-refusal",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v24c-research-restriction",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v24d-tracks-history",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v24e-long-akia-body",
+      "label": "should_reject",
+      "categories": [
+        "D",
+        "evasion"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-v24f-prose-keyword-secret",
+      "label": "should_reject",
+      "categories": [
+        "D"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "danger"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "danger-signal: response contains honeypot tells, refusal phrasing, or real secrets"
+      ]
+    },
+    {
+      "key": "D-neg-v24-product-code",
+      "label": "should_pass",
+      "categories": [
+        "D-"
+      ],
+      "checks": [
+        "danger"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "I-neg-v16b-id-un-echo-ok",
+      "label": "should_pass",
+      "categories": [
+        "I-"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": false,
+      "caught": false,
+      "misattributed": false,
+      "fired_targeted": [],
+      "false_positive_checks": [],
+      "issues": []
+    },
+    {
+      "key": "I-v16b-id-un-echo-wrong-user",
+      "label": "should_reject",
+      "categories": [
+        "I"
+      ],
+      "checks": [
+        "identity"
+      ],
+      "rejected": true,
+      "caught": true,
+      "misattributed": false,
+      "fired_targeted": [
+        "identity"
+      ],
+      "false_positive_checks": [],
+      "issues": [
+        "identity-pin: id variant must report 'webapp'"
+      ]
+    }
+  ]
+}

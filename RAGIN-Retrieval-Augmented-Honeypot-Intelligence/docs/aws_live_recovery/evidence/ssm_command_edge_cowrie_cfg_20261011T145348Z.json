@@ -1,0 +1,46 @@
+{
+    "Command": {
+        "CommandId": "6c0e4423-64a3-4cc9-9f8e-7d3b031ce5d0",
+        "DocumentName": "AWS-RunShellScript",
+        "DocumentVersion": "$DEFAULT",
+        "Comment": "RAGIN EDGE cowrie config and home tree",
+        "ExpiresAfter": "2026-10-11T18:54:49.812000+03:00",
+        "Parameters": {
+            "commands": [
+                "set -euo pipefail\necho RUN\ndate -u\necho COWRIE_CFG\nif [ -f /etc/ragin/cowrie.cfg ]; then\n  echo FILE=/etc/ragin/cowrie.cfg\n  echo SIZE_BYTES=$(stat -c %s /etc/ragin/cowrie.cfg 2>/dev/null || echo stat_failed)\n  echo LINE_COUNT=$(wc -l < /etc/ragin/cowrie.cfg 2>/dev/null || echo wc_failed)\n  echo SECTION_HEADERS=$(grep -nE '^\\s*\\[|\\s*enabled\\s*=\\s*true' /etc/ragin/cowrie.cfg 2>/dev/null | head -n 80 || echo grep_failed)\nelse\n  echo FILE_MISSING=/etc/ragin/cowrie.cfg\nfi\necho COWRIE_HOME_TREE\nif [ -d /cowrie ]; then\n  echo COWRIE_HOME=/cowrie\n  find /cowrie -maxdepth 3 -type f 2>/dev/null | sort | head -n 120\nelse\n  echo COWRIE_HOME_MISSING=/cowrie\nfi\necho COWRIE_PID_or_SOCK_check\nif [ -f /cowrie/cowrie.pid ]; then echo PID_FILE=/cowrie/cowrie.pid; else echo PID_MISSING; fi\necho DONE"
+            ]
+        },
+        "InstanceIds": [
+            "i-05bc6aab0bd4260a7"
+        ],
+        "Targets": [],
+        "RequestedDateTime": "2026-10-11T17:53:49.812000+03:00",
+        "Status": "Pending",
+        "StatusDetails": "Pending",
+        "OutputS3Region": "eu-north-1",
+        "OutputS3BucketName": "",
+        "OutputS3KeyPrefix": "",
+        "MaxConcurrency": "1",
+        "MaxErrors": "1",
+        "TargetCount": 1,
+        "CompletedCount": 0,
+        "ErrorCount": 0,
+        "DeliveryTimedOutCount": 0,
+        "ServiceRole": "",
+        "NotificationConfig": {
+            "NotificationArn": "",
+            "NotificationEvents": [],
+            "NotificationType": ""
+        },
+        "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "",
+            "CloudWatchOutputEnabled": false
+        },
+        "TimeoutSeconds": 60,
+        "AlarmConfiguration": {
+            "IgnorePollAlarmFailure": false,
+            "Alarms": []
+        },
+        "TriggeredAlarms": []
+    }
+}

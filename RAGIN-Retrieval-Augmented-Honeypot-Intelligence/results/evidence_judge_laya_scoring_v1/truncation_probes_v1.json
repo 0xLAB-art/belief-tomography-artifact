@@ -1,0 +1,52 @@
+{
+  "construction": "First blank-line paragraph of a direct_relevant fixture document plus a truncation marker; never scored against fixture oracles, only against the frozen expected UNKNOWN.",
+  "probes": [
+    {
+      "case": {
+        "case_id": "truncation-direct-001",
+        "claimed_behavior": "observed_command_behavior",
+        "command": "uname -a",
+        "preceding_commands": [],
+        "retrieved_candidates": [
+          {
+            "content": "# System Information Discovery (T1082)\n\n[content truncated]",
+            "doc_id": "DONV2-T1082",
+            "provenance_status": "VALID",
+            "source": "https://attack.mitre.org/techniques/T1082",
+            "source_version": "local-mitre-corpus-2026-10-14",
+            "title": "MITRE Technique: System Information Discovery (T1082)"
+          }
+        ]
+      },
+      "expected_candidate_labels": {
+        "DONV2-T1082": "UNKNOWN"
+      },
+      "probe_id": "truncation-direct-001",
+      "source_case_id": "direct-001"
+    },
+    {
+      "case": {
+        "case_id": "truncation-direct-002",
+        "claimed_behavior": "observed_command_behavior",
+        "command": "hostname",
+        "preceding_commands": [],
+        "retrieved_candidates": [
+          {
+            "content": "# System Information Discovery (T1082)\n\n[content truncated]",
+            "doc_id": "DONV2-T1082",
+            "provenance_status": "VALID",
+            "source": "https://attack.mitre.org/techniques/T1082",
+            "source_version": "local-mitre-corpus-2026-10-14",
+            "title": "MITRE Technique: System Information Discovery (T1082)"
+          }
+        ]
+      },
+      "expected_candidate_labels": {
+        "DONV2-T1082": "UNKNOWN"
+      },
+      "probe_id": "truncation-direct-002",
+      "source_case_id": "direct-002"
+    }
+  ],
+  "schema": "ragin.laya_scorer_truncation_probes.v1"
+}

@@ -1,0 +1,82 @@
+{
+  "foil": "HardenedDummy",
+  "seed": 31337,
+  "eps_grid": [
+    0.25,
+    0.5,
+    1.0,
+    2.0,
+    4.0,
+    8.0
+  ],
+  "n_mc": 2000,
+  "mc_seed": 90210,
+  "tau_tolerance": 0.02,
+  "true_profile": {
+    "authority_forgery": 0.3333,
+    "state_deception": 0.6667,
+    "goal_subversion": 0.6667,
+    "epistemic_echo": 0.6667,
+    "exfiltration_lure": 0.6667
+  },
+  "curve": {
+    "0.25": {
+      "attacker_advantage": 0.0068,
+      "kendall_tau": 0.04,
+      "top1_recovery": 0.199,
+      "adv_se": 0.0131
+    },
+    "0.5": {
+      "attacker_advantage": 0.0098,
+      "kendall_tau": 0.0548,
+      "top1_recovery": 0.2105,
+      "adv_se": 0.0131
+    },
+    "1.0": {
+      "attacker_advantage": 0.021,
+      "kendall_tau": 0.1343,
+      "top1_recovery": 0.2285,
+      "adv_se": 0.0131
+    },
+    "2.0": {
+      "attacker_advantage": 0.0315,
+      "kendall_tau": 0.2141,
+      "top1_recovery": 0.2145,
+      "adv_se": 0.0131
+    },
+    "4.0": {
+      "attacker_advantage": 0.0477,
+      "kendall_tau": 0.3525,
+      "top1_recovery": 0.2405,
+      "adv_se": 0.0131
+    },
+    "8.0": {
+      "attacker_advantage": 0.0628,
+      "kendall_tau": 0.5375,
+      "top1_recovery": 0.243,
+      "adv_se": 0.0131
+    }
+  },
+  "corners": {
+    "full_release": {
+      "attacker_advantage": 0.0667,
+      "kendall_tau": 1.0,
+      "top1_recovery": 0.2485,
+      "adv_se": 0.0131
+    },
+    "scalar_Umax": {
+      "attacker_advantage": 0.0,
+      "kendall_tau": 0.0,
+      "top1_recovery": 0.2,
+      "note": "no ranking released (E14: attacker reverts to uniform)"
+    }
+  },
+  "verdict": {
+    "advantage_monotone_in_eps": true,
+    "utility_monotone_in_eps": true,
+    "dominates_scalar": [],
+    "dominates_full": [],
+    "corners_on_frontier_no_free_lunch": true,
+    "E20_outcome": "corners on frontier: no free lunch \u2014 the scalar Umax is optimal against the argmax attacker, and the noised family traces the trade-off curve between the corners"
+  }
+}

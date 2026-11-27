@@ -1,0 +1,272 @@
+{
+  "actual_execution": {
+    "chrollo": {
+      "basis": "DeceptionGraph.classify_node called ChrolloAdapter; compact raw records omit classification payload.",
+      "per_record_direct_trace": "NOT_VERIFIABLE",
+      "status": "EXECUTED_BY_RUNNER_PATH"
+    },
+    "deterministic_policy": {
+      "policy_engine_ids": [
+        "deterministic_policy_v1"
+      ],
+      "records": 240,
+      "status": "EXECUTED"
+    },
+    "don_retrieval": {
+      "basis": "DonAdapter and offline BM25 ThreatRAGEngine produced evidence hashes, document IDs, and V4 gate inputs; full retrieval trace was not retained.",
+      "per_record_direct_trace": "PARTIALLY_VERIFIABLE",
+      "status": "EXECUTED_BY_RUNNER_PATH"
+    },
+    "evidence_quality_gate": {
+      "baseline_gate_state": "NOT_APPLICABLE_BASELINE",
+      "baseline_records": 240,
+      "status": "EXECUTED",
+      "v4_records": 480,
+      "valid_evidence": 480
+    },
+    "hitl": {
+      "approval_records": 720,
+      "human_interrupts": 0,
+      "status": "AUTO_APPROVAL_ONLY"
+    },
+    "logistic_policy": {
+      "policy_engine_ids": [
+        "logistic_policy_v4"
+      ],
+      "records": 240,
+      "status": "EXECUTED"
+    },
+    "response_generator": {
+      "external_generation_calls": 0,
+      "records": 720,
+      "serve_path": "TEMPLATE_FALLBACK_VERIFIED",
+      "status": "EXECUTED"
+    },
+    "verifier": {
+      "records": 720,
+      "status": "EXECUTED",
+      "verifier_names": [
+        "FictionConsistencyVerifier"
+      ]
+    }
+  },
+  "claims_boundary": {
+    "established": [
+      "Matched raw execution completed for 240 cases and three arms",
+      "V4 gate and policy code paths emitted the recorded decisions",
+      "local deterministic template responses were verifier-accepted",
+      "V4 strategy selections differed while response bytes remained equal across arms"
+    ],
+    "locked_effectiveness_analysis_created": false,
+    "not_established": [
+      "No policy effectiveness, superiority, strategy quality, deception quality, attacker engagement, or security improvement",
+      "No blinded-reference gate validity or strategy compatibility",
+      "No native-session independence",
+      "No benign-administration classification validity"
+    ],
+    "reference_labels_created": false
+  },
+  "classifications": [
+    "EXECUTION_COMPLETED",
+    "REFERENCE_FREE_ANALYSIS_COMPLETED",
+    "PRIMARY_POLICY_EFFECTIVENESS_NOT_EVALUATED"
+  ],
+  "dataset_diversity": {
+    "cases_in_exact_duplicate_families": 187,
+    "exact_duplicate_families": 6,
+    "largest_repeated_family_size": 153,
+    "limitations": [
+      "session_id is an anonymized source-IP-group identifier, not a native SSH session",
+      "repeated source-group command families create dependence/clustering",
+      "attack-only retrospective corpus does not establish benign coverage or attacker engagement"
+    ],
+    "normalization": "lowercase, trim, collapse whitespace per command, preserve command order",
+    "normalized_duplicate_families": 6,
+    "source_ip_groups": 240,
+    "unique_exact_command_sequence_families": 59,
+    "unique_normalized_command_sequence_families": 59
+  },
+  "frozen_inputs": {
+    "expected_holdout_sha256": "ee47336121f45a50259ac54bce84ea59ebb2ecdb5cd0b6f507690a7f346d435e",
+    "expected_raw_freeze_sha256": "1a634f471741d67f7d5c53e5454f0114ff91ff37d7a8b9cfe602f1c58e19fe59",
+    "expected_raw_jsonl_sha256": "9ce230723661eac84c4b30fdd98970374a815b8fe8762fe180ba8bc1db687afd",
+    "holdout_path": "results/decision_fusion_v4/v4_hf2024_retrospective_holdout_freeze_v1a.json",
+    "holdout_sha256": "ee47336121f45a50259ac54bce84ea59ebb2ecdb5cd0b6f507690a7f346d435e",
+    "raw_freeze_path": "results/decision_fusion_v4/v4_hf2024_retrospective_raw_execution_freeze_v1a.json",
+    "raw_freeze_sha256": "1a634f471741d67f7d5c53e5454f0114ff91ff37d7a8b9cfe602f1c58e19fe59",
+    "raw_jsonl_path": "results/decision_fusion_v4/v4_hf2024_retrospective_raw_arm_outputs_v1a.jsonl",
+    "raw_jsonl_sha256": "9ce230723661eac84c4b30fdd98970374a815b8fe8762fe180ba8bc1db687afd"
+  },
+  "gate_and_policy": {
+    "deterministic_strategy_distribution": {
+      "baseline": 27,
+      "low_intensity_administration": 213
+    },
+    "evidence_reference_availability": {
+      "baseline": 0,
+      "deterministic": 240,
+      "logistic": 240,
+      "v4_references_subset_of_valid_doc_ids": true
+    },
+    "gate_state_distribution": {
+      "NOT_APPLICABLE_BASELINE": 240,
+      "VALID_EVIDENCE": 480
+    },
+    "logistic_strategy_distribution": {
+      "maximize_recon_surface": 240
+    },
+    "policy_fallback_reasons": {
+      "null": 480
+    },
+    "strategy_agreement": {
+      "baseline_vs_deterministic": {
+        "N": 240,
+        "equal": 27,
+        "rate": 0.1125
+      },
+      "baseline_vs_logistic": {
+        "N": 240,
+        "equal": 0,
+        "rate": 0.0
+      },
+      "deterministic_vs_logistic": {
+        "N": 240,
+        "equal": 0,
+        "rate": 0.0
+      }
+    },
+    "template_fallback_count": 720,
+    "template_fallback_reasons": {
+      "local_gateway_disabled_deterministic_template": 720
+    }
+  },
+  "integrity": {
+    "duplicate_case_arm_records": 0,
+    "holdout_cases": 240,
+    "input_sha256_alignment": true,
+    "matched_case_ids_across_all_arms": true,
+    "raw_freeze_consistent": true,
+    "raw_hashes_present": true,
+    "raw_output_immutable_at_analysis": true,
+    "raw_records": 720,
+    "source_group_alignment": true,
+    "unique_case_ids": 240
+  },
+  "latency": {
+    "RAGIN_BASELINE": {
+      "max_ms": 335.3,
+      "mean_ms": 99.594,
+      "median_ms": 96.935,
+      "min_ms": 82.452,
+      "p90_ms": 110.076,
+      "p95_ms": 113.954
+    },
+    "RAGIN_V4_DETERMINISTIC": {
+      "max_ms": 340.405,
+      "mean_ms": 100.692,
+      "median_ms": 98.756,
+      "min_ms": 83.341,
+      "p90_ms": 110.582,
+      "p95_ms": 117.568
+    },
+    "RAGIN_V4_LOGISTIC": {
+      "max_ms": 323.721,
+      "mean_ms": 101.844,
+      "median_ms": 99.363,
+      "min_ms": 82.389,
+      "p90_ms": 113.027,
+      "p95_ms": 116.105
+    }
+  },
+  "matched_response_comparison": {
+    "baseline_vs_deterministic": {
+      "N": 240,
+      "latency_delta_right_minus_left_ms": {
+        "max_ms": 232.359,
+        "mean_ms": 1.098,
+        "median_ms": 1.853,
+        "min_ms": -229.575,
+        "p90_ms": 14.119,
+        "p95_ms": 20.378
+      },
+      "response_hash_different": 0,
+      "response_hash_equal": 240,
+      "selected_strategy_different": 213,
+      "selected_strategy_equal": 27,
+      "serve_path_different": 0,
+      "serve_path_equal": 240,
+      "verification_different": 0,
+      "verification_equal": 240
+    },
+    "baseline_vs_logistic": {
+      "N": 240,
+      "latency_delta_right_minus_left_ms": {
+        "max_ms": 225.366,
+        "mean_ms": 2.25,
+        "median_ms": 1.618,
+        "min_ms": -204.511,
+        "p90_ms": 15.523,
+        "p95_ms": 20.314
+      },
+      "response_hash_different": 0,
+      "response_hash_equal": 240,
+      "selected_strategy_different": 240,
+      "selected_strategy_equal": 0,
+      "serve_path_different": 0,
+      "serve_path_equal": 240,
+      "verification_different": 0,
+      "verification_equal": 240
+    },
+    "deterministic_vs_logistic": {
+      "N": 240,
+      "latency_delta_right_minus_left_ms": {
+        "max_ms": 238.138,
+        "mean_ms": 1.152,
+        "median_ms": 0.771,
+        "min_ms": -232.533,
+        "p90_ms": 15.206,
+        "p95_ms": 19.035
+      },
+      "response_hash_different": 0,
+      "response_hash_equal": 240,
+      "selected_strategy_different": 240,
+      "selected_strategy_equal": 0,
+      "serve_path_different": 0,
+      "serve_path_equal": 240,
+      "verification_different": 0,
+      "verification_equal": 240
+    },
+    "interpretation": "Response equality/difference is a behavioral observation, not an improvement or effectiveness measure."
+  },
+  "safety_and_workflow": {
+    "accepted_only_commit_violations": "NOT_VERIFIABLE_FROM_COMPACT_RECORDS; code finalization commits only after verification passed",
+    "attacker_commands_executed": 0,
+    "auto_approval_records": 720,
+    "fallback_records": 720,
+    "hitl_human_invocations": 0,
+    "policy_to_verifier_bypass": "NOT_VERIFIABLE_FROM_COMPACT_RECORDS; no bypass evidence observed",
+    "skipped_or_short_circuited": [
+      "No human interrupt occurred because human_in_the_loop was false and approvals resolved automatically",
+      "Full retrieval trace and commit event trace were not retained in compact raw records"
+    ],
+    "verifier_failed": 0,
+    "verifier_passed": 720,
+    "verifier_type": "FictionConsistencyVerifier; deterministic=true"
+  },
+  "schema": "ragin.v4.hf2024.reference_free_execution_analysis.v1",
+  "status": "REFERENCE_FREE_ANALYSIS_COMPLETED",
+  "template_fallback_audit": {
+    "classification": "A_IGNORES_SELECTED_V4_STRATEGIES_IN_FROZEN_LOCAL_TEMPLATE_PATH",
+    "evidence": {
+      "all_720_response_hashes_equal_within_each_matched_case": true,
+      "all_720_serve_paths": "TEMPLATE_FALLBACK_VERIFIED",
+      "code_path": "DeceptionGraph.plan_node -> strategy_block; DeceptionGraph.generate_node -> HisokaAdapter -> AdaptiveDeceiver.generate_response; V4 policy is in session_context['policy_decision'], but AdaptiveDeceiver derives response_strategy only from _jev_signal_from_context, so the V4 strategy is not passed to ResponseGenerator.generate(response_strategy=...).",
+      "response_strategy_suffix_location": "ragin/hisoka/deception.py:_strategy_transcript_suffix, reachable from Jev/Laya strategy only, not V4 policy_decision.",
+      "v4_strategy_consumed_by_response": false,
+      "v4_strategy_reached_generator_field": {
+        "deterministic": 240,
+        "logistic": 240
+      }
+    }
+  }
+}

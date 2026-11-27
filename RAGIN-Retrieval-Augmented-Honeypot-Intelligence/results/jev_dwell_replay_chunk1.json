@@ -1,0 +1,86 @@
+{
+ "generated_at": "2026-09-20T18:18:41Z",
+ "method": "closed-loop replay: attacker-LLM (deepseek-v4.1-flash-free) follows real Cowrie playbooks; Hisoka template responses; treated condition adds recorded Jev kind assessments",
+ "max_turns": 12,
+ "totals": {
+  "families": 7,
+  "baseline_turns": 31,
+  "treated_turns": 29,
+  "baseline_bait": 1,
+  "treated_bait": 1
+ },
+ "per_family": [
+  {
+   "family": "enumeration_bot",
+   "condition": "baseline",
+   "turns": 9,
+   "left_early": true,
+   "leave_reason": "responses look fake/inconsistent \u2014 /tmp and /var/tmp identical, stat missing, likely emulated trap",
+   "bait_markers_shown": 1,
+   "final_command": "stat -c '%i %n' /tmp/main.py /var/tmp/main.py"
+  },
+  {
+   "family": "enumeration_bot",
+   "condition": "treated",
+   "turns": 8,
+   "left_early": true,
+   "leave_reason": "LEAVE",
+   "bait_markers_shown": 1,
+   "final_command": "cat /tmp/app.config"
+  },
+  {
+   "family": "shadow_read",
+   "condition": "baseline",
+   "turns": 5,
+   "left_early": true,
+   "leave_reason": "canned/inconsistent responses \u2014 find returns an ls-style listing and /var/tmp shows the same app files owned by webapp, indicating a fake shell with scripted output; not",
+   "bait_markers_shown": 0,
+   "final_command": "ls -la /var/tmp"
+  },
+  {
+   "family": "shadow_read",
+   "condition": "treated",
+   "turns": 4,
+   "left_early": true,
+   "leave_reason": "inconsistent filesystem responses and suspiciously clean /var/tmp",
+   "bait_markers_shown": 0,
+   "final_command": "ls -la /var/tmp"
+  },
+  {
+   "family": "nmap_recon",
+   "condition": "baseline",
+   "turns": 9,
+   "left_early": true,
+   "leave_reason": "repeated identical /var/tmp listings across four attempts and an empty nmap scan indicate canned/evasive responses \u2014 likely a tarpit, not a real foothold worth more time.",
+   "bait_markers_shown": 0,
+   "final_command": "ls -la /var/tmp"
+  },
+  {
+   "family": "nmap_recon",
+   "condition": "treated",
+   "turns": 10,
+   "left_early": true,
+   "leave_reason": "readable 705-byte app.config returns empty on cat \u2014 inconsistent/faked responses, not worth more time.",
+   "bait_markers_shown": 0,
+   "final_command": "ls -la /var/tmp"
+  },
+  {
+   "family": "cloud_metadata_ssrf",
+   "condition": "baseline",
+   "turns": 8,
+   "left_early": true,
+   "leave_reason": "non-empty files (705/1881/296 bytes) returned zero output on cat and directory listings repeat verbatim \u2014 inconsistent, likely a fake/tarpit box, not worth more time.",
+   "bait_markers_shown": 0,
+   "final_command": "cat /var/tmp/app.config /var/tmp/main.py /var/tmp/server.log"
+  },
+  {
+   "family": "cloud_metadata_ssrf",
+   "condition": "treated",
+   "turns": 7,
+   "left_early": true,
+   "leave_reason": "files listed as readable but cat returns nothing twice \u2014 responses inconsistent, likely a fake/trap box",
+   "bait_markers_shown": 0,
+   "final_command": "ls -la /var/tmp"
+  }
+ ]
+}

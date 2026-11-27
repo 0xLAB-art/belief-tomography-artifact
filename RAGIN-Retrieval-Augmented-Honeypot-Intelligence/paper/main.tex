@@ -1,0 +1,89 @@
+\documentclass[conference,compsoc]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric,patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\lstdefinestyle{code}{basicstyle=\ttfamily\scriptsize,breaklines=true,frame=single,framerule=0pt,rulecolor=\color{black!30},columns=fullflexible,keepspaces=true,aboveskip=4pt,belowskip=4pt}
+\lstset{style=code}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\newtheorem{property}{Property}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\usepackage{enumitem}
+\usepackage{xspace}
+\setlist{itemsep=2pt,topsep=3pt}
+
+\graphicspath{{../figures/}}
+
+\newcommand{\system}{RAGIN\xspace}
+\newcommand{\RAGIN}{RAGIN\xspace}
+\newcommand{\attck}{ATT\&CK\xspace}
+\newcommand{\eg}{e.g.,\xspace}
+\newcommand{\ie}{i.e.,\xspace}
+\newcommand{\etal}{et al.\xspace}
+
+\begin{document}
+
+\title{The Intelligence Ladder: Pricing AI Capabilities in a Verified-Serving Deception Honeypot}
+
+\author{Anonymous Submission}
+
+\maketitle
+
+\begin{abstract}
+Every deception endpoint faces the same budgeting question: how much
+intelligence can it spend on crafting a lie before the intelligence itself
+becomes the risk? We study that question with RAGIN, a verified deception
+loop in which retrieval-grounded generation proposes a response, a fiction
+graph and deterministic checks decide whether it may be served, and vetted
+content is the fail-safe. A paired 90-scenario ablation finds that grounding
+improves the overall analysis-channel composite by $+0.154$ (95\% CI
+$[+0.092,+0.221]$), including $+0.317$ technique and $+0.140$ actor
+attribution, while persona realism is unchanged. The full 218-query campaign
+records 132 TTP detections spanning 67 unique techniques. Under the same
+model and served-text scorer, grounding adds $+0.116$ composite over a bare
+LLM; the verifier preserves that quality at parity while serving no
+unverified response. The serving workload records zero contradictions over
+45 targeted re-queries and zero failed-verification serves. A separate
+105-case deterministic suite is perfect, while a cross-family authored-draft
+stress test reports precision $0.916$--$1.000$ and recall $0.898$--$0.983$;
+the latter bounds, rather than hides, model-dependent misses. Two independent
+campaigns differ by only $+0.005$ composite with $0.991$ per-row agreement.
+The result is a security boundary around generative deception: grounding buys
+intelligence, verification buys safe serving, and the deterministic floor
+absorbs provider failure.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Cyber deception, honeypots, retrieval-augmented generation, large language
+models, MITRE \attck, threat intelligence.
+\end{IEEEkeywords}
+
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/design}
+\input{sections/formal}
+\input{sections/implementation}
+\input{sections/evaluation}
+\input{sections/discussion}
+\input{sections/related}
+\input{sections/conclusion}
+
+\input{references}
+
+\input{sections/appendix}
+
+\end{document}

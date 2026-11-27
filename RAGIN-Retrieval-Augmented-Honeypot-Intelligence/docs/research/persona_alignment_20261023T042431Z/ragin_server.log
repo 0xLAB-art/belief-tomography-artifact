@@ -1,0 +1,14 @@
+2026-10-23 07:24:33,240 ragin.server_v2 INFO Inference endpoint resolved: url=http://127.0.0.1:9 (source=GATEWAY_URL) auth=MISSING (source=unconfigured)
+2026-10-23 07:24:34,261 ragin.chrollo.classifier INFO Model loaded from models/chrollo/rf_classifier.joblib (42 features)
+2026-10-23 07:24:34,261 ragin.don.rag_engine INFO ThreatRAGEngine retrieval disabled (RAGIN_RAG_MODE=none)
+2026-10-23 07:24:34,261 ragin.don.rag_engine INFO ThreatRAGEngine initialised (gateway=http://127.0.0.1:9)
+2026-10-23 07:24:34,266 ragin.server_v2 INFO Pipeline initialized: Chrollo → Don → Evidence Gate → Policy → Hisoka (RAGIN_V4_SUBSTANTIVE_DETERMINISTIC, arm=RAGIN_V4_DETERMINISTIC, verification=mandatory, provider=http://127.0.0.1:9 auth=MISSING)
+2026-10-23 07:24:34,266 ragin.server_v2 INFO Starting RAGIN v2 server (mode=pipeline) on 127.0.0.1:50673
+======== Running on http://127.0.0.1:50673 ========
+(Press CTRL+C to quit)
+2026-10-23 07:24:34,453 aiohttp.access INFO 127.0.0.1 [23/Oct/2026:07:24:34 +0300] "GET /health HTTP/1.1" 200 636 "-" "curl/8.5.0"
+2026-10-23 07:24:35,233 aiohttp.access INFO 127.0.0.1 [23/Oct/2026:07:24:35 +0300] "POST /v1/chat/completions HTTP/1.1" 401 194 "-" "-"
+2026-10-23 07:24:39,177 aiohttp.access INFO 127.0.0.1 [23/Oct/2026:07:24:39 +0300] "POST /v1/chat/completions HTTP/1.1" 401 194 "-" "-"
+2026-10-23 07:24:43,176 aiohttp.access INFO 127.0.0.1 [23/Oct/2026:07:24:43 +0300] "POST /v1/chat/completions HTTP/1.1" 401 194 "-" "-"
+2026-10-23 07:24:47,176 aiohttp.access INFO 127.0.0.1 [23/Oct/2026:07:24:47 +0300] "POST /v1/chat/completions HTTP/1.1" 401 194 "-" "-"
+2026-10-23 07:24:51,183 aiohttp.access INFO 127.0.0.1 [23/Oct/2026:07:24:51 +0300] "POST /v1/chat/completions HTTP/1.1" 401 194 "-" "-"

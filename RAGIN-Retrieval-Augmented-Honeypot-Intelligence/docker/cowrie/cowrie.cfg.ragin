@@ -1,0 +1,33 @@
+# cowrie.cfg — arm C (RAGIN verified loop) field frontend
+#
+# cowrie terminates the attacker's SSH session; its LLM backend forwards the
+# conversation to the arm-C backend service (ragin server_v2), which routes
+# the command through the FULL verified pipeline and returns the verified
+# response. One honeypot per arm: all three arms present the same public
+# face (SSH on 22), only the backend differs — the study's controlled
+# variable. Mirror this file for arm B with the [llm] host pointed at the
+# bare-LLM service.
+#
+# Values below are container-internal; .env.field interpolation is done by
+# docker compose envsubst into /etc/cowrie/cowrie.cfg at container start.
+
+[honeypot]
+hostname = svr04
+backend = llm
+
+[ssh]
+version = SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.4
+listen_endpoints = tcp:2222:interface=0.0.0.0
+
+[llm]
+host = http://ragin-server:8083
+path = /v1/chat/completions
+api_key = CHANGE_ME_BACKEND_KEY
+model = ragin-pipeline
+max_tokens = 500
+temperature = 0.7
+debug = false
+
+[output_jsonlog]
+enabled = true
+logfile = /cowrie/cowrie-git/var/log/cowrie/cowrie.json

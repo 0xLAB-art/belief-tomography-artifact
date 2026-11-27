@@ -1,0 +1,91 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric,patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{mathtools}
+\usepackage{microtype}
+\microtypesetup{protrusion=true,expansion=true,factor=800}
+\setlength{\emergencystretch}{1.5em}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{capt-of}
+\usepackage{xr}
+\externaldocument{main}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\graphicspath{{../figures/}{../tops/figs/}{figs/}}
+
+\newcommand{\TV}{d_{\mathrm{TV}}}
+\newcommand{\E}{\mathbb{E}}
+
+\definecolor{oiblue}{HTML}{0072B2}
+\definecolor{oiorange}{HTML}{E69F00}
+\definecolor{oigreen}{HTML}{009E73}
+\definecolor{oired}{HTML}{D55E00}
+\definecolor{oipurple}{HTML}{CC79A7}
+
+\newcommand{\bibfield}[2]{#2}
+\newcommand{\bibinfo}[2]{#2}
+\newcommand{\showarticletitle}[1]{``#1''}
+\newcommand{\shownote}[1]{#1}
+\newcommand{\showDOI}[1]{#1}
+\newcommand{\natexlab}{}
+\newcommand{\Description}[1]{}
+
+\hypersetup{pdftitle={Supplemental Material: Measuring the Belief--Claim Gap},
+pdfauthor={Anonymous}}
+
+\begin{document}
+
+\title{Supplemental Material for\\[2pt]
+``Measuring the Belief--Claim Gap: Active Black-Box Tomography of Autonomous
+Agents and the Limits of Certification''}
+\author{Anonymous}
+\maketitle
+
+\noindent This supplement carries the material the main paper points to:
+the full proofs, the measurement platform in detail, the extended related-work
+survey, the experiment-by-experiment narratives and audit decompositions, and
+the registration-timing record. Section and theorem numbers refer to the main
+paper.
+
+\input{sections/appendix}
+\input{sections/platform_appendix}
+\input{sections/supp_program}
+\input{sections/supp_related}
+\input{sections/supp_e5}
+\input{sections/supp_theory}
+\input{sections/supp_instrument}
+\input{sections/supp_field}
+\input{sections/supp_cert}
+\input{sections/supp_disclosure}
+\input{sections/supp_limitations}
+
+\input{sections/supp_registration}
+
+\bibliographystyle{IEEEtran}
+\input{references_supp}
+
+
+\end{document}

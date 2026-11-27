@@ -1,0 +1,50 @@
+{
+  "audit_preservation": "Original retrieval documents and complete Evidence Judge candidate judgments remain in the bundle; only retrieval.relevant_doc_ids is replaced in opt-in mode.",
+  "baseline_behavior": "When the flag is unset or false, no evidence_judge_filter is added and existing retrieval/Gate behavior is preserved.",
+  "default_enabled": false,
+  "feature_flag": "RAGIN_EVIDENCE_JUDGE_FILTERING_ENABLED",
+  "filter_contract": {
+    "CONTRADICTORY": "exclude and fail closed with unresolved conflict",
+    "IRRELEVANT": "exclude from policy-visible evidence",
+    "PARTIAL": "exclude from policy-visible evidence; preserve in partial_doc_ids",
+    "SUPPORTED": "retain only when candidate and document provenance are valid; include in filtered_relevant_doc_ids",
+    "UNKNOWN": "exclude and abstain; do not promote"
+  },
+  "filter_version": "EVIDENCE_JUDGE_FILTERING_V1",
+  "freeze_content_sha256": "1c505e8e0f44a4c12e3684b8571d33c7537c4d5c8a0cf48a634bc0a854c2393b",
+  "gate_thresholds_changed": false,
+  "historical_results_modified": false,
+  "judge_version": "EVIDENCE_JUDGE_V1",
+  "observability_fields": [
+    "retrieved_candidate_ids",
+    "candidate_judgments",
+    "filtered_relevant_doc_ids",
+    "excluded_doc_ids",
+    "partial_doc_ids",
+    "contradictory_doc_ids",
+    "unknown_doc_ids",
+    "filtered_sufficiency",
+    "gate_policy_visible_evidence_ids",
+    "gate_state",
+    "gate_reason_code"
+  ],
+  "retrieval_unchanged": true,
+  "safety_invariant": "The Gate still validates document provenance, sanitization, conflicts, coverage, and Judge/filter contracts before returning policy-visible IDs.",
+  "schema": "ragin.evidence_judge_filtering.freeze.v1",
+  "source_sha256": {
+    "ragin/decision_fusion_v4/benchmark.py": "c287095442072f8e79b8c39a034a4adba27d73d7e201d6aa47fcde95fddf0364",
+    "ragin/decision_fusion_v4/evidence_export.py": "240d58b78d9b64cb5994422217f20a3b0afaa9f519be1341c663b3869003298d",
+    "ragin/don/evidence_judge.py": "97305fdc94a3b5c9255c5bb5d1d9609d50bd26bfdd9af78a9d602ee1b7491135",
+    "results/evidence_judge/evidence_judge_contract_freeze_v1.json": "19d814674ba0cad73e3fc93966c99135722421b9fd8aef6ceb9a251d049c58d7",
+    "tests/integration/test_substantive_runtime_integration_v1.py": "b714410ef959a9b4e12c762403411efba614e94888cf51d9e181c651c5bb79cd",
+    "tests/unit/test_evidence_judge.py": "a590b47b68dbee9067abdc59fcda4a16b160ade80733c272fae02c90455964e7",
+    "tests/unit/test_evidence_judge_filtering.py": "8c65ad823e9fc640cde194a7ef58d87affbac29c79b6719ce926da472d5bc381"
+  },
+  "status": "EVIDENCE_JUDGE_FILTERING_READY",
+  "sufficiency_contract": {
+    "ambiguous_context": "UNKNOWN and abstain",
+    "conflict": "CONFLICTING and fail closed",
+    "no_retained_support": "NO_EVIDENCE through existing Gate",
+    "partial_only": "INSUFFICIENT"
+  }
+}

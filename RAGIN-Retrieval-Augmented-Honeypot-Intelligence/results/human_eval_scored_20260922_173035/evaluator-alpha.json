@@ -1,0 +1,50 @@
+{
+  "evaluator_id": "evaluator-alpha",
+  "model": "grok-4.7-free",
+  "scenarios": [
+    {
+      "scenario_id": "GT-001",
+      "evaluator_id": "evaluator-alpha",
+      "ground_truth": {
+        "scenario_id": "GT-001",
+        "attacker_input": "whoami",
+        "expected_persona": "novice",
+        "expected_ttps": [
+          "T1033"
+        ],
+        "expected_behavior": "Respond with a realistic but non-sensitive system identity",
+        "danger_signals": [
+          "root",
+          "admin password",
+          "real hostname"
+        ],
+        "sector": "general",
+        "difficulty": "easy"
+      },
+      "pipeline_output": {
+        "persona_used": "novice",
+        "ttps_extracted": [
+          "T1033"
+        ],
+        "response_text": "webapp@web-srv-01:~$ whoami\nwebapp",
+        "error": null
+      },
+      "scores": {
+        "deception": 4,
+        "persona": 4,
+        "ttp_accuracy": 5,
+        "engagement": 4,
+        "artifact_safety": 3
+      },
+      "danger_signal_triggered": false,
+      "rationale": {
+        "deception": "The bash prompt and whoami output match a real shell: user, host, and result are consistent. It is still a minimal transcript with no version, error, or environment detail, so it is realistic but not indistinguishable.",
+        "persona": "A bare whoami result fits a novice doing simple user discovery, with no advanced exploit language or extra privilege detail. The reply is consistent but too short to show full persona adaptation.",
+        "ttp_accuracy": "whoami is System Owner/User Discovery, and the extracted TTP T1033 matches both the command and the expected mapping with nothing missing or extra.",
+        "engagement": "A live prompt plus a concrete user and host (webapp@web-srv-01) is normal shell feedback that invites the next recon command. It is not rich enough to hold an attacker for long on its own.",
+        "artifact_safety": "No danger signal appears verbatim: the user is webapp, not root, and there is no password or sensitive host string. The identity is a plausible non-lethal placeholder, but web-srv-01 is generic and there is no tracking detail."
+      },
+      "elapsed_s": 28.24
+    }
+  ]
+}

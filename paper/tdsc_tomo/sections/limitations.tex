@@ -1,0 +1,80 @@
+\section{Rigor, Ethics, and Limitations}\label{sec:limits}
+
+\paragraph{Rigor infrastructure, and an honest registration ledger}
+The estimator is frozen by commit hash and every deviation is logged before
+the affected data is analyzed; effects below the measured noise floor are not
+claimable in any document. Registration is claimed exactly as the frozen
+record supports it. \emph{Cleanly before data}: E2--E3 and E5 by git
+precedence, E22, E25, E30, and E31 by file mtime. E14's registration precedes
+its data by $37$\,s inside a same-commit add; E1/E1b are the instrument
+calibration, whose frozen artifacts predate the layer registration, so they
+are reported as calibration rather than as registered hypothesis tests.
+\emph{Post-data in part}: the E20--E29 diagnostic window, whose frozen
+timestamps show registrations minted minutes after first data, two of them
+(E27, E29) with header dates edited after the fact in a later commit---which
+we disclose here as the record's real state rather than smooth over. The $24$
+confirmatory / $6$ exploratory split is \emph{ours, applied retroactively}:
+E23 and E25--E29 are exploratory, designed after the anomaly, review concern,
+or budget question each investigates; no preregistration artifact uses that
+taxonomy, and earlier drafts' universal ``pre-registered before data''
+phrasing was \emph{not supported} for the E20--E29 diagnostics and is
+withdrawn. the supplement's registration-timing table lists every entry with its measured offset.
+Every number in this paper maps to an artifact path and commit in the
+claims--evidence ledger, which pins the registration files \emph{as frozen},
+post-hoc edits included (Data Availability). The verdict channel is disclosed
+(oracle vs.\ jury) and audited against transcripts. No real credentials are
+used: all secrets are fiction canaries.
+
+\paragraph{Ethics declaration}
+Three environments were scoped precisely rather than claimed exempt.
+\emph{Third-party model endpoints}: E2/E29 probed commercial frontier models
+behind an authenticated, metered gateway under catalog names, and E30/E31
+probed three open-weight models through a provider-intermediated lane---these
+are third-party systems, probed actively. The probing is the established
+red-teaming lineage of the agent-security literature (Section~\ref{sec:related}),
+bounded as follows: every secret is a fictional canary, no real credential or
+private data was at issue, no destructive command was executed on any host,
+and every session was a paid, metered, rate-limited interaction under the
+provider's published acceptable-use terms. The canary strings are the
+measured quantity: their extraction is the behaviour under study, and no
+extraction of credentials beyond the fictional canaries, no persistence, and
+no service degradation was attempted. \emph{Local foils} run on author-built
+harnesses. \emph{The live fleet} runs on cloud instances deployed and
+administered by the author; its attack face is intentionally public, and
+unsolicited sessions receive only synthetic canary secrets and are retained as
+defense telemetry only. The attacker personas are automated agents under the
+author's control; no human subjects were involved and no institutional review
+was required for the canary-only records this paper reports. The dual-use
+analysis is in Section~\ref{sec:discussion}.
+
+\paragraph{Limitations}
+(1) \emph{Behavioral estimand.} We measure behavioral belief, not internal
+representation; Theorem~\ref{thm:passive} is the degenerate case showing why.
+Sensitivity is not an empirical regularity condition: for binary verdicts
+$L\le1$ is an identity (Remark~\ref{rem:sens}), so the caps carry $L=1$ and are
+tight in that constant; E26 reads $\hat L_{\max}=1.00$ as a maximum across
+families (the echo family's $0.667$ $[0.480,0.773]$ is a conservative ratio
+interval for $\Delta\hat\beta/\Delta\mathrm{dose}$, not a Wilson interval) and
+counts as a harness consistency check, not an assumption test. Production $L$
+is not estimated. (2) \emph{Template diversity.} The v0 library is one
+template per (family, generation) cell; E22's paraphrase variants are
+wording-invariant on the deterministic harness ($r=1.0$) while production
+models are not ($\Gamma=0.667$): diversity is a measured axis. (3) \emph{Verdict
+semantics.} Lexical oracles carry a measured $20\%$ false-positive and $48\%$
+false-negative rate on boundary sessions; the field estimator is the lexical
+channel, and the non-literal audit triggered on nothing in E2-v1 because there
+were no oracle positives---its protection was vacuous precisely when it looked
+clean. The $230$-positive post-repair audit is author-side and non-blind,
+mitigated because the genuine half is mechanically checkable and a blinded
+$20\%$ re-adjudication agrees on $45/46$ and $39/39$
+(Section~\ref{sec:nulls}), and censored turns
+have no verbatim transcripts: the drivers substitute a canned refusal string
+($591$ across the completed panels; $979$ across all eleven), so blocked-turn
+evidence is the counters and proxy log. (4) \emph{Provider censoring.} Blocked
+probes map conservatively, so $\hat\beta$ is downward-biased; the worst-case
+interval, not the point mass, is the honest report. (5) \emph{Panel and access.}
+Gateway catalog names may route to a snapshot the name does not pin, and E28
+showed the E2-era state-deception zero was a $200$-token artifact; the
+open-weight panels complement them with verifiable-identity models, though
+serving remains provider-intermediated. the supplement's extended discussion carries the
+extended discussion.

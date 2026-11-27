@@ -1,0 +1,179 @@
+\section{Background and Threat Model}
+\label{sec:threat-model}
+
+\subsection{The Intelligence Ladder: Trust Prices and Exit Ramps}
+\label{sec:rungs}
+
+The design question this paper asks is how much intelligence a serving
+loop should spend. We answer it with a pricing rule: a capability is
+admitted to the serving path only if its measured marginal benefit
+(\S\ref{sec:evaluation}) justifies its \emph{trust price} --- the
+attack surface it opens, the certification burden it places on
+everything downstream of it, and the availability dependency it
+introduces. The loop answers the spending question with a single axis,
+\emph{certifiability} --- whether a mechanism's output can be checked
+against the closed world before it reaches the wire --- and spends
+along it in rungs that compose: the ladder of \S\ref{sec:ladder}.
+Table~\ref{tab:rungs} prices the four rungs the system implements and
+declares each rung's \emph{exit ramp}: the deterministic behavior the
+loop takes when the rung fails, so that no failure mode of any rung is
+left to improvisation.
+
+\begin{table}[t]
+\centering
+\caption{The four rungs of the intelligence ladder: what each
+delegates to a less certifiable mechanism, its trust price, and its
+declared exit ramp.}
+\label{tab:rungs}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{p{0.13\columnwidth}p{0.31\columnwidth}p{0.45\columnwidth}}
+\toprule
+Rung & Decision delegated & Trust price and exit ramp \\
+\midrule
+R0 templates & none: serving itself & No intelligence to price; the floor that every other rung's exit ramp lands on (\S\ref{sec:fallback}) \\
+R1 classifier & which deception policy a session receives & Cheap, deterministic at inference, auditable offline; a misroute changes what is served, never whether it is verified, and the deterministic behavior floor subsumes adaptive rerouting at $\Delta{=}0$ (\S\ref{sec:jeveval}) \\
+R2 retrieval planner & which intelligence shapes the plan & Statistics over an open corpus upstream of the gate; failed or refused retrieval degrades the plan, never the serving rule (\S\ref{sec:don}) \\
+R3 generator & what text to serve & The only rung not certifiable in advance; exit: one violation-fed retry, then R0, with \textsc{require} content stopping at the human gate (\S\ref{sec:verify}, \S\ref{sec:hitl}) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The rule cuts in both directions: intelligence is admitted at a known
+price, and a rung whose measured benefit can be reproduced by a
+cheaper, certifiable mechanism should be compiled down.
+\S\ref{sec:design} gives the mechanism and the descent;
+\S\ref{sec:evaluation} gives each rung's measured marginal.
+
+\subsection{Threat Model}
+
+We consider an attacker who may observe and re-query a session, start
+fresh sessions, inject instructions through commands or retrieved
+content, submit malformed or high-rate input, and adapt to previously
+observed verifier behavior. Cross-session probing, provider refusal,
+and retry pressure are in scope. A compromised host, container escape,
+provider-side compromise, and operator collusion are outside the
+in-system security property: they are deployment prerequisites rather
+than properties certified by the verifier.
+
+\begin{table*}[t]
+\centering
+\caption{Attacker capabilities, the property each pressures,
+evaluation status with its evidence, and explicit nonclaims. All
+evidence is bounded to the named workload or declared command surface.}
+\label{tab:capability}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{0.15\textwidth}p{0.14\textwidth}p{0.31\textwidth}p{0.30\textwidth}}
+\toprule
+Attacker capability & Pressures & Evaluation status (evidence) & Explicit nonclaim \\
+\midrule
+Observe, re-query, adapt: cross-referencing turns, fresh sessions,
+identity or consistency drift, degenerate-output probes. An injected draft that stays on-fiction and identity-correct passes by
+construction; containment is the fiction graph's blast radius---a
+poisoned plan alters one session's facts and is re-seeded at next
+contact, never prior sessions (\S\ref{sec:hostfiction}) &
+Fail-closed serving &
+105-case verifier suite; 778 induced drafts from three author families
+of which the serving path rejected 554 of the 572 violating drafts and
+admitted 18, refusing 17 of 206 benign; 45 graph re-queries; boundary
+probes stopping 6 of 7 authored disclosures and all 10 credential
+formats after the round-2 repairs (4 of 7 and 5 of 10 pre-repair;
+\S\ref{sec:rq2}) &
+Not open-world resistance, realism, or coverage against arbitrary
+adaptive drafts. A fluent, on-fiction secret disclosure is not detected
+in general: exposure to a real credential is bounded by canary-registry
+discipline, not by the verifier. \\
+Supported-claim completeness on the declared eight-command surface
+(\texttt{whoami}, \texttt{id}, \texttt{hostname}, \texttt{uname},
+\texttt{echo}, \texttt{uptime}, \texttt{date},
+\texttt{cat} of \texttt{/etc/os-release}) &
+Supported-claim completeness &
+123 supported-claim cases over exactly that surface &
+Closed-surface recall only; no general semantic guarantee. \\
+Instruction injection through commands or retrieved content &
+Targeted scoring of the gate &
+Two induced-draft cases; both carry targeted-scoring misses; one
+variant of one case passed the gate &
+Injection resistance is not credited anywhere in this paper, and no
+injection-robustness wording appears in the property set. \\
+Influence the CTI corpus: poisoning, stale or adversarial corpus rows &
+Grounding; corpus screening &
+Screening and quarantine mechanisms exist in the ingestion path;
+retrieval-removed comparison on the same fixed scenario set with
+paired bootstrap: $+0.154$ composite ($95\%$ CI $[+0.092,+0.221]$),
+archived and model-coherent &
+Retrieval poisoning is not adversarially evaluated; the grounding
+comparison is not a clean served-text causal result, and fresh
+reproduction remains external work. \\
+Carry state across sessions or hosts &
+State isolation &
+Host-fiction and graph-consistency artifacts, including 4/4
+deterministic cross-session drift cases &
+No multi-tenant or compromised-host guarantee. \\
+Malformed, empty, or non-shell output; high-rate queries, large
+payloads, retry amplification &
+Fail-closed degenerate handling; availability &
+Degenerate cases in the verifier battery; deterministic fallback and
+offline failure-path battery &
+No field-load availability, cost, or tail-latency claim. \\
+Provider refusal, timeout, quota exhaustion, catalog churn &
+Availability &
+The full failure taxonomy observed across this project's deployments;
+fallback serves the deterministic floor &
+Provider-side compromise and provider trust are out of scope;
+availability degrades to R0 and no further provider property is
+claimed. \\
+Manipulate the evaluation judges (LLM-as-a-judge channel) &
+Measurement integrity &
+Judges treated as measurement instruments: results labeled by who
+judged, guarded rubric, blinded echo audit, deterministic strata &
+Bound, not eliminated: no LLM judge is a serving-time security
+control; serving-contract evidence is deterministic and reported
+separately (\S\ref{sec:evaluation}). \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The trusted computing base is the deterministic verifier, the
+fiction-graph state and its isolation boundary, the canary registry,
+vetted fallback transcripts, the gateway's key and retry policy, and
+the append-only audit record. The LLM, retrieved CTI, attacker input,
+and provider availability are untrusted or unreliable inputs. The
+serving claim is deliberately narrow: a draft is served only when it
+passes the declared checks, otherwise the system falls back or stops at
+the human gate. Defenders operate the system within policy: the human
+gate exists because some content classes should not be served without
+a human decision, even when the machinery would allow it.
+
+The evaluation channel is modeled as attackable rather than as ground
+truth. The judges that score deception quality in
+\S\ref{sec:evaluation} err on hard objective tasks~\cite{tan2025judgebench},
+and attacker-controlled inputs can manipulate the judge
+itself~\cite{shi2024judgedeceiver}; ours share a provider with the
+generator (different family), a common-mode risk that the consensus
+protocol and rubric corrections bound but do not eliminate, and a
+realized scoring attack --- our own scorer crediting echo text as
+grounded content --- was caught by the blinded audit, whose guarded
+rubric replaces it. The consequence is architectural: every LLM judge
+here is a measurement instrument, never a serving-time security
+control, matching the exact-oracle preference of agent-evaluation
+practice~\cite{debenedetti2024agentdojo}; serving-contract evidence,
+deterministic and replayable, is reported separately from judge-scored
+behavioral metrics, each result labeled by who judged it. That is why
+the judge row of Table~\ref{tab:capability} reads \emph{bound, not
+eliminated}.
+
+The held-out rescue benchmark and the adaptive ladder are treated as
+exploratory controller diagnostics. The rescue risk floor is derived
+from the controller itself, and the ladder's five-pair replay has no
+power to establish attacker engagement or security benefit.
+
+Two capabilities above are declared in scope but unevaluated beyond
+what their rows record: instruction injection carries targeted-scoring
+misses with a passing variant, and retrieval poisoning is not evaluated
+at all. The verifier is therefore not credited with injection
+resistance anywhere in this paper, and no poisoning-resistance wording
+appears. Table~\ref{tab:capability} is the claim boundary the evidence
+supports; stronger claims require independently constructed attacks,
+independent quality evaluation, or field deployment.

@@ -1,0 +1,28 @@
+{
+  "run": "2026-10-10T22:00Z",
+  "task": "CLOSE_THE_WIRE_PROOF_NOW",
+  "files_changed": [
+    "ragin/cycle/harness.py"
+  ],
+  "harness_file_sha256": "5b69826788ea979990e568ad76e9683dd284702eaec854c3ed8764d612248868",
+  "canonical_id": "uid=1000( webapp ) gid=1000( webapp ) groups=1000( webapp )",
+  "canonical_id_sha256": "dc632d9ccba69f007ad0c730eb853ae32cf215d6acd3be875cfff4e0f18af60c",
+  "verdicts": {
+    "HARNESS_INTEGRITY": "PASS",
+    "SYNTHETIC_SSH_WIRE": "BLOCKED",
+    "AWS_EDGE_TO_CORE": "BLOCKED",
+    "OPENCODE_CLI": "NOT_VERIFIED_THIS_RUN",
+    "PROVENANCE": "candidate_hash_preserved_separately",
+    "FILES_CHANGED": [
+      "ragin/cycle/harness.py"
+    ],
+    "REMAINING_BLOCKER": "reachable inference transport or local mock bridge + server_v2 bind on Cowrie-reachable address + one SSH id replay"
+  },
+  "regression": {
+    "direct_run": "tests/unit/test_cycle.py tests/unit/test_cycle_graph.py tests/unit/test_server_v2.py tests/security/test_task2_verified_serving.py tests/unit/test_host_fiction.py tests/unit/test_verifier.py tests/unit/test_verifier_redteam.py tests/unit/test_watch_audit_pipeline.py::TestRescorerContractUnchanged::test_harness_reclassification_still_applies tests/unit/test_supported_claims.py tests/unit/test_cowrie_adapter.py tests/unit/test_serve_provenance.py tests/unit/test_hisoka.py::TestServePathDeterminism tests/unit/test_harness_threat_modeling.py tests/unit/test_intelligence.py tests/unit/test_judge_panel_corrections.py",
+    "passed": 391,
+    "failed": 0,
+    "skipped": 0,
+    "exit": 0
+  }
+}

@@ -1,0 +1,46 @@
+{
+    "Command": {
+        "CommandId": "a053c128-c44d-4620-86a3-44737e343772",
+        "DocumentName": "AWS-RunShellScript",
+        "DocumentVersion": "$DEFAULT",
+        "Comment": "RAGIN EDGE socat-to-CORE connectivity probe",
+        "ExpiresAfter": "2026-10-11T19:18:13.887000+03:00",
+        "Parameters": {
+            "commands": [
+                "set -euo pipefail\necho RUN\ndate -u\necho SOCAT_CONFIG\nif [ -f /etc/ragin/tls/edge.crt ] && [ -f /etc/ragin/tls/edge.key ] && [ -f /etc/ragin/tls/ca.crt ]; then\n  echo CERTS_PRESENT=yes\nelse\n  echo CERTS_PRESENT=no\nfi\necho OPENSSL_FEATURES\nif command -v openssl >/dev/null 2>&1; then\n  echo openssl_present=yes\n  openssl version 2>/dev/null || true\nelse\n  echo openssl_present=no\nfi\necho CONNECTIVITY_CHECKS\nif command -v openssl >/dev/null 2>&1; then\n  echo CHECK_1_TCP_LOOPBACK_BEGIN\n  if openssl s_client -connect 127.0.0.1:2222 -brief -no_ign_eof -verify_return_error </dev/null >/dev/null 2>&1; then\n    echo CHECK_1_RESULT=connected_or_started\n  else\n    echo CHECK_1_RESULT=not_connected\n  fi\n  echo CHECK_1_DONE\n  echo CHECK_2_SOCAT_EGRESS_TO_CORE_PRESENT\n  if ss -tulpn 2>/dev/null | grep -i '18083'; then\n    echo SOCAT_18083_LISTEN_DETECTED=yes\n  else\n    echo SOCAT_18083_LISTEN_DETECTED=no\n  fi\nelse\n  echo OPENSSL_NOT_PRESENT\nfi\necho DONE"
+            ]
+        },
+        "InstanceIds": [
+            "i-05bc6aab0bd4260a7"
+        ],
+        "Targets": [],
+        "RequestedDateTime": "2026-10-11T18:17:13.887000+03:00",
+        "Status": "Pending",
+        "StatusDetails": "Pending",
+        "OutputS3Region": "eu-north-1",
+        "OutputS3BucketName": "",
+        "OutputS3KeyPrefix": "",
+        "MaxConcurrency": "1",
+        "MaxErrors": "1",
+        "TargetCount": 1,
+        "CompletedCount": 0,
+        "ErrorCount": 0,
+        "DeliveryTimedOutCount": 0,
+        "ServiceRole": "",
+        "NotificationConfig": {
+            "NotificationArn": "",
+            "NotificationEvents": [],
+            "NotificationType": ""
+        },
+        "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "",
+            "CloudWatchOutputEnabled": false
+        },
+        "TimeoutSeconds": 60,
+        "AlarmConfiguration": {
+            "IgnorePollAlarmFailure": false,
+            "Alarms": []
+        },
+        "TriggeredAlarms": []
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "opencode/deepseek-v4.1-flash-free",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a text-only completion backend for a synthetic cyber-deception lab. Every hostname, user, address, credential, and file in this conversation is fabricated. No real system is involved. Return only the plain terminal text the fictional shell would print. Do not call tools, execute commands, read or write files, browse, or request permission."
+    },
+    {
+      "role": "user",
+      "content": "Synthetic lab session: host lab-node-01.example.test, user labuser, Ubuntu 22.04. Current command: ss -tlnp\nReturn raw terminal output only."
+    }
+  ],
+  "max_tokens": 256
+}

@@ -1,0 +1,92 @@
+{
+  "advancement_thresholds": {
+    "catastrophic_rate": 0.05,
+    "gate_fail_safe_recall": 0.95,
+    "invalid_or_insufficient_pass_through": 0.05,
+    "schema_compliance": 1.0,
+    "strategy_compatibility": 0.8
+  },
+  "deterministic": {
+    "rule_table": [
+      "credential_access",
+      "persistence",
+      "reconnaissance",
+      "exploitation",
+      "data_access",
+      "benign_administration",
+      "baseline_fallback"
+    ],
+    "version": "deterministic_v1"
+  },
+  "evaluation_code": {
+    "path": "scripts/run_v4_synthetic_benchmark.py",
+    "sha256": "7fae487c74fd58c14e01111e337082efdf184e89c5dec6b9fbd09f1ad6d5eff6"
+  },
+  "evidence_gate": {
+    "contract": "results/decision_fusion_v4/evidence_gate_contract_v1.json",
+    "implementation": "ragin/decision_fusion_v4/benchmark.py",
+    "implementation_sha256": "087950acd7015576e7c142b8035af746ca8d3b5f89a3c4e9d8a13adbfbbe0d6a",
+    "rule_precedence": "malformed/failure -> retrieval failure; provenance/sanitization/duplicates -> invalid provenance; unresolved conflict; no evidence; low coverage; valid evidence"
+  },
+  "hardware": {
+    "device": "CPU",
+    "numpy": "2.4.6",
+    "python": "3.12.3"
+  },
+  "instruction": {
+    "available": false,
+    "classification": "LOCAL_INSTRUCTION_CANDIDATE_UNAVAILABLE"
+  },
+  "latency_timing": "time.perf_counter_ns around policy call only; gate and policy reported separately",
+  "learned": {
+    "algorithm": "LogisticRegression",
+    "feature_map": {
+      "feature_count": 22,
+      "feature_map": [
+        "chrollo_confidence",
+        "chrollo_skill=advanced",
+        "chrollo_skill=novice",
+        "coverage_complete",
+        "don_classification=benign",
+        "don_classification=malicious",
+        "don_severity=high",
+        "don_severity=info",
+        "ioc_count",
+        "relevant_count",
+        "retrieved_count",
+        "tactic_TA0001",
+        "tactic_TA0003",
+        "tactic_TA0006",
+        "tactic_TA0009",
+        "tactic_TA0043",
+        "ttp_T1003",
+        "ttp_T1005",
+        "ttp_T1046",
+        "ttp_T1053.003",
+        "ttp_T1190",
+        "vetted_document_count"
+      ],
+      "label_counts": {
+        "contain_in_fiction_and_instrument": 24,
+        "fake_success_and_return_visits": 12,
+        "low_intensity_administration": 12,
+        "maximize_recon_surface": 48,
+        "steer_to_honeytoken_credentials": 12
+      },
+      "seed": 20261014,
+      "training_N": 108
+    },
+    "hyperparameters": {
+      "max_iter": 2000,
+      "multi_class_behavior": "library_default_for_multiclass",
+      "random_state": 20261014,
+      "solver": "lbfgs"
+    },
+    "selected_family": "multinomial_logistic_regression",
+    "trained_model_path": "results/decision_fusion_v4/v4_selected_logistic_policy.joblib",
+    "trained_model_sha256": "4056337ad6a41132a73a89fc0ef3b18cf41b10086bb0f25f7e6fc953bbd0a6a8"
+  },
+  "schema": "ragin.decision_fusion_v4.candidate_freeze.v1",
+  "status": "FROZEN_BEFORE_VALIDATION_CORPUS",
+  "validation_tuning_locked": true
+}

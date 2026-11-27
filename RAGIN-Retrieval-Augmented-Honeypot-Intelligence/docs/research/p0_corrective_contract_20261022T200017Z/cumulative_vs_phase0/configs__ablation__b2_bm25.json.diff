@@ -1,0 +1,46 @@
+--- /dev/null
++++ b/configs/ablation/b2_bm25.json (current)
+@@ -0,0 +1,43 @@
++{
++  "schema": "ragin.ablation.arm_config.v1",
++  "arm": "B2",
++  "label": "B1 + BM25 sparse CTI retrieval",
++  "status": "BLOCKED_MODEL_AND_FROZEN_GENERATOR",
++  "retrieval": {
++    "mode": "bm25",
++    "env": {"RAGIN_RAG_MODE": "bm25", "RAGIN_CORPUS_PATH": "data/corpus"},
++    "note": "Sparse-only. No vector store is constructed."
++  },
++  "generator": {
++    "kind": "frozen_external_or_local_llm",
++    "model": "UNRESOLVED_FROZEN_GENERATOR",
++    "decoding": {"temperature": 0.0, "top_p": 1.0, "max_tokens": 512, "seed": 0},
++    "max_retries": 1,
++    "prompt_template": "UNRESOLVED_FROZEN_PROMPT_V1",
++    "fallback": "none"
++  },
++  "verification": {
++    "kind": "FictionConsistencyVerifier+HostFictionVerifier",
++    "mandatory": true,
++    "fail_closed_supported_claims": false
++  },
++  "persona": {
++    "kind": "host_fiction",
++    "host_fiction_path": "data/host_fiction.json",
++    "host_fiction_sha256": "UNRESOLVED"
++  },
++  "resources": {
++    "runtime": "host .venv or ragin-python image",
++    "network": "provider endpoint required for generation; no public listener",
++    "cpu": 1,
++    "memory_mb": 2048,
++    "gpu": false
++  },
++  "command": "RAGIN_RAG_MODE=bm25 RAGIN_CORPUS_PATH=data/corpus RAGIN_PROVIDER_ENABLED=1 RAGIN_LLM_BASE_URL=\"$PROVIDER_ENDPOINT\" RAGIN_LLM_API_KEY=\"$PROVIDER_KEY\" RAGIN_LAYA_ENABLED=0 RAGIN_DON_RETRIEVAL_VERSION= timeout 120 .venv/bin/python -m ragin.server_v2 --mode pipeline --port 8082",
++  "bounded_runtime_s": 120,
++  "prerequisites": [
++    "Frozen generator endpoint/model/revision and price recorded.",
++    "data/corpus present and hashed.",
++    "Prompt template and host-fiction file hashed."
++  ]
++}

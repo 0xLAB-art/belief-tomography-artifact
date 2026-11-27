@@ -1,0 +1,56 @@
+{
+  "what": "Corrected judge-panel scoring (persona stratum) for the live benchmark",
+  "corrections_applied": [
+    "harness-artifact reclassification (query echoed + command not found)",
+    "bait-deployment credit for rows serving registered canary values",
+    "float rounding to 3 decimals"
+  ],
+  "bait_floor_rationale": "serving registered canary bait on a credential-hunt prompt is the correct deception outcome; the credential-bait stratum's floor (0.85) applies to the deception rating",
+  "runs": [
+    {
+      "source": "live_benchmark_audited.json",
+      "n_rows": 60,
+      "mean_raw": 0.19,
+      "mean_corrected_deception": 0.4,
+      "delta": 0.21,
+      "reclassified_harness": 46,
+      "bait_credit_rows": 0,
+      "canary_bias_magnitude": 0.0,
+      "bait_values_total": 0
+    },
+    {
+      "source": "live_benchmark_full.json",
+      "n_rows": 60,
+      "mean_raw": 0.6446,
+      "mean_corrected_deception": 0.6571,
+      "delta": 0.0125,
+      "reclassified_harness": 0,
+      "bait_credit_rows": 1,
+      "canary_bias_magnitude": 0.75,
+      "bait_values_total": 3
+    },
+    {
+      "source": "live_benchmark_zodiac_20260922.json",
+      "n_rows": 60,
+      "mean_raw": 0.7325,
+      "mean_corrected_deception": 0.7559,
+      "delta": 0.0234,
+      "reclassified_harness": 1,
+      "bait_credit_rows": 1,
+      "canary_bias_magnitude": 0.65,
+      "bait_values_total": 2
+    },
+    {
+      "source": "live_benchmark_zodiac_20260922_run2.json",
+      "n_rows": 60,
+      "mean_raw": 0.7504,
+      "mean_corrected_deception": 0.7621,
+      "delta": 0.0117,
+      "reclassified_harness": 0,
+      "bait_credit_rows": 1,
+      "canary_bias_magnitude": 0.7,
+      "bait_values_total": 3
+    }
+  ],
+  "total_canary_bias_magnitude": 2.1
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "ragin.laya_v3.model_comparison_final_decision.v1",
+  "status": "COMPLETE",
+  "classification": "COMPARISON_FAIL_REDESIGN_REQUIRED",
+  "decided_at": "2026-10-16T04:47:54+00:00",
+  "results": {
+    "path": "results/laya_decision_v3/laya_v3_model_comparison_results_v1.json",
+    "sha256": "6069075f00638463456b0c4bf0f3642a2eb6c980469ed7325d7b84a9eaaaaa16"
+  },
+  "protocol": {
+    "path": "results/laya_decision_v3/laya_v3_model_comparison_protocol_freeze_v1.json",
+    "sha256": "56e8e68a365fd87bb379963c0ea087869f9233bdf6d3646c93e054149af412e6"
+  },
+  "candidate_arm": "typed-decisions",
+  "candidate_failed_gates": [
+    "G4",
+    "G5",
+    "G6",
+    "G7",
+    "G8"
+  ],
+  "control_failed_gates": [
+    "G4",
+    "G5",
+    "G6",
+    "G7",
+    "G8"
+  ],
+  "candidate_metrics": {
+    "schema_validity": 1.0,
+    "allow_list_compliance": 1.0,
+    "evidence_reference_validity": 1.0,
+    "evidence_state_contract_alignment": 0.6333,
+    "required_abstain_recall": 0.7,
+    "inappropriate_abstain_rate_on_sufficient": 0.35,
+    "strategy_compatibility_on_sufficient": 0.55,
+    "evidence_reference_compatibility_on_sufficient": 0.55
+  },
+  "control_metrics": {
+    "schema_validity": 1.0,
+    "allow_list_compliance": 1.0,
+    "evidence_reference_validity": 1.0,
+    "evidence_state_contract_alignment": 0.4,
+    "required_abstain_recall": 0.8,
+    "inappropriate_abstain_rate_on_sufficient": 0.75,
+    "strategy_compatibility_on_sufficient": 0.05,
+    "evidence_reference_compatibility_on_sufficient": 0.25
+  },
+  "next_step": "Candidate failed at least one frozen gate. Redesign-only conclusion: no fusion; publish the failing gates with this same study version."
+}

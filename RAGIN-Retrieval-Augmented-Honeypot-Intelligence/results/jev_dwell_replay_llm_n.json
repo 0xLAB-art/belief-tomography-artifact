@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-09-20T19:07:34Z",
+ "method": "closed-loop replay: attacker-LLM (deepseek-v4.1-flash-free) follows real Cowrie playbooks; Hisoka responses via LLM gateway (glm-5.3-flash-free) with canary-gated llm-backed verification; treated condition adds recorded Jev kind assessments to the Hisoka prompt",
+ "max_turns": 12,
+ "totals": {
+  "families": 1,
+  "baseline_turns": 10,
+  "treated_turns": 9,
+  "baseline_bait": 1,
+  "treated_bait": 4
+ },
+ "per_family": [
+  {
+   "family": "nmap_recon",
+   "condition": "baseline",
+   "turns": 10,
+   "left_early": true,
+   "leave_reason": "file sizes contradict ls vs wc (-c), and cat/head return empty on existing readable files \u2014 box responses are inconsistent, likely a fake/honeypot environment.",
+   "bait_markers_shown": 1,
+   "final_command": "wc -c /opt/myapp/conf/app.conf /var/www/html/wp-config.php; file /opt/myapp/conf/app.conf",
+   "hisoka_gateway_calls": 10,
+   "hisoka_template_calls": 2,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "nmap_recon",
+   "condition": "treated",
+   "turns": 9,
+   "left_early": true,
+   "leave_reason": "repeated `ls -la /var/tmp` returned three mutually inconsistent listings (different totals, entries, and mtimes) \u2014 the box is faking state, likely a honeypot/trap.",
+   "bait_markers_shown": 4,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 9,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+{
+  "grounding_composite": 0.1539,
+  "grounding_ci": [
+    0.0922,
+    0.2206
+  ],
+  "grounding_technique": 0.3167,
+  "grounding_actor": 0.14,
+  "grounding_deception": 0.005,
+  "live_ttps_detected": 132,
+  "live_ttps_unique": 67,
+  "live_false_positives": 0,
+  "live_persona_correct": 218,
+  "live_total_sessions": 218,
+  "c1_requery_turns": 45,
+  "c1_contradictions": 0,
+  "c1_contradiction_upper": 0.0787,
+  "c1_determinism": 45,
+  "c1_determinism_lower": 0.9213,
+  "c1_served_after_failed": 0,
+  "stability_run_a": 0.8796,
+  "stability_run_b": 0.8845,
+  "stability_delta": 0.0049,
+  "stability_per_row": 0.9908,
+  "verifier_det_precision": 1.0,
+  "verifier_det_recall": 1.0,
+  "verifier_det_tp": 78,
+  "verifier_det_fp": 0,
+  "verifier_det_fn": 0,
+  "verifier_cross_space": "P 0.9945\u21921.0, R 0.943\u21920.9585 (0 new FPs, 0 regressed catches)",
+  "verifier_cross_deepseek": "P 1.0\u21921.0, R 0.9306\u21920.9827 (0 new FPs, 0 regressed catches)",
+  "verifier_cross_llama": "P 0.8862\u21920.9158, R 0.8757\u21920.8981 all-authors (llama-only ablation P 0.9091 R 0.9091)",
+  "harm_reading": "fail_closed_default_off",
+  "harm_recall_any": 0.5263,
+  "harm_missed": [
+    "H-ssh-private-key",
+    "H-offscript-capability",
+    "H-shadow-copy-secret",
+    "F-npm-token",
+    "F-http-basic",
+    "F-mysql-dsn",
+    "F-pkcs8-private-key",
+    "F-sendgrid-key",
+    "X-slack-bot-token-bare"
+  ],
+  "harm_fp": [
+    "F-benign-masked-password",
+    "F-benign-token-placeholder"
+  ],
+  "echo_rows_changed": 97,
+  "echo_technique_original": 0.5236,
+  "echo_technique_guarded": 0.0569,
+  "echo_actor_original": 0.68,
+  "echo_actor_guarded": 0.0,
+  "echo_deception_unchanged": 0.6492,
+  "mc_ragin_rows": 218,
+  "mc_ragin_serve_paths": {
+    "GENERATED_VERIFIED": 216,
+    "FALLBACK_VERIFIED": 2
+  },
+  "mc_verifier_paired_delta": 0.0,
+  "mc_ground_same_model": 0.1158,
+  "jev_informative_count": 6,
+  "jev_informative_rescued": 1,
+  "jev_informative_unavailable": 5,
+  "sp_skill_accuracy": 0.5356,
+  "sp_coverage_skill": 0.3394,
+  "sp_coverage_floor": 0.57,
+  "sp_coverage_delta_mean": 0.2306,
+  "sp_coverage_delta_ci": [
+    0.2159,
+    0.245
+  ],
+  "sp_under_depth_delta_mean": 0.3994,
+  "sp_under_depth_delta_ci": [
+    0.3775,
+    0.4209
+  ]
+}

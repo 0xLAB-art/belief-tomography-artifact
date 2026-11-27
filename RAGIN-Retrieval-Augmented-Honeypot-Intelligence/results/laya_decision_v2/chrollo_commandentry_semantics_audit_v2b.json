@@ -1,0 +1,13 @@
+{
+  "schema": "ragin.laya_decision_v2.chrollo_commandentry_semantics_audit.v2b",
+  "command_entry_definition": "ragin/chrollo/models.py:28-39",
+  "command_entry_semantic_role": "ONE_ATTACKER_COMMAND",
+  "full_transcript_semantics": "SessionLog.raw_log",
+  "chrollo_pipeline_contract": "raw_log -> parse -> extract features -> classify",
+  "adapter_behavior_before_amendment": "Converted the complete frozen context/evidence payload into one CommandEntry",
+  "primary_runner_behavior": "Passed context plus byte-preserved evidence as one attacker_input string",
+  "is_full_transcript_in_single_CommandEntry_architecturally_correct": false,
+  "selected_case": "SESSION_HISTORY_REPRESENTATION",
+  "reason": "CommandEntry is bounded to one command; complete evaluation payloads belong in raw_log and are not segmented into synthetic commands.",
+  "labels_or_effectiveness_inspected": false
+}

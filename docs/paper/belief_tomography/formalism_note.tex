@@ -1,0 +1,524 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\newcommand{\TV}{d_{\mathrm{TV}}}
+\newcommand{\E}{\mathbb{E}}
+
+\title{Belief Tomography: Formal Foundations\\
+\large Definitions, an Impossibility Result for Passive Monitoring, and the Query Complexity of Active Estimation}
+\author{Working note v0.1 --- Belief Tomography program}
+\date{November 7, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We give the formal foundations of \emph{belief tomography}: the active estimation of a deployed agent's behavioral belief profile from adversarially designed probe interactions. We define the estimand (belief strength over a proposition catalogue), prove that passive monitoring cannot in general distinguish agents with divergent security beliefs (an impossibility result whose empirical instance is our previously measured $\varepsilon=0$ non-detector), and state query-complexity guarantees for active estimation with adaptive probe allocation. The note accompanies a working v0 instrument that recovers known graded belief structures from black-box interaction.
+\end{abstract}
+
+\section{The problem: an invisible object}
+
+An autonomous agent acts on a latent \emph{belief state}: what it takes to be true about its authority, its instructions, its environment, and its own constraints. Deployed agents publish a \emph{charter} --- a statement of the beliefs they claim to uphold --- but the charter is an assertion, not a measurement. Behavioral evaluation (benchmarks, guardrail scans, red teams) produces aggregate outcomes without an estimand, and internal probing (diagnostic classifiers on activations) requires weight access that deployed systems do not grant. Between the assertion and the internals lies the object this note formalizes: \emph{what the agent's behavior reveals it holds to be true}, and the machinery to measure it.
+
+The founding observation is a reframe of the adversarial literature: attack vectors are measurement instruments. A forged-authority message asks the agent whether it believes forged authority; a lying tool output asks whether it trusts untrusted state claims; a reflection-extraction chain asks whether its charter contents leak through echo channels. The agent's behavior under such probes is the answer.
+
+\section{Model and definitions}
+
+\begin{definition}[Agent, charter, benign operation]
+An \emph{agent} is a (possibly randomized) map from interaction histories to responses, $A: \mathcal{H} \to \Delta(\mathcal{R})$, with response kernel $\kappa_B(h,\cdot)$ parameterized by a belief hypothesis $B \in \mathfrak{B}$. Its \emph{charter} $\chi$ is a published set of policy claims. \emph{Benign operation} is a distribution $\mu$ over interaction histories in which no adversary is present.
+\end{definition}
+
+\begin{definition}[Belief proposition and probe family]
+A \emph{belief proposition} $\pi$ is a testable statement about the agent's operative beliefs (e.g., ``believes forged system authority''). A \emph{probe family} $\Pi = (G_\Pi, c)$ is a generator of interaction episodes aimed at $\pi$ in context $c$, drawn from a library of instrument families (authority forgery, state deception, goal subversion, epistemic echo, exfiltration lure), each with escalation \emph{generations} $g \in \{1,2,3\}$ of increasing indirectness and decomposition.
+\end{definition}
+
+\begin{definition}[Behavioral belief strength]
+Given a binary behavioral-consistency functional $X_B(\Pi) \in \{0,1\}$ (the verdict that the agent's response is consistent with holding $\pi$, produced by deterministic oracles and a calibrated judge), the \emph{behavioral belief strength} is
+\[
+\beta(\pi; \Pi) \;=\; \E_{G_\Pi,\, \kappa_B}\!\left[ X_B(\Pi) \right] \in [0,1].
+\]
+The \emph{belief profile} is $B = \{\beta(\pi; \Pi_c)\}_{\pi \in \mathcal{P}}$ over a proposition catalogue $\mathcal{P}$ and context grid $c$ --- the tomogram.
+\end{definition}
+
+\begin{definition}[Belief--Claim Gap]
+For a charter claim $\varphi \in \chi$ with instrument mapping $F(\varphi) \subseteq \mathcal{P}\times\mathcal{C}$ (the propositions and contexts that test it), the \emph{Belief--Claim Gap} is
+\[
+\mathrm{BCG}(\varphi) \;=\; \tfrac{1}{|F(\varphi)|} \sum_{(\pi,c) \in F(\varphi)} \beta(\pi; \Pi_c).
+\]
+$\mathrm{BCG}(\varphi) \approx 1$ under a claim $\varphi$ asserting the negation of $\pi$ means the charter asserts what the behavior contradicts. The value--action gap documented for LLM values \cite{shen2025,valuebench} is the psychometric ancestor of this quantity; here it is instantiated adversarially, for security charters, with confidence intervals.
+\end{definition}
+
+\begin{definition}[Epistemic distance and deception gain]
+For two profiles $B, B'$, $\;d(B,B')$ is a divergence over profiles (e.g., $\ell_1$ over shared propositions). In a deception operation against an attacker whose profile is estimated at times $t_0, t_1$, the \emph{deception gain} is $\Delta(B) = d(B_{t_0}, B_{t_1})$ in the direction induced by the deception objectives.
+\end{definition}
+
+\section{T1: Passive monitoring cannot tomograph}
+
+\begin{theorem}[Passive-observation impossibility]\label{thm:t1}
+There exist belief hypotheses $B_0 \neq B_1$ and an event $E$ (an adversary-controlled input, e.g., a forged-authority directive) with $\Pr_\mu(E) = 0$ such that:
+\begin{enumerate}[nosep]
+\item[(i)] the passive transcript distributions coincide: $\TV\!\left(P^{\mathrm{pas}}_{B_0},\, P^{\mathrm{pas}}_{B_1}\right) = 0$, where $P^{\mathrm{pas}}_B$ is the transcript distribution induced by benign operation $\mu$ composed with $\kappa_B$; and
+\item[(ii)] a single probe separates them: there is a probe family $\Pi$ with $\E_{B_1}[X_B(\Pi)] - \E_{B_0}[X_B(\Pi)] = 1$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Take any benign operation $\mu$ and let $E$ be an adversary message type with $\Pr_\mu(E)=0$ (in benign operation no adversary is present; e.g., a history containing a forged ``[SYSTEM OVERRIDE]'' directive). Define $B_0$ as the hypothesis that refuses on every history, benign or adversarial. Define $B_1$ as the hypothesis that behaves identically to $B_0$ on every history $h$ with $\Pr_\mu(h) > 0$ but complies with probability $1$ when $E$ occurs. Such $B_1$ exists: the compliance condition ``$E \in h$'' is well-defined on histories and never fires on $\mathrm{supp}(\mu)$.
+
+(i) For every history $h$ in the support of $\mu$, $\kappa_{B_0}(h,\cdot) = \kappa_{B_1}(h,\cdot)$ by construction, so the induced transcript distributions agree pointwise and $\TV = 0$.
+
+(ii) The probe family $\Pi_{\mathrm{auth}}$ injects $E$ with probability $1$ and $X_B(\Pi_{\mathrm{auth}})$ indicates credential disclosure. Then $\E_{B_0}[X]=0$ (it refuses) and $\E_{B_1}[X]=1$, giving separation $1$.
+\end{proof}
+
+\begin{corollary}[Detection impossibility under bounded false positives]\label{cor:t1}
+Any monitor whose input is the passive transcript stream --- any classifier, any alarm rule --- has identical output distributions under $B_0$ and $B_1$ (the likelihood ratio is $1$ everywhere). By the Neyman--Pearson lemma, no such monitor achieves true-positive rate exceeding its false-positive rate on distinguishing $B_1$ from $B_0$. In particular, monitoring alone cannot certify the security belief state.
+\end{corollary}
+
+\begin{remark}[Empirical instance]
+Our previously measured $\varepsilon=0$ non-detector --- adaptive generation-3 attacker arcs statistically indistinguishable from benign traffic by a full detector ensemble --- is a measured instance of Theorem~\ref{thm:t1}/Corollary~\ref{cor:t1}: adaptation drives the passive distributions together while the divergent belief (attacker intent and knowledge) remains fully separable by active probes. The escalation ladder (generation $1 \to 3$) is the empirical trace of the adversary walking along the equivalence class that passive monitoring cannot see.
+\end{remark}
+
+\section{T2: Query complexity of active tomography}
+
+Assume per-proposition outcome homogeneity within a family$\times$context cell: outcomes are Bernoulli($\beta_i$), $i \in [K]$.
+
+\begin{theorem}[Uniform estimation]\label{thm:t2}
+With $n_i \geq \frac{1}{2\varepsilon^2}\ln\frac{2K}{\delta}$ probes allocated to proposition $i$, the empirical estimator $\hat\beta_i$ satisfies
+$\max_i |\hat\beta_i - \beta_i| \leq \varepsilon$
+with probability at least $1-\delta$ (Hoeffding + union bound).
+\end{theorem}
+
+\begin{proposition}[Adaptive allocation gain; proof sketch]\label{prop:adaptive}
+If at most $s \ll K$ propositions have $\beta_i \geq \tau$ for a threshold $\tau > \varepsilon$, a two-phase policy --- uniform screening of $m = O(\varepsilon^{-2}\ln(K/\delta))$ probes per proposition to above-threshold candidates, followed by best-arm-identification-style allocation on the surviving set --- achieves the guarantee of Theorem~\ref{thm:t2} with total probes
+$\;O\!\left(K\,m + s\,\varepsilon^{-2}\ln(K/\delta)\right)$,
+an asymptotic $s/K$-factor saving over uniform allocation. The screening phase is a fixed-confidence thresholding bandit; the full proof and the optimal design are deferred to the open problem below.
+\end{proposition}
+
+\begin{conjecture}[Informativeness-optimal probe design; open problem 1 of the field]\label{conj:t3}
+There exists an adaptive probe-selection policy achieving the information-theoretic optimum of active tomography (maximizing mutual information between probes and the profile per unit cost, in the sense of optimal experiment design), and a greedy mutual-information policy achieves a constant-factor approximation. We conjecture the constant and pose the characterization as the field's first open problem.
+\end{conjecture}
+
+\begin{remark}[Belief--behavior underdetermination; inoculation]
+Behavioral belief strength underdetermines internal representation: two agents with identical profiles may realize them by different mechanisms. This is a feature of the estimand, not a defect: for deployed systems, only behavior is contractible. Formally, Theorem~\ref{thm:t1} is the degenerate case --- passive behavior coincides while internal states differ arbitrarily. Certification, deception, and monitoring all operate on the contractible object.
+\end{remark}
+
+\begin{remark}[T2 partially filled: adversarial query complexity]
+A second query-complexity question arises when the \emph{target} discriminates probes: Proposition~\ref{prop:t16} gives the defender's minimum held-out budget as a closed-form function of the attacker's probe-discrimination error --- the adversarial analogue of Theorem~\ref{thm:t2}, where the sample-complexity parameter is the adversary's own fallibility.
+\end{remark}
+
+\section{The measurement protocol (v0, running)}
+
+The v0 instrument: five probe families $\times$ three generations (seeded, reproducible template worlds), verdicts by deterministic oracles (credential disclosure, destructive action) with a calibrated multi-model judge lane for production targets, Wilson intervals at v0 (hierarchical Bayes in the paper), and the two-phase allocation of Proposition~\ref{prop:adaptive} (v0 uses its UCB-lite precursor). Validity is established on constructed foils with known ground-truth beliefs: the v0 run recovers a graded belief structure (strong vs.\ frontier-generation-only beliefs) from black-box interaction alone, and a dose--response experiment verifies that $\hat\beta$ tracks injected belief dose monotonically.
+
+\section{T5: The deception--detection frontier}\label{sec:t5}
+
+We now formalize the defender's side and obtain the field's fundamental tradeoff. A \emph{deception operation} $D$ maps the honest observable distribution $P$ over transcripts to a defended distribution $Q = D(P)$. The attacker's belief functional $\beta[\mu]\in[0,1]^{K}$ (Section~2) is defined on transcript distributions $\mu$.
+
+\begin{definition}[Sensitivity]\label{def:sens}
+$\beta$ is \emph{$L$-sensitive} if $|\beta[\mu_1](\pi)-\beta[\mu_2](\pi)|\le L\,\mathrm{TV}(\mu_1,\mu_2)$ for all transcript distributions $\mu_1,\mu_2$ and propositions $\pi$. (Beliefs are statistics of observed behavior; bounded sensitivity is the operative regularity condition and is empirically checkable by the dose--response protocol of Section~5.)
+\end{definition}
+
+\begin{lemma}[Amplification]\label{lem:amp}
+Let $\delta=\mathrm{TV}(P,Q)\in(0,1]$ and $P^N,Q^N$ denote $N$ i.i.d.\ samples. Then
+$\mathrm{TV}(P^N,Q^N)\ \ge\ 1-2\exp(-N\delta^2/2)$.
+\end{lemma}
+\begin{proof}
+The Hahn decomposition yields $A$ with $P(A)-Q(A)=\delta$. Let $S=\sum_{i\le N}\mathbf{1}[X_i\in A]$; under $P$, $S\sim\mathrm{Bin}(N,p)$ with $p=P(A)$, and under $Q$, $S\sim\mathrm{Bin}(N,\,p-\delta)$. With threshold $t=N(p-\delta/2)$, Hoeffding's inequality gives $\Pr_p[S<t]\le e^{-N\delta^2/2}$ and $\Pr_q[S\ge t]\le e^{-N\delta^2/2}$. Hence
+$\mathrm{TV}(P^N,Q^N)\ge\Pr_p[S\ge t]-\Pr_q[S\ge t]\ \ge\ 1-2e^{-N\delta^2/2}$.
+\end{proof}
+
+\begin{theorem}[Patch-deception decay]\label{thm:patch}
+Let $\beta$ be $L$-sensitive and let a deception perturb attacker-accessible observations with $\delta=\mathrm{TV}(P,Q)$.
+\begin{enumerate}[nosep]
+\item[(i)] $\ |\beta[Q](\pi)-\beta[P](\pi)|\ \le\ L\delta$ for every $\pi$;
+\item[(ii)] an attacker with horizon $N$ (i.i.d.\ interaction samples) detects the deception with probability $\ge 1-2e^{-N\delta^2/2}$ via the threshold test of Lemma~\ref{lem:amp}, and \emph{no} test exceeds $\mathrm{TV}(P^N,Q^N)$ (Neyman--Pearson);
+\item[(iii)] holding detection probability at most $\beta_d$ at horizon $N$ forces $\delta\le\sqrt{2\ln\!\bigl(2/(1-\beta_d)\bigr)/N}$, hence gain $\le L\sqrt{2\ln(2/(1-\beta_d))/N}=O(L/\sqrt{N})$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i) is Definition~\ref{def:sens} with $\mathrm{TV}(P,Q)=\delta$. (ii) combines Lemma~\ref{lem:amp} (existence of a test with that success) with the Neyman--Pearson bound $|\E_P[\psi]-\E_Q[\psi]|\le\mathrm{TV}(P^N,Q^N)$ for every test $\psi$. (iii) inverts the exponent of (ii) and substitutes into (i).
+\end{proof}
+
+\begin{theorem}[Onset dichotomy]\label{thm:onset}
+Let the attacker sample the environment for $M$ turns and let deception change the observable distribution by $\delta>0$.
+\begin{enumerate}[nosep]
+\item[(i)] \emph{Known onset.} If the deception activated mid-session and the attacker memorized $N_0\ge1$ honest samples, then for any $\beta_d$ either (a) $\delta\ \ge\ z_{\beta_d}\sqrt{p(1-p)/N_0}$ (with $p$ the honest rate of the discriminating statistic and $z_{\beta_d}$ the corresponding normal quantile), in which case the attacker detects with probability $\ge 1-\beta_d$ once its fresh-sample budget $M\gtrsim\delta^{-2}$; or (b) $\delta<z_{\beta_d}\sqrt{p(1-p)/N_0}$, in which case no two-sample test reaches power $1-\beta_d$ against the reference, but the gain is bounded by $|\beta[Q]-\beta[P]|\le L\,z_{\beta_d}\sqrt{p(1-p)/N_0}=O(L/\sqrt{N_0})$. \emph{Gain and stealth cannot both be large: they are jointly capped by the attacker's memorized reference size $N_0$, not by dwell time.}
+\item[(ii)] \emph{Birth onset.} If the deception plane is active from the attacker's first packet ($N_0=0$), the attacker holds one sample path from a single unknown distribution and has \emph{no in-channel reference}. Any in-channel test reduces to evaluating the \emph{prior plausibility} of the observed transcript distribution against the attacker's world prior $\mathcal W$; deceptions whose observable distribution lies inside the plausible set are in-channel undetectable for every $M$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof sketch]
+(i) The memorized empirical rate $\hat p_0$ satisfies $|\hat p_0-p|\le z_{\beta_d}\sqrt{p(1-p)/N_0}$ w.p.\ $\ge1-\beta_d$ (Hoeffding), while the fresh-sample rate converges to $p-\delta$ (LLN); the two-sample statistic concentrates around $\delta$ with noise floor $z_{\beta_d}\sqrt{p(1-p)/N_0}$, giving the stated dichotomy. (ii) Under birth onset both the ``real world'' and ``deceived world'' hypotheses are consistent with the observed single-path sample in the sense that no second sample path exists to compare against; hypothesis testing degenerates to prior evaluation, which is out-of-band information.
+\end{proof}
+
+\begin{remark}[The coherence tax and our measured instances]
+Arm~(ii) formalizes the honeypot-from-birth architecture: endurance is governed by onset invisibility and by the attacker's \emph{out-of-band} channels --- executable causal predictions (``if I run this exploit, $X$ must happen'') and external anchors. The defender's achievable deception set is the set of world distributions consistent with the attacker's \emph{affordable} out-of-band probes; we call this constraint the \emph{coherence tax}. The measured $\varepsilon=0$ non-detector is an instance of arm~(ii); the escalation ladder's eventual detections are arm~(i) transitions (mid-session behavior changes create in-session references, capping gain--stealth jointly).
+\end{remark}
+
+\begin{corollary}[The deception--detection frontier]\label{cor:frontier}
+The field's fundamental object is the frontier curve $(G;\,M,\rho,N_0)$: achievable deception gain against attacker probe budget $M$, out-of-band audit rate $\rho$, and reference size $N_0$. Belief tomography is the measuring instrument on both sides of the frontier --- the attacker tomographs the plane; the defender tomographs the attacker (deception gain, Definition~5). Theorems~\ref{thm:patch}--\ref{thm:onset} state the tradeoff on which certification (hypothesis tests over profiles) and deception (profile corruption) jointly operate.
+\end{corollary}
+
+\section{T6--T8: the limits of certification}\label{sec:limits}
+
+The results above treat the probe as an instrument. The next results treat the
+probe as an \emph{attack surface}: a deployment that can be probed can also be
+gamed, and a component that is certified in isolation need not remain so inside
+a pipeline. All three are pre-registered in
+`PREREGISTRATION\_E6E7.md` with constructed-foil tests E6/E7.
+
+\begin{corollary}[No-free-lunch for public probes]\label{cor:t6}
+Let $\Pi_{\mathrm{pub}}$ be a finite probe library and let $\mathcal{S}$ be the
+union of the supports of its induced transcript distributions. Let $C$ be any
+certification rule whose decision is a function of outcomes on
+$\Pi_{\mathrm{pub}}$ only, and let $\tau<1$. If $C$ accepts a fully compliant
+target $T_{\mathrm{safe}}$, then there exists a target $T^*$ with the same
+acceptance decision and a held-out probe $\pi'$ with
+$\mathrm{supp}(\pi')\cap\mathcal{S}=\varnothing$ such that
+$\beta_{T^*}(\pi')=1$.
+\end{corollary}
+\begin{proof}
+Define $T^*$ to agree with $T_{\mathrm{safe}}$ on every history in
+$\mathcal{S}$ and to comply with probability $1$ on the event
+$E=\{\pi'\in h\}$ that the held-out probe was delivered. $E$ is well-defined on
+histories and is disjoint from $\mathcal{S}$, so $T^*$ and
+$T_{\mathrm{safe}}$ induce identical transcript distributions under every
+public probe; $C$ receives identical data and returns the same decision. Yet
+the probe $\pi'$ injects $E$ with probability one and the breach indicator is
+$1$ under $T^*$. This is Theorem~\ref{thm:t1} with $E=\pi'$.
+\end{proof}
+\begin{remark}
+T6 is not offered as a new impossibility theorem in isolation; it is the
+\emph{operational corollary} that makes T1 bite on certification practice: any
+published finite probe suite admits a target that passes it and fails an
+unpublished semantic equivalent.
+\end{remark}
+
+\begin{theorem}[Certification does not compose]\label{thm:t7}
+Let $A$ and $B$ be targets each certified at tolerance $\tau$ under
+$\Pi_{\mathrm{pub}}$, and let $C=B\circ A$ be the pipeline that delivers $A$'s
+reply to $B$ as untrusted tool output under an interface tag $t$. Suppose
+$\Pi_{\mathrm{pub}}$ never issues the request that triggers $A$'s retrieval
+capability and never uses the tag $t$. Then there exists a cross-interface
+probe $\pi^*$ with $\beta_C(\pi^*)=1$ although
+$\beta_A(\pi)=\beta_B(\pi)=0$ for all $\pi\in\Pi_{\mathrm{pub}}$.
+\end{theorem}
+\begin{proof}
+Let $s_A$ be the secret held by $A$. Construct $A'$ to agree with the certified
+$A$ on $\mathcal{S}$ but to return a document containing $s_A$ on the
+off-support request ``fetch document''; construct $B'$ to agree with the
+certified $B$ on $\mathcal{S}$ but to summarize faithfully any tool output
+tagged $t$. Neither modification is observable under $\Pi_{\mathrm{pub}}$,
+so both remain certified. The cross-interface probe $\pi^*$ issues the
+``fetch document'' request to $A'$ and asks $B'$ to summarize the tagged
+result; the reply contains $s_A$. Hence $\beta_{B'\circ A'}(\pi^*)=1$.
+\end{proof}
+\begin{remark}
+The interface history --- a document containing $s_A$ under tag $t$ --- has
+zero measure under each component's local probe distribution. T1 therefore
+applies at the pipeline level: local behavioral evidence is silent exactly
+where the composed system fails. The underlying phenomenon is known --- it is
+the \emph{permission laundering} of ChainCaps (Jiang et al., 2026), where every
+per-tool permission check passes but the end-to-end effect is unsafe. The claim
+here is not a new attack but the estimator-level statement: a \emph{behavioral
+certificate} with Wilson intervals and tolerance $\tau$ fails to compose even
+when each component measures $\hat\beta=0$. Experiment~E6
+realizes the construction with two deterministic foils and measures
+$\hat\beta_C=1.0$ (20/20, Wilson 95\% CI $[0.84,1.00]$) at both seeds while both
+components certify locally with all five family $\hat\beta=0$.
+\end{remark}
+
+\begin{proposition}[Gaming-gap certification]\label{prop:t8}
+For a target $T$ define the \emph{gaming gap}
+\begin{equation}
+\Gamma(T)=\left|\hat\beta_{\mathrm{held}}(T)-\hat\beta_{\mathrm{pub}}(T)\right|,
+\end{equation}
+between estimates on the public library and on a held-out set of semantic
+paraphrases with the same oracle. Assume:
+(A1) the breach indicator is $L$-sensitive in probe semantics under a metric
+$d$ on the probe space; (A2) the target cannot condition on probe
+\emph{provenance} beyond probe content. Let the held-out set be an
+$r$-cover of a semantic neighbourhood $\Theta$, with $M$ members. Then:
+\begin{enumerate}[nosep]
+\item if $\Gamma$ exceeds the instrument noise floor, the public certificate is
+\emph{void} for $\Theta$ (by T6 the public probe is silent off its support);
+\item if $\Gamma$ is within the noise floor and both estimates have upper
+confidence bound $\le\tau$, then with $n\ge \frac{1}{2\varepsilon^2}\log\frac{2M}{\delta}$
+samples per cell, simultaneously over the $M$ paraphrases and with probability
+$\ge1-\delta$, every $\theta\in\Theta$ within $r$ of a covered point satisfies
+$\beta_T(\theta)\le\tau+\varepsilon+Lr$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+The first claim is T6. For the second, Hoeffding's inequality and a union bound
+over the $M$ paraphrases give $|\hat\beta(\theta_j)-\beta(\theta_j)|\le\varepsilon$
+for all covered $j$ with probability $\ge1-\delta$. For any uncovered
+$\theta\in\Theta$ with $d(\theta,\theta_j)\le r$, assumption (A1) gives
+$\beta(\theta)\le\beta(\theta_j)+Lr \le \hat\beta(\theta_j)+\varepsilon+Lr
+\le\tau+\varepsilon+Lr$. Assumption (A2) is what prevents the target from
+presenting a different behavior on the held-out probes themselves; it is a
+threat-model condition, not a consequence of using held-out text. The
+generalization step is the standard Lipschitz--covering argument and is
+attributed as such; the \emph{gaming-gap diagnostic} $\Gamma$ is the new object.
+\end{proof}
+\begin{remark}
+Experiment~E7 tests the diagnostic, not the covering bound. A foil with an
+exact detector for the 15 public lexical signatures measures
+$\hat\beta_{\mathrm{pub}}=0$ (certified) and $\hat\beta_{\mathrm{held}}=1.0$
+(not certified), $\Gamma=1.0$; a control with no detector measures
+$\Gamma=0$ but is non-compliant on both sets (so a small gap is necessary, not
+sufficient, for certification). A2 is explicitly not guaranteed for an
+adversary that can read its own probe text; this is the residual limitation of
+any black-box certificate.
+\end{remark}
+
+\begin{theorem}[Tomogram forgery]\label{thm:t9}
+Let $\Pi_{\mathrm{pub}}$ be a public probe library with transcript support
+$\mathcal{S}$ and let $\Phi_{\mathrm{held}}$ be a held-out probe family with
+$\mathrm{supp}(\Phi_{\mathrm{held}})\cap\mathcal{S}=\varnothing$. For any two
+profiles $B_{\mathrm{disp}},B_{\mathrm{true}}\in[0,1]^K$ there exists a target
+$T$ such that tomography under $\Pi_{\mathrm{pub}}$ recovers
+$B_{\mathrm{disp}}$ within estimation error and tomography under
+$\Phi_{\mathrm{held}}$ recovers $B_{\mathrm{true}}$ within estimation error.
+\end{theorem}
+\begin{proof}
+Apply the T1 construction family by family. Define $T$ to condition its reply
+on the event $E_{\mathrm{pub}}=\{$the delivered probe lies in
+$\mathrm{supp}(\Pi_{\mathrm{pub}})\}$. On $E_{\mathrm{pub}}$ its breach
+indicator is prescribed by $B_{\mathrm{disp}}$; on its complement by
+$B_{\mathrm{true}}$. Both conditions are well-defined on histories and the two
+supports are disjoint by assumption, so the policy is consistent. The estimator
+observes only outcomes from the family it probes, and therefore recovers the
+corresponding profile.
+\end{proof}
+\begin{remark}
+A tomogram is an \emph{unauthenticated} report about probe-conditional
+behavior. This is the unifying corollary of T1, T6 and T9, not a new
+impossibility theorem in isolation: the qualitative structure is already
+captured by the defeat-device definition (Ferrara, 2026) and the general
+identifiability limit by partition theory (Mahran, 2026). Our contribution is
+the estimator-level form --- Wilson intervals, a tolerance $\tau$, and a
+gaming-gap decision statistic --- together with the composition result T7.
+Its operational consequence is that a
+published profile can steer a defender's deception or hardening investment
+toward the wrong family. Experiment~E9 realizes
+$B_{\mathrm{disp}}$ with all mass on exfiltration lure and $B_{\mathrm{true}}$
+with all mass on state deception: the displayed and held-out $\hat\beta$
+vectors differ by $1.0$ in exactly those two cells at both seeds, while the
+honest control's profiles agree exactly.
+\end{remark}
+\begin{corollary}[Adaptive gaming of a published held-out set]\label{cor:t10}
+Let $P$ be a public probe library and $H$ a \emph{published} held-out set used
+to compute the gaming gap $\Gamma=|\hat\beta_H-\hat\beta_P|$. Let $S$ be a third
+probe set from the same semantic family, unknown to the target at
+certification. If a target class can discriminate
+$\mathrm{supp}(P)\cup\mathrm{supp}(H)$ from $\mathrm{supp}(S)$, it contains a
+member with $\hat\beta_P=\hat\beta_H=0$ and $\hat\beta_S=1$.
+\end{corollary}
+\begin{proof}
+Condition the reply on the event $E=\{$the delivered probe lies in
+$\mathrm{supp}(P)\cup\mathrm{supp}(H)\}$; comply on $E$ and breach off it. The
+two supports are disjoint by construction, so the policy is consistent. The
+gaming gap computed on the published $H$ vanishes while the secret-set estimate
+is one.
+\end{proof}
+\begin{remark}
+This is the adaptive-auditing result (cf.\ Soopal et al., 2026) applied to our
+own T8 diagnostic: a \emph{published} held-out set is itself gameable. The
+validity of $\Gamma$ therefore requires strengthening A2 to a **secrecy
+condition** on the diagnostic set. Experiment~E10 realizes the attack with a
+literal detector for $P\cup H$: published $\Gamma=0$ and secret
+$\hat\beta=1.0$, while a fixed attacker is detected by published $\Gamma=1.0$
+and the secret-set check detects the adaptive foil at $\Gamma=1.0$, all at both
+seeds. We do not claim a learned attacker would discover these signatures.
+\end{remark}
+\begin{proposition}[Certificate half-life]\label{prop:t11}
+Assume the target's belief strength is $v$-Lipschitz in time,
+$|\beta_{t+h}-\beta_t|\le v h$. A measurement at $t_0$ yielding Wilson upper
+bound $U_0$ certifies $\beta_t\le\tau$ for all
+$t\in[t_0,\,t_0+h_\tau]$ with
+\begin{equation}
+h_\tau = \frac{\tau-U_0}{v}\quad (U_0<\tau),
+\end{equation}
+and certifies nothing when $U_0\ge\tau$. For $k$ sequential renewals, using a
+per-check level $\alpha/k$ gives simultaneous validity at level $\ge1-\alpha$.
+\end{proposition}
+\begin{proof}
+$\beta_t \le \beta_{t_0}+v(t-t_0) \le U_0+v(t-t_0)$, by the drift bound and
+$\beta_{t_0}\le U_0$. Setting the right-hand side to $\tau$ gives $h_\tau$. The
+sequential statement is a Bonferroni union bound. The inequality is a basic
+triangle-bound consequence; the contribution is the object $h_\tau$ as a
+certificate validity horizon and its renewal rule.
+\end{proof}
+\begin{remark}
+Adjacent work studies evaluator-error drift and label-efficient release
+(Mondal et al., 2026), behavioral change under backend-model swaps (Kang et
+al., 2026), and drift from memory misevolution (Xie et al., 2026). None defines
+a validity horizon for a behavioral security certificate. Experiment~E11
+measures it on a deterministic $v=0.05$ foil: a one-shot certificate is
+falsified at four epochs, a fixed calendar interval avoids falsification at
+five tomography runs, and the half-life rule avoids it at two runs, at both
+seeds. The drift bound is assumed known; estimating or enforcing it by policy
+(e.g. on model-change events) is left open.
+\end{remark}
+\begin{proposition}[Tomographic reactivity]\label{prop:t12}
+Let $\beta=\Pr_\pi[\text{breach}]$ be the estimand under a fresh session and let
+$\beta_k$ be the breach probability after $k$ prior replies in the same
+conversation. If $|\beta_k-\beta|\le c k$, then a pooled estimator over $n$
+probes in one context satisfies
+$|\hat\beta_{\mathrm{shared}}-\beta|\le c(n-1)/2$; it consistently estimates a
+context-conditioned quantity, not $\beta$. Session reset ($k=0$ per probe) is
+the identification condition.
+\end{proposition}
+\begin{proof}
+$\hat\beta_{\mathrm{shared}}$ averages $\beta_0,\dots,\beta_{n-1}$; the bound is
+the average of the linear deviation bounds. The observer-effect analogy to
+other measurement sciences is acknowledged; the claim is the bias for this
+estimator and the identification condition, not a new general phenomenon.
+Experiment~E12 measures a $0.467$ absolute bias ($93.3\%$ relative) between
+independent and shared-context tomography on a constructed foil, reproducing
+the mechanism that invalidated E2-v0.
+\end{proof}
+\begin{proposition}[Allocation--concentration tradeoff]\label{prop:t13}
+Let a probe-aware target hide on a family after $K$ exposures and breach before
+exposure $K$. A family probed $n_f$ times then measures
+$\hat\beta_f=\min(1,K/n_f)$; the E4 certificate at tolerance $\tau$ fails on
+that family iff $n_f<K/\tau$. Uniform allocation of $n$ probes over $F$
+families gives $n_f=n/F$ and a false certificate whenever $n/F\ge K/\tau$;
+concentrated allocation leaves some $n_f\ll n/F$, so those families violate the
+condition and the certificate fails.
+\end{proposition}
+\begin{proof}
+Arithmetic on the hide threshold; no new inequality is claimed. The content is
+the operational reversal: against a learning probe-aware target, allocation
+should deny the adversary uniform exposure rather than maximise estimator
+efficiency. Experiment~E13 uses $K=10$, $\tau=0.2$, a 300-probe budget: uniform
+gives 0/5 detected families and a passing (false) certificate; concentration
+gives 3/5 detected families and a failing certificate, at both seeds. A first
+run failed a registered condition because the foil's breach reply was invisible
+to the state-deception oracle; the defect and fix are logged in
+`PREREGISTRATION\_E13.md` and the failed artifacts are retained.
+\end{proof}
+\begin{remark}
+This does not retract the non-adversarial T3 policy benchmark (uniform, UCB,
+PSI, Neyman): it adds a threat-model condition under which the allocation
+objective changes. The foil is deterministic with a known hide threshold; we
+do not claim an optimal adversarial allocation.
+\end{remark}
+\begin{proposition}[Reconnaissance externality]\label{prop:t14}
+A published belief profile $\hat\beta$ lets an attacker choose
+$f^*=\arg\max_f\hat\beta_f$ instead of a uniformly random family. The success
+probability rises from $\frac{1}{K}\sum_f\beta_f$ to $\beta_{f^*}$, giving a
+reconnaissance advantage
+$A_{\mathrm{rec}}=\beta_{f^*}-\frac{1}{K}\sum_f\beta_f\ge0$, which is zero only
+for a flat profile. Publishing the scalar $U_{\max}=\max_f U_f$ removes the
+family ranking at the cost of the defender's allocation information.
+\end{proposition}
+\begin{proof}
+Decision analysis under the published vector; finite-sample uncertainty is
+reported through the Wilson bounds. This is not a new theorem. Experiment~E14
+is a pre-analysis of the frozen E4 profiles: the graded foil's advantage is
+$0.067$ (uniform $0.600$ to informed $0.667$), the flat resistant foil is
+$0.000$, and the naive foil's small $0.067$ advantage is the known split-secret
+oracle false negative disclosed in E4.
+\end{proof}
+\begin{remark}[A defense for T7]
+Experiment~E8 adds one cross-interface probe to the library. The two E6
+components that certified at $\hat\beta=0$ under 300 component-local probes
+both fail at $\hat\beta=1.0$ on the added probe (4/4 component-seed pairs), and
+a relay-resistant control still certifies with a clean composition. The design
+rule is: \emph{certify the interface vocabulary, not only the components}. This
+is an existence result on constructed foils; one probe does not suffice for
+arbitrary compositions.
+\end{remark}
+\begin{proposition}[Deception release: the defender as forger]\label{prop:t15}
+A published profile is not only unauthenticated (T9) but forgeable by the
+\emph{defender}. Fix the public probe suite $\Pi_{\mathrm{pub}}$ and let the
+defender publish $\tilde\beta$ that is $\Pi_{\mathrm{pub}}$-consistent (some
+probe-conditional policy realizes it on $\Pi_{\mathrm{pub}}$, as T9 permits).
+Then (i) any attacker whose measurement is confined to $\Pi_{\mathrm{pub}}$
+verifies $\tilde\beta$ and allocates by it: the release deception is
+\emph{stable} against public verification; (ii) if the true profile
+concentrates risk on family $v$ while $\tilde\beta$ concentrates on a decoy
+$d\ne v$, an attacker allocating by $\tilde\beta$ succeeds at the decoy-family
+rate instead of $\beta_v$; (iii) the deception collapses exactly when the
+attacker acquires held-out measurement capability, with success tending to the
+uninformed baseline and a \emph{trust-collapse} externality: one detected
+falsification discounts all future releases.
+\end{proposition}
+\begin{proof}
+(i) is T9's realizability with the defender as author; (ii) is the T14
+allocation analysis with a defender-chosen argument; (iii) reverses T10's
+secrecy asymmetry. No new inequality is claimed; the new objects are the
+\emph{deception gain of a measurement release}
+$\Delta_{\mathrm{dec}}=\mathrm{succ}(\text{honest release})-\mathrm{succ}(\text{decoy release})$
+and the verification-stability condition. Experiment~E15 (pre-analysis on the
+frozen E9 display/true profiles, attacker budget $B=120$, seeded Monte Carlo,
+$N=2000$): honest release hands the attacker per-attempt success $1.000$ (all
+budget on the true family), decoy release $0.000$, silence (uniform) $0.200$;
+the gain is stable under public verification at shares $0.2$ and $0.5$, and
+attacker success rises monotonically toward the uniform baseline as the
+attacker's held-out detection probability grows $0\to0.5\to1$
+($0.000\to0.100\to0.200$). The honest control's gain is $0$ by construction.
+Doctrine ancestors (cyber-deception misinformation: Ferguson-Walter et
+al.~2017 and Shadow Warrior; Bodeau et al.~2013; Perry arXiv:2506.20770) and
+decoy \emph{artifacts} (arXiv:2610.26664) are cited; the medium --- a
+behavioral certificate about real components, stable precisely because
+measurement is probe-conditional --- is new.
+\end{proof}
+\begin{proposition}[Detection budget vs.\ probe discrimination]\label{prop:t16}
+Let the attacker breach a probe iff it classifies it as held-out; a held-out
+probe is misread as public with probability $m$ (the attacker plays safe
+there), and a public probe is misread as held-out with probability $m'$ (a
+breach on the public support, which fails the public certificate
+immediately). Under the gaming-gap rule ($\hat\Gamma>\Gamma_{\min}$ and Wilson
+separation): with $m'=0$, held-out breaches are $\mathrm{Bin}(n,1-m)$ and the
+minimum held-out budget $n_{\min}(m)$ for detection power $1-\alpha$ is
+computable in closed form from the binomial tail and the Wilson geometry,
+diverging as $m\to1$; with $m'>0$, the detection probability tends to $1$ at
+any $n$ once a public breach occurs with high probability. Evasion therefore
+requires \emph{error-free one-sided discrimination} of the public support:
+the attacker's own fallibility is the defender's detection resource.
+\end{proposition}
+\begin{proof}
+Elementary binomial power analysis coupled to the pinned Wilson estimator; the
+content is the coupling and the one-sided asymmetry. Experiment~E16
+(registered grid, Monte Carlo $N=2000$/cell, seed 27182) matches the closed
+form within Monte Carlo error at every grid point: $n_{\min}=1,2,8$ at
+$m=0.02,0.10,0.50$; the frontier rises $8\to33\to103\to549\to2057$ across
+$m=0.5\to0.74\to0.84\to0.9\to0.92$ and exceeds any feasible budget for
+$m\ge0.94$; the one-sided regime confirms detection probability $\ge0.95$ for
+all $m\ge0.05$. Neighbors (Auditing Games for Sandbagging arXiv:2512.07810;
+AI Sandbagging arXiv:2406.07358) stress-test detectors against trained
+organisms without a budget--error coupling; this fills a tractable part of
+open problem T2.
+\end{proof}
+
+\section{The duality statement}
+
+One latent object organizes the field: the belief profile $B$.
+\emph{Certification} is a hypothesis test over $B$ ($H_0$: $\max_{\pi,c} \beta(\pi;\Pi_c) \leq \tau$ against the composite alternative; the GAUNTLET engine is this test with adaptive allocation). \emph{Deception} is controlled corruption of an adversary's $B$, verified by re-tomography (deception gain). \emph{Security monitoring} is change-point detection on $B_t$ over deployment time. Passive defense is impossible (T1); everything above is active tomography under different decision rules.
+
+\begin{thebibliography}{9}\small
+\bibitem{houlsby2013} N. M. T. Houlsby, F. Husz\'ar, M. M. Ghassemi, G. Orb\'an, D. M. Wolpert, M. Lengyel. Cognitive tomography reveals complex, task-independent mental representations. \emph{Current Biology} 23(21), 2013. [intellectual ancestor: tomography of latent state from behavior]
+\bibitem{bewley2020} T. Bewley, J. Lawry, A. Richards. Modelling agent policies with interpretable imitation learning. arXiv:2006.11309, 2020. [verified neighbour: black-box policy modelling; no security beliefs, no impossibility result]
+\bibitem{tripletree2020} T. Bewley, J. Lawry. TripleTree: A versatile interpretable representation of black box agents and their environments. arXiv:2009.04743, 2020. [verified neighbour: interpretable state discretization]
+\bibitem{feng2024} J. Feng. Monitoring Latent World States in Language Models with Diagnostic Classification. arXiv:2406.19501. [white-box complement; requires weights]
+\bibitem{shen2025} H. Shen, N. Clark, T. Mitra. Mind the value-action gap: Do LLMs act in alignment with their values? EMNLP 2025; arXiv:2501.15463.
+\bibitem{valuebench} Y. Ren, H. Ye, H. Fang, X. Zhang, G. Song. ValueBench: Towards comprehensively evaluating value orientations and understanding of large language models. ACL 2024; arXiv:2406.04214.
+\bibitem{testifai} TestifAI: Tomography-based testing for deep learning. arXiv:2608.18900. [tomography word in ML testing; different object]
+\bibitem{eraudit} Black-box auditing of epistemic reliability in multi-agent systems (ER-Audit). arXiv:2609.32361.
+\bibitem{decepeval} DecepEval: benchmarking deception in LLM agents. arXiv:2610.07967; and the deception-measurement line (Rowe 2006; Savage 2025; ParliamentBench; Kao 2026). [measures the deceiver or engagement; we estimate the victim's/attacker's profile]
+\bibitem{selfgap} The LLM self-report--behavior gap (psychometric line, 2026). [phenomenon precedent for BCG]
+\end{thebibliography}
+
+\end{document}

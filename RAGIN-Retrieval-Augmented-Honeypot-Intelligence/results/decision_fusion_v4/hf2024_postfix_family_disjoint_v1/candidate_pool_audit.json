@@ -1,0 +1,19 @@
+{
+  "schema": "ragin.v4.hf2024.postfix.candidate_pool_audit.v1",
+  "experiment_id": "HF2024_POSTFIX_FAMILY_DISJOINT_V1",
+  "source_dataset": "data/external/hf_shell_attack_2024/d201aafbbcbb5347078ca64f06c5428fa6814bc9/sessions/2024.jsonl",
+  "all_source_sessions": 6658,
+  "all_normalized_command_families": 1458,
+  "excluded_previous_source_groups": 240,
+  "excluded_previous_normalized_families": 59,
+  "remaining_source_groups": 6418,
+  "remaining_sessions_in_new_families": 1489,
+  "new_eligible_unique_command_families": 1399,
+  "selection_performed": true,
+  "selected_families": 240,
+  "selected_source_groups": 240,
+  "old_family_overlap": 0,
+  "metadata_only_feasibility": true,
+  "synthetic_or_replay_excluded": true,
+  "method": "Lowercase, trim, and collapse whitespace per command while preserving order; exclude every previous source group and every normalized family represented by the previous 240; rank remaining families and records by documented SHA256 rules."
+}

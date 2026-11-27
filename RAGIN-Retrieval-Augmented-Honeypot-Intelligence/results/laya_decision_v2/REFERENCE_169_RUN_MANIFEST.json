@@ -1,0 +1,100 @@
+{
+  "adjudicator": {
+    "model": "claude-sonnet-4-6-free",
+    "path": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_decision_v2/primary_169_adjudicator_01_output_v1.jsonl",
+    "provider": "APMIX",
+    "sha256": "c9d8c974ec5c6174057cc15d5e0876f71b0fe8f124ce43c96c5ff67f9be43b6f"
+  },
+  "base_url": "https://api.apmix.ai/v1",
+  "case_ids_sha256": "4c5fcde9de79aa4f7cf1640dde2f59bbbde05dce7f235e73c32d0a42e0d2496f",
+  "created_at_utc": "2026-10-14T04:30:12Z",
+  "credential_material_detected": false,
+  "decoding": {
+    "max_tokens": 16000,
+    "stream": false,
+    "temperature": 0,
+    "top_p": null
+  },
+  "driver_script": {
+    "path": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/scripts/primary_169_reference_apmix_v1.py",
+    "sha256": "ed0f61f8f2fd01dc2bb5c4c83c150aa1a83c073cc9be4b820fc96f5727c15814"
+  },
+  "execution_shape": "three fresh whole-packet primary calls (169 rows each), followed by frozen adjudication of non-exact cases",
+  "expected_N": 169,
+  "model": "claude-sonnet-4-6-free",
+  "old_rows_mixed": false,
+  "packet_sha256": {
+    "expert_ai_01": "e82f7ef8b61617c13c418f119d4ccb3786218aa916e7a00e39c851d761c7da0b",
+    "expert_ai_02": "4d5068bb35135b8a5673ad63b3ff75b97ffd0f5c47bb3b51a503eb96f6b0e4f2",
+    "expert_ai_03": "55b60afa0f039528a983e66b1e05cc47a0c933bc3ef45590031a77283b113d0d"
+  },
+  "prompt_template_sha256": {
+    "ANNOTATOR_PROMPT.txt": "ad777385f3fc6e0dccdf3b339ca63be7cfe09088429ccdb813ef67c69d56d816",
+    "INSTRUCTIONS.txt": "6bbf8d351b4a93d05cf38ba92c1a2848a66d7adb6f81c6aa699922cb71343f4a"
+  },
+  "provider": "APMIX",
+  "request_timeout_seconds": 900,
+  "response_schema": "primary annotation array: case_id, label, brief rationale, annotator_run_id",
+  "retry_policy": {
+    "description": "No automatic retry in the completed driver",
+    "retries": 0
+  },
+  "run_status": "COMPLETE",
+  "runs": [
+    {
+      "json_fence_seen": true,
+      "model": "claude-sonnet-4-6-free",
+      "n": 169,
+      "parsed_output_path": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_decision_v2/primary_169_expert_ai_01_annotations_v1.jsonl",
+      "parsed_output_sha256": "2f480792cada8c4b77bfe7a94c67374dd9042698b45fa09cd051189580de0da6",
+      "parser_acceptance": true,
+      "provider": "APMIX",
+      "provider_response_model": "claude-sonnet-4-6-free",
+      "raw_response_path": "/home/elaref/Documents/research/ragin_primary169_claude_v1/expert_ai_01/RAW_API_RESPONSE.txt",
+      "raw_response_sha256": "ef27a2827ea1e70a09c2623262c842d5742ddd4c33c1299b650a4ef20966646f",
+      "run_id": "expert_ai_01",
+      "runtime_metadata_path": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_decision_v2/primary_169_expert_ai_01_runtime_v1.json",
+      "runtime_metadata_sha256": "11a6a74e361de0a9cab7c886c508bd573a2a6a02399d9536fad4bdf6a2c1f62e",
+      "status": "SUCCESS"
+    },
+    {
+      "json_fence_seen": true,
+      "model": "claude-sonnet-4-6-free",
+      "n": 169,
+      "parsed_output_path": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_decision_v2/primary_169_expert_ai_02_annotations_v1.jsonl",
+      "parsed_output_sha256": "e9fcd35fd9dcc87c5768636f286f83761479ce14a4ac4371a2346c84f3f70c9b",
+      "parser_acceptance": true,
+      "provider": "APMIX",
+      "provider_response_model": "claude-sonnet-4-6-free",
+      "raw_response_path": "/home/elaref/Documents/research/ragin_primary169_claude_v1/expert_ai_02/RAW_API_RESPONSE.txt",
+      "raw_response_sha256": "582a721bd823a03fe159b718fff56373c28c53cf41f12f54dec60dcd35285337",
+      "run_id": "expert_ai_02",
+      "runtime_metadata_path": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_decision_v2/primary_169_expert_ai_02_runtime_v1.json",
+      "runtime_metadata_sha256": "4dac0a7a8467786429e7d331dc4091c32243d20f772136f7a633a6c309c3b594",
+      "status": "SUCCESS"
+    },
+    {
+      "json_fence_seen": true,
+      "model": "claude-sonnet-4-6-free",
+      "n": 169,
+      "parsed_output_path": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_decision_v2/primary_169_expert_ai_03_annotations_v1.jsonl",
+      "parsed_output_sha256": "30ad91a5aae7906fb4f00053471a6b42180438d49b4dd09ca69938bff6dcc165",
+      "parser_acceptance": true,
+      "provider": "APMIX",
+      "provider_response_model": "claude-sonnet-4-6-free",
+      "raw_response_path": "/home/elaref/Documents/research/ragin_primary169_claude_v1/expert_ai_03/RAW_API_RESPONSE.txt",
+      "raw_response_sha256": "ebac16d04bb88f4ba66f10ad5236f83576dad972862e27e1ebbf6af1d3e79e19",
+      "run_id": "expert_ai_03",
+      "runtime_metadata_path": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_decision_v2/primary_169_expert_ai_03_runtime_v1.json",
+      "runtime_metadata_sha256": "776e808b648721e0d1cc5331cd9c20cee18455b71fe1841f0f57fc73f4bfe678",
+      "status": "SUCCESS"
+    }
+  ],
+  "schema": "ragin.reference_169.apmix_frozen_run_manifest.v1",
+  "silent_model_fallback": false,
+  "source_packet": {
+    "path": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_decision_v2/primary_169_blind_annotation_source_v2b.json",
+    "sha256": "6d549cf0def2c2141b223fc574da7d189ef1c0f5501deda70ae1613c27784786"
+  },
+  "unique_case_ids": 169
+}

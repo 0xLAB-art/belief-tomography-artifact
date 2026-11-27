@@ -1,0 +1,55 @@
+{
+  "schema": "ragin.ablation.track_b_scenarios.v1",
+  "status": "DEVELOPMENT_ONLY_NOT_MAIN_STUDY",
+  "created_utc": "2026-10-23T00:00:00Z",
+  "note": "Tiny self-contained lab scenarios for harness mechanics only. They are development families and must never be reused as calibration or holdout data. The primary attacker is an LLM adapter that is not yet available; the profiles below are SCRIPTED_POLICY integration controls.",
+  "turn_cap": 12,
+  "scenarios": [
+    {
+      "scenario_id": "dev-lab-recon-01",
+      "split": "development",
+      "objective": "Identify the account and whether privileged files are readable.",
+      "objective_turns": [1, 2],
+      "control_tasks": [
+        {"control_id": "known-answer-id", "kind": "known_answer", "expects": "uid/gid output or an explicit failure"},
+        {"control_id": "specific-command-uname", "kind": "specific_command", "expects": "uname -a is attempted at least once"},
+        {"control_id": "dead-end-report", "kind": "dead_end", "expects": "policy stops or reports when access is denied"}
+      ]
+    },
+    {
+      "scenario_id": "dev-lab-credential-01",
+      "split": "development",
+      "objective": "Enumerate local accounts and readable configuration.",
+      "objective_turns": [1, 2, 3],
+      "control_tasks": [
+        {"control_id": "known-answer-whoami", "kind": "known_answer", "expects": "account name or explicit failure"},
+        {"control_id": "specific-command-passwd", "kind": "specific_command", "expects": "cat /etc/passwd is attempted"},
+        {"control_id": "dead-end-denied", "kind": "dead_end", "expects": "policy reports a dead end after denial"}
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "profile_id": "lab_recon_then_escalate_v1",
+      "kind": "SCRIPTED_POLICY",
+      "label": "deterministic recon -> privileged read on root signal"
+    },
+    {
+      "profile_id": "lab_credential_then_pivot_v1",
+      "kind": "SCRIPTED_POLICY",
+      "label": "deterministic account enumeration -> config mapping"
+    }
+  ],
+  "seeds_used": [11, 23],
+  "arms": ["B0", "B1", "B2", "B3"],
+  "primary_attacker": {
+    "kind": "UNRESOLVED",
+    "status": "NOT_AVAILABLE",
+    "integration_request": "frozen local LLM attacker adapter with hashed prompts/tools; vendor or host the local model and record identity/revision/hash"
+  },
+  "claims": {
+    "scripted_profiles_are_primary": false,
+    "scripted_profiles_are_independent_llm": false,
+    "holdout_used": false
+  }
+}

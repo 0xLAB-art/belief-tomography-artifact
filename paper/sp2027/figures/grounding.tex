@@ -1,0 +1,65 @@
+% Paired grounding effect (RAG minus No-RAG) per suite with 95% bootstrap
+% CIs, from b4_baseline_zodiac_20260922.json (the same numbers as
+% Table~tab:b4). Filled markers: intervals excluding zero. Open marker:
+% the persona stratum, whose interval straddles zero exactly as the
+% architecture predicts. Compiled statically; no results directory needed.
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  font=\scriptsize,
+  dot/.style={circle, fill=black, inner sep=1.5pt},
+  nul/.style={circle, draw=black, fill=white, inner sep=1.5pt, thick},
+  arr/.style={-{Latex[length=1.6mm]}, semithick, black!55}
+]
+  % zero reference
+  \draw[black!45] (0,0.5) -- (0,-3.2);
+  \node[font=\tiny, text=black!60, anchor=east] at (-0.05,0.5) {$\Delta=0$};
+
+  % CTI technique: +0.317 [+0.162, +0.480]
+  \node[anchor=east] at (-0.25,0) {CTI technique};
+  \draw[black!70] (1.62,0) -- (4.80,0);
+  \draw[black!70] (1.62,-0.13) -- (1.62,0.13);
+  \draw[black!70] (4.80,-0.13) -- (4.80,0.13);
+  \node[dot] at (3.17,0) {};
+
+  % CTI actor: +0.140 [+0.083, +0.197]
+  \node[anchor=east] at (-0.25,-0.95) {CTI actor};
+  \draw[black!70] (0.83,-0.95) -- (1.97,-0.95);
+  \draw[black!70] (0.83,-1.08) -- (0.83,-0.82);
+  \draw[black!70] (1.97,-1.08) -- (1.97,-0.82);
+  \node[dot] at (1.40,-0.95) {};
+
+  % Persona (predicted null): +0.005 [-0.047, +0.057]
+  \node[anchor=east] at (-0.25,-1.9) {Persona};
+  \draw[black!70] (-0.47,-1.9) -- (0.57,-1.9);
+  \draw[black!70] (-0.47,-2.03) -- (-0.47,-1.77);
+  \draw[black!70] (0.57,-2.03) -- (0.57,-1.77);
+  \node[nul] at (0.05,-1.9) {};
+
+  % Overall
+  \draw[black!25, dashed] (-0.25,-2.5) -- (5.0,-2.5);
+  \node[anchor=east] at (-0.25,-3.0) {Overall (90 pairs)};
+  \draw[black!70] (0.92,-3.0) -- (2.21,-3.0);
+  \draw[black!70] (0.92,-3.13) -- (0.92,-2.87);
+  \draw[black!70] (2.21,-3.13) -- (2.21,-2.87);
+  \node[dot] at (1.54,-3.0) {};
+
+  % axis
+  \draw[arr] (0,-3.65) -- (5.1,-3.65);
+  \foreach \x/\l in {0/0, 1/{+0.1}, 2/{+0.2}, 3/{+0.3}, 4/{+0.4}} {
+    \draw[black!55] (\x,-3.58) -- (\x,-3.72)
+        node[below, font=\tiny, text=black!60] {\l};
+  }
+\end{tikzpicture}
+\caption{Paired grounding differential (RAG $-$ No-RAG) per suite with
+95\% bootstrap CIs over 90 scenario pairs (numbers in
+Table~\ref{tab:b4}). Filled markers: intervals excluding zero -- $+0.317$
+on technique detection and $+0.140$ on actor attribution. The open
+marker is the persona stratum, whose interval straddles zero exactly as
+the architecture predicts: host believability is produced by the
+deception engine and the fiction graph, not by threat-intelligence
+retrieval. The mechanism behind the technique effect is starker than
+the mean: the grounded arm detects 35 distinct TTPs, the ungrounded arm
+none.}
+\label{fig:grounding}
+\end{figure}

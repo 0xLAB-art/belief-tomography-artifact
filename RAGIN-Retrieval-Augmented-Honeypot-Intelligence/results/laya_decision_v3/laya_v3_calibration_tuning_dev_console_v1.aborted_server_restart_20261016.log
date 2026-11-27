@@ -1,0 +1,84 @@
+[check] builder sha256 OK: e6e20d6951a2c0c0e2a34cd7f4211f990629fff01e1ef80bbd5c1ff5a17baabf
+[check] datasets manifest sha256 OK: 97d2c3c41e367564d5d74861c54a559bd19ced5e4e76d4e6a45dc8033e48fe6c
+[check] TR set sha256 OK: 8369483818b527219d5e4871ea4d71d1fc748fce70247c38f15bfeb66d1d9bf0
+[check] DEV set sha256 OK: e5efb3531ccd2423c640e12616ed38f88a46e9ffd7eedcecead4c7c29c0a0bbd
+[check] training rows sha256 OK: b6fa8a129b1cfdd66a4733716dc268f3ab9579772c165549d0b9599253676dca
+[check] contract sha256 OK: c3fea3c979ed33b8831fcecee7e4ed8eea16bd9bf57bc23690071700c0feca9b
+[check] base checkpoint weights sha256 OK: 891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c
+[check] DEV cases: 30 (sufficient 18, required-abstain 12); runtime question defs built for all
+[check] dev subset (per archetype: case_ids sorted, keep the first ceil(2n/3)): 93 cases / 279 items
+        required_conflict         8 ->  6 kept
+        required_contradiction    8 ->  6 kept
+        required_ioc_only        10 ->  7 kept
+        required_missing          8 ->  6 kept
+        required_partial          8 ->  6 kept
+        required_weak            10 ->  7 kept
+        sufficient               70 -> 47 kept
+        sufficient_lowscore       4 ->  3 kept
+        sufficient_multi          2 ->  2 kept
+        sufficient_single         4 ->  3 kept
+[check] subset rows sha256 (derived, not written): 74cbf3099319acd61a60888e4396381d635f6da554aac8287653f738023f5d7f
+[check] subset rows file not written yet (expected before the --dev run)
+[check] development artefact not written yet
+[dev] subset rows written: /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_decision_v3/laya_v3_calibration_tuning_dev_subset_rows_v1.jsonl (74cbf3099319acd61a60888e4396381d635f6da554aac8287653f738023f5d7f)
+dry-run: 93 rows read, 279 valid items, skipped: {}
+dry-run: optimizer budget: 252 train item(s), effective batch up to 32 (micro_batch 8 x grad_accum 4), 32 optimizer updates over 4 epoch(s)
+[dev] subset dry_run OK: 93 rows, 279 items, 252 train / 27 calib, 32 optimizer updates, zero skips
+[dev] candidate A (soft-ce): training on the subset at the frozen dev config
+train items 252, calibration items 27, eval items 27 (calibration_slice), skipped {}, device cpu
+optimizer budget: 252 train item(s), effective batch up to 32 (micro_batch 8 x grad_accum 4), 32 optimizer updates over 4 epoch(s)
+epoch 1/4 mean loss 1.2304
+epoch 2/4 mean loss 1.2092
+epoch 3/4 mean loss 1.2020
+epoch 4/4 mean loss 1.1822
+
+=== Calibration Evidence (in-sample calibration slice, 27 items; not held-out) ===
+Metric                 Before         After          Delta         
+-----------------------------------------------------------------
+Accuracy               0.5185         0.5185         +0.0000       
+Loss                   1.2287         1.2361         +0.0074       
+ECE                    0.1865         0.2279         +0.0414       
+Brier (multi-class)    0.5649         0.5670         +0.0021       
+Brier (top-1)          0.2181         0.2113         -0.0068       
+Mean Confidence        0.4184         0.5051         +0.0867       
+-----------------------------------------------------------------
+
+[dev] candidate A (soft-ce): trained 3884.1 s; epoch loss [1.23041, 1.209183, 1.201991, 1.182187]; warnings 2 (collapse 0); checkpoint models/laya_v3_calibration_tuning_dev_softce_v1
+[dev]   warning x1 [RuntimeWarning]: laya.train: choice calibration: fitted on only 27 calibration items
+[dev]   warning x60 [UserWarning]: Conflicting schema detected for question 'evidence_ref' across rows; keeping first seen definition.
+[dev-a-softce] DEV-001 run 1 -> SELECT strategy=maximize_recon_surface refs=['D1'] (10022.8 ms)
+[dev-a-softce] DEV-002 run 1 -> SELECT strategy=maximize_recon_surface refs=['D3'] (8673.6 ms)
+[dev-a-softce] DEV-003 run 1 -> SELECT strategy=low_intensity_administration refs=['D1'] (6562.4 ms)
+[dev-a-softce] DEV-004 run 1 -> SELECT strategy=maximize_recon_surface refs=['D1'] (9029.1 ms)
+[dev-a-softce] DEV-005 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D1'] (7450.1 ms)
+[dev-a-softce] DEV-006 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D1'] (8145.8 ms)
+[dev-a-softce] DEV-007 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D2'] (7057.2 ms)
+[dev-a-softce] DEV-008 run 1 -> ABSTAIN strategy=baseline refs=[] (7593.0 ms)
+[dev-a-softce] DEV-009 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D3'] (8829.6 ms)
+[dev-a-softce] DEV-010 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D2'] (7400.0 ms)
+[dev-a-softce] DEV-011 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D2'] (8127.7 ms)
+[dev-a-softce] DEV-012 run 1 -> SELECT strategy=contain_in_fiction_and_instrument refs=['D2'] (7593.6 ms)
+[dev-a-softce] DEV-013 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D2'] (6964.6 ms)
+[dev-a-softce] DEV-014 run 1 -> SELECT strategy=fake_success_and_return_visits refs=['D2'] (8553.8 ms)
+[dev-a-softce] DEV-015 run 1 -> SELECT strategy=low_intensity_administration refs=['D3'] (7276.9 ms)
+[dev-a-softce] DEV-016 run 1 -> SELECT strategy=low_intensity_administration refs=['D2'] (4972.5 ms)
+[dev-a-softce] DEV-017 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D2'] (5219.1 ms)
+[dev-a-softce] DEV-018 run 1 -> SELECT strategy=expose_decoy_internal_topology refs=['D2'] (6344.8 ms)
+[dev-a-softce] DEV-019 run 1 -> ABSTAIN strategy=baseline refs=[] (2994.4 ms)
+[dev-a-softce] DEV-020 run 1 -> ABSTAIN strategy=baseline refs=[] (2582.6 ms)
+[dev-a-softce] DEV-021 run 1 -> ABSTAIN strategy=baseline refs=[] (6424.5 ms)
+[dev-a-softce] DEV-022 run 1 -> SELECT strategy=expose_decoy_internal_topology refs=['D3'] (6438.3 ms)
+[dev-a-softce] DEV-023 run 1 -> SELECT strategy=low_intensity_administration refs=['D1'] (4847.9 ms)
+[dev-a-softce] DEV-024 run 1 -> SELECT strategy=expose_decoy_internal_topology refs=['D1'] (5505.3 ms)
+[dev-a-softce] DEV-025 run 1 -> SELECT strategy=maximize_recon_surface refs=['D1'] (7646.5 ms)
+[dev-a-softce] DEV-026 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D1'] (7575.2 ms)
+[dev-a-softce] DEV-027 run 1 -> SELECT strategy=maximize_recon_surface refs=['D1'] (8415.9 ms)
+[dev-a-softce] DEV-028 run 1 -> SELECT strategy=maximize_recon_surface refs=['D2'] (8730.0 ms)
+[dev-a-softce] DEV-029 run 1 -> SELECT strategy=steer_to_honeytoken_credentials refs=['D1'] (6066.0 ms)
+[dev-a-softce] DEV-030 run 1 -> SELECT strategy=low_intensity_administration refs=['D1'] (6973.1 ms)
+[dev] candidate A eval: alignment 0.6333; required-abstain recall 0.2500; inappropriate-abstain 0.0556; balance 1.1944; structural_ok=True
+[dev] candidate B (rlcd): training on the subset at the frozen dev config
+train items 252, calibration items 27, eval items 27 (calibration_slice), skipped {}, device cpu
+optimizer budget: 252 train item(s), effective batch up to 32 (micro_batch 8 x grad_accum 4), 32 optimizer updates over 4 epoch(s)
+epoch 1/4 mean loss 1.1043
+epoch 2/4 mean loss 1.0885

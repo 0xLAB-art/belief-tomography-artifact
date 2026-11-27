@@ -1,0 +1,46 @@
+{
+    "Command": {
+        "CommandId": "76deb8a7-e76b-4ca3-b83b-3143e3ca2b3c",
+        "DocumentName": "AWS-RunShellScript",
+        "DocumentVersion": "$DEFAULT",
+        "Comment": "RAGIN CORE openssl and path inventory",
+        "ExpiresAfter": "2026-10-11T18:52:27.298000+03:00",
+        "Parameters": {
+            "commands": [
+                "set -euo pipefail\necho RUN\ndate -u\necho FILELIST\nfind /etc /opt /app /root /home -maxdepth 3 -type f 2>/dev/null \\\n  | sed -E 's#^/(etc|opt|app|root|home)/([^/]+)/.*#/\\1/\\2#' \\\n  | sort | uniq -c | sort -rn | head -n 40\necho SSL_ETC\nls -la /etc/ssl 2>/dev/null || true\nls -la /etc/ssl/certs /etc/ssl/private 2>/dev/null || true\necho OPENSSL_CERTS_ETC\nfind /etc/ssl -maxdepth 4 -type f \\\n  \\( -name '*.pem' -o -name '*.crt' -o -name '*.key' -o -name '*.cert' \\) \\\n  2>/dev/null | head -n 80\necho OPENSSL_RAGIN\nfind / -type d -iname '*ragin*' 2>/dev/null | head -n 40\necho OPENSSL_HOMEDIR\nfind /home /root -maxdepth 4 -type f \\\n  \\( -name '*.pem' -o -name '*.crt' -o -name '*.key' -o -name '*.cert' \\) \\\n  2>/dev/null | head -n 80\necho OPENSSL_CONFIG\nfind /etc/ssl /etc/pki -maxdepth 4 -type f -name 'openssl.cnf' 2>/dev/null | head -n 10 || true\necho DONE\n"
+            ]
+        },
+        "InstanceIds": [
+            "i-062a400b300f4f9e4"
+        ],
+        "Targets": [],
+        "RequestedDateTime": "2026-10-11T17:50:27.298000+03:00",
+        "Status": "Pending",
+        "StatusDetails": "Pending",
+        "OutputS3Region": "eu-north-1",
+        "OutputS3BucketName": "",
+        "OutputS3KeyPrefix": "",
+        "MaxConcurrency": "1",
+        "MaxErrors": "1",
+        "TargetCount": 1,
+        "CompletedCount": 0,
+        "ErrorCount": 0,
+        "DeliveryTimedOutCount": 0,
+        "ServiceRole": "",
+        "NotificationConfig": {
+            "NotificationArn": "",
+            "NotificationEvents": [],
+            "NotificationType": ""
+        },
+        "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "",
+            "CloudWatchOutputEnabled": false
+        },
+        "TimeoutSeconds": 120,
+        "AlarmConfiguration": {
+            "IgnorePollAlarmFailure": false,
+            "Alarms": []
+        },
+        "TriggeredAlarms": []
+    }
+}

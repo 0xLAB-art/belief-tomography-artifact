@@ -1,0 +1,81 @@
+{
+  "bootstrap": {
+    "confidence_level": 0.95,
+    "metrics": {
+      "delta_accepted_non_fallback_response_rate": {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "estimate": 0.0,
+        "n": 120,
+        "replicates": 10000,
+        "unit": "paired case-level"
+      },
+      "delta_end_to_end_latency_ms": {
+        "ci95": [
+          -52.398485117955715,
+          17.26191623832467
+        ],
+        "estimate": -14.9809210197418,
+        "n": 120,
+        "replicates": 10000,
+        "unit": "paired case-level"
+      },
+      "delta_fallback_rate": {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "estimate": 0.0,
+        "n": 120,
+        "replicates": 10000,
+        "unit": "paired case-level"
+      },
+      "delta_first_pass_acceptance_rate": {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "estimate": 0.0,
+        "n": 120,
+        "replicates": 10000,
+        "unit": "paired case-level"
+      },
+      "delta_retry_count": {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "estimate": 0.0,
+        "n": 120,
+        "replicates": 10000,
+        "unit": "paired case-level"
+      }
+    },
+    "reason": "Each case was run as an independent fresh session; no reliable nontrivial pre-frozen session cluster was available.",
+    "replicates": 10000,
+    "seed": 20261013,
+    "session_cluster_used": false,
+    "unit": "paired case-level"
+  },
+  "primary_workflow_effect": {
+    "A_both_accepted": 113,
+    "B_baseline_only_success": 0,
+    "C_treatment_only_success": 0,
+    "D_neither": 7,
+    "absolute_delta": 0.0,
+    "baseline_rate": 0.9416666666666667,
+    "exact_two_sided_mcnemar": {
+      "B": 0,
+      "C": 0,
+      "discordant_n": 0,
+      "p_value": 1.0
+    },
+    "exploratory": true,
+    "metric": "accepted_non_fallback_response",
+    "relative_delta": 0.0,
+    "treatment_rate": 0.9416666666666667
+  },
+  "schema": "ragin.laya_decision_v2.exploratory_120_paired_statistics.v1"
+}

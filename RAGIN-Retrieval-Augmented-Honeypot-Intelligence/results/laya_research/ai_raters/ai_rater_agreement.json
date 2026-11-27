@@ -1,0 +1,1849 @@
+{
+  "case_count": 120,
+  "category_disagreement_matrix": {
+    "BENIGN": {
+      "BENIGN": 420,
+      "DATA_ACCESS": 0,
+      "EXPLOITATION": 1,
+      "OTHER_ATTACK": 0,
+      "PERSISTENCE": 0,
+      "PRIVILEGE_ESCALATION": 0,
+      "RECON": 16,
+      "SUSPICIOUS": 2,
+      "UNCERTAIN": 1
+    },
+    "DATA_ACCESS": {
+      "BENIGN": 0,
+      "DATA_ACCESS": 52,
+      "EXPLOITATION": 0,
+      "OTHER_ATTACK": 2,
+      "PERSISTENCE": 0,
+      "PRIVILEGE_ESCALATION": 0,
+      "RECON": 0,
+      "SUSPICIOUS": 0,
+      "UNCERTAIN": 2
+    },
+    "EXPLOITATION": {
+      "BENIGN": 1,
+      "DATA_ACCESS": 0,
+      "EXPLOITATION": 14,
+      "OTHER_ATTACK": 1,
+      "PERSISTENCE": 0,
+      "PRIVILEGE_ESCALATION": 0,
+      "RECON": 0,
+      "SUSPICIOUS": 0,
+      "UNCERTAIN": 10
+    },
+    "OTHER_ATTACK": {
+      "BENIGN": 0,
+      "DATA_ACCESS": 2,
+      "EXPLOITATION": 1,
+      "OTHER_ATTACK": 16,
+      "PERSISTENCE": 0,
+      "PRIVILEGE_ESCALATION": 0,
+      "RECON": 2,
+      "SUSPICIOUS": 0,
+      "UNCERTAIN": 9
+    },
+    "PERSISTENCE": {
+      "BENIGN": 0,
+      "DATA_ACCESS": 0,
+      "EXPLOITATION": 0,
+      "OTHER_ATTACK": 0,
+      "PERSISTENCE": 8,
+      "PRIVILEGE_ESCALATION": 0,
+      "RECON": 0,
+      "SUSPICIOUS": 0,
+      "UNCERTAIN": 2
+    },
+    "PRIVILEGE_ESCALATION": {
+      "BENIGN": 0,
+      "DATA_ACCESS": 0,
+      "EXPLOITATION": 0,
+      "OTHER_ATTACK": 0,
+      "PERSISTENCE": 0,
+      "PRIVILEGE_ESCALATION": 8,
+      "RECON": 0,
+      "SUSPICIOUS": 0,
+      "UNCERTAIN": 2
+    },
+    "RECON": {
+      "BENIGN": 16,
+      "DATA_ACCESS": 0,
+      "EXPLOITATION": 0,
+      "OTHER_ATTACK": 2,
+      "PERSISTENCE": 0,
+      "PRIVILEGE_ESCALATION": 0,
+      "RECON": 84,
+      "SUSPICIOUS": 0,
+      "UNCERTAIN": 0
+    },
+    "SUSPICIOUS": {
+      "BENIGN": 2,
+      "DATA_ACCESS": 0,
+      "EXPLOITATION": 0,
+      "OTHER_ATTACK": 0,
+      "PERSISTENCE": 0,
+      "PRIVILEGE_ESCALATION": 0,
+      "RECON": 0,
+      "SUSPICIOUS": 0,
+      "UNCERTAIN": 2
+    },
+    "UNCERTAIN": {
+      "BENIGN": 1,
+      "DATA_ACCESS": 2,
+      "EXPLOITATION": 10,
+      "OTHER_ATTACK": 9,
+      "PERSISTENCE": 2,
+      "PRIVILEGE_ESCALATION": 2,
+      "RECON": 0,
+      "SUSPICIOUS": 2,
+      "UNCERTAIN": 14
+    }
+  },
+  "category_disagreement_matrix_note": "Symmetric matrix; diagonal cells are pairwise agreements, and each off-diagonal disagreement contributes to both symmetric cells.",
+  "exploratory_only": true,
+  "fleiss_kappa": 0.7566492473286017,
+  "fleiss_kappa_inputs": {
+    "P_bar": 0.8555555555555556,
+    "P_e": 0.40643518518518523,
+    "marginal_proportions": {
+      "BENIGN": 0.6111111111111112,
+      "DATA_ACCESS": 0.07777777777777778,
+      "EXPLOITATION": 0.03611111111111111,
+      "OTHER_ATTACK": 0.041666666666666664,
+      "PERSISTENCE": 0.013888888888888888,
+      "PRIVILEGE_ESCALATION": 0.013888888888888888,
+      "RECON": 0.14166666666666666,
+      "SUSPICIOUS": 0.005555555555555556,
+      "UNCERTAIN": 0.058333333333333334
+    }
+  },
+  "highest_disagreement_categories": [
+    [
+      "UNCERTAIN",
+      28
+    ],
+    [
+      "BENIGN",
+      20
+    ],
+    [
+      "RECON",
+      18
+    ],
+    [
+      "OTHER_ATTACK",
+      14
+    ],
+    [
+      "EXPLOITATION",
+      12
+    ],
+    [
+      "DATA_ACCESS",
+      4
+    ],
+    [
+      "SUSPICIOUS",
+      4
+    ],
+    [
+      "PERSISTENCE",
+      2
+    ],
+    [
+      "PRIVILEGE_ESCALATION",
+      2
+    ]
+  ],
+  "highest_disagreement_pairs": [
+    {
+      "categories": [
+        "BENIGN",
+        "RECON"
+      ],
+      "count": 16
+    },
+    {
+      "categories": [
+        "EXPLOITATION",
+        "UNCERTAIN"
+      ],
+      "count": 10
+    },
+    {
+      "categories": [
+        "OTHER_ATTACK",
+        "UNCERTAIN"
+      ],
+      "count": 9
+    },
+    {
+      "categories": [
+        "SUSPICIOUS",
+        "UNCERTAIN"
+      ],
+      "count": 2
+    },
+    {
+      "categories": [
+        "OTHER_ATTACK",
+        "RECON"
+      ],
+      "count": 2
+    },
+    {
+      "categories": [
+        "BENIGN",
+        "SUSPICIOUS"
+      ],
+      "count": 2
+    },
+    {
+      "categories": [
+        "PRIVILEGE_ESCALATION",
+        "UNCERTAIN"
+      ],
+      "count": 2
+    },
+    {
+      "categories": [
+        "DATA_ACCESS",
+        "OTHER_ATTACK"
+      ],
+      "count": 2
+    },
+    {
+      "categories": [
+        "DATA_ACCESS",
+        "UNCERTAIN"
+      ],
+      "count": 2
+    },
+    {
+      "categories": [
+        "PERSISTENCE",
+        "UNCERTAIN"
+      ],
+      "count": 2
+    },
+    {
+      "categories": [
+        "EXPLOITATION",
+        "OTHER_ATTACK"
+      ],
+      "count": 1
+    },
+    {
+      "categories": [
+        "BENIGN",
+        "UNCERTAIN"
+      ],
+      "count": 1
+    },
+    {
+      "categories": [
+        "BENIGN",
+        "EXPLOITATION"
+      ],
+      "count": 1
+    }
+  ],
+  "human_ground_truth": false,
+  "joined_with_model_predictions": false,
+  "label_categories": [
+    "BENIGN",
+    "DATA_ACCESS",
+    "EXPLOITATION",
+    "OTHER_ATTACK",
+    "PERSISTENCE",
+    "PRIVILEGE_ESCALATION",
+    "RECON",
+    "SUSPICIOUS",
+    "UNCERTAIN"
+  ],
+  "majority_agreement_definition": "At least two of three raters agree; with three complete ratings this is 100 percent by construction.",
+  "majority_agreement_rate": 0.9833333333333333,
+  "pairwise_comparisons": 360,
+  "per_case": [
+    {
+      "case_id": "00dbac0794ca",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "OTHER_ATTACK",
+        "OTHER_ATTACK"
+      ],
+      "majority_count": 2,
+      "majority_label": "OTHER_ATTACK",
+      "unanimous": false,
+      "uncertain_rater_count": 1
+    },
+    {
+      "case_id": "019b4481c760",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "073ee5a7d918",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "0a1631f174eb",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "RECON",
+        "RECON",
+        "RECON"
+      ],
+      "majority_count": 3,
+      "majority_label": "RECON",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "0cefcd8a03b7",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "RECON",
+        "RECON",
+        "RECON"
+      ],
+      "majority_count": 3,
+      "majority_label": "RECON",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "0d67d1113703",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "0e27da0444c0",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "0f7315251b4f",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "16cb0880a2cb",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "177f12fec88d",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "19595b9defea",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "UNCERTAIN",
+        "SUSPICIOUS"
+      ],
+      "majority_count": 2,
+      "majority_label": "UNCERTAIN",
+      "unanimous": false,
+      "uncertain_rater_count": 2
+    },
+    {
+      "case_id": "19a0830d246e",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "BENIGN",
+        "RECON",
+        "BENIGN"
+      ],
+      "majority_count": 2,
+      "majority_label": "BENIGN",
+      "unanimous": false,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "1bb93b1e99a7",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "UNCERTAIN",
+        "UNCERTAIN"
+      ],
+      "majority_count": 3,
+      "majority_label": "UNCERTAIN",
+      "unanimous": true,
+      "uncertain_rater_count": 3
+    },
+    {
+      "case_id": "1c7b5a587634",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "1e9777872e77",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "1f51a3f35e2e",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "1ffe88405d1f",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "DATA_ACCESS",
+        "DATA_ACCESS",
+        "DATA_ACCESS"
+      ],
+      "majority_count": 3,
+      "majority_label": "DATA_ACCESS",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "23a0bb12e4c1",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "EXPLOITATION",
+        "EXPLOITATION"
+      ],
+      "majority_count": 2,
+      "majority_label": "EXPLOITATION",
+      "unanimous": false,
+      "uncertain_rater_count": 1
+    },
+    {
+      "case_id": "284c37e21b6f",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "EXPLOITATION",
+        "EXPLOITATION"
+      ],
+      "majority_count": 2,
+      "majority_label": "EXPLOITATION",
+      "unanimous": false,
+      "uncertain_rater_count": 1
+    },
+    {
+      "case_id": "2d09a05767ec",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "DATA_ACCESS",
+        "DATA_ACCESS",
+        "DATA_ACCESS"
+      ],
+      "majority_count": 3,
+      "majority_label": "DATA_ACCESS",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "2d28266233d7",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "UNCERTAIN",
+        "UNCERTAIN"
+      ],
+      "majority_count": 3,
+      "majority_label": "UNCERTAIN",
+      "unanimous": true,
+      "uncertain_rater_count": 3
+    },
+    {
+      "case_id": "2db67bf4fb9c",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "2ebc1972a455",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "2f7c1524ec52",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "RECON",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 2,
+      "majority_label": "BENIGN",
+      "unanimous": false,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "332171c6a243",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "336d301ccde5",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "3375d0a90c00",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "RECON",
+        "RECON",
+        "RECON"
+      ],
+      "majority_count": 3,
+      "majority_label": "RECON",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "3382fcf5cfed",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "33a06fdd0a8a",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "354fe72ef404",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "373c9362c061",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "38a324eee6a8",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "40b66d4845e6",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "OTHER_ATTACK",
+        "RECON",
+        "OTHER_ATTACK"
+      ],
+      "majority_count": 2,
+      "majority_label": "OTHER_ATTACK",
+      "unanimous": false,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "422a70b58a94",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "4645c7741708",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "RECON",
+        "RECON",
+        "RECON"
+      ],
+      "majority_count": 3,
+      "majority_label": "RECON",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "479cad54e6ab",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "49a5fa7eb75a",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "4bdf100460aa",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "4cdf05db8008",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "BENIGN",
+        "SUSPICIOUS",
+        "BENIGN"
+      ],
+      "majority_count": 2,
+      "majority_label": "BENIGN",
+      "unanimous": false,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "4ead15e5c85b",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "4ec7e323a02a",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "PRIVILEGE_ESCALATION",
+        "PRIVILEGE_ESCALATION"
+      ],
+      "majority_count": 2,
+      "majority_label": "PRIVILEGE_ESCALATION",
+      "unanimous": false,
+      "uncertain_rater_count": 1
+    },
+    {
+      "case_id": "512ddf4316a8",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "PRIVILEGE_ESCALATION",
+        "PRIVILEGE_ESCALATION",
+        "PRIVILEGE_ESCALATION"
+      ],
+      "majority_count": 3,
+      "majority_label": "PRIVILEGE_ESCALATION",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "528850ef9193",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "BENIGN",
+        "RECON",
+        "RECON"
+      ],
+      "majority_count": 2,
+      "majority_label": "RECON",
+      "unanimous": false,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "559ab1a4daf8",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "598ff01ec9e2",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "5a6878345104",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "RECON",
+        "BENIGN",
+        "RECON"
+      ],
+      "majority_count": 2,
+      "majority_label": "RECON",
+      "unanimous": false,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "5f17c2687a7f",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "DATA_ACCESS",
+        "DATA_ACCESS",
+        "OTHER_ATTACK"
+      ],
+      "majority_count": 2,
+      "majority_label": "DATA_ACCESS",
+      "unanimous": false,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "60bdaa22319d",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "RECON",
+        "RECON",
+        "RECON"
+      ],
+      "majority_count": 3,
+      "majority_label": "RECON",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "62040fe764aa",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "62858210e1be",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "640c9f3e5397",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "67c3bd27aa0b",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "68b30c867f30",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "RECON",
+        "RECON",
+        "RECON"
+      ],
+      "majority_count": 3,
+      "majority_label": "RECON",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "696bc28d12ab",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "RECON",
+        "RECON",
+        "RECON"
+      ],
+      "majority_count": 3,
+      "majority_label": "RECON",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "6c00b30b5087",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "71f70f1d5dab",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "74b29152648a",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "765e19b0f3b7",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "7d2bcafd66ac",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "7e590931dfa8",
+      "distinct_label_count": 3,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "EXPLOITATION",
+        "OTHER_ATTACK"
+      ],
+      "majority_count": 1,
+      "majority_label": "UNCERTAIN",
+      "unanimous": false,
+      "uncertain_rater_count": 1
+    },
+    {
+      "case_id": "811c7b5fbb9d",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "8245368604cb",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "85e362153fb9",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "EXPLOITATION",
+        "EXPLOITATION",
+        "EXPLOITATION"
+      ],
+      "majority_count": 3,
+      "majority_label": "EXPLOITATION",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "86fe89f70bcd",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "RECON",
+        "RECON",
+        "RECON"
+      ],
+      "majority_count": 3,
+      "majority_label": "RECON",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "88837c8a2ebc",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "8b333b619d4a",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "8e10e4b8fe7a",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "8f3c0d1ec6fa",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "92ffefebee47",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "953d5fd89d4a",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "9b5b74642287",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "DATA_ACCESS",
+        "DATA_ACCESS",
+        "DATA_ACCESS"
+      ],
+      "majority_count": 3,
+      "majority_label": "DATA_ACCESS",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "9dbba61c9951",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "9e1df2b190ae",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "9e79b8ddf98c",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "PERSISTENCE",
+        "PERSISTENCE",
+        "PERSISTENCE"
+      ],
+      "majority_count": 3,
+      "majority_label": "PERSISTENCE",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "a3b5b234a552",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "RECON",
+        "RECON",
+        "RECON"
+      ],
+      "majority_count": 3,
+      "majority_label": "RECON",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "a4c188007f97",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "a8117b72f624",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "aa86cb62b82e",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "EXPLOITATION",
+        "EXPLOITATION"
+      ],
+      "majority_count": 2,
+      "majority_label": "EXPLOITATION",
+      "unanimous": false,
+      "uncertain_rater_count": 1
+    },
+    {
+      "case_id": "aab6757e6cfa",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "ab4bf1e35049",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "ad7b7844b156",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "OTHER_ATTACK",
+        "OTHER_ATTACK"
+      ],
+      "majority_count": 2,
+      "majority_label": "OTHER_ATTACK",
+      "unanimous": false,
+      "uncertain_rater_count": 1
+    },
+    {
+      "case_id": "b1cd89b984ab",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "BENIGN",
+        "RECON",
+        "BENIGN"
+      ],
+      "majority_count": 2,
+      "majority_label": "BENIGN",
+      "unanimous": false,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "b27ea577421f",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "b67c56f26222",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "RECON",
+        "RECON",
+        "RECON"
+      ],
+      "majority_count": 3,
+      "majority_label": "RECON",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "b68bc5cbd284",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "b8b12778c351",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "b9dd5abbf6c3",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "bb0fbc2eedfd",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "bdda74133169",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "bf9b2ed37d81",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "c2f9e8c4c74e",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "DATA_ACCESS",
+        "DATA_ACCESS",
+        "DATA_ACCESS"
+      ],
+      "majority_count": 3,
+      "majority_label": "DATA_ACCESS",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "c4c35d67c3f1",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "c964654a00a5",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "DATA_ACCESS",
+        "DATA_ACCESS",
+        "DATA_ACCESS"
+      ],
+      "majority_count": 3,
+      "majority_label": "DATA_ACCESS",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "ca6359d28cfb",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "caca3b699de2",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "RECON",
+        "BENIGN",
+        "RECON"
+      ],
+      "majority_count": 2,
+      "majority_label": "RECON",
+      "unanimous": false,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "cb906fc3e370",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "ccfaad6d6465",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "DATA_ACCESS",
+        "DATA_ACCESS",
+        "DATA_ACCESS"
+      ],
+      "majority_count": 3,
+      "majority_label": "DATA_ACCESS",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "cd05ba19d2bb",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "DATA_ACCESS",
+        "DATA_ACCESS"
+      ],
+      "majority_count": 2,
+      "majority_label": "DATA_ACCESS",
+      "unanimous": false,
+      "uncertain_rater_count": 1
+    },
+    {
+      "case_id": "cd7fdaf628ee",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "RECON",
+        "RECON",
+        "RECON"
+      ],
+      "majority_count": 3,
+      "majority_label": "RECON",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "d0353508a5b0",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "d35ac996d465",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "d4a592328440",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "d7374cc4ee37",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "d7d84bbb10f8",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "EXPLOITATION",
+        "EXPLOITATION"
+      ],
+      "majority_count": 2,
+      "majority_label": "EXPLOITATION",
+      "unanimous": false,
+      "uncertain_rater_count": 1
+    },
+    {
+      "case_id": "dae7556fc3f4",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "db50b8dbbf3c",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "DATA_ACCESS",
+        "DATA_ACCESS",
+        "DATA_ACCESS"
+      ],
+      "majority_count": 3,
+      "majority_label": "DATA_ACCESS",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "de020058d388",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "OTHER_ATTACK",
+        "OTHER_ATTACK",
+        "OTHER_ATTACK"
+      ],
+      "majority_count": 3,
+      "majority_label": "OTHER_ATTACK",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "e3a8981929e6",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "PERSISTENCE",
+        "PERSISTENCE"
+      ],
+      "majority_count": 2,
+      "majority_label": "PERSISTENCE",
+      "unanimous": false,
+      "uncertain_rater_count": 1
+    },
+    {
+      "case_id": "e4e12ed202b2",
+      "distinct_label_count": 3,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "BENIGN",
+        "EXPLOITATION"
+      ],
+      "majority_count": 1,
+      "majority_label": "UNCERTAIN",
+      "unanimous": false,
+      "uncertain_rater_count": 1
+    },
+    {
+      "case_id": "e5c50508dac0",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "RECON",
+        "RECON",
+        "RECON"
+      ],
+      "majority_count": 3,
+      "majority_label": "RECON",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "e8412c576f38",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "e9d7fd684ef2",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "BENIGN",
+        "RECON",
+        "BENIGN"
+      ],
+      "majority_count": 2,
+      "majority_label": "BENIGN",
+      "unanimous": false,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "ecd0e072249a",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "edb3b3b9ce8e",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "RECON"
+      ],
+      "majority_count": 2,
+      "majority_label": "BENIGN",
+      "unanimous": false,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "f1aae1c198d1",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "OTHER_ATTACK",
+        "OTHER_ATTACK"
+      ],
+      "majority_count": 2,
+      "majority_label": "OTHER_ATTACK",
+      "unanimous": false,
+      "uncertain_rater_count": 1
+    },
+    {
+      "case_id": "f2135da32462",
+      "distinct_label_count": 2,
+      "labels_by_rater": [
+        "UNCERTAIN",
+        "OTHER_ATTACK",
+        "OTHER_ATTACK"
+      ],
+      "majority_count": 2,
+      "majority_label": "OTHER_ATTACK",
+      "unanimous": false,
+      "uncertain_rater_count": 1
+    },
+    {
+      "case_id": "f2f3f6256b28",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "RECON",
+        "RECON",
+        "RECON"
+      ],
+      "majority_count": 3,
+      "majority_label": "RECON",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "fd10535f4e89",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "DATA_ACCESS",
+        "DATA_ACCESS",
+        "DATA_ACCESS"
+      ],
+      "majority_count": 3,
+      "majority_label": "DATA_ACCESS",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "fd65c582c594",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    },
+    {
+      "case_id": "fe534a40cd31",
+      "distinct_label_count": 1,
+      "labels_by_rater": [
+        "BENIGN",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "majority_count": 3,
+      "majority_label": "BENIGN",
+      "unanimous": true,
+      "uncertain_rater_count": 0
+    }
+  ],
+  "pooled_uncertain_rate": 0.058333333333333334,
+  "rater_ids": [
+    "codex_r1",
+    "codex_r2",
+    "codex_r3"
+  ],
+  "rater_model": "gpt-5.6-luna",
+  "raw_agreement": 0.8555555555555555,
+  "raw_pairwise_agreement": 0.8555555555555555,
+  "schema_version": "1.0",
+  "two_of_three_nonunanimous_rate": 0.20833333333333334,
+  "unanimous_cases": 95,
+  "unanimous_rate": 0.7916666666666666,
+  "uncertain_rate_by_rater": {
+    "codex_r1": 16,
+    "codex_r2": 3,
+    "codex_r3": 2
+  }
+}

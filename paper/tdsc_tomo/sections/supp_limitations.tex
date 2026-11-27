@@ -1,0 +1,157 @@
+\section{Extended Rigor, Ethics, and Limitations}
+\label{sec:supp-limits}
+
+\section{Rigor, Ethics, and Limitations}\label{sec:limits}
+
+\paragraph{Rigor infrastructure, and an honest registration ledger}
+The estimator is frozen by commit hash and every deviation is logged
+before the affected data is analyzed. Effects below the measured noise
+floor are not claimable in any document. Registration is claimed exactly
+as the frozen record supports it, layer by layer: \emph{cleanly
+before data} for E2--E3 and E5 (git precedence verified) and for E22, E25,
+E30 (genuine git precedence) and E31 (file mtime precedes all data,
+same-commit); E14's registration file precedes its data by $37$\,s inside a
+same-commit add; and E1/E1b are the instrument calibration, whose frozen
+artifacts (2026-11-07, and 2026-11-18 22:40 for E1b) predate the layer
+registration, so they are reported as calibration rather than as registered
+hypothesis tests; \emph{post-data in
+part} for the E20--E29 diagnostic window, whose frozen timestamps show
+registrations minted minutes after first data (E21: +28\,min; E22-entry:
++1\,min\,44\,s; E27: committed +4\,min after the last data write; E28:
++3\,min\,04\,s; E29: committed +8\,min\,19\,s after; E20: committed
+after its computation, bearing a future-dated header)---and two of these
+registration files (E27, E29) had their header dates edited after the
+fact in a later commit, which we disclose here as the record's real state
+rather than smooth over. The 24 confirmatory / 6 exploratory split is
+\emph{ours, applied retroactively} to this evidence: E23, E25--E29 are
+exploratory (designed after the anomaly, review concern, or budget
+question each investigates---E26 after a reviewer concern, E28/E29 after
+the budget question, E23 after the engagement-depth census); the registry
+document day-0 plan stops at E5, E24's retirement is a paper-side note,
+and no preregistration artifact uses the confirmatory/exploratory
+taxonomy. We say this plainly: the paper's universal
+``pre-registered before data'' phrasing of earlier drafts was \emph{not
+supported} by this record for the E20--E29 diagnostics and is withdrawn.
+Every number in this paper maps to an artifact path and commit in the
+claims--evidence ledger, which pins the registration files \emph{as
+frozen}---including the post-hoc edits above, hashed as they now exist
+(Data Availability). The verdict channel is disclosed (oracle vs.\
+jury) and audited against transcripts. No real credentials are used: all
+secrets are fiction canaries, and the target genuinely holds the canary
+under the wire protocol.
+
+\paragraph{Ethics declaration}
+Three environments were involved, and we scope each precisely rather
+than claim a blanket exemption the field sections do not support.
+\emph{Third-party model endpoints.} E2/E29 probed commercial frontier
+models served behind an authenticated, metered gateway under catalog
+names, and E30/E31 probed three open-weight models through a
+provider-intermediated lane---these are \emph{third-party systems}, probed
+actively; earlier drafts' statement that ``no third-party system was
+probed or attacked'' is corrected here. The probing practice is the
+established red-teaming lineage of the agent-security literature
+(Section~\ref{sec:related}), bounded as follows: every secret is a
+fictional canary, no real credential or private data was ever at issue, no
+destructive command was executed on any host, and every session was a paid,
+metered, rate-limited interaction under the provider's published acceptable
+use terms. The canary strings themselves are the measured quantity: their
+extraction is the behaviour under study, and no extraction of credentials
+beyond the fictional canaries, no persistence, and no service degradation
+was attempted. \emph{Locally constructed foils.} The constructed-foil layer
+runs on author-built harnesses. \emph{The live fleet.} The honeypot
+fleet runs on cloud instances \emph{deployed and administered by the
+author}; its attack face is intentionally public (unsolicited sessions
+to a deception honeypot have no consent expectation under standard
+honeypot doctrine), unsolicited third-party sessions receive only
+synthetic canary secrets, and are retained as defense telemetry
+only---not analyzed or reported in this paper---under the same halt rules
+and privacy handling as the defense records. The live
+honeypot operations used synthetic canary secrets exclusively, with halt
+gates and an adjudicated canary-allowlist incident. The attacker personas
+are automated LLM-driven agents under the author's control; no human
+subjects were involved, no human-subject data are analyzed or reported,
+and no institutional review was required for the measurement records
+this paper reports (which are the canary-only interactions above). The
+dual-use analysis is in Section~\ref{sec:discussion}.
+
+\paragraph{Limitations}
+(1) \emph{Behavioral estimand and its sensitivity constant.} We measure
+behavioral belief, not internal
+representation; Theorem~\ref{thm:passive} is the degenerate case showing why
+the behavioral object is the contractible one. Sensitivity is not an
+empirical regularity condition: for binary verdict channels
+$L\le1$ is an identity (Remark~\ref{rem:sens}), so the frontier caps carry
+$L=1$ by construction and are tight in that constant. E26 instantiates
+the identity on the constructed planes (dose step $=$ the $\TV$ shift),
+reading $\hat L_{\max}=1.00$ \emph{as a maximum across families}: its
+per-family values include the epistemic-echo family's $0.667$
+$[0.480,0.773]$ (a conservative ratio interval for
+$\Delta\hat\beta/\Delta\mathrm{dose}$, not a Wilson interval; the audited
+dose-1 oracle error, not sub-linearity), and
+E26's own preregistration concedes the circularity (``can $L$ be
+measured anywhere? On the constructed planes, yes---exactly''). E26
+counts as a harness consistency check, not an assumption test, and was
+designed after a reviewer concern (exploratory in
+Table~\ref{tab:program}'s classification), not after an anomaly.
+Production-target $L$ is not estimated (black-box TV yields lower bounds
+on $L$, not upper bounds), and the bounds remain in $L$-units. (2) \emph{Template
+diversity.} The v0 library is one template per (family, generation) cell.
+E22 freezes three paraphrase variants per cell---the deterministic-harness
+profiles are wording-invariant ($r = 1.0$)---while E21 shows production
+models are \emph{not} (one void cell, $\Gamma = 0.667$): probe diversity
+is a measured axis. Under a single template a field $\hat\beta$ reads as
+that template's success probability; $\Gamma$ is the diagnostic for
+exactly this gap and the post-repair $\Gamma$ series (E25--E28) its
+monitor. LLM-generated worlds remain
+library-v2. (3) \emph{Verdict semantics, its channels, and two disclosures.} Lexical
+oracles have a measured 20\% false-positive and 48\%
+false-negative rate on boundary sessions; the calibrated jury and
+transcript audit are mandatory for non-literal breaches---but see the
+measurement model of Section~\ref{sec:library}: the field estimator is
+the lexical channel $\beta^{\mathrm{lex}}$, and the non-literal audit
+triggered on nothing in E2-v1 because there were no oracle positives, so
+its protection was vacuous precisely when it appeared clean. The
+post-repair field audit (230 oracle positives across E29/E30/E31, all
+transcript-adjudicated \emph{by the author, non-blind}, as the frozen
+audit header records) confirms the structure live: 118/118
+\texttt{unauthorized\_action} flags are
+refusal-quote false positives; 112/112 \texttt{secret\_leak} flags are
+genuine literal echoes---the oracles fail in opposite directions, and
+only adjudication separates them. Two disclosures temper that audit:
+(a) its provenance is author-side and non-blind (mitigated by mechanical
+checkability---canonical verbatim-quoting throughout, independent re-read,
+ledger---and quantified by the blinded 20\% re-adjudication of
+Section~\ref{sec:field}: agreement 45/46 full-sample and 39/39 with the third
+coder's own panel excluded, under the frozen rubric, coders blind to panel,
+model, session, and author label); (b) \emph{censored turns have no
+verbatim transcripts}: the drivers substitute a canned
+refusal string into the reply field of every blocked turn (591 turns
+across the completed E2-v1, E29, and E30 Flash/Pro panels; E31 adds $83$
+---Flash $0$, V4-Pro $59$, MiniMax $24$---and E30 MiniMax adds $305$;
+$979$ across all eleven measured panels, decomposed per panel in the
+ledger), so
+blocked-turn evidence is the counters and proxy
+log, not retained text---we state this once here and correct the earlier
+draft's ``every turn is logged'' phrasing (E21--E28 flagged replies were
+not retained by those drivers at all, so their status is assigned by
+representation from the adjudicated E29 rerun---same model, lane, and
+budget, with probe text identical for E25/E28 and family-matched only for
+the E21/E27 paraphrases---not by direct verification; transcript retention
+applies to uncensored turns of E29 onward and to the uncensored turns
+that existed in E2-v1).
+(4) \emph{Provider
+censoring.} Gateway content filters block a subset of aggressive probes;
+blocked probes are counted and mapped to a conservative (charter-holding)
+verdict, so $\hat\beta$ is downward-biased and the blocked set is exactly
+where breaches would be most likely; the headline states the measurable
+probe set, and the worst-case interval of Section~\ref{sec:e2}---not the
+point mass---is the honest report. (5) \emph{Panel and access.} The E2-v1 panel is the set of
+models the authenticated gateway serves, addressed by its catalog names; a
+gateway may route to a different snapshot than the name suggests---and E28
+showed the E2-era state-deception zero was a 200-token-budget artifact, so
+cross-time comparisons rest on the repaired instrument's measurements;
+the open-weight panels (E30/E31) complement them with
+verifiable-identity models---serving is intermediated by an aggregator
+(catalog names, not pinned HF revision hashes, and E30's executed-budget
+deviation is disclosed in Section~\ref{sec:field}). Panel extension is a
+replication, not a re-analysis.

@@ -1,0 +1,248 @@
+{
+  "schema": "ragin.ablation.run_contract.v1",
+  "contract_id": "ragin-ablation-eval-v1",
+  "version": "v1",
+  "created_utc": "2026-10-23T03:04:25Z",
+  "status": "DESIGN_VALIDATED_EXECUTION_NOT_READY",
+  "execution_lock": "INCOMPLETE",
+  "execution_lock_reason": "The frozen generator/prompt/price, exact B3 store and embedding model, persona hash, main split, primary attacker prompts, verification integration, allocation seal and enforceable resource limits are not resolved. This contract can validate its design and refuse execution; it is not a measured run.",
+  "claim_boundary": {
+    "design_validation": "SUPPORTED",
+    "execution_readiness": "NOT_READY",
+    "measured_arm_effect": "NOT_ESTABLISHED",
+    "model_invocation": "NOT_ESTABLISHED",
+    "scripted_policy_is_primary_attacker": false,
+    "provider_calls": 0,
+    "external_probes": "none; only an explicitly configured loopback attestation may be consumed",
+    "human_validation": "NOT_STARTED"
+  },
+  "arms": {
+    "B0": {
+      "file": "configs/ablation/b0_native_cowrie.json",
+      "sha256": "e6d8f6e25008b05efcafaf42faf9d00ec42edb6678ba9ac32f9847baebf9093e",
+      "status": "EXECUTABLE_LOCAL_TRANSPORT_ONLY"
+    },
+    "B1": {
+      "file": "configs/ablation/b1_no_retrieval.json",
+      "sha256": "4425459fa4efebac45cbb933c8087c144eb2ed263d40c70652d81f4f620f60cf",
+      "status": "BLOCKED_MODEL_AND_FROZEN_GENERATOR"
+    },
+    "B2": {
+      "file": "configs/ablation/b2_bm25.json",
+      "sha256": "678f384cd9fa3211116a794ee2a6ffdc1ce0a6e1dde23c9751a28f68c898e7bc",
+      "status": "BLOCKED_MODEL_AND_FROZEN_GENERATOR"
+    },
+    "B3": {
+      "file": "configs/ablation/b3_dense.json",
+      "sha256": "64e2b26c6c1c5e76fc8d308e5ca7e4b29036fd3b7a199298ebe5671e75aa056a",
+      "status": "BLOCKED_EXACT_STORE_MODEL_AND_FROZEN_GENERATOR"
+    }
+  },
+  "b0_native": {
+    "image_id": "sha256:710f1e4601a663ac8591f58a42b44e4cd3b7ea170c7e6cdb9e54c430a30cd459",
+    "image_name": "cowrie/cowrie:latest",
+    "pull": "never",
+    "backend": "native",
+    "listen": {"host": "127.0.0.1", "public": false, "port": "dynamic"},
+    "network": "host-loopback-only",
+    "baseline_identity": {
+      "status": "NOT_ESTABLISHED",
+      "matched_to_b1_b3": false,
+      "observed": {
+        "user": null,
+        "os": null,
+        "kernel": null,
+        "shell": null,
+        "hostname": null,
+        "cwd": null,
+        "configured_persona_files": []
+      },
+      "b1_b3_reference": {
+        "source": "data/host_fiction.json",
+        "user": "webapp",
+        "uid": "1001",
+        "hostname": "web-srv-01",
+        "distro": "Ubuntu 22.04.3 LTS",
+        "kernel": "5.15.0-91-generic",
+        "role": "a small web application server"
+      },
+      "persona_fixture_source": "native Cowrie default; supported Cowrie hostname/userdb/filesystem fixtures may be used, but the native command implementation is not rewritten",
+      "integration_request": "Observe the native Cowrie user/OS/kernel/shell/hostname/cwd and record the supported persona/config fixtures used. Default Cowrie root/OS/kernel may differ from the Hisoka pinned webapp/Ubuntu host fiction. A matched pilot is blocked until identity/OS matching is observed; H1 is never claimed from unmatched environments. B0 development smoke may still run as a transport/control only."
+    },
+    "note": "B0 is a local native transport. It is not a RAGIN arm and has no generator, verifier or retrieval effect. Default Cowrie identity/OS is not assumed equal to B1-B3."
+  },
+  "generation": {
+    "model_id": "UNRESOLVED_FROZEN_GENERATOR",
+    "model_revision": "UNRESOLVED",
+    "price": {"input_per_million": "UNRESOLVED", "output_per_million": "UNRESOLVED"},
+    "prompt_id": "UNRESOLVED_FROZEN_PROMPT_V1",
+    "fallback": "none",
+    "decoding": {
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 512,
+      "seed": 0,
+      "status": "PROPOSED_NOT_ENFORCED"
+    },
+    "adapter": {
+      "name": "hisoka",
+      "supported_decoding": ["temperature", "max_tokens"],
+      "hardcoded_decoding": {"temperature": 0.7, "max_tokens": 4096},
+      "config_enforced": false,
+      "template_fallback_available": true,
+      "seed_supported": false,
+      "top_p_supported": false
+    },
+    "effective_config": {
+      "path": null,
+      "sha256": "UNRESOLVED",
+      "note": "Third owner publishes a pure applied-decoding/model-exposure artifact. Preflight consumes it when present; no core file is edited here."
+    },
+    "exposure_contract": {
+      "require_model_exposure": false,
+      "status": "PENDING_APPLIED_DECODING_AND_EXPOSURE_OWNER",
+      "note": "B1-B3 attempts must record observed model identity/hash or the arm is not compliantly exposed."
+    },
+    "invocation": {
+      "kind": "UNRESOLVED",
+      "path": null,
+      "endpoint": null,
+      "sha256": "UNRESOLVED",
+      "weights_identity": "UNRESOLVED",
+      "attested_available": false,
+      "offline_attested": false,
+      "note": "No local generative weights are present. A localhost endpoint (for example an Ollama cloud alias) is not proof of offline inference and does not authorize a cloud call. A missing model is NOT_ESTABLISHED, never replaced by a mock."
+    }
+  },
+  "verification": {
+    "profile": "research_strict_v1",
+    "integration_status": "AVAILABLE",
+    "hook_env": "RAGIN_VERIFIER_PROFILE",
+    "hook_env_fields": {
+      "RAGIN_VERIFIER_PROFILE": "research_strict_v1",
+      "RAGIN_VERIFIER_DEADLINE_S": "1.0"
+    },
+    "source_path": "ragin/cycle/strict_research.py",
+    "source_sha256": "5cff1d20b01eb76b89da1a7cb580defa1f8cb625832daf12da5fcc813ad53692",
+    "deadline_source_sha256": "67dd7a45757cb1dc7bebebe0f3c41e5cfe7928b9c225cbc6e16f2e16030f62d1",
+    "deadline": {
+      "enforcement": "WALL_CLOCK",
+      "seconds": 1.0,
+      "status": "ENFORCED_BY_CORE_PURE_RESOLVER"
+    },
+    "integration_request": "Core research_strict_v1 and the bounded wall-clock deadline resolver are available in ragin/cycle/strict_research.py and ragin/cycle/verification_deadline.py. Hooks are RAGIN_VERIFIER_PROFILE=research_strict_v1 and RAGIN_VERIFIER_DEADLINE_S=1.0. This contract consumes the core resolver; it does not implement or edit the core verifier."
+  },
+  "resources": {
+    "budget_id": "B1_B3_SHARED_PROPOSED_BUDGET",
+    "cpu": 1,
+    "memory_mb": 2048,
+    "gpu": false,
+    "enforcement": "PROPOSED_NOT_ENFORCED",
+    "enforcement_spec": null,
+    "note": "JSON fields are not cgroup/container/scheduler enforcement. Execution is refused until an actual process or container limit is supplied and recorded."
+  },
+  "bundle": {
+    "prompt": {"id": "UNRESOLVED_FROZEN_PROMPT_V1", "path": null, "sha256": "UNRESOLVED"},
+    "persona": {"path": "data/host_fiction.json", "sha256": "UNRESOLVED"},
+    "data": {
+      "path": "configs/ablation/eval_v1/track_b_scenarios_v1.json",
+      "sha256": "1b506a22bc67e73a91a4e9eef1f01c0a7f850fcbd79e117359fd24a998a2e4f8"
+    },
+    "track_a": {
+      "path": "configs/ablation/eval_v1/track_a_frozen_v1.json",
+      "sha256": "103699a6fd22c39afdcad3974e84785b80b18a667e7fd3a88b804dc61aa3657d"
+    }
+  },
+  "data_splits": {
+    "development": ["dev-lab-recon-01", "dev-lab-credential-01"],
+    "calibration": [],
+    "holdout": []
+  },
+  "retrieval_freeze": {
+    "store_sha256": "UNRESOLVED",
+    "embed_model_sha256": "UNRESOLVED",
+    "shared_corpus": {
+      "content_sha256": "UNRESOLVED",
+      "document_ids_sha256": "UNRESOLVED",
+      "top_k": null,
+      "context_budget_tokens": null,
+      "canonicalization": "sorted document IDs plus normalized document content; never the byte hashes of the BM25 index or FAISS index",
+      "status": "UNRESOLVED",
+      "note": "B2 and B3 must retrieve from the same canonical corpus content and document-ID set, with the same top_k and context budget. Equal index-byte hashes are not evidence of corpus equality."
+    },
+    "b0_baseline": {
+      "status": "NOT_ESTABLISHED",
+      "matched_to_b1_b3": false,
+      "note": "Cowrie native user/OS/kernel/shell/hostname/cwd must be observed and matched with supported config fixtures before a matched pilot or H1 claim."
+    },
+    "note": "B3 exact index.faiss/documents.json and local embedding model are absent. B2/B3 corpus-content/doc-ID and top_k/context equality are unresolved."
+  },
+  "allocation": {
+    "seed": 20261023,
+    "seeds_used": [11, 23],
+    "scenarios": 2,
+    "attacker_profiles": 2,
+    "seeds": 2,
+    "arms": 4,
+    "expected_sessions": 32,
+    "turn_cap": 12,
+    "sequence_path": "configs/ablation/eval_v1/allocation_sequence_v1.json",
+    "sequence_file_sha256": "faa1a60daaa68b41ac48895187c3e6eb4b233136342b6b57fcd596dbaae35614",
+    "sequence_sha256": "b76404470e7bca2bf60cd44a4a2a849aa0f38773e3936c729041db33da127d55",
+    "note": "Development-only matched blocks of four. The sequence is frozen now; no main-study allocation is claimed."
+  },
+  "track_b": {
+    "scenarios": [
+      {"scenario_id": "dev-lab-recon-01", "split": "development"},
+      {"scenario_id": "dev-lab-credential-01", "split": "development"}
+    ],
+    "profiles": [
+      {"profile_id": "lab_recon_then_escalate_v1", "kind": "SCRIPTED_POLICY"},
+      {"profile_id": "lab_credential_then_pivot_v1", "kind": "SCRIPTED_POLICY"}
+    ],
+    "arms": [
+      {"arm": "B0"},
+      {"arm": "B1"},
+      {"arm": "B2"},
+      {"arm": "B3"}
+    ],
+    "closed_loop": "next command is a function of the observed served output; fixed replay is rejected",
+    "scripted_policy_label": "SCRIPTED_POLICY_INTEGRATION_CONTROL"
+  },
+  "attacker": {
+    "primary_kind": "UNRESOLVED",
+    "prompts_sha256": "UNRESOLVED",
+    "tools_sha256": "UNRESOLVED",
+    "blind_arm_labels": true,
+    "status": "NOT_ESTABLISHED",
+    "note": "Deterministic lab policies test mechanics only. They are not an independent LLM or human attacker and never substitute for the frozen primary attacker model."
+  },
+  "evaluation": {
+    "rubric_path": "configs/ablation/eval_v1/detection_rubric_v1.json",
+    "rubric_sha256": "05393f64b47645304bfa7be28e9a0f8e9575c351764c7d2600f22dcc1c82d8ff",
+    "holdout_sealed": true,
+    "human_validation_status": "NOT_STARTED"
+  },
+  "analysis": {
+    "primary_cause": "DETECTION",
+    "horizon_turns": 12,
+    "retrieval_contrasts": ["B2_vs_B1", "B3_vs_B1", "B3_vs_B2"],
+    "h1_contrast": "B1_vs_B0",
+    "multiplicity": "Holm over the 3 retrieval contrasts plus H1 if tested = 4 tests",
+    "model": "cause-specific Cox with block stratum is the preregistered model; the supported local summary is the Aalen-Johansen turn-12 CIF risk difference with block bootstrap",
+    "pairing_unit": "matched block of four arms",
+    "seed": 20261023,
+    "bootstrap_iterations": 2000,
+    "permutation_iterations": 2000,
+    "acceptance_criteria": null,
+    "claims_support": {
+      "H1": "NOT_ESTABLISHED; B0 native transport omits the shared RAGIN verifier, so H1 is a system-package effect",
+      "H2": "NOT_ESTABLISHED",
+      "H3": "NOT_ESTABLISHED",
+      "H4": "NOT_STARTED; B4/B5 are NOT READY",
+      "H5": "NOT_ESTABLISHED; no utility acceptance rule is prespecified",
+      "rule": "No H1-H5 support claim without prespecified availability/utility acceptance criteria and observed compliant model exposure; missing/unexposed arms are never negative evidence."
+    },
+    "status": "PRESPECIFIED_NOT_YET_RUN"
+  }
+}

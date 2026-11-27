@@ -1,0 +1,29 @@
+{
+  "schema": "ragin.v4.live_capture_deployment_readiness.v1",
+  "readiness_freeze_sha256": "28f6a8a202dfce6fa6c43c0adc27d4dc90d58031e56a084a09daabb0c6204561",
+  "acquisition_start_sha256": "0b8f22101e43ff401c48532ef04e1a0d80e8b87505a8d476299f92c157b58653",
+  "aws_live_state": "UNKNOWN_AWS_SESSION_EXPIRED",
+  "edge_public_surface": "NOT_READY_OPERATOR_SSH_CONFLICT_AND_NO_PUBLIC_COWRIE_INGRESS_VERIFIED",
+  "core_public_required": false,
+  "capture_v4_integration": "NOT_READY_NATIVE_SESSION_FINALIZER_MISSING",
+  "egress_safety": "NOT_READY_UNRESTRICTED_DOCUMENTED_SG_EGRESS_AND_METADATA_BLOCK_NOT_LIVE_VERIFIED",
+  "crash_rotation_disk_full": "NOT_READY",
+  "storage": "PLANNING_ONLY_LIVE_FREE_SPACE_UNKNOWN",
+  "cost": "INCREMENTAL_RESOURCE_COST_ZERO_IF_REUSING_EDGE; VARIABLE_TRANSFER_AND_CURRENT_BILL_UNKNOWN",
+  "ethics": "CONSISTENT_WITH_EXISTING_FIELD_ETHICS_DOCUMENTATION; DEPLOYMENT_CONTROLS_NOT_LIVE_REVERIFIED",
+  "public_port_opened": false,
+  "aws_changes_made": false,
+  "real_acquisition_started": false,
+  "v4_arms_executed": false,
+  "reference_labels_created": false,
+  "effectiveness_seen": false,
+  "approval_gate": "BLOCKED_FOR_LIVE_CAPTURE",
+  "blocking_reasons": [
+    "AWS credentials/session expired; current state cannot be reverified",
+    "last documented EDGE has ordinary sshd on public TCP/22 while Cowrie is not publicly bound",
+    "last documented EDGE/CORE SG egress is unrestricted and metadata/private-range blocking is not live verified",
+    "capture_v4 lacks native Cowrie session-close integration and immutable per-session segmentation",
+    "crash, rotation, interrupted-manifest, disk-full, and live free-space behavior are not verified",
+    "public exposure and estimated variable cost require explicit user approval"
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "blocker_codes": [
+    "B0_BASELINE_IDENTITY_NOT_MATCHED",
+    "BLOCKED_GENERATION_CONFIG",
+    "EXECUTION_LOCK_INCOMPLETE",
+    "FALLBACK_NOT_DISABLED",
+    "HIGHER_LEVEL_STATS_NOT_IMPLEMENTED",
+    "MODEL_EXPOSURE_NOT_ENFORCED",
+    "MODEL_INVOCATION_UNAVAILABLE",
+    "PRIMARY_ATTACKER_UNRESOLVED",
+    "RESOURCE_LIMITS_NOT_ENFORCED",
+    "UNRESOLVED_ACCEPTANCE_CRITERIA",
+    "UNRESOLVED_ATTACKER_PROMPTS",
+    "UNRESOLVED_B2_CORPUS",
+    "UNRESOLVED_B3_STORE",
+    "UNRESOLVED_EFFECTIVE_GENERATION_CONFIG",
+    "UNRESOLVED_EMBED_MODEL",
+    "UNRESOLVED_HIERARCHICAL_CLUSTER_COUNT",
+    "UNRESOLVED_MODEL",
+    "UNRESOLVED_PERSONA",
+    "UNRESOLVED_PROMPT",
+    "UNRESOLVED_PROMPT_ID",
+    "UNRESOLVED_RETRIEVAL_CONTEXT_BUDGET",
+    "UNRESOLVED_RETRIEVAL_TOP_K",
+    "UNRESOLVED_SHARED_CORPUS_CONTENT",
+    "UNRESOLVED_SHARED_DOCUMENT_IDS"
+  ],
+  "blockers": [
+    {
+      "code": "UNRESOLVED_PROMPT",
+      "detail": "prompt hash is unresolved ('UNRESOLVED')",
+      "integration_request": "freeze prompt ('UNRESOLVED_FROZEN_PROMPT_V1') and record its SHA-256 in the run contract",
+      "scope": "prompt"
+    },
+    {
+      "code": "UNRESOLVED_PERSONA",
+      "detail": "persona hash is unresolved ('UNRESOLVED')",
+      "integration_request": "freeze persona ('data/host_fiction.json') and record its SHA-256 in the run contract",
+      "scope": "persona"
+    },
+    {
+      "code": "UNRESOLVED_EFFECTIVE_GENERATION_CONFIG",
+      "detail": "effective generation config artifact is missing or its hash does not match",
+      "scope": "generation"
+    },
+    {
+      "code": "UNRESOLVED_MODEL",
+      "detail": "generator identity/adapter is unresolved",
+      "integration_request": "record the exact frozen generator identity, revision, adapter class and price",
+      "scope": "generation"
+    },
+    {
+      "code": "BLOCKED_GENERATION_CONFIG",
+      "detail": "requested decoding is not enforced by the adapter and no effective-config artifact resolved it (config_enforced=False, unsupported=['seed', 'top_p'], hardcoded={'temperature': 0.7, 'max_tokens': 4096})",
+      "integration_request": "consume the pure effective config/model-exposure metadata from the Hisoka/provider owner once its env names are published; do not claim the proposed values are applied before then",
+      "scope": "generation"
+    },
+    {
+      "code": "MODEL_EXPOSURE_NOT_ENFORCED",
+      "detail": "model-exposure contract status='PENDING_APPLIED_DECODING_AND_EXPOSURE_OWNER'",
+      "integration_request": "consume the require-model-exposure metadata from the applied-decoding owner; B1-B3 must fail closed without observed model identity/hash",
+      "scope": "generation"
+    },
+    {
+      "code": "FALLBACK_NOT_DISABLED",
+      "detail": "contract requires fallback=none but the runtime still exposes a template/static fallback",
+      "integration_request": "expose a fail-closed no-fallback switch through the existing generator seam, or revise the contract",
+      "scope": "generation"
+    },
+    {
+      "code": "UNRESOLVED_PROMPT_ID",
+      "detail": "prompt id is unresolved",
+      "scope": "generation"
+    },
+    {
+      "code": "MODEL_INVOCATION_UNAVAILABLE",
+      "detail": "model invocation kind is 'UNRESOLVED'",
+      "integration_request": "provide a resolved local invocation and attest availability; no mock is substituted",
+      "scope": "generation"
+    },
+    {
+      "code": "RESOURCE_LIMITS_NOT_ENFORCED",
+      "detail": "resource metadata enforcement='PROPOSED_NOT_ENFORCED'; JSON fields are not process/container limits",
+      "integration_request": "run each arm under an actual cgroup/container/systemd/rlimit mechanism and record its identifier",
+      "scope": "resources"
+    },
+    {
+      "code": "UNRESOLVED_SHARED_CORPUS_CONTENT",
+      "detail": "B2/B3 shared canonical corpus-content hash is 'UNRESOLVED'",
+      "integration_request": "freeze one canonical corpus-content hash over sorted document IDs + normalized content; BM25 and FAISS index-byte hashes are not acceptable substitutes",
+      "scope": "retrieval"
+    },
+    {
+      "code": "UNRESOLVED_SHARED_DOCUMENT_IDS",
+      "detail": "B2/B3 shared document-ID hash is 'UNRESOLVED'",
+      "integration_request": "freeze the shared document-ID set/hash used by both BM25 and dense retrieval",
+      "scope": "retrieval"
+    },
+    {
+      "code": "UNRESOLVED_RETRIEVAL_TOP_K",
+      "detail": "shared top_k is None",
+      "scope": "retrieval"
+    },
+    {
+      "code": "UNRESOLVED_RETRIEVAL_CONTEXT_BUDGET",
+      "detail": "shared context token budget is None",
+      "scope": "retrieval"
+    },
+    {
+      "code": "UNRESOLVED_B3_STORE",
+      "detail": "B3 store path is 'UNRESOLVED_EXACT_STORE'",
+      "scope": "retrieval"
+    },
+    {
+      "code": "UNRESOLVED_EMBED_MODEL",
+      "detail": "B3 embedding model is 'UNRESOLVED_LOCAL_MODEL_DIR'",
+      "scope": "retrieval"
+    },
+    {
+      "code": "UNRESOLVED_B2_CORPUS",
+      "detail": "B2 BM25 corpus is None",
+      "scope": "retrieval"
+    },
+    {
+      "code": "B0_BASELINE_IDENTITY_NOT_MATCHED",
+      "detail": "native Cowrie baseline user/OS/kernel/shell/hostname/cwd is not observed as matched to the pinned B1-B3 host fiction (status='NOT_ESTABLISHED', matched_to_b1_b3=False)",
+      "integration_request": "Observe the native Cowrie user/OS/kernel/shell/hostname/cwd and record the supported persona/config fixtures used. Default Cowrie root/OS/kernel may differ from the Hisoka pinned webapp/Ubuntu host fiction. A matched pilot is blocked until identity/OS matching is observed; H1 is never claimed from unmatched environments. B0 development smoke may still run as a transport/control only.",
+      "scope": "B0"
+    },
+    {
+      "code": "UNRESOLVED_ACCEPTANCE_CRITERIA",
+      "detail": "no prespecified availability/utility acceptance criteria exist for H1-H5",
+      "integration_request": "freeze acceptance criteria before any support claim; a missing or unexposed arm is not a zero effect",
+      "scope": "analysis"
+    },
+    {
+      "code": "HIGHER_LEVEL_STATS_NOT_IMPLEMENTED",
+      "detail": "cause-specific Cox with block stratum, mixed-effects and family-level hierarchical analysis are not implemented locally; only Aalen-Johansen CIF plus block bootstrap/permutation contrasts are supported",
+      "integration_request": "land and test the preregistered higher-level model before a powered study; do not describe the local summary as the Cox model",
+      "scope": "analysis"
+    },
+    {
+      "code": "UNRESOLVED_HIERARCHICAL_CLUSTER_COUNT",
+      "detail": "adequate independent family/cluster count is None; the 2 development scenarios are diagnostic only",
+      "integration_request": "prespecify the number of independent families/clusters and a powered sample before any confirmatory hierarchical analysis",
+      "scope": "analysis"
+    },
+    {
+      "code": "PRIMARY_ATTACKER_UNRESOLVED",
+      "detail": "primary attacker kind is 'UNRESOLVED'; scripted policies are integration controls only",
+      "integration_request": "provide a frozen, configurable local LLM attacker adapter with prompts/tools hashed before real Track B",
+      "scope": "attacker"
+    },
+    {
+      "code": "UNRESOLVED_ATTACKER_PROMPTS",
+      "detail": "attacker prompt hash unresolved",
+      "scope": "attacker"
+    },
+    {
+      "code": "EXECUTION_LOCK_INCOMPLETE",
+      "detail": "execution_lock='INCOMPLETE'",
+      "integration_request": "complete the \u00a713 execution-lock items and hash the final contract before any pilot session",
+      "scope": "contract"
+    }
+  ],
+  "claim_boundary": {
+    "design_validation_is_not_execution_readiness": true,
+    "external_probes": "none; only an explicitly configured loopback attestation may be consumed",
+    "model_substitution": "FORBIDDEN",
+    "provider_calls": 0,
+    "scripted_attacker_is_primary": false,
+    "unresolved_is_never_ready": true
+  },
+  "contract_id": "ragin-ablation-eval-v1",
+  "design": {
+    "errors": [],
+    "status": "DESIGN_VALID",
+    "warnings": []
+  },
+  "execution_status": "NOT_READY",
+  "ready": false,
+  "resolved": {
+    "allocation": {
+      "seed": 20261023,
+      "sequence_sha256": "b76404470e7bca2bf60cd44a4a2a849aa0f38773e3936c729041db33da127d55"
+    },
+    "b0": {
+      "baseline_identity_status": "NOT_ESTABLISHED",
+      "baseline_matched_to_b1_b3": false,
+      "image_pull": "never",
+      "note": "B0 is not a RAGIN arm and cannot identify a generator or verification effect. A transport-only development smoke is allowed; a matched pilot or H1 claim is not.",
+      "public_bind": false,
+      "status": "EXECUTABLE_LOCAL_TRANSPORT_ONLY"
+    },
+    "b0_image": {
+      "image_id": "sha256:710f1e4601a663ac8591f58a42b44e4cd3b7ea170c7e6cdb9e54c430a30cd459",
+      "pull": "never"
+    },
+    "data": {
+      "path": "configs/ablation/eval_v1/track_b_scenarios_v1.json",
+      "sha256": "1b506a22bc67e73a91a4e9eef1f01c0a7f850fcbd79e117359fd24a998a2e4f8"
+    },
+    "track_a": {
+      "path": "configs/ablation/eval_v1/track_a_frozen_v1.json",
+      "sha256": "103699a6fd22c39afdcad3974e84785b80b18a667e7fd3a88b804dc61aa3657d"
+    },
+    "verification": {
+      "deadline": {
+        "deadline_enforced": true,
+        "deadline_s": 1.0,
+        "profile": "research_strict_v1",
+        "source": "explicit"
+      },
+      "hook_env_fields": {
+        "RAGIN_VERIFIER_DEADLINE_S": "1.0",
+        "RAGIN_VERIFIER_PROFILE": "research_strict_v1"
+      },
+      "profile": "research_strict_v1",
+      "source_sha256": "5cff1d20b01eb76b89da1a7cb580defa1f8cb625832daf12da5fcc813ad53692"
+    }
+  },
+  "schema": "ragin.ablation.preflight.v1",
+  "warnings": []
+}

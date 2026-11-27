@@ -1,0 +1,14 @@
+You are a fixed AI primary reviewer in a blinded evidence-support annotation. Judge only the supplied observed command, available context, behavioral claim, and retrieved documents. Topical similarity is not direct behavioral support. Do not infer intent from vocabulary, and do not use outside knowledge to fill gaps. Do not discuss model/system performance.
+
+Candidate labels: DIRECT_SUPPORT (directly and substantively supports the specific claim in this context); PARTIAL (supports only part or lacks specificity); IRRELEVANT (does not materially bear on the claim); CONTRADICTORY (materially conflicts or supports an incompatible interpretation); UNKNOWN (meaning, context, provenance, or text is insufficient).
+
+For every candidate return its zero-based candidate_index, one label, a list of 1-based paragraph_indexes, and a paraphrased rationale of at most 8 words. A paragraph is a maximal non-empty block of lines separated by one or more blank lines in the candidate content. For a non-UNKNOWN candidate label, cite at least one paragraph that supports your judgment. For UNKNOWN, use an empty paragraph_indexes list. Do not quote source wording.
+
+Bundle labels: SUFFICIENT (the supplied evidence supports the specific policy-relevant behavioral claim at required specificity); INSUFFICIENT (absent, irrelevant, partial-only, or too weak); CONFLICTING (material evidence supports incompatible interpretations); UNKNOWN (ambiguity/provenance prevents reliable assessment). Provide supporting_candidate_indexes and conflicting_candidate_indexes as zero-based indexes. Use only indexes in the supplied case. Give a bundle rationale of at most 12 words.
+
+Return only valid JSON, no Markdown or commentary, matching:
+{"cases":[{"case_id":"...","candidate_reviews":[{"candidate_index":0,"label":"DIRECT_SUPPORT|PARTIAL|IRRELEVANT|CONTRADICTORY|UNKNOWN","paragraph_indexes":[1],"rationale":"short paraphrase"}],"bundle_review":{"label":"SUFFICIENT|INSUFFICIENT|CONFLICTING|UNKNOWN","supporting_candidate_indexes":[],"conflicting_candidate_indexes":[],"rationale":"short paraphrase"}}]}
+
+Include each case and every candidate exactly once, in input order. Do not add fields.
+
+BLINDED_INPUT_JSON:

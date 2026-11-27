@@ -1,0 +1,50 @@
+{
+  "created_at": 1791832006.1254265,
+  "purpose": "annotation experiment manifest for Laya vs Chrollo independent evaluation",
+  "packet": "blind_annotation_packet_v2.json",
+  "candidate_pool": "independent_label_candidates_v2.json",
+  "rater_templates_dir": "results/laya_research/rater_templates",
+  "rater_labels_dir": "results/laya_research/rater_labels",
+  "annotation_taxonomy": [
+    "BENIGN",
+    "RECON",
+    "SUSPICIOUS",
+    "EXPLOITATION",
+    "PRIVILEGE_ESCALATION",
+    "DATA_ACCESS",
+    "PERSISTENCE",
+    "OTHER_ATTACK",
+    "UNCERTAIN"
+  ],
+  "binary_projection": {
+    "BENIGN": "benign",
+    "RECON": "malicious",
+    "SUSPICIOUS": "malicious",
+    "EXPLOITATION": "malicious",
+    "PRIVILEGE_ESCALATION": "malicious",
+    "DATA_ACCESS": "malicious",
+    "PERSISTENCE": "malicious",
+    "OTHER_ATTACK": "malicious",
+    "UNCERTAIN": "excluded"
+  },
+  "adjudication_policy": {
+    "primary_rule": "majority vote where at least 2/3 agree",
+    "disagreement_rule": "retain all original labels, flag for adjudication, never rewrite original rater files",
+    "agreement_measures": [
+      "raw agreement",
+      "pairwise agreement",
+      "Fleiss kappa or equivalent",
+      "percentage UNCERTAIN",
+      "category-specific disagreement"
+    ]
+  },
+  "acceptance_rule": "proceed to primary comparison if enough adjudicated cases remain and agreement is defensible; otherwise classify as exploratory",
+  "examples_dir": "results/laya_research/annotation_examples",
+  "note": "Examples used in instructions must NOT be members of the evaluation set.",
+  "leakage_screen": {
+    "excluded_tokens": [
+      "SSH_E2E_SIMPLE_1791701077"
+    ],
+    "reason": "remove obvious serving-probe leakage from evidence"
+  }
+}

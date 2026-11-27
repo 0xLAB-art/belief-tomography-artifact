@@ -1,0 +1,33 @@
+{
+  "captured_at": "2026-10-12T21:40:00Z",
+  "suite": "tests/unit/",
+  "counts": {
+    "failed": 21,
+    "passed": 1542,
+    "warnings": 31,
+    "errors": 10
+  },
+  "failure_classification": {
+    "tests/unit/test_hisoka_memory.py": {
+      "count_failed": 20,
+      "count_passed": 4,
+      "classification": "ENVIRONMENT_DEPENDENT",
+      "rationale": "hisoka memory imports cleanly in this environment, but the test module fails at runtime. This is consistent with missing non-Python runtime prerequisites for that test surface rather than a clean import-time blockage.",
+      "evidence": "ragin.hisoka.memory imports successfully; test_hisoka_memory.py still fails"
+    },
+    "tests/unit/test_verifier_redteam_security_oracle.py::test_oracle_validate_passes": {
+      "classification": "PRE_EXISTING_CONFIRMED",
+      "rationale": "Fails for a stable, fixture-level reason independent of Laya: validate_cases requires a should_pass cohort that the current CASES set lacks.",
+      "evidence": "AssertionError: oracle must include a 'should_pass' cohort; current labels: ['should_reject', 'should_reject_or_defer']"
+    },
+    "other": {
+      "note": "The remaining failures are within the same hisoka_memory cluster reported by the suite summary.",
+      "classification": "ENVIRONMENT_DEPENDENT"
+    }
+  },
+  "explicit_not_claimed": {
+    "NEW_REGRESSION": "No baseline evidence reviewed in this session supports calling these new regressions.",
+    "PRE_EXISTING_CONFIRMED_for_all": "Only the oracle failure is confirmed pre-existing by direct inspection of the oracle logic.",
+    "UNKNOWN": "hisoka_memory failures are not fully diagnosed here; they are labeled ENVIRONMENT_DEPENDENT pending deeper investigation."
+  }
+}

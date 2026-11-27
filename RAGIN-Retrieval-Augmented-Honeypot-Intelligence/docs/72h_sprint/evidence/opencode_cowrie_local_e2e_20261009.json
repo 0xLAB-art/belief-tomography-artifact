@@ -1,0 +1,65 @@
+{
+  "timestamp_utc": "2026-10-09T04:41:24Z",
+  "scope": "local controlled staging only",
+  "provider": {
+    "selector": "opencode/space-bunny-free",
+    "transport": "installed OpenCode CLI via loopback scripts/opencode_proxy.py",
+    "tool_policy": "deny-all ragin-safe profile",
+    "reported_cost": 0,
+    "note": "No paid provider was called; this is not an AWS runtime dependency."
+  },
+  "flow": [
+    "authorized local SSH test client",
+    "isolated Cowrie container",
+    "Docker bridge to host-bound RAGIN server",
+    "server_v2 Chrollo -> Don -> Hisoka",
+    "mandatory deterministic verifier",
+    "Cowrie SSH output"
+  ],
+  "cowrie": {
+    "image_digest": "sha256:fc57120d88c2bfb5817f63f6c132ce5c2969b641c2f1ac67887652b6f294148d",
+    "version": "3.0.15",
+    "network_mode": "bridge",
+    "host_port_published": false,
+    "resource_limits": {
+      "memory": "384m",
+      "cpus": 0.5,
+      "pids": 96,
+      "read_only_root": true,
+      "cap_drop": "ALL",
+      "no_new_privileges": true
+    }
+  },
+  "request": {
+    "session_id": "ses-7d4b10c6af0c4475",
+    "command": "true",
+    "processing_time_ms": 10536.396162002347,
+    "ssh_visible_response": "webapp@web-srv-01:~$"
+  },
+  "serving_decision": {
+    "serve_path": "GENERATED_VERIFIED",
+    "verifier": "FictionConsistencyVerifier",
+    "passed": true,
+    "accepted": true,
+    "deterministic": true,
+    "attempt": 1,
+    "candidate_sha256": "ad6289a471e2af8418db17b29a2e794995534a2985ad93f8417c9b3e82f63939"
+  },
+  "persistence": {
+    "session_jsonl": "data/sessions/ses-7d4b10c6af0c4475.jsonl",
+    "field_export_dir": "/tmp/ragin-field-export-cowrie",
+    "field_export_observed": true
+  },
+  "containment": {
+    "temporary_local_firewall_rule": "172.17.0.0/16 -> tcp/8843",
+    "temporary_rule_removed": true,
+    "listeners_after_cleanup": [],
+    "public_exposure": false
+  },
+  "limitations": [
+    "This run was local and did not validate the current AWS CORE runtime.",
+    "AWS CORE still points to a disabled local provider and remains fallback-only.",
+    "The local Cowrie image is 3.0.15; the AWS staging image is a separately pinned 3.1.1 image.",
+    "The response demonstrates provider-backed serving plus verification, not real-world attacker effectiveness."
+  ]
+}

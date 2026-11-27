@@ -1,0 +1,439 @@
+{
+  "cases": [
+    {
+      "available_context": "id -u\nid -g\nid -G\nuname -srmo\nnproc\nfree -h\ndf -h /tmp\nstat -c '%A %U %G %n' /tmp",
+      "behavioral_claim": "Command execution: stat -c '%A %U %G %n' /tmp",
+      "case_id": "controlled-admin-admin-021-79cd344d387f490e8069167446078090",
+      "observed_command": "stat -c '%A %U %G %n' /tmp",
+      "retrieved_candidates": [
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_hash": "5f00ec4830cb5d083a5f2e13de81dd9a0420b5939c1cb5adb16dd8ce03af6881",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        },
+        {
+          "content": "# Local Account (T1087.001)\n\nAdversaries may attempt to get a listing of local system accounts. This information can help adversaries determine which local accounts exist on a system to aid in follow-on behavior.\n\nCommands such as <code>net user</code> and <code>net localgroup</code> of the [Net](https://attack.mitre.org/software/S0039) utility and <code>id</code> and <code>groups</code> on macOS and Linux can list local users and groups.(Citation: Mandiant APT1)(Citation: id man page)(Citation: groups man page) On Linux, local users can also be enumerated through the use of the <code>/etc/passwd</code> file. On macOS, the <code>dscl . list /Users</code> command can be used to enumerate local accounts. On ESXi servers, the `esxcli system account list` command can list local user accounts.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)\n\n**Platforms:** ESXi, Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1087.001",
+          "provenance_hash": "32b69ddcf7ed7704dcae30c01a63757630fe26cf9e6b6cc1016b93833a6c4f6d",
+          "source": "https://attack.mitre.org/techniques/T1087/001",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Local Account (T1087.001)"
+        }
+      ]
+    },
+    {
+      "available_context": "pwd\nprintf '%s\\n' \"$PWD\"\nls -ld /tmp /var/tmp\nfind /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20\ndu -sh /tmp 2>/dev/null\ndf -h /",
+      "behavioral_claim": "Command execution: df -h /",
+      "case_id": "controlled-admin-admin-022-431664b09e644314b26ffea29d2801f4",
+      "observed_command": "df -h /",
+      "retrieved_candidates": [
+        {
+          "content": "# File and Directory Discovery (T1083)\n\nAdversaries may enumerate files and directories or may search in specific locations of a host or network share for certain information within a file system. Adversaries may use the information from [File and Directory Discovery](https://attack.mitre.org/techniques/T1083) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.\n\nMany command shell utilities can be used to obtain this information. Examples include <code>dir</code>, <code>tree</code>, <code>ls</code>, <code>find</code>, and <code>locate</code>.(Citation: Windows Commands JPCERT) Custom tools may also be used to gather file and directory information and interact with the [Native API](https://attack.mitre.org/techniques/T1106). Adversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather file and directory information (e.g. <code>dir</code>, <code>show flash</code>, and/or <code>nvram</code>).(Citation: US-CERT-TA18-106A)\n\nSome files and directories may require elevated or specific user permissions to access.\n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1083",
+          "provenance_hash": "a8a73ad5b167d1f290cc0b80ebea61bb6c6c313c5bc7f1793e5bd552d0d633e7",
+          "source": "https://attack.mitre.org/techniques/T1083",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: File and Directory Discovery (T1083)"
+        },
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_hash": "5f00ec4830cb5d083a5f2e13de81dd9a0420b5939c1cb5adb16dd8ce03af6881",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        }
+      ]
+    },
+    {
+      "available_context": "ps -eo pid,comm --sort=comm | head -n 20\nip -brief link\nss -ltnH 2>/dev/null | head -n 20\nsystemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20\nlsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+      "behavioral_claim": "Command execution: lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+      "case_id": "controlled-admin-admin-023-3b1d218f0be54009affcb384b09efafa",
+      "observed_command": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+      "retrieved_candidates": [
+        {
+          "content": "# Systemd Service (T1543.002)\n\nAdversaries may create or modify systemd services to repeatedly execute malicious payloads as part of persistence. Systemd is a system and service manager commonly used for managing background daemon processes (also known as services) and other system resources.(Citation: Linux man-pages: systemd January 2014) Systemd is the default initialization (init) system on many Linux distributions replacing legacy init systems, including SysVinit and Upstart, while remaining backwards compatible.  \n\nSystemd utilizes unit configuration files with the `.service` file extension to encode information about a service's process. By default, system level unit files are stored in the `/systemd/system` directory of the root owned directories (`/`). User level unit files are stored in the `/systemd/user` directories of the user owned directories (`$HOME`).(Citation: lambert systemd 2022) \n\nInside the `.service` unit files, the following directives are used to execute commands:(Citation: freedesktop systemd.service)  \n\n* `ExecStart`, `ExecStartPre`, and `ExecStartPost` directives execute when a service is started manually by `systemctl` or on system start if the service is set to automatically start.\n* `ExecReload` directive executes when a service restarts. \n* `ExecStop`, `ExecStopPre`, and `ExecStopPost` directives execute when a service is stopped.  \n\nAdversaries have created new service files, altered the commands a `.service` file\u2019s directive executes, and modified the user directive a `.service` file executes as, which could result in privilege escalation. Adversaries may also place symbolic links in these directories, enabling systemd to find these payloads regardless of where they reside on the filesystem.(Citation: Anomali Rocke March 2019)(Citation: airwalk backdoor unix systems)(Citation: Rapid7 Service Persistence 22JUNE2016) \n\nThe `.service` file\u2019s User directive can be used to run service as a specific user, which could result in privilege escalation based on specific user/group permissions. \n\nSystemd services can be created via systemd generators, which support the dynamic generation of unit files. Systemd generators are small executables that run during boot or configuration reloads to dynamically create or modify systemd unit files by converting non-native configurations into services, symlinks, or drop-ins (i.e., [Boot or Logon Initialization Scripts](https://attack.mitre.org/techniques/T1037)).(Citation: Elastic Security Labs Linux Persistence 2024)(Citation: Pepe Berba Systemd 2022)\n\n**Platforms:** Linux\n\n**Tactics:** persistence, privilege-escalation\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1543.002",
+          "provenance_hash": "c718aa5fe6fe754c470e0c70d16db1207bbc84fcba6e09d9316f73f65926d9e8",
+          "source": "https://attack.mitre.org/techniques/T1543/002",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Systemd Service (T1543.002)"
+        },
+        {
+          "content": "# System Service Discovery (T1007)\n\nAdversaries may try to gather information about registered local system services. Adversaries may obtain information about services using tools as well as OS utility commands such as <code>sc query</code>, <code>tasklist /svc</code>, <code>systemctl --type=service</code>, and <code>net start</code>. Adversaries may also gather information about schedule tasks via commands such as `schtasks` on Windows or `crontab -l` on Linux and macOS.(Citation: Elastic Security Labs GOSAR 2024)(Citation: SentinelLabs macOS Malware 2021)(Citation: Splunk Linux Gormir 2024)(Citation: Aquasec Kinsing 2020)\n\nAdversaries may use the information from [System Service Discovery](https://attack.mitre.org/techniques/T1007) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.\n\n**Platforms:** Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1007",
+          "provenance_hash": "03dd410861245fc8b5de222fb561ff2795314910a48384ca5507e75180dfacc9",
+          "source": "https://attack.mitre.org/techniques/T1007",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Service Discovery (T1007)"
+        },
+        {
+          "content": "# System Network Configuration Discovery (T1016)\n\nAdversaries may look for details about the network configuration and settings, such as IP and/or MAC addresses, of systems they access or through information discovery of remote systems. Several operating system administration utilities exist that can be used to gather this information. Examples include [Arp](https://attack.mitre.org/software/S0099), [ipconfig](https://attack.mitre.org/software/S0100)/[ifconfig](https://attack.mitre.org/software/S0101), [nbtstat](https://attack.mitre.org/software/S0102), and [route](https://attack.mitre.org/software/S0103).\n\nAdversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather information about configurations and settings, such as IP addresses of configured interfaces and static/dynamic routes (e.g. <code>show ip route</code>, <code>show ip interface</code>).(Citation: US-CERT-TA18-106A)(Citation: Mandiant APT41 Global Intrusion ) On ESXi, adversaries may leverage esxcli to gather network configuration information. For example, the command `esxcli network nic list` will retrieve the MAC address, while `esxcli network ip interface ipv4 get` will retrieve the local IPv4 address.(Citation: Trellix Rnasomhouse 2024)\n\nAdversaries may use the information from [System Network Configuration Discovery](https://attack.mitre.org/techniques/T1016) during automated discovery to shape follow-on behaviors, including determining certain access within the target network and what actions to do next. \n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1016",
+          "provenance_hash": "31c548669768809f24443b2f398b0c43bfb5ff7f3a6aa35f1f21ee9375812041",
+          "source": "https://attack.mitre.org/techniques/T1016",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Network Configuration Discovery (T1016)"
+        }
+      ]
+    },
+    {
+      "available_context": "command -v python3\npython3 --version\ncommand -v git\ngit --version 2>/dev/null\ncommand -v docker\ndocker --version 2>/dev/null\ngetconf _NPROCESSORS_ONLN\nulimit -a | head -n 20",
+      "behavioral_claim": "Command execution: ulimit -a | head -n 20",
+      "case_id": "controlled-admin-admin-024-e9b1822d4f0747608ae9c10cfeff48b4",
+      "observed_command": "ulimit -a | head -n 20",
+      "retrieved_candidates": []
+    },
+    {
+      "available_context": "id -u\nid -g\nid -G\nuname -srmo\nnproc\nfree -h\ndf -h /tmp\nstat -c '%A %U %G %n' /tmp",
+      "behavioral_claim": "Command execution: stat -c '%A %U %G %n' /tmp",
+      "case_id": "controlled-admin-admin-025-2ff03b690a99456caf98081d738f8462",
+      "observed_command": "stat -c '%A %U %G %n' /tmp",
+      "retrieved_candidates": [
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_hash": "5f00ec4830cb5d083a5f2e13de81dd9a0420b5939c1cb5adb16dd8ce03af6881",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        },
+        {
+          "content": "# Local Account (T1087.001)\n\nAdversaries may attempt to get a listing of local system accounts. This information can help adversaries determine which local accounts exist on a system to aid in follow-on behavior.\n\nCommands such as <code>net user</code> and <code>net localgroup</code> of the [Net](https://attack.mitre.org/software/S0039) utility and <code>id</code> and <code>groups</code> on macOS and Linux can list local users and groups.(Citation: Mandiant APT1)(Citation: id man page)(Citation: groups man page) On Linux, local users can also be enumerated through the use of the <code>/etc/passwd</code> file. On macOS, the <code>dscl . list /Users</code> command can be used to enumerate local accounts. On ESXi servers, the `esxcli system account list` command can list local user accounts.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)\n\n**Platforms:** ESXi, Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1087.001",
+          "provenance_hash": "32b69ddcf7ed7704dcae30c01a63757630fe26cf9e6b6cc1016b93833a6c4f6d",
+          "source": "https://attack.mitre.org/techniques/T1087/001",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Local Account (T1087.001)"
+        }
+      ]
+    },
+    {
+      "available_context": "pwd\nprintf '%s\\n' \"$PWD\"\nls -ld /tmp /var/tmp\nfind /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20\ndu -sh /tmp 2>/dev/null\ndf -h /",
+      "behavioral_claim": "Command execution: df -h /",
+      "case_id": "controlled-admin-admin-026-61f34d05f15c4d828f5164808fb6b4c9",
+      "observed_command": "df -h /",
+      "retrieved_candidates": [
+        {
+          "content": "# File and Directory Discovery (T1083)\n\nAdversaries may enumerate files and directories or may search in specific locations of a host or network share for certain information within a file system. Adversaries may use the information from [File and Directory Discovery](https://attack.mitre.org/techniques/T1083) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.\n\nMany command shell utilities can be used to obtain this information. Examples include <code>dir</code>, <code>tree</code>, <code>ls</code>, <code>find</code>, and <code>locate</code>.(Citation: Windows Commands JPCERT) Custom tools may also be used to gather file and directory information and interact with the [Native API](https://attack.mitre.org/techniques/T1106). Adversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather file and directory information (e.g. <code>dir</code>, <code>show flash</code>, and/or <code>nvram</code>).(Citation: US-CERT-TA18-106A)\n\nSome files and directories may require elevated or specific user permissions to access.\n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1083",
+          "provenance_hash": "a8a73ad5b167d1f290cc0b80ebea61bb6c6c313c5bc7f1793e5bd552d0d633e7",
+          "source": "https://attack.mitre.org/techniques/T1083",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: File and Directory Discovery (T1083)"
+        },
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_hash": "5f00ec4830cb5d083a5f2e13de81dd9a0420b5939c1cb5adb16dd8ce03af6881",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        }
+      ]
+    },
+    {
+      "available_context": "ps -eo pid,comm --sort=comm | head -n 20\nip -brief link\nss -ltnH 2>/dev/null | head -n 20\nsystemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20\nlsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+      "behavioral_claim": "Command execution: lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+      "case_id": "controlled-admin-admin-027-fe99e7b6d68b444d9e179965e30bb68d",
+      "observed_command": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+      "retrieved_candidates": [
+        {
+          "content": "# Systemd Service (T1543.002)\n\nAdversaries may create or modify systemd services to repeatedly execute malicious payloads as part of persistence. Systemd is a system and service manager commonly used for managing background daemon processes (also known as services) and other system resources.(Citation: Linux man-pages: systemd January 2014) Systemd is the default initialization (init) system on many Linux distributions replacing legacy init systems, including SysVinit and Upstart, while remaining backwards compatible.  \n\nSystemd utilizes unit configuration files with the `.service` file extension to encode information about a service's process. By default, system level unit files are stored in the `/systemd/system` directory of the root owned directories (`/`). User level unit files are stored in the `/systemd/user` directories of the user owned directories (`$HOME`).(Citation: lambert systemd 2022) \n\nInside the `.service` unit files, the following directives are used to execute commands:(Citation: freedesktop systemd.service)  \n\n* `ExecStart`, `ExecStartPre`, and `ExecStartPost` directives execute when a service is started manually by `systemctl` or on system start if the service is set to automatically start.\n* `ExecReload` directive executes when a service restarts. \n* `ExecStop`, `ExecStopPre`, and `ExecStopPost` directives execute when a service is stopped.  \n\nAdversaries have created new service files, altered the commands a `.service` file\u2019s directive executes, and modified the user directive a `.service` file executes as, which could result in privilege escalation. Adversaries may also place symbolic links in these directories, enabling systemd to find these payloads regardless of where they reside on the filesystem.(Citation: Anomali Rocke March 2019)(Citation: airwalk backdoor unix systems)(Citation: Rapid7 Service Persistence 22JUNE2016) \n\nThe `.service` file\u2019s User directive can be used to run service as a specific user, which could result in privilege escalation based on specific user/group permissions. \n\nSystemd services can be created via systemd generators, which support the dynamic generation of unit files. Systemd generators are small executables that run during boot or configuration reloads to dynamically create or modify systemd unit files by converting non-native configurations into services, symlinks, or drop-ins (i.e., [Boot or Logon Initialization Scripts](https://attack.mitre.org/techniques/T1037)).(Citation: Elastic Security Labs Linux Persistence 2024)(Citation: Pepe Berba Systemd 2022)\n\n**Platforms:** Linux\n\n**Tactics:** persistence, privilege-escalation\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1543.002",
+          "provenance_hash": "c718aa5fe6fe754c470e0c70d16db1207bbc84fcba6e09d9316f73f65926d9e8",
+          "source": "https://attack.mitre.org/techniques/T1543/002",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Systemd Service (T1543.002)"
+        },
+        {
+          "content": "# System Service Discovery (T1007)\n\nAdversaries may try to gather information about registered local system services. Adversaries may obtain information about services using tools as well as OS utility commands such as <code>sc query</code>, <code>tasklist /svc</code>, <code>systemctl --type=service</code>, and <code>net start</code>. Adversaries may also gather information about schedule tasks via commands such as `schtasks` on Windows or `crontab -l` on Linux and macOS.(Citation: Elastic Security Labs GOSAR 2024)(Citation: SentinelLabs macOS Malware 2021)(Citation: Splunk Linux Gormir 2024)(Citation: Aquasec Kinsing 2020)\n\nAdversaries may use the information from [System Service Discovery](https://attack.mitre.org/techniques/T1007) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.\n\n**Platforms:** Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1007",
+          "provenance_hash": "03dd410861245fc8b5de222fb561ff2795314910a48384ca5507e75180dfacc9",
+          "source": "https://attack.mitre.org/techniques/T1007",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Service Discovery (T1007)"
+        },
+        {
+          "content": "# System Network Configuration Discovery (T1016)\n\nAdversaries may look for details about the network configuration and settings, such as IP and/or MAC addresses, of systems they access or through information discovery of remote systems. Several operating system administration utilities exist that can be used to gather this information. Examples include [Arp](https://attack.mitre.org/software/S0099), [ipconfig](https://attack.mitre.org/software/S0100)/[ifconfig](https://attack.mitre.org/software/S0101), [nbtstat](https://attack.mitre.org/software/S0102), and [route](https://attack.mitre.org/software/S0103).\n\nAdversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather information about configurations and settings, such as IP addresses of configured interfaces and static/dynamic routes (e.g. <code>show ip route</code>, <code>show ip interface</code>).(Citation: US-CERT-TA18-106A)(Citation: Mandiant APT41 Global Intrusion ) On ESXi, adversaries may leverage esxcli to gather network configuration information. For example, the command `esxcli network nic list` will retrieve the MAC address, while `esxcli network ip interface ipv4 get` will retrieve the local IPv4 address.(Citation: Trellix Rnasomhouse 2024)\n\nAdversaries may use the information from [System Network Configuration Discovery](https://attack.mitre.org/techniques/T1016) during automated discovery to shape follow-on behaviors, including determining certain access within the target network and what actions to do next. \n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1016",
+          "provenance_hash": "31c548669768809f24443b2f398b0c43bfb5ff7f3a6aa35f1f21ee9375812041",
+          "source": "https://attack.mitre.org/techniques/T1016",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Network Configuration Discovery (T1016)"
+        }
+      ]
+    },
+    {
+      "available_context": "command -v python3\npython3 --version\ncommand -v git\ngit --version 2>/dev/null\ncommand -v docker\ndocker --version 2>/dev/null\ngetconf _NPROCESSORS_ONLN\nulimit -a | head -n 20",
+      "behavioral_claim": "Command execution: ulimit -a | head -n 20",
+      "case_id": "controlled-admin-admin-028-5d75cbdba1484284979a25e2bb43c5a1",
+      "observed_command": "ulimit -a | head -n 20",
+      "retrieved_candidates": []
+    },
+    {
+      "available_context": "id -u\nid -g\nid -G\nuname -srmo\nnproc\nfree -h\ndf -h /tmp\nstat -c '%A %U %G %n' /tmp",
+      "behavioral_claim": "Command execution: stat -c '%A %U %G %n' /tmp",
+      "case_id": "controlled-admin-admin-029-9781201ac39b434db6992f9131df244f",
+      "observed_command": "stat -c '%A %U %G %n' /tmp",
+      "retrieved_candidates": [
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_hash": "5f00ec4830cb5d083a5f2e13de81dd9a0420b5939c1cb5adb16dd8ce03af6881",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        },
+        {
+          "content": "# Local Account (T1087.001)\n\nAdversaries may attempt to get a listing of local system accounts. This information can help adversaries determine which local accounts exist on a system to aid in follow-on behavior.\n\nCommands such as <code>net user</code> and <code>net localgroup</code> of the [Net](https://attack.mitre.org/software/S0039) utility and <code>id</code> and <code>groups</code> on macOS and Linux can list local users and groups.(Citation: Mandiant APT1)(Citation: id man page)(Citation: groups man page) On Linux, local users can also be enumerated through the use of the <code>/etc/passwd</code> file. On macOS, the <code>dscl . list /Users</code> command can be used to enumerate local accounts. On ESXi servers, the `esxcli system account list` command can list local user accounts.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)\n\n**Platforms:** ESXi, Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1087.001",
+          "provenance_hash": "32b69ddcf7ed7704dcae30c01a63757630fe26cf9e6b6cc1016b93833a6c4f6d",
+          "source": "https://attack.mitre.org/techniques/T1087/001",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Local Account (T1087.001)"
+        }
+      ]
+    },
+    {
+      "available_context": "pwd\nprintf '%s\\n' \"$PWD\"\nls -ld /tmp /var/tmp\nfind /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20\ndu -sh /tmp 2>/dev/null\ndf -h /",
+      "behavioral_claim": "Command execution: df -h /",
+      "case_id": "controlled-admin-admin-030-f96b64e52b7d4343a31f8c4449ea9b19",
+      "observed_command": "df -h /",
+      "retrieved_candidates": [
+        {
+          "content": "# File and Directory Discovery (T1083)\n\nAdversaries may enumerate files and directories or may search in specific locations of a host or network share for certain information within a file system. Adversaries may use the information from [File and Directory Discovery](https://attack.mitre.org/techniques/T1083) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.\n\nMany command shell utilities can be used to obtain this information. Examples include <code>dir</code>, <code>tree</code>, <code>ls</code>, <code>find</code>, and <code>locate</code>.(Citation: Windows Commands JPCERT) Custom tools may also be used to gather file and directory information and interact with the [Native API](https://attack.mitre.org/techniques/T1106). Adversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather file and directory information (e.g. <code>dir</code>, <code>show flash</code>, and/or <code>nvram</code>).(Citation: US-CERT-TA18-106A)\n\nSome files and directories may require elevated or specific user permissions to access.\n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1083",
+          "provenance_hash": "a8a73ad5b167d1f290cc0b80ebea61bb6c6c313c5bc7f1793e5bd552d0d633e7",
+          "source": "https://attack.mitre.org/techniques/T1083",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: File and Directory Discovery (T1083)"
+        },
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_hash": "5f00ec4830cb5d083a5f2e13de81dd9a0420b5939c1cb5adb16dd8ce03af6881",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        }
+      ]
+    },
+    {
+      "available_context": "ps -eo pid,comm --sort=comm | head -n 20\nip -brief link\nss -ltnH 2>/dev/null | head -n 20\nsystemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20\nlsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+      "behavioral_claim": "Command execution: lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+      "case_id": "controlled-admin-admin-031-e52666576ec54729a1a2e8e380b7be3b",
+      "observed_command": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+      "retrieved_candidates": [
+        {
+          "content": "# Systemd Service (T1543.002)\n\nAdversaries may create or modify systemd services to repeatedly execute malicious payloads as part of persistence. Systemd is a system and service manager commonly used for managing background daemon processes (also known as services) and other system resources.(Citation: Linux man-pages: systemd January 2014) Systemd is the default initialization (init) system on many Linux distributions replacing legacy init systems, including SysVinit and Upstart, while remaining backwards compatible.  \n\nSystemd utilizes unit configuration files with the `.service` file extension to encode information about a service's process. By default, system level unit files are stored in the `/systemd/system` directory of the root owned directories (`/`). User level unit files are stored in the `/systemd/user` directories of the user owned directories (`$HOME`).(Citation: lambert systemd 2022) \n\nInside the `.service` unit files, the following directives are used to execute commands:(Citation: freedesktop systemd.service)  \n\n* `ExecStart`, `ExecStartPre`, and `ExecStartPost` directives execute when a service is started manually by `systemctl` or on system start if the service is set to automatically start.\n* `ExecReload` directive executes when a service restarts. \n* `ExecStop`, `ExecStopPre`, and `ExecStopPost` directives execute when a service is stopped.  \n\nAdversaries have created new service files, altered the commands a `.service` file\u2019s directive executes, and modified the user directive a `.service` file executes as, which could result in privilege escalation. Adversaries may also place symbolic links in these directories, enabling systemd to find these payloads regardless of where they reside on the filesystem.(Citation: Anomali Rocke March 2019)(Citation: airwalk backdoor unix systems)(Citation: Rapid7 Service Persistence 22JUNE2016) \n\nThe `.service` file\u2019s User directive can be used to run service as a specific user, which could result in privilege escalation based on specific user/group permissions. \n\nSystemd services can be created via systemd generators, which support the dynamic generation of unit files. Systemd generators are small executables that run during boot or configuration reloads to dynamically create or modify systemd unit files by converting non-native configurations into services, symlinks, or drop-ins (i.e., [Boot or Logon Initialization Scripts](https://attack.mitre.org/techniques/T1037)).(Citation: Elastic Security Labs Linux Persistence 2024)(Citation: Pepe Berba Systemd 2022)\n\n**Platforms:** Linux\n\n**Tactics:** persistence, privilege-escalation\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1543.002",
+          "provenance_hash": "c718aa5fe6fe754c470e0c70d16db1207bbc84fcba6e09d9316f73f65926d9e8",
+          "source": "https://attack.mitre.org/techniques/T1543/002",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Systemd Service (T1543.002)"
+        },
+        {
+          "content": "# System Service Discovery (T1007)\n\nAdversaries may try to gather information about registered local system services. Adversaries may obtain information about services using tools as well as OS utility commands such as <code>sc query</code>, <code>tasklist /svc</code>, <code>systemctl --type=service</code>, and <code>net start</code>. Adversaries may also gather information about schedule tasks via commands such as `schtasks` on Windows or `crontab -l` on Linux and macOS.(Citation: Elastic Security Labs GOSAR 2024)(Citation: SentinelLabs macOS Malware 2021)(Citation: Splunk Linux Gormir 2024)(Citation: Aquasec Kinsing 2020)\n\nAdversaries may use the information from [System Service Discovery](https://attack.mitre.org/techniques/T1007) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.\n\n**Platforms:** Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1007",
+          "provenance_hash": "03dd410861245fc8b5de222fb561ff2795314910a48384ca5507e75180dfacc9",
+          "source": "https://attack.mitre.org/techniques/T1007",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Service Discovery (T1007)"
+        },
+        {
+          "content": "# System Network Configuration Discovery (T1016)\n\nAdversaries may look for details about the network configuration and settings, such as IP and/or MAC addresses, of systems they access or through information discovery of remote systems. Several operating system administration utilities exist that can be used to gather this information. Examples include [Arp](https://attack.mitre.org/software/S0099), [ipconfig](https://attack.mitre.org/software/S0100)/[ifconfig](https://attack.mitre.org/software/S0101), [nbtstat](https://attack.mitre.org/software/S0102), and [route](https://attack.mitre.org/software/S0103).\n\nAdversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather information about configurations and settings, such as IP addresses of configured interfaces and static/dynamic routes (e.g. <code>show ip route</code>, <code>show ip interface</code>).(Citation: US-CERT-TA18-106A)(Citation: Mandiant APT41 Global Intrusion ) On ESXi, adversaries may leverage esxcli to gather network configuration information. For example, the command `esxcli network nic list` will retrieve the MAC address, while `esxcli network ip interface ipv4 get` will retrieve the local IPv4 address.(Citation: Trellix Rnasomhouse 2024)\n\nAdversaries may use the information from [System Network Configuration Discovery](https://attack.mitre.org/techniques/T1016) during automated discovery to shape follow-on behaviors, including determining certain access within the target network and what actions to do next. \n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1016",
+          "provenance_hash": "31c548669768809f24443b2f398b0c43bfb5ff7f3a6aa35f1f21ee9375812041",
+          "source": "https://attack.mitre.org/techniques/T1016",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Network Configuration Discovery (T1016)"
+        }
+      ]
+    },
+    {
+      "available_context": "command -v python3\npython3 --version\ncommand -v git\ngit --version 2>/dev/null\ncommand -v docker\ndocker --version 2>/dev/null\ngetconf _NPROCESSORS_ONLN\nulimit -a | head -n 20",
+      "behavioral_claim": "Command execution: ulimit -a | head -n 20",
+      "case_id": "controlled-admin-admin-032-eb41587e0fee426a87433a990e996290",
+      "observed_command": "ulimit -a | head -n 20",
+      "retrieved_candidates": []
+    },
+    {
+      "available_context": "id -u\nid -g\nid -G\nuname -srmo\nnproc\nfree -h\ndf -h /tmp\nstat -c '%A %U %G %n' /tmp",
+      "behavioral_claim": "Command execution: stat -c '%A %U %G %n' /tmp",
+      "case_id": "controlled-admin-admin-033-a20f3d71d4594fd8b0ca1b46b2da4766",
+      "observed_command": "stat -c '%A %U %G %n' /tmp",
+      "retrieved_candidates": [
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_hash": "5f00ec4830cb5d083a5f2e13de81dd9a0420b5939c1cb5adb16dd8ce03af6881",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        },
+        {
+          "content": "# Local Account (T1087.001)\n\nAdversaries may attempt to get a listing of local system accounts. This information can help adversaries determine which local accounts exist on a system to aid in follow-on behavior.\n\nCommands such as <code>net user</code> and <code>net localgroup</code> of the [Net](https://attack.mitre.org/software/S0039) utility and <code>id</code> and <code>groups</code> on macOS and Linux can list local users and groups.(Citation: Mandiant APT1)(Citation: id man page)(Citation: groups man page) On Linux, local users can also be enumerated through the use of the <code>/etc/passwd</code> file. On macOS, the <code>dscl . list /Users</code> command can be used to enumerate local accounts. On ESXi servers, the `esxcli system account list` command can list local user accounts.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)\n\n**Platforms:** ESXi, Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1087.001",
+          "provenance_hash": "32b69ddcf7ed7704dcae30c01a63757630fe26cf9e6b6cc1016b93833a6c4f6d",
+          "source": "https://attack.mitre.org/techniques/T1087/001",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Local Account (T1087.001)"
+        }
+      ]
+    },
+    {
+      "available_context": "pwd\nprintf '%s\\n' \"$PWD\"\nls -ld /tmp /var/tmp\nfind /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20\ndu -sh /tmp 2>/dev/null\ndf -h /",
+      "behavioral_claim": "Command execution: df -h /",
+      "case_id": "controlled-admin-admin-034-39ca783edc774d9d9a9dd34321fd36fd",
+      "observed_command": "df -h /",
+      "retrieved_candidates": [
+        {
+          "content": "# File and Directory Discovery (T1083)\n\nAdversaries may enumerate files and directories or may search in specific locations of a host or network share for certain information within a file system. Adversaries may use the information from [File and Directory Discovery](https://attack.mitre.org/techniques/T1083) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.\n\nMany command shell utilities can be used to obtain this information. Examples include <code>dir</code>, <code>tree</code>, <code>ls</code>, <code>find</code>, and <code>locate</code>.(Citation: Windows Commands JPCERT) Custom tools may also be used to gather file and directory information and interact with the [Native API](https://attack.mitre.org/techniques/T1106). Adversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather file and directory information (e.g. <code>dir</code>, <code>show flash</code>, and/or <code>nvram</code>).(Citation: US-CERT-TA18-106A)\n\nSome files and directories may require elevated or specific user permissions to access.\n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1083",
+          "provenance_hash": "a8a73ad5b167d1f290cc0b80ebea61bb6c6c313c5bc7f1793e5bd552d0d633e7",
+          "source": "https://attack.mitre.org/techniques/T1083",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: File and Directory Discovery (T1083)"
+        },
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_hash": "5f00ec4830cb5d083a5f2e13de81dd9a0420b5939c1cb5adb16dd8ce03af6881",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        }
+      ]
+    },
+    {
+      "available_context": "ps -eo pid,comm --sort=comm | head -n 20\nip -brief link\nss -ltnH 2>/dev/null | head -n 20\nsystemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20\nlsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+      "behavioral_claim": "Command execution: lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+      "case_id": "controlled-admin-admin-035-b5b4375af42e49f8ba4a65037b8e03df",
+      "observed_command": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+      "retrieved_candidates": [
+        {
+          "content": "# Systemd Service (T1543.002)\n\nAdversaries may create or modify systemd services to repeatedly execute malicious payloads as part of persistence. Systemd is a system and service manager commonly used for managing background daemon processes (also known as services) and other system resources.(Citation: Linux man-pages: systemd January 2014) Systemd is the default initialization (init) system on many Linux distributions replacing legacy init systems, including SysVinit and Upstart, while remaining backwards compatible.  \n\nSystemd utilizes unit configuration files with the `.service` file extension to encode information about a service's process. By default, system level unit files are stored in the `/systemd/system` directory of the root owned directories (`/`). User level unit files are stored in the `/systemd/user` directories of the user owned directories (`$HOME`).(Citation: lambert systemd 2022) \n\nInside the `.service` unit files, the following directives are used to execute commands:(Citation: freedesktop systemd.service)  \n\n* `ExecStart`, `ExecStartPre`, and `ExecStartPost` directives execute when a service is started manually by `systemctl` or on system start if the service is set to automatically start.\n* `ExecReload` directive executes when a service restarts. \n* `ExecStop`, `ExecStopPre`, and `ExecStopPost` directives execute when a service is stopped.  \n\nAdversaries have created new service files, altered the commands a `.service` file\u2019s directive executes, and modified the user directive a `.service` file executes as, which could result in privilege escalation. Adversaries may also place symbolic links in these directories, enabling systemd to find these payloads regardless of where they reside on the filesystem.(Citation: Anomali Rocke March 2019)(Citation: airwalk backdoor unix systems)(Citation: Rapid7 Service Persistence 22JUNE2016) \n\nThe `.service` file\u2019s User directive can be used to run service as a specific user, which could result in privilege escalation based on specific user/group permissions. \n\nSystemd services can be created via systemd generators, which support the dynamic generation of unit files. Systemd generators are small executables that run during boot or configuration reloads to dynamically create or modify systemd unit files by converting non-native configurations into services, symlinks, or drop-ins (i.e., [Boot or Logon Initialization Scripts](https://attack.mitre.org/techniques/T1037)).(Citation: Elastic Security Labs Linux Persistence 2024)(Citation: Pepe Berba Systemd 2022)\n\n**Platforms:** Linux\n\n**Tactics:** persistence, privilege-escalation\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1543.002",
+          "provenance_hash": "c718aa5fe6fe754c470e0c70d16db1207bbc84fcba6e09d9316f73f65926d9e8",
+          "source": "https://attack.mitre.org/techniques/T1543/002",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Systemd Service (T1543.002)"
+        },
+        {
+          "content": "# System Service Discovery (T1007)\n\nAdversaries may try to gather information about registered local system services. Adversaries may obtain information about services using tools as well as OS utility commands such as <code>sc query</code>, <code>tasklist /svc</code>, <code>systemctl --type=service</code>, and <code>net start</code>. Adversaries may also gather information about schedule tasks via commands such as `schtasks` on Windows or `crontab -l` on Linux and macOS.(Citation: Elastic Security Labs GOSAR 2024)(Citation: SentinelLabs macOS Malware 2021)(Citation: Splunk Linux Gormir 2024)(Citation: Aquasec Kinsing 2020)\n\nAdversaries may use the information from [System Service Discovery](https://attack.mitre.org/techniques/T1007) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.\n\n**Platforms:** Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1007",
+          "provenance_hash": "03dd410861245fc8b5de222fb561ff2795314910a48384ca5507e75180dfacc9",
+          "source": "https://attack.mitre.org/techniques/T1007",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Service Discovery (T1007)"
+        },
+        {
+          "content": "# System Network Configuration Discovery (T1016)\n\nAdversaries may look for details about the network configuration and settings, such as IP and/or MAC addresses, of systems they access or through information discovery of remote systems. Several operating system administration utilities exist that can be used to gather this information. Examples include [Arp](https://attack.mitre.org/software/S0099), [ipconfig](https://attack.mitre.org/software/S0100)/[ifconfig](https://attack.mitre.org/software/S0101), [nbtstat](https://attack.mitre.org/software/S0102), and [route](https://attack.mitre.org/software/S0103).\n\nAdversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather information about configurations and settings, such as IP addresses of configured interfaces and static/dynamic routes (e.g. <code>show ip route</code>, <code>show ip interface</code>).(Citation: US-CERT-TA18-106A)(Citation: Mandiant APT41 Global Intrusion ) On ESXi, adversaries may leverage esxcli to gather network configuration information. For example, the command `esxcli network nic list` will retrieve the MAC address, while `esxcli network ip interface ipv4 get` will retrieve the local IPv4 address.(Citation: Trellix Rnasomhouse 2024)\n\nAdversaries may use the information from [System Network Configuration Discovery](https://attack.mitre.org/techniques/T1016) during automated discovery to shape follow-on behaviors, including determining certain access within the target network and what actions to do next. \n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1016",
+          "provenance_hash": "31c548669768809f24443b2f398b0c43bfb5ff7f3a6aa35f1f21ee9375812041",
+          "source": "https://attack.mitre.org/techniques/T1016",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Network Configuration Discovery (T1016)"
+        }
+      ]
+    },
+    {
+      "available_context": "command -v python3\npython3 --version\ncommand -v git\ngit --version 2>/dev/null\ncommand -v docker\ndocker --version 2>/dev/null\ngetconf _NPROCESSORS_ONLN\nulimit -a | head -n 20",
+      "behavioral_claim": "Command execution: ulimit -a | head -n 20",
+      "case_id": "controlled-admin-admin-036-4014abb2f0444c0c9f946c4c2d8e1730",
+      "observed_command": "ulimit -a | head -n 20",
+      "retrieved_candidates": []
+    },
+    {
+      "available_context": "id -u\nid -g\nid -G\nuname -srmo\nnproc\nfree -h\ndf -h /tmp\nstat -c '%A %U %G %n' /tmp",
+      "behavioral_claim": "Command execution: stat -c '%A %U %G %n' /tmp",
+      "case_id": "controlled-admin-admin-037-7851073fe28c4563b8f63a056d89c2fe",
+      "observed_command": "stat -c '%A %U %G %n' /tmp",
+      "retrieved_candidates": [
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_hash": "5f00ec4830cb5d083a5f2e13de81dd9a0420b5939c1cb5adb16dd8ce03af6881",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        },
+        {
+          "content": "# Local Account (T1087.001)\n\nAdversaries may attempt to get a listing of local system accounts. This information can help adversaries determine which local accounts exist on a system to aid in follow-on behavior.\n\nCommands such as <code>net user</code> and <code>net localgroup</code> of the [Net](https://attack.mitre.org/software/S0039) utility and <code>id</code> and <code>groups</code> on macOS and Linux can list local users and groups.(Citation: Mandiant APT1)(Citation: id man page)(Citation: groups man page) On Linux, local users can also be enumerated through the use of the <code>/etc/passwd</code> file. On macOS, the <code>dscl . list /Users</code> command can be used to enumerate local accounts. On ESXi servers, the `esxcli system account list` command can list local user accounts.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)\n\n**Platforms:** ESXi, Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1087.001",
+          "provenance_hash": "32b69ddcf7ed7704dcae30c01a63757630fe26cf9e6b6cc1016b93833a6c4f6d",
+          "source": "https://attack.mitre.org/techniques/T1087/001",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Local Account (T1087.001)"
+        }
+      ]
+    },
+    {
+      "available_context": "pwd\nprintf '%s\\n' \"$PWD\"\nls -ld /tmp /var/tmp\nfind /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20\ndu -sh /tmp 2>/dev/null\ndf -h /",
+      "behavioral_claim": "Command execution: df -h /",
+      "case_id": "controlled-admin-admin-038-6ba220c127a946e79bb9950e92300d0f",
+      "observed_command": "df -h /",
+      "retrieved_candidates": [
+        {
+          "content": "# File and Directory Discovery (T1083)\n\nAdversaries may enumerate files and directories or may search in specific locations of a host or network share for certain information within a file system. Adversaries may use the information from [File and Directory Discovery](https://attack.mitre.org/techniques/T1083) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.\n\nMany command shell utilities can be used to obtain this information. Examples include <code>dir</code>, <code>tree</code>, <code>ls</code>, <code>find</code>, and <code>locate</code>.(Citation: Windows Commands JPCERT) Custom tools may also be used to gather file and directory information and interact with the [Native API](https://attack.mitre.org/techniques/T1106). Adversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather file and directory information (e.g. <code>dir</code>, <code>show flash</code>, and/or <code>nvram</code>).(Citation: US-CERT-TA18-106A)\n\nSome files and directories may require elevated or specific user permissions to access.\n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1083",
+          "provenance_hash": "a8a73ad5b167d1f290cc0b80ebea61bb6c6c313c5bc7f1793e5bd552d0d633e7",
+          "source": "https://attack.mitre.org/techniques/T1083",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: File and Directory Discovery (T1083)"
+        },
+        {
+          "content": "# System Information Discovery (T1082)\n\nAn adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use this information to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions. This behavior is distinct from [Local Storage Discovery](https://attack.mitre.org/techniques/T1680) which is an adversary's discovery of local drive, disks and/or volumes.\n\nTools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. Adversaries may leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get` and `system version get`.(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)\n\nInfrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)\n\n[System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) \n\n**Platforms:** ESXi, IaaS, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1082",
+          "provenance_hash": "5f00ec4830cb5d083a5f2e13de81dd9a0420b5939c1cb5adb16dd8ce03af6881",
+          "source": "https://attack.mitre.org/techniques/T1082",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Information Discovery (T1082)"
+        }
+      ]
+    },
+    {
+      "available_context": "ps -eo pid,comm --sort=comm | head -n 20\nip -brief link\nss -ltnH 2>/dev/null | head -n 20\nsystemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20\nlsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+      "behavioral_claim": "Command execution: lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+      "case_id": "controlled-admin-admin-039-a8dd8d5b93e54e5c8f4373b07affd730",
+      "observed_command": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+      "retrieved_candidates": [
+        {
+          "content": "# Systemd Service (T1543.002)\n\nAdversaries may create or modify systemd services to repeatedly execute malicious payloads as part of persistence. Systemd is a system and service manager commonly used for managing background daemon processes (also known as services) and other system resources.(Citation: Linux man-pages: systemd January 2014) Systemd is the default initialization (init) system on many Linux distributions replacing legacy init systems, including SysVinit and Upstart, while remaining backwards compatible.  \n\nSystemd utilizes unit configuration files with the `.service` file extension to encode information about a service's process. By default, system level unit files are stored in the `/systemd/system` directory of the root owned directories (`/`). User level unit files are stored in the `/systemd/user` directories of the user owned directories (`$HOME`).(Citation: lambert systemd 2022) \n\nInside the `.service` unit files, the following directives are used to execute commands:(Citation: freedesktop systemd.service)  \n\n* `ExecStart`, `ExecStartPre`, and `ExecStartPost` directives execute when a service is started manually by `systemctl` or on system start if the service is set to automatically start.\n* `ExecReload` directive executes when a service restarts. \n* `ExecStop`, `ExecStopPre`, and `ExecStopPost` directives execute when a service is stopped.  \n\nAdversaries have created new service files, altered the commands a `.service` file\u2019s directive executes, and modified the user directive a `.service` file executes as, which could result in privilege escalation. Adversaries may also place symbolic links in these directories, enabling systemd to find these payloads regardless of where they reside on the filesystem.(Citation: Anomali Rocke March 2019)(Citation: airwalk backdoor unix systems)(Citation: Rapid7 Service Persistence 22JUNE2016) \n\nThe `.service` file\u2019s User directive can be used to run service as a specific user, which could result in privilege escalation based on specific user/group permissions. \n\nSystemd services can be created via systemd generators, which support the dynamic generation of unit files. Systemd generators are small executables that run during boot or configuration reloads to dynamically create or modify systemd unit files by converting non-native configurations into services, symlinks, or drop-ins (i.e., [Boot or Logon Initialization Scripts](https://attack.mitre.org/techniques/T1037)).(Citation: Elastic Security Labs Linux Persistence 2024)(Citation: Pepe Berba Systemd 2022)\n\n**Platforms:** Linux\n\n**Tactics:** persistence, privilege-escalation\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1543.002",
+          "provenance_hash": "c718aa5fe6fe754c470e0c70d16db1207bbc84fcba6e09d9316f73f65926d9e8",
+          "source": "https://attack.mitre.org/techniques/T1543/002",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: Systemd Service (T1543.002)"
+        },
+        {
+          "content": "# System Service Discovery (T1007)\n\nAdversaries may try to gather information about registered local system services. Adversaries may obtain information about services using tools as well as OS utility commands such as <code>sc query</code>, <code>tasklist /svc</code>, <code>systemctl --type=service</code>, and <code>net start</code>. Adversaries may also gather information about schedule tasks via commands such as `schtasks` on Windows or `crontab -l` on Linux and macOS.(Citation: Elastic Security Labs GOSAR 2024)(Citation: SentinelLabs macOS Malware 2021)(Citation: Splunk Linux Gormir 2024)(Citation: Aquasec Kinsing 2020)\n\nAdversaries may use the information from [System Service Discovery](https://attack.mitre.org/techniques/T1007) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.\n\n**Platforms:** Linux, macOS, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1007",
+          "provenance_hash": "03dd410861245fc8b5de222fb561ff2795314910a48384ca5507e75180dfacc9",
+          "source": "https://attack.mitre.org/techniques/T1007",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Service Discovery (T1007)"
+        },
+        {
+          "content": "# System Network Configuration Discovery (T1016)\n\nAdversaries may look for details about the network configuration and settings, such as IP and/or MAC addresses, of systems they access or through information discovery of remote systems. Several operating system administration utilities exist that can be used to gather this information. Examples include [Arp](https://attack.mitre.org/software/S0099), [ipconfig](https://attack.mitre.org/software/S0100)/[ifconfig](https://attack.mitre.org/software/S0101), [nbtstat](https://attack.mitre.org/software/S0102), and [route](https://attack.mitre.org/software/S0103).\n\nAdversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather information about configurations and settings, such as IP addresses of configured interfaces and static/dynamic routes (e.g. <code>show ip route</code>, <code>show ip interface</code>).(Citation: US-CERT-TA18-106A)(Citation: Mandiant APT41 Global Intrusion ) On ESXi, adversaries may leverage esxcli to gather network configuration information. For example, the command `esxcli network nic list` will retrieve the MAC address, while `esxcli network ip interface ipv4 get` will retrieve the local IPv4 address.(Citation: Trellix Rnasomhouse 2024)\n\nAdversaries may use the information from [System Network Configuration Discovery](https://attack.mitre.org/techniques/T1016) during automated discovery to shape follow-on behaviors, including determining certain access within the target network and what actions to do next. \n\n**Platforms:** ESXi, Linux, macOS, Network Devices, Windows\n\n**Tactics:** discovery\n\n**Recommended mitigations:** See ATT&CK website for details.",
+          "doc_id": "DONV2-T1016",
+          "provenance_hash": "31c548669768809f24443b2f398b0c43bfb5ff7f3a6aa35f1f21ee9375812041",
+          "source": "https://attack.mitre.org/techniques/T1016",
+          "source_version": "local-mitre-corpus-2026-10-14",
+          "title": "MITRE Technique: System Network Configuration Discovery (T1016)"
+        }
+      ]
+    },
+    {
+      "available_context": "command -v python3\npython3 --version\ncommand -v git\ngit --version 2>/dev/null\ncommand -v docker\ndocker --version 2>/dev/null\ngetconf _NPROCESSORS_ONLN\nulimit -a | head -n 20",
+      "behavioral_claim": "Command execution: ulimit -a | head -n 20",
+      "case_id": "controlled-admin-admin-040-b91fde80483346218878fe6b252d601c",
+      "observed_command": "ulimit -a | head -n 20",
+      "retrieved_candidates": []
+    }
+  ]
+}

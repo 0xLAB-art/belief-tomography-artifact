@@ -1,0 +1,1561 @@
+{
+  "real-hf2024-021-3214a1193c93": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Documents support isolated components, not the complete behavior.",
+      "supporting_doc_ids": [
+        "DONV2-REL-CURL",
+        "DONV2-REL-WGET",
+        "DONV2-REL-AUTHKEYS",
+        "DONV2-T1552.001",
+        "DONV2-T1105",
+        "DONV2-T1070.004",
+        "DONV2-T1087.001"
+      ]
+    },
+    "candidate_reviews": {
+      "DONV2-REL-AUTHKEYS": {
+        "doc_id": "DONV2-REL-AUTHKEYS",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Supports authorized_keys persistence, but not the full sequence.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-REL-CURL": {
+        "doc_id": "DONV2-REL-CURL",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://therecord.media/redcurl-hackers-russian-bank-australian-company"
+      },
+      "DONV2-REL-WGET": {
+        "doc_id": "DONV2-REL-WGET",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1087.001": {
+        "doc_id": "DONV2-T1087.001",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Supports account enumeration, but not the broader command.",
+        "source": "https://attack.mitre.org/techniques/T1087/001"
+      },
+      "DONV2-T1105": {
+        "doc_id": "DONV2-T1105",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Supports downloading external files, but not subsequent actions.",
+        "source": "https://attack.mitre.org/techniques/T1105"
+      },
+      "DONV2-T1552.001": {
+        "doc_id": "DONV2-T1552.001",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://attack.mitre.org/techniques/T1552/001"
+      },
+      "DONV2-T1555": {
+        "doc_id": "DONV2-T1555",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Discusses obtaining stored credentials, not this observed sequence.",
+        "source": "https://attack.mitre.org/techniques/T1555"
+      }
+    }
+  },
+  "real-hf2024-022-a055fae278a4": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "SUFFICIENT",
+      "rationale": "File-deletion documentation directly matches the observed rm behavior.",
+      "supporting_doc_ids": [
+        "DONV2-T1070.004"
+      ]
+    },
+    "candidate_reviews": {
+      "DONV2-REL-WGET": {
+        "doc_id": "DONV2-REL-WGET",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations"
+      },
+      "DONV2-T1016": {
+        "doc_id": "DONV2-T1016",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns network configuration discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1016"
+      },
+      "DONV2-T1059.004": {
+        "doc_id": "DONV2-T1059.004",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2,
+          4
+        ],
+        "rationale": "Supports Unix-shell command execution, not deletion specifically.",
+        "source": "https://attack.mitre.org/techniques/T1059/004"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "DIRECT_SUPPORT",
+        "paragraph_indexes": [
+          2,
+          3
+        ],
+        "rationale": "Directly supports rm deleting an intrusion-related file.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns system information discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1105": {
+        "doc_id": "DONV2-T1105",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns transferring tools, not removing this file.",
+        "source": "https://attack.mitre.org/techniques/T1105"
+      },
+      "DONV2-T1543.002": {
+        "doc_id": "DONV2-T1543.002",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns systemd persistence, absent from the command.",
+        "source": "https://attack.mitre.org/techniques/T1543/002"
+      },
+      "DONV2-T1552.001": {
+        "doc_id": "DONV2-T1552.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns credential files, not file deletion.",
+        "source": "https://attack.mitre.org/techniques/T1552/001"
+      }
+    }
+  },
+  "real-hf2024-023-7e33501495da": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Retrieved documents do not substantively address disk-space querying.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-AUTHKEYS": {
+        "doc_id": "DONV2-REL-AUTHKEYS",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns authorized_keys persistence, absent here.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-REL-CRONTAB": {
+        "doc_id": "DONV2-REL-CRONTAB",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns crontab persistence, absent from disk-space query.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-T1007": {
+        "doc_id": "DONV2-T1007",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns service discovery, absent from disk-space query.",
+        "source": "https://attack.mitre.org/techniques/T1007"
+      },
+      "DONV2-T1053.003": {
+        "doc_id": "DONV2-T1053.003",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns cron scheduling, absent from disk-space query.",
+        "source": "https://attack.mitre.org/techniques/T1053/003"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns file deletion, absent from this query.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns operating-system and hardware details, not disk output.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1087.001": {
+        "doc_id": "DONV2-T1087.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns account enumeration, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1087/001"
+      },
+      "DONV2-T1555": {
+        "doc_id": "DONV2-T1555",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns stored passwords, absent from this query.",
+        "source": "https://attack.mitre.org/techniques/T1555"
+      }
+    }
+  },
+  "real-hf2024-024-7a035a7c6e2b": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Retrieved documents do not substantively address disk-space querying.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-AUTHKEYS": {
+        "doc_id": "DONV2-REL-AUTHKEYS",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns authorized_keys persistence, absent here.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-REL-CRONTAB": {
+        "doc_id": "DONV2-REL-CRONTAB",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns crontab persistence, absent from disk-space query.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-T1007": {
+        "doc_id": "DONV2-T1007",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns service discovery, absent from disk-space query.",
+        "source": "https://attack.mitre.org/techniques/T1007"
+      },
+      "DONV2-T1053.003": {
+        "doc_id": "DONV2-T1053.003",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns cron scheduling, absent from disk-space query.",
+        "source": "https://attack.mitre.org/techniques/T1053/003"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns file deletion, absent from this query.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns operating-system and hardware details, not disk output.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1087.001": {
+        "doc_id": "DONV2-T1087.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns account enumeration, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1087/001"
+      },
+      "DONV2-T1555": {
+        "doc_id": "DONV2-T1555",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns stored passwords, absent from this query.",
+        "source": "https://attack.mitre.org/techniques/T1555"
+      }
+    }
+  },
+  "real-hf2024-025-fcd6fc7a2d1a": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Retrieved documents do not substantively address disk-space querying.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-AUTHKEYS": {
+        "doc_id": "DONV2-REL-AUTHKEYS",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns authorized_keys persistence, absent here.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-REL-CRONTAB": {
+        "doc_id": "DONV2-REL-CRONTAB",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns crontab persistence, absent from disk-space query.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-T1007": {
+        "doc_id": "DONV2-T1007",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns service discovery, absent from disk-space query.",
+        "source": "https://attack.mitre.org/techniques/T1007"
+      },
+      "DONV2-T1053.003": {
+        "doc_id": "DONV2-T1053.003",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns cron scheduling, absent from disk-space query.",
+        "source": "https://attack.mitre.org/techniques/T1053/003"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns file deletion, absent from this query.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns operating-system and hardware details, not disk output.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1087.001": {
+        "doc_id": "DONV2-T1087.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns account enumeration, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1087/001"
+      },
+      "DONV2-T1555": {
+        "doc_id": "DONV2-T1555",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns stored passwords, absent from this query.",
+        "source": "https://attack.mitre.org/techniques/T1555"
+      }
+    }
+  },
+  "real-hf2024-026-96f7a8da7329": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "UNKNOWN",
+      "rationale": "Opaque command semantics prevent reliable evidence assessment.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-CURL": {
+        "doc_id": "DONV2-REL-CURL",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://therecord.media/redcurl-hackers-russian-bank-australian-company"
+      },
+      "DONV2-REL-WGET": {
+        "doc_id": "DONV2-REL-WGET",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Context mentions downloads, but command meaning remains unclear.",
+        "source": "https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations"
+      },
+      "DONV2-T1016": {
+        "doc_id": "DONV2-T1016",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Network-discovery content cannot interpret the opaque command.",
+        "source": "https://attack.mitre.org/techniques/T1016"
+      },
+      "DONV2-T1021.004": {
+        "doc_id": "DONV2-T1021.004",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://attack.mitre.org/techniques/T1021/004"
+      },
+      "DONV2-T1059.004": {
+        "doc_id": "DONV2-T1059.004",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Shell guidance does not identify the command's behavior.",
+        "source": "https://attack.mitre.org/techniques/T1059/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "System-discovery content does not clarify command meaning.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1083": {
+        "doc_id": "DONV2-T1083",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "File-discovery content does not clarify the command.",
+        "source": "https://attack.mitre.org/techniques/T1083"
+      },
+      "DONV2-T1105": {
+        "doc_id": "DONV2-T1105",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "General transfer guidance cannot interpret the opaque command.",
+        "source": "https://attack.mitre.org/techniques/T1105"
+      }
+    }
+  },
+  "real-hf2024-027-0119b433f6c1": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "No retrieved document supports changing the root password.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-AUTHKEYS": {
+        "doc_id": "DONV2-REL-AUTHKEYS",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns authorized_keys persistence, not password modification.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-REL-CRONTAB": {
+        "doc_id": "DONV2-REL-CRONTAB",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns crontab persistence, not password modification.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-T1007": {
+        "doc_id": "DONV2-T1007",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns service discovery, absent from the command.",
+        "source": "https://attack.mitre.org/techniques/T1007"
+      },
+      "DONV2-T1053.003": {
+        "doc_id": "DONV2-T1053.003",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns cron scheduling, absent from the command.",
+        "source": "https://attack.mitre.org/techniques/T1053/003"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns file deletion, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns system information discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1087.001": {
+        "doc_id": "DONV2-T1087.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns account enumeration, not password changes.",
+        "source": "https://attack.mitre.org/techniques/T1087/001"
+      },
+      "DONV2-T1555": {
+        "doc_id": "DONV2-T1555",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns obtaining stored credentials, not setting passwords.",
+        "source": "https://attack.mitre.org/techniques/T1555"
+      }
+    }
+  },
+  "real-hf2024-028-4b0b1797cc06": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Retrieved documents do not substantively address disk-space querying.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-AUTHKEYS": {
+        "doc_id": "DONV2-REL-AUTHKEYS",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns authorized_keys persistence, absent here.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-REL-CRONTAB": {
+        "doc_id": "DONV2-REL-CRONTAB",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns crontab persistence, absent from disk-space query.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-T1007": {
+        "doc_id": "DONV2-T1007",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns service discovery, absent from disk-space query.",
+        "source": "https://attack.mitre.org/techniques/T1007"
+      },
+      "DONV2-T1053.003": {
+        "doc_id": "DONV2-T1053.003",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns cron scheduling, absent from disk-space query.",
+        "source": "https://attack.mitre.org/techniques/T1053/003"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns file deletion, absent from this query.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns operating-system and hardware details, not disk output.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1087.001": {
+        "doc_id": "DONV2-T1087.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns account enumeration, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1087/001"
+      },
+      "DONV2-T1555": {
+        "doc_id": "DONV2-T1555",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns stored passwords, absent from this query.",
+        "source": "https://attack.mitre.org/techniques/T1555"
+      }
+    }
+  },
+  "real-hf2024-029-250f0c655565": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "SUFFICIENT",
+      "rationale": "File-deletion documentation directly matches the observed rm behavior.",
+      "supporting_doc_ids": [
+        "DONV2-T1070.004"
+      ]
+    },
+    "candidate_reviews": {
+      "DONV2-REL-WGET": {
+        "doc_id": "DONV2-REL-WGET",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations"
+      },
+      "DONV2-T1016": {
+        "doc_id": "DONV2-T1016",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns network configuration discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1016"
+      },
+      "DONV2-T1059.004": {
+        "doc_id": "DONV2-T1059.004",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2,
+          4
+        ],
+        "rationale": "Supports Unix-shell command execution, not deletion specifically.",
+        "source": "https://attack.mitre.org/techniques/T1059/004"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "DIRECT_SUPPORT",
+        "paragraph_indexes": [
+          2,
+          3
+        ],
+        "rationale": "Directly supports rm deleting an intrusion-related file.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns system information discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1105": {
+        "doc_id": "DONV2-T1105",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns transferring tools, not removing this file.",
+        "source": "https://attack.mitre.org/techniques/T1105"
+      },
+      "DONV2-T1543.002": {
+        "doc_id": "DONV2-T1543.002",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns systemd persistence, absent from the command.",
+        "source": "https://attack.mitre.org/techniques/T1543/002"
+      },
+      "DONV2-T1552.001": {
+        "doc_id": "DONV2-T1552.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns credential files, not file deletion.",
+        "source": "https://attack.mitre.org/techniques/T1552/001"
+      }
+    }
+  },
+  "real-hf2024-030-bf28d8d8d272": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "SUFFICIENT",
+      "rationale": "File-deletion documentation directly matches the observed rm behavior.",
+      "supporting_doc_ids": [
+        "DONV2-T1070.004"
+      ]
+    },
+    "candidate_reviews": {
+      "DONV2-REL-WGET": {
+        "doc_id": "DONV2-REL-WGET",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations"
+      },
+      "DONV2-T1016": {
+        "doc_id": "DONV2-T1016",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns network configuration discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1016"
+      },
+      "DONV2-T1059.004": {
+        "doc_id": "DONV2-T1059.004",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2,
+          4
+        ],
+        "rationale": "Supports Unix-shell command execution, not deletion specifically.",
+        "source": "https://attack.mitre.org/techniques/T1059/004"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "DIRECT_SUPPORT",
+        "paragraph_indexes": [
+          2,
+          3
+        ],
+        "rationale": "Directly supports rm deleting an intrusion-related file.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns system information discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1105": {
+        "doc_id": "DONV2-T1105",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns transferring tools, not removing this file.",
+        "source": "https://attack.mitre.org/techniques/T1105"
+      },
+      "DONV2-T1543.002": {
+        "doc_id": "DONV2-T1543.002",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns systemd persistence, absent from the command.",
+        "source": "https://attack.mitre.org/techniques/T1543/002"
+      },
+      "DONV2-T1552.001": {
+        "doc_id": "DONV2-T1552.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns credential files, not file deletion.",
+        "source": "https://attack.mitre.org/techniques/T1552/001"
+      }
+    }
+  },
+  "real-hf2024-031-1b4d43e066ae": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "No retrieved document supports changing the root password.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-AUTHKEYS": {
+        "doc_id": "DONV2-REL-AUTHKEYS",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns authorized_keys persistence, not password modification.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-REL-CRONTAB": {
+        "doc_id": "DONV2-REL-CRONTAB",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns crontab persistence, not password modification.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-T1007": {
+        "doc_id": "DONV2-T1007",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns service discovery, absent from the command.",
+        "source": "https://attack.mitre.org/techniques/T1007"
+      },
+      "DONV2-T1053.003": {
+        "doc_id": "DONV2-T1053.003",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns cron scheduling, absent from the command.",
+        "source": "https://attack.mitre.org/techniques/T1053/003"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns file deletion, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns system information discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1087.001": {
+        "doc_id": "DONV2-T1087.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns account enumeration, not password changes.",
+        "source": "https://attack.mitre.org/techniques/T1087/001"
+      },
+      "DONV2-T1555": {
+        "doc_id": "DONV2-T1555",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns obtaining stored credentials, not setting passwords.",
+        "source": "https://attack.mitre.org/techniques/T1555"
+      }
+    }
+  },
+  "real-hf2024-032-df5d252a4abd": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "SUFFICIENT",
+      "rationale": "File-deletion documentation directly matches the observed rm behavior.",
+      "supporting_doc_ids": [
+        "DONV2-T1070.004"
+      ]
+    },
+    "candidate_reviews": {
+      "DONV2-REL-WGET": {
+        "doc_id": "DONV2-REL-WGET",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations"
+      },
+      "DONV2-T1016": {
+        "doc_id": "DONV2-T1016",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns network configuration discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1016"
+      },
+      "DONV2-T1059.004": {
+        "doc_id": "DONV2-T1059.004",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2,
+          4
+        ],
+        "rationale": "Supports Unix-shell command execution, not deletion specifically.",
+        "source": "https://attack.mitre.org/techniques/T1059/004"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "DIRECT_SUPPORT",
+        "paragraph_indexes": [
+          2,
+          3
+        ],
+        "rationale": "Directly supports rm deleting an intrusion-related file.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns system information discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1105": {
+        "doc_id": "DONV2-T1105",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns transferring tools, not removing this file.",
+        "source": "https://attack.mitre.org/techniques/T1105"
+      },
+      "DONV2-T1543.002": {
+        "doc_id": "DONV2-T1543.002",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns systemd persistence, absent from the command.",
+        "source": "https://attack.mitre.org/techniques/T1543/002"
+      },
+      "DONV2-T1552.001": {
+        "doc_id": "DONV2-T1552.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns credential files, not file deletion.",
+        "source": "https://attack.mitre.org/techniques/T1552/001"
+      }
+    }
+  },
+  "real-hf2024-033-d1930ba0558a": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Retrieved documents do not substantively address disk-space querying.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-AUTHKEYS": {
+        "doc_id": "DONV2-REL-AUTHKEYS",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns authorized_keys persistence, absent here.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-REL-CRONTAB": {
+        "doc_id": "DONV2-REL-CRONTAB",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns crontab persistence, absent from disk-space query.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-T1007": {
+        "doc_id": "DONV2-T1007",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns service discovery, absent from disk-space query.",
+        "source": "https://attack.mitre.org/techniques/T1007"
+      },
+      "DONV2-T1053.003": {
+        "doc_id": "DONV2-T1053.003",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns cron scheduling, absent from disk-space query.",
+        "source": "https://attack.mitre.org/techniques/T1053/003"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns file deletion, absent from this query.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns operating-system and hardware details, not disk output.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1087.001": {
+        "doc_id": "DONV2-T1087.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns account enumeration, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1087/001"
+      },
+      "DONV2-T1555": {
+        "doc_id": "DONV2-T1555",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns stored passwords, absent from this query.",
+        "source": "https://attack.mitre.org/techniques/T1555"
+      }
+    }
+  },
+  "real-hf2024-034-6c34861fe410": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "Shell-execution evidence lacks specificity for chmod, nohup, and destinations.",
+      "supporting_doc_ids": [
+        "DONV2-T1059.004"
+      ]
+    },
+    "candidate_reviews": {
+      "DONV2-T1059.004": {
+        "doc_id": "DONV2-T1059.004",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://attack.mitre.org/techniques/T1059/004"
+      }
+    }
+  },
+  "real-hf2024-035-c35077d67519": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "No retrieved document supports changing the root password.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-AUTHKEYS": {
+        "doc_id": "DONV2-REL-AUTHKEYS",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns authorized_keys persistence, not password modification.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-REL-CRONTAB": {
+        "doc_id": "DONV2-REL-CRONTAB",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns crontab persistence, not password modification.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-T1007": {
+        "doc_id": "DONV2-T1007",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns service discovery, absent from the command.",
+        "source": "https://attack.mitre.org/techniques/T1007"
+      },
+      "DONV2-T1053.003": {
+        "doc_id": "DONV2-T1053.003",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns cron scheduling, absent from the command.",
+        "source": "https://attack.mitre.org/techniques/T1053/003"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns file deletion, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns system information discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1087.001": {
+        "doc_id": "DONV2-T1087.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns account enumeration, not password changes.",
+        "source": "https://attack.mitre.org/techniques/T1087/001"
+      },
+      "DONV2-T1555": {
+        "doc_id": "DONV2-T1555",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns obtaining stored credentials, not setting passwords.",
+        "source": "https://attack.mitre.org/techniques/T1555"
+      }
+    }
+  },
+  "real-hf2024-036-fce0e806e097": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "UNKNOWN",
+      "rationale": "Opaque command semantics prevent reliable evidence assessment.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-CURL": {
+        "doc_id": "DONV2-REL-CURL",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://therecord.media/redcurl-hackers-russian-bank-australian-company"
+      },
+      "DONV2-REL-WGET": {
+        "doc_id": "DONV2-REL-WGET",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Context mentions downloads, but command meaning remains unclear.",
+        "source": "https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations"
+      },
+      "DONV2-T1016": {
+        "doc_id": "DONV2-T1016",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Network-discovery content cannot interpret the opaque command.",
+        "source": "https://attack.mitre.org/techniques/T1016"
+      },
+      "DONV2-T1021.004": {
+        "doc_id": "DONV2-T1021.004",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://attack.mitre.org/techniques/T1021/004"
+      },
+      "DONV2-T1059.004": {
+        "doc_id": "DONV2-T1059.004",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Shell guidance does not identify the command's behavior.",
+        "source": "https://attack.mitre.org/techniques/T1059/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "System-discovery content does not clarify command meaning.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1083": {
+        "doc_id": "DONV2-T1083",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "File-discovery content does not clarify the command.",
+        "source": "https://attack.mitre.org/techniques/T1083"
+      },
+      "DONV2-T1105": {
+        "doc_id": "DONV2-T1105",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "General transfer guidance cannot interpret the opaque command.",
+        "source": "https://attack.mitre.org/techniques/T1105"
+      }
+    }
+  },
+  "real-hf2024-037-69202a2cefbc": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "SUFFICIENT",
+      "rationale": "File-deletion documentation directly matches the observed rm behavior.",
+      "supporting_doc_ids": [
+        "DONV2-T1070.004"
+      ]
+    },
+    "candidate_reviews": {
+      "DONV2-REL-WGET": {
+        "doc_id": "DONV2-REL-WGET",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations"
+      },
+      "DONV2-T1016": {
+        "doc_id": "DONV2-T1016",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns network configuration discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1016"
+      },
+      "DONV2-T1059.004": {
+        "doc_id": "DONV2-T1059.004",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2,
+          4
+        ],
+        "rationale": "Supports Unix-shell command execution, not deletion specifically.",
+        "source": "https://attack.mitre.org/techniques/T1059/004"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "DIRECT_SUPPORT",
+        "paragraph_indexes": [
+          2,
+          3
+        ],
+        "rationale": "Directly supports rm deleting an intrusion-related file.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns system information discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1105": {
+        "doc_id": "DONV2-T1105",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns transferring tools, not removing this file.",
+        "source": "https://attack.mitre.org/techniques/T1105"
+      },
+      "DONV2-T1543.002": {
+        "doc_id": "DONV2-T1543.002",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns systemd persistence, absent from the command.",
+        "source": "https://attack.mitre.org/techniques/T1543/002"
+      },
+      "DONV2-T1552.001": {
+        "doc_id": "DONV2-T1552.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns credential files, not file deletion.",
+        "source": "https://attack.mitre.org/techniques/T1552/001"
+      }
+    }
+  },
+  "real-hf2024-038-d4a7e81ec865": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "SUFFICIENT",
+      "rationale": "File-deletion documentation directly matches the observed rm behavior.",
+      "supporting_doc_ids": [
+        "DONV2-T1070.004"
+      ]
+    },
+    "candidate_reviews": {
+      "DONV2-REL-WGET": {
+        "doc_id": "DONV2-REL-WGET",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations"
+      },
+      "DONV2-T1016": {
+        "doc_id": "DONV2-T1016",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns network configuration discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1016"
+      },
+      "DONV2-T1059.004": {
+        "doc_id": "DONV2-T1059.004",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2,
+          4
+        ],
+        "rationale": "Supports Unix-shell command execution, not deletion specifically.",
+        "source": "https://attack.mitre.org/techniques/T1059/004"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "DIRECT_SUPPORT",
+        "paragraph_indexes": [
+          2,
+          3
+        ],
+        "rationale": "Directly supports rm deleting an intrusion-related file.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns system information discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1105": {
+        "doc_id": "DONV2-T1105",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns transferring tools, not removing this file.",
+        "source": "https://attack.mitre.org/techniques/T1105"
+      },
+      "DONV2-T1543.002": {
+        "doc_id": "DONV2-T1543.002",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns systemd persistence, absent from the command.",
+        "source": "https://attack.mitre.org/techniques/T1543/002"
+      },
+      "DONV2-T1552.001": {
+        "doc_id": "DONV2-T1552.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns credential files, not file deletion.",
+        "source": "https://attack.mitre.org/techniques/T1552/001"
+      }
+    }
+  },
+  "real-hf2024-039-d35a1015809b": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "SUFFICIENT",
+      "rationale": "File-deletion documentation directly matches the observed rm behavior.",
+      "supporting_doc_ids": [
+        "DONV2-T1070.004"
+      ]
+    },
+    "candidate_reviews": {
+      "DONV2-REL-WGET": {
+        "doc_id": "DONV2-REL-WGET",
+        "label": "UNKNOWN",
+        "paragraph_indexes": [],
+        "rationale": "Review unavailable or invalid.",
+        "source": "https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations"
+      },
+      "DONV2-T1016": {
+        "doc_id": "DONV2-T1016",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns network configuration discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1016"
+      },
+      "DONV2-T1059.004": {
+        "doc_id": "DONV2-T1059.004",
+        "label": "PARTIAL",
+        "paragraph_indexes": [
+          2,
+          4
+        ],
+        "rationale": "Supports Unix-shell command execution, not deletion specifically.",
+        "source": "https://attack.mitre.org/techniques/T1059/004"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "DIRECT_SUPPORT",
+        "paragraph_indexes": [
+          2,
+          3
+        ],
+        "rationale": "Directly supports rm deleting an intrusion-related file.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns system information discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1105": {
+        "doc_id": "DONV2-T1105",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns transferring tools, not removing this file.",
+        "source": "https://attack.mitre.org/techniques/T1105"
+      },
+      "DONV2-T1543.002": {
+        "doc_id": "DONV2-T1543.002",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns systemd persistence, absent from the command.",
+        "source": "https://attack.mitre.org/techniques/T1543/002"
+      },
+      "DONV2-T1552.001": {
+        "doc_id": "DONV2-T1552.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns credential files, not file deletion.",
+        "source": "https://attack.mitre.org/techniques/T1552/001"
+      }
+    }
+  },
+  "real-hf2024-040-ba1749b532f2": {
+    "bundle_review": {
+      "conflicting_doc_ids": [],
+      "label": "INSUFFICIENT",
+      "rationale": "No retrieved document supports changing the root password.",
+      "supporting_doc_ids": []
+    },
+    "candidate_reviews": {
+      "DONV2-REL-AUTHKEYS": {
+        "doc_id": "DONV2-REL-AUTHKEYS",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns authorized_keys persistence, not password modification.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-REL-CRONTAB": {
+        "doc_id": "DONV2-REL-CRONTAB",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns crontab persistence, not password modification.",
+        "source": "https://blog.trendmicro.com/trendlabs-security-intelligence/skidmap-linux-malware-uses-rootkit-capabilities-to-hide-cryptocurrency-mining-payload/"
+      },
+      "DONV2-T1007": {
+        "doc_id": "DONV2-T1007",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns service discovery, absent from the command.",
+        "source": "https://attack.mitre.org/techniques/T1007"
+      },
+      "DONV2-T1053.003": {
+        "doc_id": "DONV2-T1053.003",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns cron scheduling, absent from the command.",
+        "source": "https://attack.mitre.org/techniques/T1053/003"
+      },
+      "DONV2-T1070.004": {
+        "doc_id": "DONV2-T1070.004",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns file deletion, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1070/004"
+      },
+      "DONV2-T1082": {
+        "doc_id": "DONV2-T1082",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns system information discovery, absent here.",
+        "source": "https://attack.mitre.org/techniques/T1082"
+      },
+      "DONV2-T1087.001": {
+        "doc_id": "DONV2-T1087.001",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns account enumeration, not password changes.",
+        "source": "https://attack.mitre.org/techniques/T1087/001"
+      },
+      "DONV2-T1555": {
+        "doc_id": "DONV2-T1555",
+        "label": "IRRELEVANT",
+        "paragraph_indexes": [
+          2
+        ],
+        "rationale": "Concerns obtaining stored credentials, not setting passwords.",
+        "source": "https://attack.mitre.org/techniques/T1555"
+      }
+    }
+  }
+}

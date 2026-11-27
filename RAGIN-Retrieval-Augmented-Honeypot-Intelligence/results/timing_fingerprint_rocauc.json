@@ -1,0 +1,192 @@
+{
+  "what": "attacker-side timing fingerprint \u2014 ROC-AUC over measured timing classes",
+  "method": "windows of k consecutive observed latencies; features mean/std/min/max; logistic regression 50/50 split; held-out AUC with seeded bootstrap CI; single-gap threshold AUC and KS test per arm",
+  "window_k": 5,
+  "workload_rows": 218,
+  "classes": {
+    "real_gaps": {
+      "n": 38,
+      "median_ms": 84.0,
+      "p10_ms": 76.7,
+      "p90_ms": 126.6,
+      "min_ms": 74.5,
+      "max_ms": 4480.1,
+      "files": [
+        "cowrie.json.1",
+        "cowrie.json.2.gz",
+        "cowrie.json.2026-07-28",
+        "cowrie.json.3.gz"
+      ],
+      "sessions": 13,
+      "commands": 51,
+      "dropped_idle_gaps": 0,
+      "note": "inter-command gaps = attacker think time + server response (UPPER bound on traditional response latency); the fingerprinting target is the session timing ENVELOPE"
+    },
+    "ragin_llm_serves": {
+      "n": 376,
+      "median_ms": 3550.1,
+      "p10_ms": 3065.5,
+      "p90_ms": 66268.0,
+      "min_ms": 2210.2,
+      "max_ms": 355232.0,
+      "sources": {
+        "results/benchmark_report.json": 158,
+        "results/live_benchmark_full.json": 218
+      }
+    },
+    "fastpath_deterministic": {
+      "n": 384,
+      "median_ms": 0.1,
+      "p10_ms": 0.0,
+      "p90_ms": 0.1,
+      "min_ms": 0.0,
+      "max_ms": 29.4,
+      "calls": 384,
+      "note": "real AdaptiveDeceiver template path timed in-process (no gateway)"
+    }
+  },
+  "mixture_share": {
+    "llm": 0.88,
+    "fastpath": 0.12,
+    "source": "measured serve-path provenance (results/serve_provenance.json reading)"
+  },
+  "arms": {
+    "ragin_default": {
+      "n": 218,
+      "median_ms": 3461.5,
+      "p10_ms": 0.1,
+      "p90_ms": 60968.4,
+      "min_ms": 0.0,
+      "max_ms": 274540.4
+    },
+    "fastpath_only": {
+      "n": 218,
+      "median_ms": 0.1,
+      "p10_ms": 0.1,
+      "p90_ms": 0.1,
+      "min_ms": 0.0,
+      "max_ms": 0.2
+    },
+    "fastpath_padded": {
+      "n": 218,
+      "median_ms": 84.1,
+      "p10_ms": 76.8,
+      "p90_ms": 126.4,
+      "min_ms": 74.5,
+      "max_ms": 4480.1
+    },
+    "real_traditional": {
+      "n": 38,
+      "median_ms": 84.0,
+      "p10_ms": 76.7,
+      "p90_ms": 126.6,
+      "min_ms": 74.5,
+      "max_ms": 4480.1
+    }
+  },
+  "aucs": {
+    "ragin_default": {
+      "windows": {
+        "arm": 43,
+        "real": 7,
+        "k": 5
+      },
+      "auc_windowed": 0.8636,
+      "auc_windowed_directional": 0.8636,
+      "auc_windowed_ci95": [
+        0.7,
+        1.0
+      ],
+      "auc_single_gap": 0.9834,
+      "auc_single_gap_directional": 0.9834,
+      "ks_stat": 0.9737,
+      "ks_p": 2.205257009593542e-20,
+      "arm_gap_ms": {
+        "median": 3461.5,
+        "p10": 0.1,
+        "p90": 60968.4
+      }
+    },
+    "fastpath_only": {
+      "windows": {
+        "arm": 43,
+        "real": 7,
+        "k": 5
+      },
+      "auc_windowed": 1.0,
+      "auc_windowed_directional": 1.0,
+      "auc_windowed_ci95": [
+        1.0,
+        1.0
+      ],
+      "auc_single_gap": 0.0,
+      "auc_single_gap_directional": 1.0,
+      "ks_stat": 1.0,
+      "ks_p": 2.9016539599915025e-22,
+      "arm_gap_ms": {
+        "median": 0.1,
+        "p10": 0.1,
+        "p90": 0.1
+      }
+    },
+    "fastpath_padded": {
+      "windows": {
+        "arm": 43,
+        "real": 7,
+        "k": 5
+      },
+      "auc_windowed": 0.4091,
+      "auc_windowed_directional": 0.5909,
+      "auc_windowed_ci95": [
+        0.0455,
+        0.9565
+      ],
+      "auc_single_gap": 0.4488,
+      "auc_single_gap_directional": 0.5512,
+      "ks_stat": 0.1053,
+      "ks_p": 0.9866453783650283,
+      "arm_gap_ms": {
+        "median": 84.1,
+        "p10": 76.8,
+        "p90": 126.4
+      }
+    },
+    "real_vs_real_control": {
+      "windows": {
+        "arm": 3,
+        "real": 3,
+        "k": 5
+      },
+      "auc_windowed": 1.0,
+      "auc_windowed_directional": 1.0,
+      "auc_windowed_ci95": [
+        1.0,
+        1.0
+      ],
+      "auc_single_gap": 0.3241,
+      "auc_single_gap_directional": 0.6759,
+      "ks_stat": 0.3684,
+      "ks_p": 0.15317317880649114,
+      "arm_gap_ms": {
+        "median": 80.1,
+        "p10": 75.8,
+        "p90": 117.3
+      }
+    }
+  },
+  "gates": {
+    "leak_confirmed": true,
+    "mitigation_viable": true,
+    "fastpath_needs_pad": true,
+    "noise_floor_single_gap": 0.6759,
+    "gate_basis": "primary = directional single-gap AUC vs the real-vs-real control floor; windowed AUC reported as secondary (under-powered at this n)"
+  },
+  "reading": "Unmitigated RAGIN serving is timing-fingerprintable: single-gap directional AUC 0.9834 vs a real-vs-real drift floor of 0.6759. Serving everything from the sub-ms fastpath is EQUALLY detectable (too fast; AUC 1.0) \u2014 mitigation must shape timing, not merely maximize fast-path coverage. Padding the deterministic path into the real envelope brings the arm to AUC 0.5512, at or below the drift floor \u2014 indistinguishable from a traditional honeypot by this channel. LLM latency cannot be padded down, so the deployed mitigation is: raise deterministic-path coverage and add an additive delay drawn from the measured real envelope.",
+  "limitations": [
+    "real class uses inter-command gaps (think+response), not pure response latency \u2014 unobservable from logs; claims are about the timing envelope",
+    "real class is small (38 gaps, 13 sessions) \u2014 the drift-floor control is correspondingly coarse; field-deployment captures (RQ4) will tighten it",
+    "padded arm models additive sleep analytically (target drawn from the real envelope); a deployed system would sleep the remainder in-process",
+    "fastpath timings are in-process (no network stack); network jitter would narrow but not close the 3-orders-of-magnitude gap to LLM serves",
+    "windowed AUC is under-powered at this n (wide bootstrap CIs); the single-gap directional AUC with the control floor is the primary gate"
+  ]
+}

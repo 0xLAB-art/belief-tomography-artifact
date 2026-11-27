@@ -1,0 +1,67 @@
+{
+  "acceptance_gates": {
+    "minimum_concrete_gate_reference_N": 216,
+    "minimum_concrete_gate_reference_fraction": 0.9,
+    "minimum_reference_valid_policy_cases": 120,
+    "policy_comparison_if_below_minimum": "NOT_IDENTIFIABLE"
+  },
+  "aggregation": {
+    "all_non_exact_to_adjudication": true,
+    "exact_3_of_3": "EXACT_3_OF_3_PRIMARY_RUNS",
+    "repeated_runs_not_statistically_independent_by_default": true,
+    "two_of_three_not_final": true
+  },
+  "blinding": [
+    "system_evidence_gate",
+    "deterministic_policy_output",
+    "logistic_policy_output",
+    "arm_identity",
+    "hisoka_response",
+    "verifier_result"
+  ],
+  "holdout_N": 240,
+  "runs": {
+    "fresh_blinded_adjudication_runs": 1,
+    "model_identity_frozen_before_annotation": true,
+    "primary_blinded_runs": 3
+  },
+  "schema": "ragin.v4.real_reference_protocol_preregistration.v1",
+  "status": "FROZEN_BEFORE_ANNOTATION",
+  "task_A_evidence_gate": {
+    "allowed_states": [
+      "VALID_EVIDENCE",
+      "NO_EVIDENCE",
+      "LOW_RELEVANCE",
+      "INVALID_PROVENANCE",
+      "UNRESOLVED_CONFLICT",
+      "RETRIEVAL_FAILURE",
+      "UNCERTAIN"
+    ],
+    "primary_projection": {
+      "UNCERTAIN": "EXCLUDED",
+      "VALID_EVIDENCE": "VALID",
+      "concrete_non_valid_states": "INVALID"
+    }
+  },
+  "task_B_allowed_strategy_set": {
+    "baseline_permitted": true,
+    "condition": "final reference gate state VALID_EVIDENCE",
+    "set_valued": true,
+    "single_strategy_forcing": false,
+    "uncertain_permitted": true,
+    "vocabulary": [
+      "baseline",
+      "maximize_recon_surface",
+      "fake_success_and_return_visits",
+      "steer_to_honeytoken_credentials",
+      "expose_decoy_internal_topology",
+      "contain_in_fiction_and_instrument",
+      "low_intensity_administration"
+    ]
+  },
+  "task_C_supporting_evidence": {
+    "complete_citation_not_required": true,
+    "condition": "final reference gate state VALID_EVIDENCE",
+    "output": "set of retrieved document IDs materially supporting the decision or UNCERTAIN"
+  }
+}

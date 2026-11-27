@@ -1,0 +1,31 @@
+{
+  "fields": {
+    "blindness_violation": "boolean",
+    "end_timestamp": "string|null",
+    "external_file_paths": "array",
+    "external_files_accessed": "boolean",
+    "model_identity": "string",
+    "model_identity_provenance": [
+      "OBSERVED",
+      "DERIVED_UNVERIFIED",
+      "UNKNOWN"
+    ],
+    "network_access_used": "boolean",
+    "output_sha256": "string",
+    "packet_sha256": "string",
+    "prompt_sha256": "string|null",
+    "provider_or_tool": "string|null",
+    "rater_run_id": "string",
+    "repository_access_used": "boolean",
+    "start_timestamp": "string|null"
+  },
+  "normalization_contract": {
+    "external_files_accessed_empty_array": false,
+    "external_files_accessed_nonempty_array": true
+  },
+  "optional_fields": {
+    "replacement_for": "string",
+    "replacement_reason": "string"
+  },
+  "schema_version": "v3_run_metadata_schema_v1"
+}

@@ -1,0 +1,73 @@
+{
+  "what": "host-level persistent fiction wired into the serve path \u2014 external-baseline A/B + controls",
+  "wiring": {
+    "flag": "RAGIN_HOST_FICTION=1 (opt-in; default off = byte-identical legacy path)",
+    "policy": "per_session (host-pinned identity provisioning + verified-fact promotion + cross-session contradiction verification)",
+    "identity_binding": "host identity pinned at first contact and enforced across generation (persona prompt rebuilt from the pinned identity), verification (session graph seed is authoritative), and the fail-safe fallback template",
+    "tests": "tests/unit/test_host_fiction.py (13) + tests/unit/test_host_fiction_wiring.py (10)"
+  },
+  "arms": {
+    "ragin_full_reference_sep22": {
+      "note": "version-of-record campaign, 2026-09-22; generator model not recorded in the artifact",
+      "rows": 218,
+      "cti_technique": 0.9598,
+      "cti_actor": 0.85,
+      "deception": 0.7325,
+      "composite": 0.8474
+    },
+    "ragin_full_repro_control": {
+      "note": "same 218 rows, current stack (RAGIN_HISOKA_MODEL=deepseek-v4-flash-free), store OFF",
+      "rows": 218,
+      "serve_paths": {
+        "GENERATED_VERIFIED": 216,
+        "FALLBACK_VERIFIED": 2
+      },
+      "generator_model": "deepseek-v4-flash-free",
+      "cti_technique": 0.5236,
+      "cti_actor": 0.68,
+      "deception": 0.6492,
+      "composite": 0.6176
+    },
+    "ragin_hostfiction": {
+      "note": "same 218 rows, current stack, store ON (per_session)",
+      "rows": 218,
+      "serve_paths": {
+        "GENERATED_VERIFIED": 213,
+        "FALLBACK_VERIFIED": 5
+      },
+      "generator_model": "deepseek-v4-flash-free (from .env during the run; the sidecar predates the generator_model provenance field added with the control arm)",
+      "cti_technique": 0.5236,
+      "cti_actor": 0.68,
+      "deception": 0.6492,
+      "composite": 0.6176
+    },
+    "ragin_hostfiction_reconnect": {
+      "note": "reconnect policy (shared accumulating graph), n=20/suite mini-run",
+      "rows": 60,
+      "serve_paths": {
+        "GENERATED_VERIFIED": 60
+      },
+      "cti_technique": 0.56,
+      "cti_actor": 0.6,
+      "deception": 0.7175,
+      "composite": 0.6258,
+      "generator_model": "deepseek-v4-flash-free (from .env)"
+    }
+  },
+  "verdict": {
+    "score_neutrality": "store ON vs OFF: paired delta exactly 0.0000 over all 218 rows \u2014 under per_session with no injected cross-session drift, generation is byte-identical to the control and the added cross-session checks reject nothing on this benign workload",
+    "generator_model_confound": "both current-stack arms (0.6176) sit far below the Sep-22 reference (0.8474) \u2014 SUPERSEDED by results/technique_rubric_diff_investigation.json: the gap is a SCORER-CHANNEL artifact (Sep-22 official numbers credited the CTI-analysis channel; these arms measured served text only), not a model effect \u2014 like-for-like on served text, deepseek is equal or slightly better. The W1 comparison table's ragin_full row should be regenerated under the current model when the paper numbers are frozen.",
+    "fail_closed": "store ON: 213 GENERATED_VERIFIED + 5 FALLBACK_VERIFIED, 0 unverified, 0 errors \u2014 the cross-session layer never let an unverified draft through",
+    "drift_protection": "the same wiring catches 4/4 cross-session drift drafts with 0/7 false rejections in results/cross_session_consistency_bench.json (baseline session-scoped catches 1/4)"
+  },
+  "integration_bugs_found_and_fixed_during_wiring": [
+    "persona system prompt kept the per-skill identity block while fiction/verifier enforced the pinned host \u2014 contradictory instructions drove fallback serves on every above-novice row (26/218); prompt now rebuilt from the pinned identity",
+    "store cross-check used raw string comparison: an FQDN re-mention of the same pinned host (web-srv-01 vs web-srv-01.corp.local) false-flagged as a cross-session contradiction (26 deterministic fallbacks); comparison now mirrors the session graph's FQDN-aware semantics"
+  ],
+  "sources": [
+    "results/external_baseline_hostfiction_ragin_hostfiction.json",
+    "results/external_baseline_hostfiction_ragin_full_repro.json",
+    "results/external_baseline_hostfiction_reconnect_ragin_hostfiction.json",
+    "results/live_benchmark_zodiac_20260922.json"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "ragin.v4.prospective_capture_readiness_freeze.v1a",
+  "amendment_type": "ADDITIVE_CONTROLLED_ADMIN_SESSION_FINALIZER",
+  "prior_readiness_freeze_path": "results/decision_fusion_v4/v4_prospective_capture_readiness_freeze_v1.json",
+  "prior_readiness_freeze_sha256": "28f6a8a202dfce6fa6c43c0adc27d4dc90d58031e56a084a09daabb0c6204561",
+  "prior_acquisition_start_path": "results/decision_fusion_v4/v4_prospective_acquisition_start_v1.json",
+  "prior_acquisition_start_sha256": "0b8f22101e43ff401c48532ef04e1a0d80e8b87505a8d476299f92c157b58653",
+  "new_protocol": {
+    "path": "results/decision_fusion_v4/v4_controlled_admin_capture_protocol_v1.json",
+    "sha256": "4746601694199de680a76ff1b8c085907d93a05359b14bc252ad7e5f8019cab0"
+  },
+  "new_capture_runner": {
+    "path": "scripts/v4_controlled_admin_capture.py",
+    "sha256": "d59b176bf441329630e45db76cdac7274eef5aa4ee1141c7ec906d614e9bc2f1"
+  },
+  "scope": "local controlled-admin acquisition only; no AWS, network, Cowrie, CORE, EDGE, V4 policy, reference, or effectiveness changes",
+  "contract_unchanged": ["ragin.real_capture_manifest.v1", "one native session equals one independence group", "synthetic=false", "replay=false", "test_fixture=false for eligible records", "maximum controlled-admin eligible sessions=40", "no semantic selection"],
+  "finalizer_properties": ["one fresh bash child process per session", "atomic raw write", "raw SHA256", "manifest SHA256", "privacy transformation", "canonical hash", "lineage verification", "append-only registry duplicate refusal", "raw file sealing"],
+  "created_before_first_eligible_admin_session": true,
+  "real_acquisition_started_before_amendment": false,
+  "v4_evaluation_started": false,
+  "reference_annotation_started": false,
+  "effectiveness_seen": false
+}

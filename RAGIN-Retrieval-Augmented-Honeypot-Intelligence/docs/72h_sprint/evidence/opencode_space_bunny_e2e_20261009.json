@@ -1,0 +1,46 @@
+{
+  "timestamp_utc": "2026-10-09T04:29:36Z",
+  "scope": "local controlled staging only",
+  "provider": "OpenCode CLI",
+  "model": "opencode/space-bunny-free",
+  "bridge": {
+    "listener": "127.0.0.1:8731/v1",
+    "backend": "installed opencode CLI with ragin-safe deny-all profile",
+    "public_listener": false,
+    "aws_mutation": false
+  },
+  "bounded_completion_probe": {
+    "status": "PASS",
+    "elapsed_ms": 6228,
+    "output_tokens": 10,
+    "total_tokens": 2982,
+    "reported_cost": 0,
+    "response_text_recorded": false
+  },
+  "pipeline_run": {
+    "session_id": "ses-872e6679aaf6466e",
+    "input": "echo SPACE_BUNNY_PIPELINE_PROBE",
+    "response_text": "SPACE_BUNNY_PIPELINE_PROBE",
+    "response_sha256": "93612c9609b931a3a206362632e108f742b58ffecbe40f7fe72d226e7a8a1157",
+    "serve_path": "GENERATED_VERIFIED",
+    "verifier": "FictionConsistencyVerifier",
+    "deterministic": true,
+    "passed": true,
+    "accepted": true,
+    "attempt": 1,
+    "state_commit": "accepted candidate committed before system response",
+    "audit_file": "data/sessions/ses-872e6679aaf6466e.jsonl"
+  },
+  "negative_model_cases": {
+    "opencode/ling-3.1-flash-free": "HTTP 403 with deny-all agent",
+    "opencode/big-pickle": "HTTP 403 with deny-all agent",
+    "opencode/exo-free": "HTTP 410 deprecated",
+    "opencode/space-bunny-free": "PASS with deny-all agent"
+  },
+  "limitations": [
+    "This is not public field data.",
+    "The local workstation bridge is not yet a private CORE production dependency.",
+    "The reported zero cost is provider metadata, not an AWS credit guarantee."
+  ],
+  "secrets_recorded": false
+}

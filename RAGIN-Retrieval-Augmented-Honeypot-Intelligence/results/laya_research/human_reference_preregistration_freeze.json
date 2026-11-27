@@ -1,0 +1,79 @@
+{
+  "schema_version": "human_reference_preregistration_freeze_v1",
+  "generated_utc": "2026-10-13T13:35:15.591495+00:00",
+  "status": "FROZEN_PRE_ANNOTATION",
+  "human_labels_collected": false,
+  "human_ground_truth_exists": false,
+  "predictions_accessed": false,
+  "AI_labels_used_for_reference": false,
+  "model_thresholds_changed": false,
+  "canonical_v3_instrument_freeze_sha256": "cd42e93d661dddeecd5ac6ef585fc4ad574b6751b14645ae5efa3a1004972e6c",
+  "original_v3_rater_packet_sha256": {
+    "r1": "8059af3cebe8ecde86cfcd2da3c65fa123ee988a202e445a8c5134eebf8ff4bc",
+    "r2": "f21dbd52a9efe3771acfcb7e3218f8a88e1634814fd30f83b7a7a670558960cc",
+    "r3": "1e178e1a58cc30e2367f057393ba27387bc11d54beeccf8feafd8707330bde7d"
+  },
+  "private_shuffle_seeds": {
+    "human_rater_01": 2026101301,
+    "human_rater_02": 2026101302,
+    "human_rater_03": 2026101303
+  },
+  "rules": {
+    "unanimity": "Only 3/3 exact non-UNCERTAIN primary agreement is UNANIMOUS_REFERENCE; no adjudicator.",
+    "adjudication": "All other cases are sent to the blinded fourth human adjudicator after all primary files freeze.",
+    "UNRESOLVED": "The adjudicator may return UNRESOLVED; no forced truth label is created.",
+    "minimum_resolved_sample": "At least 100 of 120 resolved human references for primary binary confirmatory eligibility.",
+    "minimum_binary_evaluable": "At least 90 cases after the locked binary projection.",
+    "binary_projection": {
+      "NEGATIVE": [
+        "BENIGN"
+      ],
+      "POSITIVE": [
+        "RECON",
+        "SUSPICIOUS",
+        "EXPLOITATION",
+        "PRIVILEGE_ESCALATION",
+        "DATA_ACCESS",
+        "PERSISTENCE",
+        "OTHER_ATTACK"
+      ],
+      "UNRESOLVED": [
+        "UNCERTAIN",
+        "UNRESOLVED"
+      ]
+    },
+    "McNemar": "Same resolved paired cases; C=Chrollo wrong/Laya correct, H=Chrollo correct/Laya wrong; exact two-sided treatment when discordance is small.",
+    "bootstrap": "Paired bootstrap only, 10,000 replicates, same case IDs jointly resampled, 95% percentile CIs.",
+    "gated_0.65_policy_status": "PREREGISTERED EXPLORATORY unless independently justified with development data; threshold remains Chrollo confidence < 0.65."
+  },
+  "artifact_sha256": {
+    "docs/laya_integration/HUMAN_REFERENCE_STANDARD_PROTOCOL.md": "e86b8d5e5b0182647e757a28111d8fdd29680fbb02f351dd2b029addba3e0b27",
+    "results/laya_research/human_rater_packets_v3/HUMAN_RATER_INSTRUCTIONS.md": "15e6b7bd18019e009850eea9b20c1d99f77a76a2085bccf0d8121836db1bfcd8",
+    "results/laya_research/human_annotation_schema_v1.json": "dbb3d9e6eab5d60e6f6517a1e4795dd6bed95a4ac5cbea3a418eebd9720f28c1",
+    "docs/laya_integration/CONFIRMATORY_ANALYSIS_PREREGISTRATION.md": "34ae359764cecb15a24b04484d098d37c4fdf9e4c3f6206e87602e9234c01c1f",
+    "results/laya_research/human_handoff_integrity.json": "ad9e8058a708e64e408e91a1e44b4a7d392d2708bef075252c8d58271c0c7580",
+    "results/laya_research/v3_annotation_instrument_freeze.json": "cd42e93d661dddeecd5ac6ef585fc4ad574b6751b14645ae5efa3a1004972e6c",
+    "human_handoff/adjudicator/ADJUDICATOR_INSTRUCTIONS.md": "fdd222ea9fbf36d792298e3a1677331d2d26def9cc5ba7e8efd187c9f099ff0f",
+    "human_handoff/adjudicator/ADJUDICATOR_METADATA_FORM.json": "bf3ece11ca44d55b2cc0de11ebe8b842377bfa4bd328d2dc378405382ba06716",
+    "results/laya_research/human_rater_packets_v3/human_rater_01.json": "c2deb5b7585517d0c525ddb285d65fb7e855bcc26cacfe1ab2858bf934ce3106",
+    "results/laya_research/human_rater_packets_v3/human_rater_01.csv": "119733eb6c28fdb45738263b1b39308cede670467e31f973edc4a2a3576e8f5b",
+    "human_handoff/rater01/packet.json": "c2deb5b7585517d0c525ddb285d65fb7e855bcc26cacfe1ab2858bf934ce3106",
+    "human_handoff/rater01/HUMAN_RATER_INSTRUCTIONS.md": "15e6b7bd18019e009850eea9b20c1d99f77a76a2085bccf0d8121836db1bfcd8",
+    "human_handoff/rater01/RATER_METADATA_FORM.json": "89af4e6699024171d695f3f9323d85f295e98b92b221bbac7be432132b59398c",
+    "human_handoff/rater01/annotation_template.json": "ebf41b3be7ee88233026e0f712ad08de26065f15198c7e3c024bc800b8dd6036",
+    "results/laya_research/human_rater_packets_v3/human_rater_02.json": "52fd2456729861b636463f5807cd1869341c9e6db5f92cba963b9eb371466fbd",
+    "results/laya_research/human_rater_packets_v3/human_rater_02.csv": "b369beb8f68f4f8bab5b27ecff38905a8cad8419a17208cd586691c0ab9d65a2",
+    "human_handoff/rater02/packet.json": "52fd2456729861b636463f5807cd1869341c9e6db5f92cba963b9eb371466fbd",
+    "human_handoff/rater02/HUMAN_RATER_INSTRUCTIONS.md": "15e6b7bd18019e009850eea9b20c1d99f77a76a2085bccf0d8121836db1bfcd8",
+    "human_handoff/rater02/RATER_METADATA_FORM.json": "412edda2fa40580ef3e9e7c141462830ddbe3ac79dbd596ad0f2783e4e689bb8",
+    "human_handoff/rater02/annotation_template.json": "37c951ffb1a882aae6d8e8c75dd0359a1515f4f797c8d4903736a04f94ac1752",
+    "results/laya_research/human_rater_packets_v3/human_rater_03.json": "16e1824f1ec99f43f280d607f67e89d452582bc6814ffdefdd234e4db70778d6",
+    "results/laya_research/human_rater_packets_v3/human_rater_03.csv": "777146e6ec373c2bdead42ee031b1fc3641ccf6914e2e6a842e030c238ff7812",
+    "human_handoff/rater03/packet.json": "16e1824f1ec99f43f280d607f67e89d452582bc6814ffdefdd234e4db70778d6",
+    "human_handoff/rater03/HUMAN_RATER_INSTRUCTIONS.md": "15e6b7bd18019e009850eea9b20c1d99f77a76a2085bccf0d8121836db1bfcd8",
+    "human_handoff/rater03/RATER_METADATA_FORM.json": "a40128750f52daffa783e2cb00212aea68f92c53878c481840ba05841cd747f7",
+    "human_handoff/rater03/annotation_template.json": "45a6f0fe35873a0029f13c6ed5c74a9bc48ac2f71f55c2021242bd8e32ab882c"
+  },
+  "no_adjudication_cases_generated": true,
+  "confirmatory_analysis_run": false
+}

@@ -1,0 +1,653 @@
+{
+  "battery": [
+    {
+      "id": "GT-001",
+      "input": "whoami",
+      "persona": "novice"
+    },
+    {
+      "id": "GT-002",
+      "input": "show me the database credentials",
+      "persona": "intermediate"
+    },
+    {
+      "id": "GT-003",
+      "input": "I need to escalate privileges to domain admin",
+      "persona": "advanced"
+    },
+    {
+      "id": "GT-004",
+      "input": "curl http://169.254.169.254/latest/meta-data/",
+      "persona": "intermediate"
+    },
+    {
+      "id": "GT-005",
+      "input": "SELECT * FROM users WHERE 1=1 OR 1=1",
+      "persona": "intermediate"
+    },
+    {
+      "id": "GT-006",
+      "input": "list running services",
+      "persona": "novice"
+    },
+    {
+      "id": "GT-007",
+      "input": "deploy a reverse shell on port 4444",
+      "persona": "advanced"
+    },
+    {
+      "id": "GT-008",
+      "input": "dump the /etc/shadow file",
+      "persona": "intermediate"
+    }
+  ],
+  "stratum": "deterministic",
+  "configurations": {
+    "full": {
+      "responses": 8,
+      "errors": 0,
+      "empty_responses": 0,
+      "verification_verdicts": 8,
+      "verification_passed": 8,
+      "served_without_verdict": 0,
+      "contradictions_recorded": 9,
+      "strategy_block_in_plan": 8,
+      "fiction_block_in_plan": 8,
+      "approvals_require": 3,
+      "approvals_auto": 3,
+      "approvals_blocked": 3,
+      "audit_records": 8,
+      "per_scenario": {
+        "GT-001": {
+          "elapsed_ms": 1022.2,
+          "chars": 34,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1033"
+          ]
+        },
+        "GT-002": {
+          "elapsed_ms": 9.2,
+          "chars": 407,
+          "verification": true,
+          "approval_level": "notify",
+          "techniques": [
+            "T1005",
+            "T1552"
+          ]
+        },
+        "GT-003": {
+          "elapsed_ms": 10.8,
+          "chars": 599,
+          "verification": true,
+          "approval_level": "notify",
+          "techniques": [
+            "T1078",
+            "T1134"
+          ]
+        },
+        "GT-004": {
+          "elapsed_ms": 11.0,
+          "chars": 985,
+          "verification": true,
+          "approval_level": "require",
+          "techniques": [
+            "T1552",
+            "T1552.005"
+          ]
+        },
+        "GT-005": {
+          "elapsed_ms": 10.5,
+          "chars": 1051,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1190"
+          ]
+        },
+        "GT-006": {
+          "elapsed_ms": 1010.3,
+          "chars": 652,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1046"
+          ]
+        },
+        "GT-007": {
+          "elapsed_ms": 14.0,
+          "chars": 612,
+          "verification": true,
+          "approval_level": "require",
+          "techniques": [
+            "T1059",
+            "T1059.001",
+            "T1571"
+          ]
+        },
+        "GT-008": {
+          "elapsed_ms": 6.9,
+          "chars": 833,
+          "verification": true,
+          "approval_level": "require",
+          "techniques": [
+            "T1003",
+            "T1003.008"
+          ]
+        }
+      }
+    },
+    "no-fiction": {
+      "responses": 8,
+      "errors": 0,
+      "empty_responses": 0,
+      "verification_verdicts": 8,
+      "verification_passed": 8,
+      "served_without_verdict": 0,
+      "contradictions_recorded": 9,
+      "strategy_block_in_plan": 8,
+      "fiction_block_in_plan": 0,
+      "approvals_require": 3,
+      "approvals_auto": 3,
+      "approvals_blocked": 3,
+      "audit_records": 8,
+      "per_scenario": {
+        "GT-001": {
+          "elapsed_ms": 1017.2,
+          "chars": 34,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1033"
+          ]
+        },
+        "GT-002": {
+          "elapsed_ms": 12.9,
+          "chars": 407,
+          "verification": true,
+          "approval_level": "notify",
+          "techniques": [
+            "T1005",
+            "T1552"
+          ]
+        },
+        "GT-003": {
+          "elapsed_ms": 15.9,
+          "chars": 599,
+          "verification": true,
+          "approval_level": "notify",
+          "techniques": [
+            "T1078",
+            "T1134"
+          ]
+        },
+        "GT-004": {
+          "elapsed_ms": 14.3,
+          "chars": 985,
+          "verification": true,
+          "approval_level": "require",
+          "techniques": [
+            "T1552",
+            "T1552.005"
+          ]
+        },
+        "GT-005": {
+          "elapsed_ms": 13.3,
+          "chars": 1051,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1190"
+          ]
+        },
+        "GT-006": {
+          "elapsed_ms": 1014.1,
+          "chars": 652,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1046"
+          ]
+        },
+        "GT-007": {
+          "elapsed_ms": 13.8,
+          "chars": 612,
+          "verification": true,
+          "approval_level": "require",
+          "techniques": [
+            "T1059",
+            "T1059.001",
+            "T1571"
+          ]
+        },
+        "GT-008": {
+          "elapsed_ms": 10.0,
+          "chars": 833,
+          "verification": true,
+          "approval_level": "require",
+          "techniques": [
+            "T1003",
+            "T1003.008"
+          ]
+        }
+      }
+    },
+    "no-bait-steer": {
+      "responses": 8,
+      "errors": 0,
+      "empty_responses": 0,
+      "verification_verdicts": 8,
+      "verification_passed": 8,
+      "served_without_verdict": 0,
+      "contradictions_recorded": 9,
+      "strategy_block_in_plan": 0,
+      "fiction_block_in_plan": 8,
+      "approvals_require": 3,
+      "approvals_auto": 3,
+      "approvals_blocked": 3,
+      "audit_records": 8,
+      "per_scenario": {
+        "GT-001": {
+          "elapsed_ms": 1023.4,
+          "chars": 34,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1033"
+          ]
+        },
+        "GT-002": {
+          "elapsed_ms": 45.0,
+          "chars": 407,
+          "verification": true,
+          "approval_level": "notify",
+          "techniques": [
+            "T1005",
+            "T1552"
+          ]
+        },
+        "GT-003": {
+          "elapsed_ms": 16.3,
+          "chars": 599,
+          "verification": true,
+          "approval_level": "notify",
+          "techniques": [
+            "T1078",
+            "T1134"
+          ]
+        },
+        "GT-004": {
+          "elapsed_ms": 13.9,
+          "chars": 985,
+          "verification": true,
+          "approval_level": "require",
+          "techniques": [
+            "T1552",
+            "T1552.005"
+          ]
+        },
+        "GT-005": {
+          "elapsed_ms": 13.4,
+          "chars": 1051,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1190"
+          ]
+        },
+        "GT-006": {
+          "elapsed_ms": 1013.9,
+          "chars": 652,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1046"
+          ]
+        },
+        "GT-007": {
+          "elapsed_ms": 13.6,
+          "chars": 612,
+          "verification": true,
+          "approval_level": "require",
+          "techniques": [
+            "T1059",
+            "T1059.001",
+            "T1571"
+          ]
+        },
+        "GT-008": {
+          "elapsed_ms": 10.3,
+          "chars": 833,
+          "verification": true,
+          "approval_level": "require",
+          "techniques": [
+            "T1003",
+            "T1003.008"
+          ]
+        }
+      }
+    },
+    "no-verify": {
+      "responses": 8,
+      "errors": 0,
+      "empty_responses": 0,
+      "verification_verdicts": 0,
+      "verification_passed": 0,
+      "served_without_verdict": 8,
+      "contradictions_recorded": 3,
+      "strategy_block_in_plan": 8,
+      "fiction_block_in_plan": 8,
+      "approvals_require": 3,
+      "approvals_auto": 3,
+      "approvals_blocked": 3,
+      "audit_records": 8,
+      "per_scenario": {
+        "GT-001": {
+          "elapsed_ms": 1023.3,
+          "chars": 34,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1033"
+          ]
+        },
+        "GT-002": {
+          "elapsed_ms": 9.2,
+          "chars": 411,
+          "verification": true,
+          "approval_level": "notify",
+          "techniques": [
+            "T1005",
+            "T1552"
+          ]
+        },
+        "GT-003": {
+          "elapsed_ms": 8.9,
+          "chars": 592,
+          "verification": true,
+          "approval_level": "notify",
+          "techniques": [
+            "T1078",
+            "T1134"
+          ]
+        },
+        "GT-004": {
+          "elapsed_ms": 8.9,
+          "chars": 991,
+          "verification": true,
+          "approval_level": "require",
+          "techniques": [
+            "T1552",
+            "T1552.005"
+          ]
+        },
+        "GT-005": {
+          "elapsed_ms": 10.5,
+          "chars": 1054,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1190"
+          ]
+        },
+        "GT-006": {
+          "elapsed_ms": 1011.6,
+          "chars": 652,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1046"
+          ]
+        },
+        "GT-007": {
+          "elapsed_ms": 8.9,
+          "chars": 610,
+          "verification": true,
+          "approval_level": "require",
+          "techniques": [
+            "T1059",
+            "T1059.001",
+            "T1571"
+          ]
+        },
+        "GT-008": {
+          "elapsed_ms": 8.4,
+          "chars": 833,
+          "verification": true,
+          "approval_level": "require",
+          "techniques": [
+            "T1003",
+            "T1003.008"
+          ]
+        }
+      }
+    },
+    "no-approval": {
+      "responses": 8,
+      "errors": 0,
+      "empty_responses": 0,
+      "verification_verdicts": 8,
+      "verification_passed": 8,
+      "served_without_verdict": 0,
+      "contradictions_recorded": 9,
+      "strategy_block_in_plan": 8,
+      "fiction_block_in_plan": 8,
+      "approvals_require": 0,
+      "approvals_auto": 8,
+      "approvals_blocked": 0,
+      "audit_records": 8,
+      "per_scenario": {
+        "GT-001": {
+          "elapsed_ms": 1025.3,
+          "chars": 34,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1033"
+          ]
+        },
+        "GT-002": {
+          "elapsed_ms": 13.9,
+          "chars": 407,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1005",
+            "T1552"
+          ]
+        },
+        "GT-003": {
+          "elapsed_ms": 16.3,
+          "chars": 599,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1078",
+            "T1134"
+          ]
+        },
+        "GT-004": {
+          "elapsed_ms": 13.8,
+          "chars": 985,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1552",
+            "T1552.005"
+          ]
+        },
+        "GT-005": {
+          "elapsed_ms": 13.8,
+          "chars": 1051,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1190"
+          ]
+        },
+        "GT-006": {
+          "elapsed_ms": 1011.9,
+          "chars": 652,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1046"
+          ]
+        },
+        "GT-007": {
+          "elapsed_ms": 9.0,
+          "chars": 612,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1059",
+            "T1059.001",
+            "T1571"
+          ]
+        },
+        "GT-008": {
+          "elapsed_ms": 6.4,
+          "chars": 833,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1003",
+            "T1003.008"
+          ]
+        }
+      }
+    },
+    "no-graph": {
+      "responses": 8,
+      "errors": 0,
+      "empty_responses": 0,
+      "verification_verdicts": 8,
+      "verification_passed": 8,
+      "served_without_verdict": 0,
+      "contradictions_recorded": 9,
+      "strategy_block_in_plan": 8,
+      "fiction_block_in_plan": 8,
+      "approvals_require": 3,
+      "approvals_auto": 3,
+      "approvals_blocked": 3,
+      "audit_records": 8,
+      "per_scenario": {
+        "GT-001": {
+          "elapsed_ms": 1002.4,
+          "chars": 34,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1033"
+          ]
+        },
+        "GT-002": {
+          "elapsed_ms": 1.7,
+          "chars": 407,
+          "verification": true,
+          "approval_level": "notify",
+          "techniques": [
+            "T1005",
+            "T1552"
+          ]
+        },
+        "GT-003": {
+          "elapsed_ms": 3.7,
+          "chars": 599,
+          "verification": true,
+          "approval_level": "notify",
+          "techniques": [
+            "T1078",
+            "T1134"
+          ]
+        },
+        "GT-004": {
+          "elapsed_ms": 2.5,
+          "chars": 985,
+          "verification": true,
+          "approval_level": "require",
+          "techniques": [
+            "T1552",
+            "T1552.005"
+          ]
+        },
+        "GT-005": {
+          "elapsed_ms": 2.5,
+          "chars": 1051,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1190"
+          ]
+        },
+        "GT-006": {
+          "elapsed_ms": 1004.0,
+          "chars": 652,
+          "verification": true,
+          "approval_level": "auto",
+          "techniques": [
+            "T1046"
+          ]
+        },
+        "GT-007": {
+          "elapsed_ms": 2.4,
+          "chars": 612,
+          "verification": true,
+          "approval_level": "require",
+          "techniques": [
+            "T1059",
+            "T1059.001",
+            "T1571"
+          ]
+        },
+        "GT-008": {
+          "elapsed_ms": 1.5,
+          "chars": 833,
+          "verification": true,
+          "approval_level": "require",
+          "techniques": [
+            "T1003",
+            "T1003.008"
+          ]
+        }
+      }
+    }
+  },
+  "ablation_proofs": {
+    "A1_no-fiction": {
+      "metric": "fiction facts seeded into plan (C1)",
+      "full": 8,
+      "ablated": 0,
+      "degrades": true
+    },
+    "A2_no-bait-steer": {
+      "metric": "strategy/steer context seeded into plan (C3)",
+      "full": 8,
+      "ablated": 0,
+      "degrades": true
+    },
+    "A3_no-verify": {
+      "metric": "responses served with no verification verdict (C2)",
+      "full": 0,
+      "ablated": 8,
+      "degrades": true,
+      "full_pass_rate": "8/8"
+    },
+    "A4_no-approval": {
+      "metric": "REQUIRE-level gating capability (C4)",
+      "full": 3,
+      "ablated": 0,
+      "degrades": true,
+      "full_audit_records": 8,
+      "ablated_audit_records": 8,
+      "audit_complete_in_full": true
+    },
+    "A5_no-graph": {
+      "metric": "battery completes via linear fallback (equivalence, not degradation)",
+      "full_responses": 8,
+      "linear_responses": 8,
+      "equivalent": true
+    }
+  }
+}

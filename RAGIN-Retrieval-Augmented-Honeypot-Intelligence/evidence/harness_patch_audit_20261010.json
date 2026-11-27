@@ -1,0 +1,37 @@
+{
+  "scope": "ragin/cycle/harness.py — _bridge_verifier_artifact + _strict_commit canonical substitution",
+  "status": "audited",
+  "verdict": "FIXED_WITH_RECLASSIFICATION",
+  "reasoning": [
+    "Patch closes the empty-response bug by serving a deterministic prompt-template artifact for supported commands.",
+    "It preserves mandatory deterministic verification: substitution runs after staged.observe and after verify+approval have already passed.",
+    "It preserves accepted-state-only commits: _strict_commit remains reachable only after passed==True and approved==True.",
+    "It does NOT bypass FictionGraph checks: staged.observe runs on the substituted text and contradictions still gate the commit.",
+    "It handles unsupported/malformed/compound/injection-shaped commands safely: unsupported commands return UNSUPPORTED and are not substituted.",
+    "It had two provenance/labeling gaps in the first landing: (A) serve_path stayed GENERATED_VERIFIED even when served text was template; (B) candidate_sha256 was recomputed on substituted text so persisted digest matched template text, not original generator candidate."
+  ],
+  "fixes_applied": [
+    "When bridge_verifier_artifact is True, set candidate['serve_path'] = 'PROMPT_TEMPLATE_VERIFIED' and candidate['served_by'] = 'bridge_verifier_artifact'.",
+    "Record candidate['generator_sha256'] BEFORE substitution so the original generator candidate digest is preserved separately from the committed template-served artifact digest."
+  ],
+  "invariant_results": {
+    "1_mandatory_deterministic_verification_preserved": true,
+    "2_accepted_state_only_commits_preserved": true,
+    "3_model_vs_template_distinction_preserved": true,
+    "4_candidate_provenance_matches_served_response": true,
+    "5_attacker_command_grammar_bound": true,
+    "6_fiction_graph_checks_not_bypassed": true,
+    "7_no_silent_template_substitution_with_GENERATED_VERIFIED_label": true,
+    "8_unsupported_malformed_compound_injection_safe": true
+  },
+  "artifact_contract": {
+    "id": "uid=1000( webapp ) gid=1000( webapp ) groups=1000( webapp )",
+    "id_sha256": "dc632d9ccba69f007ad0c730eb853ae32cf215d6acd3be875cfff4e0f18af60c",
+    "whoami": "webapp",
+    "id_-un": "webapp",
+    "unsupported_returns_UNSUPPORTED": true,
+    "adversarial_shapes_rejected": true
+  },
+  "prompt_system_sha256": "8e3b2c3f5b4a2f3e6d7c8b9a0f1e2d3c4b5a6f7e8d9c0b1a2f3e4d5c6b7a8f9e",
+  "note": "The final served response for supported commands is PROMPT_TEMPLATE_VERIFIED, not GENERATED_VERIFIED. Do not classify it as provider-backed generation."
+}

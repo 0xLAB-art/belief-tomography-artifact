@@ -1,0 +1,215 @@
+--- a/ragin/don/rag_engine.py (prior P0 snapshot)
++++ b/ragin/don/rag_engine.py (current)
+@@ -10,12 +10,15 @@
+ import time
+ from pathlib import Path
+ from typing import TYPE_CHECKING, Any
++from urllib.parse import urlparse
+ 
+ import requests
+ 
+ from ragin.gateway.client import GatewayClient
+ from ragin.utils import CircuitBreaker, CostTracker, PromptTokenLimiter, _redact_pii
+ 
++from .command_aware_v2 import VERSION as COMMAND_AWARE_V2_VERSION
++from .command_aware_v2 import CommandAwareRetrieverV2
+ from .intel_corpus import IntelCorpus
+ from .models import (
+     AnalysisRequest,
+@@ -25,7 +28,6 @@
+     ThreatAnalysis,
+ )
+ from .vector_store import VectorStore
+-from .command_aware_v2 import CommandAwareRetrieverV2, VERSION as COMMAND_AWARE_V2_VERSION
+ 
+ if TYPE_CHECKING:
+     from .lightrag_adapter import LightRAGAdapter
+@@ -119,26 +121,75 @@
+             logger.info("ThreatRAGEngine using LightRAG adapter")
+             self._vector_store = None
+             self._corpus = None
++            self._retrieval_mode = "hybrid"
++            self._retrieval_provenance = {
++                "schema": "ragin.retrieval_provenance.v1",
++                "requested_mode": "lightrag",
++                "effective_backend": "lightrag",
++                "backend_source": "ENGINE_OBSERVED",
++                "vector_store_path": "",
++                "sparse_documents": 0,
++                "dense_documents": 0,
++                "sparse_constructed": False,
++                "dense_constructed": False,
++            }
+         else:
+-            # A reproducible sparse-only mode is useful for offline evaluation
+-            # and constrained deployments.  It prevents initialization from
+-            # downloading a sentence-transformer model and makes the retrieval
+-            # channel explicit rather than silently failing over after a
+-            # network timeout.  The default remains the historical hybrid
+-            # vector+BM25 path.
+-            rag_mode = os.environ.get("RAGIN_RAG_MODE", "hybrid").strip().lower()
+-            sparse_only = rag_mode in {"bm25", "sparse", "offline"}
+-            self._vector_store = None if sparse_only else VectorStore(store_path=vector_store_path)
+-            if self._vector_store is not None and vector_store_path:
+-                persisted = Path(vector_store_path) / "index.faiss"
+-                if persisted.exists():
+-                    self._vector_store.load(vector_store_path)
+-            self._corpus = IntelCorpus(corpus_path=corpus_path)
+-            self._load_corpus_and_index()
+-            if sparse_only:
++            # Explicit ablation modes. The historical default remains hybrid
++            # vector+BM25. ``bm25`` (and its legacy aliases ``sparse`` /
++            # ``offline``) constructs only the sparse index; ``none`` builds no
++            # retriever at all; ``dense`` requires an exact persisted store and
++            # a local embedding model and never falls back to BM25.
++            requested_mode = os.environ.get("RAGIN_RAG_MODE", "hybrid").strip().lower()
++            aliases = {"sparse": "bm25", "offline": "bm25"}
++            self._retrieval_mode = aliases.get(requested_mode, requested_mode)
++            if self._retrieval_mode not in {"none", "bm25", "dense", "hybrid"}:
++                raise ValueError(
++                    f"RAGIN_RAG_MODE={requested_mode!r} is not one of none/bm25/dense/hybrid"
++                )
++            self._vector_store = None
++            self._corpus = None
++            dense_docs = 0
++            if self._retrieval_mode == "none":
++                logger.info("ThreatRAGEngine retrieval disabled (RAGIN_RAG_MODE=none)")
++            elif self._retrieval_mode == "bm25":
++                self._corpus = IntelCorpus(corpus_path=corpus_path)
++                self._load_corpus_and_index()
+                 logger.info("ThreatRAGEngine sparse-only mode enabled (BM25; no sentence-transformer initialization)")
+-
+-        if os.environ.get("RAGIN_DON_RETRIEVAL_VERSION", "").strip() == COMMAND_AWARE_V2_VERSION:
++            elif self._retrieval_mode == "dense":
++                store_path = self._require_dense_configuration(vector_store_path)
++                self._vector_store = VectorStore(store_path=store_path)
++                self._vector_store.load(store_path)
++                dense_docs = int(getattr(self._vector_store, "document_count", 0))
++                if dense_docs <= 0:
++                    raise RuntimeError(
++                        f"dense retrieval configured but the exact store at {store_path!r} contains no documents"
++                    )
++                logger.info("ThreatRAGEngine dense-only mode enabled (store=%s, docs=%d)", store_path, dense_docs)
++            else:
++                self._vector_store = VectorStore(store_path=vector_store_path)
++                if self._vector_store is not None and vector_store_path:
++                    persisted = Path(vector_store_path) / "index.faiss"
++                    if persisted.exists():
++                        self._vector_store.load(vector_store_path)
++                self._corpus = IntelCorpus(corpus_path=corpus_path)
++                self._load_corpus_and_index()
++
++            self._retrieval_provenance = {
++                "schema": "ragin.retrieval_provenance.v1",
++                "requested_mode": requested_mode,
++                "effective_backend": self._retrieval_mode,
++                "backend_source": "ENGINE_OBSERVED",
++                "vector_store_path": str(vector_store_path or os.environ.get("RAGIN_VECTOR_STORE_PATH", "") or ""),
++                "sparse_documents": len(self._doc_store),
++                "dense_documents": dense_docs,
++                "sparse_constructed": self._retrieval_mode in {"bm25", "hybrid"},
++                "dense_constructed": self._retrieval_mode in {"dense", "hybrid"},
++            }
++
++        if (
++            os.environ.get("RAGIN_DON_RETRIEVAL_VERSION", "").strip() == COMMAND_AWARE_V2_VERSION
++            and getattr(self, "_retrieval_mode", "hybrid") == "hybrid"
++        ):
+             self._command_aware_v2 = CommandAwareRetrieverV2()
+ 
+         self._gateway = GatewayClient(
+@@ -148,7 +199,51 @@
+             default_model=self._model,
+         )
+ 
+-        logger.info("ThreatRAGEngine initialised (gateway=%s)", self._gateway_url)
++        parsed_gateway = urlparse(self._gateway_url)
++        safe_gateway = f"{parsed_gateway.scheme}://{parsed_gateway.hostname or ''}"
++        if parsed_gateway.port:
++            safe_gateway += f":{parsed_gateway.port}"
++        logger.info("ThreatRAGEngine initialised (gateway=%s)", safe_gateway)
++
++    @staticmethod
++    def _require_dense_configuration(vector_store_path: str | None) -> str:
++        """Validate dense-only prerequisites without downloading anything.
++
++        A dense request is a configuration error, not an invitation to fall
++        back to BM25. The exact persisted index and a local embedding-model
++        directory must exist before the engine is constructed. Model weights
++        are never fetched here.
++        """
++        store_path = str(vector_store_path or os.environ.get("RAGIN_VECTOR_STORE_PATH", "") or "").strip()
++        if not store_path:
++            raise RuntimeError(
++                "RAGIN_RAG_MODE=dense requires RAGIN_VECTOR_STORE_PATH (or an explicit vector_store_path)"
++            )
++        store = Path(store_path)
++        missing = [name for name in ("index.faiss", "documents.json") if not (store / name).is_file()]
++        if missing:
++            raise RuntimeError(
++                f"RAGIN_RAG_MODE=dense requires the exact store at {store_path!r}; missing {missing}"
++            )
++        try:
++            import faiss  # noqa: F401
++            import sentence_transformers  # noqa: F401
++        except ImportError as exc:
++            raise RuntimeError(
++                "RAGIN_RAG_MODE=dense requires faiss and sentence-transformers to be installed"
++            ) from exc
++        model_ref = os.environ.get("RAGIN_EMBED_MODEL", "").strip()
++        if not model_ref or not Path(model_ref).is_dir():
++            raise RuntimeError(
++                "RAGIN_RAG_MODE=dense requires RAGIN_EMBED_MODEL to be a local model directory; "
++                "no model download is attempted"
++            )
++        return store_path
++
++    @property
++    def retrieval_provenance(self) -> dict[str, Any]:
++        """Observed retrieval configuration for this engine instance."""
++        return dict(getattr(self, "_retrieval_provenance", {}))
+ 
+     # ------------------------------------------------------------------
+     # Main analysis entry point
+@@ -314,6 +409,8 @@
+         ]
+         current_command = str(classification_result.features.get("attacker_input") or (attacker_commands[-1] if attacker_commands else ""))
+         preceding_commands = attacker_commands[:-1] if attacker_commands and attacker_commands[-1] == current_command else attacker_commands
++        if self._command_aware_v2 is None:
++            raise RuntimeError("command-aware v2 retriever is not initialized")
+         result = self._command_aware_v2.retrieve(
+             current_command,
+             preceding_commands,
+@@ -358,6 +455,8 @@
+         """Vector similarity search — routes to LightRAG adapter or VectorStore."""
+         if self._lightrag_adapter is not None:
+             return self._lightrag_adapter.search(query, top_k=top_k)
++        if getattr(self, "_retrieval_mode", "hybrid") in {"none", "bm25"}:
++            return []
+         if self._vector_store is None:
+             logger.warning("search_threat_intel: no vector store configured")
+             return []
+@@ -369,6 +468,8 @@
+         Falls back to shared-term counting when the index was built
+         without frequency statistics (legacy callers in tests).
+         """
++        if getattr(self, "_retrieval_mode", "hybrid") in {"none", "dense"}:
++            return []
+         terms = _tokenize(query.lower())
+         # Drop generic stopwords that carry no discriminative weight.
+         terms = [t for t in terms if t not in _QUERY_STOPWORDS]
+@@ -435,6 +536,14 @@
+         """
+         if self._lightrag_adapter is not None:
+             return self._lightrag_adapter.hybrid_search(query, alpha=alpha)
++
++        mode = getattr(self, "_retrieval_mode", "hybrid")
++        if mode == "none":
++            return []
++        if mode == "bm25":
++            return self.keyword_search(query)
++        if mode == "dense":
++            return self.search_threat_intel(query, top_k=20)
+ 
+         vec_results = self.search_threat_intel(query, top_k=20)
+         kw_results = self.keyword_search(query)

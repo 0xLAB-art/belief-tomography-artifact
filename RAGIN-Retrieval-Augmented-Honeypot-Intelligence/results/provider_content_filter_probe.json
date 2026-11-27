@@ -1,0 +1,1650 @@
+{
+  "schema": "ragin.provider_content_filter_probe.v1",
+  "generated_at": "2026-10-27T08:27:22Z",
+  "provider": "agentrouter.org",
+  "endpoint_style": "responses",
+  "model": "gpt-6.1-sol",
+  "corpus": {
+    "source": "results/field_attack/sessions*.jsonl",
+    "selector": "unique log[].cmd entries shaped like shell commands",
+    "n_commands": 174
+  },
+  "method": "each command sent once through GatewayClient (WAF path rewrite + transport style from .env), max_tokens=16",
+  "counts": {
+    "transport_error": 20,
+    "content_blocked": 72,
+    "served": 82
+  },
+  "rates": {
+    "served_fraction": 0.4713,
+    "content_blocked_fraction": 0.4138,
+    "template_fallback_fraction": 0.4138
+  },
+  "blocked_commands": [
+    "SELECT * FROM appdb.users LIMIT 10;",
+    "cat /etc/hostname",
+    "cat /etc/passwd",
+    "cat /etc/ssh/sshd_config",
+    "cat /home/webapp/.ssh/id_rsa",
+    "cat /home/webapp/app.config",
+    "cat /proc/cpuinfo",
+    "cat /proc/cpuinfo | grep -E \"processor|model name\" | head -4",
+    "cat /proc/cpuinfo | head -20",
+    "cat /proc/meminfo",
+    "cat /proc/self/status",
+    "cat /proc/self/status | grep -E '^(Pid|PPid|Uid|Gid)'",
+    "cat /proc/sys/kernel/hostname",
+    "cat /proc/sys/kernel/random/uuid",
+    "cat /proc/uptime",
+    "cat /proc/version",
+    "cat /root/server.log",
+    "cat /var/log/server.log",
+    "cat app.config",
+    "cat passwd | grep -E ':[0-9]{4}:' | head -5",
+    "cat server.log",
+    "cat ~/app.config",
+    "cd /root && ls -lah",
+    "cd /var/log && ls -lt | head -15",
+    "crontab -l",
+    "crontab -l -u phil",
+    "dd if=/dev/urandom bs=1 count=8 2>/dev/null | od -An -tx1",
+    "dmesg | tail -30",
+    "file /bin/bash",
+    "file /usr/bin/dmesg",
+    "file /usr/bin/stat",
+    "find / -name \"flag*\" 2>/dev/null",
+    "find / -type f -name \"*flag*\" 2>/dev/null",
+    "find /proc -name cpuinfo 2>/dev/null",
+    "find /proc -type f -name status 2>/dev/null | head -1 | xargs cat",
+    "find /var/www -type f 2>/dev/null",
+    "grep -r \"password\\|secret\\|key\" /root/ 2>/dev/null",
+    "head -1 /var/log/server.log",
+    "head -c 16 /dev/urandom | xxd -p",
+    "hexdump -C /usr/bin/dmesg | head -1",
+    "hexdump -C /usr/bin/stat | head -1",
+    "ls -l /proc/1/exe",
+    "ls -la /home",
+    "ls -la /home/webapp",
+    "ls -la /opt",
+    "ls -la /proc",
+    "ls -la /proc/1/",
+    "ls -la /proc/self/fd",
+    "ls -la /root",
+    "ls -la /root/.ssh/",
+    "ls -la /var/log",
+    "ls -la /var/www",
+    "ls -lahi /proc/self/fd 2>&1",
+    "ls -li / | head -20",
+    "mysql -h 10.0.0.5 -u svc_backup -pKvUbKvNQoDNZOz0Bt8bG6G!7 -e \"SELECT * FROM appdb.users LIMIT 10\"",
+    "mysql -h 10.0.0.5 -u svc_backup -pKvUbKvNQoDNZOz0Bt8bG6G!7 -e \"SELECT user,host FROM mysql.user\"",
+    "netstat -tuln | head -20",
+    "netstat -tulpn",
+    "netstat -tulpn | grep LISTEN",
+    "ps auxf | grep -v '\\[' | head -30",
+    "stat -c '%y' /proc/1",
+    "stat /proc/1/exe",
+    "stat /proc/cpuinfo",
+    "stat /proc/version",
+    "strings /home/webapp/app.config",
+    "strings /var/log/server.log",
+    "sudo /usr/bin/iptables -D INPUT 5",
+    "sudo /usr/bin/iptables -F",
+    "sudo /usr/bin/iptables -L",
+    "sudo /usr/sbin/auditctl -D",
+    "sudo /usr/sbin/auditctl -l",
+    "sudo iptables -L"
+  ],
+  "rows": [
+    {
+      "command": "SELECT * FROM appdb.users LIMIT 10;",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "cat /etc/hostname",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "cat /etc/passwd",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "cat /etc/ssh/sshd_config",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /home/webapp/.ssh/id_rsa",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /home/webapp/app.config",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "cat /proc/cpuinfo",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/cpuinfo | grep -E \"processor|model name\" | head -4",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "cat /proc/cpuinfo | head -20",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "cat /proc/meminfo",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /proc/self/status",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat /proc/self/status | grep -E '^(Pid|PPid|Uid|Gid)'",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "cat /proc/sys/kernel/hostname",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 20.9
+    },
+    {
+      "command": "cat /proc/sys/kernel/random/uuid",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.0
+    },
+    {
+      "command": "cat /proc/uptime",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "cat /proc/version",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "cat /root/server.log",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "cat /var/log/server.log",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "cat app.config",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat passwd | grep -E ':[0-9]{4}:' | head -5",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat server.log",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "cat ~/app.config",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cd /root && ls -lah",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "cd /var/log && ls -lt | head -15",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "crontab -l",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.5
+    },
+    {
+      "command": "crontab -l -u phil",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "dd if=/dev/urandom bs=1 count=8 2>/dev/null | od -An -tx1",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "dmesg | tail -30",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "file /bin/bash",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "file /usr/bin/dmesg",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.3
+    },
+    {
+      "command": "file /usr/bin/stat",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.1
+    },
+    {
+      "command": "find / -name \"flag*\" 2>/dev/null",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "find / -type f -name \"*flag*\" 2>/dev/null",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "find /proc -name cpuinfo 2>/dev/null",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "find /proc -type f -name status 2>/dev/null | head -1 | xargs cat",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.0
+    },
+    {
+      "command": "find /var/www -type f 2>/dev/null",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "grep -r \"password\\|secret\\|key\" /root/ 2>/dev/null",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.3
+    },
+    {
+      "command": "head -1 /var/log/server.log",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "head -c 16 /dev/urandom | xxd -p",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "hexdump -C /usr/bin/dmesg | head -1",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "hexdump -C /usr/bin/stat | head -1",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "ls -l /proc/1/exe",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "ls -la /home",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "ls -la /home/webapp",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "ls -la /opt",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "ls -la /proc",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.2
+    },
+    {
+      "command": "ls -la /proc/1/",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "ls -la /proc/self/fd",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "ls -la /root",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.1
+    },
+    {
+      "command": "ls -la /root/.ssh/",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "ls -la /var/log",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "ls -la /var/www",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.4
+    },
+    {
+      "command": "ls -lahi /proc/self/fd 2>&1",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "ls -li / | head -20",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "mysql -h 10.0.0.5 -u svc_backup -pKvUbKvNQoDNZOz0Bt8bG6G!7 -e \"SELECT * FROM appdb.users LIMIT 10\"",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "mysql -h 10.0.0.5 -u svc_backup -pKvUbKvNQoDNZOz0Bt8bG6G!7 -e \"SELECT user,host FROM mysql.user\"",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "netstat -tuln | head -20",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "netstat -tulpn",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "netstat -tulpn | grep LISTEN",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "ps auxf | grep -v '\\[' | head -30",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "stat -c '%y' /proc/1",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "stat /proc/1/exe",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "stat /proc/cpuinfo",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "stat /proc/version",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 0.9
+    },
+    {
+      "command": "strings /home/webapp/app.config",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "strings /var/log/server.log",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 21.2
+    },
+    {
+      "command": "sudo /usr/bin/iptables -D INPUT 5",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "sudo /usr/bin/iptables -F",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "sudo /usr/bin/iptables -L",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.0
+    },
+    {
+      "command": "sudo /usr/sbin/auditctl -D",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.3
+    },
+    {
+      "command": "sudo /usr/sbin/auditctl -l",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "sudo iptables -L",
+      "status": "content_blocked",
+      "http": 400,
+      "error": "HTTPError: 400 Client Error: Bad Request for url: https://agentrouter.org/v1/responses",
+      "elapsed_s": 1.2
+    },
+    {
+      "command": "cat /etc/os-release",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 67.8,
+      "usage": {
+        "prompt_tokens": 11,
+        "completion_tokens": 16,
+        "total_tokens": 27
+      }
+    },
+    {
+      "command": "cat /etc/passwd | grep -E '(root|nobody|sync)' | head -5",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 69.1,
+      "usage": {
+        "prompt_tokens": 28,
+        "completion_tokens": 16,
+        "total_tokens": 44
+      }
+    },
+    {
+      "command": "cat /etc/shadow",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 42.5,
+      "usage": {
+        "prompt_tokens": 12,
+        "completion_tokens": 559,
+        "total_tokens": 571
+      }
+    },
+    {
+      "command": "cat /home/app.config",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 42.0,
+      "usage": {
+        "prompt_tokens": 11,
+        "completion_tokens": 463,
+        "total_tokens": 474
+      }
+    },
+    {
+      "command": "cat /home/phil/.bashrc",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 41.5,
+      "usage": {
+        "prompt_tokens": 14,
+        "completion_tokens": 435,
+        "total_tokens": 449
+      }
+    },
+    {
+      "command": "cat /home/phil/.ssh/id_rsa",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 46.9,
+      "usage": {
+        "prompt_tokens": 16,
+        "completion_tokens": 16,
+        "total_tokens": 32
+      }
+    },
+    {
+      "command": "cat /proc/self/cgroup",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 25.3,
+      "usage": {
+        "prompt_tokens": 12,
+        "completion_tokens": 487,
+        "total_tokens": 499
+      }
+    },
+    {
+      "command": "cat /proc/self/cmdline",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 69.0,
+      "usage": {
+        "prompt_tokens": 13,
+        "completion_tokens": 16,
+        "total_tokens": 29
+      }
+    },
+    {
+      "command": "cat /proc/sys/kernel/random/boot_id",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 42.6,
+      "usage": {
+        "prompt_tokens": 15,
+        "completion_tokens": 554,
+        "total_tokens": 569
+      }
+    },
+    {
+      "command": "cat /root/.bashrc",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 45.5,
+      "usage": {
+        "prompt_tokens": 12,
+        "completion_tokens": 569,
+        "total_tokens": 581
+      }
+    },
+    {
+      "command": "cat /root/.ssh/id_rsa",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 46.9,
+      "usage": {
+        "prompt_tokens": 14,
+        "completion_tokens": 16,
+        "total_tokens": 30
+      }
+    },
+    {
+      "command": "cat /root/app.config",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 71.5,
+      "usage": {
+        "prompt_tokens": 11,
+        "completion_tokens": 538,
+        "total_tokens": 549
+      }
+    },
+    {
+      "command": "cat /var/log/auth.log | tail -30",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 65.4,
+      "usage": {
+        "prompt_tokens": 16,
+        "completion_tokens": 784,
+        "total_tokens": 800
+      }
+    },
+    {
+      "command": "cat /var/log/auth.log | tail -50",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 48.6,
+      "usage": {
+        "prompt_tokens": 16,
+        "completion_tokens": 16,
+        "total_tokens": 32
+      }
+    },
+    {
+      "command": "cd /etc && ls -la",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 46.2,
+      "usage": {
+        "prompt_tokens": 13,
+        "completion_tokens": 16,
+        "total_tokens": 29
+      }
+    },
+    {
+      "command": "dd if=/dev/urandom bs=16 count=1 2>/dev/null | base64",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 66.3,
+      "usage": {
+        "prompt_tokens": 27,
+        "completion_tokens": 16,
+        "total_tokens": 43
+      }
+    },
+    {
+      "command": "dd if=/root/app.config bs=1024 2>/dev/null",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 69.6,
+      "usage": {
+        "prompt_tokens": 21,
+        "completion_tokens": 16,
+        "total_tokens": 37
+      }
+    },
+    {
+      "command": "dd if=/usr/bin/stat bs=1 count=4 2>/dev/null | od -An -tx1",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 16.3,
+      "usage": {
+        "prompt_tokens": 30,
+        "completion_tokens": 581,
+        "total_tokens": 611
+      }
+    },
+    {
+      "command": "echo VERDICT: honeypot",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 32.5,
+      "usage": {
+        "prompt_tokens": 13,
+        "completion_tokens": 103,
+        "total_tokens": 116
+      }
+    },
+    {
+      "command": "find / -name \"*.env\" -o -name \".git-credentials\" -o -name \"id_rsa*\" -o -name \"*.pem\" -o -name \"credentials*\" 2>/dev/null | head -20",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 89.9,
+      "usage": {
+        "prompt_tokens": 54,
+        "completion_tokens": 16,
+        "total_tokens": 70
+      }
+    },
+    {
+      "command": "find / -name \"*.key\" -o -name \"*.pem\" 2>/dev/null",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 66.5,
+      "usage": {
+        "prompt_tokens": 25,
+        "completion_tokens": 16,
+        "total_tokens": 41
+      }
+    },
+    {
+      "command": "find / -name \"*.log\" -mtime -7 2>/dev/null | head -15",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 38.2,
+      "usage": {
+        "prompt_tokens": 26,
+        "completion_tokens": 602,
+        "total_tokens": 628
+      }
+    },
+    {
+      "command": "find / -name \"*.txt\" -o -name \"*.log\" -o -name \"*.conf\" 2>/dev/null | head -30",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 65.3,
+      "usage": {
+        "prompt_tokens": 36,
+        "completion_tokens": 16,
+        "total_tokens": 52
+      }
+    },
+    {
+      "command": "find / -type f -name \"*secret*\" 2>/dev/null",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 49.3,
+      "usage": {
+        "prompt_tokens": 21,
+        "completion_tokens": 16,
+        "total_tokens": 37
+      }
+    },
+    {
+      "command": "find / -type f -size +0 2>/dev/null | head -50",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 40.7,
+      "usage": {
+        "prompt_tokens": 24,
+        "completion_tokens": 479,
+        "total_tokens": 503
+      }
+    },
+    {
+      "command": "find /etc -name \"*.conf\" -type f 2>/dev/null | head -20",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 19.3,
+      "usage": {
+        "prompt_tokens": 26,
+        "completion_tokens": 422,
+        "total_tokens": 448
+      }
+    },
+    {
+      "command": "find /etc -name \"*.conf\" -type f 2>/dev/null | head -5",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 15.4,
+      "usage": {
+        "prompt_tokens": 26,
+        "completion_tokens": 302,
+        "total_tokens": 328
+      }
+    },
+    {
+      "command": "find /etc -name \"*.conf\" -type f 2>/dev/null | head -8",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 60.6,
+      "usage": {
+        "prompt_tokens": 26,
+        "completion_tokens": 555,
+        "total_tokens": 581
+      }
+    },
+    {
+      "command": "find /etc -name '*honey*' -o -name '*trap*' -o -name '*fake*' 2>/dev/null",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 67.6,
+      "usage": {
+        "prompt_tokens": 37,
+        "completion_tokens": 16,
+        "total_tokens": 53
+      }
+    },
+    {
+      "command": "find /etc -name 'shadow' -o -name 'passwd' 2>/dev/null",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 48.7,
+      "usage": {
+        "prompt_tokens": 26,
+        "completion_tokens": 816,
+        "total_tokens": 842
+      }
+    },
+    {
+      "command": "find /etc -type f -name \"*.conf\" 2>/dev/null | head -20",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 47.9,
+      "usage": {
+        "prompt_tokens": 26,
+        "completion_tokens": 545,
+        "total_tokens": 571
+      }
+    },
+    {
+      "command": "find /home -type d -maxdepth 2 2>/dev/null",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 54.7,
+      "usage": {
+        "prompt_tokens": 22,
+        "completion_tokens": 555,
+        "total_tokens": 577
+      }
+    },
+    {
+      "command": "find /home -type f -name \"*.key\" -o -name \"*.pem\" -o -name \"*secret*\" 2>/dev/null",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 42.6,
+      "usage": {
+        "prompt_tokens": 36,
+        "completion_tokens": 608,
+        "total_tokens": 644
+      }
+    },
+    {
+      "command": "find /home -type f -name \".*\" 2>/dev/null",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 23.1,
+      "usage": {
+        "prompt_tokens": 22,
+        "completion_tokens": 566,
+        "total_tokens": 588
+      }
+    },
+    {
+      "command": "find /home -type f \\( -name \"*.txt\" -o -name \"*.conf\" -o -name \"*.json\" -o -name \"*.xml\" -o -name \"*.yml\" \\) 2>/dev/null",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 45.7,
+      "usage": {
+        "prompt_tokens": 54,
+        "completion_tokens": 16,
+        "total_tokens": 70
+      }
+    },
+    {
+      "command": "find /home /var /opt /srv /tmp -type f -readable 2>/dev/null | head -50",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 46.0,
+      "usage": {
+        "prompt_tokens": 32,
+        "completion_tokens": 585,
+        "total_tokens": 617
+      }
+    },
+    {
+      "command": "find /home/phil -type f -name \".*\" 2>/dev/null",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 52.4,
+      "usage": {
+        "prompt_tokens": 24,
+        "completion_tokens": 16,
+        "total_tokens": 40
+      }
+    },
+    {
+      "command": "find /opt -type f 2>/dev/null | head -20",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 40.1,
+      "usage": {
+        "prompt_tokens": 21,
+        "completion_tokens": 413,
+        "total_tokens": 434
+      }
+    },
+    {
+      "command": "find /proc -type f -readable 2>/dev/null | head -5",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 38.6,
+      "usage": {
+        "prompt_tokens": 24,
+        "completion_tokens": 552,
+        "total_tokens": 576
+      }
+    },
+    {
+      "command": "find /tmp -type f -readable 2>/dev/null | head -20",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 43.0,
+      "usage": {
+        "prompt_tokens": 24,
+        "completion_tokens": 564,
+        "total_tokens": 588
+      }
+    },
+    {
+      "command": "find /tmp /dev/shm -type f 2>/dev/null",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 12.1,
+      "usage": {
+        "prompt_tokens": 21,
+        "completion_tokens": 264,
+        "total_tokens": 285
+      }
+    },
+    {
+      "command": "find /var /opt /home -type f -mtime -30 2>/dev/null | head -20",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 42.1,
+      "usage": {
+        "prompt_tokens": 29,
+        "completion_tokens": 446,
+        "total_tokens": 475
+      }
+    },
+    {
+      "command": "find /var /opt /usr/local -type f -mtime -90 2>/dev/null | head -20",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 88.5,
+      "usage": {
+        "prompt_tokens": 30,
+        "completion_tokens": 16,
+        "total_tokens": 46
+      }
+    },
+    {
+      "command": "find /var/log -type f -readable 2>/dev/null | head -20",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 87.3,
+      "usage": {
+        "prompt_tokens": 25,
+        "completion_tokens": 563,
+        "total_tokens": 588
+      }
+    },
+    {
+      "command": "find /var/www /opt /srv -type f -name \"*.conf\" -o -name \"*.config\" 2>/dev/null | head -30",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 51.2,
+      "usage": {
+        "prompt_tokens": 38,
+        "completion_tokens": 613,
+        "total_tokens": 651
+      }
+    },
+    {
+      "command": "grep -r \"password\\|api_key\\|secret\\|token\" /var/www /opt /etc 2>/dev/null | head -20",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 48.1,
+      "usage": {
+        "prompt_tokens": 38,
+        "completion_tokens": 16,
+        "total_tokens": 54
+      }
+    },
+    {
+      "command": "grep -r \"password\\|secret\\|token\\|api\" /var/www /srv /opt 2>/dev/null | head -20",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 67.6,
+      "usage": {
+        "prompt_tokens": 37,
+        "completion_tokens": 16,
+        "total_tokens": 53
+      }
+    },
+    {
+      "command": "head /root/app.config",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 24.4,
+      "usage": {
+        "prompt_tokens": 11,
+        "completion_tokens": 554,
+        "total_tokens": 565
+      }
+    },
+    {
+      "command": "hostname",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 35.1,
+      "usage": {
+        "prompt_tokens": 7,
+        "completion_tokens": 207,
+        "total_tokens": 214
+      }
+    },
+    {
+      "command": "id",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 34.3,
+      "usage": {
+        "prompt_tokens": 7,
+        "completion_tokens": 301,
+        "total_tokens": 308
+      }
+    },
+    {
+      "command": "id phil",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 16.4,
+      "usage": {
+        "prompt_tokens": 8,
+        "completion_tokens": 356,
+        "total_tokens": 364
+      }
+    },
+    {
+      "command": "less /root/app.config",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 45.9,
+      "usage": {
+        "prompt_tokens": 11,
+        "completion_tokens": 16,
+        "total_tokens": 27
+      }
+    },
+    {
+      "command": "ls",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 12.4,
+      "usage": {
+        "prompt_tokens": 7,
+        "completion_tokens": 224,
+        "total_tokens": 231
+      }
+    },
+    {
+      "command": "ls -la",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 64.4,
+      "usage": {
+        "prompt_tokens": 9,
+        "completion_tokens": 366,
+        "total_tokens": 375
+      }
+    },
+    {
+      "command": "ls -la /",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 61.9,
+      "usage": {
+        "prompt_tokens": 10,
+        "completion_tokens": 309,
+        "total_tokens": 319
+      }
+    },
+    {
+      "command": "ls -la /home/phil",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 13.2,
+      "usage": {
+        "prompt_tokens": 13,
+        "completion_tokens": 403,
+        "total_tokens": 416
+      }
+    },
+    {
+      "command": "ls -la /proc/self/",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 61.8,
+      "usage": {
+        "prompt_tokens": 13,
+        "completion_tokens": 422,
+        "total_tokens": 435
+      }
+    },
+    {
+      "command": "ls -la /usr/bin/dmesg /bin/ls /bin/cat",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 46.4,
+      "usage": {
+        "prompt_tokens": 23,
+        "completion_tokens": 666,
+        "total_tokens": 689
+      }
+    },
+    {
+      "command": "ls -la /usr/bin/stat",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 20.3,
+      "usage": {
+        "prompt_tokens": 13,
+        "completion_tokens": 321,
+        "total_tokens": 334
+      }
+    },
+    {
+      "command": "ls -la ~/",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 28.7,
+      "usage": {
+        "prompt_tokens": 10,
+        "completion_tokens": 223,
+        "total_tokens": 233
+      }
+    },
+    {
+      "command": "ls /bin | head -20",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 40.3,
+      "usage": {
+        "prompt_tokens": 13,
+        "completion_tokens": 482,
+        "total_tokens": 495
+      }
+    },
+    {
+      "command": "ls /proc",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 17.7,
+      "usage": {
+        "prompt_tokens": 9,
+        "completion_tokens": 520,
+        "total_tokens": 529
+      }
+    },
+    {
+      "command": "ls /proc/self/exe -la",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 47.7,
+      "usage": {
+        "prompt_tokens": 14,
+        "completion_tokens": 16,
+        "total_tokens": 30
+      }
+    },
+    {
+      "command": "mysql -u svc_backup -p'KvUbKvNQoDNZOz0Bt8bG6G!7' -h 10.0.0.5 -e \"SELECT * FROM appdb.users LIMIT 10\"",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 78.3,
+      "usage": {
+        "prompt_tokens": 55,
+        "completion_tokens": 16,
+        "total_tokens": 71
+      }
+    },
+    {
+      "command": "ps aux",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 16.8,
+      "usage": {
+        "prompt_tokens": 8,
+        "completion_tokens": 515,
+        "total_tokens": 523
+      }
+    },
+    {
+      "command": "ps aux --sort=-%cpu | head -20",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 72.5,
+      "usage": {
+        "prompt_tokens": 17,
+        "completion_tokens": 16,
+        "total_tokens": 33
+      }
+    },
+    {
+      "command": "ps aux --sort=-%mem | head -20",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 42.1,
+      "usage": {
+        "prompt_tokens": 17,
+        "completion_tokens": 577,
+        "total_tokens": 594
+      }
+    },
+    {
+      "command": "pwd",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 63.8,
+      "usage": {
+        "prompt_tokens": 7,
+        "completion_tokens": 434,
+        "total_tokens": 441
+      }
+    },
+    {
+      "command": "python3 -c \"print(open('/root/app.config').read())\"",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 41.5,
+      "usage": {
+        "prompt_tokens": 21,
+        "completion_tokens": 565,
+        "total_tokens": 586
+      }
+    },
+    {
+      "command": "readlink /proc/self/exe",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 19.2,
+      "usage": {
+        "prompt_tokens": 13,
+        "completion_tokens": 294,
+        "total_tokens": 307
+      }
+    },
+    {
+      "command": "stat /proc/self",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 40.8,
+      "usage": {
+        "prompt_tokens": 10,
+        "completion_tokens": 576,
+        "total_tokens": 586
+      }
+    },
+    {
+      "command": "stat /proc/self/exe",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 55.6,
+      "usage": {
+        "prompt_tokens": 12,
+        "completion_tokens": 16,
+        "total_tokens": 28
+      }
+    },
+    {
+      "command": "strings /root/app.config",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 27.8,
+      "usage": {
+        "prompt_tokens": 11,
+        "completion_tokens": 580,
+        "total_tokens": 591
+      }
+    },
+    {
+      "command": "su - phil",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 50.8,
+      "usage": {
+        "prompt_tokens": 9,
+        "completion_tokens": 16,
+        "total_tokens": 25
+      }
+    },
+    {
+      "command": "sudo -l",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 40.1,
+      "usage": {
+        "prompt_tokens": 9,
+        "completion_tokens": 576,
+        "total_tokens": 585
+      }
+    },
+    {
+      "command": "sudo /usr/bin/iptables -P INPUT ACCEPT",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 46.2,
+      "usage": {
+        "prompt_tokens": 16,
+        "completion_tokens": 16,
+        "total_tokens": 32
+      }
+    },
+    {
+      "command": "sudo iptables -A OUTPUT -p tcp --dport 22 -j ACCEPT && sudo iptables -P OUTPUT ACCEPT && sudo iptables -F",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 47.0,
+      "usage": {
+        "prompt_tokens": 37,
+        "completion_tokens": 16,
+        "total_tokens": 53
+      }
+    },
+    {
+      "command": "uname -a",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 38.5,
+      "usage": {
+        "prompt_tokens": 9,
+        "completion_tokens": 509,
+        "total_tokens": 518
+      }
+    },
+    {
+      "command": "uname -m",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 59.3,
+      "usage": {
+        "prompt_tokens": 9,
+        "completion_tokens": 571,
+        "total_tokens": 580
+      }
+    },
+    {
+      "command": "w",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 10.7,
+      "usage": {
+        "prompt_tokens": 7,
+        "completion_tokens": 132,
+        "total_tokens": 139
+      }
+    },
+    {
+      "command": "while read line; do echo \"$line\"; done < /root/app.config",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 66.5,
+      "usage": {
+        "prompt_tokens": 21,
+        "completion_tokens": 16,
+        "total_tokens": 37
+      }
+    },
+    {
+      "command": "whoami",
+      "status": "served",
+      "http": 200,
+      "elapsed_s": 18.5,
+      "usage": {
+        "prompt_tokens": 8,
+        "completion_tokens": 375,
+        "total_tokens": 383
+      }
+    },
+    {
+      "command": "/bin/cat /root/app.config",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 42.6
+    },
+    {
+      "command": "dd if=/dev/urandom of=/tmp/test bs=1M count=10 2>&1 | head -1",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 62.9
+    },
+    {
+      "command": "df -h",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 42.9
+    },
+    {
+      "command": "find / -name \"*.env\" -o -name \".git-credentials\" -o -name \"id_rsa\" -o -name \"*.pem\" -o -name \"credentials\" 2>/dev/null | head -20",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 42.6
+    },
+    {
+      "command": "find / -name \"*.env\" -o -name \".git-credentials\" -o -name \"id_rsa\" -o -name \"*.pem\" 2>/dev/null",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 42.6
+    },
+    {
+      "command": "find /home -type f \\( -name \"*.txt\" -o -name \"*.log\" -o -name \"*.db\" \\) 2>/dev/null | head -20",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 62.5
+    },
+    {
+      "command": "find /usr/local -type f 2>/dev/null | head -20",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 62.9
+    },
+    {
+      "command": "find /var /opt /home -name \"config*\" -o -name \"*.conf\" 2>/dev/null | head -20",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 42.6
+    },
+    {
+      "command": "find /var /opt /home /root -type f \\( -name \"*.conf\" -o -name \"*.config\" -o -name \"*.ini\" -o -name \"*.yaml\" -o -name \"*.yml\" \\) 2>/dev/null | head -30",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 42.7
+    },
+    {
+      "command": "grep -riE \"(password|secret|token|api_key)\" /var/www /srv /opt 2>/dev/null | head -20",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 42.4
+    },
+    {
+      "command": "head /home/webapp/app.config",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 62.7
+    },
+    {
+      "command": "ls -la /etc/ssh/",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 42.8
+    },
+    {
+      "command": "ls -la /proc/self",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 42.7
+    },
+    {
+      "command": "ls -la /var/log/auth.log* 2>/dev/null || ls -la /var/log/secure* 2>/dev/null || ls -la /var/log/",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 42.8
+    },
+    {
+      "command": "ls /sys/class/dmi/id/",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 42.7
+    },
+    {
+      "command": "mysql -h 10.0.0.5 -u svc_backup -p'KvUbKvNQoDNZOz0Bt8bG6G!7' -e \"SELECT user,host FROM mysql.user\"",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 42.7
+    },
+    {
+      "command": "ps aux --sort=-%mem | head -15",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 42.3
+    },
+    {
+      "command": "sudo /usr/bin/iptables -A INPUT -p tcp --dport 4444 -j ACCEPT",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 42.4
+    },
+    {
+      "command": "sudo iptables -A INPUT -p tcp --dport 4444 -j ACCEPT",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 42.8
+    },
+    {
+      "command": "sudo iptables -I INPUT 1 -i eth0 -j ACCEPT",
+      "status": "transport_error",
+      "http": null,
+      "error": "ReadTimeout: Gateway POST failed after 2 attempts: PROVIDER_TIMEOUT",
+      "elapsed_s": 62.8
+    }
+  ],
+  "caveats": [
+    "One request per command; the filter is not deterministic across identical inputs (spot checks flipped between 200 and 400).",
+    "Commands were sent as the whole user message. Production prompts add system/context text, which can move a payload across the filter.",
+    "transport_error rows are timeouts/transient failures, not filter verdicts."
+  ]
+}

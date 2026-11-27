@@ -1,0 +1,55 @@
+% Verified deception loop architecture (single-column TikZ)
+% Routing discipline: main path is a straight vertical spine; all side
+% paths run orthogonally in dedicated corridors (left margin, right gap)
+% and enter nodes at distributed anchors, so no line crosses a node or
+% another arrowhead.
+\begin{tikzpicture}[
+  node distance=3.5mm and 5mm,
+  stage/.style={draw, rounded corners=1.5pt, minimum height=8mm, minimum width=21mm, align=center, font=\scriptsize},
+  store/.style={stage, fill=black!8},
+  gate/.style={stage, fill=black!18, thick},
+  fail/.style={draw, dashed, rounded corners=1.5pt, minimum height=8mm, align=center, font=\scriptsize, fill=black!4},
+  arr/.style={-{Latex[length=1.8mm]}, semithick},
+  farr/.style={arr, dashed, black!60}
+]
+% Main serving path (top to bottom)
+\node[stage] (profile) {Profile\\ \scriptsize\itshape Chrollo classifier};
+\node[stage, below=of profile] (retrieve) {Retrieve + plan\\ \scriptsize\itshape Don hybrid RAG};
+\node[store, below=of retrieve] (graph) {Fiction graph\\ \scriptsize\itshape facts, consistency};
+\node[stage, below=of graph] (draft) {Draft response\\ \scriptsize\itshape generator LLM};
+\node[gate, below=of draft] (verify) {Verify\\ \scriptsize\itshape danger + identity + consistency};
+\node[stage, below=of verify] (serve) {Serve on wire};
+
+% Side stores
+\node[store, right=13mm of retrieve] (mitre) {\attck predictor\\ \scriptsize\itshape next techniques, bait};
+\node[store, right=13mm of graph] (audit) {Audit log\\ \scriptsize\itshape append-only};
+\node[gate, right=13mm of verify] (hitl) {HITL gate\\ \scriptsize\itshape \textsc{require} classes};
+
+% Failure path
+\node[fail, left=11mm of graph] (fallback) {Deterministic\\ fallback\\ \scriptsize\itshape vetted transcripts};
+
+% Main path arrows (vertical spine)
+\draw[arr] (profile) -- (retrieve);
+\draw[arr] (retrieve) -- (graph);
+\draw[arr] (graph) -- (draft);
+\draw[arr] (draft) -- (verify);
+\draw[arr] (verify) -- (serve) node[midway, right, font=\tiny] {pass};
+
+% Failure arrows: orthogonal, left corridor, offset anchors
+\draw[farr] (verify.west) -| ([xshift=-3mm]fallback.south)
+  node[pos=0.2, above, font=\tiny] {fail $\times$2};
+\draw[farr] ([xshift=3mm]fallback.south) |- (serve.west)
+  node[pos=0.75, above, font=\tiny] {serve vetted};
+
+% Approval arrow: right corridor into serve.east
+\draw[arr, black!60] (hitl.south) |- (serve.east)
+  node[pos=0.75, above, font=\tiny] {approved};
+\draw[farr] (verify.east) -- (hitl.west) node[midway, above, font=\tiny] {\textsc{require}};
+
+% Feedback / context arrows: right gap, offset entry into graph.south
+\draw[arr, black!60] (mitre) -- (retrieve) node[midway, above, font=\tiny] {steer};
+\draw[arr, black!60] (profile.east) -| (mitre.north);
+\draw[arr, black!60] (graph.east) -- (audit.west) node[midway, above, font=\tiny] {record};
+\draw[farr] ([xshift=8mm]draft.north) -- ([xshift=8mm]graph.south)
+  node[midway, right, font=\tiny] {observe};
+\end{tikzpicture}

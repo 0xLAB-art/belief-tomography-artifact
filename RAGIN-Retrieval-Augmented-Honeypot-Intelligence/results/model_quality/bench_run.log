@@ -1,0 +1,21 @@
+provider=azure gateway=https://youseefhamdi329-7955-resource.services.ai.azure.com/openai engine_model=qwen--qwen38-27b
+Corpus path not found: data/corpus
+Don corpus loaded 0 docs — BM25 index empty
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 9030.38it/s]
+/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/ragin/don/vector_store.py:42: FutureWarning: The `get_sentence_embedding_dimension` method has been renamed to `get_embedding_dimension`.
+  self._dimension = self._embedder.get_sentence_embedding_dimension()
+vector store reloaded from disk (22396 docs) — skipping embedding
+corpus loaded: 22396 docs (BM25 + vector)
+
+== scheduled task persistence via crontab and systemd timers
+   legacy: 9874 hits, 53ms, ctx 2456B
+   graph:  18 relevant, 235678ms, ctx 3323B, subQ=['Detection patterns and IOCs for malicious crontab entries and systemd timer units on Linux hosts', 'MITRE ATT&CK T1053.003 and T1569.002 adversary techniques leveraging scheduled tasks for persistence', 'Forensic artifacts and timeline reconstruction for unauthorized crontab and systemd timer modifications'] rounds=0 degraded=False
+   P@5: legacy=0.80 graph=0.00
+
+== credential dumping from LSASS with mimikatz
+   legacy: 5806 hits, 60ms, ctx 4218B
+   graph:  33 relevant, 183436ms, ctx 3995B, subQ=['LSASS credential dumping detection signatures and EDR telemetry gaps', 'Mimikatz tool variants, hashes, and obfuscation techniques used in recent campaigns', 'APT groups and ransomware operators leveraging LSASS access for lateral movement', 'Defensive hardening: Credential Guard, PPL, and LSASS protection mechanisms'] rounds=0 degraded=False
+   P@5: legacy=1.00 graph=1.00
+
+== ssh brute force password spraying against exposed services

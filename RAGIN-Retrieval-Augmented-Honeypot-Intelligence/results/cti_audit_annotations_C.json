@@ -1,0 +1,272 @@
+{
+ "annotator": "C",
+ "model": "opencode/ling-3.0-flash-fin-free",
+ "annotations": {
+  "R0011": {
+   "ok": true,
+   "row_id": "R0011",
+   "notes": "Bash command-not-found error is irrelevant to the CTI query; T1059 correctly extracted but T1204 is an unrelated extra.",
+   "requested": "T1059",
+   "identified": [
+    "T1059",
+    "T1204"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0114": {
+   "ok": true,
+   "row_id": "R0114",
+   "notes": "Terminal transcript listing running services and listening ports tangentially relates to external remote services but does not directly address VPN or T1133.",
+   "requested": "T1133",
+   "identified": [
+    "T1021",
+    "T1133",
+    "T1566"
+   ],
+   "identification": "correct",
+   "served_on_topic": "partial"
+  },
+  "R0075": {
+   "ok": true,
+   "row_id": "R0075",
+   "notes": "Analysis metadata correctly extracts T1588, but served text is a bash 'command not found' error that fails to address the query topically.",
+   "requested": "T1588",
+   "identified": [
+    "T1586",
+    "T1586.001",
+    "T1588"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0069": {
+   "ok": true,
+   "row_id": "R0069",
+   "notes": "T1489 is correctly present in extracted_techniques but paired with unrelated T1486; served text only shows running services and never addresses service stopping as a technique.",
+   "requested": "T1489",
+   "identified": [
+    "T1486",
+    "T1489"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0035": {
+   "ok": true,
+   "row_id": "R0035",
+   "notes": "The analysis extract mentions T1562 but also includes unrelated T1027; served text is a terminal command-not-found error offering no topical coverage.",
+   "requested": "T1562",
+   "identified": [
+    "T1027",
+    "T1562"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0002": {
+   "ok": true,
+   "row_id": "R0002",
+   "notes": "Bash command-not-found error is an inauthentic machine refusal that does not address spear phishing, though T1566 was correctly extracted as the relevant technique.",
+   "requested": "T1566",
+   "identified": [
+    "T1566"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0109": {
+   "ok": true,
+   "row_id": "R0109",
+   "notes": "Analysis correctly includes T1539 alongside T1005 and T1552, but served text shows credential file reads (T1552-relevant) rather than browser session cookie theft (T1539-specific).",
+   "requested": "T1539",
+   "identified": [
+    "T1005",
+    "T1539",
+    "T1552"
+   ],
+   "identification": "partial",
+   "served_on_topic": "partial"
+  },
+  "R0149": {
+   "ok": true,
+   "row_id": "R0149",
+   "notes": "Bash command-not-found error provides no actual APT41 operational information; candidate_actors correctly lists Apt41 but served text is purely a terminal failure.",
+   "requested": "APT41",
+   "identified": [
+    "apt41"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0136": {
+   "ok": true,
+   "row_id": "R0136",
+   "notes": "The served text is a bash command-not-found error echoing the query verbatim, providing zero substantive information about Revil's ransomware payload deployment.",
+   "requested": "REVIL",
+   "identified": [
+    "revil"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0152": {
+   "ok": true,
+   "row_id": "R0152",
+   "notes": "The served text is a bash command-not-found error, which reads like authentic terminal output but does not address the Turla query topically; analysis lists Turla correctly but pairs it with unrelated Apt27, yielding partial identification.",
+   "requested": "TURLA",
+   "identified": [
+    "apt27",
+    "TURLA"
+   ],
+   "identification": "partial",
+   "served_on_topic": "no"
+  },
+  "R0142": {
+   "ok": true,
+   "row_id": "R0142",
+   "notes": "Query is about threat actor OceanLotus; analysis correctly identifies it as candidate_actor, but served text is a bash command-not-found error that does not address the topic.",
+   "requested": "OCEANLOTUS",
+   "identified": [
+    "oceanlotus"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0143": {
+   "ok": true,
+   "row_id": "R0143",
+   "notes": "The served text is a bare bash command-not-found error that echoes the query verbatim but provides zero topical content about Lazarus Group financial theft; however it reads as an authentic misconfigured terminal output.",
+   "requested": "LAZARUS GROUP",
+   "identified": [
+    "lazarus group"
+   ],
+   "identification": "correct",
+   "served_on_topic": "no"
+  },
+  "R0151": {
+   "ok": true,
+   "row_id": "R0151",
+   "notes": "Analysis lists Apt27 among candidate actors but buries it alongside unrelated Turla, yielding partial identification; served text is a plausible bash command-not-found error.",
+   "requested": "APT27",
+   "identified": [
+    "apt27",
+    "TURLA"
+   ],
+   "identification": "partial",
+   "served_on_topic": "yes"
+  },
+  "R0171": {
+   "ok": true,
+   "row_id": "R0171",
+   "notes": "The query is a generic instruction to check system logs without naming a specific ATT&CK technique or actor; the served text is authentic syslog tail output showing SSH brute-force attempts and nginx admin access logs; the analysis record contains no extracted techniques, actors, or tactics.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0190": {
+   "ok": true,
+   "row_id": "R0190",
+   "notes": "Query targets 5xx errors on nginx (public-facing app exploitation, T1190), but served text shows wtmp/last output instead of nginx access logs.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  },
+  "R0186": {
+   "ok": true,
+   "row_id": "R0186",
+   "notes": "Query targets cron auditing in /etc/cron.d/ but served text shows `crontab -l` output instead; analysis field is entirely empty.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0180": {
+   "ok": true,
+   "row_id": "R0180",
+   "notes": "Query asks about packet capture on eth0 (T1040 Network Sniffing), but served text is wtmp login session output with no relevance to packet capture.",
+   "realism": "unrealistic",
+   "served_on_topic": "no"
+  },
+  "R0165": {
+   "ok": true,
+   "row_id": "R0165",
+   "notes": "Query about system patch state relates to System Information Discovery; served text directly answers the question but analysis failed to extract any ATT&CK technique.",
+   "realism": "realistic",
+   "served_on_topic": "yes"
+  },
+  "R0199": {
+   "ok": true,
+   "row_id": "R0199",
+   "notes": "The served text is a 'who' command listing logged-in users rather than syslog kernel error output, clearly off-topic; the output reads like authentic misconfigured terminal output.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  },
+  "R0175": {
+   "ok": true,
+   "row_id": "R0175",
+   "notes": "The query asks about finding recently modified files but the served text shows `who` command output listing logged-in users, which is entirely unrelated.",
+   "realism": "unrealistic",
+   "served_on_topic": "no"
+  },
+  "R0195": {
+   "ok": true,
+   "row_id": "R0195",
+   "notes": "The served text shows exposed database credentials and environment variables, which is entirely unrelated to the query about verifying passwd/shadow file integrity using md5sum.",
+   "realism": "partial",
+   "served_on_topic": "no"
+  },
+  "R0210": {
+   "ok": true,
+   "row_id": "R0210",
+   "notes": "The served text is a ps-like process listing without any listening port (netstat/ss/lsof) output, partially addressing the query; the analysis extracted no techniques, tactics, or actors.",
+   "realism": "realistic",
+   "served_on_topic": "partial"
+  },
+  "R0189": {
+   "ok": true,
+   "row_id": "R0189",
+   "notes": "The served text is a bash command-not-found error that neither addresses the SSH brute-force topic nor extracts any techniques; the analysis record is entirely empty.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  },
+  "R0182": {
+   "ok": true,
+   "row_id": "R0182",
+   "notes": "The served text is a ps process listing showing CPU and memory metrics, which does not address disk I/O wait percentage or identify the top I/O-consuming process as the query requests.",
+   "realism": "partial",
+   "served_on_topic": "no"
+  },
+  "R0198": {
+   "ok": true,
+   "row_id": "R0198",
+   "notes": "Served text is a `who` command output showing terminal sessions; it is entirely unrelated to cron job inspection.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  },
+  "R0185": {
+   "ok": true,
+   "row_id": "R0185",
+   "notes": "The served text is an HTTP response header from nginx containing no SELinux context information whatsoever, failing to address the query about the web server process's SELinux context.",
+   "realism": "unrealistic",
+   "served_on_topic": "no"
+  },
+  "R0194": {
+   "ok": true,
+   "row_id": "R0194",
+   "notes": "Served text shows sudo -l and user info instead of listening processes on privileged ports.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  },
+  "R0192": {
+   "ok": true,
+   "row_id": "R0192",
+   "notes": "Served text is a ps aux output that does not display Linux process capabilities; analysis extracted no techniques.",
+   "realism": "partial",
+   "served_on_topic": "no"
+  },
+  "R0208": {
+   "ok": true,
+   "row_id": "R0208",
+   "notes": "Served text is a terminal transcript showing logged-in user sessions (who output), not cron job information; the machine appears to have misunderstood the query and ran who instead of checking crontab.",
+   "realism": "realistic",
+   "served_on_topic": "no"
+  }
+ }
+}

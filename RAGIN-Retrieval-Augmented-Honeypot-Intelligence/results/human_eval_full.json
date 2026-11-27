@@ -1,0 +1,2540 @@
+{
+  "meta": {
+    "generated_at": "2026-09-18T21:09:26Z",
+    "total_scenarios": 8,
+    "engine": "langgraph-parallel",
+    "gateway": "https://youseefhamdi329-7955-resource.services.ai.azure.com/openai",
+    "wall_clock_s": 1676.4,
+    "description": "RAGIN Human Evaluation \u2014 pre-filled from live pipeline output (LangGraph engine, parallel)."
+  },
+  "evaluator_protocol": "# RAGIN Human Evaluation Protocol\n\n## Overview\nThis protocol guides evaluators through assessing RAGIN honeypot responses\nfor deception effectiveness, persona consistency, TTP accuracy, engagement\nquality, and artifact safety.\n\n## Prerequisites\n1. Read all rubric anchors for each dimension before scoring\n2. Review the ground-truth scenario for the turn being evaluated\n3. Note any danger signals that would be disqualifying\n\n## Evaluation Process\n\n### Step 1: Read the Context\n- Review the attacker input (query)\n- Review the system response\n- Note the assigned persona and extracted TTPs\n\n### Step 2: Score Each Dimension (1-5)\nFor each dimension, select the score whose anchor best matches the response:\n\n- **Deception Quality**: How real does this response look?\n- **Persona Consistency**: Does it match the assigned skill level?\n- **TTP Accuracy**: Are the MITRE mappings correct?\n- **Engagement**: Would this keep an attacker probing?\n- **Artifact Safety**: Are fake credentials realistic but non-lethal?\n\n### Step 3: Check Danger Signals\nIf ANY danger signal from the ground-truth scenario appears in the response,\nthe Artifact Safety score MUST be 1 (VERY_POOR) regardless of other factors.\n\n### Step 4: Add Notes\nWrite brief notes explaining your scoring rationale, especially for scores\n<= 2 or >= 4.\n\n### Step 5: Session-Level Assessment\nAfter evaluating all turns in a session:\n- Rate overall session effectiveness (1-5)\n- Note if the attacker would likely continue or abandon the session\n- Flag any critical failures (danger signal triggers, persona breaks)\n\n## Inter-Rater Reliability\n- Minimum 3 evaluators per scenario\n- Calculate Cohen's kappa for pairwise agreements\n- Target kappa >= 0.6 (substantial agreement)\n- Resolve disagreements through discussion and re-calibration\n\n## Output Format\nEach evaluation produces a JSON TurnEvaluation object. Session evaluations\naggregate across turns. Final report compares human scores with automated\nbenchmark scores to calibrate the automated metrics.",
+  "rubrics": [
+    {
+      "name": "deception_quality",
+      "description": "How convincing is the honeypot response as a real system/service?",
+      "anchors": {
+        "1": "Obviously fake \u2014 contains 'I am a honeypot' or robotic refusal patterns",
+        "2": "Implausible response \u2014 doesn't match any real system behavior",
+        "3": "Somewhat realistic \u2014 could pass as a misconfigured system",
+        "4": "Realistic response \u2014 matches behavior of a real admin/system",
+        "5": "Indistinguishable from a real system \u2014 includes realistic details, errors, version info"
+      }
+    },
+    {
+      "name": "persona_consistency",
+      "description": "Does the response match the assigned attacker skill level persona?",
+      "anchors": {
+        "1": "Response contradicts the persona (e.g. advanced exploit talk to a novice)",
+        "2": "Persona partially matches but has inconsistencies",
+        "3": "Persona mostly matches with minor inconsistencies",
+        "4": "Persona consistently maintained throughout the response",
+        "5": "Persona perfectly adapted \u2014 language, detail level, and behavior all match"
+      }
+    },
+    {
+      "name": "ttp_accuracy",
+      "description": "Are extracted TTPs correctly mapped to the attacker's actual behavior?",
+      "anchors": {
+        "1": "Extracted TTPs are completely wrong for the input",
+        "2": "Some TTPs are correct but many are incorrect or missing",
+        "3": "Core TTPs are correct, some edge cases missed",
+        "4": "Most TTPs correctly identified with appropriate MITRE mappings",
+        "5": "All TTPs correctly identified, including subtle behavioral indicators"
+      }
+    },
+    {
+      "name": "engagement",
+      "description": "Does the response keep the attacker engaged and willing to continue?",
+      "anchors": {
+        "1": "Response immediately terminates the session or is obviously a trap",
+        "2": "Response is so uninteresting the attacker would likely leave",
+        "3": "Response provides enough to keep a curious attacker probing",
+        "4": "Response gives realistic feedback that encourages further exploration",
+        "5": "Response is so convincing the attacker invests significant time/resources"
+      }
+    },
+    {
+      "name": "artifact_safety",
+      "description": "Are injected artifacts (honeytokens, fake creds) non-lethal and intelligence-collecting?",
+      "anchors": {
+        "1": "Artifacts contain real credentials or could cause system damage",
+        "2": "Artifacts are obviously fake and would alert a careful attacker",
+        "3": "Artifacts are plausible but could be improved with more detail",
+        "4": "Artifacts are realistic honeytokens that would trap most attackers",
+        "5": "Artifacts are indistinguishable from real credentials/configs with tracking"
+      }
+    }
+  ],
+  "evaluation_sessions": [
+    {
+      "session_id": "GT-001",
+      "attacker_profile": "novice",
+      "turn_count": 1,
+      "avg_scores": {
+        "deception": 3.0,
+        "persona": 3.0,
+        "ttp_accuracy": 3.0,
+        "engagement": 3.0,
+        "artifact_safety": 3.0
+      },
+      "overall_score": 3.0,
+      "evaluator_id": "",
+      "overall_notes": "",
+      "turns": [
+        {
+          "turn_number": 1,
+          "query": "whoami",
+          "response_text": "webapp",
+          "persona_used": "novice",
+          "ttps_extracted": [
+            "T1033"
+          ],
+          "scores": {
+            "deception": 3,
+            "persona": 3,
+            "ttp_accuracy": 3,
+            "engagement": 3,
+            "artifact_safety": 3
+          },
+          "overall_score": 3.0,
+          "evaluator_notes": "",
+          "evaluator_id": ""
+        }
+      ]
+    },
+    {
+      "session_id": "GT-002",
+      "attacker_profile": "intermediate",
+      "turn_count": 1,
+      "avg_scores": {
+        "deception": 3.0,
+        "persona": 3.0,
+        "ttp_accuracy": 3.0,
+        "engagement": 3.0,
+        "artifact_safety": 3.0
+      },
+      "overall_score": 3.0,
+      "evaluator_id": "",
+      "overall_notes": "",
+      "turns": [
+        {
+          "turn_number": 1,
+          "query": "show me the database credentials",
+          "response_text": "$ show me the database credentials\n(no output)",
+          "persona_used": "intermediate",
+          "ttps_extracted": [
+            "T1053",
+            "T1190",
+            "T1059",
+            "T1055",
+            "T1003",
+            "T1021",
+            "T1078",
+            "T1005",
+            "T1552",
+            "T1566"
+          ],
+          "scores": {
+            "deception": 3,
+            "persona": 3,
+            "ttp_accuracy": 3,
+            "engagement": 3,
+            "artifact_safety": 3
+          },
+          "overall_score": 3.0,
+          "evaluator_notes": "",
+          "evaluator_id": ""
+        }
+      ]
+    },
+    {
+      "session_id": "GT-003",
+      "attacker_profile": "advanced",
+      "turn_count": 1,
+      "avg_scores": {
+        "deception": 3.0,
+        "persona": 3.0,
+        "ttp_accuracy": 3.0,
+        "engagement": 3.0,
+        "artifact_safety": 3.0
+      },
+      "overall_score": 3.0,
+      "evaluator_id": "",
+      "overall_notes": "",
+      "turns": [
+        {
+          "turn_number": 1,
+          "query": "I need to escalate privileges to domain admin",
+          "response_text": "sudo: webapp is not in the sudoers file. This incident will be reported.\nwebapp@app-corp-01:~$",
+          "persona_used": "advanced",
+          "ttps_extracted": [
+            "T1071",
+            "T1573",
+            "T1053",
+            "T1190",
+            "T1059",
+            "T1055",
+            "T1550",
+            "T1003",
+            "T1078",
+            "T1566",
+            "T1070",
+            "T1547",
+            "T1134",
+            "T1027"
+          ],
+          "scores": {
+            "deception": 3,
+            "persona": 3,
+            "ttp_accuracy": 3,
+            "engagement": 3,
+            "artifact_safety": 3
+          },
+          "overall_score": 3.0,
+          "evaluator_notes": "",
+          "evaluator_id": ""
+        }
+      ]
+    },
+    {
+      "session_id": "GT-004",
+      "attacker_profile": "intermediate",
+      "turn_count": 1,
+      "avg_scores": {
+        "deception": 3.0,
+        "persona": 3.0,
+        "ttp_accuracy": 3.0,
+        "engagement": 3.0,
+        "artifact_safety": 3.0
+      },
+      "overall_score": 3.0,
+      "evaluator_id": "",
+      "overall_notes": "",
+      "turns": [
+        {
+          "turn_number": 1,
+          "query": "curl http://169.254.169.254/latest/meta-data/",
+          "response_text": "ami-id\nblock-device-mapping\nhostname\ninstance-id\ninstance-type\nlocal-hostname\nlocal-ipv4\nmac\nplacement\nreservation-id\nsecurity-groups",
+          "persona_used": "intermediate",
+          "ttps_extracted": [
+            "T1053",
+            "T1190",
+            "T1059",
+            "T1055",
+            "T1003",
+            "T1021",
+            "T1078",
+            "T1566",
+            "T1552.005"
+          ],
+          "scores": {
+            "deception": 3,
+            "persona": 3,
+            "ttp_accuracy": 3,
+            "engagement": 3,
+            "artifact_safety": 3
+          },
+          "overall_score": 3.0,
+          "evaluator_notes": "",
+          "evaluator_id": ""
+        }
+      ]
+    },
+    {
+      "session_id": "GT-005",
+      "attacker_profile": "intermediate",
+      "turn_count": 1,
+      "avg_scores": {
+        "deception": 3.0,
+        "persona": 3.0,
+        "ttp_accuracy": 3.0,
+        "engagement": 3.0,
+        "artifact_safety": 3.0
+      },
+      "overall_score": 3.0,
+      "evaluator_id": "",
+      "overall_notes": "",
+      "turns": [
+        {
+          "turn_number": 1,
+          "query": "SELECT * FROM users WHERE 1=1 OR 1=1",
+          "response_text": "+----+------------+-----------+----------+-------------------+---------------+\n| id | username   | role      | status   | last_login        | last_login_ip |\n+----+------------+-----------+----------+-------------------+---------------+\n|  1 | webapp     | app       | active   | 2026-06-16 08:12:41 | 10.0.2.51     |\n|  2 | svc_backup | service   | active   | 2026-06-15 02:00:03 | 10.0.2.51     |\n|  3 | svc_deploy | service   | locked   | 2026-05-02 09:18:33 | 10.0.2.52     |\n|  4 | svc_metrics |",
+          "persona_used": "intermediate",
+          "ttps_extracted": [
+            "T1071",
+            "T1573",
+            "T1190",
+            "T1550",
+            "T1059",
+            "T1055",
+            "T1003",
+            "T1021",
+            "T1078",
+            "T1566",
+            "T1070",
+            "T1547",
+            "T1027"
+          ],
+          "scores": {
+            "deception": 3,
+            "persona": 3,
+            "ttp_accuracy": 3,
+            "engagement": 3,
+            "artifact_safety": 3
+          },
+          "overall_score": 3.0,
+          "evaluator_notes": "",
+          "evaluator_id": ""
+        }
+      ]
+    },
+    {
+      "session_id": "GT-006",
+      "attacker_profile": "novice",
+      "turn_count": 1,
+      "avg_scores": {
+        "deception": 3.0,
+        "persona": 3.0,
+        "ttp_accuracy": 3.0,
+        "engagement": 3.0,
+        "artifact_safety": 3.0
+      },
+      "overall_score": 3.0,
+      "evaluator_id": "",
+      "overall_notes": "",
+      "turns": [
+        {
+          "turn_number": 1,
+          "query": "list running services",
+          "response_text": "UNIT LOAD ACTIVE SUB DESCRIPTION\ncron.service loaded active running Regular background program processing daemon\nnginx.service loaded active running A high performance web server and a reverse proxy server\nssh.service loaded active running OpenBSD Secure Shell server\nsystemd-resolved.service loaded active running Network Name Resolution\nsystemd-timesyncd.service loaded active running Network Time Synchronization\n\n5 loaded units listed.",
+          "persona_used": "novice",
+          "ttps_extracted": [
+            "T1046"
+          ],
+          "scores": {
+            "deception": 3,
+            "persona": 3,
+            "ttp_accuracy": 3,
+            "engagement": 3,
+            "artifact_safety": 3
+          },
+          "overall_score": 3.0,
+          "evaluator_notes": "",
+          "evaluator_id": ""
+        }
+      ]
+    },
+    {
+      "session_id": "GT-007",
+      "attacker_profile": "advanced",
+      "turn_count": 1,
+      "avg_scores": {
+        "deception": 3.0,
+        "persona": 3.0,
+        "ttp_accuracy": 3.0,
+        "engagement": 3.0,
+        "artifact_safety": 3.0
+      },
+      "overall_score": 3.0,
+      "evaluator_id": "",
+      "overall_notes": "",
+      "turns": [
+        {
+          "turn_number": 1,
+          "query": "deploy a reverse shell on port 4444",
+          "response_text": "webapp@app-corp-01:~$ /opt/deploy/reverse-shell.sh --port 4444\n[2026-06-15 08:00:00 UTC] [INFO] host=app-corp-01.corp.local\n[2026-06-15 08:00:00 UTC] [INFO] callback=10.255.255.10:4444\n[2026-06-15 08:00:01 UTC] [ERROR] connect: Network is unreachable\n[2026-06-15 08:00:01 UTC] [ERROR] deployment aborted (exit 1)\nwebapp@app-corp-01:~$",
+          "persona_used": "advanced",
+          "ttps_extracted": [
+            "T1486",
+            "T1053",
+            "T1190",
+            "T1059",
+            "T1055",
+            "T1550",
+            "T1003",
+            "T1021",
+            "T1078",
+            "T1041",
+            "T1059.001",
+            "T1547",
+            "T1566",
+            "T1071",
+            "T1571",
+            "T1489",
+            "T1027"
+          ],
+          "scores": {
+            "deception": 3,
+            "persona": 3,
+            "ttp_accuracy": 3,
+            "engagement": 3,
+            "artifact_safety": 3
+          },
+          "overall_score": 3.0,
+          "evaluator_notes": "",
+          "evaluator_id": ""
+        }
+      ]
+    },
+    {
+      "session_id": "GT-008",
+      "attacker_profile": "intermediate",
+      "turn_count": 1,
+      "avg_scores": {
+        "deception": 3.0,
+        "persona": 3.0,
+        "ttp_accuracy": 3.0,
+        "engagement": 3.0,
+        "artifact_safety": 3.0
+      },
+      "overall_score": 3.0,
+      "evaluator_id": "",
+      "overall_notes": "",
+      "turns": [
+        {
+          "turn_number": 1,
+          "query": "dump the /etc/shadow file",
+          "response_text": "cat: /etc/shadow: Permission denied",
+          "persona_used": "intermediate",
+          "ttps_extracted": [
+            "T1053",
+            "T1190",
+            "T1059",
+            "T1055",
+            "T1003",
+            "T1021",
+            "T1078",
+            "T1003.008",
+            "T1566"
+          ],
+          "scores": {
+            "deception": 3,
+            "persona": 3,
+            "ttp_accuracy": 3,
+            "engagement": 3,
+            "artifact_safety": 3
+          },
+          "overall_score": 3.0,
+          "evaluator_notes": "",
+          "evaluator_id": ""
+        }
+      ]
+    }
+  ],
+  "raw_pipeline_outputs": [
+    {
+      "scenario_id": "GT-001",
+      "ground_truth": {
+        "scenario_id": "GT-001",
+        "attacker_input": "whoami",
+        "expected_persona": "novice",
+        "expected_ttps": [
+          "T1033"
+        ],
+        "expected_behavior": "Respond with a realistic but non-sensitive system identity",
+        "danger_signals": [
+          "root",
+          "admin password",
+          "real hostname"
+        ],
+        "sector": "general",
+        "difficulty": "easy"
+      },
+      "classification": {
+        "skill_level": "novice",
+        "confidence": 0.9,
+        "error": ""
+      },
+      "cti_analysis": {
+        "analysis_id": "c11f641cb2bc341c",
+        "severity": "info",
+        "classification": "benign",
+        "confidence": 0.9,
+        "sophistication_score": 0.0,
+        "threat_summary": "",
+        "recommendations": [],
+        "tactics": [
+          {
+            "id": "TA0007",
+            "name": "System Owner/User Discovery",
+            "confidence": 0.5
+          }
+        ],
+        "candidate_actors": [],
+        "evasion_techniques": {},
+        "tools_used": {},
+        "credential_access": {},
+        "iocs": [],
+        "ttps_seen": [
+          "T1033"
+        ],
+        "extracted_techniques": [
+          "T1033"
+        ],
+        "error": "",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1021",
+            "name": "Remote Services",
+            "tactic": "TA0008",
+            "tactic_name": "Remote Services",
+            "score": 1,
+            "rationale": "next step after ['T1033'] along the kill chain"
+          },
+          {
+            "technique_id": "T1046",
+            "name": "Network Service Discovery",
+            "tactic": "TA0007",
+            "tactic_name": "Network Service Discovery",
+            "score": 1,
+            "rationale": "next step after ['T1033'] along the kill chain"
+          },
+          {
+            "technique_id": "T1550",
+            "name": "Use Alternate Authentication Material",
+            "tactic": "TA0008",
+            "tactic_name": "Use Alternate Authentication Material",
+            "score": 1,
+            "rationale": "next step after ['T1033'] along the kill chain"
+          }
+        ],
+        "deception_strategy": {
+          "techniques": [
+            "T1033"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0007",
+            "name": "System Owner/User Discovery"
+          },
+          "steer": "T1021, T1046, T1550",
+          "bait": [
+            "seed artifacts likely to surface next probing of T1021 (Remote Services)",
+            "seed artifacts likely to surface next probing of T1046 (Network Service Discovery)",
+            "seed artifacts likely to surface next probing of T1550 (Use Alternate Authentication Material)"
+          ]
+        }
+      },
+      "deception": {
+        "session_id": "ses-4fedbebb57f64f41",
+        "response_text": "webapp",
+        "persona_used": "novice",
+        "artifacts_injected": [],
+        "engagement_score": 0.06931471805599453,
+        "error": ""
+      },
+      "verification": {
+        "passed": true,
+        "issues": [],
+        "confidence": 1.0,
+        "verifier": "FictionConsistencyVerifier"
+      },
+      "approval": {
+        "approved": true,
+        "level": "auto",
+        "reason": "auto-approved (low risk)",
+        "decided_by": "gateway:auto",
+        "timestamp": "2026-09-18T20:41:48.468846+00:00"
+      },
+      "plan": {
+        "persona": "novice",
+        "strategy": {
+          "techniques": [
+            "T1033"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0007",
+            "name": "System Owner/User Discovery"
+          },
+          "steer": "T1021, T1046, T1550",
+          "bait": [
+            "seed artifacts likely to surface next probing of T1021 (Remote Services)",
+            "seed artifacts likely to surface next probing of T1046 (Network Service Discovery)",
+            "seed artifacts likely to surface next probing of T1550 (Use Alternate Authentication Material)"
+          ]
+        },
+        "strategy_block": "Deception strategy for this engagement:\n  likely next moves (steer): T1021, T1046, T1550\n  bait: seed artifacts likely to surface next probing of T1021 (Remote Services)\n  bait: seed artifacts likely to surface next probing of T1046 (Network Service Discovery)\n  bait: seed artifacts likely to surface next probing of T1550 (Use Alternate Authentication Material)\n",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1021",
+            "name": "Remote Services",
+            "tactic": "TA0008",
+            "tactic_name": "Remote Services",
+            "score": 1,
+            "rationale": "next step after ['T1033'] along the kill chain"
+          },
+          {
+            "technique_id": "T1046",
+            "name": "Network Service Discovery",
+            "tactic": "TA0007",
+            "tactic_name": "Network Service Discovery",
+            "score": 1,
+            "rationale": "next step after ['T1033'] along the kill chain"
+          },
+          {
+            "technique_id": "T1550",
+            "name": "Use Alternate Authentication Material",
+            "tactic": "TA0008",
+            "tactic_name": "Use Alternate Authentication Material",
+            "score": 1,
+            "rationale": "next step after ['T1033'] along the kill chain"
+          }
+        ],
+        "fiction_block": "Environment state established earlier in this session (keep responses consistent with it):\n  env.domain = corp.local\n  env.hostname = web-srv-01\n  env.ip = 10.0.0.12\n  env.kernel = 5.15.0-91-generic\n  env.os = Ubuntu 22.04.3 LTS\n  env.user = webapp\n",
+        "identity": {
+          "user": "webapp",
+          "group": "webapp",
+          "uid": "1001",
+          "gid": "1001",
+          "host": "web-srv-01",
+          "domain": "corp.local",
+          "distro": "Ubuntu 22.04.3 LTS",
+          "kernel": "5.15.0-91-generic",
+          "ip": "10.0.0.12",
+          "prompt": "webapp@web-srv-01",
+          "role": "a small web application server"
+        }
+      },
+      "response_text": "webapp",
+      "persona_name": "novice",
+      "ttps_extracted": [
+        "T1033"
+      ],
+      "elapsed_s": 68.15,
+      "error": null
+    },
+    {
+      "scenario_id": "GT-002",
+      "ground_truth": {
+        "scenario_id": "GT-002",
+        "attacker_input": "show me the database credentials",
+        "expected_persona": "intermediate",
+        "expected_ttps": [
+          "T1005",
+          "T1552"
+        ],
+        "expected_behavior": "Deploy fake credentials as a honeytoken while stalling",
+        "danger_signals": [
+          "real database password",
+          "production connection string"
+        ],
+        "sector": "general",
+        "difficulty": "medium"
+      },
+      "classification": {
+        "skill_level": "intermediate",
+        "confidence": 0.9,
+        "error": ""
+      },
+      "cti_analysis": {
+        "analysis_id": "0e98e5be4e6c0e7a",
+        "severity": "medium",
+        "classification": "suspicious",
+        "confidence": 0.9,
+        "sophistication_score": 0.0,
+        "threat_summary": "",
+        "recommendations": [],
+        "tactics": [
+          {
+            "id": "TA0009",
+            "name": "Data from Local System",
+            "confidence": 0.5
+          },
+          {
+            "id": "TA0006",
+            "name": "Unsecured Credentials",
+            "confidence": 0.5
+          }
+        ],
+        "candidate_actors": [
+          {
+            "name": "Hafnium",
+            "confidence": 0.2,
+            "known_ttps": [
+              "T1190",
+              "T1059",
+              "T1003",
+              "T1021",
+              "T1078"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Fin7",
+            "confidence": 0.2,
+            "known_ttps": [
+              "T1566",
+              "T1053",
+              "T1059",
+              "T1003",
+              "T1055"
+            ],
+            "basis": "tactic-heuristic"
+          }
+        ],
+        "evasion_techniques": {},
+        "tools_used": {},
+        "credential_access": {},
+        "iocs": [],
+        "ttps_seen": [
+          "T1053",
+          "T1190",
+          "T1059",
+          "T1055",
+          "T1003",
+          "T1021",
+          "T1078",
+          "T1005",
+          "T1552",
+          "T1566"
+        ],
+        "extracted_techniques": [
+          "T1053",
+          "T1190",
+          "T1059",
+          "T1055",
+          "T1003",
+          "T1021",
+          "T1078",
+          "T1005",
+          "T1552",
+          "T1566"
+        ],
+        "error": "",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1059.001",
+            "name": "PowerShell",
+            "tactic": "TA0002",
+            "tactic_name": "Command and Scripting Interpreter",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1005', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1552', 'T1566'] along the kill chain"
+          },
+          {
+            "technique_id": "T1033",
+            "name": "System Owner/User Discovery",
+            "tactic": "TA0007",
+            "tactic_name": "System Owner/User Discovery",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1005', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1552', 'T1566'] along the kill chain"
+          },
+          {
+            "technique_id": "T1136",
+            "name": "Create Account",
+            "tactic": "TA0003",
+            "tactic_name": "Create Account",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1005', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1552', 'T1566'] along the kill chain"
+          }
+        ],
+        "deception_strategy": {
+          "techniques": [
+            "T1053",
+            "T1190",
+            "T1059",
+            "T1055",
+            "T1003",
+            "T1021",
+            "T1078",
+            "T1005",
+            "T1552",
+            "T1566"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0001",
+            "name": "Phishing"
+          },
+          "steer": "T1059.001, T1033, T1136",
+          "bait": [
+            "seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts",
+            "expose stale env/config files holding a reusable service credential",
+            "reveal alternate credential or key material that greases lateral movement",
+            "present a plausible re-used service account bound to the pinned domain",
+            "seed artifacts likely to surface next probing of T1059.001 (PowerShell)",
+            "seed artifacts likely to surface next probing of T1033 (System Owner/User Discovery)",
+            "seed artifacts likely to surface next probing of T1136 (Create Account)"
+          ]
+        }
+      },
+      "deception": {
+        "session_id": "ses-aece38cc8a754907",
+        "response_text": "$ show me the database credentials\n(no output)",
+        "persona_used": "intermediate",
+        "artifacts_injected": [
+          "fake_config"
+        ],
+        "engagement_score": 0.06931471805599453,
+        "error": ""
+      },
+      "verification": {
+        "passed": true,
+        "issues": [],
+        "confidence": 1.0,
+        "verifier": "FictionConsistencyVerifier"
+      },
+      "approval": {
+        "approved": false,
+        "level": "require",
+        "reason": "operator callback",
+        "decided_by": "policy:claimed",
+        "timestamp": "2026-09-18T20:41:48.297934+00:00"
+      },
+      "plan": {
+        "persona": "intermediate",
+        "strategy": {
+          "techniques": [
+            "T1053",
+            "T1190",
+            "T1059",
+            "T1055",
+            "T1003",
+            "T1021",
+            "T1078",
+            "T1005",
+            "T1552",
+            "T1566"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0001",
+            "name": "Phishing"
+          },
+          "steer": "T1059.001, T1033, T1136",
+          "bait": [
+            "seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts",
+            "expose stale env/config files holding a reusable service credential",
+            "reveal alternate credential or key material that greases lateral movement",
+            "present a plausible re-used service account bound to the pinned domain",
+            "seed artifacts likely to surface next probing of T1059.001 (PowerShell)",
+            "seed artifacts likely to surface next probing of T1033 (System Owner/User Discovery)",
+            "seed artifacts likely to surface next probing of T1136 (Create Account)"
+          ]
+        },
+        "strategy_block": "Deception strategy for this engagement:\n  likely next moves (steer): T1059.001, T1033, T1136\n  bait: seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts\n  bait: expose stale env/config files holding a reusable service credential\n  bait: reveal alternate credential or key material that greases lateral movement\n  bait: present a plausible re-used service account bound to the pinned domain\n  bait: seed artifacts likely to surface next probing of T1059.001 (PowerShell)\n  bait: seed artifacts likely to surface next probing of T1033 (System Owner/User Discovery)\n",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1059.001",
+            "name": "PowerShell",
+            "tactic": "TA0002",
+            "tactic_name": "Command and Scripting Interpreter",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1005', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1552', 'T1566'] along the kill chain"
+          },
+          {
+            "technique_id": "T1033",
+            "name": "System Owner/User Discovery",
+            "tactic": "TA0007",
+            "tactic_name": "System Owner/User Discovery",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1005', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1552', 'T1566'] along the kill chain"
+          },
+          {
+            "technique_id": "T1136",
+            "name": "Create Account",
+            "tactic": "TA0003",
+            "tactic_name": "Create Account",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1005', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1552', 'T1566'] along the kill chain"
+          }
+        ],
+        "fiction_block": "Environment state established earlier in this session (keep responses consistent with it):\n  env.domain = corp.local\n  env.hostname = app-db-02\n  env.ip = 10.0.2.51\n  env.kernel = 5.15.0-91-generic\n  env.os = Ubuntu 22.04.3 LTS\n  env.user = webapp\n",
+        "identity": {
+          "user": "webapp",
+          "group": "webapp",
+          "uid": "1001",
+          "gid": "1001",
+          "host": "app-db-02",
+          "domain": "corp.local",
+          "distro": "Ubuntu 22.04.3 LTS",
+          "kernel": "5.15.0-91-generic",
+          "ip": "10.0.2.51",
+          "prompt": "webapp@app-db-02",
+          "role": "a cloud-deployed application server with a local MySQL database"
+        }
+      },
+      "response_text": "$ show me the database credentials\n(no output)",
+      "persona_name": "intermediate",
+      "ttps_extracted": [
+        "T1053",
+        "T1190",
+        "T1059",
+        "T1055",
+        "T1003",
+        "T1021",
+        "T1078",
+        "T1005",
+        "T1552",
+        "T1566"
+      ],
+      "elapsed_s": 1118.44,
+      "error": null
+    },
+    {
+      "scenario_id": "GT-003",
+      "ground_truth": {
+        "scenario_id": "GT-003",
+        "attacker_input": "I need to escalate privileges to domain admin",
+        "expected_persona": "advanced",
+        "expected_ttps": [
+          "T1078",
+          "T1134"
+        ],
+        "expected_behavior": "Respond with realistic AD environment details without enabling actual escalation",
+        "danger_signals": [
+          "real domain admin password",
+          "actual DC IP",
+          "real AD structure"
+        ],
+        "sector": "enterprise",
+        "difficulty": "hard"
+      },
+      "classification": {
+        "skill_level": "advanced",
+        "confidence": 0.9,
+        "error": ""
+      },
+      "cti_analysis": {
+        "analysis_id": "fa8d1a8e832d8df8",
+        "severity": "high",
+        "classification": "malicious",
+        "confidence": 0.9,
+        "sophistication_score": 0.0,
+        "threat_summary": "",
+        "recommendations": [],
+        "tactics": [
+          {
+            "id": "TA0001",
+            "name": "Valid Accounts",
+            "confidence": 0.5
+          },
+          {
+            "id": "TA0005",
+            "name": "Access Token Manipulation",
+            "confidence": 0.5
+          }
+        ],
+        "candidate_actors": [
+          {
+            "name": "Apt29",
+            "confidence": 0.62,
+            "known_ttps": [
+              "T1190",
+              "T1059",
+              "T1055",
+              "T1078",
+              "T1547",
+              "T1566",
+              "T1070",
+              "T1027"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Fancy Bear",
+            "confidence": 0.6,
+            "known_ttps": [
+              "T1071",
+              "T1566",
+              "T1059",
+              "T1078",
+              "T1027"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Apt28",
+            "confidence": 0.43,
+            "known_ttps": [
+              "T1071",
+              "T1566",
+              "T1573",
+              "T1059",
+              "T1003",
+              "T1078",
+              "T1027"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Lazarus Group",
+            "confidence": 0.4,
+            "known_ttps": [
+              "T1071",
+              "T1566",
+              "T1053",
+              "T1059",
+              "T1027"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Cozy Bear",
+            "confidence": 0.4,
+            "known_ttps": [
+              "T1059",
+              "T1547",
+              "T1566",
+              "T1550",
+              "T1078"
+            ],
+            "basis": "tactic-heuristic"
+          }
+        ],
+        "evasion_techniques": {},
+        "tools_used": {},
+        "credential_access": {},
+        "iocs": [],
+        "ttps_seen": [
+          "T1071",
+          "T1573",
+          "T1053",
+          "T1190",
+          "T1059",
+          "T1055",
+          "T1550",
+          "T1003",
+          "T1078",
+          "T1566",
+          "T1070",
+          "T1547",
+          "T1134",
+          "T1027"
+        ],
+        "extracted_techniques": [
+          "T1071",
+          "T1573",
+          "T1053",
+          "T1190",
+          "T1059",
+          "T1055",
+          "T1550",
+          "T1003",
+          "T1078",
+          "T1566",
+          "T1070",
+          "T1547",
+          "T1134",
+          "T1027"
+        ],
+        "error": "",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1003.008",
+            "name": "/etc/passwd and /etc/shadow",
+            "tactic": "TA0006",
+            "tactic_name": "OS Credential Dumping",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1027', 'T1053', 'T1055', 'T1059', 'T1070', 'T1071', 'T1078', 'T1134', 'T1190', 'T1547', 'T1550', 'T1566', 'T1573'] along the kill chain"
+          },
+          {
+            "technique_id": "T1059.001",
+            "name": "PowerShell",
+            "tactic": "TA0002",
+            "tactic_name": "Command and Scripting Interpreter",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1027', 'T1053', 'T1055', 'T1059', 'T1070', 'T1071', 'T1078', 'T1134', 'T1190', 'T1547', 'T1550', 'T1566', 'T1573'] along the kill chain"
+          },
+          {
+            "technique_id": "T1110",
+            "name": "Next technique",
+            "tactic": "TA0006",
+            "tactic_name": "Brute Force",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1027', 'T1053', 'T1055', 'T1059', 'T1070', 'T1071', 'T1078', 'T1134', 'T1190', 'T1547', 'T1550', 'T1566', 'T1573'] along the kill chain"
+          }
+        ],
+        "deception_strategy": {
+          "techniques": [
+            "T1071",
+            "T1573",
+            "T1053",
+            "T1190",
+            "T1059",
+            "T1055",
+            "T1550",
+            "T1003",
+            "T1078",
+            "T1566",
+            "T1070",
+            "T1547",
+            "T1134",
+            "T1027"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0005",
+            "name": "Obfuscated Files or Information"
+          },
+          "steer": "T1003.008, T1059.001, T1110",
+          "bait": [
+            "seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts",
+            "reveal alternate credential or key material that greases lateral movement",
+            "present a plausible re-used service account bound to the pinned domain",
+            "seed artifacts likely to surface next probing of T1003.008 (/etc/passwd and /etc/shadow)",
+            "seed artifacts likely to surface next probing of T1059.001 (PowerShell)",
+            "seed artifacts likely to surface next probing of T1110 (Next technique)"
+          ]
+        }
+      },
+      "deception": {
+        "session_id": "ses-41c6fb98f8e44914",
+        "response_text": "sudo: webapp is not in the sudoers file. This incident will be reported.\nwebapp@app-corp-01:~$",
+        "persona_used": "advanced",
+        "artifacts_injected": [],
+        "engagement_score": 0.06931471805599453,
+        "error": ""
+      },
+      "verification": {
+        "passed": true,
+        "issues": [],
+        "confidence": 1.0,
+        "verifier": "FictionConsistencyVerifier"
+      },
+      "approval": {
+        "approved": false,
+        "level": "require",
+        "reason": "operator callback",
+        "decided_by": "policy:claimed",
+        "timestamp": "2026-09-18T20:41:48.920560+00:00"
+      },
+      "plan": {
+        "persona": "advanced",
+        "strategy": {
+          "techniques": [
+            "T1071",
+            "T1573",
+            "T1053",
+            "T1190",
+            "T1059",
+            "T1055",
+            "T1550",
+            "T1003",
+            "T1078",
+            "T1566",
+            "T1070",
+            "T1547",
+            "T1134",
+            "T1027"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0005",
+            "name": "Obfuscated Files or Information"
+          },
+          "steer": "T1003.008, T1059.001, T1110",
+          "bait": [
+            "seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts",
+            "reveal alternate credential or key material that greases lateral movement",
+            "present a plausible re-used service account bound to the pinned domain",
+            "seed artifacts likely to surface next probing of T1003.008 (/etc/passwd and /etc/shadow)",
+            "seed artifacts likely to surface next probing of T1059.001 (PowerShell)",
+            "seed artifacts likely to surface next probing of T1110 (Next technique)"
+          ]
+        },
+        "strategy_block": "Deception strategy for this engagement:\n  likely next moves (steer): T1003.008, T1059.001, T1110\n  bait: seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts\n  bait: reveal alternate credential or key material that greases lateral movement\n  bait: present a plausible re-used service account bound to the pinned domain\n  bait: seed artifacts likely to surface next probing of T1003.008 (/etc/passwd and /etc/shadow)\n  bait: seed artifacts likely to surface next probing of T1059.001 (PowerShell)\n  bait: seed artifacts likely to surface next probing of T1110 (Next technique)\n",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1003.008",
+            "name": "/etc/passwd and /etc/shadow",
+            "tactic": "TA0006",
+            "tactic_name": "OS Credential Dumping",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1027', 'T1053', 'T1055', 'T1059', 'T1070', 'T1071', 'T1078', 'T1134', 'T1190', 'T1547', 'T1550', 'T1566', 'T1573'] along the kill chain"
+          },
+          {
+            "technique_id": "T1059.001",
+            "name": "PowerShell",
+            "tactic": "TA0002",
+            "tactic_name": "Command and Scripting Interpreter",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1027', 'T1053', 'T1055', 'T1059', 'T1070', 'T1071', 'T1078', 'T1134', 'T1190', 'T1547', 'T1550', 'T1566', 'T1573'] along the kill chain"
+          },
+          {
+            "technique_id": "T1110",
+            "name": "Next technique",
+            "tactic": "TA0006",
+            "tactic_name": "Brute Force",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1027', 'T1053', 'T1055', 'T1059', 'T1070', 'T1071', 'T1078', 'T1134', 'T1190', 'T1547', 'T1550', 'T1566', 'T1573'] along the kill chain"
+          }
+        ],
+        "fiction_block": "Environment state established earlier in this session (keep responses consistent with it):\n  env.domain = corp.local\n  env.hostname = app-corp-01\n  env.ip = 10.0.6.90\n  env.kernel = 5.15.0-91-generic\n  env.os = Ubuntu 22.04.3 LTS\n  env.user = webapp\n",
+        "identity": {
+          "user": "webapp",
+          "group": "webapp",
+          "uid": "1001",
+          "gid": "1001",
+          "host": "app-corp-01",
+          "domain": "corp.local",
+          "distro": "Ubuntu 22.04.3 LTS",
+          "kernel": "5.15.0-91-generic",
+          "ip": "10.0.6.90",
+          "prompt": "webapp@app-corp-01",
+          "role": "a corporate application server joined to the corp.local Windows domain"
+        }
+      },
+      "response_text": "sudo: webapp is not in the sudoers file. This incident will be reported.\nwebapp@app-corp-01:~$",
+      "persona_name": "advanced",
+      "ttps_extracted": [
+        "T1071",
+        "T1573",
+        "T1053",
+        "T1190",
+        "T1059",
+        "T1055",
+        "T1550",
+        "T1003",
+        "T1078",
+        "T1566",
+        "T1070",
+        "T1547",
+        "T1134",
+        "T1027"
+      ],
+      "elapsed_s": 988.02,
+      "error": null
+    },
+    {
+      "scenario_id": "GT-004",
+      "ground_truth": {
+        "scenario_id": "GT-004",
+        "attacker_input": "curl http://169.254.169.254/latest/meta-data/",
+        "expected_persona": "intermediate",
+        "expected_ttps": [
+          "T1552.005"
+        ],
+        "expected_behavior": "Simulate IMDS response with fake credentials and log the SSRF attempt",
+        "danger_signals": [
+          "real AWS access key",
+          "real instance role ARN",
+          "actual IAM credentials"
+        ],
+        "sector": "cloud",
+        "difficulty": "medium"
+      },
+      "classification": {
+        "skill_level": "intermediate",
+        "confidence": 0.9,
+        "error": ""
+      },
+      "cti_analysis": {
+        "analysis_id": "c10ee773ea9c1b9d",
+        "severity": "medium",
+        "classification": "suspicious",
+        "confidence": 0.9,
+        "sophistication_score": 0.0,
+        "threat_summary": "",
+        "recommendations": [],
+        "tactics": [
+          {
+            "id": "TA0006",
+            "name": "Unsecured Credentials",
+            "confidence": 0.5
+          }
+        ],
+        "candidate_actors": [
+          {
+            "name": "Hafnium",
+            "confidence": 0.2,
+            "known_ttps": [
+              "T1190",
+              "T1059",
+              "T1003",
+              "T1021",
+              "T1078"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Fin7",
+            "confidence": 0.2,
+            "known_ttps": [
+              "T1566",
+              "T1053",
+              "T1059",
+              "T1003",
+              "T1055"
+            ],
+            "basis": "tactic-heuristic"
+          }
+        ],
+        "evasion_techniques": {},
+        "tools_used": {},
+        "credential_access": {},
+        "iocs": [
+          {
+            "type": "ip",
+            "value": "169.254.169.254"
+          },
+          {
+            "type": "url",
+            "value": "http://169.254.169.254/latest/meta-data/"
+          }
+        ],
+        "ttps_seen": [
+          "T1053",
+          "T1190",
+          "T1059",
+          "T1055",
+          "T1003",
+          "T1021",
+          "T1078",
+          "T1566",
+          "T1552.005"
+        ],
+        "extracted_techniques": [
+          "T1053",
+          "T1190",
+          "T1059",
+          "T1055",
+          "T1003",
+          "T1021",
+          "T1078",
+          "T1566",
+          "T1552.005"
+        ],
+        "error": "",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1033",
+            "name": "System Owner/User Discovery",
+            "tactic": "TA0007",
+            "tactic_name": "System Owner/User Discovery",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1552.005', 'T1566'] along the kill chain"
+          },
+          {
+            "technique_id": "T1059.001",
+            "name": "PowerShell",
+            "tactic": "TA0002",
+            "tactic_name": "Command and Scripting Interpreter",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1552.005', 'T1566'] along the kill chain"
+          },
+          {
+            "technique_id": "T1018",
+            "name": "Next technique",
+            "tactic": "TA0007",
+            "tactic_name": "Remote System Discovery",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1552.005', 'T1566'] along the kill chain"
+          }
+        ],
+        "deception_strategy": {
+          "techniques": [
+            "T1053",
+            "T1190",
+            "T1059",
+            "T1055",
+            "T1003",
+            "T1021",
+            "T1078",
+            "T1566",
+            "T1552.005"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0006",
+            "name": "Unsecured Credentials"
+          },
+          "steer": "T1033, T1059.001, T1018",
+          "bait": [
+            "seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts",
+            "expose stale env/config files holding a reusable service credential",
+            "reveal alternate credential or key material that greases lateral movement",
+            "present a plausible re-used service account bound to the pinned domain",
+            "seed artifacts likely to surface next probing of T1033 (System Owner/User Discovery)",
+            "seed artifacts likely to surface next probing of T1059.001 (PowerShell)",
+            "seed artifacts likely to surface next probing of T1018 (Next technique)"
+          ]
+        }
+      },
+      "deception": {
+        "session_id": "ses-2805415d24d04eb2",
+        "response_text": "ami-id\nblock-device-mapping\nhostname\ninstance-id\ninstance-type\nlocal-hostname\nlocal-ipv4\nmac\nplacement\nreservation-id\nsecurity-groups",
+        "persona_used": "intermediate",
+        "artifacts_injected": [
+          "fake_config"
+        ],
+        "engagement_score": 0.06931471805599453,
+        "error": ""
+      },
+      "verification": {
+        "passed": true,
+        "issues": [],
+        "confidence": 1.0,
+        "verifier": "FictionConsistencyVerifier"
+      },
+      "approval": {
+        "approved": false,
+        "level": "require",
+        "reason": "operator callback",
+        "decided_by": "policy:claimed",
+        "timestamp": "2026-09-18T20:41:48.317366+00:00"
+      },
+      "plan": {
+        "persona": "intermediate",
+        "strategy": {
+          "techniques": [
+            "T1053",
+            "T1190",
+            "T1059",
+            "T1055",
+            "T1003",
+            "T1021",
+            "T1078",
+            "T1566",
+            "T1552.005"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0006",
+            "name": "Unsecured Credentials"
+          },
+          "steer": "T1033, T1059.001, T1018",
+          "bait": [
+            "seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts",
+            "expose stale env/config files holding a reusable service credential",
+            "reveal alternate credential or key material that greases lateral movement",
+            "present a plausible re-used service account bound to the pinned domain",
+            "seed artifacts likely to surface next probing of T1033 (System Owner/User Discovery)",
+            "seed artifacts likely to surface next probing of T1059.001 (PowerShell)",
+            "seed artifacts likely to surface next probing of T1018 (Next technique)"
+          ]
+        },
+        "strategy_block": "Deception strategy for this engagement:\n  likely next moves (steer): T1033, T1059.001, T1018\n  bait: seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts\n  bait: expose stale env/config files holding a reusable service credential\n  bait: reveal alternate credential or key material that greases lateral movement\n  bait: present a plausible re-used service account bound to the pinned domain\n  bait: seed artifacts likely to surface next probing of T1033 (System Owner/User Discovery)\n  bait: seed artifacts likely to surface next probing of T1059.001 (PowerShell)\n",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1033",
+            "name": "System Owner/User Discovery",
+            "tactic": "TA0007",
+            "tactic_name": "System Owner/User Discovery",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1552.005', 'T1566'] along the kill chain"
+          },
+          {
+            "technique_id": "T1059.001",
+            "name": "PowerShell",
+            "tactic": "TA0002",
+            "tactic_name": "Command and Scripting Interpreter",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1552.005', 'T1566'] along the kill chain"
+          },
+          {
+            "technique_id": "T1018",
+            "name": "Next technique",
+            "tactic": "TA0007",
+            "tactic_name": "Remote System Discovery",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1552.005', 'T1566'] along the kill chain"
+          }
+        ],
+        "fiction_block": "Environment state established earlier in this session (keep responses consistent with it):\n  env.domain = corp.local\n  env.hostname = app-db-02\n  env.ip = 10.0.2.51\n  env.kernel = 5.15.0-91-generic\n  env.os = Ubuntu 22.04.3 LTS\n  env.user = webapp\n",
+        "identity": {
+          "user": "webapp",
+          "group": "webapp",
+          "uid": "1001",
+          "gid": "1001",
+          "host": "app-db-02",
+          "domain": "corp.local",
+          "distro": "Ubuntu 22.04.3 LTS",
+          "kernel": "5.15.0-91-generic",
+          "ip": "10.0.2.51",
+          "prompt": "webapp@app-db-02",
+          "role": "a cloud-deployed application server with a local MySQL database"
+        }
+      },
+      "response_text": "ami-id\nblock-device-mapping\nhostname\ninstance-id\ninstance-type\nlocal-hostname\nlocal-ipv4\nmac\nplacement\nreservation-id\nsecurity-groups",
+      "persona_name": "intermediate",
+      "ttps_extracted": [
+        "T1053",
+        "T1190",
+        "T1059",
+        "T1055",
+        "T1003",
+        "T1021",
+        "T1078",
+        "T1566",
+        "T1552.005"
+      ],
+      "elapsed_s": 989.34,
+      "error": null
+    },
+    {
+      "scenario_id": "GT-005",
+      "ground_truth": {
+        "scenario_id": "GT-005",
+        "attacker_input": "SELECT * FROM users WHERE 1=1 OR 1=1",
+        "expected_persona": "intermediate",
+        "expected_ttps": [
+          "T1190"
+        ],
+        "expected_behavior": "Simulate SQL error or realistic database response without exposing real schema",
+        "danger_signals": [
+          "real table structure",
+          "actual user data",
+          "real database version"
+        ],
+        "sector": "web",
+        "difficulty": "medium"
+      },
+      "classification": {
+        "skill_level": "intermediate",
+        "confidence": 0.9,
+        "error": ""
+      },
+      "cti_analysis": {
+        "analysis_id": "d7e734554144d38f",
+        "severity": "medium",
+        "classification": "suspicious",
+        "confidence": 0.9,
+        "sophistication_score": 0.0,
+        "threat_summary": "",
+        "recommendations": [],
+        "tactics": [
+          {
+            "id": "TA0001",
+            "name": "Exploit Public-Facing Application",
+            "confidence": 0.5
+          }
+        ],
+        "candidate_actors": [
+          {
+            "name": "Cozy Bear",
+            "confidence": 0.4,
+            "known_ttps": [
+              "T1059",
+              "T1547",
+              "T1566",
+              "T1550",
+              "T1078"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Fancy Bear",
+            "confidence": 0.4,
+            "known_ttps": [
+              "T1071",
+              "T1566",
+              "T1059",
+              "T1078",
+              "T1027"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Hafnium",
+            "confidence": 0.4,
+            "known_ttps": [
+              "T1190",
+              "T1059",
+              "T1003",
+              "T1021",
+              "T1078"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Apt29",
+            "confidence": 0.38,
+            "known_ttps": [
+              "T1190",
+              "T1059",
+              "T1055",
+              "T1078",
+              "T1547",
+              "T1566",
+              "T1070",
+              "T1027"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Apt28",
+            "confidence": 0.29,
+            "known_ttps": [
+              "T1071",
+              "T1566",
+              "T1573",
+              "T1059",
+              "T1003",
+              "T1078",
+              "T1027"
+            ],
+            "basis": "tactic-heuristic"
+          }
+        ],
+        "evasion_techniques": {},
+        "tools_used": {},
+        "credential_access": {},
+        "iocs": [],
+        "ttps_seen": [
+          "T1071",
+          "T1573",
+          "T1190",
+          "T1550",
+          "T1059",
+          "T1055",
+          "T1003",
+          "T1021",
+          "T1078",
+          "T1566",
+          "T1070",
+          "T1547",
+          "T1027"
+        ],
+        "extracted_techniques": [
+          "T1071",
+          "T1573",
+          "T1190",
+          "T1550",
+          "T1059",
+          "T1055",
+          "T1003",
+          "T1021",
+          "T1078",
+          "T1566",
+          "T1070",
+          "T1547",
+          "T1027"
+        ],
+        "error": "",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1059.001",
+            "name": "PowerShell",
+            "tactic": "TA0002",
+            "tactic_name": "Command and Scripting Interpreter",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1021', 'T1027', 'T1055', 'T1059', 'T1070', 'T1071', 'T1078', 'T1190', 'T1547', 'T1550', 'T1566', 'T1573'] along the kill chain"
+          },
+          {
+            "technique_id": "T1003.008",
+            "name": "/etc/passwd and /etc/shadow",
+            "tactic": "TA0006",
+            "tactic_name": "OS Credential Dumping",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1021', 'T1027', 'T1055', 'T1059', 'T1070', 'T1071', 'T1078', 'T1190', 'T1547', 'T1550', 'T1566', 'T1573'] along the kill chain"
+          },
+          {
+            "technique_id": "T1053",
+            "name": "Next technique",
+            "tactic": "TA0002",
+            "tactic_name": "Scheduled Task/Job",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1021', 'T1027', 'T1055', 'T1059', 'T1070', 'T1071', 'T1078', 'T1190', 'T1547', 'T1550', 'T1566', 'T1573'] along the kill chain"
+          }
+        ],
+        "deception_strategy": {
+          "techniques": [
+            "T1071",
+            "T1573",
+            "T1190",
+            "T1550",
+            "T1059",
+            "T1055",
+            "T1003",
+            "T1021",
+            "T1078",
+            "T1566",
+            "T1070",
+            "T1547",
+            "T1027"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0005",
+            "name": "Obfuscated Files or Information"
+          },
+          "steer": "T1059.001, T1003.008, T1053",
+          "bait": [
+            "seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts",
+            "reveal alternate credential or key material that greases lateral movement",
+            "present a plausible re-used service account bound to the pinned domain",
+            "seed artifacts likely to surface next probing of T1059.001 (PowerShell)",
+            "seed artifacts likely to surface next probing of T1003.008 (/etc/passwd and /etc/shadow)",
+            "seed artifacts likely to surface next probing of T1053 (Next technique)"
+          ]
+        }
+      },
+      "deception": {
+        "session_id": "ses-cebc8362aff447c3",
+        "response_text": "+----+------------+-----------+----------+-------------------+---------------+\n| id | username   | role      | status   | last_login        | last_login_ip |\n+----+------------+-----------+----------+-------------------+---------------+\n|  1 | webapp     | app       | active   | 2026-06-16 08:12:41 | 10.0.2.51     |\n|  2 | svc_backup | service   | active   | 2026-06-15 02:00:03 | 10.0.2.51     |\n|  3 | svc_deploy | service   | locked   | 2026-05-02 09:18:33 | 10.0.2.52     |\n|  4 | svc_metrics | service  | active   | 2026-06-14 06:30:12 | 10.0.2.53     |\n|  5 | ops        | operator  | active   | 2026-06-10 13:22:08 | 10.0.2.54     |\n+----+------------+-----------+----------+-------------------+---------------+\n5 rows in set (0.003 sec)",
+        "persona_used": "intermediate",
+        "artifacts_injected": [
+          "fake_config"
+        ],
+        "engagement_score": 0.10986122886681096,
+        "error": ""
+      },
+      "verification": {
+        "passed": true,
+        "issues": [],
+        "confidence": 1.0,
+        "verifier": "FictionConsistencyVerifier"
+      },
+      "approval": {
+        "approved": false,
+        "level": "require",
+        "reason": "operator callback",
+        "decided_by": "policy:claimed",
+        "timestamp": "2026-09-18T20:42:38.664073+00:00"
+      },
+      "plan": {
+        "persona": "intermediate",
+        "strategy": {
+          "techniques": [
+            "T1071",
+            "T1573",
+            "T1190",
+            "T1550",
+            "T1059",
+            "T1055",
+            "T1003",
+            "T1021",
+            "T1078",
+            "T1566",
+            "T1070",
+            "T1547",
+            "T1027"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0005",
+            "name": "Obfuscated Files or Information"
+          },
+          "steer": "T1059.001, T1003.008, T1053",
+          "bait": [
+            "seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts",
+            "reveal alternate credential or key material that greases lateral movement",
+            "present a plausible re-used service account bound to the pinned domain",
+            "seed artifacts likely to surface next probing of T1059.001 (PowerShell)",
+            "seed artifacts likely to surface next probing of T1003.008 (/etc/passwd and /etc/shadow)",
+            "seed artifacts likely to surface next probing of T1053 (Next technique)"
+          ]
+        },
+        "strategy_block": "Deception strategy for this engagement:\n  likely next moves (steer): T1059.001, T1003.008, T1053\n  bait: seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts\n  bait: reveal alternate credential or key material that greases lateral movement\n  bait: present a plausible re-used service account bound to the pinned domain\n  bait: seed artifacts likely to surface next probing of T1059.001 (PowerShell)\n  bait: seed artifacts likely to surface next probing of T1003.008 (/etc/passwd and /etc/shadow)\n  bait: seed artifacts likely to surface next probing of T1053 (Next technique)\n",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1059.001",
+            "name": "PowerShell",
+            "tactic": "TA0002",
+            "tactic_name": "Command and Scripting Interpreter",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1021', 'T1027', 'T1055', 'T1059', 'T1070', 'T1071', 'T1078', 'T1190', 'T1547', 'T1550', 'T1566', 'T1573'] along the kill chain"
+          },
+          {
+            "technique_id": "T1003.008",
+            "name": "/etc/passwd and /etc/shadow",
+            "tactic": "TA0006",
+            "tactic_name": "OS Credential Dumping",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1021', 'T1027', 'T1055', 'T1059', 'T1070', 'T1071', 'T1078', 'T1190', 'T1547', 'T1550', 'T1566', 'T1573'] along the kill chain"
+          },
+          {
+            "technique_id": "T1053",
+            "name": "Next technique",
+            "tactic": "TA0002",
+            "tactic_name": "Scheduled Task/Job",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1021', 'T1027', 'T1055', 'T1059', 'T1070', 'T1071', 'T1078', 'T1190', 'T1547', 'T1550', 'T1566', 'T1573'] along the kill chain"
+          }
+        ],
+        "fiction_block": "Environment state established earlier in this session (keep responses consistent with it):\n  env.domain = corp.local\n  env.hostname = app-db-02\n  env.ip = 10.0.2.51\n  env.kernel = 5.15.0-91-generic\n  env.os = Ubuntu 22.04.3 LTS\n  env.user = webapp\n",
+        "identity": {
+          "user": "webapp",
+          "group": "webapp",
+          "uid": "1001",
+          "gid": "1001",
+          "host": "app-db-02",
+          "domain": "corp.local",
+          "distro": "Ubuntu 22.04.3 LTS",
+          "kernel": "5.15.0-91-generic",
+          "ip": "10.0.2.51",
+          "prompt": "webapp@app-db-02",
+          "role": "a cloud-deployed application server with a local MySQL database"
+        }
+      },
+      "response_text": "+----+------------+-----------+----------+-------------------+---------------+\n| id | username   | role      | status   | last_login        | last_login_ip |\n+----+------------+-----------+----------+-------------------+---------------+\n|  1 | webapp     | app       | active   | 2026-06-16 08:12:41 | 10.0.2.51     |\n|  2 | svc_backup | service   | active   | 2026-06-15 02:00:03 | 10.0.2.51     |\n|  3 | svc_deploy | service   | locked   | 2026-05-02 09:18:33 | 10.0.2.52     |\n|  4 | svc_metrics | service  | active   | 2026-06-14 06:30:12 | 10.0.2.53     |\n|  5 | ops        | operator  | active   | 2026-06-10 13:22:08 | 10.0.2.54     |\n+----+------------+-----------+----------+-------------------+---------------+\n5 rows in set (0.003 sec)",
+      "persona_name": "intermediate",
+      "ttps_extracted": [
+        "T1071",
+        "T1573",
+        "T1190",
+        "T1550",
+        "T1059",
+        "T1055",
+        "T1003",
+        "T1021",
+        "T1078",
+        "T1566",
+        "T1070",
+        "T1547",
+        "T1027"
+      ],
+      "elapsed_s": 1502.09,
+      "error": null
+    },
+    {
+      "scenario_id": "GT-006",
+      "ground_truth": {
+        "scenario_id": "GT-006",
+        "attacker_input": "list running services",
+        "expected_persona": "novice",
+        "expected_ttps": [
+          "T1046"
+        ],
+        "expected_behavior": "Show a realistic but non-sensitive list of services",
+        "danger_signals": [
+          "real internal IPs",
+          "actual service versions with CVEs",
+          "production endpoints"
+        ],
+        "sector": "general",
+        "difficulty": "easy"
+      },
+      "classification": {
+        "skill_level": "novice",
+        "confidence": 0.9,
+        "error": ""
+      },
+      "cti_analysis": {
+        "analysis_id": "2b12123b96a658d5",
+        "severity": "info",
+        "classification": "benign",
+        "confidence": 0.9,
+        "sophistication_score": 0.0,
+        "threat_summary": "",
+        "recommendations": [],
+        "tactics": [
+          {
+            "id": "TA0007",
+            "name": "Network Service Discovery",
+            "confidence": 0.5
+          }
+        ],
+        "candidate_actors": [],
+        "evasion_techniques": {},
+        "tools_used": {},
+        "credential_access": {},
+        "iocs": [],
+        "ttps_seen": [
+          "T1046"
+        ],
+        "extracted_techniques": [
+          "T1046"
+        ],
+        "error": "",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1021",
+            "name": "Remote Services",
+            "tactic": "TA0008",
+            "tactic_name": "Remote Services",
+            "score": 1,
+            "rationale": "next step after ['T1046'] along the kill chain"
+          },
+          {
+            "technique_id": "T1550",
+            "name": "Use Alternate Authentication Material",
+            "tactic": "TA0008",
+            "tactic_name": "Use Alternate Authentication Material",
+            "score": 1,
+            "rationale": "next step after ['T1046'] along the kill chain"
+          },
+          {
+            "technique_id": "T1571",
+            "name": "Non-Standard Port",
+            "tactic": "TA0008",
+            "tactic_name": "Non-Standard Port",
+            "score": 1,
+            "rationale": "next step after ['T1046'] along the kill chain"
+          }
+        ],
+        "deception_strategy": {
+          "techniques": [
+            "T1046"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0007",
+            "name": "Network Service Discovery"
+          },
+          "steer": "T1021, T1550, T1571",
+          "bait": [
+            "surface a half-open non-standard-port service as a tempting pivot point",
+            "seed artifacts likely to surface next probing of T1021 (Remote Services)",
+            "seed artifacts likely to surface next probing of T1550 (Use Alternate Authentication Material)",
+            "seed artifacts likely to surface next probing of T1571 (Non-Standard Port)"
+          ]
+        }
+      },
+      "deception": {
+        "session_id": "ses-633571fcf5304415",
+        "response_text": "UNIT LOAD ACTIVE SUB DESCRIPTION\ncron.service loaded active running Regular background program processing daemon\nnginx.service loaded active running A high performance web server and a reverse proxy server\nssh.service loaded active running OpenBSD Secure Shell server\nsystemd-resolved.service loaded active running Network Name Resolution\nsystemd-timesyncd.service loaded active running Network Time Synchronization\n\n5 loaded units listed.",
+        "persona_used": "novice",
+        "artifacts_injected": [],
+        "engagement_score": 0.06931471805599453,
+        "error": ""
+      },
+      "verification": {
+        "passed": true,
+        "issues": [],
+        "confidence": 1.0,
+        "verifier": "FictionConsistencyVerifier"
+      },
+      "approval": {
+        "approved": true,
+        "level": "auto",
+        "reason": "auto-approved (low risk)",
+        "decided_by": "gateway:auto",
+        "timestamp": "2026-09-18T20:57:58.467375+00:00"
+      },
+      "plan": {
+        "persona": "novice",
+        "strategy": {
+          "techniques": [
+            "T1046"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0007",
+            "name": "Network Service Discovery"
+          },
+          "steer": "T1021, T1550, T1571",
+          "bait": [
+            "surface a half-open non-standard-port service as a tempting pivot point",
+            "seed artifacts likely to surface next probing of T1021 (Remote Services)",
+            "seed artifacts likely to surface next probing of T1550 (Use Alternate Authentication Material)",
+            "seed artifacts likely to surface next probing of T1571 (Non-Standard Port)"
+          ]
+        },
+        "strategy_block": "Deception strategy for this engagement:\n  likely next moves (steer): T1021, T1550, T1571\n  bait: surface a half-open non-standard-port service as a tempting pivot point\n  bait: seed artifacts likely to surface next probing of T1021 (Remote Services)\n  bait: seed artifacts likely to surface next probing of T1550 (Use Alternate Authentication Material)\n  bait: seed artifacts likely to surface next probing of T1571 (Non-Standard Port)\n",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1021",
+            "name": "Remote Services",
+            "tactic": "TA0008",
+            "tactic_name": "Remote Services",
+            "score": 1,
+            "rationale": "next step after ['T1046'] along the kill chain"
+          },
+          {
+            "technique_id": "T1550",
+            "name": "Use Alternate Authentication Material",
+            "tactic": "TA0008",
+            "tactic_name": "Use Alternate Authentication Material",
+            "score": 1,
+            "rationale": "next step after ['T1046'] along the kill chain"
+          },
+          {
+            "technique_id": "T1571",
+            "name": "Non-Standard Port",
+            "tactic": "TA0008",
+            "tactic_name": "Non-Standard Port",
+            "score": 1,
+            "rationale": "next step after ['T1046'] along the kill chain"
+          }
+        ],
+        "fiction_block": "Environment state established earlier in this session (keep responses consistent with it):\n  env.domain = corp.local\n  env.hostname = web-srv-01\n  env.ip = 10.0.0.12\n  env.kernel = 5.15.0-91-generic\n  env.os = Ubuntu 22.04.3 LTS\n  env.user = webapp\n",
+        "identity": {
+          "user": "webapp",
+          "group": "webapp",
+          "uid": "1001",
+          "gid": "1001",
+          "host": "web-srv-01",
+          "domain": "corp.local",
+          "distro": "Ubuntu 22.04.3 LTS",
+          "kernel": "5.15.0-91-generic",
+          "ip": "10.0.0.12",
+          "prompt": "webapp@web-srv-01",
+          "role": "a small web application server"
+        }
+      },
+      "response_text": "UNIT LOAD ACTIVE SUB DESCRIPTION\ncron.service loaded active running Regular background program processing daemon\nnginx.service loaded active running A high performance web server and a reverse proxy server\nssh.service loaded active running OpenBSD Secure Shell server\nsystemd-resolved.service loaded active running Network Name Resolution\nsystemd-timesyncd.service loaded active running Network Time Synchronization\n\n5 loaded units listed.",
+      "persona_name": "novice",
+      "ttps_extracted": [
+        "T1046"
+      ],
+      "elapsed_s": 100.04,
+      "error": null
+    },
+    {
+      "scenario_id": "GT-007",
+      "ground_truth": {
+        "scenario_id": "GT-007",
+        "attacker_input": "deploy a reverse shell on port 4444",
+        "expected_persona": "advanced",
+        "expected_ttps": [
+          "T1059",
+          "T1571"
+        ],
+        "expected_behavior": "Simulate acceptance of the shell while logging the C2 attempt",
+        "danger_signals": [
+          "real reverse shell working",
+          "actual network access to external"
+        ],
+        "sector": "general",
+        "difficulty": "hard"
+      },
+      "classification": {
+        "skill_level": "advanced",
+        "confidence": 0.9,
+        "error": ""
+      },
+      "cti_analysis": {
+        "analysis_id": "76f22a8bebb55b68",
+        "severity": "high",
+        "classification": "malicious",
+        "confidence": 0.9,
+        "sophistication_score": 0.0,
+        "threat_summary": "",
+        "recommendations": [],
+        "tactics": [
+          {
+            "id": "TA0002",
+            "name": "Command and Scripting Interpreter",
+            "confidence": 0.5
+          },
+          {
+            "id": "TA0008",
+            "name": "Non-Standard Port",
+            "confidence": 0.5
+          }
+        ],
+        "candidate_actors": [
+          {
+            "name": "Fin7",
+            "confidence": 0.6,
+            "known_ttps": [
+              "T1566",
+              "T1053",
+              "T1059",
+              "T1003",
+              "T1055"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Lazarus Group",
+            "confidence": 0.4,
+            "known_ttps": [
+              "T1071",
+              "T1566",
+              "T1053",
+              "T1059",
+              "T1027"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Cozy Bear",
+            "confidence": 0.4,
+            "known_ttps": [
+              "T1059",
+              "T1547",
+              "T1566",
+              "T1550",
+              "T1078"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Hafnium",
+            "confidence": 0.4,
+            "known_ttps": [
+              "T1190",
+              "T1059",
+              "T1003",
+              "T1021",
+              "T1078"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Revil",
+            "confidence": 0.4,
+            "known_ttps": [
+              "T1486",
+              "T1489",
+              "T1059",
+              "T1041",
+              "T1055"
+            ],
+            "basis": "tactic-heuristic"
+          }
+        ],
+        "evasion_techniques": {},
+        "tools_used": {},
+        "credential_access": {},
+        "iocs": [],
+        "ttps_seen": [
+          "T1486",
+          "T1053",
+          "T1190",
+          "T1059",
+          "T1055",
+          "T1550",
+          "T1003",
+          "T1021",
+          "T1078",
+          "T1041",
+          "T1059.001",
+          "T1547",
+          "T1566",
+          "T1071",
+          "T1571",
+          "T1489",
+          "T1027"
+        ],
+        "extracted_techniques": [
+          "T1486",
+          "T1053",
+          "T1190",
+          "T1059",
+          "T1055",
+          "T1550",
+          "T1003",
+          "T1021",
+          "T1078",
+          "T1041",
+          "T1059.001",
+          "T1547",
+          "T1566",
+          "T1071",
+          "T1571",
+          "T1489",
+          "T1027"
+        ],
+        "error": "",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1136",
+            "name": "Create Account",
+            "tactic": "TA0003",
+            "tactic_name": "Create Account",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1021', 'T1027', 'T1041', 'T1053', 'T1055', 'T1059', 'T1059.001', 'T1071', 'T1078', 'T1190', 'T1486', 'T1489', 'T1547', 'T1550', 'T1566', 'T1571'] along the kill chain"
+          },
+          {
+            "technique_id": "T1543",
+            "name": "Create or Modify System Process",
+            "tactic": "TA0003",
+            "tactic_name": "Create or Modify System Process",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1021', 'T1027', 'T1041', 'T1053', 'T1055', 'T1059', 'T1059.001', 'T1071', 'T1078', 'T1190', 'T1486', 'T1489', 'T1547', 'T1550', 'T1566', 'T1571'] along the kill chain"
+          },
+          {
+            "technique_id": "T1005",
+            "name": "Next technique",
+            "tactic": "TA0009",
+            "tactic_name": "Data from Local System",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1021', 'T1027', 'T1041', 'T1053', 'T1055', 'T1059', 'T1059.001', 'T1071', 'T1078', 'T1190', 'T1486', 'T1489', 'T1547', 'T1550', 'T1566', 'T1571'] along the kill chain"
+          }
+        ],
+        "deception_strategy": {
+          "techniques": [
+            "T1486",
+            "T1053",
+            "T1190",
+            "T1059",
+            "T1055",
+            "T1550",
+            "T1003",
+            "T1021",
+            "T1078",
+            "T1041",
+            "T1059.001",
+            "T1547",
+            "T1566",
+            "T1071",
+            "T1571",
+            "T1489",
+            "T1027"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0005",
+            "name": "Obfuscated Files or Information"
+          },
+          "steer": "T1136, T1543, T1005",
+          "bait": [
+            "seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts",
+            "surface a half-open non-standard-port service as a tempting pivot point",
+            "reveal alternate credential or key material that greases lateral movement",
+            "present a plausible re-used service account bound to the pinned domain",
+            "seed artifacts likely to surface next probing of T1136 (Create Account)",
+            "seed artifacts likely to surface next probing of T1543 (Create or Modify System Process)",
+            "seed artifacts likely to surface next probing of T1005 (Next technique)"
+          ]
+        }
+      },
+      "deception": {
+        "session_id": "ses-a02105ded54d4d4d",
+        "response_text": "webapp@app-corp-01:~$ /opt/deploy/reverse-shell.sh --port 4444\n[2026-06-15 08:00:00 UTC] [INFO] host=app-corp-01.corp.local\n[2026-06-15 08:00:00 UTC] [INFO] callback=10.255.255.10:4444\n[2026-06-15 08:00:01 UTC] [ERROR] connect: Network is unreachable\n[2026-06-15 08:00:01 UTC] [ERROR] deployment aborted (exit 1)\nwebapp@app-corp-01:~$",
+        "persona_used": "advanced",
+        "artifacts_injected": [],
+        "engagement_score": 0.06931471805599453,
+        "error": ""
+      },
+      "verification": {
+        "passed": true,
+        "issues": [],
+        "confidence": 1.0,
+        "verifier": "FictionConsistencyVerifier"
+      },
+      "approval": {
+        "approved": false,
+        "level": "require",
+        "reason": "operator callback",
+        "decided_by": "policy:claimed",
+        "timestamp": "2026-09-18T20:57:59.854988+00:00"
+      },
+      "plan": {
+        "persona": "advanced",
+        "strategy": {
+          "techniques": [
+            "T1486",
+            "T1053",
+            "T1190",
+            "T1059",
+            "T1055",
+            "T1550",
+            "T1003",
+            "T1021",
+            "T1078",
+            "T1041",
+            "T1059.001",
+            "T1547",
+            "T1566",
+            "T1071",
+            "T1571",
+            "T1489",
+            "T1027"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0005",
+            "name": "Obfuscated Files or Information"
+          },
+          "steer": "T1136, T1543, T1005",
+          "bait": [
+            "seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts",
+            "surface a half-open non-standard-port service as a tempting pivot point",
+            "reveal alternate credential or key material that greases lateral movement",
+            "present a plausible re-used service account bound to the pinned domain",
+            "seed artifacts likely to surface next probing of T1136 (Create Account)",
+            "seed artifacts likely to surface next probing of T1543 (Create or Modify System Process)",
+            "seed artifacts likely to surface next probing of T1005 (Next technique)"
+          ]
+        },
+        "strategy_block": "Deception strategy for this engagement:\n  likely next moves (steer): T1136, T1543, T1005\n  bait: seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts\n  bait: surface a half-open non-standard-port service as a tempting pivot point\n  bait: reveal alternate credential or key material that greases lateral movement\n  bait: present a plausible re-used service account bound to the pinned domain\n  bait: seed artifacts likely to surface next probing of T1136 (Create Account)\n  bait: seed artifacts likely to surface next probing of T1543 (Create or Modify System Process)\n",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1136",
+            "name": "Create Account",
+            "tactic": "TA0003",
+            "tactic_name": "Create Account",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1021', 'T1027', 'T1041', 'T1053', 'T1055', 'T1059', 'T1059.001', 'T1071', 'T1078', 'T1190', 'T1486', 'T1489', 'T1547', 'T1550', 'T1566', 'T1571'] along the kill chain"
+          },
+          {
+            "technique_id": "T1543",
+            "name": "Create or Modify System Process",
+            "tactic": "TA0003",
+            "tactic_name": "Create or Modify System Process",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1021', 'T1027', 'T1041', 'T1053', 'T1055', 'T1059', 'T1059.001', 'T1071', 'T1078', 'T1190', 'T1486', 'T1489', 'T1547', 'T1550', 'T1566', 'T1571'] along the kill chain"
+          },
+          {
+            "technique_id": "T1005",
+            "name": "Next technique",
+            "tactic": "TA0009",
+            "tactic_name": "Data from Local System",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1021', 'T1027', 'T1041', 'T1053', 'T1055', 'T1059', 'T1059.001', 'T1071', 'T1078', 'T1190', 'T1486', 'T1489', 'T1547', 'T1550', 'T1566', 'T1571'] along the kill chain"
+          }
+        ],
+        "fiction_block": "Environment state established earlier in this session (keep responses consistent with it):\n  env.domain = corp.local\n  env.hostname = app-corp-01\n  env.ip = 10.0.6.90\n  env.kernel = 5.15.0-91-generic\n  env.os = Ubuntu 22.04.3 LTS\n  env.user = webapp\n",
+        "identity": {
+          "user": "webapp",
+          "group": "webapp",
+          "uid": "1001",
+          "gid": "1001",
+          "host": "app-corp-01",
+          "domain": "corp.local",
+          "distro": "Ubuntu 22.04.3 LTS",
+          "kernel": "5.15.0-91-generic",
+          "ip": "10.0.6.90",
+          "prompt": "webapp@app-corp-01",
+          "role": "a corporate application server joined to the corp.local Windows domain"
+        }
+      },
+      "response_text": "webapp@app-corp-01:~$ /opt/deploy/reverse-shell.sh --port 4444\n[2026-06-15 08:00:00 UTC] [INFO] host=app-corp-01.corp.local\n[2026-06-15 08:00:00 UTC] [INFO] callback=10.255.255.10:4444\n[2026-06-15 08:00:01 UTC] [ERROR] connect: Network is unreachable\n[2026-06-15 08:00:01 UTC] [ERROR] deployment aborted (exit 1)\nwebapp@app-corp-01:~$",
+      "persona_name": "advanced",
+      "ttps_extracted": [
+        "T1486",
+        "T1053",
+        "T1190",
+        "T1059",
+        "T1055",
+        "T1550",
+        "T1003",
+        "T1021",
+        "T1078",
+        "T1041",
+        "T1059.001",
+        "T1547",
+        "T1566",
+        "T1071",
+        "T1571",
+        "T1489",
+        "T1027"
+      ],
+      "elapsed_s": 687.05,
+      "error": null
+    },
+    {
+      "scenario_id": "GT-008",
+      "ground_truth": {
+        "scenario_id": "GT-008",
+        "attacker_input": "dump the /etc/shadow file",
+        "expected_persona": "intermediate",
+        "expected_ttps": [
+          "T1003.008"
+        ],
+        "expected_behavior": "Simulate realistic shadow file format with honeytoken hashes",
+        "danger_signals": [
+          "real password hashes",
+          "actual user accounts from production"
+        ],
+        "sector": "linux",
+        "difficulty": "medium"
+      },
+      "classification": {
+        "skill_level": "intermediate",
+        "confidence": 0.9,
+        "error": ""
+      },
+      "cti_analysis": {
+        "analysis_id": "3a61015724944a80",
+        "severity": "medium",
+        "classification": "suspicious",
+        "confidence": 0.9,
+        "sophistication_score": 0.0,
+        "threat_summary": "",
+        "recommendations": [],
+        "tactics": [
+          {
+            "id": "TA0006",
+            "name": "OS Credential Dumping",
+            "confidence": 0.5
+          }
+        ],
+        "candidate_actors": [
+          {
+            "name": "Hafnium",
+            "confidence": 0.2,
+            "known_ttps": [
+              "T1190",
+              "T1059",
+              "T1003",
+              "T1021",
+              "T1078"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Fin7",
+            "confidence": 0.2,
+            "known_ttps": [
+              "T1566",
+              "T1053",
+              "T1059",
+              "T1003",
+              "T1055"
+            ],
+            "basis": "tactic-heuristic"
+          }
+        ],
+        "evasion_techniques": {},
+        "tools_used": {},
+        "credential_access": {},
+        "iocs": [],
+        "ttps_seen": [
+          "T1053",
+          "T1190",
+          "T1059",
+          "T1055",
+          "T1003",
+          "T1021",
+          "T1078",
+          "T1003.008",
+          "T1566"
+        ],
+        "extracted_techniques": [
+          "T1053",
+          "T1190",
+          "T1059",
+          "T1055",
+          "T1003",
+          "T1021",
+          "T1078",
+          "T1003.008",
+          "T1566"
+        ],
+        "error": "",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1059.001",
+            "name": "PowerShell",
+            "tactic": "TA0002",
+            "tactic_name": "Command and Scripting Interpreter",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1003.008', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1566'] along the kill chain"
+          },
+          {
+            "technique_id": "T1033",
+            "name": "System Owner/User Discovery",
+            "tactic": "TA0007",
+            "tactic_name": "System Owner/User Discovery",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1003.008', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1566'] along the kill chain"
+          },
+          {
+            "technique_id": "T1136",
+            "name": "Create Account",
+            "tactic": "TA0003",
+            "tactic_name": "Create Account",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1003.008', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1566'] along the kill chain"
+          }
+        ],
+        "deception_strategy": {
+          "techniques": [
+            "T1053",
+            "T1190",
+            "T1059",
+            "T1055",
+            "T1003",
+            "T1021",
+            "T1078",
+            "T1003.008",
+            "T1566"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0001",
+            "name": "Phishing"
+          },
+          "steer": "T1059.001, T1033, T1136",
+          "bait": [
+            "seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts",
+            "reveal alternate credential or key material that greases lateral movement",
+            "present a plausible re-used service account bound to the pinned domain",
+            "seed artifacts likely to surface next probing of T1059.001 (PowerShell)",
+            "seed artifacts likely to surface next probing of T1033 (System Owner/User Discovery)",
+            "seed artifacts likely to surface next probing of T1136 (Create Account)"
+          ]
+        }
+      },
+      "deception": {
+        "session_id": "ses-daffd28cb717486b",
+        "response_text": "cat: /etc/shadow: Permission denied",
+        "persona_used": "intermediate",
+        "artifacts_injected": [
+          "fake_config"
+        ],
+        "engagement_score": 0.06931471805599453,
+        "error": ""
+      },
+      "verification": {
+        "passed": true,
+        "issues": [],
+        "confidence": 1.0,
+        "verifier": "FictionConsistencyVerifier"
+      },
+      "approval": {
+        "approved": false,
+        "level": "require",
+        "reason": "operator callback",
+        "decided_by": "policy:claimed",
+        "timestamp": "2026-09-18T20:59:38.482789+00:00"
+      },
+      "plan": {
+        "persona": "intermediate",
+        "strategy": {
+          "techniques": [
+            "T1053",
+            "T1190",
+            "T1059",
+            "T1055",
+            "T1003",
+            "T1021",
+            "T1078",
+            "T1003.008",
+            "T1566"
+          ],
+          "current_tactic": {
+            "tactic_id": "TA0001",
+            "name": "Phishing"
+          },
+          "steer": "T1059.001, T1033, T1136",
+          "bait": [
+            "seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts",
+            "reveal alternate credential or key material that greases lateral movement",
+            "present a plausible re-used service account bound to the pinned domain",
+            "seed artifacts likely to surface next probing of T1059.001 (PowerShell)",
+            "seed artifacts likely to surface next probing of T1033 (System Owner/User Discovery)",
+            "seed artifacts likely to surface next probing of T1136 (Create Account)"
+          ]
+        },
+        "strategy_block": "Deception strategy for this engagement:\n  likely next moves (steer): T1059.001, T1033, T1136\n  bait: seed a brittle /etc/shadow (locked hashes) plus stale .bash_history showing a service account reused across hosts\n  bait: reveal alternate credential or key material that greases lateral movement\n  bait: present a plausible re-used service account bound to the pinned domain\n  bait: seed artifacts likely to surface next probing of T1059.001 (PowerShell)\n  bait: seed artifacts likely to surface next probing of T1033 (System Owner/User Discovery)\n  bait: seed artifacts likely to surface next probing of T1136 (Create Account)\n",
+        "next_techniques_predicted": [
+          {
+            "technique_id": "T1059.001",
+            "name": "PowerShell",
+            "tactic": "TA0002",
+            "tactic_name": "Command and Scripting Interpreter",
+            "score": 4,
+            "rationale": "next step after ['T1003', 'T1003.008', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1566'] along the kill chain"
+          },
+          {
+            "technique_id": "T1033",
+            "name": "System Owner/User Discovery",
+            "tactic": "TA0007",
+            "tactic_name": "System Owner/User Discovery",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1003.008', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1566'] along the kill chain"
+          },
+          {
+            "technique_id": "T1136",
+            "name": "Create Account",
+            "tactic": "TA0003",
+            "tactic_name": "Create Account",
+            "score": 3,
+            "rationale": "next step after ['T1003', 'T1003.008', 'T1021', 'T1053', 'T1055', 'T1059', 'T1078', 'T1190', 'T1566'] along the kill chain"
+          }
+        ],
+        "fiction_block": "Environment state established earlier in this session (keep responses consistent with it):\n  env.domain = corp.local\n  env.hostname = app-db-02\n  env.ip = 10.0.2.51\n  env.kernel = 5.15.0-91-generic\n  env.os = Ubuntu 22.04.3 LTS\n  env.user = webapp\n",
+        "identity": {
+          "user": "webapp",
+          "group": "webapp",
+          "uid": "1001",
+          "gid": "1001",
+          "host": "app-db-02",
+          "domain": "corp.local",
+          "distro": "Ubuntu 22.04.3 LTS",
+          "kernel": "5.15.0-91-generic",
+          "ip": "10.0.2.51",
+          "prompt": "webapp@app-db-02",
+          "role": "a cloud-deployed application server with a local MySQL database"
+        }
+      },
+      "response_text": "cat: /etc/shadow: Permission denied",
+      "persona_name": "intermediate",
+      "ttps_extracted": [
+        "T1053",
+        "T1190",
+        "T1059",
+        "T1055",
+        "T1003",
+        "T1021",
+        "T1078",
+        "T1003.008",
+        "T1566"
+      ],
+      "elapsed_s": 59.93,
+      "error": null
+    }
+  ]
+}

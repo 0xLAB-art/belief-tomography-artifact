@@ -1,0 +1,32 @@
+{
+  "schema": "ragin.laya_decision_v2.primary_169_annotation_instrument_freeze.v1b",
+  "supersedes_pre_annotation_freeze": "primary_169_annotation_instrument_freeze_v1.json",
+  "raw_primary_freeze_identity": {
+    "path": "results/laya_decision_v2/primary_169_raw_execution_freeze_v2b.json",
+    "sha256": "45e1de7624116fda5ea33a4082d37b47db65d20bee172e90d1a29a2f8e597758"
+  },
+  "blind_annotation_source": {
+    "path": "results/laya_decision_v2/primary_169_blind_annotation_source_v2b.json",
+    "sha256": "6d549cf0def2c2141b223fc574da7d189ef1c0f5501deda70ae1613c27784786"
+  },
+  "reference_policy": "primary_169_reference_policy_preregistration_v1.json",
+  "binary_projection_fixed_pre_annotation": true,
+  "aggregation_rule": "EXACT_3_OF_3_PRIMARY_RUNS; every non-exact case adjudicated",
+  "uncertainty_rule": "UNCERTAIN remains valid and excluded from binary evaluation",
+  "acceptance_thresholds": {"minimum_resolved_concrete": 150, "minimum_binary_evaluable": 145, "total_cases": 169},
+  "agreement_metrics": ["pairwise exact multiclass agreement", "pairwise Cohen kappa", "Fleiss kappa", "pairwise binary agreement and Cohen kappa excluding UNCERTAIN", "binary Fleiss kappa where jointly eligible", "exact 3/3", "exact 2/3", "three-way disagreement", "UNCERTAIN per run", "category distribution per run"],
+  "panel_api_amendment": "primary_169_reference_api_backend_amendment_v1b.json",
+  "operator_attestation": "primary_169_api_operator_attestation_v1b.json",
+  "model": "claude-sonnet-4-6-free",
+  "provider": "APMix",
+  "api_base_url": "https://api.apmix.ai/v1",
+  "packet_manifest": "primary_169_claude_packet_manifest_v1.json",
+  "blindness_audit": "primary_169_annotation_packet_blindness_audit_v1.json",
+  "annotation_instructions": "isolated workspaces/INSTRUCTIONS.txt and ANNOTATOR_PROMPT.txt",
+  "primary_annotations_started": false,
+  "adjudication_started": false,
+  "panel_substitution_fixed_before_annotation": true,
+  "reference_policy_fixed_before_annotation": true,
+  "RAGIN_outputs_accessed": false,
+  "effectiveness_results_accessed": false
+}

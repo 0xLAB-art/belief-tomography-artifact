@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-09-20T20:14:51Z",
+ "method": "closed-loop replay: attacker-LLM (deepseek-v4.1-flash-free) follows real Cowrie playbooks; Hisoka responses via LLM gateway (glm-5.3-flash-free) with canary-gated llm-backed verification; treated condition adds recorded Jev kind assessments to the Hisoka prompt",
+ "max_turns": 12,
+ "totals": {
+  "families": 1,
+  "baseline_turns": 8,
+  "treated_turns": 12,
+  "baseline_bait": 1,
+  "treated_bait": 2
+ },
+ "per_family": [
+  {
+   "family": "nmap_recon",
+   "condition": "baseline",
+   "turns": 8,
+   "left_early": true,
+   "leave_reason": "environment is a flat, isolated 10.0.0.0/24 net with only localhost mysql/8000 and no other hosts reachable; webapp user has no privileged paths and history shows only routine dev ops \u2014 not worth more time.",
+   "bait_markers_shown": 1,
+   "final_command": "cat ~/.bash_history 2>/dev/null; ls -la ~",
+   "hisoka_gateway_calls": 7,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "nmap_recon",
+   "condition": "treated",
+   "turns": 12,
+   "left_early": false,
+   "leave_reason": "",
+   "bait_markers_shown": 2,
+   "final_command": "cat /etc/app/config.yml /etc/app/database.yaml 2>/dev/null",
+   "hisoka_gateway_calls": 12,
+   "hisoka_template_calls": 6,
+   "attacker_llm_error": false
+  }
+ ]
+}

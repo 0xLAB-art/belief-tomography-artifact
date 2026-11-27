@@ -1,0 +1,56 @@
+\section{Threats to Validity}
+\label{sec:threats}
+
+\textbf{Construct validity.} Every behavioral label in this release is
+machine-generated. The 120-case confirmatory packet is labeled by three
+checkpoints of one provider family ($\kappa=0.811$), with a
+cross-family juror that drops panel $\kappa$ to $0.675$ and a
+deterministic oracle agreeing with the panel majority on only $50.8\%$
+of cases. The deception-quality score ($3.86/5$) is a within-model
+consensus of one judge model. The technique-detection differential
+($+0.950$ fresh, $+0.154$ archived) is produced by a deterministic
+keyword matcher that a checkpoint-disjoint juror scores identically for
+RAG and no-RAG arms ($\sim$$0.016$), confirming it measures keyword
+matching rather than substantive CTI quality. No human-anchored
+validation exists anywhere in this release. The matching-instrument
+argument (deployment population is automated) justifies the choice of
+AI raters, but does not establish that the AI labels measure the
+declared constructs.
+
+\textbf{Internal validity.} The confirmatory yield contrast
+($6/10$ vs $0/10$, $p=0.011$) measures that the RAGIN surface returns
+planted files on adversarial reads while stock Cowrie does not. A
+direct control confirms stock Cowrie's static honeyfs cannot serve
+newly-planted files without restart. The contrast therefore measures
+dynamic serving capability, not deception efficacy: bait capture (read
+then reuse) is zero in every arm of every wave, and the detection
+persona fingerprints both surfaces equally. The fresh live-model rerun
+of the grounding ablation produced a degenerate no-RAG control (every
+row scored $0.0$), so the archived $+0.154$ remains the version of
+record and the fresh differential ($+0.600$) is not interpretable as
+replication until the degenerate pattern is diagnosed.
+
+\textbf{External validity.} The deployment is tailnet-only. The field
+census is scanner-grade (1,087 events, 127 sessions, 2 hashed sources,
+0 downloads). The only genuinely external interaction in the project's
+record is two attackers on a predecessor deployment. All attacker
+workloads are AI-generated; the attacker brain and serving generator
+share a free-tier provider. Results may not generalize to
+human-operated attacks, production infrastructure, or models with
+different alignment postures.
+
+\textbf{Statistical conclusion validity.} The confirmatory contrast is
+$n{=}10$ per arm with a case-level bootstrap CI $[0.30, 0.90]$
+(persona-stratum resampling gives $[0.40, 0.80]$). The coarse support
+of ten binary sessions makes both intervals wide. The v2 primary
+endpoint saturated by design (16/20 at cap in both arms), so the
+persistence test was uninformative. No multiplicity correction is
+applied across the three sequential pre-registrations. The archived
+$+0.154$ differential rests on an unaudited analysis-channel scorer
+from a pre-pin generator whose provenance is unlogged.
+
+\textbf{Reliability.} The preregistration documents are
+sha256-pinned local files, not third-party-registered (OSF or
+equivalent); amendments are author-declared. Model identifiers are
+free-tier aliases whose exact versions are irreproducible. The
+artifact mirror is published on acceptance, not at review time.

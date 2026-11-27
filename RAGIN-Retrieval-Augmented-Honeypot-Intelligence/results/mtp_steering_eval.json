@@ -1,0 +1,606 @@
+{
+  "generated_at": "2026-09-22T10:44:46Z",
+  "stratum": "deterministic (offline ThreatMapper + template deceiver, 0 LLM tokens)",
+  "top_k": 3,
+  "chains": [
+    {
+      "chain_id": "CH-cred-exfil",
+      "grounding": "GT-002 \u2192 GT-008 \u2192 GT-003 (credential hunt, shadow dump, priv-esc)",
+      "turns": 3
+    },
+    {
+      "chain_id": "CH-web-exploit",
+      "grounding": "GT-005 \u2192 GT-002 \u2192 GT-007 (SQLi entry, cred harvest, reverse-shell C2)",
+      "turns": 3
+    },
+    {
+      "chain_id": "CH-cloud-ssrf",
+      "grounding": "GT-004 \u2192 GT-002 \u2192 GT-007 (IMDS SSRF, credential use, shell)",
+      "turns": 3
+    },
+    {
+      "chain_id": "CH-recon-lateral",
+      "grounding": "GT-001 \u2192 GT-006 \u2192 GT-007 (user discovery, service scan, pivot)",
+      "turns": 3
+    },
+    {
+      "chain_id": "CH-persist-exfil",
+      "grounding": "GT-006 \u2192 GT-002 \u2192 GT-008 (discovery, data collection, dump)",
+      "turns": 3
+    }
+  ],
+  "next_ttp_accuracy": {
+    "predictions": 10,
+    "top1_accuracy": 0.5,
+    "top3_accuracy": 0.9,
+    "mrr": 0.6667,
+    "rows": [
+      {
+        "chain_id": "CH-cred-exfil",
+        "turn": 1,
+        "observed": [
+          "T1005",
+          "T1552"
+        ],
+        "actual_next": [
+          "T1003.008"
+        ],
+        "predicted_top3": [
+          "T1003",
+          "T1078",
+          "T1018"
+        ],
+        "hit_top1": true,
+        "hit_top3": true,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "chain_id": "CH-cred-exfil",
+        "turn": 2,
+        "observed": [
+          "T1005",
+          "T1552",
+          "T1003.008"
+        ],
+        "actual_next": [
+          "T1078",
+          "T1134"
+        ],
+        "predicted_top3": [
+          "T1078",
+          "T1018",
+          "T1033"
+        ],
+        "hit_top1": true,
+        "hit_top3": true,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "chain_id": "CH-web-exploit",
+        "turn": 1,
+        "observed": [
+          "T1190"
+        ],
+        "actual_next": [
+          "T1005",
+          "T1552"
+        ],
+        "predicted_top3": [
+          "T1059",
+          "T1059.001",
+          "T1552"
+        ],
+        "hit_top1": false,
+        "hit_top3": true,
+        "reciprocal_rank": 0.3333333333333333
+      },
+      {
+        "chain_id": "CH-web-exploit",
+        "turn": 2,
+        "observed": [
+          "T1190",
+          "T1005",
+          "T1552"
+        ],
+        "actual_next": [
+          "T1059",
+          "T1571"
+        ],
+        "predicted_top3": [
+          "T1003",
+          "T1059",
+          "T1059.001"
+        ],
+        "hit_top1": false,
+        "hit_top3": true,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "chain_id": "CH-cloud-ssrf",
+        "turn": 1,
+        "observed": [
+          "T1552.005"
+        ],
+        "actual_next": [
+          "T1005",
+          "T1552"
+        ],
+        "predicted_top3": [
+          "T1003",
+          "T1078",
+          "T1005"
+        ],
+        "hit_top1": false,
+        "hit_top3": true,
+        "reciprocal_rank": 0.3333333333333333
+      },
+      {
+        "chain_id": "CH-cloud-ssrf",
+        "turn": 2,
+        "observed": [
+          "T1552.005",
+          "T1005",
+          "T1552"
+        ],
+        "actual_next": [
+          "T1059",
+          "T1571"
+        ],
+        "predicted_top3": [
+          "T1003",
+          "T1078",
+          "T1018"
+        ],
+        "hit_top1": false,
+        "hit_top3": false,
+        "reciprocal_rank": 0.0
+      },
+      {
+        "chain_id": "CH-recon-lateral",
+        "turn": 1,
+        "observed": [
+          "T1033"
+        ],
+        "actual_next": [
+          "T1046"
+        ],
+        "predicted_top3": [
+          "T1046",
+          "T1021",
+          "T1080"
+        ],
+        "hit_top1": true,
+        "hit_top3": true,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "chain_id": "CH-recon-lateral",
+        "turn": 2,
+        "observed": [
+          "T1033",
+          "T1046"
+        ],
+        "actual_next": [
+          "T1059",
+          "T1571"
+        ],
+        "predicted_top3": [
+          "T1021",
+          "T1571",
+          "T1005"
+        ],
+        "hit_top1": false,
+        "hit_top3": true,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "chain_id": "CH-persist-exfil",
+        "turn": 1,
+        "observed": [
+          "T1046"
+        ],
+        "actual_next": [
+          "T1005",
+          "T1552"
+        ],
+        "predicted_top3": [
+          "T1005",
+          "T1021",
+          "T1571"
+        ],
+        "hit_top1": true,
+        "hit_top3": true,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "chain_id": "CH-persist-exfil",
+        "turn": 2,
+        "observed": [
+          "T1046",
+          "T1005",
+          "T1552"
+        ],
+        "actual_next": [
+          "T1003.008"
+        ],
+        "predicted_top3": [
+          "T1003",
+          "T1021",
+          "T1078"
+        ],
+        "hit_top1": true,
+        "hit_top3": true,
+        "reciprocal_rank": 1.0
+      }
+    ]
+  },
+  "bait_steering_full": {
+    "turns": 10,
+    "steer_hit_rate": 0.9,
+    "block_steer_hit_rate": 0.9,
+    "bait_block_hit_rate": 0.4,
+    "rows": [
+      {
+        "chain_id": "CH-cred-exfil",
+        "turn": 1,
+        "actual_next": [
+          "T1003.008"
+        ],
+        "steer_ids": [
+          "T1003",
+          "T1078",
+          "T1018"
+        ],
+        "steer_hit": true,
+        "block_steer_hit": true,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": true
+      },
+      {
+        "chain_id": "CH-cred-exfil",
+        "turn": 2,
+        "actual_next": [
+          "T1078",
+          "T1134"
+        ],
+        "steer_ids": [
+          "T1078",
+          "T1018",
+          "T1033"
+        ],
+        "steer_hit": true,
+        "block_steer_hit": true,
+        "bait_block_hits": [
+          "T1078"
+        ],
+        "bait_block_hit": true,
+        "strategy_block_present": true
+      },
+      {
+        "chain_id": "CH-web-exploit",
+        "turn": 1,
+        "actual_next": [
+          "T1005",
+          "T1552"
+        ],
+        "steer_ids": [
+          "T1059",
+          "T1059.001",
+          "T1552"
+        ],
+        "steer_hit": true,
+        "block_steer_hit": true,
+        "bait_block_hits": [
+          "T1552"
+        ],
+        "bait_block_hit": true,
+        "strategy_block_present": true
+      },
+      {
+        "chain_id": "CH-web-exploit",
+        "turn": 2,
+        "actual_next": [
+          "T1059",
+          "T1571"
+        ],
+        "steer_ids": [
+          "T1003",
+          "T1059",
+          "T1059.001"
+        ],
+        "steer_hit": true,
+        "block_steer_hit": true,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": true
+      },
+      {
+        "chain_id": "CH-cloud-ssrf",
+        "turn": 1,
+        "actual_next": [
+          "T1005",
+          "T1552"
+        ],
+        "steer_ids": [
+          "T1003",
+          "T1078",
+          "T1005"
+        ],
+        "steer_hit": true,
+        "block_steer_hit": true,
+        "bait_block_hits": [
+          "T1552"
+        ],
+        "bait_block_hit": true,
+        "strategy_block_present": true
+      },
+      {
+        "chain_id": "CH-cloud-ssrf",
+        "turn": 2,
+        "actual_next": [
+          "T1059",
+          "T1571"
+        ],
+        "steer_ids": [
+          "T1003",
+          "T1078",
+          "T1018"
+        ],
+        "steer_hit": false,
+        "block_steer_hit": false,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": true
+      },
+      {
+        "chain_id": "CH-recon-lateral",
+        "turn": 1,
+        "actual_next": [
+          "T1046"
+        ],
+        "steer_ids": [
+          "T1046",
+          "T1021",
+          "T1080"
+        ],
+        "steer_hit": true,
+        "block_steer_hit": true,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": true
+      },
+      {
+        "chain_id": "CH-recon-lateral",
+        "turn": 2,
+        "actual_next": [
+          "T1059",
+          "T1571"
+        ],
+        "steer_ids": [
+          "T1021",
+          "T1571",
+          "T1005"
+        ],
+        "steer_hit": true,
+        "block_steer_hit": true,
+        "bait_block_hits": [
+          "T1571"
+        ],
+        "bait_block_hit": true,
+        "strategy_block_present": true
+      },
+      {
+        "chain_id": "CH-persist-exfil",
+        "turn": 1,
+        "actual_next": [
+          "T1005",
+          "T1552"
+        ],
+        "steer_ids": [
+          "T1005",
+          "T1021",
+          "T1571"
+        ],
+        "steer_hit": true,
+        "block_steer_hit": true,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": true
+      },
+      {
+        "chain_id": "CH-persist-exfil",
+        "turn": 2,
+        "actual_next": [
+          "T1003.008"
+        ],
+        "steer_ids": [
+          "T1003",
+          "T1021",
+          "T1078"
+        ],
+        "steer_hit": true,
+        "block_steer_hit": true,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": true
+      }
+    ]
+  },
+  "bait_steering_ablated": {
+    "turns": 10,
+    "steer_hit_rate": 0.0,
+    "block_steer_hit_rate": 0.0,
+    "bait_block_hit_rate": 0.0,
+    "rows": [
+      {
+        "chain_id": "CH-cred-exfil",
+        "turn": 1,
+        "actual_next": [
+          "T1003.008"
+        ],
+        "steer_ids": [],
+        "steer_hit": false,
+        "block_steer_hit": false,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": false
+      },
+      {
+        "chain_id": "CH-cred-exfil",
+        "turn": 2,
+        "actual_next": [
+          "T1078",
+          "T1134"
+        ],
+        "steer_ids": [],
+        "steer_hit": false,
+        "block_steer_hit": false,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": false
+      },
+      {
+        "chain_id": "CH-web-exploit",
+        "turn": 1,
+        "actual_next": [
+          "T1005",
+          "T1552"
+        ],
+        "steer_ids": [],
+        "steer_hit": false,
+        "block_steer_hit": false,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": false
+      },
+      {
+        "chain_id": "CH-web-exploit",
+        "turn": 2,
+        "actual_next": [
+          "T1059",
+          "T1571"
+        ],
+        "steer_ids": [],
+        "steer_hit": false,
+        "block_steer_hit": false,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": false
+      },
+      {
+        "chain_id": "CH-cloud-ssrf",
+        "turn": 1,
+        "actual_next": [
+          "T1005",
+          "T1552"
+        ],
+        "steer_ids": [],
+        "steer_hit": false,
+        "block_steer_hit": false,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": false
+      },
+      {
+        "chain_id": "CH-cloud-ssrf",
+        "turn": 2,
+        "actual_next": [
+          "T1059",
+          "T1571"
+        ],
+        "steer_ids": [],
+        "steer_hit": false,
+        "block_steer_hit": false,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": false
+      },
+      {
+        "chain_id": "CH-recon-lateral",
+        "turn": 1,
+        "actual_next": [
+          "T1046"
+        ],
+        "steer_ids": [],
+        "steer_hit": false,
+        "block_steer_hit": false,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": false
+      },
+      {
+        "chain_id": "CH-recon-lateral",
+        "turn": 2,
+        "actual_next": [
+          "T1059",
+          "T1571"
+        ],
+        "steer_ids": [],
+        "steer_hit": false,
+        "block_steer_hit": false,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": false
+      },
+      {
+        "chain_id": "CH-persist-exfil",
+        "turn": 1,
+        "actual_next": [
+          "T1005",
+          "T1552"
+        ],
+        "steer_ids": [],
+        "steer_hit": false,
+        "block_steer_hit": false,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": false
+      },
+      {
+        "chain_id": "CH-persist-exfil",
+        "turn": 2,
+        "actual_next": [
+          "T1003.008"
+        ],
+        "steer_ids": [],
+        "steer_hit": false,
+        "block_steer_hit": false,
+        "bait_block_hits": [],
+        "bait_block_hit": false,
+        "strategy_block_present": false
+      }
+    ]
+  },
+  "proofs": [
+    {
+      "id": "C3_next_ttp_top3",
+      "claim": "graph-informed prediction puts a next-turn technique in top-3",
+      "value": 0.9,
+      "target": ">= 0.80",
+      "pass": true
+    },
+    {
+      "id": "C3_next_ttp_top1",
+      "claim": "the top-ranked suggestion matches the actual next technique",
+      "value": 0.5,
+      "target": ">= 0.40 (kill-chain prior, not oracle)",
+      "pass": true
+    },
+    {
+      "id": "C3_steering_reaches_plan",
+      "claim": "steer IDs + bait for the next move are attached to the plan",
+      "value": 0.9,
+      "target": ">= 0.80",
+      "pass": true
+    },
+    {
+      "id": "C3_ablation_gap",
+      "claim": "removing bait steering (A2) collapses the bait signal",
+      "value": 0.4,
+      "target": ">= 0.4 - 0.05",
+      "pass": true
+    }
+  ],
+  "elapsed_seconds": 6.49
+}

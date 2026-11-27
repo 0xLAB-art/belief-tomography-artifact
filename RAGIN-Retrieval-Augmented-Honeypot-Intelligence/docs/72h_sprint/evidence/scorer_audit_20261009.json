@@ -1,0 +1,36 @@
+{
+  "observed_utc": "2026-10-09T03:45:00Z",
+  "source_revision": "f01a4a98d8fc0cdbf1f031d915385294675e3b1b_plus_dirty_worktree",
+  "source_hashes": {
+    "ragin/benchmark/core.py": "de644a4a3f022a914fae087b80cf65235d6313371367d3b0bdc1342972af565f",
+    "ragin/benchmark/harness_bridge.py": "6cd05bde1c55643d48fc6b0f46bf14bed39c8f6fd8fcffe6e7e7438471d3488e",
+    "scripts/run_live_benchmark.py": "db288824bf906a1f0d169b833d29085e187ec64513982b843b6ea94c2a20d5ff"
+  },
+  "findings": [
+    {
+      "case": "technique_echo",
+      "query_echo": true,
+      "served_text_score": 0.0,
+      "interpretation": "The echo guard prevents credit for the echoed ATT&CK identifier."
+    },
+    {
+      "case": "actor_echo",
+      "query_echo": true,
+      "served_text_score": 0.0,
+      "interpretation": "The echo guard prevents credit for the echoed actor name."
+    },
+    {
+      "case": "persona_template_details",
+      "query_echo": false,
+      "served_text_score": 0.8,
+      "interpretation": "The deterministic nginx transcript earns realism points from versions, ports, and structured details; this is not independent attacker behavior."
+    },
+    {
+      "case": "reported_cti_rows",
+      "served_text_score": 0.0,
+      "reported_benchmark_score": 0.85,
+      "interpretation": "The live benchmark declares served_text+cti_analysis_max, so Don's internal CTI channel can dominate the reported score even when the served fallback echoes the query."
+    }
+  ],
+  "claim_boundary": "The three-session fallback run is a pipeline/scorer diagnostic, not evidence of genuine generation, attacker behavior, independent labels, or statistical effectiveness."
+}

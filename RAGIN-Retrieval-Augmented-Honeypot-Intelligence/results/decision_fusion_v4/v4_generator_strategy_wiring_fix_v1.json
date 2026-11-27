@@ -1,0 +1,122 @@
+{
+  "schema": "ragin.decision_fusion_v4.generator_strategy_wiring_fix.v1",
+  "status": "IMPLEMENTATION_FREEZE",
+  "scope": "software correction only; no effectiveness experiment",
+  "policy_engine_changed": false,
+  "legacy_jev_laya_reactivated": false,
+  "frozen_v4_policy_algorithms_changed": false,
+  "frozen_720_records_modified": false,
+  "template_strategy_support": {
+    "baseline": "existing baseline behavior preserved",
+    "maximize_recon_surface": "generic terminal template plus bounded suffix: service discovery: internal endpoints available",
+    "fake_success_and_return_visits": "generic terminal template plus bounded suffix: change applied successfully",
+    "steer_to_honeytoken_credentials": "generic terminal template plus bounded suffix: credential helper initialized",
+    "expose_decoy_internal_topology": "generic terminal template plus bounded suffix: internal service map updated",
+    "contain_in_fiction_and_instrument": "generic terminal template plus bounded suffix: export staged in /var/tmp",
+    "low_intensity_administration": "generic terminal template plus bounded suffix: administration request completed"
+  },
+  "changed_code_paths": [
+    {
+      "path": "ragin/hisoka/deceiver.py",
+      "sha256": "a56e78e3d1a8e89e8edec73c86d073e6e29d8725a2dda0689ace40e045bfc420"
+    },
+    {
+      "path": "ragin/hisoka/deception.py",
+      "sha256": "a9eb0f46cdd54d1a691c692ff9f893f9fbff413e2b5ab23a666ab0d88ef1bbb8"
+    },
+    {
+      "path": "tests/unit/test_v4_generator_strategy_wiring_fix.py",
+      "sha256": "7876e2bc3e2c9b306af8da88d5e419b06e1627524ad315aa4c37825752ceccf7"
+    }
+  ],
+  "controlled_tests": {
+    "command": "pytest -q tests/unit/test_v4_generator_strategy_wiring_fix.py tests/unit/test_v4_real_prototype.py tests/unit/test_laya_decision_v2.py tests/unit/test_hisoka.py",
+    "passed": 170,
+    "failed": 0,
+    "baseline_behavior": "PASS",
+    "deterministic_v4_delivery": "PASS",
+    "logistic_v4_delivery": "PASS",
+    "legacy_override_prevention": "PASS",
+    "unsupported_strategy_fail_closed": "PASS",
+    "invalid_evidence_fallback": "PASS",
+    "verifier_and_hitl_requirements": "PASS",
+    "untrusted_command_execution": "PASS: commands are inert synthetic strings",
+    "supported_template_consumption": "PASS",
+    "exact_response_hash_changes": "MEASURED: six non-baseline strategy hashes are distinct in synthetic fixtures"
+  },
+  "synthetic_trace_records": [
+    {
+      "case_id": "synthetic-RAGIN_BASELINE-fake_success_and_return_visits",
+      "arm": "RAGIN_BASELINE",
+      "selected_strategy": "fake_success_and_return_visits",
+      "strategy_source": "legacy_jev_laya",
+      "strategy_delivered_to_generator": true,
+      "strategy_consumed_by_template": true,
+      "template_id": "generic_terminal",
+      "template_fallback_reason": "no_gateway",
+      "response_hash": "2118409d9ecfe3a5189e018f3259a8a0b5fed7ccd39e62c506256dcfebde4ed9",
+      "verifier_status": "NOT_RUN_SYNTHETIC_GENERATOR_ONLY",
+      "commit_status": "NOT_RUN_SYNTHETIC_GENERATOR_ONLY"
+    },
+    {
+      "case_id": "synthetic-RAGIN_V4_DETERMINISTIC-low_intensity_administration",
+      "arm": "RAGIN_V4_DETERMINISTIC",
+      "selected_strategy": "low_intensity_administration",
+      "strategy_source": "v4_policy_decision",
+      "strategy_delivered_to_generator": true,
+      "strategy_consumed_by_template": true,
+      "template_id": "generic_terminal",
+      "template_fallback_reason": "no_gateway",
+      "response_hash": "00e6941464e8e6ad1272efd44947e407b037390c089a76abafd710c29f4defc2",
+      "verifier_status": "NOT_RUN_SYNTHETIC_GENERATOR_ONLY",
+      "commit_status": "NOT_RUN_SYNTHETIC_GENERATOR_ONLY"
+    },
+    {
+      "case_id": "synthetic-RAGIN_V4_LOGISTIC-maximize_recon_surface",
+      "arm": "RAGIN_V4_LOGISTIC",
+      "selected_strategy": "maximize_recon_surface",
+      "strategy_source": "v4_policy_decision",
+      "strategy_delivered_to_generator": true,
+      "strategy_consumed_by_template": true,
+      "template_id": "generic_terminal",
+      "template_fallback_reason": "no_gateway",
+      "response_hash": "9cb0e81b55196f0fef76282c5e07b363a46b5b2bebabc09691eae7b9ca34bbed",
+      "verifier_status": "NOT_RUN_SYNTHETIC_GENERATOR_ONLY",
+      "commit_status": "NOT_RUN_SYNTHETIC_GENERATOR_ONLY"
+    },
+    {
+      "case_id": "synthetic-RAGIN_V4_LOGISTIC-not-supported",
+      "arm": "RAGIN_V4_LOGISTIC",
+      "selected_strategy": "baseline",
+      "strategy_source": "v4_policy_decision_fallback",
+      "strategy_delivered_to_generator": true,
+      "strategy_consumed_by_template": false,
+      "template_id": "generic_terminal",
+      "template_fallback_reason": "no_gateway",
+      "response_hash": "7bd3fbecd594d6ce5d101b118fdd2d6322136a29bf878843812197def103f6a4",
+      "verifier_status": "NOT_RUN_SYNTHETIC_GENERATOR_ONLY",
+      "commit_status": "NOT_RUN_SYNTHETIC_GENERATOR_ONLY"
+    }
+  ],
+  "existing_raw_freeze": {
+    "holdout_path": "results/decision_fusion_v4/v4_hf2024_retrospective_holdout_freeze_v1a.json",
+    "holdout_sha256": "ee47336121f45a50259ac54bce84ea59ebb2ecdb5cd0b6f507690a7f346d435e",
+    "raw_execution_freeze_path": "results/decision_fusion_v4/v4_hf2024_retrospective_raw_execution_freeze_v1a.json",
+    "raw_execution_freeze_sha256": "1a634f471741d67f7d5c53e5454f0114ff91ff37d7a8b9cfe602f1c58e19fe59",
+    "status": "UNCHANGED"
+  },
+  "future_cohort_feasibility": {
+    "source_path": "data/external/hf_shell_attack_2024/d201aafbbcbb5347078ca64f06c5428fa6814bc9/sessions/2024.jsonl",
+    "all_source_sessions": 6658,
+    "excluded_source_groups": 240,
+    "excluded_normalized_command_families": 59,
+    "remaining_source_groups": 6418,
+    "new_eligible_unique_command_families": 1399,
+    "remaining_sessions_in_new_families": 1489,
+    "selection_performed": false,
+    "arms_executed": false,
+    "method": "Exclude every previously selected source_group_id and every normalized ordered command-sequence family represented by those groups; lowercase, trim, and collapse whitespace per command while preserving order. Metadata-only.",
+    "registration_requirement": "A redesigned evaluation must be registered separately as post-hoc development followed by fresh validation."
+  },
+  "commit_status": "NOT_OBSERVABLE_UNCOMMITTED_WORKTREE"
+}

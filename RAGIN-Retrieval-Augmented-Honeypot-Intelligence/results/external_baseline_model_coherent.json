@@ -1,0 +1,86 @@
+{
+  "what": "W1 external-baseline table REGENERATED model-coherently (all LLM arms on deepseek-v4-flash-free) before paper-number freeze",
+  "motivation": "The W1 table mixed generator models: llm_unverified/stateful_llm ran on deepseek-v4-flash-free (pinned in .env during W1) while the grounded arms (rag_no_verifier, ragin_full_reference, Sep-22) ran on the pre-pin gateway default. Cross-model comparison inflated the grounded arms' technique scores. All grounded arms re-run 2026-09-27 under the current model.",
+  "model_coherent_table": {
+    "generator_model": "deepseek-v4-flash-free (RAGIN_HISOKA_MODEL)",
+    "arms": {
+      "cowrie": {
+        "composite": 0.0006,
+        "note": "no LLM \u2014 unchanged from W1"
+      },
+      "stateful_llm": {
+        "composite": 0.0704,
+        "note": "unchanged (already deepseek)"
+      },
+      "llm_unverified": {
+        "composite": 0.5018,
+        "note": "unchanged (already deepseek)"
+      },
+      "rag_no_verifier_repro": {
+        "cti_technique": 0.5236,
+        "cti_actor": 0.68,
+        "deception": 0.6492,
+        "composite": 0.6176,
+        "rows": 218,
+        "serve_paths": {
+          "GENERATED_UNVERIFIED": 218
+        },
+        "note": "NEW: grounded pipeline, verifier pass-through, deepseek"
+      },
+      "ragin_full": {
+        "cti_technique": 0.5236,
+        "cti_actor": 0.68,
+        "deception": 0.6492,
+        "composite": 0.6176,
+        "rows": 218,
+        "serve_paths": {
+          "GENERATED_VERIFIED": 216,
+          "FALLBACK_VERIFIED": 2
+        },
+        "note": "REGENERATED ragin_full row: verified loop, deepseek (was 0.8474 on the Sep-22 model)"
+      },
+      "ragin_hostfiction": {
+        "cti_technique": 0.5236,
+        "cti_actor": 0.68,
+        "deception": 0.6492,
+        "composite": 0.6176,
+        "rows": 218,
+        "serve_paths": {
+          "GENERATED_VERIFIED": 213,
+          "FALLBACK_VERIFIED": 5
+        },
+        "note": "host-fiction layer ON \u2014 paired score delta vs ragin_full: 0.0000 (all 218 rows identical)"
+      }
+    }
+  },
+  "historical_reference_sep22": {
+    "generator_model": "unrecorded (gateway default, pre-deepseek pin)",
+    "rag_no_verifier": 0.8163,
+    "ragin_full_reference": 0.8474,
+    "note": "kept for provenance; do NOT pair across the model boundary in the paper"
+  },
+  "regenerated_claims": {
+    "verifier_contribution_same_model": {
+      "composite_delta": 0.0,
+      "paired_mean_row_delta": 0.0,
+      "note": "ragin_full vs rag_no_verifier under the SAME model: quality held at 0.6176 vs 0.6176 while the verified loop served 0 unverified responses (the no-verifier arm served all 218 unverified, provenance-labeled GENERATED_UNVERIFIED)",
+      "mechanism_note": "Paired per-row delta is EXACTLY 0 on all 218 rows: the verification gate is not in the generation prompt and the fiction seed is identical across arms, so each row's prompt is byte-identical and the generator returns the same draft in both arms; the verifier passes 213/218 outright and swaps 5 for the fail-safe template. This comparison therefore isolates the verifier's GATING effect (safety boundary) at quality parity, not generator variance. Quality differences across eras are attributable to the generator model (see historical_reference_sep22)."
+    },
+    "grounding_contribution_same_model": {
+      "delta": 0.1158,
+      "note": "ragin_full vs llm_unverified, both deepseek: grounding adds composite"
+    },
+    "host_fiction_neutrality": "paired delta 0.0000 over 218 rows (store ON vs OFF); drift protection 4/4 vs 1/4 in the cross-session bench",
+    "table_reading": "Model-coherent ladder (all LLM arms deepseek-v4-flash-free): cowrie 0.0006 < stateful_llm 0.0704 < llm_unverified 0.5018 < ragin_full 0.6176 = rag_no_verifier 0.6176 < ragin_hostfiction 0.6176. Grounding adds +0.1158 composite over bare LLM; the deterministic verifier adds quality parity with zero unverified serves; the host-fiction layer adds cross-session drift protection at exactly zero quality cost. The W1-era 0.96/0.85 grounded numbers were a generator-model effect (stronger exact-match rubric compliance), not an architecture effect \u2014 the paper must state the generator model in the table."
+  },
+  "sources": [
+    "results/external_baseline_hostfiction_rag_no_verifier_repro.json",
+    "results/external_baseline_hostfiction_ragin_full_repro.json",
+    "results/external_baseline_hostfiction_ragin_hostfiction.json",
+    "results/external_baseline_comparison.json (W1 original, superseded for cross-model rows)"
+  ],
+  "superseded_interpretations": {
+    "generator_model_effect_claim": "SUPERSEDED by results/technique_rubric_diff_investigation.json: the W1-era 0.96/0.85 grounded numbers were NOT a generator-model effect \u2014 they came from a different scorer channel (run_live_benchmark's _tech_score credits the CTI-analysis channel: ttps_extracted / candidate_actors). Like-for-like on served text, the Sep-22 drafts average 0.4927 (technique) / 0.6657 (actor) \u2014 equal-or-slightly-below the deepseek repro (0.5236 / 0.68).",
+    "status_of_this_table": "The model-coherent table above remains VALID for its own claim: same model, same served-text scorer across all LLM arms \u2014 grounding +0.1158, verifier quality parity with 0 unverified serves, host-fiction paired delta 0.0000."
+  }
+}

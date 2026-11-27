@@ -1,0 +1,122 @@
+{
+  "conclusion": "Features propagate correctly on synthetic bundles. The live mismatch is policy-rule coverage and missing frozen policy-input trace fields, not evidence-ID fabrication.",
+  "fixtures": [
+    {
+      "classification": "malicious",
+      "evidence_ids": [
+        "synthetic-doc-1"
+      ],
+      "fixture": "maximize_recon_surface",
+      "predicate": "TA0043 or T1046/T1016/T1049",
+      "predicate_match": true,
+      "selected_strategy": "maximize_recon_surface",
+      "severity": "high",
+      "tactics": [
+        "TA0043"
+      ],
+      "techniques": [
+        "T1046"
+      ],
+      "ttps_seen": [
+        "T1046"
+      ]
+    },
+    {
+      "classification": "malicious",
+      "evidence_ids": [
+        "synthetic-doc-1"
+      ],
+      "fixture": "fake_success_and_return_visits",
+      "predicate": "TA0003 or T1053*",
+      "predicate_match": true,
+      "selected_strategy": "fake_success_and_return_visits",
+      "severity": "high",
+      "tactics": [
+        "TA0003"
+      ],
+      "techniques": [
+        "T1053.003"
+      ],
+      "ttps_seen": [
+        "T1053.003"
+      ]
+    },
+    {
+      "classification": "malicious",
+      "evidence_ids": [
+        "synthetic-doc-1"
+      ],
+      "fixture": "steer_to_honeytoken_credentials",
+      "predicate": "TA0006 or T1003/T1552*",
+      "predicate_match": true,
+      "selected_strategy": "steer_to_honeytoken_credentials",
+      "severity": "high",
+      "tactics": [
+        "TA0006"
+      ],
+      "techniques": [
+        "T1003"
+      ],
+      "ttps_seen": [
+        "T1003"
+      ]
+    },
+    {
+      "classification": "malicious",
+      "evidence_ids": [
+        "synthetic-doc-1"
+      ],
+      "fixture": "expose_decoy_internal_topology",
+      "note": "existing deterministic rule intentionally maps this recon predicate to maximize_recon_surface; it does not select the six-strategy label directly",
+      "predicate": "TA0043 or T1046/T1016/T1049",
+      "predicate_match": true,
+      "selected_strategy": "maximize_recon_surface",
+      "severity": "high",
+      "tactics": [
+        "TA0043"
+      ],
+      "techniques": [
+        "T1046"
+      ],
+      "ttps_seen": [
+        "T1046"
+      ]
+    },
+    {
+      "classification": "malicious",
+      "evidence_ids": [
+        "synthetic-doc-1"
+      ],
+      "fixture": "contain_in_fiction_and_instrument",
+      "predicate": "TA0001 or T1190",
+      "predicate_match": true,
+      "selected_strategy": "contain_in_fiction_and_instrument",
+      "severity": "high",
+      "tactics": [
+        "TA0001"
+      ],
+      "techniques": [
+        "T1190"
+      ],
+      "ttps_seen": [
+        "T1190"
+      ]
+    },
+    {
+      "classification": "benign",
+      "evidence_ids": [
+        "synthetic-doc-1"
+      ],
+      "fixture": "low_intensity_administration",
+      "predicate": "classification benign or severity info",
+      "predicate_match": true,
+      "selected_strategy": "low_intensity_administration",
+      "severity": "info",
+      "tactics": [],
+      "techniques": [],
+      "ttps_seen": []
+    }
+  ],
+  "policy_behavior_activated": false,
+  "schema": "ragin.v4.policy_contract_audit.synthetic.v1"
+}

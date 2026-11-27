@@ -1,0 +1,54 @@
+{
+  "canonical_record_sha256": "86e26daa3a78c3dc2e53388a2047b94454047a16e7f35f548a9a71554f56767a",
+  "capture_id": "admin-010-c8914d10f8b34c9b843cd89c304cce9d",
+  "derivation_tool": "v4_controlled_admin_capture.py",
+  "derivation_tool_sha256": "d59b176bf441329630e45db76cdac7274eef5aa4ee1141c7ec906d614e9bc2f1",
+  "derivation_version": "v1:d0e0539d3fb3d7ba5108f319e2868506b3463e170b868f8f8b1d61d8b953843a",
+  "derived_at_utc": "2026-10-14T06:38:09.196683Z",
+  "independence_group_id": "admin-010-c8914d10f8b34c9b843cd89c304cce9d",
+  "native_session_id": "admin-010-c8914d10f8b34c9b843cd89c304cce9d",
+  "prior_session_context": [
+    {
+      "data": {
+        "transport": "local-bash-session"
+      },
+      "event_type": "session_start",
+      "timestamp": "2026-10-14T06:38:08.855317Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "pwd",
+      "output": "/tmp\n",
+      "timestamp": "2026-10-14T06:38:08.855958Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "printf '%s\\n' \"$PWD\"",
+      "output": "/tmp\n",
+      "timestamp": "2026-10-14T06:38:08.856086Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "ls -ld /tmp /var/tmp",
+      "output": "drwxrwxrwt 1102 root root 331776 Oct 14 09:38 /tmp\ndrwxrwxrwx   18 root root   4096 Oct 14 09:38 /var/tmp\n",
+      "timestamp": "2026-10-14T06:38:08.857182Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "find /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20",
+      "output": ".ICE-unix\n.X11-unix\n.XIM-unix\n.font-unix\n.tmp0X5A1q\n.tmp0hJsnK\n.tmp1Kjg33\n.tmp1QTBsB\n.tmp1gBztA\n.tmp1zKnYl\n.tmp23RjFt\n.tmp2AZBTw\n.tmp2UIQaD\n.tmp2sU97X\n.tmp3Acgzw\n.tmp3EPGp6\n.tmp3c824E\n.tmp3gbb1n\n.tmp3gpDiq\n.tmp3si6rN\n",
+      "timestamp": "2026-10-14T06:38:08.863171Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "du -sh /tmp 2>/dev/null",
+      "output": "9.2G\t/tmp\n",
+      "timestamp": "2026-10-14T06:38:09.186707Z"
+    }
+  ],
+  "raw_parent_sha256": "3a941169ef7ce652fbf1fd0736cdfa946466b691f964a2767d3edf04a2054dee",
+  "schema": "ragin.real_canonical_session.v1",
+  "selected_input": "df -h /",
+  "selected_input_event_index": 6,
+  "source_cluster_id": null
+}

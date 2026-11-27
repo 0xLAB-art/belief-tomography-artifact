@@ -1,0 +1,100 @@
+{
+  "files": {
+    "commands/2024.jsonl": {
+      "actual_sha256": "80fa73d03f37b50e853e12a60c3cdd79886892aeebaae5d3c22b4b09738fec30",
+      "bytes": 1079890,
+      "expected_sha256": "80fa73d03f37b50e853e12a60c3cdd79886892aeebaae5d3c22b4b09738fec30",
+      "path": "data/external/hf_shell_attack_2024/d201aafbbcbb5347078ca64f06c5428fa6814bc9/commands/2024.jsonl",
+      "verified": true
+    },
+    "raw_samples/cowrie_ssh_2024_sample.jsonl": {
+      "actual_sha256": "2fae56a0f7b2b02b24a99b887c2fd751a6fe0919b50f620aedad210372e72f51",
+      "bytes": 97088,
+      "expected_sha256": "2fae56a0f7b2b02b24a99b887c2fd751a6fe0919b50f620aedad210372e72f51",
+      "path": "data/external/hf_shell_attack_2024/d201aafbbcbb5347078ca64f06c5428fa6814bc9/raw_samples/cowrie_ssh_2024_sample.jsonl",
+      "verified": true
+    },
+    "sessions/2024.jsonl": {
+      "actual_sha256": "7ea4b916841708c36dbe24f95b882f06335e85ed2e77bdc70ba985c9c9653752",
+      "bytes": 7206955,
+      "expected_sha256": "7ea4b916841708c36dbe24f95b882f06335e85ed2e77bdc70ba985c9c9653752",
+      "path": "data/external/hf_shell_attack_2024/d201aafbbcbb5347078ca64f06c5428fa6814bc9/sessions/2024.jsonl",
+      "verified": true
+    }
+  },
+  "historical_overlap_audit": {
+    "exploratory_120_exact_source_group_overlap": 0,
+    "local_data_sessions_sequence_hash_overlap": 0,
+    "primary_169_exact_input_hash_overlap_using_final_command_hash": 0,
+    "prospective_admin_cases_merged": 0,
+    "prospective_registry_native_id_overlap": 0,
+    "v3_v4_synthetic_case_reuse": 0
+  },
+  "pinned_revision": "d201aafbbcbb5347078ca64f06c5428fa6814bc9",
+  "population_audit": {
+    "command_count_mismatches": 0,
+    "duplicate_command_sequence_groups": 33,
+    "duplicate_source_group_ids": 0,
+    "empty_or_invalid_command_entries": 0,
+    "max_duplicate_command_sequence_multiplicity": 4147,
+    "missing_source_group_ids": 0,
+    "missing_src_ip": 0,
+    "period_counts": {
+      "2024": 6658
+    },
+    "total_command_entries": 33259,
+    "unique_source_group_ids": 6658,
+    "unique_src_ip_values": 6658
+  },
+  "provenance": {
+    "collection_period": "2024-03-01 through 2024-06-26",
+    "processing_provenance": "README and pinned revision retained; no repository-side relabeling or retraining performed",
+    "response_provenance": "not used; request_response replay variants are excluded",
+    "session_id_semantics": "anonymized source-IP-group identifier, not native SSH session identity",
+    "source_description": "public Cowrie honeypot 2024 data, grouped by attacker source IP and processed by dataset authors"
+  },
+  "readme_sha256": "5425d21a8a939d5c846e421f58c28d2b2d2e02a284d33390d756890f0435871a",
+  "safety": {
+    "attacker_commands_executed": false,
+    "published_attack_labels_used_as_ground_truth": false,
+    "raw_historical_logs_downloaded": false
+  },
+  "schema": "ragin.v4.hf2024.retrospective_source_audit.v1",
+  "schema_observations": {
+    "command_keys": [
+      "command",
+      "command_pattern",
+      "frequency",
+      "is_complex",
+      "period"
+    ],
+    "commands_rows": 4236,
+    "invalid_json_rows": 0,
+    "raw_sample_keys": [
+      "alert",
+      "dst_host",
+      "dst_port",
+      "info",
+      "pot_id",
+      "protocol",
+      "request",
+      "src_host",
+      "src_port",
+      "timestamp",
+      "tshark"
+    ],
+    "raw_sample_rows": 300,
+    "session_keys": [
+      "attack_techniques",
+      "command_count",
+      "commands",
+      "period",
+      "session_id",
+      "session_pattern",
+      "src_ip"
+    ],
+    "sessions_rows": 6658
+  },
+  "source_repo": "zyw-286/shell-attack-evolution-dataset",
+  "status": "SOURCE_VERIFIED_RETROSPECTIVE_ONLY"
+}

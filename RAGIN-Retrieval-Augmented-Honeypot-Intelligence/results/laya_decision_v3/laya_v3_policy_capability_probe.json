@@ -1,0 +1,155 @@
+{
+  "schema": "ragin.laya_v3.policy_capability_probe.v1",
+  "probe_type": "CAPABILITY_AND_CONTRACT_ONLY",
+  "effectiveness_claim": false,
+  "holdout_accessed": false,
+  "reference_labels_accessed": false,
+  "prior_artifacts_accessed": false,
+  "runtime": {
+    "package": "laya",
+    "package_version": "0.4.2",
+    "model": "english",
+    "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+    "checkpoint_sha256": "891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c",
+    "device": "cpu",
+    "checkpoint_verified": true,
+    "fixture_injection_present": false,
+    "runtime_warning": "laya emitted an invalid-temperature warning and fell back to a bounded temperature; confidence for affected entries is uncalibrated",
+    "api_entrypoint": "laya.Router.predict",
+    "api_signature": "predict(state: Union[str, dict, list], questions: Dict[str, Any], model: Optional[str] = None, task: Optional[str] = None, lang: Optional[str] = None, lang_guess: Optional[Any] = None, hooks=None, on_predict_start=None, on_predict_end=None, hooks_raise: Optional[bool] = None, hooks_timeout: Optional[float] = None, max_len: Optional[int] = None, head_max_len: Optional[int] = None, min_confidence: Optional[float] = None) -> Dict[str, Any]",
+    "ragin_runtime_boundary": "LayaRuntime.infer remains fixed to RAGIN's attack/stage/severity questions; the probe calls Router.predict directly to test the documented custom-question API."
+  },
+  "api_capability": {
+    "custom_questions_supported": "YES",
+    "categorical_finite_choice_supported": "YES",
+    "structured_evidence_input_supported": "YES",
+    "structured_evidence_semantics": "state accepts str/dict/list and dict/list are JSON-serialized; the model receives text, not a typed evidence schema",
+    "multiple_contextual_evidence_fields": "YES_WITH_TOKEN_BUDGET_CAVEAT",
+    "probabilities_exposed": "YES",
+    "confidence_exposed": "YES",
+    "documented_custom_task_semantics": "NO",
+    "accepted_question_types": ["choice", "score", "noul"],
+    "choice_schema": {
+      "type": "choice",
+      "instructions": "string_or_supported_scalar",
+      "criteria": "dict[label, description] or list[label]"
+    },
+    "finite_choice_output": "answer.choice plus answer.probabilities, answer.confidence, and answer.answer_confidence",
+    "abstention_api": "min_confidence can flag low confidence, but semantic insufficient-evidence abstention must be represented as an explicit question option or enforced by a caller policy",
+    "source_evidence": [
+      ".venv/lib/python3.12/site-packages/laya/router.py:1318-1357",
+      ".venv/lib/python3.12/site-packages/laya/agent.py:967-1087",
+      ".venv/lib/python3.12/site-packages/laya/agent.py:1888-1907",
+      ".venv/lib/python3.12/site-packages/laya/common.py:95-110",
+      ".venv/lib/python3.12/site-packages/laya/common.py:156-170",
+      ".venv/lib/python3.12/site-packages/laya-0.4.2.dist-info/METADATA:825-829"
+    ]
+  },
+  "policy_vocabulary": {
+    "strategies": [
+      "baseline",
+      "maximize_recon_surface",
+      "fake_success_and_return_visits",
+      "steer_to_honeytoken_credentials",
+      "expose_decoy_internal_topology",
+      "contain_in_fiction_and_instrument",
+      "low_intensity_administration"
+    ],
+    "status_values": ["SELECT", "ABSTAIN"],
+    "evidence_ref_none_representation": "NONE maps to an empty evidence_refs array and is not treated as a document ID",
+    "free_form_strategy_allowed": false
+  },
+  "probe_design": {
+    "synthetic_only": true,
+    "synthetic_contract_fields": [
+      "session.current_input",
+      "behavior.skill_level",
+      "behavior.confidence",
+      "behavior.observed_techniques",
+      "don_analysis.severity",
+      "don_analysis.tactics",
+      "don_analysis.observed_ttps",
+      "don_analysis.iocs",
+      "retrieval.documents[].doc_id",
+      "retrieval.documents[].title",
+      "retrieval.documents[].content_excerpt",
+      "retrieval.documents[].source",
+      "retrieval.documents[].retrieval_score"
+    ],
+    "question_ids": ["status", "strategy", "evidence_ref"],
+    "repetitions_per_case": 3,
+    "case_count": 8,
+    "run_count": 24,
+    "case_definitions": [
+      {"name": "clear_recon", "document_ids": ["D1", "D2"]},
+      {"name": "credential_access", "document_ids": ["D1", "D2"]},
+      {"name": "persistence", "document_ids": ["D1", "D2"]},
+      {"name": "conflicting_retrieval", "document_ids": ["D1", "D2", "D3"]},
+      {"name": "weak_irrelevant", "document_ids": ["D1", "D2"]},
+      {"name": "benign_administration", "document_ids": ["D1", "D2"]},
+      {"name": "malformed_missing", "document_ids": []},
+      {"name": "behavior_retrieval_contradiction", "document_ids": ["D1", "D2"]}
+    ]
+  },
+  "probe_results": {
+    "synthetic_cases": 8,
+    "runs": 24,
+    "schema_valid": 24,
+    "allow_list_valid": 24,
+    "valid_evidence_refs": 24,
+    "malformed_output": 0,
+    "select": 21,
+    "abstain": 3,
+    "abstain_cases": ["malformed_missing"],
+    "input_sensitive_unique_output_signatures": 5,
+    "repeated_run_stability": {
+      "clear_recon": true,
+      "credential_access": true,
+      "persistence": true,
+      "conflicting_retrieval": true,
+      "weak_irrelevant": true,
+      "benign_administration": true,
+      "malformed_missing": true,
+      "behavior_retrieval_contradiction": true
+    },
+    "representative_case_outputs": {
+      "clear_recon": {"status": "SELECT", "strategy": "expose_decoy_internal_topology", "evidence_refs": ["D2"], "status_answer_confidence": 0.7285, "strategy_answer_confidence": 0.2136},
+      "credential_access": {"status": "SELECT", "strategy": "expose_decoy_internal_topology", "evidence_refs": ["D2"], "status_answer_confidence": 0.5942, "strategy_answer_confidence": 0.2541},
+      "persistence": {"status": "SELECT", "strategy": "fake_success_and_return_visits", "evidence_refs": ["D1"], "status_answer_confidence": 0.6188, "strategy_answer_confidence": 0.2629},
+      "conflicting_retrieval": {"status": "SELECT", "strategy": "low_intensity_administration", "evidence_refs": ["D2"], "status_answer_confidence": 0.6511, "strategy_answer_confidence": 0.3464},
+      "weak_irrelevant": {"status": "SELECT", "strategy": "contain_in_fiction_and_instrument", "evidence_refs": ["D2"], "status_answer_confidence": 0.5428, "strategy_answer_confidence": 0.7102},
+      "benign_administration": {"status": "SELECT", "strategy": "low_intensity_administration", "evidence_refs": ["D2"], "status_answer_confidence": 0.5561, "strategy_answer_confidence": 0.3419},
+      "malformed_missing": {"status": "ABSTAIN", "strategy": "baseline", "evidence_refs": [], "status_answer_confidence": 0.5779, "strategy_answer_confidence": 0.3008},
+      "behavior_retrieval_contradiction": {"status": "SELECT", "strategy": "low_intensity_administration", "evidence_refs": ["D2"], "status_answer_confidence": 0.5683, "strategy_answer_confidence": 0.5573}
+    },
+    "latency_ms": {
+      "min": 2740.06,
+      "mean": 7343.15,
+      "median": 7582.27,
+      "max": 12329.28,
+      "cold_model_load_excluded": false
+    }
+  },
+  "interpretation": {
+    "no_accuracy_claim": true,
+    "contract_observation": "The API can express the requested finite-choice shape and emits valid probabilities/confidence, but the checkpoint selected rather than abstained on weak, irrelevant, and conflicting evidence and produced semantically unsupported strategy/reference choices on the clear recon and credential cases.",
+    "grounding_observation": "Repeated outputs were stable within each synthetic input, yet the stable outputs were not reliably evidence-grounded. The evidence_ref question also assigns probability to supplied IDs regardless of whether they support the behavior.",
+    "abstain_observation": "Missing retrieval input produced stable ABSTAIN/baseline/NONE outputs in 3/3 runs. This is not sufficient to establish robust semantic abstention for weak or contradictory evidence, which selected in all tested repeats.",
+    "custom_text_boundary": "Custom instructions alter the rendered question text and option descriptions, but the package documents the input/output mechanics, not a guarantee that arbitrary new instructions create a calibrated new task.",
+    "classification": "TASK_ADAPTATION_UNVALIDATED"
+  },
+  "recommendation": {
+    "proceed_with_full_post_retrieval_policy_fusion": "NO",
+    "task_adaptation_required": "YES",
+    "new_model_or_task_required": "YES",
+    "new_model_required_as_distinct_from_task": "NOT_ESTABLISHED",
+    "reason": "A new evidence-conditioned policy task and caller-side contract/abstention layer are required; the current synthetic behavior is not sufficiently grounded to authorize full V3 implementation. A new checkpoint is not proven necessary by this probe, but cannot be ruled out without task adaptation and evaluation."
+  },
+  "scientific_boundary": {
+    "old_169_reused": "NO",
+    "exploratory_120_reused": "NO",
+    "reference_labels_used": "NO",
+    "effectiveness_claim_made": "NO",
+    "probe_only": true
+  }
+}

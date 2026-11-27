@@ -1,0 +1,452 @@
+{
+  "schema_version": "ai_rater_stability_summary_v2",
+  "run_ids": [
+    "agent_run_01",
+    "agent_run_02",
+    "agent_run_03",
+    "agent_run_04",
+    "agent_run_05",
+    "agent_run_06"
+  ],
+  "case_count": 120,
+  "language_rule": "Use RUN-TO-RUN ANNOTATION STABILITY unless model identity is independently supported; do not claim cross-model stability for an unverified run.",
+  "repeated_packet_pairs": [
+    {
+      "comparison_group": "repeated_packet_pair",
+      "pair": [
+        "agent_run_01",
+        "agent_run_04"
+      ],
+      "rater_packet_ids": [
+        "r1",
+        "r1"
+      ],
+      "comparison_label": "RUN-TO-RUN ANNOTATION STABILITY",
+      "model_identity_status": "DERIVED_UNVERIFIED",
+      "model_identity_note": "Model identity for at least one run is derived/unverified; the result is reported as run-to-run stability, not model-specific stability.",
+      "exact_agreement": 84,
+      "exact_rate": 0.7,
+      "binary_n": 117,
+      "excluded_uncertain": 3,
+      "binary_agreement": 84,
+      "binary_rate": 0.717949,
+      "multiclass_cohens_kappa": 0.400333,
+      "binary_cohens_kappa": 0.328872,
+      "changed_cases": 36,
+      "most_common_label_transitions": [
+        {
+          "from": "RECON",
+          "to": "BENIGN",
+          "count": 11
+        },
+        {
+          "from": "BENIGN",
+          "to": "EXPLOITATION",
+          "count": 6
+        },
+        {
+          "from": "BENIGN",
+          "to": "DATA_ACCESS",
+          "count": 5
+        },
+        {
+          "from": "BENIGN",
+          "to": "RECON",
+          "count": 5
+        },
+        {
+          "from": "BENIGN",
+          "to": "OTHER_ATTACK",
+          "count": 2
+        },
+        {
+          "from": "BENIGN",
+          "to": "PERSISTENCE",
+          "count": 2
+        },
+        {
+          "from": "BENIGN",
+          "to": "PRIVILEGE_ESCALATION",
+          "count": 1
+        },
+        {
+          "from": "BENIGN",
+          "to": "SUSPICIOUS",
+          "count": 1
+        },
+        {
+          "from": "OTHER_ATTACK",
+          "to": "EXPLOITATION",
+          "count": 1
+        },
+        {
+          "from": "UNCERTAIN",
+          "to": "BENIGN",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "comparison_group": "repeated_packet_pair",
+      "pair": [
+        "agent_run_02",
+        "agent_run_05"
+      ],
+      "rater_packet_ids": [
+        "r2",
+        "r2"
+      ],
+      "comparison_label": "RUN-TO-RUN ANNOTATION STABILITY",
+      "model_identity_status": "DERIVED_UNVERIFIED",
+      "model_identity_note": "Model identity for at least one run is derived/unverified; the result is reported as run-to-run stability, not model-specific stability.",
+      "exact_agreement": 88,
+      "exact_rate": 0.733333,
+      "binary_n": 118,
+      "excluded_uncertain": 2,
+      "binary_agreement": 94,
+      "binary_rate": 0.79661,
+      "multiclass_cohens_kappa": 0.604246,
+      "binary_cohens_kappa": 0.602024,
+      "changed_cases": 32,
+      "most_common_label_transitions": [
+        {
+          "from": "BENIGN",
+          "to": "RECON",
+          "count": 20
+        },
+        {
+          "from": "RECON",
+          "to": "BENIGN",
+          "count": 3
+        },
+        {
+          "from": "UNCERTAIN",
+          "to": "BENIGN",
+          "count": 2
+        },
+        {
+          "from": "BENIGN",
+          "to": "SUSPICIOUS",
+          "count": 1
+        },
+        {
+          "from": "DATA_ACCESS",
+          "to": "OTHER_ATTACK",
+          "count": 1
+        },
+        {
+          "from": "OTHER_ATTACK",
+          "to": "EXPLOITATION",
+          "count": 1
+        },
+        {
+          "from": "OTHER_ATTACK",
+          "to": "SUSPICIOUS",
+          "count": 1
+        },
+        {
+          "from": "PRIVILEGE_ESCALATION",
+          "to": "DATA_ACCESS",
+          "count": 1
+        },
+        {
+          "from": "SUSPICIOUS",
+          "to": "DATA_ACCESS",
+          "count": 1
+        },
+        {
+          "from": "SUSPICIOUS",
+          "to": "EXPLOITATION",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "comparison_group": "repeated_packet_pair",
+      "pair": [
+        "agent_run_03",
+        "agent_run_06"
+      ],
+      "rater_packet_ids": [
+        "r3",
+        "r3"
+      ],
+      "comparison_label": "RUN-TO-RUN ANNOTATION STABILITY",
+      "model_identity_status": "DERIVED_UNVERIFIED",
+      "model_identity_note": "Model identity for at least one run is derived/unverified; the result is reported as run-to-run stability, not model-specific stability.",
+      "exact_agreement": 84,
+      "exact_rate": 0.7,
+      "binary_n": 104,
+      "excluded_uncertain": 16,
+      "binary_agreement": 87,
+      "binary_rate": 0.836538,
+      "multiclass_cohens_kappa": 0.483192,
+      "binary_cohens_kappa": 0.606061,
+      "changed_cases": 36,
+      "most_common_label_transitions": [
+        {
+          "from": "BENIGN",
+          "to": "RECON",
+          "count": 8
+        },
+        {
+          "from": "RECON",
+          "to": "BENIGN",
+          "count": 7
+        },
+        {
+          "from": "UNCERTAIN",
+          "to": "EXPLOITATION",
+          "count": 5
+        },
+        {
+          "from": "UNCERTAIN",
+          "to": "OTHER_ATTACK",
+          "count": 4
+        },
+        {
+          "from": "UNCERTAIN",
+          "to": "BENIGN",
+          "count": 3
+        },
+        {
+          "from": "SUSPICIOUS",
+          "to": "UNCERTAIN",
+          "count": 2
+        },
+        {
+          "from": "BENIGN",
+          "to": "DATA_ACCESS",
+          "count": 1
+        },
+        {
+          "from": "BENIGN",
+          "to": "PERSISTENCE",
+          "count": 1
+        },
+        {
+          "from": "DATA_ACCESS",
+          "to": "OTHER_ATTACK",
+          "count": 1
+        },
+        {
+          "from": "EXPLOITATION",
+          "to": "DATA_ACCESS",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "same_observed_model_pairs": [
+    {
+      "comparison_group": "same_observed_model_pair",
+      "pair": [
+        "agent_run_01",
+        "agent_run_02"
+      ],
+      "rater_packet_ids": [
+        "r1",
+        "r2"
+      ],
+      "comparison_label": "RUN-TO-RUN ANNOTATION STABILITY",
+      "model_identity_status": "OBSERVED",
+      "model_identity_note": "Both runs are tied to the observed gpt-5.6-luna execution manifest.",
+      "exact_agreement": 97,
+      "exact_rate": 0.808333,
+      "binary_n": 117,
+      "excluded_uncertain": 3,
+      "binary_agreement": 97,
+      "binary_rate": 0.82906,
+      "multiclass_cohens_kappa": 0.645381,
+      "binary_cohens_kappa": 0.6205,
+      "changed_cases": 23,
+      "most_common_label_transitions": [
+        {
+          "from": "BENIGN",
+          "to": "DATA_ACCESS",
+          "count": 5
+        },
+        {
+          "from": "BENIGN",
+          "to": "OTHER_ATTACK",
+          "count": 5
+        },
+        {
+          "from": "BENIGN",
+          "to": "EXPLOITATION",
+          "count": 3
+        },
+        {
+          "from": "BENIGN",
+          "to": "RECON",
+          "count": 2
+        },
+        {
+          "from": "BENIGN",
+          "to": "SUSPICIOUS",
+          "count": 2
+        },
+        {
+          "from": "BENIGN",
+          "to": "PERSISTENCE",
+          "count": 1
+        },
+        {
+          "from": "BENIGN",
+          "to": "PRIVILEGE_ESCALATION",
+          "count": 1
+        },
+        {
+          "from": "DATA_ACCESS",
+          "to": "PRIVILEGE_ESCALATION",
+          "count": 1
+        },
+        {
+          "from": "DATA_ACCESS",
+          "to": "SUSPICIOUS",
+          "count": 1
+        },
+        {
+          "from": "RECON",
+          "to": "BENIGN",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "comparison_group": "same_observed_model_pair",
+      "pair": [
+        "agent_run_01",
+        "agent_run_03"
+      ],
+      "rater_packet_ids": [
+        "r1",
+        "r3"
+      ],
+      "comparison_label": "RUN-TO-RUN ANNOTATION STABILITY",
+      "model_identity_status": "OBSERVED",
+      "model_identity_note": "Both runs are tied to the observed gpt-5.6-luna execution manifest.",
+      "exact_agreement": 95,
+      "exact_rate": 0.791667,
+      "binary_n": 106,
+      "excluded_uncertain": 14,
+      "binary_agreement": 94,
+      "binary_rate": 0.886792,
+      "multiclass_cohens_kappa": 0.594595,
+      "binary_cohens_kappa": 0.721175,
+      "changed_cases": 25,
+      "most_common_label_transitions": [
+        {
+          "from": "BENIGN",
+          "to": "UNCERTAIN",
+          "count": 11
+        },
+        {
+          "from": "RECON",
+          "to": "BENIGN",
+          "count": 5
+        },
+        {
+          "from": "BENIGN",
+          "to": "DATA_ACCESS",
+          "count": 4
+        },
+        {
+          "from": "BENIGN",
+          "to": "RECON",
+          "count": 2
+        },
+        {
+          "from": "BENIGN",
+          "to": "SUSPICIOUS",
+          "count": 1
+        },
+        {
+          "from": "DATA_ACCESS",
+          "to": "EXPLOITATION",
+          "count": 1
+        },
+        {
+          "from": "DATA_ACCESS",
+          "to": "PRIVILEGE_ESCALATION",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "comparison_group": "same_observed_model_pair",
+      "pair": [
+        "agent_run_02",
+        "agent_run_03"
+      ],
+      "rater_packet_ids": [
+        "r2",
+        "r3"
+      ],
+      "comparison_label": "RUN-TO-RUN ANNOTATION STABILITY",
+      "model_identity_status": "OBSERVED",
+      "model_identity_note": "Both runs are tied to the observed gpt-5.6-luna execution manifest.",
+      "exact_agreement": 98,
+      "exact_rate": 0.816667,
+      "binary_n": 106,
+      "excluded_uncertain": 14,
+      "binary_agreement": 97,
+      "binary_rate": 0.915094,
+      "multiclass_cohens_kappa": 0.696621,
+      "binary_cohens_kappa": 0.804107,
+      "changed_cases": 22,
+      "most_common_label_transitions": [
+        {
+          "from": "OTHER_ATTACK",
+          "to": "UNCERTAIN",
+          "count": 5
+        },
+        {
+          "from": "RECON",
+          "to": "BENIGN",
+          "count": 5
+        },
+        {
+          "from": "EXPLOITATION",
+          "to": "UNCERTAIN",
+          "count": 4
+        },
+        {
+          "from": "SUSPICIOUS",
+          "to": "UNCERTAIN",
+          "count": 2
+        },
+        {
+          "from": "BENIGN",
+          "to": "RECON",
+          "count": 1
+        },
+        {
+          "from": "BENIGN",
+          "to": "SUSPICIOUS",
+          "count": 1
+        },
+        {
+          "from": "DATA_ACCESS",
+          "to": "BENIGN",
+          "count": 1
+        },
+        {
+          "from": "PERSISTENCE",
+          "to": "BENIGN",
+          "count": 1
+        },
+        {
+          "from": "PRIVILEGE_ESCALATION",
+          "to": "UNCERTAIN",
+          "count": 1
+        },
+        {
+          "from": "SUSPICIOUS",
+          "to": "EXPLOITATION",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}

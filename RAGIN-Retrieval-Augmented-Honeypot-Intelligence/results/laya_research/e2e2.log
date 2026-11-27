@@ -1,0 +1,180 @@
+{
+ "generated_utc": "2026-10-12T13:28:55Z",
+ "runs": {
+  "OFF": {
+   "trace_id": "63d73316-6da4-4057-a35f-773ecaad5a26",
+   "session_id": "ses-2104f352b0394d81",
+   "laya_enabled_env": "0",
+   "responses": [
+    {
+     "command": "ls -la /var/www",
+     "responded": true,
+     "status": "ok",
+     "error": ""
+    },
+    {
+     "command": "uptime\nwho\nw",
+     "responded": true,
+     "status": "ok",
+     "error": ""
+    }
+   ],
+   "classification_events": 2,
+   "laya_assessment_in_events": [
+    null,
+    null
+   ],
+   "event_types": [
+    "session_start",
+    "attacker_input",
+    "classification",
+    "cti_lookup",
+    "verification",
+    "system_response",
+    "metric",
+    "attacker_input",
+    "classification",
+    "cti_lookup",
+    "verification",
+    "system_response",
+    "metric"
+   ],
+   "wall_s": 35.8
+  },
+  "ON": {
+   "trace_id": "d5fb7b14-920d-421f-89b7-e530b87a6c44",
+   "session_id": "ses-18d40b2d45c94cff",
+   "laya_enabled_env": "1",
+   "responses": [
+    {
+     "command": "ls -la /var/www",
+     "responded": true,
+     "status": "ok",
+     "error": ""
+    },
+    {
+     "command": "uptime\nwho\nw",
+     "responded": true,
+     "status": "ok",
+     "error": ""
+    }
+   ],
+   "classification_events": 2,
+   "laya_assessment_in_events": [
+    {
+     "session_id": "ses-18d40b2d45c94cff",
+     "state_preview": "ls -la /var/www",
+     "answers": {
+      "attack": {
+       "type": "noul",
+       "noul": 0.0721
+      },
+      "stage": {
+       "type": "choice",
+       "choice": "benign_administration",
+       "allow_multi": false,
+       "probabilities": {
+        "benign_administration": 0.7945,
+        "recon": 0.027,
+        "persistence": 0.0091,
+        "credential_theft": 0.0035,
+        "lateral_movement": 0.0343,
+        "exfiltration": 0.1079,
+        "cleanup": 0.0236
+       }
+      },
+      "severity": {
+       "type": "score",
+       "score": 0.0,
+       "confidence": 0.1025,
+       "legend": {
+        "0": "no impact",
+        "1": "suspicious but contained",
+        "2": "clear attack activity",
+        "3": "high-impact attack in progress"
+       },
+       "probabilities": {
+        "0": 0.3517,
+        "1": 0.3347,
+        "2": 0.2579,
+        "3": 0.0557
+       }
+      }
+     },
+     "questions": {},
+     "model": "laya/english",
+     "usage": {
+      "input_tokens": 216,
+      "output_tokens": 0,
+      "state_tokens": 12,
+      "state_tokens_dropped": 0,
+      "truncated": 0
+     },
+     "provider": "laya",
+     "status": "SIGNAL",
+     "latency_ms": 5108.2
+    },
+    {
+     "session_id": "ses-18d40b2d45c94cff",
+     "state_preview": "uptime\nwho\nw",
+     "answers": {
+      "attack": {
+       "type": "noul",
+       "noul": 0.0456
+      },
+      "stage": {
+       "type": "choice",
+       "choice": "benign_administration",
+       "allow_multi": false,
+       "probabilities": {
+        "benign_administration": 0.6648,
+        "recon": 0.0262,
+        "persistence": 0.2077,
+        "credential_theft": 0.0125,
+        "lateral_movement": 0.0379,
+        "exfiltration": 0.0174,
+        "cleanup": 0.0333
+       }
+      },
+      "severity": {
+       "type": "score",
+       "score": 2.0,
+       "confidence": 0.0437,
+       "legend": {
+        "0": "no impact",
+        "1": "suspicious but contained",
+        "2": "clear attack activity",
+        "3": "high-impact attack in progress"
+       },
+       "probabilities": {
+        "0": 0.3147,
+        "1": 0.2544,
+        "2": 0.315,
+        "3": 0.1159
+       }
+      }
+     },
+     "questions": {},
+     "model": "laya/english",
+     "usage": {
+      "input_tokens": 216,
+      "output_tokens": 0,
+      "state_tokens": 12,
+      "state_tokens_dropped": 0,
+      "truncated": 0
+     },
+     "provider": "laya",
+     "status": "SIGNAL",
+     "latency_ms": 911.7
+    }
+   ],
+   "event_types": [
+    "session_start",
+    "attacker_input",
+    "classification",
+    "cti_lookup",
+    "verification",
+    "system_response",
+    "metric",
+    "attacker_input",
+    "classification

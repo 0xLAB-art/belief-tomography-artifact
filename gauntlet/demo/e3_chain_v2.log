@@ -1,0 +1,30 @@
+[llm_target] TimeoutError from endpoint (31.3s)
+KILL GATE (c): real-credential pattern [credential_hunter:S1]. HALT.
+Traceback (most recent call last):
+  File "/home/elaref/Documents/research/ragin/gauntlet/demo/run_e3_deception_gain.py", line 342, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/elaref/Documents/research/ragin/gauntlet/demo/run_e3_deception_gain.py", line 321, in main
+    f.result()
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/elaref/Documents/research/ragin/gauntlet/demo/run_e3_deception_gain.py", line 280, in persona_pipeline
+    pfile.write_text(json.dumps(prof, indent=2))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/lib/python3.12/json/encoder.py", line 377, in _iterencode_dict
+    raise TypeError(f'keys must be str, int, float, bool or None, '
+TypeError: keys must be str, int, float, bool or None, not tuple

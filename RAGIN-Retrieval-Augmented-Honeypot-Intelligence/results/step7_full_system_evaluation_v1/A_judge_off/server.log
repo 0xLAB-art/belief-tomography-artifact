@@ -1,0 +1,1272 @@
+2026-10-15 08:28:06,918 ragin.chrollo.classifier INFO Model loaded from models/chrollo/rf_classifier.joblib (42 features)
+2026-10-15 08:28:06,919 ragin.don.intel_corpus INFO Corpus indexed: 18 docs, 0 tactics, 0 actors
+2026-10-15 08:28:07,222 ragin.don.intel_corpus INFO Corpus indexed: 25415 docs, 15 tactics, 174 actors
+2026-10-15 08:28:07,231 ragin.don.intel_corpus INFO Corpus indexed: 25415 docs, 15 tactics, 174 actors
+2026-10-15 08:28:07,934 ragin.don.rag_engine INFO Don BM25 index built: 25415 docs, 19250 terms
+2026-10-15 08:28:07,934 ragin.don.rag_engine INFO ThreatRAGEngine sparse-only mode enabled (BM25; no sentence-transformer initialization)
+2026-10-15 08:28:07,934 ragin.don.rag_engine INFO ThreatRAGEngine initialised (gateway=http://127.0.0.1:9)
+2026-10-15 08:28:07,940 ragin.server_v2 INFO Pipeline initialized: Chrollo → Don → Evidence Gate → Policy → Hisoka (RAGIN_V4_SUBSTANTIVE_DETERMINISTIC)
+2026-10-15 08:28:07,940 ragin.server_v2 INFO Starting RAGIN v2 server (mode=pipeline) on 127.0.0.1:18080
+======== Running on http://127.0.0.1:18080 ========
+(Press CTRL+C to quit)
+2026-10-15 08:28:08,130 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:08 +0300] "GET /health HTTP/1.1" 200 368 "-" "Python-urllib/3.12"
+2026-10-15 08:28:08,136 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:08 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:08,272 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-156921d764794003
+2026-10-15 08:28:08,284 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-156921d764794003
+2026-10-15 08:28:08,298 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:08 +0300] "POST /api/session/command HTTP/1.1" 200 416 "-" "Python-urllib/3.12"
+2026-10-15 08:28:08,393 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:08,416 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:08 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:08,521 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:08,543 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:08 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:08,646 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:08,668 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:08 +0300] "POST /api/session/command HTTP/1.1" 200 427 "-" "Python-urllib/3.12"
+2026-10-15 08:28:08,771 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:08,792 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:08 +0300] "POST /api/session/command HTTP/1.1" 200 375 "-" "Python-urllib/3.12"
+2026-10-15 08:28:08,881 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:08,903 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:08 +0300] "POST /api/session/command HTTP/1.1" 200 379 "-" "Python-urllib/3.12"
+2026-10-15 08:28:09,022 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:09,045 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:08 +0300] "POST /api/session/command HTTP/1.1" 200 592 "-" "Python-urllib/3.12"
+2026-10-15 08:28:09,156 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:09,179 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:09 +0300] "POST /api/session/command HTTP/1.1" 200 368 "-" "Python-urllib/3.12"
+2026-10-15 08:28:09,183 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:09 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:09,311 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,319 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-919ec6eab02649ca
+2026-10-15 08:28:09,333 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:09 +0300] "POST /api/session/command HTTP/1.1" 200 354 "-" "Python-urllib/3.12"
+2026-10-15 08:28:09,428 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:09,449 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:09 +0300] "POST /api/session/command HTTP/1.1" 200 329 "-" "Python-urllib/3.12"
+2026-10-15 08:28:09,559 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:09,583 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:09 +0300] "POST /api/session/command HTTP/1.1" 200 682 "-" "Python-urllib/3.12"
+2026-10-15 08:28:09,700 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:09,723 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:09 +0300] "POST /api/session/command HTTP/1.1" 200 639 "-" "Python-urllib/3.12"
+2026-10-15 08:28:09,838 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:09,861 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:09 +0300] "POST /api/session/command HTTP/1.1" 200 411 "-" "Python-urllib/3.12"
+2026-10-15 08:28:09,976 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:10,001 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:09 +0300] "POST /api/session/command HTTP/1.1" 200 589 "-" "Python-urllib/3.12"
+2026-10-15 08:28:10,004 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:10 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:10,107 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:10,116 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,117 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-8e49aaa6eae8424d
+2026-10-15 08:28:10,132 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:10 +0300] "POST /api/session/command HTTP/1.1" 200 965 "-" "Python-urllib/3.12"
+2026-10-15 08:28:10,236 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:10,257 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:10 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:10,350 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:10,376 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:10 +0300] "POST /api/session/command HTTP/1.1" 200 640 "-" "Python-urllib/3.12"
+2026-10-15 08:28:10,476 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:10,501 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:10 +0300] "POST /api/session/command HTTP/1.1" 200 1307 "-" "Python-urllib/3.12"
+2026-10-15 08:28:10,595 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:10,618 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:10 +0300] "POST /api/session/command HTTP/1.1" 200 721 "-" "Python-urllib/3.12"
+2026-10-15 08:28:10,622 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:10 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:10,716 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:10,724 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-2199382261184807
+2026-10-15 08:28:10,724 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-2199382261184807
+2026-10-15 08:28:10,724 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-2199382261184807
+2026-10-15 08:28:10,724 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-2199382261184807
+2026-10-15 08:28:10,724 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-2199382261184807
+2026-10-15 08:28:10,724 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-2199382261184807
+2026-10-15 08:28:10,724 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-2199382261184807
+2026-10-15 08:28:10,724 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-2199382261184807
+2026-10-15 08:28:10,724 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-2199382261184807
+2026-10-15 08:28:10,724 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-2199382261184807
+2026-10-15 08:28:10,724 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-2199382261184807
+2026-10-15 08:28:10,724 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-2199382261184807
+2026-10-15 08:28:10,724 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-2199382261184807
+2026-10-15 08:28:10,724 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-2199382261184807
+2026-10-15 08:28:10,724 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-2199382261184807
+2026-10-15 08:28:10,725 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-2199382261184807
+2026-10-15 08:28:10,725 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-2199382261184807
+2026-10-15 08:28:10,737 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:10 +0300] "POST /api/session/command HTTP/1.1" 200 400 "-" "Python-urllib/3.12"
+2026-10-15 08:28:10,844 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:10,865 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:10 +0300] "POST /api/session/command HTTP/1.1" 200 399 "-" "Python-urllib/3.12"
+2026-10-15 08:28:10,973 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:10,994 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:10 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:11,097 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:11,117 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:10 +0300] "POST /api/session/command HTTP/1.1" 200 415 "-" "Python-urllib/3.12"
+2026-10-15 08:28:11,217 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:11,241 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:11 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:11,349 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:11,372 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:11 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:11,468 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:11,493 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:11 +0300] "POST /api/session/command HTTP/1.1" 200 951 "-" "Python-urllib/3.12"
+2026-10-15 08:28:11,594 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:11,618 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:11 +0300] "POST /api/session/command HTTP/1.1" 200 701 "-" "Python-urllib/3.12"
+2026-10-15 08:28:11,622 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:11 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:11,729 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:11,739 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-8732510134b6411d
+2026-10-15 08:28:11,739 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-8732510134b6411d
+2026-10-15 08:28:11,739 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-8732510134b6411d
+2026-10-15 08:28:11,740 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-8732510134b6411d
+2026-10-15 08:28:11,740 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-8732510134b6411d
+2026-10-15 08:28:11,740 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-8732510134b6411d
+2026-10-15 08:28:11,740 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-8732510134b6411d
+2026-10-15 08:28:11,740 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-8732510134b6411d
+2026-10-15 08:28:11,740 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-8732510134b6411d
+2026-10-15 08:28:11,740 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-8732510134b6411d
+2026-10-15 08:28:11,740 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-8732510134b6411d
+2026-10-15 08:28:11,740 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-8732510134b6411d
+2026-10-15 08:28:11,740 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-8732510134b6411d
+2026-10-15 08:28:11,740 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-8732510134b6411d
+2026-10-15 08:28:11,740 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-8732510134b6411d
+2026-10-15 08:28:11,740 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-8732510134b6411d
+2026-10-15 08:28:11,740 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-8732510134b6411d
+2026-10-15 08:28:11,753 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:11 +0300] "POST /api/session/command HTTP/1.1" 200 416 "-" "Python-urllib/3.12"
+2026-10-15 08:28:11,859 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:11,879 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:11 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:11,971 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:11,991 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:11 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:12,087 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:12,112 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:11 +0300] "POST /api/session/command HTTP/1.1" 200 427 "-" "Python-urllib/3.12"
+2026-10-15 08:28:12,196 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:12,216 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:12 +0300] "POST /api/session/command HTTP/1.1" 200 375 "-" "Python-urllib/3.12"
+2026-10-15 08:28:12,299 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:12,319 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:12 +0300] "POST /api/session/command HTTP/1.1" 200 379 "-" "Python-urllib/3.12"
+2026-10-15 08:28:12,429 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:12,455 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:12 +0300] "POST /api/session/command HTTP/1.1" 200 592 "-" "Python-urllib/3.12"
+2026-10-15 08:28:12,568 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:12,590 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:12 +0300] "POST /api/session/command HTTP/1.1" 200 368 "-" "Python-urllib/3.12"
+2026-10-15 08:28:12,593 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:12 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:12,689 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:12,698 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,698 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,698 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,698 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,698 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,698 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,698 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,698 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,698 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,698 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,699 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,699 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,699 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,699 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,699 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,699 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,699 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-1da83ed9a9de4139
+2026-10-15 08:28:12,712 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:12 +0300] "POST /api/session/command HTTP/1.1" 200 354 "-" "Python-urllib/3.12"
+2026-10-15 08:28:12,797 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:12,820 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:12 +0300] "POST /api/session/command HTTP/1.1" 200 329 "-" "Python-urllib/3.12"
+2026-10-15 08:28:12,925 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:12,950 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:12 +0300] "POST /api/session/command HTTP/1.1" 200 682 "-" "Python-urllib/3.12"
+2026-10-15 08:28:13,062 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:13,087 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:12 +0300] "POST /api/session/command HTTP/1.1" 200 639 "-" "Python-urllib/3.12"
+2026-10-15 08:28:13,205 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:13,229 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:13 +0300] "POST /api/session/command HTTP/1.1" 200 411 "-" "Python-urllib/3.12"
+2026-10-15 08:28:13,350 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:13,375 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:13 +0300] "POST /api/session/command HTTP/1.1" 200 589 "-" "Python-urllib/3.12"
+2026-10-15 08:28:13,379 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:13 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:13,501 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,511 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-12ad2bdc7f4349c6
+2026-10-15 08:28:13,527 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:13 +0300] "POST /api/session/command HTTP/1.1" 200 965 "-" "Python-urllib/3.12"
+2026-10-15 08:28:13,645 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:13,667 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:13 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:13,785 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:13,810 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:13 +0300] "POST /api/session/command HTTP/1.1" 200 640 "-" "Python-urllib/3.12"
+2026-10-15 08:28:13,926 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:13,952 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:13 +0300] "POST /api/session/command HTTP/1.1" 200 1307 "-" "Python-urllib/3.12"
+2026-10-15 08:28:14,072 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:14,099 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:13 +0300] "POST /api/session/command HTTP/1.1" 200 721 "-" "Python-urllib/3.12"
+2026-10-15 08:28:14,104 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:14 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:14,210 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,220 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-fc0b8a2984544618
+2026-10-15 08:28:14,234 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:14 +0300] "POST /api/session/command HTTP/1.1" 200 400 "-" "Python-urllib/3.12"
+2026-10-15 08:28:14,341 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:14,360 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:14 +0300] "POST /api/session/command HTTP/1.1" 200 399 "-" "Python-urllib/3.12"
+2026-10-15 08:28:14,465 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:14,486 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:14 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:14,592 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:14,616 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:14 +0300] "POST /api/session/command HTTP/1.1" 200 415 "-" "Python-urllib/3.12"
+2026-10-15 08:28:14,716 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:14,741 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:14 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:14,832 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:14,856 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:14 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:14,960 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:14,983 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:14 +0300] "POST /api/session/command HTTP/1.1" 200 951 "-" "Python-urllib/3.12"
+2026-10-15 08:28:15,093 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:15,115 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:14 +0300] "POST /api/session/command HTTP/1.1" 200 701 "-" "Python-urllib/3.12"
+2026-10-15 08:28:15,119 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:15 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:15,217 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-7420e34711594294
+2026-10-15 08:28:15,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-7420e34711594294
+2026-10-15 08:28:15,240 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:15 +0300] "POST /api/session/command HTTP/1.1" 200 416 "-" "Python-urllib/3.12"
+2026-10-15 08:28:15,332 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:15,354 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:15 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:15,473 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:15,493 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:15 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:15,608 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:15,633 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:15 +0300] "POST /api/session/command HTTP/1.1" 200 427 "-" "Python-urllib/3.12"
+2026-10-15 08:28:15,740 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:15,761 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:15 +0300] "POST /api/session/command HTTP/1.1" 200 375 "-" "Python-urllib/3.12"
+2026-10-15 08:28:15,878 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:15,900 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:15 +0300] "POST /api/session/command HTTP/1.1" 200 379 "-" "Python-urllib/3.12"
+2026-10-15 08:28:16,004 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:16,026 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:15 +0300] "POST /api/session/command HTTP/1.1" 200 592 "-" "Python-urllib/3.12"
+2026-10-15 08:28:16,122 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:16,143 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:16 +0300] "POST /api/session/command HTTP/1.1" 200 368 "-" "Python-urllib/3.12"
+2026-10-15 08:28:16,147 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:16 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:16,240 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,248 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-e3c61f5155ee474c
+2026-10-15 08:28:16,261 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:16 +0300] "POST /api/session/command HTTP/1.1" 200 354 "-" "Python-urllib/3.12"
+2026-10-15 08:28:16,358 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:16,382 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:16 +0300] "POST /api/session/command HTTP/1.1" 200 329 "-" "Python-urllib/3.12"
+2026-10-15 08:28:16,487 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:16,509 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:16 +0300] "POST /api/session/command HTTP/1.1" 200 682 "-" "Python-urllib/3.12"
+2026-10-15 08:28:16,612 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:16,636 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:16 +0300] "POST /api/session/command HTTP/1.1" 200 639 "-" "Python-urllib/3.12"
+2026-10-15 08:28:16,745 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:16,779 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:16 +0300] "POST /api/session/command HTTP/1.1" 200 411 "-" "Python-urllib/3.12"
+2026-10-15 08:28:16,876 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:16,914 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:16 +0300] "POST /api/session/command HTTP/1.1" 200 589 "-" "Python-urllib/3.12"
+2026-10-15 08:28:16,919 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:16 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:17,049 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,059 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-8f10026c5195455e
+2026-10-15 08:28:17,076 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:16 +0300] "POST /api/session/command HTTP/1.1" 200 965 "-" "Python-urllib/3.12"
+2026-10-15 08:28:17,206 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:17,230 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:17 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:17,370 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:17,395 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:17 +0300] "POST /api/session/command HTTP/1.1" 200 640 "-" "Python-urllib/3.12"
+2026-10-15 08:28:17,540 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:17,570 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:17 +0300] "POST /api/session/command HTTP/1.1" 200 1307 "-" "Python-urllib/3.12"
+2026-10-15 08:28:17,707 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:17,734 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:17 +0300] "POST /api/session/command HTTP/1.1" 200 721 "-" "Python-urllib/3.12"
+2026-10-15 08:28:17,739 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:17 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:17,872 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,882 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-7258d692f1fc4875
+2026-10-15 08:28:17,896 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:17 +0300] "POST /api/session/command HTTP/1.1" 200 400 "-" "Python-urllib/3.12"
+2026-10-15 08:28:18,039 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:18,065 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:17 +0300] "POST /api/session/command HTTP/1.1" 200 399 "-" "Python-urllib/3.12"
+2026-10-15 08:28:18,198 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:18,221 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:18 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:18,366 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:18,390 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:18 +0300] "POST /api/session/command HTTP/1.1" 200 415 "-" "Python-urllib/3.12"
+2026-10-15 08:28:18,528 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:18,556 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:18 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:18,699 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:18,726 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:18 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:18,862 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:18,888 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:18 +0300] "POST /api/session/command HTTP/1.1" 200 951 "-" "Python-urllib/3.12"
+2026-10-15 08:28:19,041 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:19,072 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:18 +0300] "POST /api/session/command HTTP/1.1" 200 701 "-" "Python-urllib/3.12"
+2026-10-15 08:28:19,076 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:19 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:19,217 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:19,226 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,227 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-d86ae78d1d9f4ad8
+2026-10-15 08:28:19,241 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:19 +0300] "POST /api/session/command HTTP/1.1" 200 416 "-" "Python-urllib/3.12"
+2026-10-15 08:28:19,377 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:19,400 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:19 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:19,536 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:19,560 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:19 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:19,712 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:19,740 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:19 +0300] "POST /api/session/command HTTP/1.1" 200 427 "-" "Python-urllib/3.12"
+2026-10-15 08:28:19,877 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:19,903 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:19 +0300] "POST /api/session/command HTTP/1.1" 200 375 "-" "Python-urllib/3.12"
+2026-10-15 08:28:20,047 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:20,071 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:19 +0300] "POST /api/session/command HTTP/1.1" 200 379 "-" "Python-urllib/3.12"
+2026-10-15 08:28:20,211 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:20,237 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:20 +0300] "POST /api/session/command HTTP/1.1" 200 592 "-" "Python-urllib/3.12"
+2026-10-15 08:28:20,379 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:20,403 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:20 +0300] "POST /api/session/command HTTP/1.1" 200 368 "-" "Python-urllib/3.12"
+2026-10-15 08:28:20,407 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:20 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:20,549 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:20,558 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,558 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,559 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,559 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,559 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,559 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,559 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,559 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,559 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,559 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,559 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,559 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,559 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,559 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,559 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,559 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,559 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-a4afa8212a954793
+2026-10-15 08:28:20,583 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:20 +0300] "POST /api/session/command HTTP/1.1" 200 354 "-" "Python-urllib/3.12"
+2026-10-15 08:28:20,731 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:20,755 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:20 +0300] "POST /api/session/command HTTP/1.1" 200 329 "-" "Python-urllib/3.12"
+2026-10-15 08:28:20,865 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:20,888 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:20 +0300] "POST /api/session/command HTTP/1.1" 200 682 "-" "Python-urllib/3.12"
+2026-10-15 08:28:20,991 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:21,014 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:20 +0300] "POST /api/session/command HTTP/1.1" 200 639 "-" "Python-urllib/3.12"
+2026-10-15 08:28:21,133 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:21,157 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:21 +0300] "POST /api/session/command HTTP/1.1" 200 411 "-" "Python-urllib/3.12"
+2026-10-15 08:28:21,274 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:21,299 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:21 +0300] "POST /api/session/command HTTP/1.1" 200 589 "-" "Python-urllib/3.12"
+2026-10-15 08:28:21,304 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:21 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:21,419 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:21,428 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-7040069c317a4419
+2026-10-15 08:28:21,428 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-7040069c317a4419
+2026-10-15 08:28:21,428 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-7040069c317a4419
+2026-10-15 08:28:21,428 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-7040069c317a4419
+2026-10-15 08:28:21,428 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-7040069c317a4419
+2026-10-15 08:28:21,429 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-7040069c317a4419
+2026-10-15 08:28:21,429 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-7040069c317a4419
+2026-10-15 08:28:21,429 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-7040069c317a4419
+2026-10-15 08:28:21,429 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-7040069c317a4419
+2026-10-15 08:28:21,429 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-7040069c317a4419
+2026-10-15 08:28:21,429 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-7040069c317a4419
+2026-10-15 08:28:21,429 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-7040069c317a4419
+2026-10-15 08:28:21,429 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-7040069c317a4419
+2026-10-15 08:28:21,429 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-7040069c317a4419
+2026-10-15 08:28:21,429 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-7040069c317a4419
+2026-10-15 08:28:21,429 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-7040069c317a4419
+2026-10-15 08:28:21,429 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-7040069c317a4419
+2026-10-15 08:28:21,444 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:21 +0300] "POST /api/session/command HTTP/1.1" 200 965 "-" "Python-urllib/3.12"
+2026-10-15 08:28:21,552 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:21,573 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:21 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:21,678 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:21,700 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:21 +0300] "POST /api/session/command HTTP/1.1" 200 640 "-" "Python-urllib/3.12"
+2026-10-15 08:28:21,804 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:21,830 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:21 +0300] "POST /api/session/command HTTP/1.1" 200 1307 "-" "Python-urllib/3.12"
+2026-10-15 08:28:21,931 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:21,956 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:21 +0300] "POST /api/session/command HTTP/1.1" 200 721 "-" "Python-urllib/3.12"
+2026-10-15 08:28:21,960 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:21 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:22,055 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:22,064 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,065 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-7ae976d9ac694fa3
+2026-10-15 08:28:22,078 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:21 +0300] "POST /api/session/command HTTP/1.1" 200 400 "-" "Python-urllib/3.12"
+2026-10-15 08:28:22,179 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:22,200 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:22 +0300] "POST /api/session/command HTTP/1.1" 200 399 "-" "Python-urllib/3.12"
+2026-10-15 08:28:22,292 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:22,312 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:22 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:22,417 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:22,443 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:22 +0300] "POST /api/session/command HTTP/1.1" 200 415 "-" "Python-urllib/3.12"
+2026-10-15 08:28:22,545 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:22,569 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:22 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:22,673 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:22,696 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:22 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:22,793 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:22,817 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:22 +0300] "POST /api/session/command HTTP/1.1" 200 951 "-" "Python-urllib/3.12"
+2026-10-15 08:28:22,941 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:22,972 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:22 +0300] "POST /api/session/command HTTP/1.1" 200 701 "-" "Python-urllib/3.12"
+2026-10-15 08:28:22,976 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:22 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:23,091 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:23,099 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,099 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,099 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,100 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,100 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,100 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,100 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,100 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,100 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,100 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,100 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,100 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,100 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,100 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,100 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,100 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,100 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-92bb0a9953f74f88
+2026-10-15 08:28:23,113 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:22 +0300] "POST /api/session/command HTTP/1.1" 200 416 "-" "Python-urllib/3.12"
+2026-10-15 08:28:23,214 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:23,237 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:23 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:23,341 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:23,363 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:23 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:23,460 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:23,481 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:23 +0300] "POST /api/session/command HTTP/1.1" 200 427 "-" "Python-urllib/3.12"
+2026-10-15 08:28:23,596 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:23,618 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:23 +0300] "POST /api/session/command HTTP/1.1" 200 375 "-" "Python-urllib/3.12"
+2026-10-15 08:28:23,709 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:23,730 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:23 +0300] "POST /api/session/command HTTP/1.1" 200 379 "-" "Python-urllib/3.12"
+2026-10-15 08:28:23,850 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:23,876 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:23 +0300] "POST /api/session/command HTTP/1.1" 200 592 "-" "Python-urllib/3.12"
+2026-10-15 08:28:24,009 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:24,032 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:23 +0300] "POST /api/session/command HTTP/1.1" 200 368 "-" "Python-urllib/3.12"
+2026-10-15 08:28:24,036 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:24 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:24,153 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,162 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-06a338e4d5da4fcf
+2026-10-15 08:28:24,175 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:24 +0300] "POST /api/session/command HTTP/1.1" 200 354 "-" "Python-urllib/3.12"
+2026-10-15 08:28:24,287 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:24,309 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:24 +0300] "POST /api/session/command HTTP/1.1" 200 329 "-" "Python-urllib/3.12"
+2026-10-15 08:28:24,406 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:24,435 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:24 +0300] "POST /api/session/command HTTP/1.1" 200 682 "-" "Python-urllib/3.12"
+2026-10-15 08:28:24,545 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:24,585 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:24 +0300] "POST /api/session/command HTTP/1.1" 200 639 "-" "Python-urllib/3.12"
+2026-10-15 08:28:24,707 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:24,732 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:24 +0300] "POST /api/session/command HTTP/1.1" 200 411 "-" "Python-urllib/3.12"
+2026-10-15 08:28:24,849 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:24,874 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:24 +0300] "POST /api/session/command HTTP/1.1" 200 589 "-" "Python-urllib/3.12"
+2026-10-15 08:28:24,878 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:24 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:24,985 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:24,993 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,993 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,994 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,994 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,994 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,994 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,994 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,994 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,994 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,994 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,994 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,994 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,994 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,994 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,994 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,994 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-d845178dff1940fb
+2026-10-15 08:28:24,994 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-d845178dff1940fb
+2026-10-15 08:28:25,008 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:24 +0300] "POST /api/session/command HTTP/1.1" 200 965 "-" "Python-urllib/3.12"
+2026-10-15 08:28:25,111 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:25,135 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:25 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:25,254 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:25,278 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:25 +0300] "POST /api/session/command HTTP/1.1" 200 640 "-" "Python-urllib/3.12"
+2026-10-15 08:28:25,391 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:25,417 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:25 +0300] "POST /api/session/command HTTP/1.1" 200 1307 "-" "Python-urllib/3.12"
+2026-10-15 08:28:25,522 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:25,551 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:25 +0300] "POST /api/session/command HTTP/1.1" 200 721 "-" "Python-urllib/3.12"
+2026-10-15 08:28:25,555 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:25 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:25,644 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:25,659 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,659 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,659 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,659 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,659 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,659 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,659 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,659 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,660 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,660 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,660 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,660 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,660 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,660 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,660 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,660 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,660 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-e5419a89b8b74c07
+2026-10-15 08:28:25,672 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:25 +0300] "POST /api/session/command HTTP/1.1" 200 400 "-" "Python-urllib/3.12"
+2026-10-15 08:28:25,788 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:25,811 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:25 +0300] "POST /api/session/command HTTP/1.1" 200 399 "-" "Python-urllib/3.12"
+2026-10-15 08:28:25,908 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:25,930 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:25 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:26,047 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:26,072 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:25 +0300] "POST /api/session/command HTTP/1.1" 200 415 "-" "Python-urllib/3.12"
+2026-10-15 08:28:26,176 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:26,201 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:26 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:26,308 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:26,333 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:26 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:26,446 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:26,471 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:26 +0300] "POST /api/session/command HTTP/1.1" 200 951 "-" "Python-urllib/3.12"
+2026-10-15 08:28:26,577 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:26,600 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:26 +0300] "POST /api/session/command HTTP/1.1" 200 701 "-" "Python-urllib/3.12"
+2026-10-15 08:28:26,605 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:26 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:26,709 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,728 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-d519cf1f51ac41e5
+2026-10-15 08:28:26,742 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:26 +0300] "POST /api/session/command HTTP/1.1" 200 416 "-" "Python-urllib/3.12"
+2026-10-15 08:28:26,834 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:26,858 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:26 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:26,952 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:26,973 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:26 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:27,068 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:27,089 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:26 +0300] "POST /api/session/command HTTP/1.1" 200 427 "-" "Python-urllib/3.12"
+2026-10-15 08:28:27,188 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:27,216 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:27 +0300] "POST /api/session/command HTTP/1.1" 200 375 "-" "Python-urllib/3.12"
+2026-10-15 08:28:27,333 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:27,356 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:27 +0300] "POST /api/session/command HTTP/1.1" 200 379 "-" "Python-urllib/3.12"
+2026-10-15 08:28:27,463 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:27,486 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:27 +0300] "POST /api/session/command HTTP/1.1" 200 592 "-" "Python-urllib/3.12"
+2026-10-15 08:28:27,604 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:27,634 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:27 +0300] "POST /api/session/command HTTP/1.1" 200 368 "-" "Python-urllib/3.12"
+2026-10-15 08:28:27,639 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:27 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:27,771 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:27,780 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,780 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,780 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,780 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,780 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,780 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,780 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,781 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,781 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,781 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,781 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,781 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,781 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,781 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,781 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,781 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,781 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-2d64fcb0089b44bd
+2026-10-15 08:28:27,795 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:27 +0300] "POST /api/session/command HTTP/1.1" 200 354 "-" "Python-urllib/3.12"
+2026-10-15 08:28:27,912 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:27,935 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:27 +0300] "POST /api/session/command HTTP/1.1" 200 329 "-" "Python-urllib/3.12"
+2026-10-15 08:28:28,057 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:28,079 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:27 +0300] "POST /api/session/command HTTP/1.1" 200 682 "-" "Python-urllib/3.12"
+2026-10-15 08:28:28,190 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:28,217 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:28 +0300] "POST /api/session/command HTTP/1.1" 200 639 "-" "Python-urllib/3.12"
+2026-10-15 08:28:28,329 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:28,361 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:28 +0300] "POST /api/session/command HTTP/1.1" 200 411 "-" "Python-urllib/3.12"
+2026-10-15 08:28:28,462 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:28,485 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:28 +0300] "POST /api/session/command HTTP/1.1" 200 589 "-" "Python-urllib/3.12"
+2026-10-15 08:28:28,489 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:28 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:28,603 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,612 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-15e18bc7d68148de
+2026-10-15 08:28:28,628 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:28 +0300] "POST /api/session/command HTTP/1.1" 200 965 "-" "Python-urllib/3.12"
+2026-10-15 08:28:28,753 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:28,774 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:28 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:28,890 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:28,916 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:28 +0300] "POST /api/session/command HTTP/1.1" 200 640 "-" "Python-urllib/3.12"
+2026-10-15 08:28:29,026 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:29,053 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:28 +0300] "POST /api/session/command HTTP/1.1" 200 1307 "-" "Python-urllib/3.12"
+2026-10-15 08:28:29,177 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:29,205 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:29 +0300] "POST /api/session/command HTTP/1.1" 200 721 "-" "Python-urllib/3.12"
+2026-10-15 08:28:29,210 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:29 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:29,326 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,335 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-4ffa15d5f23246ba
+2026-10-15 08:28:29,348 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:29 +0300] "POST /api/session/command HTTP/1.1" 200 400 "-" "Python-urllib/3.12"
+2026-10-15 08:28:29,449 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:29,470 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:29 +0300] "POST /api/session/command HTTP/1.1" 200 399 "-" "Python-urllib/3.12"
+2026-10-15 08:28:29,578 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:29,599 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:29 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:29,704 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:29,727 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:29 +0300] "POST /api/session/command HTTP/1.1" 200 415 "-" "Python-urllib/3.12"
+2026-10-15 08:28:29,832 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:29,857 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:29 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:29,960 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:29,986 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:29 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:30,098 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:30,124 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:29 +0300] "POST /api/session/command HTTP/1.1" 200 951 "-" "Python-urllib/3.12"
+2026-10-15 08:28:30,232 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:30,256 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:30 +0300] "POST /api/session/command HTTP/1.1" 200 701 "-" "Python-urllib/3.12"
+2026-10-15 08:28:30,261 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:30 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:30,369 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-462e5a2c844e47ba
+2026-10-15 08:28:30,393 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:30 +0300] "POST /api/session/command HTTP/1.1" 200 416 "-" "Python-urllib/3.12"
+2026-10-15 08:28:30,504 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:30,538 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:30 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:30,620 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:30,641 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:30 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:30,736 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:30,757 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:30 +0300] "POST /api/session/command HTTP/1.1" 200 427 "-" "Python-urllib/3.12"
+2026-10-15 08:28:30,861 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:30,883 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:30 +0300] "POST /api/session/command HTTP/1.1" 200 375 "-" "Python-urllib/3.12"
+2026-10-15 08:28:30,991 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:31,012 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:30 +0300] "POST /api/session/command HTTP/1.1" 200 379 "-" "Python-urllib/3.12"
+2026-10-15 08:28:31,112 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:31,138 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:31 +0300] "POST /api/session/command HTTP/1.1" 200 592 "-" "Python-urllib/3.12"
+2026-10-15 08:28:31,236 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:31,258 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:31 +0300] "POST /api/session/command HTTP/1.1" 200 368 "-" "Python-urllib/3.12"
+2026-10-15 08:28:31,262 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:31 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:31,365 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,373 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-0ad764827bb94d9b
+2026-10-15 08:28:31,386 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:31 +0300] "POST /api/session/command HTTP/1.1" 200 354 "-" "Python-urllib/3.12"
+2026-10-15 08:28:31,481 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:31,501 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:31 +0300] "POST /api/session/command HTTP/1.1" 200 329 "-" "Python-urllib/3.12"
+2026-10-15 08:28:31,604 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:31,628 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:31 +0300] "POST /api/session/command HTTP/1.1" 200 682 "-" "Python-urllib/3.12"
+2026-10-15 08:28:31,734 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:31,759 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:31 +0300] "POST /api/session/command HTTP/1.1" 200 639 "-" "Python-urllib/3.12"
+2026-10-15 08:28:31,866 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:31,888 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:31 +0300] "POST /api/session/command HTTP/1.1" 200 411 "-" "Python-urllib/3.12"
+2026-10-15 08:28:31,994 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:32,018 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:31 +0300] "POST /api/session/command HTTP/1.1" 200 589 "-" "Python-urllib/3.12"
+2026-10-15 08:28:32,021 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:32 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:32,143 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,160 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-b546cda86d504e61
+2026-10-15 08:28:32,178 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:32 +0300] "POST /api/session/command HTTP/1.1" 200 965 "-" "Python-urllib/3.12"
+2026-10-15 08:28:32,285 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:32,306 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:32 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:32,446 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:32,473 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:32 +0300] "POST /api/session/command HTTP/1.1" 200 640 "-" "Python-urllib/3.12"
+2026-10-15 08:28:32,605 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:32,634 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:32 +0300] "POST /api/session/command HTTP/1.1" 200 1307 "-" "Python-urllib/3.12"
+2026-10-15 08:28:32,783 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:32,808 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:32 +0300] "POST /api/session/command HTTP/1.1" 200 721 "-" "Python-urllib/3.12"
+2026-10-15 08:28:32,813 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:32 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:32,944 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:32,955 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,956 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-fd3f948955064e31
+2026-10-15 08:28:32,970 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:32 +0300] "POST /api/session/command HTTP/1.1" 200 400 "-" "Python-urllib/3.12"
+2026-10-15 08:28:33,102 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:33,125 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:32 +0300] "POST /api/session/command HTTP/1.1" 200 399 "-" "Python-urllib/3.12"
+2026-10-15 08:28:33,266 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:33,288 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:33 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:33,431 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:33,455 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:33 +0300] "POST /api/session/command HTTP/1.1" 200 415 "-" "Python-urllib/3.12"
+2026-10-15 08:28:33,588 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:33,618 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:33 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:33,769 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:33,800 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:33 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:33,932 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:33,961 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:33 +0300] "POST /api/session/command HTTP/1.1" 200 951 "-" "Python-urllib/3.12"
+2026-10-15 08:28:34,117 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:34,145 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:33 +0300] "POST /api/session/command HTTP/1.1" 200 701 "-" "Python-urllib/3.12"
+2026-10-15 08:28:34,149 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:34 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:34,299 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:34,311 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-414641487bb64e29
+2026-10-15 08:28:34,311 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-414641487bb64e29
+2026-10-15 08:28:34,311 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-414641487bb64e29
+2026-10-15 08:28:34,312 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-414641487bb64e29
+2026-10-15 08:28:34,312 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-414641487bb64e29
+2026-10-15 08:28:34,312 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-414641487bb64e29
+2026-10-15 08:28:34,312 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-414641487bb64e29
+2026-10-15 08:28:34,312 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-414641487bb64e29
+2026-10-15 08:28:34,312 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-414641487bb64e29
+2026-10-15 08:28:34,312 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-414641487bb64e29
+2026-10-15 08:28:34,312 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-414641487bb64e29
+2026-10-15 08:28:34,312 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-414641487bb64e29
+2026-10-15 08:28:34,312 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-414641487bb64e29
+2026-10-15 08:28:34,312 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-414641487bb64e29
+2026-10-15 08:28:34,312 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-414641487bb64e29
+2026-10-15 08:28:34,312 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-414641487bb64e29
+2026-10-15 08:28:34,312 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-414641487bb64e29
+2026-10-15 08:28:34,329 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:34 +0300] "POST /api/session/command HTTP/1.1" 200 416 "-" "Python-urllib/3.12"
+2026-10-15 08:28:34,490 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:34,512 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:34 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:34,687 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:34,711 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:34 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:34,837 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:34,861 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:34 +0300] "POST /api/session/command HTTP/1.1" 200 427 "-" "Python-urllib/3.12"
+2026-10-15 08:28:35,008 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:35,034 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:34 +0300] "POST /api/session/command HTTP/1.1" 200 375 "-" "Python-urllib/3.12"
+2026-10-15 08:28:35,159 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:35,182 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:35 +0300] "POST /api/session/command HTTP/1.1" 200 379 "-" "Python-urllib/3.12"
+2026-10-15 08:28:35,321 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:35,347 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:35 +0300] "POST /api/session/command HTTP/1.1" 200 592 "-" "Python-urllib/3.12"
+2026-10-15 08:28:35,468 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:35,491 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:35 +0300] "POST /api/session/command HTTP/1.1" 200 368 "-" "Python-urllib/3.12"
+2026-10-15 08:28:35,495 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:35 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:35,638 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:35,648 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,649 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-1a4562c53e6e4c5f
+2026-10-15 08:28:35,662 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:35 +0300] "POST /api/session/command HTTP/1.1" 200 354 "-" "Python-urllib/3.12"
+2026-10-15 08:28:35,796 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:35,819 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:35 +0300] "POST /api/session/command HTTP/1.1" 200 329 "-" "Python-urllib/3.12"
+2026-10-15 08:28:35,960 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:35,986 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:35 +0300] "POST /api/session/command HTTP/1.1" 200 682 "-" "Python-urllib/3.12"
+2026-10-15 08:28:36,130 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:36,157 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:35 +0300] "POST /api/session/command HTTP/1.1" 200 639 "-" "Python-urllib/3.12"
+2026-10-15 08:28:36,298 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:36,324 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:36 +0300] "POST /api/session/command HTTP/1.1" 200 411 "-" "Python-urllib/3.12"
+2026-10-15 08:28:36,444 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:36,469 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:36 +0300] "POST /api/session/command HTTP/1.1" 200 589 "-" "Python-urllib/3.12"
+2026-10-15 08:28:36,474 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:36 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:36,591 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:36,600 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,600 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,600 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,600 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,600 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,600 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,601 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,601 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,601 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,601 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,601 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,601 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,601 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,601 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,601 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,601 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,601 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-b2dea89d87f54400
+2026-10-15 08:28:36,619 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:36 +0300] "POST /api/session/command HTTP/1.1" 200 965 "-" "Python-urllib/3.12"
+2026-10-15 08:28:36,725 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:36,747 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:36 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:36,852 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:36,874 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:36 +0300] "POST /api/session/command HTTP/1.1" 200 640 "-" "Python-urllib/3.12"
+2026-10-15 08:28:36,998 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:37,028 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:36 +0300] "POST /api/session/command HTTP/1.1" 200 1307 "-" "Python-urllib/3.12"
+2026-10-15 08:28:37,141 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:37,168 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:37 +0300] "POST /api/session/command HTTP/1.1" 200 721 "-" "Python-urllib/3.12"
+2026-10-15 08:28:37,172 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:37 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:37,274 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,282 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-d7d8e44aaa06482b
+2026-10-15 08:28:37,295 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:37 +0300] "POST /api/session/command HTTP/1.1" 200 400 "-" "Python-urllib/3.12"
+2026-10-15 08:28:37,398 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:37,421 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:37 +0300] "POST /api/session/command HTTP/1.1" 200 399 "-" "Python-urllib/3.12"
+2026-10-15 08:28:37,516 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:37,538 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:37 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:37,655 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:37,677 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:37 +0300] "POST /api/session/command HTTP/1.1" 200 415 "-" "Python-urllib/3.12"
+2026-10-15 08:28:37,777 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:37,807 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:37 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:37,922 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:37,949 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:37 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:38,053 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:38,082 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:37 +0300] "POST /api/session/command HTTP/1.1" 200 951 "-" "Python-urllib/3.12"
+2026-10-15 08:28:38,179 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:38,204 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:38 +0300] "POST /api/session/command HTTP/1.1" 200 701 "-" "Python-urllib/3.12"
+2026-10-15 08:28:38,212 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:38 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:38,334 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:38,343 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,343 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,343 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,343 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,343 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,343 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,343 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,343 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,343 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,343 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,343 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,343 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,343 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,343 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,344 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,344 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,344 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-7dfb62acfb884839
+2026-10-15 08:28:38,357 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:38 +0300] "POST /api/session/command HTTP/1.1" 200 416 "-" "Python-urllib/3.12"
+2026-10-15 08:28:38,458 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:38,487 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:38 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:38,582 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:38,606 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:38 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:38,699 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:38,726 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:38 +0300] "POST /api/session/command HTTP/1.1" 200 427 "-" "Python-urllib/3.12"
+2026-10-15 08:28:38,851 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:38,872 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:38 +0300] "POST /api/session/command HTTP/1.1" 200 375 "-" "Python-urllib/3.12"
+2026-10-15 08:28:38,977 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:38,998 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:38 +0300] "POST /api/session/command HTTP/1.1" 200 379 "-" "Python-urllib/3.12"
+2026-10-15 08:28:39,095 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:39,123 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:38 +0300] "POST /api/session/command HTTP/1.1" 200 592 "-" "Python-urllib/3.12"
+2026-10-15 08:28:39,239 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:39,263 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:39 +0300] "POST /api/session/command HTTP/1.1" 200 368 "-" "Python-urllib/3.12"
+2026-10-15 08:28:39,266 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:39 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:39,371 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,379 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-5d0d859e786649fd
+2026-10-15 08:28:39,391 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:39 +0300] "POST /api/session/command HTTP/1.1" 200 354 "-" "Python-urllib/3.12"
+2026-10-15 08:28:39,497 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:39,519 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:39 +0300] "POST /api/session/command HTTP/1.1" 200 329 "-" "Python-urllib/3.12"
+2026-10-15 08:28:39,636 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:39,663 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:39 +0300] "POST /api/session/command HTTP/1.1" 200 682 "-" "Python-urllib/3.12"
+2026-10-15 08:28:39,756 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:39,779 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:39 +0300] "POST /api/session/command HTTP/1.1" 200 639 "-" "Python-urllib/3.12"
+2026-10-15 08:28:39,882 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:39,911 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:39 +0300] "POST /api/session/command HTTP/1.1" 200 411 "-" "Python-urllib/3.12"
+2026-10-15 08:28:40,030 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:40,055 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:39 +0300] "POST /api/session/command HTTP/1.1" 200 589 "-" "Python-urllib/3.12"
+2026-10-15 08:28:40,059 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:40 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:40,193 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:40,204 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,204 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,204 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,204 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,204 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,204 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,204 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,204 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,204 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,204 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,204 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,204 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,205 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,205 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,205 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,205 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,205 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-be1437257fb440b2
+2026-10-15 08:28:40,222 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:40 +0300] "POST /api/session/command HTTP/1.1" 200 965 "-" "Python-urllib/3.12"
+2026-10-15 08:28:40,375 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:40,400 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:40 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:40,543 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:40,569 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:40 +0300] "POST /api/session/command HTTP/1.1" 200 640 "-" "Python-urllib/3.12"
+2026-10-15 08:28:40,719 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:40,748 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:40 +0300] "POST /api/session/command HTTP/1.1" 200 1307 "-" "Python-urllib/3.12"
+2026-10-15 08:28:40,884 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:40,910 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:40 +0300] "POST /api/session/command HTTP/1.1" 200 721 "-" "Python-urllib/3.12"
+2026-10-15 08:28:40,914 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:40 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:41,052 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:41,067 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-55912e8501be4244
+2026-10-15 08:28:41,068 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-55912e8501be4244
+2026-10-15 08:28:41,081 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:40 +0300] "POST /api/session/command HTTP/1.1" 200 400 "-" "Python-urllib/3.12"
+2026-10-15 08:28:41,219 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:41,242 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:41 +0300] "POST /api/session/command HTTP/1.1" 200 399 "-" "Python-urllib/3.12"
+2026-10-15 08:28:41,380 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:41,403 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:41 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:41,563 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:41,588 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:41 +0300] "POST /api/session/command HTTP/1.1" 200 415 "-" "Python-urllib/3.12"
+2026-10-15 08:28:41,745 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:41,772 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:41 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:41,929 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:41,958 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:41 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:42,143 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:42,178 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:41 +0300] "POST /api/session/command HTTP/1.1" 200 951 "-" "Python-urllib/3.12"
+2026-10-15 08:28:42,345 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:42,380 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:42 +0300] "POST /api/session/command HTTP/1.1" 200 701 "-" "Python-urllib/3.12"
+2026-10-15 08:28:42,385 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:42 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:42,527 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:42,537 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,537 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,537 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,537 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,538 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,538 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,538 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,538 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,538 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,538 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,538 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,538 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,538 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,538 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,538 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,538 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,538 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-a18a10671b974ccf
+2026-10-15 08:28:42,553 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:42 +0300] "POST /api/session/command HTTP/1.1" 200 416 "-" "Python-urllib/3.12"
+2026-10-15 08:28:42,706 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:42,731 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:42 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:42,875 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:42,899 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:42 +0300] "POST /api/session/command HTTP/1.1" 200 417 "-" "Python-urllib/3.12"
+2026-10-15 08:28:43,041 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:43,065 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:42 +0300] "POST /api/session/command HTTP/1.1" 200 427 "-" "Python-urllib/3.12"
+2026-10-15 08:28:43,211 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:43,236 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:43 +0300] "POST /api/session/command HTTP/1.1" 200 375 "-" "Python-urllib/3.12"
+2026-10-15 08:28:43,384 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:43,407 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:43 +0300] "POST /api/session/command HTTP/1.1" 200 379 "-" "Python-urllib/3.12"
+2026-10-15 08:28:43,562 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:43,587 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:43 +0300] "POST /api/session/command HTTP/1.1" 200 592 "-" "Python-urllib/3.12"
+2026-10-15 08:28:43,729 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:43,755 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:43 +0300] "POST /api/session/command HTTP/1.1" 200 368 "-" "Python-urllib/3.12"
+2026-10-15 08:28:43,760 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:43 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:43,909 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:43,919 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,919 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,919 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,919 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,919 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,919 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,919 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,919 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,919 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,919 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,919 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,919 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,919 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,919 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,919 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,920 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,920 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-dd9117db7e194202
+2026-10-15 08:28:43,932 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:43 +0300] "POST /api/session/command HTTP/1.1" 200 354 "-" "Python-urllib/3.12"
+2026-10-15 08:28:44,050 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:44,073 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:43 +0300] "POST /api/session/command HTTP/1.1" 200 329 "-" "Python-urllib/3.12"
+2026-10-15 08:28:44,193 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:44,221 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:44 +0300] "POST /api/session/command HTTP/1.1" 200 682 "-" "Python-urllib/3.12"
+2026-10-15 08:28:44,339 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:44,363 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:44 +0300] "POST /api/session/command HTTP/1.1" 200 639 "-" "Python-urllib/3.12"
+2026-10-15 08:28:44,478 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:44,502 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:44 +0300] "POST /api/session/command HTTP/1.1" 200 411 "-" "Python-urllib/3.12"
+2026-10-15 08:28:44,618 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:44,645 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:44 +0300] "POST /api/session/command HTTP/1.1" 200 589 "-" "Python-urllib/3.12"
+2026-10-15 08:28:44,648 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:44 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:44,763 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,772 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-76f9b90c39da4729
+2026-10-15 08:28:44,787 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:44 +0300] "POST /api/session/command HTTP/1.1" 200 965 "-" "Python-urllib/3.12"
+2026-10-15 08:28:44,904 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:44,928 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:44 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:45,061 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:45,083 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:44 +0300] "POST /api/session/command HTTP/1.1" 200 640 "-" "Python-urllib/3.12"
+2026-10-15 08:28:45,202 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:45,233 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:45 +0300] "POST /api/session/command HTTP/1.1" 200 1307 "-" "Python-urllib/3.12"
+2026-10-15 08:28:45,348 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:45,372 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:45 +0300] "POST /api/session/command HTTP/1.1" 200 721 "-" "Python-urllib/3.12"
+2026-10-15 08:28:45,376 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:45 +0300] "POST /api/session/create HTTP/1.1" 200 322 "-" "Python-urllib/3.12"
+2026-10-15 08:28:45,492 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0001 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0002 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0003 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0004 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0005 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0006 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0007 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0008 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0009 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0010 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0011 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0012 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0013 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0014 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0015 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0016 session=ses-96b4168d78134130
+2026-10-15 08:28:45,503 ragin.hisoka.honeytokens INFO Honeytoken deployed: type=credential id=credential_0017 session=ses-96b4168d78134130
+2026-10-15 08:28:45,517 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:45 +0300] "POST /api/session/command HTTP/1.1" 200 400 "-" "Python-urllib/3.12"
+2026-10-15 08:28:45,634 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:45,657 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:45 +0300] "POST /api/session/command HTTP/1.1" 200 399 "-" "Python-urllib/3.12"
+2026-10-15 08:28:45,803 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:45,828 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:45 +0300] "POST /api/session/command HTTP/1.1" 200 393 "-" "Python-urllib/3.12"
+2026-10-15 08:28:45,952 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:45,992 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:45 +0300] "POST /api/session/command HTTP/1.1" 200 415 "-" "Python-urllib/3.12"
+2026-10-15 08:28:46,119 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:46,147 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:45 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:46,260 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:46,289 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:46 +0300] "POST /api/session/command HTTP/1.1" 200 922 "-" "Python-urllib/3.12"
+2026-10-15 08:28:46,424 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:46,451 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:46 +0300] "POST /api/session/command HTTP/1.1" 200 951 "-" "Python-urllib/3.12"
+2026-10-15 08:28:46,577 ragin.don.rag_engine WARNING search_threat_intel: no vector store configured
+2026-10-15 08:28:46,605 aiohttp.access INFO 127.0.0.1 [15/Oct/2026:08:28:46 +0300] "POST /api/session/command HTTP/1.1" 200 701 "-" "Python-urllib/3.12"

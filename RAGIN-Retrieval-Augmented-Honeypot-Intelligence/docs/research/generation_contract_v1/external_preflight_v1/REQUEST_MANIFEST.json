@@ -1,0 +1,168 @@
+{
+  "schema": "ragin.external_preflight.packet.v1",
+  "packet_version": "external-preflight-v1",
+  "status": "DRAFT_NOT_EXECUTED",
+  "approval_required": true,
+  "approval_token_required": true,
+  "approval_binding": "SHA256_OF_CANONICAL_MANIFEST_EXCLUDING_PACKET_SHA256",
+  "approval_scope": "EXTERNAL_PREFLIGHT_ONLY_NOT_B1_B2_B3",
+  "proposed_model_only": "opencode/deepseek-v4.1-flash-free",
+  "alternative_models_allowed": false,
+  "paid_fallback_allowed": false,
+  "expected_provider_cost_usd": 0,
+  "cost_basis": "CONFIGURED_FREE_ROUTE_ONLY_NOT_PROVIDER_ATTESTED",
+  "abort_on_cost_or_route_inconsistency": true,
+  "transport": {
+    "kind": "OPENCODE_CLI_BRIDGE",
+    "script": "scripts/opencode_proxy.py",
+    "historical_script_edited": false,
+    "host": "127.0.0.1",
+    "port": 8731,
+    "endpoint": "http://127.0.0.1:8731/v1/chat/completions",
+    "loopback_only": true,
+    "allowlist_env": "OPENCODE_ALLOWED_MODELS",
+    "allowlist_value": "opencode/deepseek-v4.1-flash-free",
+    "contract_compatible": false,
+    "contract_compatibility_reason": "The bridge serializes messages into a single CLI prompt. It does not pass temperature, top_p, or seed to the CLI, and max_tokens changes only prompt text (capped at 4096). The response model field echoes the requested model rather than an independently attested provider identity.",
+    "decoding_attestation": "UNSUPPORTED",
+    "model_identity_attestation": "BRIDGE_ECHO_ONLY",
+    "internal_provider_retry_attestation": "NOT_ATTESTED"
+  },
+  "immutable_sources": [
+    {
+      "role": "bridge",
+      "path": "scripts/opencode_proxy.py",
+      "sha256": "db1c7e01378c10017fa44503beb117a0acbb20365d6cc5eda83ff79111ebceb6",
+      "bytes": 9983
+    },
+    {
+      "role": "safe_config",
+      "path": "scripts/opencode_cli_bridge_safe_config.json",
+      "sha256": "348059ab6b9ec19e94747aa494be5cdb1f717ba00c2d0b6f3989888c1742c40b",
+      "bytes": 684
+    },
+    {
+      "role": "runner",
+      "path": "scripts/preflight_generation_contract_v1.py",
+      "sha256": "5c4e913f6a8d2fe2fcce4f922bf84eb85d11e73d47cf0ec38dde71108dd243a8",
+      "bytes": 26070
+    }
+  ],
+  "request_budget": {
+    "max_http_generation_requests": 4,
+    "planned_http_generation_requests": 4,
+    "retries_per_request": 0,
+    "total_http_attempts": 4,
+    "stop_on_first_failure": true,
+    "no_paid_fallback": true,
+    "note": "The bridge does not attest upstream CLI-provider retry behavior. The HTTP request cap is enforced by the runner; upstream call count is outside this packet's attestation."
+  },
+  "decoding": {
+    "temperature": "UNSUPPORTED_NOT_SENT",
+    "top_p": "UNSUPPORTED_NOT_SENT",
+    "seed": "UNSUPPORTED_NOT_SENT",
+    "seed_status": "EXPLICITLY_UNSUPPORTED",
+    "max_tokens": "PROMPT_TEXT_ONLY_NOT_HARD_DECODING_BOUND",
+    "stream": false
+  },
+  "source_identity": {
+    "requested_model": "opencode/deepseek-v4.1-flash-free",
+    "provider_reported_model": "EXPECTED_ECHO_ONLY",
+    "independent_provider_identity": false,
+    "model_identity_status": "BRIDGE_ECHO_ONLY",
+    "generation_contract_active": false
+  },
+  "data_sharing": {
+    "payload_class": "SELF_CONTAINED_SYNTHETIC_LAB",
+    "repository_files_sent": false,
+    "session_logs_sent": false,
+    "private_data_sent": false,
+    "secrets_or_credentials_sent": false,
+    "personal_data_sent": false,
+    "external_evidence_sent": false,
+    "hostnames_used": [
+      "lab-node-01.example.test",
+      "webapp@lab-node-01"
+    ],
+    "addresses_used": [],
+    "commands_used": [
+      "uname -a",
+      "whoami",
+      "ss -tlnp",
+      "cat /etc/os-release"
+    ],
+    "description": "Only the frozen JSON payload bytes under payloads/ are sent. Each payload contains one synthetic system instruction and one synthetic lab command. The OpenCode CLI bridge rewrites them into a single prompt and sends that prompt to the configured free-route provider. Provider-side retention/logging is governed by that provider's terms and is not controlled or attested here."
+  },
+  "tool_denial": {
+    "enforcement": "OPENCODE_CONFIG_SAFE_AGENT_CONFIG",
+    "config_path": "scripts/opencode_cli_bridge_safe_config.json",
+    "agent": "ragin-safe",
+    "agent_mode": "primary",
+    "tools_all_false": true,
+    "permission_star": "deny",
+    "permission_bash": "deny",
+    "permission_edit": "deny",
+    "permission_read": "deny",
+    "permission_write": "deny",
+    "permission_webfetch": "deny",
+    "permission_websearch": "deny",
+    "prompt_instruction_also_present": true,
+    "prompt_instruction_is_not_the_enforcement": true,
+    "note": "Tool denial is enforced by the agent configuration and CLI --agent selection, not merely by prompt text."
+  },
+  "payloads": [
+    {
+      "name": "req_01_uname.json",
+      "path": "payloads/req_01_uname.json",
+      "sha256": "bc640dcf9080b6dd916420ce4a37e418139db86651e3738a8de955aa012eca30",
+      "bytes": 694,
+      "max_tokens": 256,
+      "synthetic_command": "uname -a"
+    },
+    {
+      "name": "req_02_whoami.json",
+      "path": "payloads/req_02_whoami.json",
+      "sha256": "2ef70f6761cf098be76ab679d0d8bbc15c25b047edbf8ed1bbceeadade274946",
+      "bytes": 691,
+      "max_tokens": 64,
+      "synthetic_command": "whoami"
+    },
+    {
+      "name": "req_03_ss.json",
+      "path": "payloads/req_03_ss.json",
+      "sha256": "b093b3b9cc2eed57f923bf7a7e7ec5ed37beae40ded4832cddc7d858ebb365e0",
+      "bytes": 694,
+      "max_tokens": 256,
+      "synthetic_command": "ss -tlnp"
+    },
+    {
+      "name": "req_04_os_release.json",
+      "path": "payloads/req_04_os_release.json",
+      "sha256": "938be6db654ffd3056ea06a4899613e76210afe0a18b9f360c12a3750cba1eca",
+      "bytes": 705,
+      "max_tokens": 256,
+      "synthetic_command": "cat /etc/os-release"
+    }
+  ],
+  "packet_sha256": "795a28bd70b92220cecece2b4eb3f38d7baa207d7d9cb37a1c69048e566a9893",
+  "packet_hash_formula": "sha256(canonical_json(manifest_without_packet_sha256, sort_keys=true, compact_separators, utf8))",
+  "blocked_scientific_uses": [
+    "B1_COWRIE_LLM_RETRIEVAL_OFF",
+    "B2_COWRIE_LLM_BM25",
+    "B3_COWRIE_LLM_DENSE_RAG"
+  ],
+  "blocked_scientific_arm_definitions": {
+    "B2": "Cowrie + LLM + BM25",
+    "B3": "Cowrie + LLM + dense RAG"
+  },
+  "scientific_arm_decision": "NO_DECISION_PREFLIGHT_ONLY",
+  "blocked_reason": "No decoding enforcement, no independent provider model identity, and no upstream retry/cost attestation. This packet may establish only that a bounded request can reach the configured free route and return text.",
+  "readiness": {
+    "offline_packet_validation": "PASS_PENDING_REVIEW",
+    "bridge_running": false,
+    "provider_calls_made": 0,
+    "model_exposure_established": false,
+    "model_exposure_status": "NOT_ESTABLISHED",
+    "execution_state": "NOT_STARTED"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "elapsed_s": 90.35961330099963,
+  "engine": "graph",
+  "scoring_channels": {
+    "cti_technique": "served_text+cti_analysis_max",
+    "cti_actor": "served_text+cti_analysis_max",
+    "deception": "served_text"
+  },
+  "metrics": {
+    "honeytoken_triggers": 0,
+    "honeytokens_deployed": 3,
+    "total_sessions": 3,
+    "sessions_with_engagement": 3,
+    "persona_correct_assignments": 3,
+    "persona_total_assignments": 3,
+    "ttps_detected": 1,
+    "ttps_detected_unique": 1,
+    "cti_alerts_generated": 1,
+    "false_positives": 0,
+    "true_positives": 1,
+    "attacker_retention_turns": 1.0,
+    "max_retention_turns": 3,
+    "mean_session_duration_s": 30.114171295334625,
+    "deception_artifacts_deployed": 3,
+    "deception_artifacts_accessed": 0,
+    "strategy_adaptations": 1,
+    "avg_response_time_ms": 30114.171295334625
+  },
+  "technique_results": [
+    {
+      "name": "cti_technique_Explain_T1566.001_in_detail",
+      "suite": "cti_technique",
+      "passed": true,
+      "score": 0.85,
+      "latency_ms": 71910.03212200303,
+      "details": {
+        "query": "Explain T1566.001 in detail",
+        "response_preview": "T1566.001 Spearphishing Attachment\n\nTechnique ID: T1566.001\nTactic: Initial Access\nSub-technique of: T1566 Phishing\nPlatforms: Windows, macOS, Linux\n\nDefinition\n\nT1566.001 is the use of a malicious fi"
+      },
+      "error": null,
+      "serve_path": "GENERATED_VERIFIED"
+    }
+  ],
+  "actor_results": [
+    {
+      "name": "cti_actor_Describe_Salt_Typhoon's_targeting_of_tel",
+      "suite": "cti_actor",
+      "passed": true,
+      "score": 0.85,
+      "latency_ms": 8916.474936006125,
+      "details": {
+        "query": "Describe Salt Typhoon's targeting of telecommunications",
+        "response_preview": "Salt Typhoon is a Chinese state-linked espionage operation focused on telecommunications providers. It compromised telecom networks and routers in at least 34 countries, enabling surveillance of inter"
+      },
+      "error": null,
+      "serve_path": "GENERATED_VERIFIED"
+    }
+  ],
+  "persona_results": [
+    {
+      "name": "deception_What_web_server_are_you_running?",
+      "suite": "deception",
+      "passed": true,
+      "score": 0.8,
+      "latency_ms": 9516.096333012683,
+      "details": {
+        "query": "What web server are you running?",
+        "response_preview": "HTTP/1.1 200 OK\nServer: nginx/1.18.0 (Ubuntu)\nDate: Thu, 13 Jun 2024 08:42:17 GMT\nContent-Type: text/html; charset=UTF-8\nConnection: keep-alive\nVirtualHost: web-srv-01\nDocumentRoot: /var/www/html"
+      },
+      "error": null,
+      "serve_path": "TEMPLATE_FALLBACK_VERIFIED"
+    }
+  ]
+}

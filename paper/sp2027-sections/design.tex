@@ -1,0 +1,103 @@
+% §3 Design — "The Intelligence Ladder" (S&P 2027 reframe, v4 architecture)
+% Draft 2026-10-25. Grounded in docs/ARCHITECTURE.md + verified field deployment
+% (docs/FIELD_REVIVAL_2026-10-25.md). All claims trace to code/artifacts listed
+% in docs/MASTER_PLAN_2026-10-24.md §Paper.3.
+
+\section{Design}
+\label{sec:design}
+
+\subsection{Threat model and design goal}
+An operator deploys a deception endpoint that faces opportunistic Internet
+adversaries. The adversary controls the commands they type and observes every
+byte the endpoint returns; we assume no adversary-side compromise of the
+endpoint host itself. The operator's cost is twofold: the \emph{monetary and
+latency price} of each AI capability added to the serving loop, and the
+\emph{trust price}---every generated artifact is a liability if it leaks real
+secrets or contradicts the fiction the operator has committed to.
+
+Our design goal is therefore not ``deceive better with more AI'' but
+\emph{price} each increment of intelligence: a capability is wired into the
+serving loop only if a measured marginal effect justifies its trust price.
+The architecture below makes that pricing possible by construction, because
+every candidate response must pass the same deterministic gate regardless of
+which AI rung produced it.
+
+\subsection{Verified serving loop}
+\label{sec:design:loop}
+RAGIN is organized as a \emph{harness--session--sandbox} triad
+(\S\ref{sec:impl}). The harness is a stateless orchestration loop; all state
+lives in an append-only session log with crash-safe resumption; the sandbox
+executes attacker interactions and is the only path on which bytes reach the
+attacker. The loop for one attacker command is:
+
+\begin{enumerate}
+  \item \textbf{Classify.} A behavioral classifier maps the session history to
+  a skill level (novice$\to$apt).
+  \item \textbf{Retrieve.} A threat-intelligence retrieval stage (hybrid
+  BM25/RRF with a deterministic command-aware retriever) grounds the fiction
+  in MITRE-mapped corpus evidence; retrieved scores are clamped and
+  provenance-stamped, and attacker-supplied text enters the LLM context only
+  inside a labeled untrusted block.
+  \item \textbf{Generate.} The deception stage drafts a candidate artifact
+  under the session's host fiction (pinned identity, per-session policy).
+  \item \textbf{Verify.} A deterministic verifier checks the candidate against
+  the fiction graph and a real-shape secret battery
+  (\S\ref{sec:design:gate}); wrappers add strict-research and deadline
+  enforcement. The verifier is fail-closed: unverifiable candidates are
+  discarded, never repaired into service.
+  \item \textbf{Approve.} A policy gate approves programmatically at low risk;
+  a human decision is required only at the operator-chosen
+  \texttt{REQUIRE} level, and an absent approver blocks serving entirely.
+  \item \textbf{Commit.} Only committed artifacts are served, and each served
+  response carries a serve-path provenance label and matched content hashes.
+\end{enumerate}
+
+Two properties matter for the rest of the paper. First, the loop is
+\emph{rung-agnostic}: rungs \S\ref{sec:design:ladder} replace the generation
+stage but the verifier, the approval gate, and the provenance ledger are
+invariant, so cross-rung comparisons measure the rung, not the plumbing.
+Second, the loop fails closed: in our adversarial hardening campaign
+(\S\ref{sec:eval:hardening}), no probe extracted unverified text on any path.
+
+\subsection{The intelligence ladder}
+\label{sec:design:ladder}
+On top of the invariant loop we instantiate four rungs of increasing
+intelligence, each a drop-in generation stage:
+\begin{enumerate}
+  \item \textbf{Scripted templates} --- deterministic fiction answers for a
+  closed command grammar; zero model cost.
+  \item \textbf{Behavioral classifier} --- the rung-1 loop steered by skill
+  stratification.
+  \item \textbf{Retrieval-augmented planning} --- the rung-2 loop grounded in
+  the corpus and evidence gate.
+  \item \textbf{Free generation} --- an LLM drafts the artifact under the same
+  verification regime.
+\end{enumerate}
+Decision capability is priced on the same ladder: a deterministic policy
+selector is the \emph{decision floor}; learned decision models (a fine-tuned
+router, a typed-question judgment model) attach only as bounded, non-authoritative
+signals that must clear the same frozen gate battery as any other component.
+
+\subsection{The verification gate}
+\label{sec:design:gate}
+The gate combines (i) fiction-consistency checks against the committed graph,
+(ii) a danger battery that matches \emph{real} credential shapes---GitHub and
+Slack tokens, PEM blocks, JWTs, exact-length AWS key IDs---over a
+Unicode-normalized view that defeats zero-width and homoglyph smuggling, and
+(iii) an allowlist of serve-path templates for deterministic answers. The
+battery is adversarially maintained: a two-wave red-team campaign
+(\S\ref{sec:eval:hardening}) contributed every pattern, and the deception
+fiction's own placeholder syntax is exempt by construction so the honeypot's
+bait is never mistaken for a leak.
+
+\subsection{Adversarial workload as measurement}
+\label{sec:design:workload}
+Passive background traffic cannot answer engagement questions (dwell, artifact
+access, credential interaction) at statistical depth. We therefore drive the
+live endpoint with a scripted team of LLM-operated attacker personas---novice,
+reconnaissance operator, credential hunter, patient APT operator, and an
+evasion specialist instructed to detect the honeypot---each issuing
+single-command turns over SSH against the production loop. The workload is
+reproducible (same persona prompts, per-turn LLM sampling) and comparable
+across arms, and it is exactly the measurement the fold-down analysis
+requires: what does each additional rung buy \emph{against a fixed adversary}?

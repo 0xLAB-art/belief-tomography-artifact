@@ -1,0 +1,111 @@
+\section{Related Work}
+\label{sec:related}
+
+\subsection{Honeypots and Cyber Deception}
+
+Surveys of large language models in security \cite{wang2024} and of cyber
+deception specifically \cite{lopez2024} frame the opportunity and its open
+questions. Honeypots have been studied as instrumentation for two decades
+\cite{spitzner2002}, and their engineering trade-offs---visibility,
+fidelity, and the operational cost of interaction---remain open
+\cite{sokol2017}. Adaptive deception work formalizes the
+defender's decision to engage, treating attacker intent as something to
+infer and modulate, through factored interactive POMDPs
+\cite{shinde2020}, engagement--yield models
+\cite{bera2024}, and behavioral partitioning under cognitive load
+\cite{liska2024}. Deception has also been embedded in higher-fidelity
+simulation and emulation targets \cite{kouremetis2024}. We adopt as our
+starting point the gap that deception-framework surveys identify in deployed
+systems: that they neither ground responses in live threat intelligence
+nor differentiate behavior across attacker classes \cite{lopez2024}. Our
+contribution is orthogonal to that taxonomy. We do not propose a new
+deception policy; we constrain what a generative policy is allowed to serve.
+
+\subsection{Generative Honeypots}
+
+The closest prior art puts a language model inside the deception endpoint.
+LLM-in-the-shell honeypots make the model answer as a live machine
+\cite{valeros2024}; LLM agent honeypots instead monitor autonomous AI
+attackers in the wild \cite{reworr2024}; and recent systems extend
+generative deception to industrial protocols and physical-process emulation
+\cite{vasilatos2025llmpot}, coordinated IoT deception
+\cite{guan2025cpds}, and directory services
+\cite{jimenez2025}. Analysis pipelines over collected honeypot and
+incident data apply generative or learned models after the fact, for attack
+classification and reporting \cite{lanka2024,simoni2024,blefari2025},
+structured CTI mapping \cite{orbinato2022}, and attack investigation
+\cite{alsaheel2021}. In all of these the model
+output is the product. None of them states a serving contract for it: no
+fixed fiction to be consistent with, no deterministic gate that can refuse
+a draft, and no vetted answer to fall back to when the provider refuses or
+times out. That contract, and the ladder analysis that prices it, is what
+this paper adds; the generative mechanisms themselves are borrowed.
+
+\subsection{Runtime Enforcement and Red-Teaming of LLM Applications}
+
+The verifier is the closest analogue in prior art, and the analogy is
+deliberate. AgentSpec provides customizable runtime enforcement for LLM
+agents \cite{wang2026agentspec}; prompt-injection defences that constrain
+decoding or shape preference rather than trusting a probability are
+proposed in \cite{chen2025struq} and \cite{chen2025secalign}; the injection
+threat they answer is formalized in \cite{greshake2023} and measured by
+AgentDojo \cite{debenedetti2024agentdojo}; the wider surface of tool-bearing
+agents adds cross-tool harvesting and pollution \cite{li2026dissonances};
+model-written and
+model-red-teamed evaluation is standard practice
+\cite{ganguli2022,perez2022,bai2022,christiano2017}. Our design follows
+that literature's premise that assurance must live outside the model. What
+differs is the asset being protected. A guardrail protects the assistant's
+user from the model's output; this gate protects the attacker's belief from
+the fiction's, so the failure of interest is a fluent, self-consistent,
+on-script response that is nonetheless wrong for the deception state, and
+the mitigation is a deterministic fallback to vetted content rather than a
+refusal.
+
+\subsection{Retrieval Grounding, and the Attacks We Do Not Yet Resist}
+
+Retrieval grounding supplies the targeting rung
+\cite{lewis2020}, and retrieval for threat intelligence is well populated:
+technique extraction and TTP analysis \cite{fayyazi2023,lekssays2025},
+knowledge-graph constructions \cite{gao2025,jeon2024,belmahjoub2025},
+knowledge-graph index families \cite{malkov2018} that we price against
+sparse retrieval, investigation and response assistants
+\cite{rajapaksha2024,paul2025,qiao2025,liu2025}, and the \attck{}
+grounding question itself \cite{roy2023,alsada2024,noureddine2020}. The
+security of that retrieval layer is a separate and active literature:
+benchmarking and vulnerability identification \cite{xue2024,liang2025},
+adversarial threat vectors and mitigations for RAG systems
+\cite{ward2025}, knowledge corruption \cite{zou2025poisonedrag,chaudhari2024},
+retrieval jamming \cite{shafran2024}, in-place and indirect poisoning
+evaluation \cite{malladi2026ripeii}, poisoning-aware ranking for CTI
+pipelines \cite{jia2025}, and responsibility attribution for poisoned
+knowledge \cite{zhang2026ragorigin}. We adopt that literature's threat
+model as out of scope for demonstrated results: this paper evaluates no
+retrieval poisoning and no injection defence, and
+Section~\ref{sec:threat-model} records that as a gap rather than a
+result. We price that scoping rather than hide it. The retrieval layer sits
+inside the threat surface this literature has already mapped, so a deployment
+that inherits it inherits those attacks, and the grounding rung's measured
+benefit of $+0.154$ is a benefit under an undefended retrieval layer. Closing
+that is a prerequisite for treating the grounding result as a security
+contribution rather than a capability one.
+
+\subsection{Deception Quality Judged by Machines}
+
+Because no human study is claimed, the relevant prior art is LLM-as-judge
+methodology: MT-Bench and Chatbot Arena for judge agreement
+\cite{zheng2024}, JudgeBench for judge reliability \cite{tan2025judgebench},
+and optimization-based attacks against the judge itself
+\cite{shi2024judgedeceiver}. The third of these is the reason our quality
+section reports within-model consistency with an audited judge rather than
+presenting a realism score as validated.
+
+\subsection{Position}
+
+We are not the first to build a language model into a honeypot, and we do
+not claim a new deception policy, a new retrieval stack, or a new
+enforcement primitive. The contribution is the composition: a fixed
+deception state, a deterministic gate that disposes against it, a vetted
+floor beneath it, and an explicit ladder analysis that prices each
+intelligence mechanism against its cheapest certifiable competitor---then
+removes the rungs that do not pay.

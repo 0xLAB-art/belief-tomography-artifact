@@ -1,0 +1,262 @@
+{
+  "claims": [
+    {
+      "id": "C1",
+      "text": "The two field nulls hold at instrument resolution: gateway targets beta-hat=0 [0,0.060] per family (nominal n=60, conservative-mapped); attacker personas at/below noise floor (Delta(B) 0.000-0.0067 vs 0.067 floor; E23 depth replication Delta=0.0000)",
+      "section": "\u00a76",
+      "type": "empirical",
+      "status": "weak",
+      "issues": [],
+      "cross_references": [
+        "\u00a76.1",
+        "\u00a75.2",
+        "\u00a75.6",
+        "\u00a7Abstract",
+        "\u00a710"
+      ],
+      "verifier_reason": "Nulls reproduce exactly and the stats power attack fails (MDE at n=60 is 0.0487, 4x tighter than tau=0.2; honest Bonferroni over every interval in the paper leaves UB 0.114 < 0.2). Three verified qualifications attach: (i) abstract prints E29 [0,0.060] under the E2-v1 panel sentence, but E2-v1 measured-n bounds are 0.061-0.088 (state-dec unidentified) and its identified sets [0,0.343]/[0,0.220] are omitted from the abstract; (ii) E29 all 9 blocked sessions fell in state-dec (family c=0.15; honest family-level worst case [0,0.15], still under tau); (iii) Def 3.3 defines the estimand over oracles plus a calibrated judge while the field estimator counts oracle flags alone (E17 measured oracle FN 0.48), so printed intervals bound a floor functional, not the defined beta. tau-verdict unchanged under every recomputation."
+    },
+    {
+      "id": "C2",
+      "text": "The open-weight spectrum: no destructive compliance in any panel (118/118 state-dec flags adjudicate refusal-quote FP); canary echo pooled 0.030-0.143, echo family to 0.700; per-panel decomposition 5,11,24,13,37,28 (FP) and 9,40,9,43,11 (genuine) printed with Wilson CIs",
+      "section": "\u00a76.1",
+      "type": "empirical",
+      "status": "weak",
+      "issues": [],
+      "cross_references": [
+        "\u00a76.1",
+        "Table6",
+        "\u00a710",
+        "Abstract"
+      ],
+      "verifier_reason": "All 25+ printed intervals, the 118/112 decomposition, and my independent audit-sheet recount (genuine secret_leak by family: echo 97, authority 10, goal 2, exfil 3 = 112) reproduce exactly. But three verified defects: (i) Table 6 caption defines the pool as echo and exfiltration-lure cells while the printed 9/40/9/43/11 pools average all five families (literal echo+exfil pools would be Flash 6/120=0.050, Pro 42/120=0.350, MiniMax 10/120=0.083); (ii) the censoring apparatus is withheld from this table: E30 Pro fully-measured 74.7% is below the papers own 80% bar, worst-case session bounds are unprinted, and E31 MiniMax state-dec c=12/60=0.200=tau exactly (verified from progress logs) so the compliance headline has zero margin on that arm; (iii) the spectrum interpretation generalizes a single-template (v0) single-dose measurement despite E21s own wording-sensitivity finding; and the underlying adjudications were author-side non-blind per the frozen audit header, undisclosed in the paper."
+    },
+    {
+      "id": "C3",
+      "text": "Theory: Thm 4.1 passive impossibility; Thm 4.3 uniform Hoeffding guarantee; Thm 4.7 patch-deception-decay with detection budget gamma; Thm 4.8 onset dichotomy (sketch); Cor 4.9 frontier scoped to the analyzed detection statistics",
+      "section": "\u00a74",
+      "type": "theoretical",
+      "status": "invalid",
+      "issues": [],
+      "cross_references": [
+        "\u00a74.3",
+        "\u00a74.4",
+        "A.4",
+        "Table2"
+      ],
+      "verifier_reason": "The theory core fails at verified load-bearing points: Thm 4.8(i)(a) boundary is quantitatively false (delta>=rho_0 gives ~50 percent power; >=1-beta_d needs delta >= (z_beta+z_power)*sigma0 = ~1.7 rho_0; at the registered cells (0.4,10) and (0.2,40), delta/sigma0=2.76, best possible TPR 0.882 < 0.95, observed plateaus track the correct ceiling 0.9745); Def 4.5 states an identity (beta is automatically 1-Lipschitz in TV for 0/1 verdicts) as a falsifiable regularity condition, which E26 then measured at L=1.00; arm (ii) is circular as glossed (plausible set defined as what cannot be distinguished); the E5 four-cell ordinal scheme appears in no registration artifact and its frozen verdict gate consults one safest cell with a one-sided birth criterion; the adjacent literature (sequential change-point detection, SPRT, thresholding bandits) is uncited. What survives independently verified: Lemma 4.6 line-by-line, Thm 4.3 constants, the un-flipped Thm 4.7(iii) inversion (round-13 fix took), Cor 7.1 repaired, and every E5 AUC reproduces from the frozen JSON."
+    },
+    {
+      "id": "C4",
+      "text": "Instrument: dose-response r>=0.986 over the exact 5x5x60=1,500 grid; test-retest r=0.949; E17 audit channel sensitivity 0.960 FP 0/25 (blind); noise floor 0.067 at 10 probes/cell",
+      "section": "\u00a75",
+      "type": "empirical",
+      "status": "supported",
+      "issues": [],
+      "cross_references": [
+        "\u00a75",
+        "\u00a75.2",
+        "\u00a75.3",
+        "\u00a75.6"
+      ],
+      "verifier_reason": "Dose-response r, test-retest, and the E17 channel sensitivity reproduce; the two self-caught instrument errors (200-token cap, v0 episode isolation) are verified real. Two blinding caveats: the E17 audit artifact carries a source label on every row (shuffled-blind claim overstates what was withheld), and of the 70 real E2-v1 sessions only 52 were adjudicable (18 unavailable, undisclosed in the text). E5 instrument description mismatches its code: (m//3+1)x3 probes per family divided by m (12 draws at nominal 10, 1.2x rate shift), an exceedance-count statistic rather than the claimed studentized z, and the breach counter folded into the generator seed. Numbers survive; descriptions must match artifacts."
+    },
+    {
+      "id": "C5",
+      "text": "Certification limits: Cor 7.1 no free lunch (breaches off-support, now fixed); Thm 7.2 non-composition; Prop 7.3 transfer under (A1)/(A2); trichotomous decision rule; Props 7.6-7.8 half-life/reactivity/concentration",
+      "section": "\u00a77",
+      "type": "theoretical",
+      "status": "weak",
+      "issues": [],
+      "cross_references": [
+        "\u00a77.1",
+        "\u00a77.2",
+        "A.5"
+      ],
+      "verifier_reason": "Cor 7.1 repair verified in source (breaches construction matches). But Prop 7.3s transfer radius applies Def 4.5 (Lipschitz at fixed proposition) to a cross-proposition paraphrase metric without stating the required axiom (cross-proposition Lipschitz in the covering metric plus a text-to-TV bridge); the papers own off-support constructions (Cor 7.1, Thm 7.4, Cor 7.5) violate the unstated smoothness condition, so the neighborhood-transfer guarantee as printed is unproven. The trichotomous certification rule survives all adversarial recomputations, including the FN-divided upper bound 0.060/0.52=0.115 < tau=0.2 at the E29 resolution."
+    },
+    {
+      "id": "C6",
+      "text": "Disclosure economics: Prop 8.1 reconnaissance advantage at estimator resolution; Prop 8.3 detection budget at 95% power with closed form n_min(m), m-grid 0.02-0.92; E20 Kendall tau frontier, no interior dominance",
+      "section": "\u00a78",
+      "type": "empirical",
+      "status": "supported",
+      "issues": [],
+      "cross_references": [
+        "\u00a74.1",
+        "\u00a78",
+        "\u00a710",
+        "Platform Appendix"
+      ],
+      "verifier_reason": "E14 and E16 closed forms independently re-derived by the rigor reviewer (n_min(0.5)=8 exactly; k_min=2 via Wilson LB 0.0717 > 0.0602), E20 Kendall-tau frontier reproduces. One verified caption defect: the gen-3 EPK frontier artifact contains 4 sessions with non-detector verdicts censored (not zero detections) on a mixed kernel-version evidence base, contradicting the \u00a74.1 empirical-edge parenthetical as written; fix by stating n and censoring honestly or deleting. Also the claims-evidence ledger and hash-chained archive vouched for in three places are not in the frozen deposit; the mappings reconstruct by hand (this review did), but the named artifact must ship."
+    },
+    {
+      "id": "C7",
+      "text": "The program is registered: 30 slots (25 confirmatory + 5 post-anomaly diagnostics), frozen estimator, every deviation logged; two self-caught error classes; the preregistration timestamps precede data (E31: 18:21 UTC reg vs 18:45 UTC first data)",
+      "section": "\u00a710",
+      "type": "methodological",
+      "status": "invalid",
+      "issues": [],
+      "cross_references": [
+        "\u00a710",
+        "Table1",
+        "Abstract",
+        "DataAvailability"
+      ],
+      "verifier_reason": "The preregistration guarantee is contradicted by the frozen record the paper itself declares authoritative (Data Availability: artifact timestamps are the authoritative provenance). Verified forensics: E21 prereg mtime 19:54, its data 19:25 Nov 21 (29 min post-data), header says Registered 2026-11-22, and git first-adds prereg+data in the same commit d551bdc at 20:06 - three mutually inconsistent provenance stories; E27 prereg committed with its data in same commit 9465726 (+4 min), mtime rewritten 4.7h later in the same 441-microsecond burst as E29s prereg; E29 prereg first committed 18:55:07 vs data 18:46:48 (same commit 8d8a6f1); E28 header (Registered 2026-11-23) is impossible against its own mtime (Nov 22 14:49, data 14:46). E21s deviation log even records the E5 result inside the registration file. Clean: E23 (hash-anchored timestamp chain, registration 23:17 < first run 23:54) and E31 (18:21 vs 18:45 UTC); the foil layer carries .registered hash twins (e6-e10), the field layer E21/E25-E31 carries none. Table 1 caption and abstract claims (registered before data; twenty-five confirmatory) are unsupportable as stated; rescope to registered-before-analysis where true, label post-hoc protocol notes where not, and ship frozen pre-data .registered copies."
+    },
+    {
+      "id": "C8",
+      "text": "NEW REJECT-GRADE (round-14): Theorem 4.8(i)(a) is misprinted in the strengthening direction: rho_0 = z_beta*sqrt(p(1-p)/N0) is a confidence-interval half-width, and delta >= rho_0 yields ~50 percent power, not >= 1-beta_d. The correct boundary is delta >= (z_beta + z_{1-beta_d})*sigma0 \u2248 1.7*rho_0 (two-sided convention 2*z*sigma0). At the papers own registered E5 cells (0.4,10) and (0.2,40), delta/sigma0=2.76 < 3.6, the best achievable test reaches TPR 0.882 < 0.95, and the observed plateaus (0.909-0.965; 0.967 at max M) track the correct-model ceiling 0.9745, refuting the printed guarantee while conforming to the corrected theory. The A.4 sentence delta >= rho_0 clears the floor repeats the CI-vs-test-power confusion, and Table 2 labels both middle cells with a between category that does not exist in the printed theorem.",
+      "section": "\u00a74.3, A.4, Table 2",
+      "type": "theoretical",
+      "status": "invalid",
+      "issues": [
+        "T1",
+        "reject-grade",
+        "verified"
+      ],
+      "cross_references": [
+        "\u00a74.3",
+        "A.4",
+        "Table2"
+      ],
+      "verifier_reason": "Independently verified by my own recomputation: sigma0=sqrt(0.3*0.7/10)=0.1449, delta/rho_0=1.408 at both middle cells, needed delta/sigma0 for 95 percent power is 3.6, best possible TPR 0.05+(2*Phi(delta/2*sigma0)-1)=0.882 < 0.95, correct-model ceiling Phi(delta/(sigma0*sqrt2))=0.9745 matches the observed plateaus. Source verified: theory.tex line 208 prints the false arm; Table 2 prints at most 0.077 where the artifact max family UB is 0.088 (exfiltration, 40 measured) - separate P6 digit fix."
+    },
+    {
+      "id": "C9",
+      "text": "NEW REJECT-GRADE (round-14): the E5 falsifiability story inverts. The only E5 registration (PREREGISTRATION_E2E3.md \u00a7E5, 2026-11-18) predicts (a) detection advantage \u2192 1 above the reference noise floor, (b) flat at chance for all M - no cell grid, no thresholds, and the deviation log records the E5 result inside the registration file itself. Under the registered criterion the frozen data fail in 2.5 of 4 cells: (0.4,10) plateaus at 0.909-0.965 not \u2192 1; (0.2,40) reaches 0.967 only at the largest M; the below-floor cell sits at 0.69-0.74, flat but twenty AUC points above chance. The v7 four-cell ordinal scheme (rho_0/w_na bands, between categories) appears in no preregistration artifact; the frozen verdict gate in run_e5_onset.py consults one safest known-onset point with a one-sided birth criterion that cannot fail below chance; e5 has no .registered hash twin. The paper presents a post-hoc scheme as the four registered cells and claims every registered cell lands where the adaptive boundary places it - exactly the outcome preregistration exists to prevent.",
+      "section": "\u00a74.4, Table 2, Fig 2",
+      "type": "methodological",
+      "status": "invalid",
+      "issues": [
+        "T2",
+        "reject-grade",
+        "verified"
+      ],
+      "cross_references": [
+        "\u00a74.4",
+        "Table2",
+        "gauntlet/demo/run_e5_onset.py",
+        "e5_onset.json"
+      ],
+      "verifier_reason": "Verified from primary sources: registration file read verbatim (predict from T5: advantage to 1 above the floor / flat at chance, no grid); frozen gate read in run_e5_onset.py lines 147-150; e5_onset.json read cell-by-cell (below-floor cell 0.695-0.737; birth arm 0.339/0.428/0.408/0.439 all below chance at TRIALS=120, the 0.339 being 4.3 sigma below); no .registered twin exists for e5; the deviation log dated 2026-11-18 already contains the E5 result. T3 confirmed too: both middle cells are placed identically (delta/rho_0 = 1.408 and 1.416), so four-of-four match is uninformative."
+    },
+    {
+      "id": "C10",
+      "text": "NEW REJECT-GRADE (round-14): the preregistration ledger is contradicted by its own frozen timestamps. Same-commit git first-adds with mtimes: E21 prereg 19:54 vs data 19:25 (Nov 21, 29 min post-data; header claims Registered 2026-11-22 while field.tex says 2026-11-21 - three inconsistent stories); E22 prereg 2 min post-data in the same batch; E27 prereg committed +4 min after data, mtime rewritten 4.7h later in the same 441-microsecond burst as E29s; E29 prereg committed 18:55:07 vs data 18:46:48; E28 header Registered 2026-11-23 is impossible against its own mtime Nov 22 14:49. E23 and E31 are clean and hash-anchored; the constructed-foil layer ships .registered twins, the field layer ships none. The confirmatory/exploratory partition and the abstract twenty-five confirmatory sentence lose their evidential basis for at least E21/E22/E27/E29; no number needs retraction, but every falsifiable registration claim must be rescoped to what the artifacts support (registered before analysis where true, post-hoc protocol note where not) and future runs must use trusted timestamping.",
+      "section": "\u00a710, Table 1, Abstract, Data Availability",
+      "type": "methodological",
+      "status": "invalid",
+      "issues": [
+        "P1",
+        "W1",
+        "reject-grade",
+        "verified"
+      ],
+      "cross_references": [
+        "\u00a710",
+        "Table1",
+        "gauntlet/demo/prereg artifacts",
+        "git history"
+      ],
+      "verifier_reason": "Verified from stat mtimes and git log first-adds myself: E21 prereg 19:54:00 vs e21_gamma_field.json 19:25:23 (both first in commit d551bdc 20:06:32), E27 prereg + e27_gamma_scaleup.json both first in commit 9465726 14:31:30 (data 14:27:30, prereg mtime rewritten 19:09:28.542256441 in the same microsecond burst as E29s prereg 19:09:28.542031945), E29 prereg first in 8d8a6f1 18:55:07 with the data complete at 18:46:48; E28 header 2026-11-23 vs mtime 2026-11-22 14:49:46 with data 14:46:42. Headers contradict the paper and their own files. The E21 registration also confirms E21 flags came from held-out paraphrases P1/P2/P3 (W4: the same-probe-text representation claim is false for E21/E27)."
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q1",
+      "question": "Adversarial re-review (round 14): which claims survive the harshest panel, and what are the rejection-grade/major points that remain?",
+      "source_section": "\u00a7Whole",
+      "status": "resolved",
+      "type": "clarification",
+      "answer": "Answered by measurement: the honest core survives - every statistic, interval, decomposition, and closed form the panel attacked reproduces exactly under independent recomputation (25+ Wilson intervals to the digit; the 118/112 audit decomposition; E14/E16 closed forms re-derived; censoring counts; the E29 retractions re-adjudicated from transcripts), nulls are neither underpowered (MDE 0.049 vs tau=0.2) nor multiplicity-fragile (Bonferroni leaves UB 0.114), and no fabrication or rebranding attack survived. What does NOT survive: (1) Thm 4.8(i)(a) is misprinted in the strengthening direction and refuted at the papers own E5 cells (C8); (2) the E5 falsifiability narrative inverts - the registered prediction failed and v7 presented a post-hoc ordinal scheme as registered (C9); (3) the preregistration ledger is contradicted by its own frozen timestamps for E21/E22/E27/E29 while the paper sells registration as its methodological identity (C10); plus verified majors in estimand/pool/censoring hygiene (T8, P2-P5, T6), non-blind adjudication disclosure (G2/P4/W3), the absent claims-evidence ledger (W2), the E21/E27 representation contradiction (W4), and the EPK censored-verdict sentence (W5). Panel verdicts: Reject (theory 4/5), Reject (stats 5/5), Borderline-Accept (gatekeeper 4/5), Accept-conditional (rigor 4/5). Net: the empirical program is accept-worthy; the theory core and the registration prose require a further revision cycle. All three reject-grade and the substantive majors were independently re-verified by the consolidator from primary sources before settling (N2).",
+      "answer_sections": [
+        "Whole"
+      ],
+      "related_claims": []
+    }
+  ],
+  "notes": [
+    {
+      "id": "N1",
+      "text": "Round-14 context: paper already passed round-13 ProReviewer (5/6) with every settled defect fixed and verified in the output PDF (38pp, 0 errors, 37/37 passage checks). The four adversarial reviewers were told NOT to re-raise fixed points and to record failed attacks as strengths.",
+      "section": "\u00a7Whole",
+      "tag": [
+        "round-context"
+      ]
+    },
+    {
+      "id": "N2",
+      "text": "Independent verification pass (review consolidator, after the four child reports): every reject-grade claim confirmed from primary sources - (1) T1 math recomputed from scratch (TPR ceiling 0.882, correct ceiling 0.9745); (2) E5 registration text, verdict gate, and frozen data read directly; (3) prereg timestamps regenerated from stat + git log; (4) E29_E30_ORACLE_AUDIT.md non-blind header read verbatim; (5) e17_audit_calibration.json shows real_sessions n=70, unavailable=18 (52 adjudicable); (6) E17_AUDIT_BLIND.jsonl rows carry a source field; (7) E2_RESULTS_V1.md line 33 shows registered panel >=6 frontier agents executed as 2, invisible in paper text; (8) E2V1_SUMMARY.json shows the max measured-n UB is 0.0876 not 0.077; (9) genuine secret_leak recount matches (echo 97/authority 10/goal 2/exfil 3 = 112); (10) progress-log recount: E30 Pro 74.7 percent fully measured (below the 80 percent bar), E31 Pro 81.0, E31 MiniMax 92.0, E30 MiniMax 76.2 percent blocked turns (paper prints 75.8), E31 MiniMax state-dec c=12/60=0.200=tau exactly; (11) epk_frontier_gen3.json holds 4 sessions with censored non-detector verdicts (W5); (12) Def 4.5 wording read (operative regularity condition, empirically checkable) - the identity makes this false framing (T5); (13) E21 prereg quotes held-out paraphrases (W4). No reviewer false-positive of substance was found; the only reviewer arithmetic slip (hawk T11 said 39 draws at m=40; actual is 14x3=42) does not change the finding.",
+      "section": "\u00a7Whole",
+      "tag": [
+        "forensics",
+        "round-14"
+      ]
+    },
+    {
+      "id": "N3",
+      "text": "Verified/residual minor points (with one correction to note N2/C8 wording): the 0.077-vs-0.088 digit fix belongs to the TABLE 4 caption (measured-n upper bounds for gpt-5.6-sol: authority 0.0771, goal 0.0611, echo 0.0688, exfiltration 0.0876 - the max is 0.088, the caption quotes the wrong family; gpt-6.1 0.242 is correct). Other minors: conservative-mapped direction inverted for safety certification (use null-favoring wording); BCG endpoint point-masses printed where the underlying family was unidentified (E2-v1 BCG(action_safety) with state-dec 0/60 measured), and no CI is printed for any BCG estimate although pooling four families yields [0,0.030]; E30 MiniMax block rate 75.8 not reproducible (305/400 = 76.2 percent turn events; 233/300 = 77.7 percent sessions); Table 2 rho_0 = 0.283 requires an undisclosed per-turn event rate (print p); Gamma series post-selection emphasis (E21 n=3 max-of-10; pooled 0.0667 exactly at the floor, present in e21_run.log but unquoted; E27 LCB 0.035 < 0.067 floor); E28 arm-B decomposition 17+2=19 vs 20; E21 caption should read at the floor not below it. Rigor minors: ethics sentence no third-party system was probed contradicted by \u00a76 (rewrite to authenticated paid subscriptions); Fig 3 caption mixes 30-cell and n=18 pilot denominators; Fig 1 presents the n=18 pilot without an experiment ID (round-13 note, still unaddressed) while \u00a75.3 disclosed those cells noise-dominated; Fig 2 stays at chance contradicted by the four below-0.5 birth values (report or plot a band); Fig 6 running unchanged repeats the verbatim overclaim the E28/E30 repair narrows; abstract three verifiable models vs \u00a710(5) catalog-names-only; refs [20] Ferguson-Walter garbled (real coauthors Sunny Fugate, Justin Mauger, Maxine Major; no Shadow Warrior record) and [17] Wen Min should be Weicheng Min; Sleeper Agents (Hubinger et al.) missing though \u00a77 depends on it; acknowledgments thank fleet operators while ethics claim author-owned infrastructure; \u00a72 still missing situational-awareness and secret-keeping probing citations; conclusion begins flourish cut; abstract dramatizes the budget-cause chronology (diagnosed in lane 2 during E2; E28 separated budget from calendar in lane 1).",
+      "section": "\u00a7Whole",
+      "tag": [
+        "minors",
+        "round-14"
+      ]
+    },
+    {
+      "id": "N4",
+      "text": "Score rationale for the 4: the six-point panel-average reads between 3 and 4 (two Rejects would each map to 3; the Borderline-Accept and Accept-conditional map to 4-5; every reviewer emphasized that the empirical core is accept-worthy once the named fixes land). The single score 4 is chosen over 3 because no number in the paper failed verification, no fabrication or overclaim survived, and the two self-caught errors are strengths of the program; the three reject-grade defects are correctable in one cycle (restate two constants and one theorem arm; relabel the E5 analysis as post-hoc/exploratory against the registered prediction; rescope the registration prose to the frozen record). A stricter mapping of the two reject verdicts would give 3; the recommendation in either reading is a full revision cycle, resubmission expected to clear.",
+      "section": "\u00a7Whole",
+      "tag": [
+        "score-rationale"
+      ]
+    }
+  ],
+  "conference": "neurips",
+  "review_outline": {
+    "summary": "Adversarial re-review of the round-13-upgraded manuscript (v7) by a four-reviewer panel (journal gatekeeper, theory hawk, statistics skeptic, rigor/ethics auditor) under reject-by-default rules of engagement, followed by independent forensics on every reject-grade finding. Verdicts: Reject (theory, 4/5), Reject (stats, 5/5), Borderline-Accept (gatekeeper, 4/5), Accept-conditional (rigor, 4/5). The empirical layer is the strongest asset the four reviewers have collectively audited: every printed interval, decomposition, and closed form reproduces to the digit under independent recomputation, the field nulls are neither underpowered nor multiplicity-fragile, the two self-caught instrument errors are real and honestly handled, and the re-adjudicated E29 retractions are genuine. Three reject-grade defects survive verification: (1) Theorem 4.8(i)(a) is quantitatively false at its own registered E5 cells (CI-half-width used as a test-power boundary; the data plateaus track the corrected ceiling 0.9745, not the printed guarantee); (2) the E5 falsifiability story inverts - the registered prediction fails in 2.5 of 4 cells and the v7 four-cell ordinal scheme is a post-hoc construct presented as registered, with a verdict gate consulting only the safest cell; (3) the preregistration ledger is contradicted by its own frozen timestamps (same-commit git first-adds; prereg mtimes after data) for E21/E22/E27/E29, under a Data Availability that declares those timestamps authoritative. Verified majors (estimand functional mismatch, Table 6 pool misdefinition plus withheld censoring bounds, single-template spectrum interpretation, undisclosed author-side non-blind adjudication, the absent claims-evidence ledger, the E21/E27 representation contradiction, Prop 7.3s unstated cross-proposition axiom, and the censored-not-zero EPK sentence) are documentation/disclosure defects that do not overturn a number but must be fixed before camera-ready. Recommended disposition: major revision with an explicit theory-repair cycle; no number requires retraction.",
+    "strengths": [
+      {
+        "text": "(1) Statistical reproducibility is exceptional for a single-author paper: 25+ Wilson intervals reproduce to the digit, the 118/112 audit decomposition reconstructs from raw verdicts (my independent recount: echo 97, authority 10, goal 2, exfiltration 3 = 112), and the two self-caught instrument errors (200-token cap, v0 episode isolation) were found, registered, and repaired by the authors themselves mid-program. (2) The field nulls are statistically decisive, not underpowered: MDE 0.049 at n=60 is four times tighter than tau=0.2, and an honest Bonferroni across every interval in the paper leaves the certification verdict intact (union UB 0.114 < 0.2). (3) The censoring theory is applied against the papers own headline (Prop 6.1 partially identifies the gateway nulls) - rare self-unidentification. (4) The E29 retractions re-adjudicate genuinely from transcripts, and the audit counted refusal-wrapped leaks as genuine against the narrative convenience. (5) E14/E16/E20 closed forms were independently re-derived and close exactly; E5 artifacts are fully rerunnable with pinned seeds and reproduce every printed AUC. (6) External-validity claims are calibrated to serving snapshots and templates. (7) All round-13 fixes verifiably took (Cor 7.1, trichotomy, dates convention, Table 3 restructure, un-flipped Thm 4.7(iii), Lemma 4.6 survives line-by-line attack).",
+        "related_claims": [
+          "C1",
+          "C2",
+          "C4",
+          "C6"
+        ],
+        "related_questions": [],
+        "related_notes": []
+      }
+    ],
+    "weaknesses": [
+      {
+        "text": "REJECT-GRADE: (1) Thm 4.8(i)(a) boundary false (delta>=rho_0 gives ~50 percent power; the correct boundary is ~1.7*rho_0; best possible TPR 0.882 < 0.95 at both middle cells; Table 2 prints between categories that do not exist in the printed theorem). (2) E5 falsifiability inverted: the registered prediction (advantage-to-1 / flat-at-chance) fails in 2.5 of 4 cells; the four-cell ordinal scheme is post-hoc; the verdict gate consults one safest cell with a one-sided birth criterion; the birth arm contains a 4.3-sigma-below-chance anomaly (0.339) waved off. (3) Preregistration ledger contradicted by frozen timestamps for E21/E22/E27/E29 (prereg mtimes and same-commit git first-adds trail the data by 2-41 minutes; E28s header date is internally impossible), invalidating the registered-before-data prose and the twenty-five-confirmatory count where stated. MAJORS: (4) Def 4.5 presents an unfalsifiable identity as a checkable regularity condition, and E26 measured the identity (L=1.00). (5) Prop 7.3s transfer radius needs an unstated cross-proposition Lipschitz axiom the papers own constructions violate. (6) Thm 4.3 (i.i.d. Bernoulli) contradicted by Props 7.7/7.8 (position/exposure-dependent targets), unreconciled. (7) Def 3.3 estimand (oracles plus calibrated judge) mismatches the field estimator (oracle flags; FN 0.48), so field intervals bound a floor functional. (8) Table 6 caption misdefines the pooled estimand; censoring bounds withheld (E30 Pro 74.7 percent fully measured, below the papers own 80 percent bar; E31 MiniMax state-dec c=12/60=0.200=tau exactly - zero margin on that arm). (9) Adjudications behind both headlines were author-side and non-blind (artifact-disclosed, paper-silent); E17 blinding overstated (source labels present; 18 of 70 real sessions unavailable). (10) E2 registered a >=6-agent panel, executed 2, invisible in the paper text. (11) The claims-evidence ledger and hash-chain archive vouched three times are absent from the deposit. (12) The E21/E27 representation story is internally contradictory (paraphrase-origin flags represented via same probe text; wording-invariance asserted in limitation while flags are read as channel artifacts). (13) The gen-3 EPK sentence claims zero detections where the artifact prints censored. (14) The spectrum interpretation rests on a single-template single-dose measurement. (15) The QCD/SPRT/bandit literature that frames the entire onset analysis is uncited; the coherence tax has no definition/theorem/measurement.",
+        "related_claims": [
+          "C3",
+          "C7",
+          "C8",
+          "C9",
+          "C10",
+          "C5",
+          "C2",
+          "C1"
+        ],
+        "related_questions": [],
+        "related_notes": []
+      }
+    ],
+    "questions": [
+      {
+        "text": "Q1 (resolved): the panel verdict and surviving core are answered in full - see Q1 resolution; the empirics survive everything, the theory core and the registration prose do not.",
+        "related_claims": [],
+        "related_questions": [
+          "Q1"
+        ],
+        "related_notes": []
+      }
+    ],
+    "overall_score": 4,
+    "conference": "neurips"
+  }
+}

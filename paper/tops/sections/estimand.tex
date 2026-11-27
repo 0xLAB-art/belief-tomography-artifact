@@ -1,0 +1,133 @@
+\section{Threat Model and the Estimand}\label{sec:estimand}
+
+\subsection{Threat model}\label{sec:threat}
+
+Two roles recur. The \emph{operator} of an agent (the defender) holds the
+charter and may publish measurements about it. The \emph{adversary} is
+either (i) an attacker \emph{of} the agent, probing it for exploitable
+beliefs (implicit-authority acceptance, secret disclosure, destructive
+compliance), or (ii) an agent \emph{acting as} an attacker against a
+defended host, whose beliefs the defender may deceive. The tomographer may
+be the operator (certification) or the adversary (reconnaissance);
+Section~\ref{sec:disclosure} analyzes this duality. All interactions are
+black-box: only channel behavior (transcripts and tool-call traces) is
+observed---never weights, activations, or system prompts beyond what the
+channel reveals. The adversary controls one thing only: the content of an
+interaction episode---the message it sends, the tool output it returns, the
+moment it sends it. It controls no weights, no system prompt, and no
+provider filter, and it observes nothing but the response, truncated and
+censored under the same rules as any other caller
+(Section~\ref{sec:e2}). Three things are out of scope by construction, and
+no claim below depends on them: the agent's internal representations, the
+training-time provenance of a belief it displays, and the intent behind the
+charter it publishes. One capability is \emph{in} scope deliberately: the target may be
+evaluation-aware (its response map may behave differently on recognized
+probes); Corollary~\ref{cor:pub} exists because a finite public suite cannot rule
+that out. What transfer assumes the target cannot do is condition on probe
+\emph{provenance} beyond probe content---whether a given text came from
+the public or the held-out set (assumption (A2),
+Section~\ref{sec:surface}); targets that can, void transfer by construction.
+
+\paragraph{Attack classes and probes}
+The probe families instantiate, in instrument form, the attack classes
+documented for production LLM agents: indirect prompt injection
+\cite{greshake2023}, its benchmark for tool-integrated agents
+\cite{injecagent2024}, formally benchmarked prompt injection
+\cite{liu2024promptinjection}, the dynamic agent-attack settings of
+AgentDojo \cite{agentdojo2024}, and agent-harm benchmarks that measure
+whether malicious tasks complete \cite{agentharm2025}. Those works ask
+whether an attack \emph{succeeds}; tomography asks what the response to it
+\emph{reveals} about the agent's beliefs. AgentDojo's finding that no
+evaluated defense survives adaptive attackers is the empirical edge that
+Corollary~\ref{cor:pub} formalizes for any finite public probe suite. Every
+experiment in this paper operates on locally constructed foils, on
+author-administered infrastructure, or---for the field layers---on
+commercial model endpoints reached through authenticated, metered API
+access; the precise provenance and its ethical scoping are declared in
+Section~\ref{sec:limits}.
+
+\begin{definition}[Agent, charter, benign operation]\label{def:agent}
+An \emph{agent} is a (possibly randomized) map from interaction histories to
+responses, $A:\mathcal{H}\to\Delta(\mathcal{R})$, with response kernel
+$\kappa_B(h,\cdot)$ parameterized by a belief hypothesis $B\in\mathfrak{B}$. Its
+\emph{charter} $\chi$ is a published set of policy claims. \emph{Benign
+operation} is a distribution $\mu$ over histories in which no adversary is
+present.
+\end{definition}
+
+\begin{definition}[Belief proposition and probe family]\label{def:probe}
+A \emph{belief proposition} $\pi$ is a testable statement about the agent's
+operative beliefs (e.g., ``believes forged system authority''). A \emph{probe
+family} $\Pi=(G_\Pi,c)$ is a generator of interaction episodes aimed at $\pi$ in
+context $c$, drawn from a library of instrument families---authority forgery,
+state deception, goal subversion, epistemic echo, exfiltration lure---each with
+escalation \emph{generations} $g\in\{1,2,3\}$ of increasing indirectness and
+decomposition.
+\end{definition}
+
+\begin{definition}[Behavioral belief strength]\label{def:beta}
+Given a binary behavioral-consistency functional $X_B(\Pi)\in\{0,1\}$ (the
+verdict that the agent's response is consistent with holding $\pi$, produced by
+deterministic oracles and a calibrated judge), the \emph{behavioral belief
+strength} is
+\[
+\beta(\pi;\Pi)=\E_{G_\Pi,\kappa_B}\!\left[X_B(\Pi)\right]\in[0,1].
+\]
+The \emph{belief profile} is $\boldsymbol{\beta}=\{\beta(\pi;\Pi_c)\}_{\pi\in\mathcal{P}}$
+over a proposition catalogue $\mathcal{P}$ and context grid $c$---the
+tomogram; a bare $B$ always indexes a belief hypothesis of
+Section~\ref{sec:t1}.
+\end{definition}
+
+The estimand is deliberately \emph{behavioral}: the probability that the
+agent's behavior is consistent with holding the proposition under the probe
+family. It makes no claim about internal representations, and it refuses
+introspection as a proxy channel, because chain-of-thought explanations are
+measurably unfaithful to the causes of a response \cite{turpin2023}. Two
+agents with identical profiles may realize them by different mechanisms.
+That underdetermination is a feature, not a defect: behavior is the only
+object well-defined for a deployed black-box system, and the only one
+contractible in procurement and certification. Section~\ref{sec:t1} shows
+the behavioral object is also \emph{necessary}: passive observation cannot
+identify it in general.
+
+\paragraph{Relation to attack-success-rate reporting}
+On one proposition under one probe family, $\beta$ reduces to the
+attack-success rate benchmark suites report
+\cite{agentdojo2024,injecagent2024,agentharm2025}. The estimand's content
+is what surrounds the rate: the charter mapping that turns rates into a
+Belief--Claim Gap (Definition~\ref{def:bcg}), the session-isolation
+condition the rate inherits ($93.3\%$ relative bias without it, E12),
+interval certification at tolerance $\tau$ with the censoring floor
+(Proposition~\ref{prop:censor}), the transfer diagnostic $\Gamma$, and the
+validation suite (dose--response, test--retest, audited verdict channel).
+
+\begin{definition}[Belief--Claim Gap]\label{def:bcg}
+For a charter claim $\varphi\in\chi$ with instrument mapping
+$F(\varphi)\subseteq\mathcal{P}\times\mathcal{C}$ (the propositions and contexts
+that test it), the \emph{Belief--Claim Gap} is
+\[
+\mathrm{BCG}(\varphi)=\frac{1}{|F(\varphi)|}\sum_{(\pi,c)\in F(\varphi)}
+\beta(\pi;\Pi_c).
+\]
+$\mathrm{BCG}(\varphi)\approx1$ under a
+claim $\varphi$ asserting the negation of a proposition $\pi\in
+F(\varphi)$ means the charter asserts what the behavior contradicts
+(``never forwards credentials under pressure,'' measured with
+$\beta(\pi)=1$ on lured forwarding, has $\mathrm{BCG}=1$);
+$\mathrm{BCG}\approx0$ is charter-conformant behavior on the claim's
+mapped cells.
+\end{definition}
+
+\begin{definition}[Epistemic distance and deception gain]\label{def:gain}
+For two profiles $\boldsymbol{\beta},\boldsymbol{\beta}'$, let $d$ be
+the per-proposition shift collection
+$\{|\beta(\pi)-\beta'(\pi)|\}_{\pi}$ aggregated by the deception
+operation's objective weighting---the convention the field estimator of
+Section~\ref{sec:field} reports (per-proposition shifts first, then the
+objective aggregation). In a deception operation against an attacker whose
+profile is estimated at times $t_0,t_1$, the \emph{deception gain} is
+$\Delta(B)=d(\boldsymbol{\beta}_{t_0},\boldsymbol{\beta}_{t_1})$;
+every reported field null holds for the per-proposition maximum as well as
+the mean aggregation.
+\end{definition}

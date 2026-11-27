@@ -1,0 +1,175 @@
+# RAGIN S&P 2027 Field Study — three-arm public Internet deployment
+# =================================================================
+# Per-endpoint layout (ONE arm per VPS; never co-locate arms on one IP —
+# the study controls for endpoint/IP effects across arms):
+#
+#   arm=cowrie : docker compose -f docker-compose.field.yml up -d cowrie
+#   arm=vanilla: docker compose -f docker-compose.field.yml --env-file .env.field up -d cowrie-llm bare-llm
+#   arm=ragin  : docker compose -f docker-compose.field.yml --env-file .env.field up -d cowrie-llm ragin-server
+#
+# SSH substrate (§0.5, rebuilt 2026-09-28): every arm's public face is the
+# SAME cowrie SSH frontend; only the backend that cowrie's native LLM
+# backend (upstream `[honeypot] backend = llm`) calls differs:
+#   arm A (cowrie)      — stock shell emulator (no [llm] wiring at all)
+#   arm B (cowrie-llm)  → bare-llm service  : persona prompt + attacker input,
+#                         no retrieval/graph/verifier/fallback (llm_unverified
+#                         arm's in-field counterpart)
+#   arm C (cowrie-llm)  → ragin-server      : full verified pipeline
+#                         (Chrollo→Don→Hisoka + fiction graph + verifier +
+#                         fail-safe fallback) via /api/session/* sandbox
+#
+# Security posture (S&P ethics requirements — see docs/FIELD_ETHICS.md):
+#   * The ONLY published port is the honeypot SSH listener (22→2222).
+#   * Backend services (8083/8084) are reachable only on the internal net.
+#   * Management is via Tailscale SSH (tailnet-only); no SSH daemon exposed publicly.
+#   * Egress: honeypot-internal is `internal: true` (no default route); the
+#     ragin/bare arms' LLM-provider egress (:443, allowlisted by provider IP)
+#     is enforced by scripts/field_provision.sh on the host DOCKER-USER chain.
+#     Provider IP rotation stales the allowlist → serves fall back to
+#     templates → TEMPLATE_FALLBACK_VERIFIED share jumps (monitoring tell).
+#   * Source IPs are hashed at pipeline ingestion (ragin/chrollo/models.py
+#     field validator -> ragin/utils.hash_ip); exports carry only hashes.
+#     Raw IPs never leave the host. (Wording corrected 2026-10-26 — F1.)
+#
+# After up: run scripts/field_provision.sh <arm> to apply firewall/egress rules,
+# then scripts/collect_field_data.py --cron to schedule daily collection.
+
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "50m"
+    max-file: "30"
+
+x-ragin-build: &ragin-build
+  build:
+    context: .
+    dockerfile: Dockerfile.python
+  image: ${RAGIN_IMAGE:-the-intelligence-ladder:field}
+  env_file: .env.field
+
+services:
+  # ── Arm A: vanilla Cowrie (medium-interaction shell emulator, no LLM) ──
+  cowrie:
+    image: cowrie/cowrie:latest
+    container_name: field-cowrie
+    environment:
+      # Cowrie closes an interactive session after `[honeypot]
+      # interactive_timeout` seconds (fallback 300). The v1 workload was
+      # silent-capped at 300 s, which is what made "dwell" look like
+      # engagement; a longer study raises it per arm. The field default stays
+      # 300 so the live posture is unchanged unless explicitly overridden.
+      COWRIE_HONEYPOT_INTERACTIVE_TIMEOUT: ${COWRIE_INTERACTIVE_TIMEOUT:-300}
+    ports:
+      - "22:2222"          # public SSH listener (the arm's only published port)
+    volumes:
+      - cowrie-etc:/cowrie/cowrie-git/etc
+      - cowrie-var:/cowrie/cowrie-git/var
+      - ./data/field/cowrie:/field-export:rw   # daily JSON export target
+    logging: *default-logging
+    restart: unless-stopped
+    networks: [honeypot-internal]
+
+  # ── Shared arm B/C cowrie frontend (backend = llm via stock-image env) ─
+  # The stock cowrie image maps COWRIE_<SECTION>_<KEY> env vars into
+  # cowrie.cfg (env beats file), so no custom image or cfg mount is needed.
+  # COWRIE_LLM_HOST points at the arm's backend service; the backend api_key
+  # authenticates the internal-net hop (backend services bind 0.0.0.0 inside
+  # the internal bridge only).
+  cowrie-llm:
+    image: cowrie/cowrie:latest
+    container_name: field-cowrie-llm
+    environment:
+      COWRIE_HONEYPOT_BACKEND: "llm"
+      COWRIE_HONEYPOT_HOSTNAME: "svr04"
+      COWRIE_LLM_HOST: ${COWRIE_LLM_HOST:-http://ragin-server:8083}
+      COWRIE_LLM_PATH: "/v1/chat/completions"
+      COWRIE_LLM_API_KEY: ${BACKEND_API_KEY:?BACKEND_API_KEY must be set}
+      COWRIE_LLM_MODEL: "field-frontend"
+      COWRIE_LLM_MAX_TOKENS: "500"
+      COWRIE_LLM_TEMPERATURE: "0.7"
+      # NOTE: no quoted default inside ${:-} — the quotes would become part of
+      # the VALUE ("false" incl. quote chars) and cowrie getboolean would
+      # raise ValueError: Not a boolean (live-smoke finding 2026-09-28).
+      COWRIE_LLM_DEBUG: ${COWRIE_LLM_DEBUG:-false}   # true logs full LLM req/resp
+      COWRIE_HONEYPOT_INTERACTIVE_TIMEOUT: ${COWRIE_INTERACTIVE_TIMEOUT:-300}
+    ports:
+      - "22:2222"          # same public face as every arm (SSH)
+    volumes:
+      - cowrie-llm-var:/cowrie/cowrie-git/var
+      - ./data/field/cowrie-llm:/field-export:rw
+    logging: *default-logging
+    restart: unless-stopped
+    networks: [honeypot-internal]
+    # `depends_on` intentionally omitted: the backend may (re)start after the
+    # frontend; cowrie retries the HTTP call per command.
+
+  # ── Arm B backend: bare LLM generator (no verification — the baseline) ─
+  # Persona prompt + attacker input via GatewayClient; deliberately no CTI
+  # retrieval, no fiction graph, no deterministic verifier, no fail-closed
+  # fallback. Mirrors scripts/run_external_baseline.py:llm_unverified.
+  bare-llm:
+    profiles: [baseline]
+    <<: *ragin-build
+    container_name: field-bare-llm
+    command: ["python", "scripts/bare_llm_backend.py"]
+    environment:
+      RAGIN_BIND_HOST: "0.0.0.0"          # internal bridge only (internal: true)
+      BARE_BACKEND_PORT: "8084"
+      API_KEY: ${BACKEND_API_KEY:?BACKEND_API_KEY must be set}
+    volumes:
+      - ./data/field/bare-llm:/field-export:rw
+    logging: *default-logging
+    restart: unless-stopped
+    networks: [honeypot-internal]
+
+  # ── Arm C backend: RAGIN full verified loop (cowrie-compatible bridge) ─
+  # server_v2 in pipeline mode with the cowrie OpenAI-compatibility shim:
+  # cowrie's [llm] POST lands on /v1/chat/completions, which maps the
+  # conversation onto the sandbox (per-SSH-session via X-Session-Id,
+  # auto-created per source IP otherwise) and returns the VERIFIED response.
+  ragin-server:
+    <<: *ragin-build
+    container_name: field-ragin-server
+    command: ["python", "-m", "ragin.server_v2", "--mode", "pipeline"]
+    environment:
+      RAGIN_BIND_HOST: "0.0.0.0"          # internal bridge only (internal: true)
+      PORT: "8083"
+      API_KEY: ${BACKEND_API_KEY:?BACKEND_API_KEY must be set}
+      # server_v2._init_pipeline reads GATEWAY_URL/OPENROUTER_API_KEY; map the
+      # .env.field names onto them so adapters reach the real provider.
+      GATEWAY_URL: ${RAGIN_LLM_BASE_URL}
+      OPENROUTER_API_KEY: ${RAGIN_LLM_API_KEY}
+      RAGIN_LLM_BASE_URL: ${RAGIN_LLM_BASE_URL}
+      RAGIN_LLM_API_KEY: ${RAGIN_LLM_API_KEY}
+      RAGIN_LLM_MODEL: ${RAGIN_LLM_MODEL:-deepseek-v4-flash-free}
+      # Transport identity of the provider, passed through so a Responses-only
+      # backend works inside the compose network (defaults preserve the chat
+      # transport and the stock client identity).
+      RAGIN_LLM_API_STYLE: ${RAGIN_LLM_API_STYLE:-chat}
+      RAGIN_LLM_USER_AGENT: ${RAGIN_LLM_USER_AGENT:-}
+      RAGIN_LLM_PROVIDER_HOST: ${RAGIN_LLM_PROVIDER_HOST:-}
+      RAGIN_HOST_FICTION: ${RAGIN_HOST_FICTION:-1}
+      RAGIN_HOST_FICTION_POLICY: ${RAGIN_HOST_FICTION_POLICY:-per_session}
+      # Fail-closed supported-claim surface: benchmarked 2026-09-28 at
+      # P=1.000 R=1.000 with 0/36 false positives (123-case red-team suite
+      # incl. the SC stratum) — default ON for the field arm.
+      RAGIN_FAIL_CLOSED: ${RAGIN_FAIL_CLOSED:-1}
+      RAGIN_FIELD_EXPORT_DIR: /field-export
+    volumes:
+      - ragin-sessions:/app/data/sessions
+      - ./data/field/ragin:/field-export:rw
+    logging: *default-logging
+    restart: unless-stopped
+    networks: [honeypot-internal]
+
+volumes:
+  cowrie-etc:
+  cowrie-var:
+  cowrie-llm-var:
+  ragin-sessions:
+
+networks:
+  honeypot-internal:
+    driver: bridge
+    internal: true       # no default egress — LLM provider :443 only, allowlisted
+                         # by DOCKER-USER on the host (scripts/field_provision.sh)

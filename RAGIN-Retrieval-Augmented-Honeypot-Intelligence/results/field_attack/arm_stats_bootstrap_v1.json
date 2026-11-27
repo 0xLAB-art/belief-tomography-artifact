@@ -1,0 +1,256 @@
+{
+  "schema": "ragin.field_attack.arm_stats_bootstrap.v1",
+  "generated_at": "2026-10-28T10:32:14.614332+00:00",
+  "preregistration": {
+    "path": "docs/ARM_AB_PREREGISTRATION_2026-10-28.md",
+    "sha256": "65d96d18eb315f40f0acdc28c48263c9e7a99b63b1cf2ea0cfec8475afa7c357"
+  },
+  "inputs": {
+    "arm_a": {
+      "path": "results/field_attack/sessions_armA_cowrie.jsonl",
+      "sha256": "e6d5cb3ae39a901fbcb4e460e5ffb7f822db3aba63905e2ccc71a1959f081beb"
+    },
+    "arm_c": {
+      "path": "results/field_attack/sessions_armC_ragin.jsonl",
+      "sha256": "3e62244cb0e3a15fe096f53ad1c8802feb03ba448ee26f402d58983ef03a7ab5"
+    },
+    "sessions": {
+      "a": 15,
+      "c": 15
+    }
+  },
+  "bootstrap": {
+    "iterations": 10000,
+    "seed": 20261028,
+    "strata": "persona",
+    "statistic": "difference of means (C - A)"
+  },
+  "endpoints": {
+    "dwell_s": {
+      "tier": "primary",
+      "unit": "session",
+      "point_a": 142.95,
+      "point_c": 105.02,
+      "median_a": 110.0,
+      "median_c": 107.3,
+      "n_a": 15,
+      "n_c": 15,
+      "diff": -37.93333333333334,
+      "ci95": [
+        -64.647,
+        -8.659999999999997
+      ],
+      "median_diff": -2.700000000000003,
+      "median_ci95": [
+        -48.7,
+        8.200000000000003
+      ],
+      "strata": [
+        "apt_patient",
+        "credential_hunter",
+        "evasion_probe",
+        "novice_scriptkiddie",
+        "recon_operator"
+      ],
+      "test": "mann_whitney_u",
+      "u": 137.0,
+      "p_raw": 0.3195059648919748,
+      "rank_biserial": 0.21777777777777785,
+      "method": "auto",
+      "n_required_80pct": 39,
+      "observed_cohens_d": 0.642,
+      "p_holm": 0.6390119297839496,
+      "significant_holm": false
+    },
+    "first_turn_latency_s": {
+      "tier": "secondary",
+      "unit": "session",
+      "point_a": 16.86,
+      "point_c": 8.17,
+      "median_a": 9.3,
+      "median_c": 8.2,
+      "n_a": 15,
+      "n_c": 15,
+      "diff": -8.686666666666667,
+      "ci95": [
+        -21.32,
+        -0.9066666666666681
+      ],
+      "median_diff": -1.1000000000000014,
+      "median_ci95": [
+        -2.200000000000001,
+        -0.5
+      ],
+      "strata": [
+        "apt_patient",
+        "credential_hunter",
+        "evasion_probe",
+        "novice_scriptkiddie",
+        "recon_operator"
+      ],
+      "test": "mann_whitney_u",
+      "u": 162.5,
+      "p_raw": 0.03987959747071846,
+      "rank_biserial": 0.4444444444444444,
+      "method": "auto",
+      "n_required_80pct": 71,
+      "observed_cohens_d": 0.472,
+      "p_holm": 0.11963879241215539,
+      "significant_holm": false
+    },
+    "output_chars_per_turn": {
+      "tier": "descriptive",
+      "unit": "session",
+      "point_a": 254.32,
+      "point_c": 371.74,
+      "median_a": 217.5,
+      "median_c": 344.93,
+      "n_a": 15,
+      "n_c": 15,
+      "diff": 117.42313797313795,
+      "ci95": [
+        59.90645146520138,
+        183.22567460317458
+      ],
+      "median_diff": 127.42857142857144,
+      "median_ci95": [
+        52.196428571428555,
+        287.3333333333333
+      ],
+      "strata": [
+        "apt_patient",
+        "credential_hunter",
+        "evasion_probe",
+        "novice_scriptkiddie",
+        "recon_operator"
+      ],
+      "test": "mann_whitney_u",
+      "u": 57.0,
+      "p_raw": 0.02253107159485839,
+      "rank_biserial": -0.4933333333333333,
+      "method": "auto"
+    },
+    "turns": {
+      "tier": "descriptive",
+      "unit": "session",
+      "point_a": 12.4,
+      "point_c": 12.33,
+      "median_a": 14.0,
+      "median_c": 14.0,
+      "n_a": 15,
+      "n_c": 15,
+      "diff": -0.06666666666666643,
+      "ci95": [
+        -0.20000000000000107,
+        0.0
+      ],
+      "median_diff": 0.0,
+      "median_ci95": [
+        -1.0,
+        0.0
+      ],
+      "strata": [
+        "apt_patient",
+        "credential_hunter",
+        "evasion_probe",
+        "novice_scriptkiddie",
+        "recon_operator"
+      ],
+      "test": "mann_whitney_u",
+      "u": 117.0,
+      "p_raw": 0.853102624587159,
+      "rank_biserial": 0.040000000000000036,
+      "method": "auto"
+    },
+    "bait_targeting": {
+      "tier": "secondary",
+      "unit": "session",
+      "point_a": 0.27,
+      "point_c": 0.4,
+      "median_a": 0.0,
+      "median_c": 0.0,
+      "n_a": 15,
+      "n_c": 15,
+      "diff": 0.13333333333333336,
+      "ci95": [
+        -0.06666666666666665,
+        0.3333333333333333
+      ],
+      "median_diff": 0.0,
+      "median_ci95": [
+        0.0,
+        1.0
+      ],
+      "strata": [
+        "apt_patient",
+        "credential_hunter",
+        "evasion_probe",
+        "novice_scriptkiddie",
+        "recon_operator"
+      ],
+      "test": "fisher_exact",
+      "table_c_a_true_false": [
+        [
+          6,
+          9
+        ],
+        [
+          4,
+          11
+        ]
+      ],
+      "odds_ratio": 1.8333333333333333,
+      "p_raw": 0.6998500749625187,
+      "n_required_80pct": 203,
+      "observed_cohens_d": 0.278,
+      "p_holm": 0.6998500749625187,
+      "significant_holm": false
+    }
+  },
+  "censoring": {
+    "cap_turns": 14,
+    "censored_a": 9,
+    "censored_c": 8,
+    "sensitivity_uncensored": {
+      "n_a": 6,
+      "n_c": 7,
+      "mean_a": 154.7,
+      "mean_c": 82.8,
+      "diff": -71.9
+    }
+  },
+  "power": {
+    "method": "normal-theory two-sample approximation (post hoc; MWU needs ~15% more n)",
+    "alpha": 0.05,
+    "power": 0.8,
+    "mde_cohens_d": 1.023,
+    "mde_units": 60.4,
+    "pooled_sd": 59.1
+  },
+  "descriptive": {
+    "surface_dependent": {
+      "label": "counts what each surface returns; NOT a controlled contrast",
+      "sensitive_read_hits": {
+        "A_cowrie_only": {
+          "etc_shadow": 0,
+          "private_key": 12,
+          "env_file": 6,
+          "dbpass": 0,
+          "aws_access_key": 0
+        },
+        "C_ragin": {
+          "etc_shadow": 6,
+          "private_key": 4,
+          "env_file": 22,
+          "dbpass": 44,
+          "aws_access_key": 22
+        }
+      }
+    }
+  },
+  "deviations": [
+    "endpoint renamed `first_turn_latency_s`: the driver records latency only on turn 1, so arm-level 'turn latency' means time-to-first-response. \u00a75.6 must use that name.",
+    "censoring sensitivity computed as complete-case dwell (excluding sessions at the turn cap) instead of substituting median turn time: dwell already contains the per-turn latencies, so the substitution would restate the raw mean."
+  ],
+  "decision_rule": "docs/ARM_AB_PREREGISTRATION_2026-10-28.md \u00a7Decision rule"
+}

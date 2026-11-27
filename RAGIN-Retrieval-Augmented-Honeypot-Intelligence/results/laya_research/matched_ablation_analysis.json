@@ -1,0 +1,73 @@
+{
+ "model": {
+  "n": 45,
+  "mean_ms": 1324.4194626885776,
+  "p50_ms": 1313.9385250397027,
+  "p95_ms": 1412.908842030447,
+  "min_ms": 1185.2574709919281,
+  "max_ms": 1553.3471860107966,
+  "route_load_ms": 6635.668182978407,
+  "rss_kb_after_load": 2180076
+ },
+ "english_pinned_revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+ "weights_sha256": "891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c",
+ "cases": 45,
+ "positives": 20,
+ "negatives": 25,
+ "configs": {
+  "A_baseline_no_assessment": {
+   "note": "no provider signal; classification falls back to Chrollo RF only",
+   "assessment_accuracy": null
+  },
+  "B_laya_enabled": {
+   "tp": 12,
+   "fp": 2,
+   "tn": 23,
+   "fn": 8,
+   "n": 45,
+   "accuracy": 0.7777777777777778,
+   "precision": 0.8571428571428571,
+   "recall": 0.6,
+   "f1": 0.7058823529411764,
+   "specificity": 0.92,
+   "balanced_accuracy": 0.76
+  },
+  "B0_always_benign": {
+   "tp": 0,
+   "fp": 0,
+   "tn": 25,
+   "fn": 20,
+   "n": 45,
+   "accuracy": 0.5555555555555556,
+   "precision": null,
+   "recall": 0.0,
+   "f1": null,
+   "specificity": 1.0,
+   "balanced_accuracy": 0.5
+  },
+  "R0_random": {
+   "method": "seeded random coin (p=0.5), 1000 draws, seed 20261012",
+   "accuracy_mean": 0.49853333333333333,
+   "accuracy_std": 0.0759575168049482,
+   "balanced_accuracy_mean": 0.49854,
+   "balanced_accuracy_std": 0.07663773053621657
+  }
+ },
+ "probabilistic": {
+  "brier": 0.1505124091111111,
+  "note_ece": "ECE computed per-bin on 10 equal-width bins over resulting probabilities; the checkpoint ships an invalid temperature for choice:11+ so laya itself warns probabilities/values may be uncalibrated (see laya router warning).",
+  "ece_10bin": 0.1505124091111111
+ },
+ "latency_ms": {
+  "p50": 1313.9385250397027,
+  "mean": 1324.4194626885776,
+  "p95": 1412.908842030447,
+  "load_route_first_call": 6635.668182978407
+ },
+ "limitations": [
+  "Pilot of 45 synthetic cases; not a matched production population.",
+  "Ground truth is by-construction labels, not historical Cowrie ground truth.",
+  "Downstream effects on Hisoka/deception policy were not exercised in this pilot run; A-vs-B paired differences are limited to the assessment boundary itself.",
+  "laya 0.4.2 warns this checkpoint ships invalid temperatures for some choice questions; probabilities should be treated as uncalibrated until temperature fitting is done on held-out cybersecurity data."
+ ]
+}

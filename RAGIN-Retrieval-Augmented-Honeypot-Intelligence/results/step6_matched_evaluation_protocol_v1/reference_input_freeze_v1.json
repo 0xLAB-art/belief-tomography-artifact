@@ -1,0 +1,986 @@
+{
+  "N": 40,
+  "blinding_contract": {
+    "allowed_fields": [
+      "case_id",
+      "capture_id",
+      "selected_input",
+      "preceding_commands",
+      "identity_keys",
+      "normalized_*_sha256",
+      "retrieval_candidates"
+    ],
+    "forbidden_fields": [
+      "arm",
+      "arm_a",
+      "arm_b",
+      "judge",
+      "gate",
+      "policy",
+      "generator",
+      "verifier",
+      "hitl",
+      "commit",
+      "outcome",
+      "served_response"
+    ],
+    "rule": "Construct retrieval candidates from frozen inputs before any arm outcome is joined; labels are not present in this input freeze."
+  },
+  "cases": [
+    {
+      "capture_id": "admin-001-6da40d367c2d4bc38e462a48c2d162e5",
+      "case_id": "controlled-admin-admin-001-6da40d367c2d4bc38e462a48c2d162e5",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "271220cb6e49aada10f55a99eeb82081cc21eda207c9b0aa008d25cc75c61ea1",
+        "final_input_sha256_json": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "final_input_sha256_json_ascii": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "preceding_context_sha256": "1c8602828362cb7e4160f8f39e7f0318cdda07d28659eea44b80e209ad160f9a",
+        "sequence_sha256": "88b29e78bcda1630a34ba2ec52360885690368ed3a8d4e64f0d4d402e7b331e3",
+        "source_family_sha256": "aff91743e46401cc7a9053c3213c4e04dc35ebce3fd70352bb1c263107cd2353"
+      },
+      "normalized_input_text_sha256": "a8623a6910903f0849aee3b6758f5739f95a83227d3beeca85144d400d5fa6ad",
+      "normalized_session_text_sha256": "ff27fd32d8d329140290b05130cec137b00fc796ebe17871cf4a773a75e33b72",
+      "preceding_commands": [
+        "id -u",
+        "id -g",
+        "id -G",
+        "uname -srmo",
+        "nproc",
+        "free -h",
+        "df -h /tmp"
+      ],
+      "selected_input": "stat -c '%A %U %G %n' /tmp"
+    },
+    {
+      "capture_id": "admin-002-e3ff20d5b2b04b9bb110fe45e9d22825",
+      "case_id": "controlled-admin-admin-002-e3ff20d5b2b04b9bb110fe45e9d22825",
+      "identity_keys": {
+        "command_count": 6,
+        "final_input_sha256_bytes": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+        "final_input_sha256_json": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "final_input_sha256_json_ascii": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "preceding_context_sha256": "badef817dd7f9256ff5c5f3a08ffa12bb56f4b96092d7a72f8c112d02dab9a5a",
+        "sequence_sha256": "556697d10d227dcd4a77b67445957a78404dbb68f2eae29e8b43f7b1447ab840",
+        "source_family_sha256": "d53fe6d0db9cc760a535a485ed63176b6513eb50c4a1dadfcccea6f4c2d1de29"
+      },
+      "normalized_input_text_sha256": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+      "normalized_session_text_sha256": "1ec1a2d4f8c58be9fe9b12545fb4550ec334fd6204856bbe6f0746a1a8d78af3",
+      "preceding_commands": [
+        "pwd",
+        "printf '%s\\n' \"$PWD\"",
+        "ls -ld /tmp /var/tmp",
+        "find /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20",
+        "du -sh /tmp 2>/dev/null"
+      ],
+      "selected_input": "df -h /"
+    },
+    {
+      "capture_id": "admin-003-2aade184bcb0463cbad745d899750d6a",
+      "case_id": "controlled-admin-admin-003-2aade184bcb0463cbad745d899750d6a",
+      "identity_keys": {
+        "command_count": 5,
+        "final_input_sha256_bytes": "f6e1375fe0964f67152fe4d607848d85fc8c68743871b3691671d673f8e48d37",
+        "final_input_sha256_json": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "final_input_sha256_json_ascii": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "preceding_context_sha256": "993016a35bd602e74449bc2418bf6d2174d4c83d13f488cfeb415292c569fd29",
+        "sequence_sha256": "9d9a71fef804bbc3046e8cba07b6d199ec92e7637a95e548a4932690c1f0322c",
+        "source_family_sha256": "66084664748869169b83ee0a91cc88e516508f3a896b60cd7819353fae2cdf08"
+      },
+      "normalized_input_text_sha256": "8d0ed801c8f863093c79237757f8f2fa39de2a4028bcb504a1ccd7bf8641934d",
+      "normalized_session_text_sha256": "15716c7ea4b7abff70708b6e41d2aa82df55acd3489f49a45f9427b18ab2cca4",
+      "preceding_commands": [
+        "ps -eo pid,comm --sort=comm | head -n 20",
+        "ip -brief link",
+        "ss -ltnH 2>/dev/null | head -n 20",
+        "systemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20"
+      ],
+      "selected_input": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20"
+    },
+    {
+      "capture_id": "admin-004-7a3db67dd6624f9a90570c5c69aa3d2f",
+      "case_id": "controlled-admin-admin-004-7a3db67dd6624f9a90570c5c69aa3d2f",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+        "final_input_sha256_json": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "final_input_sha256_json_ascii": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "preceding_context_sha256": "3078f512a6e4bdc1da4abdcecae4535daa514de337a9005d351faa639a5bca2e",
+        "sequence_sha256": "3cd4c6eebc55153045127075cf4f37da4291c413adf0d4e9c41de97445929e24",
+        "source_family_sha256": "35254c8b8188a833a5f5b45b899d3c51ac2821bc686285e8d2014e344aa3f02d"
+      },
+      "normalized_input_text_sha256": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+      "normalized_session_text_sha256": "f87a97fb3101cd5467dbb1749998946f831d3907128cb2d1f62de928989ff54e",
+      "preceding_commands": [
+        "command -v python3",
+        "python3 --version",
+        "command -v git",
+        "git --version 2>/dev/null",
+        "command -v docker",
+        "docker --version 2>/dev/null",
+        "getconf _NPROCESSORS_ONLN"
+      ],
+      "selected_input": "ulimit -a | head -n 20"
+    },
+    {
+      "capture_id": "admin-005-ffcdd48600f8403182f1f645a0fca804",
+      "case_id": "controlled-admin-admin-005-ffcdd48600f8403182f1f645a0fca804",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "271220cb6e49aada10f55a99eeb82081cc21eda207c9b0aa008d25cc75c61ea1",
+        "final_input_sha256_json": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "final_input_sha256_json_ascii": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "preceding_context_sha256": "1c8602828362cb7e4160f8f39e7f0318cdda07d28659eea44b80e209ad160f9a",
+        "sequence_sha256": "88b29e78bcda1630a34ba2ec52360885690368ed3a8d4e64f0d4d402e7b331e3",
+        "source_family_sha256": "aff91743e46401cc7a9053c3213c4e04dc35ebce3fd70352bb1c263107cd2353"
+      },
+      "normalized_input_text_sha256": "a8623a6910903f0849aee3b6758f5739f95a83227d3beeca85144d400d5fa6ad",
+      "normalized_session_text_sha256": "ff27fd32d8d329140290b05130cec137b00fc796ebe17871cf4a773a75e33b72",
+      "preceding_commands": [
+        "id -u",
+        "id -g",
+        "id -G",
+        "uname -srmo",
+        "nproc",
+        "free -h",
+        "df -h /tmp"
+      ],
+      "selected_input": "stat -c '%A %U %G %n' /tmp"
+    },
+    {
+      "capture_id": "admin-006-d0a56fbfa028435a9914406467d491a5",
+      "case_id": "controlled-admin-admin-006-d0a56fbfa028435a9914406467d491a5",
+      "identity_keys": {
+        "command_count": 6,
+        "final_input_sha256_bytes": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+        "final_input_sha256_json": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "final_input_sha256_json_ascii": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "preceding_context_sha256": "badef817dd7f9256ff5c5f3a08ffa12bb56f4b96092d7a72f8c112d02dab9a5a",
+        "sequence_sha256": "556697d10d227dcd4a77b67445957a78404dbb68f2eae29e8b43f7b1447ab840",
+        "source_family_sha256": "d53fe6d0db9cc760a535a485ed63176b6513eb50c4a1dadfcccea6f4c2d1de29"
+      },
+      "normalized_input_text_sha256": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+      "normalized_session_text_sha256": "1ec1a2d4f8c58be9fe9b12545fb4550ec334fd6204856bbe6f0746a1a8d78af3",
+      "preceding_commands": [
+        "pwd",
+        "printf '%s\\n' \"$PWD\"",
+        "ls -ld /tmp /var/tmp",
+        "find /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20",
+        "du -sh /tmp 2>/dev/null"
+      ],
+      "selected_input": "df -h /"
+    },
+    {
+      "capture_id": "admin-007-c77599e4f8c4414eae33950db14ecea5",
+      "case_id": "controlled-admin-admin-007-c77599e4f8c4414eae33950db14ecea5",
+      "identity_keys": {
+        "command_count": 5,
+        "final_input_sha256_bytes": "f6e1375fe0964f67152fe4d607848d85fc8c68743871b3691671d673f8e48d37",
+        "final_input_sha256_json": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "final_input_sha256_json_ascii": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "preceding_context_sha256": "993016a35bd602e74449bc2418bf6d2174d4c83d13f488cfeb415292c569fd29",
+        "sequence_sha256": "9d9a71fef804bbc3046e8cba07b6d199ec92e7637a95e548a4932690c1f0322c",
+        "source_family_sha256": "66084664748869169b83ee0a91cc88e516508f3a896b60cd7819353fae2cdf08"
+      },
+      "normalized_input_text_sha256": "8d0ed801c8f863093c79237757f8f2fa39de2a4028bcb504a1ccd7bf8641934d",
+      "normalized_session_text_sha256": "15716c7ea4b7abff70708b6e41d2aa82df55acd3489f49a45f9427b18ab2cca4",
+      "preceding_commands": [
+        "ps -eo pid,comm --sort=comm | head -n 20",
+        "ip -brief link",
+        "ss -ltnH 2>/dev/null | head -n 20",
+        "systemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20"
+      ],
+      "selected_input": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20"
+    },
+    {
+      "capture_id": "admin-008-907cea5b160740aebf7679edbbed0119",
+      "case_id": "controlled-admin-admin-008-907cea5b160740aebf7679edbbed0119",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+        "final_input_sha256_json": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "final_input_sha256_json_ascii": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "preceding_context_sha256": "3078f512a6e4bdc1da4abdcecae4535daa514de337a9005d351faa639a5bca2e",
+        "sequence_sha256": "3cd4c6eebc55153045127075cf4f37da4291c413adf0d4e9c41de97445929e24",
+        "source_family_sha256": "35254c8b8188a833a5f5b45b899d3c51ac2821bc686285e8d2014e344aa3f02d"
+      },
+      "normalized_input_text_sha256": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+      "normalized_session_text_sha256": "f87a97fb3101cd5467dbb1749998946f831d3907128cb2d1f62de928989ff54e",
+      "preceding_commands": [
+        "command -v python3",
+        "python3 --version",
+        "command -v git",
+        "git --version 2>/dev/null",
+        "command -v docker",
+        "docker --version 2>/dev/null",
+        "getconf _NPROCESSORS_ONLN"
+      ],
+      "selected_input": "ulimit -a | head -n 20"
+    },
+    {
+      "capture_id": "admin-009-01f4f6a56fac40f198d9478fb379b285",
+      "case_id": "controlled-admin-admin-009-01f4f6a56fac40f198d9478fb379b285",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "271220cb6e49aada10f55a99eeb82081cc21eda207c9b0aa008d25cc75c61ea1",
+        "final_input_sha256_json": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "final_input_sha256_json_ascii": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "preceding_context_sha256": "1c8602828362cb7e4160f8f39e7f0318cdda07d28659eea44b80e209ad160f9a",
+        "sequence_sha256": "88b29e78bcda1630a34ba2ec52360885690368ed3a8d4e64f0d4d402e7b331e3",
+        "source_family_sha256": "aff91743e46401cc7a9053c3213c4e04dc35ebce3fd70352bb1c263107cd2353"
+      },
+      "normalized_input_text_sha256": "a8623a6910903f0849aee3b6758f5739f95a83227d3beeca85144d400d5fa6ad",
+      "normalized_session_text_sha256": "ff27fd32d8d329140290b05130cec137b00fc796ebe17871cf4a773a75e33b72",
+      "preceding_commands": [
+        "id -u",
+        "id -g",
+        "id -G",
+        "uname -srmo",
+        "nproc",
+        "free -h",
+        "df -h /tmp"
+      ],
+      "selected_input": "stat -c '%A %U %G %n' /tmp"
+    },
+    {
+      "capture_id": "admin-010-c8914d10f8b34c9b843cd89c304cce9d",
+      "case_id": "controlled-admin-admin-010-c8914d10f8b34c9b843cd89c304cce9d",
+      "identity_keys": {
+        "command_count": 6,
+        "final_input_sha256_bytes": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+        "final_input_sha256_json": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "final_input_sha256_json_ascii": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "preceding_context_sha256": "badef817dd7f9256ff5c5f3a08ffa12bb56f4b96092d7a72f8c112d02dab9a5a",
+        "sequence_sha256": "556697d10d227dcd4a77b67445957a78404dbb68f2eae29e8b43f7b1447ab840",
+        "source_family_sha256": "d53fe6d0db9cc760a535a485ed63176b6513eb50c4a1dadfcccea6f4c2d1de29"
+      },
+      "normalized_input_text_sha256": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+      "normalized_session_text_sha256": "1ec1a2d4f8c58be9fe9b12545fb4550ec334fd6204856bbe6f0746a1a8d78af3",
+      "preceding_commands": [
+        "pwd",
+        "printf '%s\\n' \"$PWD\"",
+        "ls -ld /tmp /var/tmp",
+        "find /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20",
+        "du -sh /tmp 2>/dev/null"
+      ],
+      "selected_input": "df -h /"
+    },
+    {
+      "capture_id": "admin-011-5b4f1b48076149d6a0ede072f7f093b7",
+      "case_id": "controlled-admin-admin-011-5b4f1b48076149d6a0ede072f7f093b7",
+      "identity_keys": {
+        "command_count": 5,
+        "final_input_sha256_bytes": "f6e1375fe0964f67152fe4d607848d85fc8c68743871b3691671d673f8e48d37",
+        "final_input_sha256_json": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "final_input_sha256_json_ascii": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "preceding_context_sha256": "993016a35bd602e74449bc2418bf6d2174d4c83d13f488cfeb415292c569fd29",
+        "sequence_sha256": "9d9a71fef804bbc3046e8cba07b6d199ec92e7637a95e548a4932690c1f0322c",
+        "source_family_sha256": "66084664748869169b83ee0a91cc88e516508f3a896b60cd7819353fae2cdf08"
+      },
+      "normalized_input_text_sha256": "8d0ed801c8f863093c79237757f8f2fa39de2a4028bcb504a1ccd7bf8641934d",
+      "normalized_session_text_sha256": "15716c7ea4b7abff70708b6e41d2aa82df55acd3489f49a45f9427b18ab2cca4",
+      "preceding_commands": [
+        "ps -eo pid,comm --sort=comm | head -n 20",
+        "ip -brief link",
+        "ss -ltnH 2>/dev/null | head -n 20",
+        "systemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20"
+      ],
+      "selected_input": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20"
+    },
+    {
+      "capture_id": "admin-012-fbfb145da3e44179a640aa9050ac86af",
+      "case_id": "controlled-admin-admin-012-fbfb145da3e44179a640aa9050ac86af",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+        "final_input_sha256_json": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "final_input_sha256_json_ascii": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "preceding_context_sha256": "3078f512a6e4bdc1da4abdcecae4535daa514de337a9005d351faa639a5bca2e",
+        "sequence_sha256": "3cd4c6eebc55153045127075cf4f37da4291c413adf0d4e9c41de97445929e24",
+        "source_family_sha256": "35254c8b8188a833a5f5b45b899d3c51ac2821bc686285e8d2014e344aa3f02d"
+      },
+      "normalized_input_text_sha256": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+      "normalized_session_text_sha256": "f87a97fb3101cd5467dbb1749998946f831d3907128cb2d1f62de928989ff54e",
+      "preceding_commands": [
+        "command -v python3",
+        "python3 --version",
+        "command -v git",
+        "git --version 2>/dev/null",
+        "command -v docker",
+        "docker --version 2>/dev/null",
+        "getconf _NPROCESSORS_ONLN"
+      ],
+      "selected_input": "ulimit -a | head -n 20"
+    },
+    {
+      "capture_id": "admin-013-722dac74143c4ebb9004c4d5571f04fa",
+      "case_id": "controlled-admin-admin-013-722dac74143c4ebb9004c4d5571f04fa",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "271220cb6e49aada10f55a99eeb82081cc21eda207c9b0aa008d25cc75c61ea1",
+        "final_input_sha256_json": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "final_input_sha256_json_ascii": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "preceding_context_sha256": "1c8602828362cb7e4160f8f39e7f0318cdda07d28659eea44b80e209ad160f9a",
+        "sequence_sha256": "88b29e78bcda1630a34ba2ec52360885690368ed3a8d4e64f0d4d402e7b331e3",
+        "source_family_sha256": "aff91743e46401cc7a9053c3213c4e04dc35ebce3fd70352bb1c263107cd2353"
+      },
+      "normalized_input_text_sha256": "a8623a6910903f0849aee3b6758f5739f95a83227d3beeca85144d400d5fa6ad",
+      "normalized_session_text_sha256": "ff27fd32d8d329140290b05130cec137b00fc796ebe17871cf4a773a75e33b72",
+      "preceding_commands": [
+        "id -u",
+        "id -g",
+        "id -G",
+        "uname -srmo",
+        "nproc",
+        "free -h",
+        "df -h /tmp"
+      ],
+      "selected_input": "stat -c '%A %U %G %n' /tmp"
+    },
+    {
+      "capture_id": "admin-014-2e1cf6df9ae44641a4d567c564c71e23",
+      "case_id": "controlled-admin-admin-014-2e1cf6df9ae44641a4d567c564c71e23",
+      "identity_keys": {
+        "command_count": 6,
+        "final_input_sha256_bytes": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+        "final_input_sha256_json": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "final_input_sha256_json_ascii": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "preceding_context_sha256": "badef817dd7f9256ff5c5f3a08ffa12bb56f4b96092d7a72f8c112d02dab9a5a",
+        "sequence_sha256": "556697d10d227dcd4a77b67445957a78404dbb68f2eae29e8b43f7b1447ab840",
+        "source_family_sha256": "d53fe6d0db9cc760a535a485ed63176b6513eb50c4a1dadfcccea6f4c2d1de29"
+      },
+      "normalized_input_text_sha256": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+      "normalized_session_text_sha256": "1ec1a2d4f8c58be9fe9b12545fb4550ec334fd6204856bbe6f0746a1a8d78af3",
+      "preceding_commands": [
+        "pwd",
+        "printf '%s\\n' \"$PWD\"",
+        "ls -ld /tmp /var/tmp",
+        "find /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20",
+        "du -sh /tmp 2>/dev/null"
+      ],
+      "selected_input": "df -h /"
+    },
+    {
+      "capture_id": "admin-015-c2d92a2322bd44d185f760903992bb95",
+      "case_id": "controlled-admin-admin-015-c2d92a2322bd44d185f760903992bb95",
+      "identity_keys": {
+        "command_count": 5,
+        "final_input_sha256_bytes": "f6e1375fe0964f67152fe4d607848d85fc8c68743871b3691671d673f8e48d37",
+        "final_input_sha256_json": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "final_input_sha256_json_ascii": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "preceding_context_sha256": "993016a35bd602e74449bc2418bf6d2174d4c83d13f488cfeb415292c569fd29",
+        "sequence_sha256": "9d9a71fef804bbc3046e8cba07b6d199ec92e7637a95e548a4932690c1f0322c",
+        "source_family_sha256": "66084664748869169b83ee0a91cc88e516508f3a896b60cd7819353fae2cdf08"
+      },
+      "normalized_input_text_sha256": "8d0ed801c8f863093c79237757f8f2fa39de2a4028bcb504a1ccd7bf8641934d",
+      "normalized_session_text_sha256": "15716c7ea4b7abff70708b6e41d2aa82df55acd3489f49a45f9427b18ab2cca4",
+      "preceding_commands": [
+        "ps -eo pid,comm --sort=comm | head -n 20",
+        "ip -brief link",
+        "ss -ltnH 2>/dev/null | head -n 20",
+        "systemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20"
+      ],
+      "selected_input": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20"
+    },
+    {
+      "capture_id": "admin-016-2c88eb22176f47a0a6769a962e0afb0c",
+      "case_id": "controlled-admin-admin-016-2c88eb22176f47a0a6769a962e0afb0c",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+        "final_input_sha256_json": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "final_input_sha256_json_ascii": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "preceding_context_sha256": "3078f512a6e4bdc1da4abdcecae4535daa514de337a9005d351faa639a5bca2e",
+        "sequence_sha256": "3cd4c6eebc55153045127075cf4f37da4291c413adf0d4e9c41de97445929e24",
+        "source_family_sha256": "35254c8b8188a833a5f5b45b899d3c51ac2821bc686285e8d2014e344aa3f02d"
+      },
+      "normalized_input_text_sha256": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+      "normalized_session_text_sha256": "f87a97fb3101cd5467dbb1749998946f831d3907128cb2d1f62de928989ff54e",
+      "preceding_commands": [
+        "command -v python3",
+        "python3 --version",
+        "command -v git",
+        "git --version 2>/dev/null",
+        "command -v docker",
+        "docker --version 2>/dev/null",
+        "getconf _NPROCESSORS_ONLN"
+      ],
+      "selected_input": "ulimit -a | head -n 20"
+    },
+    {
+      "capture_id": "admin-017-35d6c80445f74d24b84129a05eeeb072",
+      "case_id": "controlled-admin-admin-017-35d6c80445f74d24b84129a05eeeb072",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "271220cb6e49aada10f55a99eeb82081cc21eda207c9b0aa008d25cc75c61ea1",
+        "final_input_sha256_json": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "final_input_sha256_json_ascii": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "preceding_context_sha256": "1c8602828362cb7e4160f8f39e7f0318cdda07d28659eea44b80e209ad160f9a",
+        "sequence_sha256": "88b29e78bcda1630a34ba2ec52360885690368ed3a8d4e64f0d4d402e7b331e3",
+        "source_family_sha256": "aff91743e46401cc7a9053c3213c4e04dc35ebce3fd70352bb1c263107cd2353"
+      },
+      "normalized_input_text_sha256": "a8623a6910903f0849aee3b6758f5739f95a83227d3beeca85144d400d5fa6ad",
+      "normalized_session_text_sha256": "ff27fd32d8d329140290b05130cec137b00fc796ebe17871cf4a773a75e33b72",
+      "preceding_commands": [
+        "id -u",
+        "id -g",
+        "id -G",
+        "uname -srmo",
+        "nproc",
+        "free -h",
+        "df -h /tmp"
+      ],
+      "selected_input": "stat -c '%A %U %G %n' /tmp"
+    },
+    {
+      "capture_id": "admin-018-0c966e9011b046929bbc35dd60053629",
+      "case_id": "controlled-admin-admin-018-0c966e9011b046929bbc35dd60053629",
+      "identity_keys": {
+        "command_count": 6,
+        "final_input_sha256_bytes": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+        "final_input_sha256_json": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "final_input_sha256_json_ascii": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "preceding_context_sha256": "badef817dd7f9256ff5c5f3a08ffa12bb56f4b96092d7a72f8c112d02dab9a5a",
+        "sequence_sha256": "556697d10d227dcd4a77b67445957a78404dbb68f2eae29e8b43f7b1447ab840",
+        "source_family_sha256": "d53fe6d0db9cc760a535a485ed63176b6513eb50c4a1dadfcccea6f4c2d1de29"
+      },
+      "normalized_input_text_sha256": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+      "normalized_session_text_sha256": "1ec1a2d4f8c58be9fe9b12545fb4550ec334fd6204856bbe6f0746a1a8d78af3",
+      "preceding_commands": [
+        "pwd",
+        "printf '%s\\n' \"$PWD\"",
+        "ls -ld /tmp /var/tmp",
+        "find /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20",
+        "du -sh /tmp 2>/dev/null"
+      ],
+      "selected_input": "df -h /"
+    },
+    {
+      "capture_id": "admin-019-f34fa3c902624c02b71a1b91298a6c7e",
+      "case_id": "controlled-admin-admin-019-f34fa3c902624c02b71a1b91298a6c7e",
+      "identity_keys": {
+        "command_count": 5,
+        "final_input_sha256_bytes": "f6e1375fe0964f67152fe4d607848d85fc8c68743871b3691671d673f8e48d37",
+        "final_input_sha256_json": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "final_input_sha256_json_ascii": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "preceding_context_sha256": "993016a35bd602e74449bc2418bf6d2174d4c83d13f488cfeb415292c569fd29",
+        "sequence_sha256": "9d9a71fef804bbc3046e8cba07b6d199ec92e7637a95e548a4932690c1f0322c",
+        "source_family_sha256": "66084664748869169b83ee0a91cc88e516508f3a896b60cd7819353fae2cdf08"
+      },
+      "normalized_input_text_sha256": "8d0ed801c8f863093c79237757f8f2fa39de2a4028bcb504a1ccd7bf8641934d",
+      "normalized_session_text_sha256": "15716c7ea4b7abff70708b6e41d2aa82df55acd3489f49a45f9427b18ab2cca4",
+      "preceding_commands": [
+        "ps -eo pid,comm --sort=comm | head -n 20",
+        "ip -brief link",
+        "ss -ltnH 2>/dev/null | head -n 20",
+        "systemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20"
+      ],
+      "selected_input": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20"
+    },
+    {
+      "capture_id": "admin-020-24c7e648a61c411a94a8f857f91f7c24",
+      "case_id": "controlled-admin-admin-020-24c7e648a61c411a94a8f857f91f7c24",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+        "final_input_sha256_json": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "final_input_sha256_json_ascii": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "preceding_context_sha256": "3078f512a6e4bdc1da4abdcecae4535daa514de337a9005d351faa639a5bca2e",
+        "sequence_sha256": "3cd4c6eebc55153045127075cf4f37da4291c413adf0d4e9c41de97445929e24",
+        "source_family_sha256": "35254c8b8188a833a5f5b45b899d3c51ac2821bc686285e8d2014e344aa3f02d"
+      },
+      "normalized_input_text_sha256": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+      "normalized_session_text_sha256": "f87a97fb3101cd5467dbb1749998946f831d3907128cb2d1f62de928989ff54e",
+      "preceding_commands": [
+        "command -v python3",
+        "python3 --version",
+        "command -v git",
+        "git --version 2>/dev/null",
+        "command -v docker",
+        "docker --version 2>/dev/null",
+        "getconf _NPROCESSORS_ONLN"
+      ],
+      "selected_input": "ulimit -a | head -n 20"
+    },
+    {
+      "capture_id": "admin-021-79cd344d387f490e8069167446078090",
+      "case_id": "controlled-admin-admin-021-79cd344d387f490e8069167446078090",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "271220cb6e49aada10f55a99eeb82081cc21eda207c9b0aa008d25cc75c61ea1",
+        "final_input_sha256_json": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "final_input_sha256_json_ascii": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "preceding_context_sha256": "1c8602828362cb7e4160f8f39e7f0318cdda07d28659eea44b80e209ad160f9a",
+        "sequence_sha256": "88b29e78bcda1630a34ba2ec52360885690368ed3a8d4e64f0d4d402e7b331e3",
+        "source_family_sha256": "aff91743e46401cc7a9053c3213c4e04dc35ebce3fd70352bb1c263107cd2353"
+      },
+      "normalized_input_text_sha256": "a8623a6910903f0849aee3b6758f5739f95a83227d3beeca85144d400d5fa6ad",
+      "normalized_session_text_sha256": "ff27fd32d8d329140290b05130cec137b00fc796ebe17871cf4a773a75e33b72",
+      "preceding_commands": [
+        "id -u",
+        "id -g",
+        "id -G",
+        "uname -srmo",
+        "nproc",
+        "free -h",
+        "df -h /tmp"
+      ],
+      "selected_input": "stat -c '%A %U %G %n' /tmp"
+    },
+    {
+      "capture_id": "admin-022-431664b09e644314b26ffea29d2801f4",
+      "case_id": "controlled-admin-admin-022-431664b09e644314b26ffea29d2801f4",
+      "identity_keys": {
+        "command_count": 6,
+        "final_input_sha256_bytes": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+        "final_input_sha256_json": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "final_input_sha256_json_ascii": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "preceding_context_sha256": "badef817dd7f9256ff5c5f3a08ffa12bb56f4b96092d7a72f8c112d02dab9a5a",
+        "sequence_sha256": "556697d10d227dcd4a77b67445957a78404dbb68f2eae29e8b43f7b1447ab840",
+        "source_family_sha256": "d53fe6d0db9cc760a535a485ed63176b6513eb50c4a1dadfcccea6f4c2d1de29"
+      },
+      "normalized_input_text_sha256": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+      "normalized_session_text_sha256": "1ec1a2d4f8c58be9fe9b12545fb4550ec334fd6204856bbe6f0746a1a8d78af3",
+      "preceding_commands": [
+        "pwd",
+        "printf '%s\\n' \"$PWD\"",
+        "ls -ld /tmp /var/tmp",
+        "find /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20",
+        "du -sh /tmp 2>/dev/null"
+      ],
+      "selected_input": "df -h /"
+    },
+    {
+      "capture_id": "admin-023-3b1d218f0be54009affcb384b09efafa",
+      "case_id": "controlled-admin-admin-023-3b1d218f0be54009affcb384b09efafa",
+      "identity_keys": {
+        "command_count": 5,
+        "final_input_sha256_bytes": "f6e1375fe0964f67152fe4d607848d85fc8c68743871b3691671d673f8e48d37",
+        "final_input_sha256_json": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "final_input_sha256_json_ascii": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "preceding_context_sha256": "993016a35bd602e74449bc2418bf6d2174d4c83d13f488cfeb415292c569fd29",
+        "sequence_sha256": "9d9a71fef804bbc3046e8cba07b6d199ec92e7637a95e548a4932690c1f0322c",
+        "source_family_sha256": "66084664748869169b83ee0a91cc88e516508f3a896b60cd7819353fae2cdf08"
+      },
+      "normalized_input_text_sha256": "8d0ed801c8f863093c79237757f8f2fa39de2a4028bcb504a1ccd7bf8641934d",
+      "normalized_session_text_sha256": "15716c7ea4b7abff70708b6e41d2aa82df55acd3489f49a45f9427b18ab2cca4",
+      "preceding_commands": [
+        "ps -eo pid,comm --sort=comm | head -n 20",
+        "ip -brief link",
+        "ss -ltnH 2>/dev/null | head -n 20",
+        "systemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20"
+      ],
+      "selected_input": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20"
+    },
+    {
+      "capture_id": "admin-024-e9b1822d4f0747608ae9c10cfeff48b4",
+      "case_id": "controlled-admin-admin-024-e9b1822d4f0747608ae9c10cfeff48b4",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+        "final_input_sha256_json": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "final_input_sha256_json_ascii": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "preceding_context_sha256": "3078f512a6e4bdc1da4abdcecae4535daa514de337a9005d351faa639a5bca2e",
+        "sequence_sha256": "3cd4c6eebc55153045127075cf4f37da4291c413adf0d4e9c41de97445929e24",
+        "source_family_sha256": "35254c8b8188a833a5f5b45b899d3c51ac2821bc686285e8d2014e344aa3f02d"
+      },
+      "normalized_input_text_sha256": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+      "normalized_session_text_sha256": "f87a97fb3101cd5467dbb1749998946f831d3907128cb2d1f62de928989ff54e",
+      "preceding_commands": [
+        "command -v python3",
+        "python3 --version",
+        "command -v git",
+        "git --version 2>/dev/null",
+        "command -v docker",
+        "docker --version 2>/dev/null",
+        "getconf _NPROCESSORS_ONLN"
+      ],
+      "selected_input": "ulimit -a | head -n 20"
+    },
+    {
+      "capture_id": "admin-025-2ff03b690a99456caf98081d738f8462",
+      "case_id": "controlled-admin-admin-025-2ff03b690a99456caf98081d738f8462",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "271220cb6e49aada10f55a99eeb82081cc21eda207c9b0aa008d25cc75c61ea1",
+        "final_input_sha256_json": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "final_input_sha256_json_ascii": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "preceding_context_sha256": "1c8602828362cb7e4160f8f39e7f0318cdda07d28659eea44b80e209ad160f9a",
+        "sequence_sha256": "88b29e78bcda1630a34ba2ec52360885690368ed3a8d4e64f0d4d402e7b331e3",
+        "source_family_sha256": "aff91743e46401cc7a9053c3213c4e04dc35ebce3fd70352bb1c263107cd2353"
+      },
+      "normalized_input_text_sha256": "a8623a6910903f0849aee3b6758f5739f95a83227d3beeca85144d400d5fa6ad",
+      "normalized_session_text_sha256": "ff27fd32d8d329140290b05130cec137b00fc796ebe17871cf4a773a75e33b72",
+      "preceding_commands": [
+        "id -u",
+        "id -g",
+        "id -G",
+        "uname -srmo",
+        "nproc",
+        "free -h",
+        "df -h /tmp"
+      ],
+      "selected_input": "stat -c '%A %U %G %n' /tmp"
+    },
+    {
+      "capture_id": "admin-026-61f34d05f15c4d828f5164808fb6b4c9",
+      "case_id": "controlled-admin-admin-026-61f34d05f15c4d828f5164808fb6b4c9",
+      "identity_keys": {
+        "command_count": 6,
+        "final_input_sha256_bytes": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+        "final_input_sha256_json": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "final_input_sha256_json_ascii": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "preceding_context_sha256": "badef817dd7f9256ff5c5f3a08ffa12bb56f4b96092d7a72f8c112d02dab9a5a",
+        "sequence_sha256": "556697d10d227dcd4a77b67445957a78404dbb68f2eae29e8b43f7b1447ab840",
+        "source_family_sha256": "d53fe6d0db9cc760a535a485ed63176b6513eb50c4a1dadfcccea6f4c2d1de29"
+      },
+      "normalized_input_text_sha256": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+      "normalized_session_text_sha256": "1ec1a2d4f8c58be9fe9b12545fb4550ec334fd6204856bbe6f0746a1a8d78af3",
+      "preceding_commands": [
+        "pwd",
+        "printf '%s\\n' \"$PWD\"",
+        "ls -ld /tmp /var/tmp",
+        "find /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20",
+        "du -sh /tmp 2>/dev/null"
+      ],
+      "selected_input": "df -h /"
+    },
+    {
+      "capture_id": "admin-027-fe99e7b6d68b444d9e179965e30bb68d",
+      "case_id": "controlled-admin-admin-027-fe99e7b6d68b444d9e179965e30bb68d",
+      "identity_keys": {
+        "command_count": 5,
+        "final_input_sha256_bytes": "f6e1375fe0964f67152fe4d607848d85fc8c68743871b3691671d673f8e48d37",
+        "final_input_sha256_json": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "final_input_sha256_json_ascii": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "preceding_context_sha256": "993016a35bd602e74449bc2418bf6d2174d4c83d13f488cfeb415292c569fd29",
+        "sequence_sha256": "9d9a71fef804bbc3046e8cba07b6d199ec92e7637a95e548a4932690c1f0322c",
+        "source_family_sha256": "66084664748869169b83ee0a91cc88e516508f3a896b60cd7819353fae2cdf08"
+      },
+      "normalized_input_text_sha256": "8d0ed801c8f863093c79237757f8f2fa39de2a4028bcb504a1ccd7bf8641934d",
+      "normalized_session_text_sha256": "15716c7ea4b7abff70708b6e41d2aa82df55acd3489f49a45f9427b18ab2cca4",
+      "preceding_commands": [
+        "ps -eo pid,comm --sort=comm | head -n 20",
+        "ip -brief link",
+        "ss -ltnH 2>/dev/null | head -n 20",
+        "systemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20"
+      ],
+      "selected_input": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20"
+    },
+    {
+      "capture_id": "admin-028-5d75cbdba1484284979a25e2bb43c5a1",
+      "case_id": "controlled-admin-admin-028-5d75cbdba1484284979a25e2bb43c5a1",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+        "final_input_sha256_json": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "final_input_sha256_json_ascii": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "preceding_context_sha256": "3078f512a6e4bdc1da4abdcecae4535daa514de337a9005d351faa639a5bca2e",
+        "sequence_sha256": "3cd4c6eebc55153045127075cf4f37da4291c413adf0d4e9c41de97445929e24",
+        "source_family_sha256": "35254c8b8188a833a5f5b45b899d3c51ac2821bc686285e8d2014e344aa3f02d"
+      },
+      "normalized_input_text_sha256": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+      "normalized_session_text_sha256": "f87a97fb3101cd5467dbb1749998946f831d3907128cb2d1f62de928989ff54e",
+      "preceding_commands": [
+        "command -v python3",
+        "python3 --version",
+        "command -v git",
+        "git --version 2>/dev/null",
+        "command -v docker",
+        "docker --version 2>/dev/null",
+        "getconf _NPROCESSORS_ONLN"
+      ],
+      "selected_input": "ulimit -a | head -n 20"
+    },
+    {
+      "capture_id": "admin-029-9781201ac39b434db6992f9131df244f",
+      "case_id": "controlled-admin-admin-029-9781201ac39b434db6992f9131df244f",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "271220cb6e49aada10f55a99eeb82081cc21eda207c9b0aa008d25cc75c61ea1",
+        "final_input_sha256_json": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "final_input_sha256_json_ascii": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "preceding_context_sha256": "1c8602828362cb7e4160f8f39e7f0318cdda07d28659eea44b80e209ad160f9a",
+        "sequence_sha256": "88b29e78bcda1630a34ba2ec52360885690368ed3a8d4e64f0d4d402e7b331e3",
+        "source_family_sha256": "aff91743e46401cc7a9053c3213c4e04dc35ebce3fd70352bb1c263107cd2353"
+      },
+      "normalized_input_text_sha256": "a8623a6910903f0849aee3b6758f5739f95a83227d3beeca85144d400d5fa6ad",
+      "normalized_session_text_sha256": "ff27fd32d8d329140290b05130cec137b00fc796ebe17871cf4a773a75e33b72",
+      "preceding_commands": [
+        "id -u",
+        "id -g",
+        "id -G",
+        "uname -srmo",
+        "nproc",
+        "free -h",
+        "df -h /tmp"
+      ],
+      "selected_input": "stat -c '%A %U %G %n' /tmp"
+    },
+    {
+      "capture_id": "admin-030-f96b64e52b7d4343a31f8c4449ea9b19",
+      "case_id": "controlled-admin-admin-030-f96b64e52b7d4343a31f8c4449ea9b19",
+      "identity_keys": {
+        "command_count": 6,
+        "final_input_sha256_bytes": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+        "final_input_sha256_json": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "final_input_sha256_json_ascii": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "preceding_context_sha256": "badef817dd7f9256ff5c5f3a08ffa12bb56f4b96092d7a72f8c112d02dab9a5a",
+        "sequence_sha256": "556697d10d227dcd4a77b67445957a78404dbb68f2eae29e8b43f7b1447ab840",
+        "source_family_sha256": "d53fe6d0db9cc760a535a485ed63176b6513eb50c4a1dadfcccea6f4c2d1de29"
+      },
+      "normalized_input_text_sha256": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+      "normalized_session_text_sha256": "1ec1a2d4f8c58be9fe9b12545fb4550ec334fd6204856bbe6f0746a1a8d78af3",
+      "preceding_commands": [
+        "pwd",
+        "printf '%s\\n' \"$PWD\"",
+        "ls -ld /tmp /var/tmp",
+        "find /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20",
+        "du -sh /tmp 2>/dev/null"
+      ],
+      "selected_input": "df -h /"
+    },
+    {
+      "capture_id": "admin-031-e52666576ec54729a1a2e8e380b7be3b",
+      "case_id": "controlled-admin-admin-031-e52666576ec54729a1a2e8e380b7be3b",
+      "identity_keys": {
+        "command_count": 5,
+        "final_input_sha256_bytes": "f6e1375fe0964f67152fe4d607848d85fc8c68743871b3691671d673f8e48d37",
+        "final_input_sha256_json": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "final_input_sha256_json_ascii": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "preceding_context_sha256": "993016a35bd602e74449bc2418bf6d2174d4c83d13f488cfeb415292c569fd29",
+        "sequence_sha256": "9d9a71fef804bbc3046e8cba07b6d199ec92e7637a95e548a4932690c1f0322c",
+        "source_family_sha256": "66084664748869169b83ee0a91cc88e516508f3a896b60cd7819353fae2cdf08"
+      },
+      "normalized_input_text_sha256": "8d0ed801c8f863093c79237757f8f2fa39de2a4028bcb504a1ccd7bf8641934d",
+      "normalized_session_text_sha256": "15716c7ea4b7abff70708b6e41d2aa82df55acd3489f49a45f9427b18ab2cca4",
+      "preceding_commands": [
+        "ps -eo pid,comm --sort=comm | head -n 20",
+        "ip -brief link",
+        "ss -ltnH 2>/dev/null | head -n 20",
+        "systemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20"
+      ],
+      "selected_input": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20"
+    },
+    {
+      "capture_id": "admin-032-eb41587e0fee426a87433a990e996290",
+      "case_id": "controlled-admin-admin-032-eb41587e0fee426a87433a990e996290",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+        "final_input_sha256_json": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "final_input_sha256_json_ascii": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "preceding_context_sha256": "3078f512a6e4bdc1da4abdcecae4535daa514de337a9005d351faa639a5bca2e",
+        "sequence_sha256": "3cd4c6eebc55153045127075cf4f37da4291c413adf0d4e9c41de97445929e24",
+        "source_family_sha256": "35254c8b8188a833a5f5b45b899d3c51ac2821bc686285e8d2014e344aa3f02d"
+      },
+      "normalized_input_text_sha256": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+      "normalized_session_text_sha256": "f87a97fb3101cd5467dbb1749998946f831d3907128cb2d1f62de928989ff54e",
+      "preceding_commands": [
+        "command -v python3",
+        "python3 --version",
+        "command -v git",
+        "git --version 2>/dev/null",
+        "command -v docker",
+        "docker --version 2>/dev/null",
+        "getconf _NPROCESSORS_ONLN"
+      ],
+      "selected_input": "ulimit -a | head -n 20"
+    },
+    {
+      "capture_id": "admin-033-a20f3d71d4594fd8b0ca1b46b2da4766",
+      "case_id": "controlled-admin-admin-033-a20f3d71d4594fd8b0ca1b46b2da4766",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "271220cb6e49aada10f55a99eeb82081cc21eda207c9b0aa008d25cc75c61ea1",
+        "final_input_sha256_json": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "final_input_sha256_json_ascii": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "preceding_context_sha256": "1c8602828362cb7e4160f8f39e7f0318cdda07d28659eea44b80e209ad160f9a",
+        "sequence_sha256": "88b29e78bcda1630a34ba2ec52360885690368ed3a8d4e64f0d4d402e7b331e3",
+        "source_family_sha256": "aff91743e46401cc7a9053c3213c4e04dc35ebce3fd70352bb1c263107cd2353"
+      },
+      "normalized_input_text_sha256": "a8623a6910903f0849aee3b6758f5739f95a83227d3beeca85144d400d5fa6ad",
+      "normalized_session_text_sha256": "ff27fd32d8d329140290b05130cec137b00fc796ebe17871cf4a773a75e33b72",
+      "preceding_commands": [
+        "id -u",
+        "id -g",
+        "id -G",
+        "uname -srmo",
+        "nproc",
+        "free -h",
+        "df -h /tmp"
+      ],
+      "selected_input": "stat -c '%A %U %G %n' /tmp"
+    },
+    {
+      "capture_id": "admin-034-39ca783edc774d9d9a9dd34321fd36fd",
+      "case_id": "controlled-admin-admin-034-39ca783edc774d9d9a9dd34321fd36fd",
+      "identity_keys": {
+        "command_count": 6,
+        "final_input_sha256_bytes": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+        "final_input_sha256_json": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "final_input_sha256_json_ascii": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "preceding_context_sha256": "badef817dd7f9256ff5c5f3a08ffa12bb56f4b96092d7a72f8c112d02dab9a5a",
+        "sequence_sha256": "556697d10d227dcd4a77b67445957a78404dbb68f2eae29e8b43f7b1447ab840",
+        "source_family_sha256": "d53fe6d0db9cc760a535a485ed63176b6513eb50c4a1dadfcccea6f4c2d1de29"
+      },
+      "normalized_input_text_sha256": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+      "normalized_session_text_sha256": "1ec1a2d4f8c58be9fe9b12545fb4550ec334fd6204856bbe6f0746a1a8d78af3",
+      "preceding_commands": [
+        "pwd",
+        "printf '%s\\n' \"$PWD\"",
+        "ls -ld /tmp /var/tmp",
+        "find /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20",
+        "du -sh /tmp 2>/dev/null"
+      ],
+      "selected_input": "df -h /"
+    },
+    {
+      "capture_id": "admin-035-b5b4375af42e49f8ba4a65037b8e03df",
+      "case_id": "controlled-admin-admin-035-b5b4375af42e49f8ba4a65037b8e03df",
+      "identity_keys": {
+        "command_count": 5,
+        "final_input_sha256_bytes": "f6e1375fe0964f67152fe4d607848d85fc8c68743871b3691671d673f8e48d37",
+        "final_input_sha256_json": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "final_input_sha256_json_ascii": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "preceding_context_sha256": "993016a35bd602e74449bc2418bf6d2174d4c83d13f488cfeb415292c569fd29",
+        "sequence_sha256": "9d9a71fef804bbc3046e8cba07b6d199ec92e7637a95e548a4932690c1f0322c",
+        "source_family_sha256": "66084664748869169b83ee0a91cc88e516508f3a896b60cd7819353fae2cdf08"
+      },
+      "normalized_input_text_sha256": "8d0ed801c8f863093c79237757f8f2fa39de2a4028bcb504a1ccd7bf8641934d",
+      "normalized_session_text_sha256": "15716c7ea4b7abff70708b6e41d2aa82df55acd3489f49a45f9427b18ab2cca4",
+      "preceding_commands": [
+        "ps -eo pid,comm --sort=comm | head -n 20",
+        "ip -brief link",
+        "ss -ltnH 2>/dev/null | head -n 20",
+        "systemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20"
+      ],
+      "selected_input": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20"
+    },
+    {
+      "capture_id": "admin-036-4014abb2f0444c0c9f946c4c2d8e1730",
+      "case_id": "controlled-admin-admin-036-4014abb2f0444c0c9f946c4c2d8e1730",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+        "final_input_sha256_json": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "final_input_sha256_json_ascii": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "preceding_context_sha256": "3078f512a6e4bdc1da4abdcecae4535daa514de337a9005d351faa639a5bca2e",
+        "sequence_sha256": "3cd4c6eebc55153045127075cf4f37da4291c413adf0d4e9c41de97445929e24",
+        "source_family_sha256": "35254c8b8188a833a5f5b45b899d3c51ac2821bc686285e8d2014e344aa3f02d"
+      },
+      "normalized_input_text_sha256": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+      "normalized_session_text_sha256": "f87a97fb3101cd5467dbb1749998946f831d3907128cb2d1f62de928989ff54e",
+      "preceding_commands": [
+        "command -v python3",
+        "python3 --version",
+        "command -v git",
+        "git --version 2>/dev/null",
+        "command -v docker",
+        "docker --version 2>/dev/null",
+        "getconf _NPROCESSORS_ONLN"
+      ],
+      "selected_input": "ulimit -a | head -n 20"
+    },
+    {
+      "capture_id": "admin-037-7851073fe28c4563b8f63a056d89c2fe",
+      "case_id": "controlled-admin-admin-037-7851073fe28c4563b8f63a056d89c2fe",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "271220cb6e49aada10f55a99eeb82081cc21eda207c9b0aa008d25cc75c61ea1",
+        "final_input_sha256_json": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "final_input_sha256_json_ascii": "419eee36bc9b166fa479bbe8612743ca724396907bec74da30a92bf99dec84d3",
+        "preceding_context_sha256": "1c8602828362cb7e4160f8f39e7f0318cdda07d28659eea44b80e209ad160f9a",
+        "sequence_sha256": "88b29e78bcda1630a34ba2ec52360885690368ed3a8d4e64f0d4d402e7b331e3",
+        "source_family_sha256": "aff91743e46401cc7a9053c3213c4e04dc35ebce3fd70352bb1c263107cd2353"
+      },
+      "normalized_input_text_sha256": "a8623a6910903f0849aee3b6758f5739f95a83227d3beeca85144d400d5fa6ad",
+      "normalized_session_text_sha256": "ff27fd32d8d329140290b05130cec137b00fc796ebe17871cf4a773a75e33b72",
+      "preceding_commands": [
+        "id -u",
+        "id -g",
+        "id -G",
+        "uname -srmo",
+        "nproc",
+        "free -h",
+        "df -h /tmp"
+      ],
+      "selected_input": "stat -c '%A %U %G %n' /tmp"
+    },
+    {
+      "capture_id": "admin-038-6ba220c127a946e79bb9950e92300d0f",
+      "case_id": "controlled-admin-admin-038-6ba220c127a946e79bb9950e92300d0f",
+      "identity_keys": {
+        "command_count": 6,
+        "final_input_sha256_bytes": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+        "final_input_sha256_json": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "final_input_sha256_json_ascii": "942cb5450e6d431701f8eb059dea88d37f2a7fd93f48ecd405ea4ef66fb85c6b",
+        "preceding_context_sha256": "badef817dd7f9256ff5c5f3a08ffa12bb56f4b96092d7a72f8c112d02dab9a5a",
+        "sequence_sha256": "556697d10d227dcd4a77b67445957a78404dbb68f2eae29e8b43f7b1447ab840",
+        "source_family_sha256": "d53fe6d0db9cc760a535a485ed63176b6513eb50c4a1dadfcccea6f4c2d1de29"
+      },
+      "normalized_input_text_sha256": "42197cbf85324c85acabbd764f907c7aeead90edd443994abcc0c1c1b80af8ac",
+      "normalized_session_text_sha256": "1ec1a2d4f8c58be9fe9b12545fb4550ec334fd6204856bbe6f0746a1a8d78af3",
+      "preceding_commands": [
+        "pwd",
+        "printf '%s\\n' \"$PWD\"",
+        "ls -ld /tmp /var/tmp",
+        "find /tmp -maxdepth 1 -mindepth 1 -type d -printf '%f\\n' | sort | head -n 20",
+        "du -sh /tmp 2>/dev/null"
+      ],
+      "selected_input": "df -h /"
+    },
+    {
+      "capture_id": "admin-039-a8dd8d5b93e54e5c8f4373b07affd730",
+      "case_id": "controlled-admin-admin-039-a8dd8d5b93e54e5c8f4373b07affd730",
+      "identity_keys": {
+        "command_count": 5,
+        "final_input_sha256_bytes": "f6e1375fe0964f67152fe4d607848d85fc8c68743871b3691671d673f8e48d37",
+        "final_input_sha256_json": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "final_input_sha256_json_ascii": "f20c3185f8804d59e7db8b14b619c4007792ff947d8c9790ca8b474450b26136",
+        "preceding_context_sha256": "993016a35bd602e74449bc2418bf6d2174d4c83d13f488cfeb415292c569fd29",
+        "sequence_sha256": "9d9a71fef804bbc3046e8cba07b6d199ec92e7637a95e548a4932690c1f0322c",
+        "source_family_sha256": "66084664748869169b83ee0a91cc88e516508f3a896b60cd7819353fae2cdf08"
+      },
+      "normalized_input_text_sha256": "8d0ed801c8f863093c79237757f8f2fa39de2a4028bcb504a1ccd7bf8641934d",
+      "normalized_session_text_sha256": "15716c7ea4b7abff70708b6e41d2aa82df55acd3489f49a45f9427b18ab2cca4",
+      "preceding_commands": [
+        "ps -eo pid,comm --sort=comm | head -n 20",
+        "ip -brief link",
+        "ss -ltnH 2>/dev/null | head -n 20",
+        "systemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20"
+      ],
+      "selected_input": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20"
+    },
+    {
+      "capture_id": "admin-040-b91fde80483346218878fe6b252d601c",
+      "case_id": "controlled-admin-admin-040-b91fde80483346218878fe6b252d601c",
+      "identity_keys": {
+        "command_count": 8,
+        "final_input_sha256_bytes": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+        "final_input_sha256_json": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "final_input_sha256_json_ascii": "541d32bd9da8b251adc211a9ded1e8afd42337019e9e758a759327cea0e6b5d1",
+        "preceding_context_sha256": "3078f512a6e4bdc1da4abdcecae4535daa514de337a9005d351faa639a5bca2e",
+        "sequence_sha256": "3cd4c6eebc55153045127075cf4f37da4291c413adf0d4e9c41de97445929e24",
+        "source_family_sha256": "35254c8b8188a833a5f5b45b899d3c51ac2821bc686285e8d2014e344aa3f02d"
+      },
+      "normalized_input_text_sha256": "e446059ead471588fed70b8f1d0b785026fb7894ff0c6890b2cf578621568f66",
+      "normalized_session_text_sha256": "f87a97fb3101cd5467dbb1749998946f831d3907128cb2d1f62de928989ff54e",
+      "preceding_commands": [
+        "command -v python3",
+        "python3 --version",
+        "command -v git",
+        "git --version 2>/dev/null",
+        "command -v docker",
+        "docker --version 2>/dev/null",
+        "getconf _NPROCESSORS_ONLN"
+      ],
+      "selected_input": "ulimit -a | head -n 20"
+    }
+  ],
+  "experiment_id": "ragin.step6.matched_judge_contrast.v1",
+  "reference_status": "INPUTS_FROZEN_LABELS_PENDING_RETRIEVAL_PACKET",
+  "schema": "ragin.step6.blinded_reference_input_freeze.v1",
+  "source_selection_sha256": "fb7a2fa24883ffdc9a3ccf197d2a2199c0c358d09695071899151960c08f3031",
+  "status": "FROZEN_BEFORE_ARM_OUTCOMES"
+}

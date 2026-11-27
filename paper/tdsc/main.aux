@@ -1,0 +1,288 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{lopez2024}
+\citation{li2026llmsshh}
+\citation{laragutierrez2026genpot}
+\citation{ibm2024}
+\citation{crowdstrike2026}
+\citation{reworr2024}
+\citation{wang2024}
+\citation{paul2025}
+\citation{li2026llmsshh}
+\citation{laragutierrez2026genpot}
+\citation{wang2026honeygpt}
+\citation{li2026llmsshh}
+\citation{laragutierrez2026genpot}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{I}{1}{Introduction}{section.1}{}}
+\citation{ganguli2022}
+\citation{bai2022}
+\citation{greshake2023}
+\citation{spitzner2002}
+\citation{lopez2024}
+\citation{pawlick2021}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Background and Threat Model}{3}{section.2}\protected@file@percent }
+\newlabel{sec:background}{{II}{3}{Background and Threat Model}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Honeypots and the Fidelity--Safety Tension}{3}{subsection.2.1}\protected@file@percent }
+\newlabel{sec:tension}{{\mbox  {II-A}}{3}{Honeypots and the Fidelity--Safety Tension}{subsection.2.1}{}}
+\citation{valeros2024}
+\citation{reworr2024}
+\citation{jimenez2025}
+\citation{galah2024}
+\citation{li2026llmsshh}
+\citation{laragutierrez2026genpot}
+\citation{wang2026honeygpt}
+\citation{bridges2026}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Threat Model}{4}{subsection.2.2}\protected@file@percent }
+\newlabel{sec:threatmodel}{{\mbox  {II-B}}{4}{Threat Model}{subsection.2.2}{}}
+\citation{spitzner2003}
+\citation{roy2023}
+\citation{lewis2020}
+\citation{lekssays2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Vocabulary}{5}{subsection.2.3}\protected@file@percent }
+\newlabel{sec:vocab}{{\mbox  {II-C}}{5}{Vocabulary}{subsection.2.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-D}}Design Goals}{5}{subsection.2.4}\protected@file@percent }
+\newlabel{sec:goals}{{\mbox  {II-D}}{5}{Design Goals}{subsection.2.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}The Verified Deception Loop}{5}{section.3}\protected@file@percent }
+\newlabel{sec:design}{{III}{5}{The Verified Deception Loop}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}The Intelligence Ladder}{6}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:ladder}{{\mbox  {III-A}}{6}{The Intelligence Ladder}{subsection.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The intelligence ladder. Each rung is admitted only above the certifiable rungs beneath it, and each rung carries its measured marginal effect (\S  \ref {sec:evaluation}). The dashed arrow is the result RQ4 adds: the assessed kind-awareness rung descended to the deterministic floor -- no effect the benchmark resolves, no regression risk, no provider dependency. Descending is the load-bearing direction; a rung that cannot show a measurable benefit above the rung below it does not stay on the ladder.}}{6}{figure.1}\protected@file@percent }
+\newlabel{fig:ladder}{{1}{6}{The intelligence ladder. Each rung is admitted only above the certifiable rungs beneath it, and each rung carries its measured marginal effect (\S \ref {sec:evaluation}). The dashed arrow is the result RQ4 adds: the assessed kind-awareness rung descended to the deterministic floor -- no effect the benchmark resolves, no regression risk, no provider dependency. Descending is the load-bearing direction; a rung that cannot show a measurable benefit above the rung below it does not stay on the ladder}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Session Profiling: Behavioral Classification}{6}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:chrollo}{{\mbox  {III-B}}{6}{Session Profiling: Behavioral Classification}{subsection.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The verified deception loop. A session enters through the behavioral classifier (Chrollo), which routes it to a per-class deception policy. The retrieval engine (Don) grounds the policy in CTI; the fiction graph binds every host fact; the generator drafts under the binding; the verifier checks the draft against the graph before serving. Dashed paths are failure paths: verification failure falls back to deterministic transcripts, and content flagged \textsc  {require} pauses at the human-in-the-loop gate.}}{7}{figure.2}\protected@file@percent }
+\newlabel{fig:architecture}{{2}{7}{The verified deception loop. A session enters through the behavioral classifier (Chrollo), which routes it to a per-class deception policy. The retrieval engine (Don) grounds the policy in CTI; the fiction graph binds every host fact; the generator drafts under the binding; the verifier checks the draft against the graph before serving. Dashed paths are failure paths: verification failure falls back to deterministic transcripts, and content flagged \textsc {require} pauses at the human-in-the-loop gate}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Grounded Planning: Retrieval-Augmented Deception}{7}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:don}{{\mbox  {III-C}}{7}{Grounded Planning: Retrieval-Augmented Deception}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}The Fiction Graph}{7}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:graph}{{\mbox  {III-D}}{7}{The Fiction Graph}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-E}}Verified Generation}{7}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:verify}{{\mbox  {III-E}}{7}{Verified Generation}{subsection.3.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-F}}Human-in-the-Loop Gate}{8}{subsection.3.6}\protected@file@percent }
+\newlabel{sec:hitl}{{\mbox  {III-F}}{8}{Human-in-the-Loop Gate}{subsection.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-G}}Deterministic Fallback}{8}{subsection.3.7}\protected@file@percent }
+\newlabel{sec:fallback}{{\mbox  {III-G}}{8}{Deterministic Fallback}{subsection.3.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-H}}A Session Through the Loop}{8}{subsection.3.8}\protected@file@percent }
+\newlabel{sec:example}{{\mbox  {III-H}}{8}{A Session Through the Loop}{subsection.3.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-I}}Loop Orchestration}{9}{subsection.3.9}\protected@file@percent }
+\newlabel{sec:orchestration}{{\mbox  {III-I}}{9}{Loop Orchestration}{subsection.3.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Formal Properties and Adversarial Analysis}{9}{section.4}\protected@file@percent }
+\newlabel{sec:formal}{{IV}{9}{Formal Properties and Adversarial Analysis}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}The Serving-Time Consistency Invariant}{9}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:invariant}{{\mbox  {IV-A}}{9}{The Serving-Time Consistency Invariant}{subsection.4.1}{}}
+\newlabel{prop:consistency}{{1}{9}{Serving-time fiction consistency}{property.1}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Verified-serve loop (per attacker turn $x$)}}{9}{algorithm.1}\protected@file@percent }
+\newlabel{alg:loop}{{1}{9}{The Verified-Serve Algorithm}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}The Verified-Serve Algorithm}{9}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:algorithm}{{\mbox  {IV-B}}{9}{The Verified-Serve Algorithm}{subsection.4.2}{}}
+\citation{fayyazi2023}
+\citation{chaudhari2024}
+\citation{jia2025}
+\citation{xue2024}
+\citation{shafran2024}
+\citation{kouremetis2024}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Attacking the Loop}{10}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:attack}{{\mbox  {IV-C}}{10}{Attacking the Loop}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Implementation}{10}{section.5}\protected@file@percent }
+\newlabel{sec:implementation}{{V}{10}{Implementation}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Session Profiler}{10}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Retrieval Engine}{10}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Deception Engine and Persona Management}{10}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}Cross-Session Memory}{10}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-E}}Deployment and Cost}{10}{subsection.5.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Live-campaign results from the persisted artifacts. \emph  {Top:} suite means with bootstrap 95\% confidence intervals; open markers mark the independent second run's point estimates, and the actor interval is degenerate ($^{\dagger }$) because the actor rubric assigns the same score to every row, so uncertainty is carried by the Wilson pass-rate interval instead (Table~\ref {tab:live}). \emph  {Bottom:} two independent 218-query campaigns; the deterministic CTI strata replicate exactly and only the LLM-judged persona stratum moves, by $+0.018$.}}{11}{figure.3}\protected@file@percent }
+\newlabel{fig:results}{{3}{11}{Live-campaign results from the persisted artifacts. \emph {Top:} suite means with bootstrap 95\% confidence intervals; open markers mark the independent second run's point estimates, and the actor interval is degenerate ($^{\dagger }$) because the actor rubric assigns the same score to every row, so uncertainty is carried by the Wilson pass-rate interval instead (Table~\ref {tab:live}). \emph {Bottom:} two independent 218-query campaigns; the deterministic CTI strata replicate exactly and only the LLM-judged persona stratum moves, by $+0.018$}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-F}}Software Stack}{11}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Evaluation}{11}{section.6}\protected@file@percent }
+\newlabel{sec:evaluation}{{VI}{11}{Evaluation}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Experimental Setup}{11}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:setup}{{\mbox  {VI-A}}{11}{Experimental Setup}{subsection.6.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-A}1}Testbed}{11}{subsubsection.6.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-A}2}Workloads}{11}{subsubsection.6.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-A}3}Metrics}{11}{subsubsection.6.1.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Paired RAG-vs-no-RAG differential (90 pairs -- 30 per suite, 180 rows total; 95\% bootstrap CIs). Persona realism is predicted to be retrieval-independent, and is.}}{12}{table.1}\protected@file@percent }
+\newlabel{tab:b4}{{I}{12}{Paired RAG-vs-no-RAG differential (90 pairs -- 30 per suite, 180 rows total; 95\% bootstrap CIs). Persona realism is predicted to be retrieval-independent, and is}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-B}}RQ1: Does Grounding Change What the Honeypot Detects?}{12}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:rq1}{{\mbox  {VI-B}}{12}{RQ1: Does Grounding Change What the Honeypot Detects?}{subsection.6.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Paired grounding differential (RAG $-$ No-RAG) per suite with 95\% bootstrap CIs over 90 scenario pairs (numbers in Table~\ref {tab:b4}). Filled markers: intervals excluding zero -- $+0.317$ on technique detection and $+0.140$ on actor attribution. The open marker is the persona stratum, whose interval straddles zero exactly as the architecture predicts: host believability is produced by the deception engine and the fiction graph, not by threat-intelligence retrieval. The mechanism behind the technique effect is starker than the mean: the grounded arm detects 35 distinct TTPs, the ungrounded arm none.}}{12}{figure.4}\protected@file@percent }
+\newlabel{fig:grounding}{{4}{12}{Paired grounding differential (RAG $-$ No-RAG) per suite with 95\% bootstrap CIs over 90 scenario pairs (numbers in Table~\ref {tab:b4}). Filled markers: intervals excluding zero -- $+0.317$ on technique detection and $+0.140$ on actor attribution. The open marker is the persona stratum, whose interval straddles zero exactly as the architecture predicts: host believability is produced by the deception engine and the fiction graph, not by threat-intelligence retrieval. The mechanism behind the technique effect is starker than the mean: the grounded arm detects 35 distinct TTPs, the ungrounded arm none}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-B}1}Verifier intervention census}{12}{subsubsection.6.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-C}}RQ2: Consistency and Safety Under Adversarial Interaction}{13}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:rq2}{{\mbox  {VI-C}}{13}{RQ2: Consistency and Safety Under Adversarial Interaction}{subsection.6.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-C}1}Fiction-graph consistency}{13}{subsubsection.6.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-C}2}Predictive steering}{13}{subsubsection.6.3.2}\protected@file@percent }
+\citation{zheng2024}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Ablation battery over the eight ground-truth scenarios (persisted audit counts). Each removed mechanism should cost the system the property it was added to provide; A5 tests path equivalence, not degradation.}}{14}{table.2}\protected@file@percent }
+\newlabel{tab:ablations}{{II}{14}{Ablation battery over the eight ground-truth scenarios (persisted audit counts). Each removed mechanism should cost the system the property it was added to provide; A5 tests path equivalence, not degradation}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Live 218-query campaign (verified loop; Wilson pass-rate and bootstrap mean CIs). Zero errors; 218/218 sessions engaged; 218/218 correct persona assignments; 132 TTPs (67 unique) detected with zero false-positive CTI alerts, ground truth being the scenarios' expected technique sets (no manual audit of campaign-scale extractions was performed). Serve-path provenance: 88.1\% verified-generation serves, 11.9\% vetted deterministic, zero fallback serves (latency-split estimate; see text).}}{14}{table.3}\protected@file@percent }
+\newlabel{tab:live}{{III}{14}{Live 218-query campaign (verified loop; Wilson pass-rate and bootstrap mean CIs). Zero errors; 218/218 sessions engaged; 218/218 correct persona assignments; 132 TTPs (67 unique) detected with zero false-positive CTI alerts, ground truth being the scenarios' expected technique sets (no manual audit of campaign-scale extractions was performed). Serve-path provenance: 88.1\% verified-generation serves, 11.9\% vetted deterministic, zero fallback serves (latency-split estimate; see text)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-C}3}Mechanism ablations}{14}{table.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-C}4}Live campaign}{14}{table.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-D}}RQ3: Deception Quality Under an Independent LLM Judge Panel}{15}{subsection.6.4}\protected@file@percent }
+\newlabel{sec:rq3}{{\mbox  {VI-D}}{15}{RQ3: Deception Quality Under an Independent LLM Judge Panel}{subsection.6.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Per-scenario consensus (mean of three evaluator personas over the 1--5 rubric). The rubric profile of the weakest scenario locates the weakness in persona realism and artifact safety, not in the deception's technique accuracy.}}{15}{table.4}\protected@file@percent }
+\newlabel{tab:consensus}{{IV}{15}{Per-scenario consensus (mean of three evaluator personas over the 1--5 rubric). The rubric profile of the weakest scenario locates the weakness in persona realism and artifact safety, not in the deception's technique accuracy}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-E}}RQ4: Pricing the Ladder -- Adaptive Kind-Awareness and Its Fold-Down}{15}{subsection.6.5}\protected@file@percent }
+\newlabel{sec:jeveval}{{\mbox  {VI-E}}{15}{RQ4: Pricing the Ladder -- Adaptive Kind-Awareness and Its Fold-Down}{subsection.6.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The fold-down evidence funnel (census in Table~\ref {tab:hardsunset}). Deterministic routing resolves 394 of 400 held-out sessions at the tier floor before the assessment layer is consulted; the six sessions below floor form the only stratum where the top rung can change a pass decision, and the live arm's evidence there is one transient rescue and five provider refusals that did not recover on a structured retry.}}{16}{figure.5}\protected@file@percent }
+\newlabel{fig:funnel}{{5}{16}{The fold-down evidence funnel (census in Table~\ref {tab:hardsunset}). Deterministic routing resolves 394 of 400 held-out sessions at the tier floor before the assessment layer is consulted; the six sessions below floor form the only stratum where the top rung can change a pass decision, and the live arm's evidence there is one transient rescue and five provider refusals that did not recover on a structured retry}{figure.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Fold-down hard-subset census (the released \texttt  {jev\_hard\_subset.json}). The informative stratum for the routing comparison is the set of held-out sessions whose deterministic routing lands below the tier's risk floor; on every other row the assessment layer cannot change the pass decision by construction. The live arm assessed one of six informative sessions; the other five were refused by the provider and did not recover on a structured retry protocol (see text).}}{16}{table.5}\protected@file@percent }
+\newlabel{tab:hardsunset}{{V}{16}{Fold-down hard-subset census (the released \texttt {jev\_hard\_subset.json}). The informative stratum for the routing comparison is the set of held-out sessions whose deterministic routing lands below the tier's risk floor; on every other row the assessment layer cannot change the pass decision by construction. The live arm assessed one of six informative sessions; the other five were refused by the provider and did not recover on a structured retry protocol (see text)}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-F}}Scorer-Validity Audit: Manual Annotation of the CTI Channels}{17}{subsection.6.6}\protected@file@percent }
+\newlabel{sec:scorer-audit}{{\mbox  {VI-F}}{17}{Scorer-Validity Audit: Manual Annotation of the CTI Channels}{subsection.6.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Two-channel metrics of the verified RAGIN pipeline (generator: gateway default (glm-5.3-flash-free)). Served text is shown raw (the echo-crediting rubric) and echo-guarded (post-audit); the guarded column is canonical. The deception surface deliberately answers CTI-style questions with machine transcripts, not technique essays; the intelligence value lives in the analysis channel. Guarded numbers are computed on the audited surface, proven row-identical to this run by pre-guard score equality on all 218 rows (\texttt  {cti\_manual\_audit.json}).}}{17}{table.6}\protected@file@percent }
+\newlabel{tab:two-channel}{{VI}{17}{Two-channel metrics of the verified RAGIN pipeline (generator: gateway default (glm-5.3-flash-free)). Served text is shown raw (the echo-crediting rubric) and echo-guarded (post-audit); the guarded column is canonical. The deception surface deliberately answers CTI-style questions with machine transcripts, not technique essays; the intelligence value lives in the analysis channel. Guarded numbers are computed on the audited surface, proven row-identical to this run by pre-guard score equality on all 218 rows (\texttt {cti\_manual\_audit.json})}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-G}}Two-Channel Evaluation}{17}{subsection.6.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces External baselines on the 218-query workload (generator: deepseek-v4-flash-free for all LLM arms). \textbf  {All scores are served-text channel under the raw (pre-guard) rubric}---the deception quality an attacker experiences. Paired per-row deltas are scorer-invariant: the verified loop serves byte-identical strings to the no-verifier arm on all 218 rows (paired delta 0.000), and the host-fiction layer adds cross-session consistency at exactly zero quality cost (paired per-row delta 0.000). Absolute levels on fallback-heavy runs shift under the echo guard (Table~\ref {tab:two-channel}); the grounding and consistency contrasts do not.}}{18}{table.7}\protected@file@percent }
+\newlabel{tab:baseline-served-text}{{VII}{18}{External baselines on the 218-query workload (generator: deepseek-v4-flash-free for all LLM arms). \textbf {All scores are served-text channel under the raw (pre-guard) rubric}---the deception quality an attacker experiences. Paired per-row deltas are scorer-invariant: the verified loop serves byte-identical strings to the no-verifier arm on all 218 rows (paired delta 0.000), and the host-fiction layer adds cross-session consistency at exactly zero quality cost (paired per-row delta 0.000). Absolute levels on fallback-heavy runs shift under the echo guard (Table~\ref {tab:two-channel}); the grounding and consistency contrasts do not}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {VIII}{\ignorespaces Blinded annotator audit of the automated scorers (\S  \ref {sec:scorer-audit}): two independent blinded annotators (fixed-identity free-tier models, no gold labels, no pipeline scores), third-annotator adjudication, taxonomy pinned to \\attck{} Enterprise v19.1 (vendored STIX, sha256-locked). Scorer-vs-annotator agreement is Cohen's $\kappa $ between the automated channel verdicts and the adjudicated annotator labels, before/after the echo guard. All disagreements were adjudicated; none unresolved.}}{18}{table.8}\protected@file@percent }
+\newlabel{tab:cti-audit}{{VIII}{18}{Blinded annotator audit of the automated scorers (\S \ref {sec:scorer-audit}): two independent blinded annotators (fixed-identity free-tier models, no gold labels, no pipeline scores), third-annotator adjudication, taxonomy pinned to \\attck{} Enterprise v19.1 (vendored STIX, sha256-locked). Scorer-vs-annotator agreement is Cohen's $\kappa $ between the automated channel verdicts and the adjudicated annotator labels, before/after the echo guard. All disagreements were adjudicated; none unresolved}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-H}}Run-to-Run Stability}{18}{subsection.6.8}\protected@file@percent }
+\newlabel{sec:stability}{{\mbox  {VI-H}}{18}{Run-to-Run Stability}{subsection.6.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-I}}Threats to Validity}{18}{subsection.6.9}\protected@file@percent }
+\newlabel{sec:threats}{{\mbox  {VI-I}}{18}{Threats to Validity}{subsection.6.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Discussion}{19}{section.7}\protected@file@percent }
+\newlabel{sec:discussion}{{VII}{19}{Discussion}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-A}}What the Loop Buys, What the Ladder Prices, and What Neither Can}{19}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-B}}Deployment Guidance}{19}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-C}}Cost and Practicality}{19}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-D}}Generalizing the Ladder and the Loop}{19}{subsection.7.4}\protected@file@percent }
+\citation{spitzner2002}
+\citation{lopez2024}
+\citation{t-pot2024}
+\citation{kouremetis2024}
+\citation{galah2024}
+\citation{qiao2025}
+\citation{sezgin2025decoypot}
+\citation{belmahjoub2025}
+\citation{gao2025}
+\citation{wang2026honeygpt}
+\citation{sezgin2025decoypot}
+\citation{malhotra2025llmhoney}
+\citation{li2026llmsshh}
+\citation{laragutierrez2026genpot}
+\citation{bridges2026}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-E}}Ethics}{20}{subsection.7.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-F}}Limitations}{20}{subsection.7.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Related Work}{20}{section.8}\protected@file@percent }
+\newlabel{sec:related}{{VIII}{20}{Related Work}{section.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-A}}Honeypot and Honeynet Architectures}{20}{subsection.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-B}}Generative Models in Deception}{20}{subsection.8.2}\protected@file@percent }
+\citation{wang2026honeygpt}
+\citation{sezgin2025decoypot}
+\citation{malhotra2025llmhoney}
+\citation{li2026llmsshh}
+\citation{laragutierrez2026genpot}
+\citation{bai2022}
+\citation{ganguli2022}
+\citation{christiano2017}
+\citation{greshake2023}
+\citation{perez2022}
+\citation{reworr2024}
+\citation{inan2023}
+\citation{alsada2024}
+\citation{rajapaksha2024}
+\citation{blefari2025}
+\citation{liu2025}
+\citation{orbinato2022}
+\citation{sezgin2025decoypot}
+\citation{qiao2025}
+\citation{bachl2021}
+\citation{farasat2024b}
+\citation{sharafaldin2018}
+\citation{lekssays2025}
+\citation{alsaheel2021}
+\citation{noureddine2020}
+\citation{kouremetis2024}
+\citation{jeon2024}
+\citation{spitzner2003}
+\citation{valeros2024}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-C}}LLM Security and Alignment Pressure}{21}{subsection.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-D}}CTI and Behavior Analysis}{21}{subsection.8.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {IX}Conclusion}{21}{section.9}\protected@file@percent }
+\newlabel{sec:conclusion}{{IX}{21}{Conclusion}{section.9}{}}
+\bibcite{alsada2024}{1}
+\bibcite{bachl2021}{2}
+\bibcite{crowdstrike2026}{3}
+\bibcite{belmahjoub2025}{4}
+\bibcite{ibm2024}{5}
+\bibcite{chaudhari2024}{6}
+\bibcite{blefari2025}{7}
+\bibcite{orbinato2022}{8}
+\bibcite{alsaheel2021}{9}
+\bibcite{noureddine2020}{10}
+\bibcite{farasat2024b}{11}
+\bibcite{fayyazi2023}{12}
+\bibcite{gao2025}{13}
+\bibcite{jeon2024}{14}
+\bibcite{jia2025}{15}
+\bibcite{kouremetis2024}{16}
+\@writefile{lot}{\contentsline {table}{\numberline {IX}{\ignorespaces Positioning against recent generative-honeypot systems. Y = present as a first-class, evaluated mechanism; P = partial (mechanism present but not evaluated under adversarial pressure, or scoped to response content only); N = not reported. Entries reflect the cited papers' own evaluations; where a capability is absent from a paper's reported design we mark N without implying the system could not add it. RAGIN\xspace  's column is the only one whose evaluation includes a priced fold-down of an intelligent component.}}{22}{table.9}\protected@file@percent }
+\newlabel{tab:related-matrix}{{IX}{22}{Positioning against recent generative-honeypot systems. Y = present as a first-class, evaluated mechanism; P = partial (mechanism present but not evaluated under adversarial pressure, or scoped to response content only); N = not reported. Entries reflect the cited papers' own evaluations; where a capability is absent from a paper's reported design we mark N without implying the system could not add it. \system 's column is the only one whose evaluation includes a priced fold-down of an intelligent component}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{Biographies}{22}{IEEEbiography.0}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{Anonymous}{22}{IEEEbiography.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{References}{22}{section*.1}\protected@file@percent }
+\bibcite{lekssays2025}{17}
+\bibcite{lewis2020}{18}
+\bibcite{liu2025}{19}
+\bibcite{lopez2024}{20}
+\bibcite{paul2025}{21}
+\bibcite{qiao2025}{22}
+\bibcite{rajapaksha2024}{23}
+\bibcite{reworr2024}{24}
+\bibcite{roy2023}{25}
+\bibcite{sharafaldin2018}{26}
+\bibcite{shinde2020}{27}
+\bibcite{spitzner2002}{28}
+\bibcite{spitzner2003}{29}
+\bibcite{valeros2024}{30}
+\bibcite{jimenez2025}{31}
+\bibcite{ganguli2022}{32}
+\bibcite{perez2022}{33}
+\bibcite{bai2022}{34}
+\bibcite{greshake2023}{35}
+\bibcite{christiano2017}{36}
+\bibcite{zheng2024}{37}
+\bibcite{wang2024}{38}
+\bibcite{pawlick2021}{39}
+\bibcite{galah2024}{40}
+\bibcite{bridges2026}{41}
+\bibcite{t-pot2024}{42}
+\bibcite{inan2023}{43}
+\bibcite{xue2024}{44}
+\bibcite{shafran2024}{45}
+\bibcite{wang2026honeygpt}{46}
+\bibcite{sezgin2025decoypot}{47}
+\bibcite{malhotra2025llmhoney}{48}
+\bibcite{li2026llmsshh}{49}
+\bibcite{laragutierrez2026genpot}{50}
+\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  A: Released Artifacts}{23}{section*.2}\protected@file@percent }
+\newlabel{app:artifacts}{{A}{23}{\appendixname \nobreakspace \thesectiondis \\* Released Artifacts}{section*.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {X}{\ignorespaces Consensus rubric anchors. Each dimension is scored 1--5; the anchors below are the released definitions, abbreviated to fit.}}{24}{table.10}\protected@file@percent }
+\newlabel{tab:rubric-anchors}{{X}{24}{Consensus rubric anchors. Each dimension is scored 1--5; the anchors below are the released definitions, abbreviated to fit}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {XI}{\ignorespaces Ground-truth scenarios. Personas: N=novice, I=intermediate, A=advanced. Danger signals are strings whose appearance in a response sets the danger flag of Appendix~\ref {app:rubrics}.}}{24}{table.11}\protected@file@percent }
+\newlabel{tab:scenarios}{{XI}{24}{Ground-truth scenarios. Personas: N=novice, I=intermediate, A=advanced. Danger signals are strings whose appearance in a response sets the danger flag of Appendix~\ref {app:rubrics}}{table.11}{}}
+\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  B: Reproduction Protocol}{24}{section*.3}\protected@file@percent }
+\newlabel{app:repro}{{B}{24}{\appendixname \nobreakspace \thesectiondis \\* Reproduction Protocol}{section*.3}{}}
+\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  C: Consensus Rubrics and Judge Protocol}{24}{section*.4}\protected@file@percent }
+\newlabel{app:rubrics}{{C}{24}{\appendixname \nobreakspace \thesectiondis \\* Consensus Rubrics and Judge Protocol}{section*.4}{}}
+\newlabel{lst:repro}{{1}{25}{Full reproduction sequence. Each step writes the artifact that backs its section}{lstlisting.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}Full reproduction sequence. Each step writes the artifact that backs its section.}{25}{lstlisting.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  D: Ground-Truth Scenario Suite}{25}{section*.5}\protected@file@percent }
+\newlabel{app:scenarios}{{D}{25}{\appendixname \nobreakspace \thesectiondis \\* Ground-Truth Scenario Suite}{section*.5}{}}
+\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  E: Audit Records and Steering Internals}{25}{section*.6}\protected@file@percent }
+\newlabel{app:audit}{{E}{25}{\appendixname \nobreakspace \thesectiondis \\* Audit Records and Steering Internals}{section*.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {E-A}}The Offline Judge Audit}{25}{subsection.Appendix.E.1}\protected@file@percent }
+\newlabel{sec:judgeaudit}{{\mbox  {E-A}}{25}{The Offline Judge Audit}{subsection.Appendix.E.1}{}}
+\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  F: Figure Geometry Audit}{25}{section*.7}\protected@file@percent }
+\newlabel{app:figaudit}{{F}{25}{\appendixname \nobreakspace \thesectiondis \\* Figure Geometry Audit}{section*.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {XII}{\ignorespaces Artifact index. The third column names the claims each file supports, by research question and section.}}{26}{table.12}\protected@file@percent }
+\newlabel{tab:artifacts}{{XII}{26}{Artifact index. The third column names the claims each file supports, by research question and section}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {XIII}{\ignorespaces The live red-team stratum's residual missed drafts (deepseek author: 12 of 236 over five rounds; the final run served zero false positives across 63 benign drafts), grouped by root cause. Excerpts abridged to the diagnostic span. Classes A--B are authoring artifacts; class D is a cross-turn association limit; classes C and E--G are the open recall gap discussed in \S  \ref {sec:rq2}. The second author model (space-bunny) independently reproduced the same taxonomy -- 10 missed drafts, all in classes C--G or deeper paraphrase -- and contributed one precision root of its own (a \texttt  {uid} token captured as a username, fixed).}}{27}{table.13}\protected@file@percent }
+\newlabel{tab:livemiss}{{XIII}{27}{The live red-team stratum's residual missed drafts (deepseek author: 12 of 236 over five rounds; the final run served zero false positives across 63 benign drafts), grouped by root cause. Excerpts abridged to the diagnostic span. Classes A--B are authoring artifacts; class D is a cross-turn association limit; classes C and E--G are the open recall gap discussed in \S \ref {sec:rq2}. The second author model (space-bunny) independently reproduced the same taxonomy -- 10 missed drafts, all in classes C--G or deeper paraphrase -- and contributed one precision root of its own (a \texttt {uid} token captured as a username, fixed)}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {XIV}{\ignorespaces Figure geometry audit of the version of record. Rects are node boxes located without reference to the source (solid + dashed); runs are long ink runs inventoried outside node interiors.}}{27}{table.14}\protected@file@percent }
+\newlabel{tab:figaudit}{{XIV}{27}{Figure geometry audit of the version of record. Rects are node boxes located without reference to the source (solid + dashed); runs are long ink runs inventoried outside node interiors}{table.14}{}}
+\gdef \@abspage@last{27}

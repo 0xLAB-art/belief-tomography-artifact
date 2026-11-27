@@ -1,0 +1,61 @@
+{
+  "schema": "ragin.cowrie.runtime_contract.v1",
+  "observed_at_utc": "2026-10-14T00:00:00Z",
+  "runtime": {
+    "container": "ragin-cowrie-shield",
+    "image": "cowrie/cowrie:latest",
+    "container_id": "dbf65a45b4c1b6a458776602b9d56f5f10a24f798e8c7c3e277bc56f07a3ce79",
+    "container_created_at_utc": "2026-10-11T06:18:01.184035765Z",
+    "process_command": "/cowrie/cowrie-env/bin/twistd -n --umask=0022 --pidfile= --logger cowrie.python.logfile.stdoutLogger cowrie",
+    "python_module_path": "/cowrie/cowrie-git/src/cowrie/__init__.py",
+    "version_identity": "container image tag only; package version metadata unavailable"
+  },
+  "configuration": {
+    "effective_default_config": "/cowrie/cowrie-git/src/cowrie/data/etc/cowrie.cfg.dist",
+    "json_log_path": "/cowrie/cowrie-git/var/log/cowrie/cowrie.json",
+    "text_log_path": "/cowrie/cowrie-git/var/log/cowrie/audit.log (configured path; file not observed in current listing)",
+    "log_type": "rotating",
+    "ssh_listen_endpoint": "tcp:2222:interface=0.0.0.0",
+    "telnet_listen_endpoint": "tcp:2223:interface=0.0.0.0",
+    "docker_published_ports_observed": {}
+  },
+  "event_contract": {
+    "session_field": "session",
+    "timestamp_field": "timestamp",
+    "event_id_field": "eventid",
+    "native_input_event_ids": ["cowrie.command.input"],
+    "native_close_event_ids": ["cowrie.session.closed"],
+    "authentication_event_ids_observed": ["cowrie.login.failed", "cowrie.login.success"],
+    "observed_event_ids": {
+      "cowrie.client.fingerprint": 9,
+      "cowrie.client.kex": 9,
+      "cowrie.client.var": 90,
+      "cowrie.client.version": 9,
+      "cowrie.log.closed": 9,
+      "cowrie.login.failed": 9,
+      "cowrie.login.success": 9,
+      "cowrie.session.closed": 9,
+      "cowrie.session.connect": 9
+    },
+    "observed_json_events": 162,
+    "observed_sessions": 9,
+    "observed_input_events": 0,
+    "historical_records_eligible": false
+  },
+  "capture_boundary": {
+    "source_class": "CONTROLLED_REAL_HONEYPOT",
+    "fixture_events": "test_fixture=true and eligible_for_real_evaluation=false",
+    "prospective_boundary": "only sessions first observed after the Cowrie integration freeze",
+    "finalization": "explicit cowrie.session.closed plus at least one usable input event",
+    "stale_recovery": "not enabled; incomplete sessions fail closed",
+    "rotation": "all matching JSON log segments are parsed; missing required fragments fail closed",
+    "grouping_key": "deployment_id + native Cowrie session",
+    "historical_log_use": "runtime discovery only; never entered the prospective registry"
+  },
+  "safety": {
+    "aws_changed": false,
+    "network_changed": false,
+    "v4_policy_execution": 0,
+    "reference_annotations": 0
+  }
+}

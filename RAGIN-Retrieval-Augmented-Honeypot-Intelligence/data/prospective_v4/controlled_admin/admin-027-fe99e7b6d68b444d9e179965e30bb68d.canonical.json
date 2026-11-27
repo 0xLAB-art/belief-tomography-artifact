@@ -1,0 +1,48 @@
+{
+  "canonical_record_sha256": "dcbd8967c514479f75e1df44ac44826e87333ddb04d85bf8f48c0961fc0ba9fc",
+  "capture_id": "admin-027-fe99e7b6d68b444d9e179965e30bb68d",
+  "derivation_tool": "v4_controlled_admin_capture.py",
+  "derivation_tool_sha256": "d59b176bf441329630e45db76cdac7274eef5aa4ee1141c7ec906d614e9bc2f1",
+  "derivation_version": "v1:d0e0539d3fb3d7ba5108f319e2868506b3463e170b868f8f8b1d61d8b953843a",
+  "derived_at_utc": "2026-10-14T06:38:37.994017Z",
+  "independence_group_id": "admin-027-fe99e7b6d68b444d9e179965e30bb68d",
+  "native_session_id": "admin-027-fe99e7b6d68b444d9e179965e30bb68d",
+  "prior_session_context": [
+    {
+      "data": {
+        "transport": "local-bash-session"
+      },
+      "event_type": "session_start",
+      "timestamp": "2026-10-14T06:38:37.951327Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "ps -eo pid,comm --sort=comm | head -n 20",
+      "output": "    PID COMMAND\n   1847 (sd-pam)\n 554273 MainThread\n 554303 MainThread\n 554327 MainThread\n 647983 MainThread\n 816003 MainThread\n 816025 MainThread\n 816050 MainThread\n 857278 MainThread\n 857296 MainThread\n 857313 MainThread\n 857749 MainThread\n 857781 MainThread\n 857824 MainThread\n 859545 MainThread\n 859571 MainThread\n 859592 MainThread\n   1589 ModemManager\n   1548 NetworkManager\n",
+      "timestamp": "2026-10-14T06:38:37.969573Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "ip -brief link",
+      "output": "lo               UNKNOWN        00:00:00:00:00:00 <LOOPBACK,UP,LOWER_UP> \neno1             DOWN           8c:04:ba:3b:0b:e6 <NO-CARRIER,BROADCAST,MULTICAST,UP> \nwlp110s0         UP             3c:f0:11:97:ee:51 <BROADCAST,MULTICAST,UP,LOWER_UP> \ntailscale0       UNKNOWN        <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> \ndocker0          UP             5a:18:51:55:ee:7a <BROADCAST,MULTICAST,UP,LOWER_UP> \nbr-80fc409079bf  DOWN           f6:a7:5c:b1:b7:8d <NO-CARRIER,BROADCAST,MULTICAST,UP> \nveth84bd8e6@if2  UP             f2:00:90:43:03:76 <BROADCAST,MULTICAST,UP,LOWER_UP> \nbr-9e7e530f351d  DOWN           8e:76:63:cb:17:1a <NO-CARRIER,BROADCAST,MULTICAST,UP> \nbr-04e3f9806b50  DOWN           66:ab:d2:eb:b8:a5 <NO-CARRIER,BROADCAST,MULTICAST,UP> \nligolo           DOWN           <POINTOPOINT,MULTICAST,NOARP> \nligolo0          DOWN           <NO-CARRIER,POINTOPOINT,MULTICAST,NOARP,UP> \n",
+      "timestamp": "2026-10-14T06:38:37.971166Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "ss -ltnH 2>/dev/null | head -n 20",
+      "output": "LISTEN 0      200                     [REDACTED_IP]:5432  [REDACTED_IP]:*\nLISTEN 0      511                     [REDACTED_IP]:6379  [REDACTED_IP]:*\nLISTEN 1      128                     [REDACTED_IP]:39135 [REDACTED_IP]:*\nLISTEN 0      128                       [REDACTED_IP]:8080  [REDACTED_IP]:*\nLISTEN 0      4096                      [REDACTED_IP]:8191  [REDACTED_IP]:*\nLISTEN 0      5                       [REDACTED_IP]:15933 [REDACTED_IP]:*\nLISTEN 0      5                       [REDACTED_IP]:15913 [REDACTED_IP]:*\nLISTEN 0      128                     [REDACTED_IP]:40557 [REDACTED_IP]:*\nLISTEN 0      4096                      [REDACTED_IP]:22    [REDACTED_IP]:*\nLISTEN 0      4096                 [REDACTED_IP]:49712 [REDACTED_IP]:*\nLISTEN 0      4096                    [REDACTED_IP]:631   [REDACTED_IP]:*\nLISTEN 0      4096                    [REDACTED_IP]:9050  [REDACTED_IP]:*\nLISTEN 0      4096                    [REDACTED_IP]:9051  [REDACTED_IP]:*\nLISTEN 0      4096                   [REDACTED_IP]:53    [REDACTED_IP]:*\nLISTEN 0      50                        [REDACTED_IP]:2222  [REDACTED_IP]:*\nLISTEN 0      4096                [REDACTED_IP]%lo:53    [REDACTED_IP]:*\nLISTEN 0      128                     [REDACTED_IP]:35669 [REDACTED_IP]:*\nLISTEN 0      4096                    [REDACTED_IP]:11434 [REDACTED_IP]:*\nLISTEN 0      4096                        [::1]:631      [::]:*\nLISTEN 0      4096   [fd7a:115c:a1e0::3201:3c4]:58959    [::]:*\n",
+      "timestamp": "2026-10-14T06:38:37.977731Z"
+    },
+    {
+      "event_type": "operator_input",
+      "operator_input": "systemctl --no-pager --plain --type=service --state=running 2>/dev/null | head -n 20",
+      "output": "UNIT                                                  LOAD   ACTIVE SUB     DESCRIPTION\naccounts-daemon.service                               loaded active running Accounts Service\natop.service                                          loaded active running Atop advanced performance monitor\natopacct.service                                      loaded active running Atop process accounting daemon\navahi-daemon.service                                  loaded active running Avahi mDNS/DNS-SD Stack\nbluetooth.service                                     loaded active running Bluetooth service\nbolt.service                                          loaded active running Thunderbolt system service\ncolord.service                                        loaded active running Manage, Install and Generate Color Profiles\ncontainerd.service                                    loaded active running containerd container runtime\ncron.service                                          loaded active running Regular background program processing daemon\ncups-browsed.service                                  loaded active running Make remote CUPS printers available locally\ncups.service                                          loaded active running CUPS Scheduler\ndbus.service                                          loaded active running D-Bus System Message Bus\ndocker.service                                        loaded active running Docker Application Container Engine\nfwupd.service                                         loaded active running Firmware update daemon\ngdm.service                                           loaded active running GNOME Display Manager\ngnome-remote-desktop.service                          loaded active running GNOME Remote Desktop\nkerneloops.service                                    loaded active running Tool to automatically collect and submit kernel crash signatures\nModemManager.service                                  loaded active running Modem Manager\nNetworkManager.service                                loaded active running Network Manager\n",
+      "timestamp": "2026-10-14T06:38:37.982285Z"
+    }
+  ],
+  "raw_parent_sha256": "3eea40a9268e6b0751bbfb8a90fcb08727031af4d554b88afe7539c0e6395fdb",
+  "schema": "ragin.real_canonical_session.v1",
+  "selected_input": "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT 2>/dev/null | head -n 20",
+  "selected_input_event_index": 5,
+  "source_cluster_id": null
+}

@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-09-20T20:09:50Z",
+ "method": "closed-loop replay: attacker-LLM (deepseek-v4.1-flash-free) follows real Cowrie playbooks; Hisoka responses via LLM gateway (glm-5.3-flash-free) with canary-gated llm-backed verification; treated condition adds recorded Jev kind assessments to the Hisoka prompt",
+ "max_turns": 12,
+ "totals": {
+  "families": 1,
+  "baseline_turns": 9,
+  "treated_turns": 5,
+  "baseline_bait": 1,
+  "treated_bait": 0
+ },
+ "per_family": [
+  {
+   "family": "shadow_read",
+   "condition": "baseline",
+   "turns": 9,
+   "left_early": true,
+   "leave_reason": "responses are repetitive and suspiciously convenient (identical mtimes, empty history, canned /var/tmp listing) \u2014 looks like a fake/trap box, not worth more time.",
+   "bait_markers_shown": 1,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 4,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "shadow_read",
+   "condition": "treated",
+   "turns": 5,
+   "left_early": true,
+   "leave_reason": "repeated identical output from the same directory suggests a stale or scripted shell; no new information and likely a tarpit.",
+   "bait_markers_shown": 0,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 3,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  }
+ ]
+}

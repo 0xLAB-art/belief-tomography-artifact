@@ -1,0 +1,202 @@
+{
+  "actions": {
+    "RAGIN_BASELINE": {
+      "NOT_VERIFIABLE": 240
+    },
+    "RAGIN_V4_SUBSTANTIVE_DETERMINISTIC": {
+      "NOT_VERIFIABLE": 240
+    },
+    "RAGIN_V4_SUBSTANTIVE_LOGISTIC": {
+      "NOT_VERIFIABLE": 237,
+      "inspect": 3
+    }
+  },
+  "arm_counts": {
+    "RAGIN_BASELINE": 240,
+    "RAGIN_V4_SUBSTANTIVE_DETERMINISTIC": 240,
+    "RAGIN_V4_SUBSTANTIVE_LOGISTIC": 240
+  },
+  "authoritative_strategy_consumption_audit": {
+    "fail_safe_or_baseline_fallback_serves": 474,
+    "interpretation": "The raw delivery flag is not treated as substantive consumption on fallback records because the baseline fallback response carries legacy metadata. Only records with V1_SUBSTANTIVE_STRATEGY_GENERATOR, strategy_source=v4_policy_decision, and strategy_consumed_by_template=true count as observed substantive consumption.",
+    "raw_metadata_delivery_not_verifiable": 3,
+    "raw_metadata_delivery_true": 477,
+    "served_consumption_not_verifiable": 3,
+    "substantive_generator_consumed_and_served": 3,
+    "v4_records": 480
+  },
+  "cases": 240,
+  "claims_boundary": [
+    "Runtime and reference-free behavioral observations only",
+    "Policy selection quality NOT EVALUATED",
+    "Real-world attacker engagement NOT EVALUATED",
+    "Same-source retrospective corpus is not independent prospective field evidence"
+  ],
+  "commits": {
+    "accepted": 3,
+    "not_verifiable": 717,
+    "rejected": 0
+  },
+  "excluded_aborted_attempts": [
+    "results/decision_fusion_v4/hf2024_substantive_final_v1/raw_execution_records.jsonl (401 records)",
+    "results/decision_fusion_v4/hf2024_substantive_final_v1/attempt_002/raw_execution_records.jsonl (142 records)"
+  ],
+  "execution_attempt": "attempt_003",
+  "experiment_id": "HF2024_SUBSTANTIVE_FINAL_V1",
+  "fallbacks": {
+    "baseline_policy_fallback": 6,
+    "invalid_evidence_gate": 468
+  },
+  "gate_states": {
+    "RAGIN_BASELINE": {
+      "NOT_APPLICABLE_BASELINE": 240
+    },
+    "RAGIN_V4_SUBSTANTIVE_DETERMINISTIC": {
+      "LOW_RELEVANCE": 234,
+      "VALID_EVIDENCE": 6
+    },
+    "RAGIN_V4_SUBSTANTIVE_LOGISTIC": {
+      "LOW_RELEVANCE": 234,
+      "VALID_EVIDENCE": 6
+    }
+  },
+  "hitl": {
+    "approved": 720,
+    "human_reviews": 0,
+    "records": 720
+  },
+  "holdout_integrity": {
+    "N": 240,
+    "prior_family_overlap": 0,
+    "unique_case_ids": 240,
+    "unique_command_families": 240,
+    "unique_source_groups": 240
+  },
+  "latency_ms": {
+    "RAGIN_BASELINE": {
+      "N": 240,
+      "mean": 123.517
+    },
+    "RAGIN_V4_SUBSTANTIVE_DETERMINISTIC": {
+      "N": 240,
+      "mean": 126.526
+    },
+    "RAGIN_V4_SUBSTANTIVE_LOGISTIC": {
+      "N": 240,
+      "mean": 127.1
+    }
+  },
+  "missing_or_incomplete_traces": {
+    "commit_event": 717,
+    "evidence_ids": 0,
+    "fictional_state_after_hash": 717,
+    "fictional_state_before_hash": 717,
+    "fictional_state_proposed_hash": 717,
+    "generator_version": 243,
+    "strategy_source": 3
+  },
+  "observed_state_transitions": {
+    "RAGIN_BASELINE": 0,
+    "RAGIN_V4_SUBSTANTIVE_DETERMINISTIC": 0,
+    "RAGIN_V4_SUBSTANTIVE_LOGISTIC": 3,
+    "interpretation": "Only three logistic records exposed before/proposed/after fictional-state hashes; no matched pair had observable state hashes on both arms."
+  },
+  "records": 720,
+  "response_comparison": {
+    "after_decorative_removal": {
+      "baseline_vs_deterministic": {
+        "N": 240,
+        "changed": 0,
+        "equal": 240
+      },
+      "baseline_vs_logistic": {
+        "N": 240,
+        "changed": 3,
+        "equal": 237
+      },
+      "deterministic_vs_logistic": {
+        "N": 240,
+        "changed": 3,
+        "equal": 237
+      }
+    },
+    "raw": {
+      "baseline_vs_deterministic": {
+        "N": 240,
+        "changed": 0,
+        "equal": 240
+      },
+      "baseline_vs_logistic": {
+        "N": 240,
+        "changed": 3,
+        "equal": 237
+      },
+      "deterministic_vs_logistic": {
+        "N": 240,
+        "changed": 3,
+        "equal": 237
+      }
+    }
+  },
+  "runtime_mode_initialization_check": {
+    "RAGIN_BASELINE": "HisokaAdapter / RAGIN_BASELINE",
+    "RAGIN_V4_SUBSTANTIVE_DETERMINISTIC": "SubstantiveStrategyAdapter / RAGIN_V4_DETERMINISTIC",
+    "RAGIN_V4_SUBSTANTIVE_LOGISTIC": "SubstantiveStrategyAdapter / RAGIN_V4_LOGISTIC",
+    "external_generation_calls": false
+  },
+  "schema": "ragin.v4.hf2024.substantive_final.locked_behavioral_analysis.v1",
+  "state_isolation": {
+    "case_arm_pairs": 720,
+    "cross_arm_state_reuse_observed": false,
+    "duplicate_case_arm_pairs": 0
+  },
+  "state_transition_comparison": {
+    "baseline_vs_deterministic": {
+      "N": 240,
+      "changed": "NOT_VERIFIABLE",
+      "not_verifiable_pairs": 240,
+      "observable_pairs": 0
+    },
+    "baseline_vs_logistic": {
+      "N": 240,
+      "changed": "NOT_VERIFIABLE",
+      "not_verifiable_pairs": 240,
+      "observable_pairs": 0
+    },
+    "deterministic_vs_logistic": {
+      "N": 240,
+      "changed": "NOT_VERIFIABLE",
+      "not_verifiable_pairs": 240,
+      "observable_pairs": 0
+    }
+  },
+  "strategy_delivery": {
+    "consumed_true": 3,
+    "consumption_not_verifiable": 3,
+    "delivered_true": 477,
+    "delivery_not_verifiable": 3,
+    "v4_records": 480
+  },
+  "strategy_disagreement": {
+    "baseline_vs_deterministic": 0,
+    "baseline_vs_logistic": 6,
+    "deterministic_vs_logistic": 6
+  },
+  "strategy_distributions": {
+    "RAGIN_BASELINE": {
+      "baseline": 240
+    },
+    "RAGIN_V4_SUBSTANTIVE_DETERMINISTIC": {
+      "baseline": 240
+    },
+    "RAGIN_V4_SUBSTANTIVE_LOGISTIC": {
+      "baseline": 234,
+      "maximize_recon_surface": 6
+    }
+  },
+  "verification": {
+    "failed": 0,
+    "passed": 720,
+    "safety_violations": 0
+  }
+}

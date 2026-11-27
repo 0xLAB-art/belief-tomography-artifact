@@ -1,0 +1,132 @@
+{
+  "what": "Cluster-bootstrap CIs over cases for the induced-draft battery",
+  "method": {
+    "resampling_unit": "case (cluster)",
+    "iterations": 10000,
+    "seed": 20261008,
+    "estimator": "percentile",
+    "supersedes": "Wilson-over-drafts intervals in verifier_redteam_cross_family.json",
+    "rationale": "repeats within a case share a scenario, so drafts are not independent"
+  },
+  "families": {
+    "space-bunny-free": {
+      "artifact": "results/verifier_redteam_live_space-bunny_rescored_after_fix.json",
+      "drafts": 261,
+      "tp": 185,
+      "fn": 8,
+      "fp": 0,
+      "tn": 68,
+      "precision": 1.0,
+      "recall": 0.9585,
+      "wilson_precision_draft_level": [
+        0.9797,
+        1.0
+      ],
+      "wilson_recall_draft_level": [
+        0.9204,
+        0.9788
+      ],
+      "cluster_bootstrap": {
+        "n_cases": 89,
+        "precision_ci95": [
+          1.0,
+          1.0
+        ],
+        "recall_ci95": [
+          0.9257,
+          0.9849
+        ]
+      }
+    },
+    "deepseek-v4-flash-free": {
+      "artifact": "results/verifier_redteam_live_deepseek-v4-flash-free_rescored_after_fix.json",
+      "drafts": 236,
+      "tp": 170,
+      "fn": 3,
+      "fp": 0,
+      "tn": 63,
+      "precision": 1.0,
+      "recall": 0.9827,
+      "wilson_precision_draft_level": [
+        0.9779,
+        1.0
+      ],
+      "wilson_recall_draft_level": [
+        0.9503,
+        0.9941
+      ],
+      "cluster_bootstrap": {
+        "n_cases": 80,
+        "precision_ci95": [
+          1.0,
+          1.0
+        ],
+        "recall_ci95": [
+          0.9605,
+          1.0
+        ]
+      }
+    },
+    "llama-3.3-70b": {
+      "artifact": "results/verifier_redteam_live_llama33_complete.json",
+      "drafts": 281,
+      "tp": 185,
+      "fn": 21,
+      "fp": 17,
+      "tn": 58,
+      "precision": 0.9158,
+      "recall": 0.8981,
+      "wilson_precision_draft_level": [
+        0.8694,
+        0.9468
+      ],
+      "wilson_recall_draft_level": [
+        0.8492,
+        0.9324
+      ],
+      "cluster_bootstrap": {
+        "n_cases": 94,
+        "precision_ci95": [
+          0.8579,
+          0.9619
+        ],
+        "recall_ci95": [
+          0.8482,
+          0.9431
+        ]
+      }
+    }
+  },
+  "pooled": {
+    "n_cases": 263,
+    "drafts": 778,
+    "tp": 540,
+    "fn": 32,
+    "fp": 17,
+    "tn": 189,
+    "precision": 0.9695,
+    "recall": 0.9441,
+    "wilson_precision_draft_level": [
+      0.9517,
+      0.9809
+    ],
+    "wilson_recall_draft_level": [
+      0.9221,
+      0.9601
+    ],
+    "cluster_bootstrap": {
+      "n_cases": 263,
+      "precision_ci95": [
+        0.9493,
+        0.9865
+      ],
+      "recall_ci95": [
+        0.9216,
+        0.9645
+      ]
+    },
+    "stratified_by": "author family"
+  },
+  "aggregation_matches_published": true,
+  "mismatches": []
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "ragin.decision_fusion_v4.local_instruction_model_inventory.v1",
+  "status": "COMPLETE_READ_ONLY_INVENTORY",
+  "classification": "LOCAL_INSTRUCTION_CANDIDATE_UNAVAILABLE",
+  "inventory_scope": {
+    "paid_external_api_used": false,
+    "model_download_attempted": false,
+    "aws_resources_changed": false,
+    "validation_corpus_accessed": false
+  },
+  "endpoints": {
+    "ollama_executable": {"available": true, "path": "/usr/local/bin/ollama"},
+    "ollama_http": {"available": true, "endpoint": "http://127.0.0.1:11434/api/tags"},
+    "openai_compatible_8000": {"available": false, "endpoint": "http://127.0.0.1:8000/v1/models", "observed": "connection refused"},
+    "ragin_gateway_8080": {"available": true, "purpose": "RAGIN gateway; not treated as a local downloaded policy model"}
+  },
+  "ollama_inventory": [
+    {"name": "kimi-k3:cloud", "remote": true, "local_weights": false, "parameter_size": "2.81T", "quantization": "MXFP4"},
+    {"name": "kimi-k2.7-code:cloud", "remote": true, "local_weights": false, "parameter_size": "1t", "quantization": "int4"},
+    {"name": "glm-5.2:cloud", "remote": true, "local_weights": false, "parameter_size": "756b", "quantization": "unspecified"},
+    {"name": "nemotron-3-ultra:cloud", "remote": true, "local_weights": false, "parameter_size": "550b", "quantization": "unspecified"},
+    {"name": "minimax-m3:cloud", "remote": true, "local_weights": false, "parameter_size": "unspecified", "quantization": "unspecified"},
+    {"name": "deepseek-v4-flash:cloud", "remote": true, "local_weights": false, "parameter_size": "unspecified", "quantization": "unspecified"},
+    {"name": "gpt-oss:120b-cloud", "remote": true, "local_weights": false, "parameter_size": "116.8B", "quantization": "MXFP4"},
+    {"name": "nemotron-3-super:cloud", "remote": true, "local_weights": false, "parameter_size": "unspecified", "quantization": "unspecified"},
+    {"name": "qwen3.5:397b-cloud", "remote": true, "local_weights": false, "parameter_size": "unspecified", "quantization": "unspecified"},
+    {"name": "minimax-m2.7:cloud", "remote": true, "local_weights": false, "parameter_size": "unspecified", "quantization": "unspecified"},
+    {"name": "gemma4:31b-cloud", "remote": true, "local_weights": false, "parameter_size": "unspecified", "quantization": "unspecified"},
+    {"name": "glm-5.1:cloud", "remote": true, "local_weights": false, "parameter_size": "unspecified", "quantization": "unspecified"}
+  ],
+  "configured_but_not_available": [
+    {"model": "local/qwen2.5-32b", "source": "ragin/config/settings.yaml", "availability": "not verified as downloaded local weights"},
+    {"model": "gemma4local", "source": "ragin/benchmark/run_benchmarks.py", "availability": "no local model manifest observed"}
+  ],
+  "decision": "Do not run a local instruction policy candidate. The visible Ollama models are cloud/remote aliases, and no suitable downloaded local weights or live OpenAI-compatible local endpoint were verified."
+}

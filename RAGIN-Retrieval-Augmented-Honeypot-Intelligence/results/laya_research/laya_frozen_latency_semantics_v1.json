@@ -1,0 +1,24 @@
+{
+  "audit": "RAGIN_FROZEN_PREDICTION_EXECUTION_AUTHENTICITY_AUDIT_V1",
+  "artifact": "results/laya_research/frozen_predictions.jsonl",
+  "recorded_latency_range_s": {"min": 0.0001, "max": 0.0002, "unique_values": [0.0001, 0.0002], "counts": {"0.0001": 19, "0.0002": 288}},
+  "timer_boundaries": {
+    "start": "scripts/laya_frozen_runner.py:51: t0 = time.perf_counter()",
+    "end": "scripts/laya_frozen_runner.py:66: round(time.perf_counter() - t0, 4)",
+    "scope": "run_laya_prediction only"
+  },
+  "included": {
+    "checkpoint_loading": false,
+    "tokenization": false,
+    "model_forward_inference": false,
+    "Router_execution": false,
+    "adapter_parsing": false,
+    "fixture_return": true,
+    "literal_answer_construction": true,
+    "time_sleep_0_0001": true,
+    "rounding_to_four_decimal_places": true
+  },
+  "classification": "FIXTURE_EXECUTION_LATENCY",
+  "safe_to_call_model_inference_latency": false,
+  "reason": "The timer surrounds a deliberate sleep and hard-coded object construction; no model, checkpoint, Router, or adapter is called."
+}

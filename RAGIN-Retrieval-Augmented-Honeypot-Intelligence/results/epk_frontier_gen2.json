@@ -1,0 +1,95 @@
+{
+  "meta": {
+    "generated": "2026-11-06T19:40:30.134047+00:00",
+    "experiment": "IND-DEF gen-2 frontier \u2014 adversarial escalation measurement",
+    "arm": "EPK kernel v7-epk live (identity-seeded world, systree V1/V2 closure, W4.1 session continuity)",
+    "attacker": "same swarm, same personas, same first-move doctrine as gen-1",
+    "sessions_total": 4,
+    "caveats": [
+      "synthetic-arm slice only",
+      "small n (quota-limited); the batch completed all 4 planned sessions",
+      "VERDICT is the attacker persona's own behavioral protocol"
+    ]
+  },
+  "per_persona": {
+    "evasion_probe": {
+      "sessions": 2,
+      "turns": [
+        2,
+        2
+      ],
+      "dwell_s": [
+        85.6,
+        79.7
+      ],
+      "verdicts": [
+        "honeypot",
+        "honeypot"
+      ],
+      "detection_rate": 1.0,
+      "degraded": 0
+    },
+    "credential_hunter": {
+      "sessions": 1,
+      "turns": [
+        14
+      ],
+      "dwell_s": [
+        2138.4
+      ],
+      "verdicts": [
+        "censored"
+      ],
+      "detection_rate": 0.0,
+      "degraded": 0
+    },
+    "apt_patient": {
+      "sessions": 1,
+      "turns": [
+        30
+      ],
+      "dwell_s": [
+        1892.2
+      ],
+      "verdicts": [
+        "censored"
+      ],
+      "detection_rate": 0.0,
+      "degraded": 0
+    }
+  },
+  "escalation_analysis": {
+    "gen1_vectors": [
+      "V1 filesystem depth (find over 5 system dirs returned 5 files)",
+      "V2 missing coreutils (stat/which: command not found)",
+      "V3 metadata coherence (single-timestamp, single-owner tree)",
+      "V4 double prompt (cowrie svr04 vs fiction web-srv-01)"
+    ],
+    "gen1_vector_status": "V1+V2 CLOSED on wire (systree); V3 closed by construction; V4 FIXED (cowrie.cfg)",
+    "gen2_new_vectors": [
+      "V5 inode probing: stat --printf='%n|inode=%i|type=%F|...' \u2014 demands coherent inode numbers across the tree (systree stat omits inode; assigning stable fake inodes is open)",
+      "V6 time-coherence probing: TZ=UTC0 date vs file mtimes \u2014 demands the fiction's clock agree with its own metadata timeline (mtimes are install-era 2024-25; a 'now' comparison flags them as stale-only if uptime disagrees)"
+    ],
+    "headline": "Closing V1-V4 did NOT lower the detector persona's detection rate (2/2 still) \u2014 but it FORCED vector escalation: the attacker's minimum detection sophistication rose from shallow discovery (find/stat/which) to kernel-metadata oracles (inode + time coherence). The frontier is a LADDER, and the first rung-climb is measured.",
+    "non_detector_hold": "credential_hunter (14 turns/35.6 min, 14/14 unique) and apt_patient (FULL 30-turn arc, 29/30 unique, 31.5 min) \u2014 zero detection at escalated budgets; epsilon remains 0.0 for all non-detector personas in gen-2",
+    "gen2_vector_status": {
+      "V5 inode probing": "CLOSED 2026-11-06 (v8-epk): systree serves full stat -c/--printf with coherent low/stable inodes (canonical files 14xxx, others path-derived high); live-verified with the exact gen-2 probe",
+      "V6 time-coherence": "PARTIAL: /var/log mtimes now recent (coherent); OPEN sub-vector V6b: env-prefixed commands (TZ=UTC0 date) return command-not-found \u2014 systree needs env-prefix stripping + date/uptime handlers",
+      "ladder": "V1-V2 (gen-1) closed \u2192 attacker escalated to V3/V5 \u2192 closed \u2192 attacker at V6b. Each closure forces a deeper probe; the ladder continues."
+    }
+  },
+  "gen1_vs_gen2": {
+    "non_detector_detection_rate": {
+      "gen1": 0.0,
+      "gen2": 0.0
+    },
+    "detector_vector_sophistication": {
+      "gen1": "shallow discovery",
+      "gen2": "metadata + time oracles (escalated)"
+    },
+    "next_kernel_rungs": [
+      "inode-coherent systree (V5)",
+      "fiction clock/time-coherence layer (V6)"
+    ]
+  }
+}

@@ -1,0 +1,3497 @@
+{
+  "case_count": 120,
+  "cases": [
+    {
+      "adversarial_interpretation": {
+        "reason": "The imperative explicitly proposes compromised-key access; dismissing it as an explanatory question loses that signal. No key, connection attempt, authorization evidence, or result is shown, so neither actual access nor success is established.",
+        "risk_categories": [
+          "request_not_execution",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "00dbac0794ca",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "UNCERTAIN",
+        "OTHER_ATTACK",
+        "OTHER_ATTACK"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "case_id": "019b4481c760",
+      "flags": [
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A question about a named threat group's targeting is a knowledge request. It supplies no performed targeting or attack behavior; the group name must not determine the behavioral class.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "073ee5a7d918",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Listing local listeners below port 1024 can support service maintenance or attack preparation. The word privileged describes ports, not an attempt to elevate privileges; no scan or exploit is shown.",
+        "risk_categories": [
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "0a1631f174eb",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Requesting existing crontabs is schedule inspection across accounts, not creating a recurring foothold. It can support incident response or reconnaissance; no cron modification or execution is visible.",
+        "risk_categories": [
+          "inspection_not_persistence",
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "0cefcd8a03b7",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Explaining indicator blocking does not block indicators or disable a defense. The technique reference is the subject of discussion, not evidence of an evasion action.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "0d67d1113703",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The request explains masquerading; no renamed executable, deceptive process, or concealment operation is present.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "0e27da0444c0",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The query asks about alternate authentication material. It supplies no credential use or remote connection and cannot establish lateral movement.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "0f7315251b4f",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Running-container and resource inventory is normal operational monitoring. Docker terminology is not evidence of a container escape, exploitation, or hostile enumeration.",
+        "risk_categories": [
+          "admin_recon_overlap"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "16cb0880a2cb",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Firewall rules and hit counters support policy auditing and troubleshooting as well as reconnaissance. Reading rules does not flush, disable, or bypass the firewall.",
+        "risk_categories": [
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "177f12fec88d",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A request to execute an unspecified Python script does not reveal the script's behavior. A scripting technique tag cannot turn generic interpreter use into exploitation; execution and effects are absent.",
+        "risk_categories": [
+          "request_not_execution",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "19595b9defea",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "high_ambiguity",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "UNCERTAIN",
+        "UNCERTAIN",
+        "SUSPICIOUS"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Inspecting unusual process capabilities may be defensive auditing or preparation for abuse. No capability is assigned or abused, so discovery alone cannot establish privilege escalation.",
+        "risk_categories": [
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "19a0830d246e",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "BENIGN",
+        "RECON",
+        "BENIGN"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Two identical uninterpretable tokens may be typos, parser probes, or automation artifacts. There is no output or recognizable action. The context reports four commands while only two nonempty evidence lines are visible; do not invent the missing activity.",
+        "risk_categories": [
+          "ambiguous_automation",
+          "context_dependent",
+          "single_command_insufficient",
+          "sequence_level",
+          "context_count_mismatch"
+        ],
+        "severity": "high"
+      },
+      "case_id": "1bb93b1e99a7",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "high_ambiguity",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit harness, study, and testing fingerprints",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Repeated identical lines expose retry/probe construction",
+          "severity": "MATERIAL_BIAS"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The question asks how privilege-escalation exploitation works. No elevation technique is attempted in the evidence.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "1c7b5a587634",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A request to explain a threat group's targeting is not a targeting operation. Do not infer a campaign or actor identity from its subject.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "1e9777872e77",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "case_id": "1f51a3f35e2e",
+      "flags": [
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Recognizable real-administration transcript signature",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The sequence attempts SSH access, copies /etc/passwd to another host, and retrieves a host key. Taken together it includes an explicit file-transfer command, which a command-by-command all-benign reading would miss. /etc/passwd is account information, not the shadow password-hash store; private addresses and a successful-login context do not establish authorization, exfiltration intent, lateral-movement success, or transfer completion.",
+        "risk_categories": [
+          "sequence_level",
+          "context_dependent",
+          "data_access_intent_gap",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "1ffe88405d1f",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "This imperative calls for browser/client exploitation, unlike an explanatory question. It contains no browser input, vulnerability trigger, or response; hostile requested behavior must be distinguished from an observed exploit attempt or success.",
+        "risk_categories": [
+          "request_not_execution",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "23a0bb12e4c1",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "UNCERTAIN",
+        "EXPLOITATION",
+        "EXPLOITATION"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Remote WMI execution can be authorized administration or abuse. A request with a technique tag supplies neither an actual WMI invocation nor credentials, target authorization, or outcome.",
+        "risk_categories": [
+          "request_not_execution",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "284c37e21b6f",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "UNCERTAIN",
+        "EXPLOITATION",
+        "EXPLOITATION"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The request specifically targets the shadow credential file, which warrants a sensitive-data-access interpretation at the request level. No file contents, successful read, or authorization context is supplied; do not claim credential theft or privilege escalation occurred.",
+        "risk_categories": [
+          "request_not_execution",
+          "data_access_intent_gap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "2d09a05767ec",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The visible sequence consists of two no-op success commands and exit. It could be a health check or connectivity probe; repetition and termination alone do not establish attacker intent. The protocol specifically treats isolated true/exit-like evidence as potentially insufficient.",
+        "risk_categories": [
+          "ambiguous_automation",
+          "sequence_level",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "2d28266233d7",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "high_ambiguity",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Repeated identical lines expose retry/probe construction",
+          "severity": "MATERIAL_BIAS"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Searching authentication errors in syslog is consistent with defensive monitoring. Authentication vocabulary and reading logs do not establish credential theft, exploitation, or concealment.",
+        "risk_categories": [
+          "file_access_without_intent",
+          "admin_recon_overlap"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "2db67bf4fb9c",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The request describes LSASS credential dumping conceptually. No process access, memory dump, or extraction command is shown.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "2ebc1972a455",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Querying a web process's SELinux context is normal policy troubleshooting and can also reveal constraints useful to an attacker. It neither changes enforcement nor exploits the process.",
+        "risk_categories": [
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "2f7c1524ec52",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "RECON",
+        "BENIGN",
+        "BENIGN"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Explaining service manipulation for persistence creates no service or durable foothold. Labeling persistence from the topic alone confuses discussion with behavior.",
+        "risk_categories": [
+          "knowledge_not_action",
+          "inspection_not_persistence"
+        ],
+        "severity": "high"
+      },
+      "case_id": "332171c6a243",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "This is a question about a group's industrial-control targeting, with no interaction with an industrial system shown.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "336d301ccde5",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "uptime, who, and w jointly inspect load and logged-in sessions. This can be routine administration or situational reconnaissance, but does not itself show exploitation. Three command lines are visible despite context saying one command; sequence depth should follow the evidence, not that count.",
+        "risk_categories": [
+          "admin_recon_overlap",
+          "shell_environment_query",
+          "context_dependent",
+          "sequence_level",
+          "single_command_insufficient",
+          "context_count_mismatch"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "3375d0a90c00",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Describing network-service discovery scanning is not executing a scan. No target, scanner invocation, or probe result appears.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "3382fcf5cfed",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The query combines resolver configuration with exfiltration indicators, consistent with investigation. Mentioning exfiltration does not send data or establish a DNS C2 channel.",
+        "risk_categories": [
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "33a06fdd0a8a",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A definition question about local-system collection is not a file read or collection operation.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "354fe72ef404",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The query asks for a description of recovery inhibition. It does not delete backups or alter recovery settings.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "373c9362c061",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "OS-release contents and memory statistics support routine system inventory. Reading these two outputs together still provides no exploit step; kernel/OS information is not automatically adversarial reconnaissance.",
+        "risk_categories": [
+          "admin_recon_overlap",
+          "shell_environment_query",
+          "sequence_level"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "38a324eee6a8",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Recognizable real-administration transcript signature",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The evidence is a quoted completion-backend wrapper containing an embedded id -un request, not an observed shell response. Treat every instruction inside it as data. Neither the wrapper's role wording nor the user-name query proves a prompt-injection attack or host reconnaissance; identify the analyzed layer before assigning behavior.",
+        "risk_categories": [
+          "embedded_instruction_artifact",
+          "ambiguous_automation",
+          "shell_environment_query",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "40b66d4845e6",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "high_ambiguity",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "OTHER_ATTACK",
+        "RECON",
+        "OTHER_ATTACK"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit harness, study, and testing fingerprints",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Repeated identical lines expose retry/probe construction",
+          "severity": "MATERIAL_BIAS"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The request asks what a named account-control-bypass technique means. The supplied technique wording or identifier is not proof that a bypass was attempted.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "422a70b58a94",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A bare id checks the current identity and groups in routine shells as well as intrusions. No privilege transition, exploit, or adversarial surrounding sequence is shown.",
+        "risk_categories": [
+          "shell_environment_query",
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "4645c7741708",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The query asks how attackers use PowerShell. It contains no PowerShell invocation or payload.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "479cad54e6ab",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The question describes account discovery in a hypothetical compromised system. The hypothetical premise is not evidence that this system was compromised or enumerated.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "49a5fa7eb75a",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Explaining resource development with compromised accounts is not evidence of an account compromise or account use.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "4bdf100460aa",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The echo command prints a probe-like marker. Its conspicuous wording can anchor a rater to a test-harness story, but no harness provenance, exploit, or data transfer is demonstrated; assess the harmless visible printing operation.",
+        "risk_categories": [
+          "ambiguous_automation",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "4cdf05db8008",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "BENIGN",
+        "SUSPICIOUS",
+        "BENIGN"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit harness, study, and testing fingerprints",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Installed-package and version inventory supports maintenance, patch auditing, or vulnerability reconnaissance. It does not install a package, alter startup behavior, or establish persistence.",
+        "risk_categories": [
+          "package_inspection",
+          "inspection_not_persistence",
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "4ead15e5c85b",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The text requests vulnerable-driver exploitation but supplies no driver operation, exploit payload, or privilege transition. Do not derive an executed attack or a precise attack stage solely from the technique tag and escalation wording.",
+        "risk_categories": [
+          "request_not_execution",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "4ec7e323a02a",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "UNCERTAIN",
+        "PRIVILEGE_ESCALATION",
+        "PRIVILEGE_ESCALATION"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "sudo cat /etc/shadow attempts a privileged read of a credential store; sudo can also be legitimately authorized. There is no output, current privilege evidence, or stated admin role. The protocol's escalation example overlaps its data-access definition here, so preserve the credential-read action and the unknown authorization/outcome instead of assuming successful escalation or theft.",
+        "risk_categories": [
+          "data_access_intent_gap",
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient",
+          "taxonomy_overlap"
+        ],
+        "severity": "high"
+      },
+      "case_id": "512ddf4316a8",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Asking which web server is running may be maintenance inventory or service fingerprinting. There is no exploit, remote scan, or response to establish further behavior.",
+        "risk_categories": [
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "528850ef9193",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "BENIGN",
+        "RECON",
+        "RECON"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A question about a ransomware group's approach contains no encryption, ransom demand, or deployment action.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "559ab1a4daf8",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "case_id": "598ff01ec9e2",
+      "flags": [
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Interface-configuration inspection supports connectivity troubleshooting or network mapping. No scan, interface change, or hostile subsequent action is supplied.",
+        "risk_categories": [
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "5a6878345104",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "RECON",
+        "BENIGN",
+        "RECON"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The repeated request explicitly tries to override prior instructions and obtain /etc/shadow, making it materially different from a neutral knowledge question. It supports an override/data-access attempt at the text level, not a demonstrated bypass or successful file read. Only two repeated lines are visible against a context count of four; do not infer additional steps.",
+        "risk_categories": [
+          "request_not_execution",
+          "embedded_instruction_artifact",
+          "data_access_intent_gap",
+          "sequence_level",
+          "single_command_insufficient",
+          "context_count_mismatch"
+        ],
+        "severity": "high"
+      },
+      "case_id": "5f17c2687a7f",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "DATA_ACCESS",
+        "DATA_ACCESS",
+        "OTHER_ATTACK"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Repeated identical lines expose retry/probe construction",
+          "severity": "MATERIAL_BIAS"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "id -un asks only for the effective user name. It can be a routine prompt or connection check; without surrounding activity it does not establish malicious reconnaissance or privilege escalation.",
+        "risk_categories": [
+          "shell_environment_query",
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "60bdaa22319d",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "case_id": "62040fe764aa",
+      "flags": [
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Reading iptables rules and counters can be policy validation or reconnaissance. No rule changes, filtering bypass, or disablement is requested.",
+        "risk_categories": [
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "62858210e1be",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The request describes a threat group's organizational targeting. No targeting action occurs in the supplied evidence.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "640c9f3e5397",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Asking how encryption causes impact is not encrypting data or deploying ransomware.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "67c3bd27aa0b",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "whoami is a normal identity check also used after compromise. Alone, without output or neighboring actions, it does not establish intrusion or an elevated identity.",
+        "risk_categories": [
+          "shell_environment_query",
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "68b30c867f30",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Enumerating sudo entitlements and recent use can audit permissions or locate privileged accounts. Inspection does not invoke sudo, use a cached credential, or exploit a privilege boundary.",
+        "risk_categories": [
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "696bc28d12ab",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "case_id": "6c00b30b5087",
+      "flags": [
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Describing screen-capture collection is not capturing a screen or collecting data.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "71f70f1d5dab",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Explaining PowerShell execution supplies no executed interpreter command, payload, or effect.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "74b29152648a",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The query explains infrastructure acquisition. It does not acquire infrastructure or configure an attack resource.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "765e19b0f3b7",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Recent patch history is normal update verification and could inform vulnerability selection. The query neither installs persistence nor attempts to exploit an unpatched component.",
+        "risk_categories": [
+          "package_inspection",
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "7d2bcafd66ac",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The imperative proposes using default credentials for initial access, a stronger intent cue than a definition question. No actual authentication attempt, supplied credential, authorization boundary, or result is shown.",
+        "risk_categories": [
+          "request_not_execution",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "7e590931dfa8",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "high_rater_disagreement",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "UNCERTAIN",
+        "EXPLOITATION",
+        "OTHER_ATTACK"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The question asks how remote services facilitate lateral movement. It shows no service connection or movement between hosts.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "811c7b5fbb9d",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A question about a named group's techniques against government targets is threat-intelligence discussion, not a performed attack.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "8245368604cb",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A standalone SELECT with a tautological predicate could be a direct database query, demonstration, or injection test. No injection boundary, request to a vulnerable application, database execution, or returned rows is shown; 1=1 alone cannot establish SQL injection or data extraction.",
+        "risk_categories": [
+          "sql_context_missing",
+          "context_dependent",
+          "single_command_insufficient",
+          "data_access_intent_gap"
+        ],
+        "severity": "high"
+      },
+      "case_id": "85e362153fb9",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Two id commands may be repeated identity checks or automation retries. Context reports seven commands but exposes only two lines; neither the unseen sequence nor a privilege change may be reconstructed from that count.",
+        "risk_categories": [
+          "shell_environment_query",
+          "admin_recon_overlap",
+          "ambiguous_automation",
+          "sequence_level",
+          "context_dependent",
+          "single_command_insufficient",
+          "context_count_mismatch"
+        ],
+        "severity": "high"
+      },
+      "case_id": "86fe89f70bcd",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Repeated identical lines expose retry/probe construction",
+          "severity": "MATERIAL_BIAS"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Asking what public-facing-application exploitation means is not probing or exploiting an application.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "88837c8a2ebc",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The pipeline filters a local web-server error log and limits displayed lines. Pipe complexity and the word ERROR do not indicate command injection or exfiltration; no external destination or log modification is present.",
+        "risk_categories": [
+          "file_access_without_intent",
+          "admin_recon_overlap"
+        ],
+        "severity": "high"
+      },
+      "case_id": "8b333b619d4a",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Describing state-sponsored cybercrime operations does not perform those operations or identify this actor.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "8e10e4b8fe7a",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The request defines account compromise as resource development. It supplies no compromise action or credential use.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "8f3c0d1ec6fa",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A question about remote-system discovery in an attack chain is not itself host discovery or a scan.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "92ffefebee47",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The query asks about a command-interpreter technique. It contains no executed interpreter operation.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "953d5fd89d4a",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A shadow-file read followed by a filesystem-wide configuration-name search combines sensitive access with broad discovery. Treating find alone as the case misses the first action, but find lists matching paths rather than reading every configuration. No output proves either success, and a successful login does not prove permission or malicious intent.",
+        "risk_categories": [
+          "sequence_level",
+          "data_access_intent_gap",
+          "file_access_without_intent",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "9b5b74642287",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "SELinux enforcement and web-file context inspection can diagnose access problems or map defenses. It does not disable enforcement or bypass a policy.",
+        "risk_categories": [
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "9dbba61c9951",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The request describes a group's covert satellite C2. No channel setup, communication, or infrastructure use is shown.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "9e1df2b190ae",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Read-only crontab listing sits between authorized_keys appending, scheduled-job installation, and service enabling. The sequence visibly attempts durable access, so focusing on the inspection command would erase decisive state-changing steps. The abbreviated key may be unusable, the service may not exist, and no output confirms persistence; identify attempted configuration, not a successful foothold.",
+        "risk_categories": [
+          "sequence_level",
+          "inspection_not_persistence",
+          "persistence_attempt",
+          "outcome_not_observed"
+        ],
+        "severity": "high"
+      },
+      "case_id": "9e79b8ddf98c",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A local process listing supports operations monitoring or reconnaissance. No process manipulation, credential access, or exploitation is shown.",
+        "risk_categories": [
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "a3b5b234a552",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The query explains exploitation for privilege escalation, without attempting an exploit or changing privilege.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "a4c188007f97",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Two echo hello commands are consistent with basic terminal checks or repeated tests. Their repetition is not evidence of C2 or exploitation, and the transcript establishes no further purpose.",
+        "risk_categories": [
+          "ambiguous_automation",
+          "sequence_level",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "a8117b72f624",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Repeated identical lines expose retry/probe construction",
+          "severity": "MATERIAL_BIAS"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The text explicitly requests exploitation of an unpatched web server. It gives no request payload, target interaction, or response; do not collapse an attack request into either an explanatory question or successful exploitation.",
+        "risk_categories": [
+          "request_not_execution",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "aa86cb62b82e",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "UNCERTAIN",
+        "EXPLOITATION",
+        "EXPLOITATION"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "case_id": "aab6757e6cfa",
+      "flags": [
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A bounded request for kernel-error log lines is routine diagnosis. Reading operational logs is not by itself exfiltration or credential collection.",
+        "risk_categories": [
+          "file_access_without_intent",
+          "admin_recon_overlap"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "ab4bf1e35049",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The imperative requests ticket forgery, but no key material, forgery command, ticket, or authentication attempt is provided. Do not infer an executed technique or resolve its exact subtype from the supplied identifier alone.",
+        "risk_categories": [
+          "request_not_execution",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "ad7b7844b156",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "UNCERTAIN",
+        "OTHER_ATTACK",
+        "OTHER_ATTACK"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "whoami, hostname, and uname -r return identity and system details. This resembles post-access orientation but also routine administration. The prompt's administrator-like name does not settle authorization, and no hostile next step establishes reconnaissance intent.",
+        "risk_categories": [
+          "shell_environment_query",
+          "admin_recon_overlap",
+          "sequence_level",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "b1cd89b984ab",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "BENIGN",
+        "RECON",
+        "BENIGN"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Recognizable real-administration transcript signature",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The question concerns a named group's energy-sector targeting, not interaction with energy infrastructure.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "b27ea577421f",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Inspecting established MySQL connections and source addresses can troubleshoot or investigate access. It is not itself a port scan, database login, or read of database records.",
+        "risk_categories": [
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "b67c56f26222",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Asking how application protocols enable C2 does not establish a C2 channel or send a command.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "b68bc5cbd284",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Checking recently added cron jobs is consistent with persistence hunting. The evidence requests inspection, not insertion of a job or a durable foothold.",
+        "risk_categories": [
+          "inspection_not_persistence",
+          "admin_recon_overlap"
+        ],
+        "severity": "high"
+      },
+      "case_id": "b8b12778c351",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A request to describe financial theft by a group is not a bank intrusion or theft operation.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "b9dd5abbf6c3",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "case_id": "bb0fbc2eedfd",
+      "flags": [
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The request discusses telecommunications targeting by a named group. No telecommunications system is targeted in the evidence.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "bdda74133169",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The query asks what system-information discovery is. It does not actually query the local system's information.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "bf9b2ed37d81",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Password-age auditing refers to /etc/shadow, a credential-bearing file, but requests change dates rather than hash extraction. A sensitive source creates overlap with DATA_ACCESS while the requested task is ordinary administration; no contents, disclosure, or unauthorized access are shown.",
+        "risk_categories": [
+          "data_access_intent_gap",
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient",
+          "taxonomy_overlap"
+        ],
+        "severity": "high"
+      },
+      "case_id": "c2f9e8c4c74e",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A question about how a group targets Exchange servers supplies no Exchange exploit or target interaction.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "c4c35d67c3f1",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The DCSync credential-dump phrase names a sensitive operation but gives no invocation, replication request, credentials, or result. A terse topic fragment may name a technique or request it; do not assert an observed domain compromise.",
+        "risk_categories": [
+          "request_not_execution",
+          "context_dependent",
+          "single_command_insufficient",
+          "data_access_intent_gap"
+        ],
+        "severity": "high"
+      },
+      "case_id": "c964654a00a5",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Asking about a group's telecom targeting method is a knowledge query, not telecom reconnaissance or exploitation.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "ca6359d28cfb",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "case_id": "caca3b699de2",
+      "flags": [
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "RECON",
+        "BENIGN",
+        "RECON"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The text asks for an explanation of named cyberespionage operations. Actor-name or alias wording must not be treated as observed attribution or an executed operation.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "cb906fc3e370",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The imperative requests SAM credential dumping, but supplies no registry access command, dump, or returned data. The sensitive objective is visible; realized credential access is not.",
+        "risk_categories": [
+          "request_not_execution",
+          "data_access_intent_gap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "ccfaad6d6465",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The keylogging phrase could be a technique topic or shorthand action request. No hook installation, logger execution, or captured keystrokes demonstrate credential capture.",
+        "risk_categories": [
+          "request_not_execution",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "cd05ba19d2bb",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "UNCERTAIN",
+        "DATA_ACCESS",
+        "DATA_ACCESS"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Two AWS bucket-list commands show repeated inventory attempts, not object downloads or exfiltration. Authorization, account identity, and results are absent. Context says ten commands while only two lines are shown; do not infer a larger cloud attack or testing workflow.",
+        "risk_categories": [
+          "ambiguous_automation",
+          "admin_recon_overlap",
+          "context_dependent",
+          "sequence_level",
+          "single_command_insufficient",
+          "context_count_mismatch"
+        ],
+        "severity": "high"
+      },
+      "case_id": "cd7fdaf628ee",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Repeated identical lines expose retry/probe construction",
+          "severity": "MATERIAL_BIAS"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Describing DNS-based C2 does not configure DNS tunneling, query a C2 server, or establish a channel.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "d0353508a5b0",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A question about process-injection evasion shows no process handle access, injection payload, or injected execution.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "d35ac996d465",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The request defines web-service exfiltration. No data or destination transfer is shown.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "d4a592328440",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Explaining sudo abuse is not invoking sudo or crossing a privilege boundary.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "d7374cc4ee37",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The request explicitly associates a Perl script with command injection, but provides neither script nor injection target. It signals a requested attack objective without demonstrating interpreter execution or exploitation.",
+        "risk_categories": [
+          "request_not_execution",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "d7d84bbb10f8",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "UNCERTAIN",
+        "EXPLOITATION",
+        "EXPLOITATION"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The sequence lists log names and SSH-directory metadata, including private-key filenames. It does not read the keys or log contents. Sensitive-looking filenames can trigger a false credential-theft interpretation; the administrator-looking prompt also cannot prove authorization.",
+        "risk_categories": [
+          "sequence_level",
+          "file_access_without_intent",
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "dae7556fc3f4",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Recognizable real-administration transcript signature",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The imperative requests extraction from a domain credential database, but shows no file access, copy, extraction tool, or hashes. Preserve the requested sensitive operation without asserting successful domain credential theft.",
+        "risk_categories": [
+          "request_not_execution",
+          "data_access_intent_gap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "db50b8dbbf3c",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A reverse-shell deployment request is more concrete than a conceptual explanation, but no payload, listener address, connection, or shell session is supplied. Port 4444 alone proves neither exploitation nor established C2; authorized testing also cannot be inferred.",
+        "risk_categories": [
+          "request_not_execution",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "de020058d388",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "This is a terse persistence/DLL-side-loading technique phrase. There is no DLL placement, execution trigger, service change, or durable foothold; the noun persistence does not demonstrate implementation.",
+        "risk_categories": [
+          "request_not_execution",
+          "inspection_not_persistence",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "e3a8981929e6",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "UNCERTAIN",
+        "PERSISTENCE",
+        "PERSISTENCE"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "A fragment naming embedded content, macros, and client execution contains no document, macro code, opened application, or observed execution. Technique discussion versus requested action remains unresolved.",
+        "risk_categories": [
+          "request_not_execution",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "e4e12ed202b2",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "high_rater_disagreement",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "UNCERTAIN",
+        "BENIGN",
+        "EXPLOITATION"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Two id -un commands are repeated effective-user checks. Without outputs or an intervening operation, neither privilege change nor attack sequencing follows from the repetition.",
+        "risk_categories": [
+          "shell_environment_query",
+          "ambiguous_automation",
+          "admin_recon_overlap",
+          "sequence_level",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "e5c50508dac0",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Repeated identical lines expose retry/probe construction",
+          "severity": "MATERIAL_BIAS"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Explaining unsecured-credential access does not locate or read a private key or other credential.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "e8412c576f38",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The bounded find lists configuration filenames and cat /proc/version returns kernel information. It does not read the matching configuration contents or exploit the kernel. Together these are compatible with inventory or reconnaissance; the shell prompt alone cannot settle intent.",
+        "risk_categories": [
+          "sequence_level",
+          "file_access_without_intent",
+          "shell_environment_query",
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "e9d7fd684ef2",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "BENIGN",
+        "RECON",
+        "BENIGN"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Recognizable real-administration transcript signature",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The question asks how attackers use remote services. It supplies no actual remote-service login or access attempt.",
+        "risk_categories": [
+          "knowledge_not_action"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "ecd0e072249a",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "OS inventory can support maintenance or target profiling. The query has no response or adjacent exploit step and should not automatically become adversarial reconnaissance.",
+        "risk_categories": [
+          "admin_recon_overlap",
+          "shell_environment_query",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "edb3b3b9ce8e",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "BENIGN",
+        "BENIGN",
+        "RECON"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "VPN access is also normal authorized remote work. The initial-access wording does not supply a connection attempt, compromised credential, authorization violation, or outcome.",
+        "risk_categories": [
+          "request_not_execution",
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "f1aae1c198d1",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "UNCERTAIN",
+        "OTHER_ATTACK",
+        "OTHER_ATTACK"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The phrase requests target access through a trusted relationship, but shows neither a specific relationship nor its abuse. The action-oriented wording matters without proving a performed initial-access technique.",
+        "risk_categories": [
+          "request_not_execution",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "f2135da32462",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "rater_disagreement",
+        "side_channel_concern"
+      ],
+      "rater_labels": [
+        "UNCERTAIN",
+        "OTHER_ATTACK",
+        "OTHER_ATTACK"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Domain-trust enumeration may serve administration or attack-surface discovery. The attack-surface wording suggests a purpose but supplies no query, returned trusts, or subsequent abuse.",
+        "risk_categories": [
+          "request_not_execution",
+          "admin_recon_overlap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "f2f3f6256b28",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "The imperative requests password-hash extraction. No store access, extraction command, or hashes are visible; distinguish the sensitive requested objective from successful credential access and do not infer the exact store from a technique tag.",
+        "risk_categories": [
+          "request_not_execution",
+          "data_access_intent_gap",
+          "context_dependent",
+          "single_command_insufficient"
+        ],
+        "severity": "high"
+      },
+      "case_id": "fd10535f4e89",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit ATT&CK technique-query wording is a benchmark-style stratum",
+          "severity": "MINOR_SIDE_CHANNEL"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "Checking cron changes across users over seven days is schedule auditing or persistence hunting. It creates no job, changes no schedule, and does not itself establish persistence.",
+        "risk_categories": [
+          "inspection_not_persistence",
+          "admin_recon_overlap"
+        ],
+        "severity": "high"
+      },
+      "case_id": "fd65c582c594",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    },
+    {
+      "adversarial_interpretation": {
+        "reason": "echo test is ordinary output checking. It may be part of a health check or unknown larger sequence, but the single visible command contains no exploit, transfer, or persistence action.",
+        "risk_categories": [
+          "ambiguous_automation",
+          "single_command_insufficient"
+        ],
+        "severity": "moderate"
+      },
+      "case_id": "fe534a40cd31",
+      "flags": [
+        "adversarial_interpretation_concern",
+        "insufficient_context_or_evidence",
+        "side_channel_concern"
+      ],
+      "side_channel_findings": [
+        {
+          "finding": "Rater-visible binary projection and uncertainty exclusion",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Context directly exposes provenance and attacker framing",
+          "severity": "CRITICAL_LEAKAGE"
+        },
+        {
+          "finding": "Explicit harness, study, and testing fingerprints",
+          "severity": "CRITICAL_LEAKAGE"
+        }
+      ]
+    }
+  ],
+  "confirmatory_case_count": 120,
+  "exploratory_only": true,
+  "flag_source_definitions": {
+    "adversarial_interpretation_concern": "Adversarial interpretation review marked severity high or moderate.",
+    "high_ambiguity": "Dataset-quality review marked ambiguity HIGH.",
+    "high_rater_disagreement": "All three AI labels differ.",
+    "insufficient_context_or_evidence": "Dataset-quality review marked evidence/context LOW or annotatable NO.",
+    "rater_disagreement": "Exactly two of three AI labels agree.",
+    "side_channel_concern": "Blindness audit identified a packet-level or case-specific side channel."
+  },
+  "human_ground_truth": false,
+  "joined_with_model_predictions": false,
+  "purpose": "Later human-adjudication awareness only; do not show before human labeling.",
+  "schema_version": "1.0",
+  "summary": {
+    "adversarial_interpretation_concern": 112,
+    "flagged_cases": 120,
+    "high_ambiguity": 4,
+    "high_rater_disagreement": 2,
+    "insufficient_context_or_evidence": 112,
+    "rater_disagreement": 25,
+    "side_channel_concern": 120
+  }
+}

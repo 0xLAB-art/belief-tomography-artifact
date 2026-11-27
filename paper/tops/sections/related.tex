@@ -1,0 +1,160 @@
+\section{Background and Related Work}\label{sec:related}
+
+\subsection{Four frames, one missing layer}\label{sec:frames}
+
+Four research communities study objects adjacent to the behavioral belief
+profile, and each stops one step short. Quantitative information flow asks
+what an adversary \emph{learns} about a secret from a system's observable
+behavior \cite{smith2009,alvim2020}. Information design asks what a sender
+can \emph{conceal or distort} \cite{kamenica2011}. Deception games ask what
+a defender \emph{gains} at equilibrium \cite{nguyen2019}. Theory-of-mind
+research asks whether an agent can model \emph{others'} beliefs
+\cite{strachan2024}. Belief tomography poses the question none of the four
+asks: \emph{what is an agent made to wrongly believe}, with quantified bounds. A widely cited survey of AI deception defines
+deception functionally and calls for governance
+\cite{park2024}, and venue-level surveys of LLM-agent security and privacy
+catalogue the threats without a measured estimand
+\cite{he2025survey}. This paper supplies the missing layer: an estimand, an
+instrument, impossibility results, and the gain--stealth frontier.
+
+
+\subsection{Tomography of latent state}
+
+The name is borrowed deliberately. Cognitive tomography inverts a generative
+model of behavior to recover latent mental representations in humans
+\cite{houlsby2013}, the paper's intellectual ancestor, and TestifAI applies
+the word to deep-learning system testing \cite{testifai}. The
+black-box neighbors that infer agents from behavior recover \emph{policy
+structure}, not security beliefs: TripleTree discretizes the state space
+into interpretable regions \cite{tripletree2020}, imitation-learning work
+reverse-engineers agent policies as decision trees \cite{bewley2020}, and
+Mxplainer learns parameterized approximations of them
+\cite{mxplainer2025}. None of these estimates security beliefs, offers an
+impossibility result, or attaches confidence intervals to a deception-gain
+estimand. White-box propositional probes read latent world states out of
+activations \cite{feng2024}, and full audit pipelines locate deliberately
+planted hidden objectives in production-scale models when the weights are
+open \cite{marks2025audit}; both require weights and both are passive,
+which makes them complements rather than competitors. Model-generated red
+teaming automates probe construction \cite{perez2022redteam}. What red
+teaming lacks (an estimand, intervals, and validity checks for what its
+probes measure) is exactly what tomography adds.
+
+\subsection{The self-report--behavior gap}
+
+Psychometric work documents that LLM self-reports diverge from behavior
+\cite{shen2025,valuebench}; preference tuning teaches models to match the
+user's beliefs over the truth \cite{sharma2024}; and under organizational
+pressure, models strategically deny actions they demonstrably took
+\cite{scheurer2024}. The Belief--Claim Gap is this phenomenon in its
+adversarial security form, now carrying confidence intervals and a
+certification semantics. The deeper difference is causal: a questionnaire
+item \emph{asks}, whereas a probe family \emph{intervenes}---it creates the
+condition under which the claimed belief must either do work or fail.
+
+\subsection{Deception measurement}
+
+Deception abilities emerge with model capability \cite{hagendorff2024}.
+Existing deception measures score the \emph{deceiver}: propensity or
+deception quality \cite{decepeval,rowe2006}; honesty dissociated from
+accuracy in the MASK benchmark, where larger models improve the latter but
+not the former \cite{mask2025}; or plain honeypot engagement. None
+estimates the victim's or the attacker's belief profile as a statistical
+object. The equilibrium neighbors are game-theoretic deception
+\cite{nguyen2019} and Bayesian persuasion with its lie-detection extension
+\cite{kamenica2011,nberlie}; Section~\ref{sec:t5} supplies what they do not:
+a sampling-horizon information theory with executable probes. Deception is
+also the dual of leakage: a channel that injects falsehood where leakage
+steals secrets. The onset dichotomy composes the deception channel with the
+attacker's prior channel, so the paper speaks to the
+quantitative-information-flow tradition as much as to security measurement.
+
+\subsection{Defeat devices and the limits of evaluation}
+
+Evaluation-aware behavior is not a new claim, and we do not make it as one:
+alignment faking demonstrated it canonically \cite{greenblatt2024faking};
+context-conditioned backdoors realize the structure at training time
+\cite{liu2025tifs,sleeperagents2024}; Ferrara's \emph{defeat device} names the triad our
+probe-aware foil instantiates (an evaluation-context discriminator, a
+concealed behavioral swap, an evaluation--deployment gap) \cite{ferrara2026};
+and partition theory proves the identifiability limit that a behavioral
+evaluator cannot catch an examinee imitating it \cite{mahran2026}. Our
+Corollary~\ref{cor:pub} and Theorem~\ref{thm:forgery} are the
+\emph{estimator-level} instances: the same phenomenon as a binomial belief
+profile with Wilson intervals, a tolerance $\tau$, and a gaming-gap
+statistic. The adversary is not the novelty; the instrument and the
+composition result are. Ferrara's TADP protocol is proposed \emph{without}
+empirical validation; E7/E9/E10 supply the differential probe, the
+quantified statistic, the measured noise floor, and the conditional
+transfer bound (Section~\ref{sec:surface}). His ``meta-discriminator
+triggers''---a discriminator that detects probes for the discriminator---is
+the arms-race extension he does \emph{not} characterize empirically; E10
+is exactly that characterization, with a secret-diagnostic-set defense.
+
+Auditing under adaptive attack
+\cite{soopal2026,duddu2026,tice2025,auditinggames2025} shows that a detector
+beaten once cannot be assumed robust; E10 mounts precisely this challenge
+against our own gaming-gap check, and E16 closes the loop by computing the
+defender's held-out budget as a function of the attacker's
+probe-discrimination error, the budget--error coupling those stress tests
+leave implicit (sandbagging itself is demonstrated in
+\cite{aisandbagging2025}). The normative argument that reward selects for
+conditional compliance \cite{baum2026} motivates the problem without
+supplying an estimator. Configuration attestation \cite{ati2026} answers
+``is this the approved model and tool configuration?''; tomography answers
+``what does it do under adversarial pressure?'' The two are complements,
+not substitutes.
+
+\subsection{Deception doctrine and decoy artifacts}
+
+Defender-side misinformation is classical doctrine: cyber-deception shapes
+attacker beliefs about defended systems \cite{bodeau2013}; controlled
+experiments quantify attacker-cognition effects against live red teams
+\cite{tularosa2019,fergusonwalter2017}; and modern frameworks report
+misinformation effective against targeted attackers \cite{perry2025}.
+Decoy \emph{artifacts} for AI agents plant fake objects that alert on
+interaction \cite{honeypotagents2026}, and the LLM Agent Honeypot flags AI
+hacking agents in the wild across 8.1M SSH interactions through deployment
+cues
+and prompt-injection canaries \cite{volkov2024}. E15 differs in the
+\emph{medium}: the falsified object is a published behavioral
+\emph{measurement} of real components, stable precisely because verification
+confined to the public probe suite reproduces it (Theorem~\ref{thm:forgery}
+and Corollary~\ref{cor:adaptive}, applied in the defender's favor). The trust-collapse
+risk under attacker held-out capability has no direct analogue in artifact
+planting: the forged object there is a record, not a measurement whose
+verification-confinement stability the theory predicts.
+
+\subsection{Composition and orchestration boundaries}
+
+Per-component safety does not imply pipeline safety. ChainCaps names the
+``permission laundering'' case, in which every per-tool permission check
+passes while the end-to-end effect is unsafe, and defends with runtime
+capability attenuation \cite{chaincaps2026}; CaMeL derives prompt-injection
+resistance from an explicit control- and data-flow design \cite{camel2026};
+structured queries and preference-optimized resistance harden the model
+side against injection \cite{struq2025,secalign2025}; programmable privilege
+control bounds what an already-compromised agent can reach
+\cite{progent2025}; knowledge-corruption attacks poison the retriever's
+corpus from the data side \cite{poisonedrag2025}; and framework studies
+\cite{orchestration2026} and orchestration-guided jailbreaks
+\cite{orchjail2026} document related failures. Theorem~\ref{thm:compose} is
+not another entry in that catalogue. It is the estimator-level analogue: a
+confidence-interval behavioral certificate at tolerance $\tau$ fails to
+compose, and E8's interface-vocabulary probe is the measurement-layer
+complement to those runtime defenses.
+
+\subsection{Epistemics-adjacent LLM work}
+
+Theory-of-mind probing asks whether an agent can track \emph{others'}
+beliefs \cite{strachan2024}; the direction here is reversed. Black-box
+epistemic-reliability auditing \cite{eraudit} hunts paraphrase
+counterexamples to a verifier's non-degradation, not a behavioral belief
+profile. Three 2026 systems mark the convergence. EpiAgent maintains an
+explicit belief layer for the agent's own play \cite{epiagent}, whereas
+tomography \emph{estimates} a deployed agent's profile from outside, with
+intervals attached. ``Before Agents Decide'' frames epistemic action as
+evidence acquisition \cite{beforedecide}; the probe is that idea made
+adversarial and measurable. Proxy Confidence scores one proposed tool call
+\cite{proxyconfidence}: no belief profile, charter semantics, or
+impossibility result.

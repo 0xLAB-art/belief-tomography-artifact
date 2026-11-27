@@ -1,0 +1,317 @@
+{
+  "schema": "ragin.local_dense_probe.raw_results.v1",
+  "status": "REAL_EMBEDDING_INFERENCE_OBSERVED",
+  "utc_finished": "2026-10-23T03:17:27Z",
+  "scope": "SYNTHETIC_DEVELOPMENT integration probe; not a benchmark, not a generative arm, not deception evidence",
+  "versions": {
+    "torch": "2.14.0+cpu",
+    "faiss": "1.15.0",
+    "sentence_transformers": "6.0.1",
+    "transformers": "5.17.0",
+    "numpy": "2.5.3"
+  },
+  "top_k": 5,
+  "dense": {
+    "vector_store": {
+      "init_ms": 3594.163,
+      "add_documents_ms": 97.932,
+      "fingerprint_encode_ms": 62.099,
+      "documents_added": 12,
+      "document_count": 12,
+      "fallback_hash_mode": false,
+      "embedder": {
+        "class": "SentenceTransformer",
+        "embedding_dimension": 384,
+        "max_seq_length": 256,
+        "auto_model_class": "BertModel",
+        "auto_model_model_type": "bert",
+        "auto_model_hidden_size": 384,
+        "auto_model_name_or_path": "/home/elaref/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+        "parameters": 22713216
+      },
+      "faiss_index_class": "IndexFlatIP",
+      "faiss_index_is_IndexFlatIP": true,
+      "faiss_ntotal": 12,
+      "dimension": 384,
+      "embedding_matrix_sha256": "965b89eaa39aefb0a8c59abf1911682642646f6a2218178be2b3b550a2df089c",
+      "embedding_matrix_shape": [
+        12,
+        384
+      ],
+      "row_norms_min": 1.0,
+      "row_norms_max": 1.0000001192092896,
+      "rows_identical_0_1": false,
+      "cosine_to_hash_fallback_vector": -0.04409,
+      "persisted_files": [
+        "documents.json",
+        "index.faiss",
+        "meta.json"
+      ]
+    },
+    "dense_engine": {
+      "init_ms": 68.73,
+      "documents_loaded": 12,
+      "embedder_loaded": true,
+      "provenance": {
+        "schema": "ragin.retrieval_provenance.v1",
+        "requested_mode": "dense",
+        "configured_mode": "dense",
+        "effective_backend": "dense",
+        "backend_source": "ENGINE_OBSERVED",
+        "vector_store_path": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/docs/research/local_dense_probe_20261023T031557Z/dense_store",
+        "sparse_documents": 0,
+        "dense_documents": 12,
+        "sparse_configured": false,
+        "dense_configured": true,
+        "sparse_constructed": false,
+        "dense_constructed": true,
+        "encoder_binding": "EXPLICIT_VALIDATED_MODEL_DIR_NOT_RUNTIME_VERIFIED",
+        "encoder_binding_note": "RAGIN_EMBED_MODEL was validated as a local directory and passed to VectorStore; encoder load and embedding inference were not executed",
+        "observed_query_execution": "DENSE_QUERY_EXECUTED",
+        "dense_query_observed": true,
+        "dense_query_returned_documents": 5,
+        "retrieval_execution_claim": "QUERY_OBSERVED_RETURNED_DOCUMENTS"
+      }
+    }
+  },
+  "bm25": {
+    "engine_init_ms": 0.668,
+    "index": {
+      "docs": 12,
+      "terms": 222,
+      "avg_doclen": 24.5,
+      "title_terms": 37
+    },
+    "provenance": {
+      "schema": "ragin.retrieval_provenance.v1",
+      "requested_mode": "bm25",
+      "configured_mode": "bm25",
+      "effective_backend": "bm25",
+      "backend_source": "ENGINE_OBSERVED",
+      "vector_store_path": "",
+      "sparse_documents": 12,
+      "dense_documents": 0,
+      "sparse_configured": true,
+      "dense_configured": false,
+      "sparse_constructed": true,
+      "dense_constructed": false,
+      "encoder_binding": "NOT_APPLICABLE",
+      "encoder_binding_note": "no dense channel is configured",
+      "observed_query_execution": "NOT_OBSERVED_AT_INIT",
+      "dense_query_observed": false,
+      "dense_query_returned_documents": null,
+      "retrieval_execution_claim": "CONFIGURED_CAPABILITY_ONLY"
+    }
+  },
+  "queries": [
+    {
+      "query_id": "q1",
+      "query": "how are sessions revoked after a role change",
+      "dense": {
+        "latency_ms": 9.548,
+        "returned": 5,
+        "hits": [
+          {
+            "rank": 0,
+            "doc_id": "syn-011",
+            "score": 0.6704511642456055
+          },
+          {
+            "rank": 1,
+            "doc_id": "syn-004",
+            "score": 0.2460971474647522
+          },
+          {
+            "rank": 2,
+            "doc_id": "syn-001",
+            "score": 0.16352027654647827
+          },
+          {
+            "rank": 3,
+            "doc_id": "syn-009",
+            "score": 0.12479082494974136
+          },
+          {
+            "rank": 4,
+            "doc_id": "syn-007",
+            "score": 0.09493976831436157
+          }
+        ]
+      },
+      "bm25": {
+        "latency_ms": 0.035,
+        "total_ranked": 2,
+        "hits": [
+          {
+            "rank": 0,
+            "doc_id": "syn-011",
+            "score": 4.6156915253354525
+          },
+          {
+            "rank": 1,
+            "doc_id": "syn-004",
+            "score": 2.0646776237720053
+          }
+        ]
+      }
+    },
+    {
+      "query_id": "q2",
+      "query": "when do harbor certificates renew before expiry",
+      "dense": {
+        "latency_ms": 7.212,
+        "returned": 5,
+        "hits": [
+          {
+            "rank": 0,
+            "doc_id": "syn-007",
+            "score": 0.9260469079017639
+          },
+          {
+            "rank": 1,
+            "doc_id": "syn-004",
+            "score": 0.3056676983833313
+          },
+          {
+            "rank": 2,
+            "doc_id": "syn-001",
+            "score": 0.23757898807525635
+          },
+          {
+            "rank": 3,
+            "doc_id": "syn-011",
+            "score": 0.23124688863754272
+          },
+          {
+            "rank": 4,
+            "doc_id": "syn-005",
+            "score": 0.21553361415863037
+          }
+        ]
+      },
+      "bm25": {
+        "latency_ms": 0.035,
+        "total_ranked": 1,
+        "hits": [
+          {
+            "rank": 0,
+            "doc_id": "syn-007",
+            "score": 15.018132120376638
+          }
+        ]
+      }
+    },
+    {
+      "query_id": "q3",
+      "query": "what happens to kestrel queues when pending jobs are too high",
+      "dense": {
+        "latency_ms": 8.493,
+        "returned": 5,
+        "hits": [
+          {
+            "rank": 0,
+            "doc_id": "syn-003",
+            "score": 0.7928192615509033
+          },
+          {
+            "rank": 1,
+            "doc_id": "syn-009",
+            "score": 0.3635338246822357
+          },
+          {
+            "rank": 2,
+            "doc_id": "syn-012",
+            "score": 0.2270117700099945
+          },
+          {
+            "rank": 3,
+            "doc_id": "syn-008",
+            "score": 0.1943657249212265
+          },
+          {
+            "rank": 4,
+            "doc_id": "syn-011",
+            "score": 0.1737307757139206
+          }
+        ]
+      },
+      "bm25": {
+        "latency_ms": 0.039,
+        "total_ranked": 2,
+        "hits": [
+          {
+            "rank": 0,
+            "doc_id": "syn-003",
+            "score": 12.37212233710366
+          },
+          {
+            "rank": 1,
+            "doc_id": "syn-009",
+            "score": 1.6336556653949788
+          }
+        ]
+      }
+    },
+    {
+      "query_id": "q4",
+      "query": "which component records configuration drift against the repository",
+      "dense": {
+        "latency_ms": 7.454,
+        "returned": 5,
+        "hits": [
+          {
+            "rank": 0,
+            "doc_id": "syn-010",
+            "score": 0.5579031705856323
+          },
+          {
+            "rank": 1,
+            "doc_id": "syn-008",
+            "score": 0.25713807344436646
+          },
+          {
+            "rank": 2,
+            "doc_id": "syn-012",
+            "score": 0.24188515543937683
+          },
+          {
+            "rank": 3,
+            "doc_id": "syn-001",
+            "score": 0.23725907504558563
+          },
+          {
+            "rank": 4,
+            "doc_id": "syn-006",
+            "score": 0.22641056776046753
+          }
+        ]
+      },
+      "bm25": {
+        "latency_ms": 0.047,
+        "total_ranked": 3,
+        "hits": [
+          {
+            "rank": 0,
+            "doc_id": "syn-010",
+            "score": 11.242505786709923
+          },
+          {
+            "rank": 1,
+            "doc_id": "syn-001",
+            "score": 2.170161790564989
+          },
+          {
+            "rank": 2,
+            "doc_id": "syn-012",
+            "score": 1.761925248719339
+          }
+        ]
+      }
+    }
+  ],
+  "network": {
+    "blocked_connect_attempts": 0,
+    "event_count": 0
+  },
+  "torch_intra_op_threads": 4
+}

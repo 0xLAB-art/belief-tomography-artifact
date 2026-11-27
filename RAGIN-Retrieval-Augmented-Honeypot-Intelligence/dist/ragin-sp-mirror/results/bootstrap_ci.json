@@ -1,0 +1,211 @@
+{
+  "generated_at": "2026-10-08T06:55:46+00:00",
+  "method": {
+    "binary": "Wilson 95%",
+    "continuous": "percentile bootstrap, 10000 iters, seed 20260922"
+  },
+  "live_audited": {
+    "technique": {
+      "mean_ci": {
+        "n": 123,
+        "point": 0.9598,
+        "lo": 0.9476,
+        "hi": 0.972
+      },
+      "pass_rate_wilson": {
+        "k": 123,
+        "n": 123,
+        "point": 1.0,
+        "lo": 0.9697,
+        "hi": 1.0
+      }
+    },
+    "actor": {
+      "mean_ci": {
+        "n": 35,
+        "point": 0.85,
+        "lo": 0.85,
+        "hi": 0.85
+      },
+      "pass_rate_wilson": {
+        "k": 35,
+        "n": 35,
+        "point": 1.0,
+        "lo": 0.9011,
+        "hi": 1.0
+      }
+    },
+    "persona": {
+      "mean_ci": {
+        "n": 60,
+        "point": 0.7325,
+        "lo": 0.6738,
+        "hi": 0.7883
+      },
+      "pass_rate_wilson": {
+        "k": 58,
+        "n": 60,
+        "point": 0.9667,
+        "lo": 0.8864,
+        "hi": 0.9908
+      }
+    },
+    "composite": {
+      "mean_ci": {
+        "n": 218,
+        "point": 0.8796,
+        "lo": 0.8572,
+        "hi": 0.9
+      }
+    },
+    "source": "live_benchmark_zodiac_20260922.json"
+  },
+  "c1": {
+    "requery_turns": 45,
+    "contradiction_rate_wilson": {
+      "k": 0,
+      "n": 45,
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0787
+    },
+    "determinism_wilson": {
+      "k": 45,
+      "n": 45,
+      "point": 1.0,
+      "lo": 0.9213,
+      "hi": 1.0
+    },
+    "served_after_failed_verification": 0
+  },
+  "c3": {
+    "top1_wilson": {
+      "k": 5,
+      "n": 10,
+      "point": 0.5,
+      "lo": 0.2366,
+      "hi": 0.7634
+    },
+    "top3_wilson": {
+      "k": 9,
+      "n": 10,
+      "point": 0.9,
+      "lo": 0.5958,
+      "hi": 0.9821
+    },
+    "steer_to_plan_wilson": {
+      "k": 9,
+      "n": 10,
+      "point": 0.9,
+      "lo": 0.5958,
+      "hi": 0.9821
+    }
+  },
+  "b4_baseline": {
+    "limit": 30,
+    "source": "b4_baseline_zodiac_20260922.json",
+    "rag_avgs": {
+      "technique_avg": 0.95,
+      "actor_avg": 0.85,
+      "persona_avg": 0.833
+    },
+    "no_rag_avgs": {
+      "technique_avg": 0.633,
+      "actor_avg": 0.71,
+      "persona_avg": 0.828
+    },
+    "per_row_data": true,
+    "pairing_audit": {
+      "ok": true,
+      "problems": [],
+      "arm_a_rows": 90,
+      "arm_b_rows": 90,
+      "arm_a_duplicate_keys": [],
+      "arm_b_duplicate_keys": [],
+      "symmetric_set": true,
+      "suite_membership_ok": true,
+      "key": "name"
+    },
+    "paired_diff_ci": {
+      "cti_actor": {
+        "n": 30,
+        "point": 0.14,
+        "lo": 0.0833,
+        "hi": 0.1967,
+        "unpaired_dropped": 0
+      },
+      "cti_technique": {
+        "n": 30,
+        "point": 0.3167,
+        "lo": 0.1617,
+        "hi": 0.48,
+        "unpaired_dropped": 0
+      },
+      "deception": {
+        "n": 30,
+        "point": 0.005,
+        "lo": -0.0467,
+        "hi": 0.0567,
+        "unpaired_dropped": 0
+      },
+      "overall": {
+        "n": 90,
+        "point": 0.1539,
+        "lo": 0.0922,
+        "hi": 0.2206,
+        "unpaired_dropped": 0
+      }
+    },
+    "note": "Paired bootstrap CI on per-scenario score differences (RAG \u2212 no-RAG), 95%."
+  },
+  "headline_provenance": {
+    "status": "RESOLVED 2026-09-22 \u2014 the uncitable 0.855 (cited a deleted /tmp artifact) has been RE-DERIVED from a persisted run: results/live_benchmark_zodiac_20260922.json (graph engine, 218 queries, full per-row bodies, 0 errors).",
+    "disk_composite": {
+      "mean_ci": {
+        "n": 218,
+        "point": 0.8796,
+        "lo": 0.8572,
+        "hi": 0.9
+      }
+    },
+    "per_suite": {
+      "technique": 0.9598,
+      "actor": 0.85,
+      "persona": 0.7325
+    },
+    "historical_note": "The old audited artifact (live_benchmark_audited.json, persona 57/60 TIMEOUT, composite 0.675) is retained as pre-zodiac history; its technique/actor means match this run to three decimals, corroborating generator stability across keys/models."
+  },
+  "proofs": [
+    {
+      "id": "CI_c1_contradiction_upper_below_10pct",
+      "ok": true,
+      "detail": "0 contradictions over 45 turns; 95% CI upper 0.079 < 0.10"
+    },
+    {
+      "id": "CI_c1_determinism_lower_above_90pct",
+      "ok": true,
+      "detail": "byte-identical replay 45/45; 95% CI lower 0.921 > 0.90"
+    },
+    {
+      "id": "CI_c3_top3_lower_above_50pct",
+      "ok": true,
+      "detail": "top-3 9/10; 95% CI lower 0.596 > 0.50 (majority precision)"
+    },
+    {
+      "id": "CI_technique_pass_lower_above_80pct",
+      "ok": true,
+      "detail": "technique pass 123/123; 95% CI lower 0.970 > 0.80"
+    },
+    {
+      "id": "CI_actor_pass_lower_above_80pct",
+      "ok": true,
+      "detail": "actor pass 35/35; 95% CI lower 0.901 > 0.80"
+    },
+    {
+      "id": "CI_b4_paired_diff_computed",
+      "ok": true,
+      "detail": "B4 paired RAG\u2212no-RAG overall diff +0.154 [+0.092, +0.221]"
+    }
+  ],
+  "all_proofs_pass": true
+}

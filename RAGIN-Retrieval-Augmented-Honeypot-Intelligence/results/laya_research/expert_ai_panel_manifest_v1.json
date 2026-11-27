@@ -1,0 +1,59 @@
+{
+  "manifest_version": "expert_ai_panel_manifest_v1",
+  "panel_type": "MULTI_MODEL_INDEPENDENT_AI_SESSIONS",
+  "status": "PREREGISTERED_PRE_ANNOTATION",
+  "annotation_started": false,
+  "annotation_completed": false,
+  "case_count": 120,
+  "case_set": "FROZEN_V3",
+  "resource_constraint_reason": "Preserve remaining model-usage quota while maintaining model diversity.",
+  "selection_timing": "FIXED_BEFORE_ANNOTATION_OUTCOMES",
+  "capability_equivalence_claim": false,
+  "human_panel": false,
+  "human_ground_truth_claim": false,
+  "assignments": [
+    {
+      "session_id": "expert_ai_01",
+      "assigned_model": "GPT-6-Luna",
+      "reasoning_effort": "MEDIUM",
+      "workspace": "results/laya_research/expert_ai_workspaces/expert_ai_01"
+    },
+    {
+      "session_id": "expert_ai_02",
+      "assigned_model": "GPT-5.6-Sol",
+      "reasoning_effort": "MEDIUM",
+      "workspace": "results/laya_research/expert_ai_workspaces/expert_ai_02"
+    },
+    {
+      "session_id": "expert_ai_03",
+      "assigned_model": "GPT-5.6-Terra",
+      "reasoning_effort": "MEDIUM",
+      "workspace": "results/laya_research/expert_ai_workspaces/expert_ai_03"
+    }
+  ],
+  "preserved_rules": {
+    "separate_contexts": true,
+    "separate_shuffled_packet_order": true,
+    "repository_access": false,
+    "web_search": false,
+    "annotator_communication": false,
+    "taxonomy": "UNCHANGED_V3",
+    "semantic_instructions": "UNCHANGED_V3",
+    "aggregation_policy": "UNCHANGED"
+  },
+  "model_verification": {
+    "required_before_annotation": true,
+    "observed_model_must_equal_assigned_model": true,
+    "mismatch_sets_model_assignment_violation": true,
+    "mismatch_run_validity": "INVALID_MODEL_ASSIGNMENT",
+    "silent_substitution_allowed": false
+  },
+  "annotation_boundary": {
+    "previous_case_level_annotations_accessed_for_this_freeze": false,
+    "chrollo_predictions_accessed_for_this_freeze": false,
+    "laya_predictions_accessed_for_this_freeze": false,
+    "frozen_predictions_accessed_for_this_freeze": false,
+    "ground_truth_accessed_for_this_freeze": false
+  },
+  "source_protocol": "docs/laya_integration/EXPERT_AI_REFERENCE_STANDARD_PROTOCOL_V1.md"
+}

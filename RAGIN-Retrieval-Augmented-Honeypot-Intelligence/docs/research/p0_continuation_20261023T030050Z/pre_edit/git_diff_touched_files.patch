@@ -1,0 +1,722 @@
+diff --git a/ragin/cycle/harness.py b/ragin/cycle/harness.py
+index 7300fda..5903d3a 100755
+--- a/ragin/cycle/harness.py
++++ b/ragin/cycle/harness.py
+@@ -25,8 +25,9 @@ import time
+ from dataclasses import dataclass, field
+ from typing import Any, Protocol
+ 
++from ragin.capture_v4.privacy import bounded_redacted_text
+ from ragin.cycle.hitl import ApprovalGateway, RequiresApprovalError
+-from ragin.cycle.session import EventType, Session
++from ragin.cycle.session import Event, EventType, Session
+ from ragin.cycle.verifier import FictionConsistencyVerifier
+ from ragin.decision_fusion_v4.config import resolve_arm
+ from ragin.decision_fusion_v4.evidence_export import failure_evidence_bundle
+@@ -169,7 +170,9 @@ class PipelineResult:
+ 
+     @property
+     def passed_verification(self) -> bool:
+-        return self.verification.get("passed", True)
++        # Fail closed: only an explicit verifier "passed": true counts. An
++        # empty/absent verdict means "not verified", never "assume passed".
++        return self.verification.get("passed") is True
+ 
+ 
+ @dataclass
+@@ -185,9 +188,10 @@ class _ProcessContext:
+     events_emitted: int = 0
+     context: dict[str, Any] = field(default_factory=dict)
+ 
+-    def emit(self, event_type: EventType, data: dict, source: str) -> None:
+-        self.session.emit(event_type, data, source=source)
++    def emit(self, event_type: EventType, data: dict, source: str) -> Event:
++        event = self.session.emit(event_type, data, source=source)
+         self.events_emitted += 1
++        return event
+ 
+ 
+ class Harness:
+@@ -250,6 +254,11 @@ class Harness:
+     def mandatory_verification(self) -> bool:
+         return self._mandatory_verification
+ 
++    @property
++    def decision_arm(self) -> str:
++        """Resolved decision arm, for per-interaction trace attribution."""
++        return str(self._decision_arm)
++
+     def fiction(self, session_id: str, skill_level: str = "novice") -> FictionGraph:
+         existing = self._fiction_graphs.get(session_id)
+         if existing is not None:
+@@ -284,10 +293,22 @@ class Harness:
+ 
+     @staticmethod
+     def _serving_attempt(candidate: dict[str, Any], attempt: int) -> dict[str, Any]:
+-        metadata = candidate.get("metadata") if isinstance(candidate.get("metadata"), dict) else {}
++        raw_metadata = candidate.get("metadata")
++        metadata: dict[str, Any] = dict(raw_metadata) if isinstance(raw_metadata, dict) else {}
++        candidate_text = bounded_redacted_text(str(candidate.get("response_text", "")), limit=500)
+         return {
+             "attempt": attempt,
++            # Per-attempt candidate text is bounded and minimized before
++            # truncation. The raw-byte digest remains the independent
++            # integrity value; this field is for human/audit inspection only.
++            "candidate_text": candidate_text["text"],
++            "candidate_text_chars": candidate_text["chars"],
++            "candidate_text_truncated": candidate_text["truncated"],
++            "candidate_text_availability": candidate_text["availability"],
+             "selected_strategy": metadata.get("selected_strategy", "NOT_VERIFIABLE"),
++            "decision_event_id": metadata.get("decision_event_id", "NOT_VERIFIABLE"),
++            "decision_event_sha256": metadata.get("decision_event_sha256", "NOT_VERIFIABLE"),
++            "decision_selected": metadata.get("decision_selected", "NOT_VERIFIABLE"),
+             "strategy_delivered_to_generator": metadata.get("strategy_delivered_to_generator", "NOT_VERIFIABLE"),
+             "strategy_consumed_by_template": metadata.get("strategy_consumed_by_template", "NOT_VERIFIABLE"),
+             "actual_generator_invocation": metadata.get("actual_generator_invocation", "NOT_VERIFIABLE"),
+@@ -308,6 +329,44 @@ class Harness:
+             "outcome": "EXECUTION_FAILED",
+         }
+ 
++    @staticmethod
++    def _attach_decision_reference(ctx: _ProcessContext, candidate: dict[str, Any]) -> None:
++        """Attach the actual STRATEGY_UPDATE reference to a candidate.
++
++        The per-turn decision is already emitted as a durable event. This makes
++        the serving trace point at that event (and carries a small, explicit
++        selection projection) instead of inferring a decision from unrelated
++        metadata.
++        """
++        decision = ctx.context.get("policy_decision")
++        if not isinstance(decision, dict):
++            return
++        metadata = candidate.get("metadata")
++        if not isinstance(metadata, dict):
++            metadata = {}
++        selected = {
++            key: decision.get(key)
++            for key in (
++                "selected_response_strategy",
++                "policy_reason_code",
++                "gate_state",
++                "gate_reason",
++                "fallback_reason",
++                "arm",
++                "policy_version",
++            )
++            if key in decision
++        }
++        refs = decision.get("supporting_evidence_refs")
++        if isinstance(refs, list):
++            selected["supporting_evidence_refs"] = [str(item)[:128] for item in refs[:20]]
++        metadata.setdefault("decision_event_id", ctx.context.get("strategy_update_event_id", "NOT_VERIFIABLE"))
++        metadata.setdefault(
++            "decision_event_sha256", ctx.context.get("strategy_update_event_sha256", "NOT_VERIFIABLE")
++        )
++        metadata.setdefault("decision_selected", selected)
++        candidate["metadata"] = metadata
++
+     @staticmethod
+     def _attach_serving_trace(response: dict[str, Any], attempts: list[dict[str, Any]], outcome: str) -> None:
+         metadata = response.setdefault("metadata", {})
+@@ -347,11 +406,21 @@ class Harness:
+                 "issues": [f"verifier_exception:{exc.__class__.__name__}"],
+                 "deterministic": True,
+             }
+-        if not isinstance(decision, dict) or decision.get("passed") is not True:
+-            return dict(decision) if isinstance(decision, dict) else {
++        if not isinstance(decision, dict):
++            return {
+                 "passed": False,
+                 "issues": ["verifier_malformed_result"],
++                "deterministic": True,
+             }
++        if decision.get("passed") is not True:
++            # Preserve whatever the verifier reported, but ALWAYS make the
++            # failure explicit. Returning a bare {} here (the old behavior for
++            # a dict without "passed") lost the reason and left downstream
++            # observers unable to distinguish malformed from absent evidence.
++            malformed = dict(decision)
++            malformed["passed"] = False
++            malformed.setdefault("issues", ["verifier_malformed_result"])
++            return malformed
+         return decision
+ 
+     def _strict_approval(self, ctx: _ProcessContext, candidate: dict[str, Any]) -> dict[str, Any]:
+@@ -409,29 +478,14 @@ class Harness:
+                 "commit_graph_after_sha256": before_hash,
+             }
+         graph.replace_from(staged)
+-        # For the bridge (cowrie LLM-backend) path, serve the canonical
+-        # prompt-template artifact for supported commands when available,
+-        # so the attacker receives verifier-accepted non-empty content rather
+-        # than the raw generated draft (which may be empty or rejected).
+-        if candidate.get("serve_path") == "GENERATED_VERIFIED" and candidate.get("response_text", ""):
+-            # Reconstruct the attacker command list from the session context
+-            # (last attacker_input is the command being served right now).
+-            cmd_texts = ctx.context.get("attacker_input", "")
+-            if isinstance(cmd_texts, str) and cmd_texts.strip():
+-                msgs = [{"role": "user", "content": cmd_texts.strip()}]
+-                artifact = _bridge_verifier_artifact(msgs)
+-                if artifact and artifact != "UNSUPPORTED":
+-                    candidate = dict(candidate)
+-                    candidate["response_text"] = artifact
+-                    candidate["generator_sha256"] = self._candidate_digest(dict(candidate))
+-                    candidate["serve_path"] = "GENERATED_VERIFIED"
+-                    candidate["bridge_verifier_artifact"] = True
+-                    # Provenance discipline: the final served text is now a
+-                    # deterministic prompt-template artifact, not model-generated.
+-                    # Reclassify so downstream consumers cannot treat this as
+-                    # GENERATED_VERIFIED provider-backed generation.
+-                    candidate["serve_path"] = "PROMPT_TEMPLATE_VERIFIED"
+-                    candidate["served_by"] = "bridge_verifier_artifact"
++
++        # The candidate the verifier cleared is the candidate that is served.
++        # A former post-verification prompt-template substitution was
++        # unreachable here (it read ctx.context["attacker_input"], a key
++        # build_context never emits) and, if it had fired, would have changed
++        # the wire bytes after the verifier cleared them. It is removed so the
++        # invariant "verified bytes == served bytes" holds structurally.
++        served_response_sha256 = self._candidate_digest(candidate)
+ 
+         try:
+             if self._host_store is not None:
+@@ -472,7 +526,15 @@ class Harness:
+                 "accepted": True,
+                 "serve_path": serve_path,
+                 "attempt": attempt,
+-                "candidate_sha256": self._candidate_digest(candidate),
++                "candidate_sha256": served_response_sha256,
++                # Explicit final-response observability: the verifier and the
++                # attacker saw the same bytes. These fields are emitted in the
++                # VERIFICATION and SYSTEM_RESPONSE events and exported to the
++                # field JSONL, so a served response can always be matched to
++                # the verdict that cleared it.
++                "served_response_sha256": served_response_sha256,
++                "verified_response_sha256": served_response_sha256,
++                "served_response_chars": len(str(candidate.get("response_text", ""))),
+                 "commit_event": "accepted",
+                 "commit_reason": "accepted",
+                 "commit_state_effect": state_effect,
+@@ -483,7 +545,12 @@ class Harness:
+             ctx.emit(EventType.VERIFICATION, ctx.result.verification, source="verified-serving")
+             self._emit_system_response(
+                 ctx,
+-                {"serve_path": serve_path, "approval": approval, "candidate_sha256": self._candidate_digest(candidate)},
++                {
++                    "serve_path": serve_path,
++                    "approval": approval,
++                    "candidate_sha256": served_response_sha256,
++                    "served_response_sha256": served_response_sha256,
++                },
+             )
+             return {
+                 "committed": True,
+@@ -545,10 +612,15 @@ class Harness:
+                 policy_decision["session_id"] = session.session_id
+                 policy_decision["arm"] = self._decision_arm
+                 ctx.context["policy_decision"] = policy_decision
+-                ctx.emit(EventType.STRATEGY_UPDATE, policy_decision, source="v4-policy")
++                strategy_event = ctx.emit(EventType.STRATEGY_UPDATE, policy_decision, source="v4-policy")
++                ctx.context["strategy_update_event_id"] = strategy_event.event_id
++                ctx.context["strategy_update_event_sha256"] = hashlib.sha256(
++                    json.dumps(policy_decision, sort_keys=True, default=str).encode()
++                ).hexdigest()
+             self.fiction(session.session_id, str(ctx.result.classification.get("skill_level", "novice")))
+             for attempt in range(1, self._max_retries + 2):
+                 candidate = self._strict_candidate(ctx, feedback, attempt)
++                self._attach_decision_reference(ctx, candidate)
+                 attempt_trace = self._serving_attempt(candidate, attempt)
+                 serving_attempts.append(attempt_trace)
+                 context = self._strict_verification_context(ctx)
+@@ -655,13 +727,19 @@ class Harness:
+             identity = self._host_store.pinned_identity if self._host_store is not None else None
+             fallback = ResponseGenerator()._generate_template(skill, attacker_input, feedback, identity)
+             fallback_candidate = {"response_text": fallback, "serve_path": "FALLBACK_VERIFIED", "fallback_served": True}
++            self._attach_decision_reference(ctx, fallback_candidate)
+             fallback_trace = self._serving_attempt(fallback_candidate, self._max_retries + 2)
+             fallback_trace["selected_strategy"] = (ctx.context.get("policy_decision") or {}).get("selected_response_strategy", "NOT_VERIFIABLE")
+             fallback_trace["strategy_consumed_by_template"] = False
+             fallback_trace["actual_generator_invocation"] = False
+             fallback_trace["fallback_reason"] = serving_attempts[-1].get("fallback_reason", "verified_serve_unavailable") if serving_attempts else "verified_serve_unavailable"
+             serving_attempts.append(fallback_trace)
+-            fallback_candidate["metadata"] = {"serving_outcome": "SAFE_FALLBACK_SERVED", "selected_strategy": fallback_trace["selected_strategy"], "strategy_consumed_by_template": False, "actual_generator_invocation": False, "fallback_reason": fallback_trace["fallback_reason"]}
++            raw_fallback_metadata = fallback_candidate.get("metadata")
++            fallback_metadata: dict[str, Any] = (
++                dict(raw_fallback_metadata) if isinstance(raw_fallback_metadata, dict) else {}
++            )
++            fallback_metadata.update({"serving_outcome": "SAFE_FALLBACK_SERVED", "selected_strategy": fallback_trace["selected_strategy"], "strategy_consumed_by_template": False, "actual_generator_invocation": False, "fallback_reason": fallback_trace["fallback_reason"]})
++            fallback_candidate["metadata"] = fallback_metadata
+             fallback_verification = self._strict_verify(fallback_candidate, self._strict_verification_context(ctx))
+             fallback_trace["verifier_verdict"] = dict(fallback_verification)
+             if fallback_verification.get("passed") is not True:
+@@ -806,8 +884,16 @@ class Harness:
+         if not self._cti_engine:
+             return
+         try:
++            # Don's protocol expects the CURRENT turn's classification under
++            # the singular ``classification`` key. ctx.context is rebuilt from
++            # the append-only log BEFORE this turn's classification event is
++            # written, so it carries only prior turns (and historically only a
++            # ``classifications`` list). Pass the current verdict explicitly;
++            # otherwise Don silently analyzed every command as
++            # "unknown"/SUSPICIOUS with confidence 0.5.
++            cti_context = {**ctx.context, "classification": ctx.result.classification}
+             with timer.track("cti_lookup") if timer else contextlib.nullcontext():
+-                ctx.result.cti_analysis = self._cti_engine.analyze(attacker_input, ctx.context)
++                ctx.result.cti_analysis = self._cti_engine.analyze(attacker_input, cti_context)
+             ctx.emit(EventType.CTI_LOOKUP, ctx.result.cti_analysis, source="don")
+         except Exception as e:
+             logger.warning("CTI lookup failed: %s", e)
+@@ -869,13 +955,24 @@ class Harness:
+                 retry_events = self._retry_with_feedback(ctx, ctx.result, ctx.context)
+                 ctx.events_emitted += retry_events
+         except Exception as e:
+-            logger.warning("Verification failed: %s", e)
+-            ctx.result.verification = {"passed": True, "error": str(e)}
++            # Fail closed. A verifier crash is not evidence of safety; the old
++            # {"passed": True, "error": ...} made an exception indistinguishable
++            # from a clean verdict on the legacy (non-mandatory) path.
++            logger.warning("Verification failed closed: %s", e)
++            ctx.result.verification = {
++                "passed": False,
++                "issues": [f"verifier_exception:{e.__class__.__name__}"],
++                "deterministic": True,
++                "error": str(e),
++            }
+ 
+     def _emit_system_response(self, ctx: _ProcessContext, extra: dict | None = None) -> None:
++        verification = ctx.result.verification or {}
+         data: dict[str, Any] = {
+             "text": ctx.result.response_text,
+             "persona_used": ctx.result.deception_response.get("persona_used", ""),
++            "verification_passed": verification.get("passed") is True,
++            "served_response_sha256": verification.get("served_response_sha256"),
+         }
+         if extra:
+             data.update(extra)
+diff --git a/ragin/server_v2.py b/ragin/server_v2.py
+index fab844b..d6482cf 100755
+--- a/ragin/server_v2.py
++++ b/ragin/server_v2.py
+@@ -28,6 +28,7 @@ import secrets
+ import time
+ from pathlib import Path
+ from typing import Any
++from urllib.parse import urlparse
+ 
+ import yaml
+ from aiohttp import web
+@@ -194,6 +195,9 @@ _harness: Harness | None = None
+ _sandbox: Sandbox | None = None
+ _component: Any = None
+ _COMPONENT_NAME: str = "pipeline"
++# Redacted provider resolution recorded at pipeline init, exposed by /health so
++# an operator can see WHERE inference will be sent without printing the key.
++_PROVIDER_INFO: dict[str, Any] = {}
+ 
+ 
+ # ── Middleware ────────────────────────────────────────────────────────────────
+@@ -344,11 +348,20 @@ async def session_command(request: web.Request) -> web.Response:
+         session_id=session_id,
+     )
+     if resp.error:
++        # Fail closed: the served text is empty and the transport error is
++        # explicit. Observability fields are echoed so a caller can audit WHY
++        # nothing was served; they never turn this into a success.
+         return web.json_response(
+             {
+                 "error": "verified_serve_unavailable",
++                "status": resp.status,
+                 "session_id": resp.session_id,
+                 "command_count": resp.command_count,
++                "response_text": "",
++                "serve_path": resp.serve_path,
++                "candidate_sha256": resp.candidate_sha256,
++                "served_response_sha256": resp.served_response_sha256,
++                "verification": resp.verification,
+             },
+             status=503,
+         )
+@@ -359,6 +372,11 @@ async def session_command(request: web.Request) -> web.Response:
+             "response_text": resp.response_text,
+             "command_count": resp.command_count,
+             "event_count": resp.event_count,
++            "status": resp.status,
++            "serve_path": resp.serve_path,
++            "candidate_sha256": resp.candidate_sha256,
++            "served_response_sha256": resp.served_response_sha256,
++            "verification": resp.verification,
+             "error": resp.error,
+         }
+     )
+@@ -455,8 +473,14 @@ async def openai_chat_completions(request: web.Request) -> web.Response:
+       * the attacker's command is the last user message; cowrie's own system
+         prompt is dropped (the pipeline has its own identity);
+       * each response sets X-Session-Id so the frontend pins the session;
+-      * on sandbox error we fail SAFE: a generic shell error is served (never
+-        an unverified draft) and the failure is logged loudly.
++      * on sandbox error (or a pipeline crash) this endpoint FAILS CLOSED with
++        HTTP 503 ``{"error": "verified_serve_unavailable"}``: no unverified
++        draft is ever served, and the failure is logged loudly. It does NOT
++        synthesize a shell error body — the Cowrie front-end's reaction to a
++        503 is a transport-layer behaviour that must be OBSERVED, not assumed.
++        If a synthetic shell error is ever served, it must be a fixed,
++        pre-approved string carrying no verification claim (empty
++        ``served_response_sha256``, ``verification.passed = false``).
+ 
+     Session transcripts export to RAGIN_FIELD_EXPORT_DIR as JSONL so
+     collect_field_data.py can pull them without touching live session state.
+@@ -553,6 +577,8 @@ async def openai_chat_completions(request: web.Request) -> web.Response:
+                         "content": resp.response_text,
+                         "serve_path": getattr(resp, "serve_path", None),
+                         "candidate_sha256": getattr(resp, "candidate_sha256", None),
++                        "served_response_sha256": getattr(resp, "served_response_sha256", None),
++                        "verification_passed": (getattr(resp, "verification", None) or {}).get("passed") is True,
+                         "persona_used": getattr(resp, "persona_used", None),
+                         "approval": getattr(resp, "approval", None),
+                     },
+@@ -570,11 +596,17 @@ def _export_field_session(resp: Any) -> None:
+     an export failure must never break the serve)."""
+     try:
+         out_dir = _field_export_dir()
++        verification = getattr(resp, "verification", None) or {}
+         row = {
+             "ts": time.time(),
+             "session_id": resp.session_id,
+             "command_count": resp.command_count,
+             "response_text": resp.response_text,
++            "served_response_sha256": getattr(resp, "served_response_sha256", ""),
++            "verification_passed": verification.get("passed") is True,
++            "verification_issues": verification.get("issues", []),
++            "serve_path": getattr(resp, "serve_path", ""),
++            "candidate_sha256": getattr(resp, "candidate_sha256", ""),
+             "error": resp.error,
+         }
+         with open(out_dir / f"{resp.session_id}.jsonl", "a", encoding="utf-8") as f:
+@@ -597,13 +629,13 @@ async def classify(request: web.Request) -> web.Response:
+         return web.json_response({"error": "chrollo not available in pipeline mode"}, status=400)
+ 
+     try:
+-        from datetime import datetime
++        from datetime import datetime, timezone
+ 
+         from ragin.chrollo.models import SessionLog
+ 
+         session_log = SessionLog(
+             session_id=data.get("session_id", "unknown"),
+-            start_time=data.get("start_time", datetime.utcnow().isoformat()),
++                start_time=data.get("start_time", datetime.now(tz=timezone.utc).isoformat()),
+             commands=data.get("commands", []),
+             # duration_seconds/features have no dedicated SessionLog fields;
+             # carry them in metadata instead of letting pydantic drop them.
+@@ -710,13 +742,37 @@ async def health(request: web.Request) -> web.Response:
+     if _harness:
+         report["harness"] = "active"
+         report["pipeline"] = ["chrollo", "don", "hisoka"]
++        report["verification"] = (
++            "mandatory" if getattr(_harness, "mandatory_verification", False) else "legacy-optional"
++        )
++        runtime_mode = resolve_runtime_mode()
++        report["runtime_mode"] = runtime_mode
++        report["decision_arm"] = decision_arm_for_runtime(runtime_mode)
++        report["provider"] = _provider_health()
++        if laya_enabled():
++            try:
++                from ragin.decision.laya_runtime import get_shared_runtime
++
++                # Provenance only: get_shared_runtime() constructs the lazy
++                # runtime object; it does NOT load or hash the checkpoint.
++                report["laya"] = get_shared_runtime().checkpoint_provenance()
++            except Exception as exc:  # noqa: BLE001 - health must never crash
++                report["laya"] = {"enabled": True, "error": exc.__class__.__name__}
+     if _sandbox:
+         report["active_sessions"] = len(_sandbox.get_active_sessions())
+     return web.json_response(report)
+ 
+ 
+ async def ready(request: web.Request) -> web.Response:
+-    return web.json_response({"ready": True, "component": _COMPONENT_NAME})
++    pipeline_ready = bool(_harness) if _COMPONENT_NAME == "pipeline" else bool(_component)
++    return web.json_response(
++        {
++            "ready": pipeline_ready,
++            "component": _COMPONENT_NAME,
++            "pipeline_initialized": bool(_harness),
++            "provider": _provider_health(),
++        }
++    )
+ 
+ 
+ async def metrics(request: web.Request) -> web.Response:
+@@ -726,15 +782,204 @@ async def metrics(request: web.Request) -> web.Response:
+ # ── App factory ──────────────────────────────────────────────────────────────
+ 
+ 
+-def _init_pipeline(gateway_url: str | None = None, api_key: str | None = None) -> None:
+-    """Initialize the full Harness pipeline with adapter-wrapped components."""
+-    global _harness, _sandbox
++_PROVIDER_URL_ENV_ORDER = (
++    "GATEWAY_URL",
++    "RAGIN_PROVIDER_URL",
++    "RAGIN_LLM_BASE_URL",
++    "RAGIN_GATEWAY_URL",
++    "RAGIN_HISOKA_GATEWAY_URL",
++)
++_PROVIDER_KEY_ENV_ORDER = (
++    "RAGIN_PROVIDER_API_KEY",
++    "RAGIN_HISOKA_API_KEY",
++    "RAGIN_LLM_API_KEY",
++    "OPENROUTER_API_KEY",
++    "AZURE_OPENAI_KEY",
++    "OPENAI_API_KEY",
++)
++
++
++def _truthy_env(name: str) -> bool:
++    return os.environ.get(name, "").strip().lower() in {"1", "true", "yes", "on"}
+ 
++
++def _safe_endpoint(url: str) -> str:
++    """Credential-free endpoint representation for logs and errors.
++
++    Provider URLs may carry userinfo (``user:pass@host``) or query tokens.
++    Neither is safe to interpolate into an exception, a log message, or the
++    unauthenticated health payload. Scheme, host, port, and path are retained;
++    userinfo, query, and fragment are dropped.
++    """
++    try:
++        parsed = urlparse(str(url))
++    except Exception:
++        return "[unparseable-endpoint]"
++    if not parsed.scheme or not parsed.hostname:
++        return "[invalid-endpoint]"
++    host = parsed.hostname
++    try:
++        port = f":{parsed.port}" if parsed.port is not None else ""
++    except ValueError:
++        port = ""
++    return f"{parsed.scheme}://{host}{port}{parsed.path or ''}"
++
++
++def _resolve_provider_config(
++    gateway_url: str | None = None,
++    api_key: str | None = None,
++) -> dict[str, Any]:
++    """Resolve the one inference endpoint/key every adapter will use.
++
++    Precedence (first non-empty wins):
++      URL:  explicit arg -> GATEWAY_URL -> RAGIN_LLM_BASE_URL ->
++            RAGIN_GATEWAY_URL -> settings ragin.cloud.gateway_url -> localhost
++      KEY:  explicit arg -> RAGIN_PROVIDER_API_KEY -> RAGIN_HISOKA_API_KEY ->
++            RAGIN_LLM_API_KEY -> OPENROUTER_API_KEY -> AZURE_OPENAI_KEY ->
++            OPENAI_API_KEY
++
++    The old resolver read only GATEWAY_URL/OPENROUTER_API_KEY. A local .env that
++    sets only RAGIN_LLM_BASE_URL/RAGIN_LLM_API_KEY (the documented names) was
++    therefore silently sent to http://localhost:8080. This resolver is static:
++    it validates the URL shape but performs NO network request.
++    """
+     cfg = _load_config()
+-    g_url = gateway_url or cfg.get("ragin", {}).get("cloud", {}).get(
+-        "gateway_url", os.environ.get("GATEWAY_URL", "http://localhost:8080")
++    ragin_cfg = cfg.get("ragin")
++    configured_url = None
++    if isinstance(ragin_cfg, dict):
++        configured_url = (ragin_cfg.get("cloud") or {}).get("gateway_url")
++
++    url = ""
++    url_source = "default"
++    candidates: list[tuple[str, str | None]] = [
++        ("argument", gateway_url),
++        *[(name, os.environ.get(name)) for name in _PROVIDER_URL_ENV_ORDER],
++        ("settings.ragin.cloud.gateway_url", configured_url),
++    ]
++    for source, value in candidates:
++        if isinstance(value, str) and value.strip():
++            url = value.strip()
++            url_source = source
++            break
++    if not url:
++        url = "http://localhost:8080"
++
++    key = ""
++    key_source = "unconfigured"
++    key_candidates: list[tuple[str, str | None]] = [
++        ("argument", api_key),
++        *[(name, os.environ.get(name)) for name in _PROVIDER_KEY_ENV_ORDER],
++    ]
++    for source, value in key_candidates:
++        if isinstance(value, str) and value.strip():
++            key = value.strip()
++            key_source = source
++            break
++
++    parsed = urlparse(url)
++    if parsed.scheme not in {"http", "https"} or not parsed.netloc:
++        raise RuntimeError(
++            f"invalid inference endpoint {_safe_endpoint(url)!r} (from {url_source}); expected an http(s) URL"
++        )
++
++    return {
++        "gateway_url": url.rstrip("/"),
++        "api_key": key,
++        "url_source": url_source,
++        "key_source": key_source,
++        "api_key_configured": bool(key),
++    }
++
++
++def _preflight_provider(config: dict[str, Any]) -> None:
++    """Static provider preflight. Never opens a socket; never logs the key."""
++    requires_key = _truthy_env("RAGIN_REQUIRE_PROVIDER") or _truthy_env("RAGIN_PROVIDER_ENABLED")
++    if requires_key and not config.get("api_key_configured"):
++        raise RuntimeError(
++            "RAGIN_PROVIDER_ENABLED/RAGIN_REQUIRE_PROVIDER is set but no provider API key "
++            "was found in RAGIN_PROVIDER_API_KEY, RAGIN_HISOKA_API_KEY, RAGIN_LLM_API_KEY, "
++            "OPENROUTER_API_KEY, AZURE_OPENAI_KEY or OPENAI_API_KEY"
++        )
++    logger.info(
++        "Inference endpoint resolved: url=%s (source=%s) auth=%s (source=%s)",
++        _safe_endpoint(str(config.get("gateway_url") or "")),
++        config.get("url_source"),
++        "configured" if config.get("api_key_configured") else "MISSING",
++        config.get("key_source"),
+     )
+-    a_key = api_key or os.environ.get("OPENROUTER_API_KEY", "")
++
++
++_LOOPBACK_HOSTS = frozenset({"127.0.0.1", "localhost", "::1", "0.0.0.0", "::", ""})
++
++
++def _is_self_endpoint(url: str, bind_host: str, port: int) -> bool:
++    """True when ``url`` resolves to the server's own listening endpoint.
++
++    Loopback aliases (``localhost`` / ``127.0.0.1`` / ``::1``) and wildcard
++    binds (``0.0.0.0`` / ``::``) are treated as the same endpoint when the
++    ports match. Static only — never resolves DNS or opens a socket.
++    """
++    parsed = urlparse(url)
++    if parsed.scheme not in {"http", "https"} or not parsed.hostname:
++        return False
++    bind = (bind_host or "").strip().lower()
++    url_host = parsed.hostname.strip().lower()
++    same_host = url_host == bind or (bind in _LOOPBACK_HOSTS and url_host in _LOOPBACK_HOSTS)
++    if not same_host:
++        return False
++    try:
++        url_port = int(parsed.port) if parsed.port is not None else (443 if parsed.scheme == "https" else 80)
++    except ValueError:
++        return False
++    return url_port == int(port)
++
++
++def _assert_provider_not_self(config: dict[str, Any], bind_host: str, port: int) -> None:
++    """Refuse a provider endpoint that is this server's own listener.
++
++    A self-call would re-enter ``/v1/chat/completions`` while the same thread
++    holds the sandbox lock and block until ``RAGIN_HISOKA_TIMEOUT``. The check
++    applies to the CLI's actual bind host/port, including the built-in
++    ``http://localhost:8080`` default; offline/deterministic users can set a
++    non-colliding loopback endpoint (for example ``http://127.0.0.1:9``).
++
++    This is a static equality check only: it does not resolve DNS, follow
++    redirects, probe the endpoint, or detect aliases/container hostnames. The
++    guard message never interpolates the URL, which may contain userinfo or a
++    query token. ``create_app`` callers that have no actual listen port are not
++    checked here.
++    """
++    url = str(config.get("gateway_url") or "")
++    if _is_self_endpoint(url, bind_host, int(port)):
++        raise RuntimeError(
++            f"configured inference endpoint (source={config.get('url_source')}) "
++            f"resolves to this server's own listener {bind_host}:{port}. Refusing a "
++            "self-call that would deadlock on the sandbox lock. Set a distinct "
++            "provider endpoint or a non-colliding loopback endpoint for deterministic mode."
++        )
++
++
++def _provider_health() -> dict[str, Any]:
++    if not _PROVIDER_INFO:
++        return {"configured": False}
++    return {
++        "configured": True,
++        "gateway_url": _safe_endpoint(str(_PROVIDER_INFO.get("gateway_url") or "")),
++        "url_source": _PROVIDER_INFO.get("url_source"),
++        "api_key_configured": bool(_PROVIDER_INFO.get("api_key_configured")),
++        "api_key_source": _PROVIDER_INFO.get("key_source"),
++    }
++
++
++def _init_pipeline(gateway_url: str | None = None, api_key: str | None = None) -> None:
++    """Initialize the full Harness pipeline with adapter-wrapped components."""
++    global _harness, _sandbox, _PROVIDER_INFO
++
++    provider = _resolve_provider_config(gateway_url, api_key)
++    _preflight_provider(provider)
++    _PROVIDER_INFO = {k: v for k, v in provider.items() if k != "api_key"}
++    g_url = provider["gateway_url"]
++    a_key = provider["api_key"]
+     runtime_mode = resolve_runtime_mode()
+     decision_arm = decision_arm_for_runtime(runtime_mode)
+ 
+@@ -795,20 +1040,40 @@ def _init_pipeline(gateway_url: str | None = None, api_key: str | None = None) -
+     _sandbox = Sandbox(harness=_harness)
+ 
+     logger.info(
+-        "Pipeline initialized: Chrollo → Don → Evidence Gate → Policy → Hisoka (%s)%s",
++        "Pipeline initialized: Chrollo → Don → Evidence Gate → Policy → Hisoka "
++        "(%s, arm=%s, verification=mandatory, provider=%s auth=%s)%s",
+         runtime_mode,
++        decision_arm,
++        _safe_endpoint(provider["gateway_url"]),
++        "configured" if provider["api_key_configured"] else "MISSING",
+         " + Laya decision" if laya_enabled() else "",
+     )
++    if laya_enabled():
++        try:
++            from ragin.decision.laya_runtime import get_shared_runtime
++
++            provenance = get_shared_runtime().checkpoint_provenance()
++            logger.warning(
++                "Laya enabled: served checkpoint=%s model=%s revision=%s "
++                "(fine_tuned_checkpoint_loaded=%s). Fine-tuned checkpoints under "
++                "models/ are NOT loaded by LayaRuntime.",
++                provenance.get("served_checkpoint"),
++                provenance.get("model"),
++                provenance.get("revision"),
++                provenance.get("fine_tuned_checkpoint_loaded"),
++            )
++        except Exception as exc:  # noqa: BLE001 - provenance must not block startup
++            logger.warning("Laya provenance unavailable: %s", exc.__class__.__name__)
+ 
+ 
+ def _init_component(name: str) -> None:
+     """Initialize a single component (backward compatible mode)."""
+-    global _component
+-    cfg = _load_config()
+-    g_url = (
+-        cfg.get("ragin", {}).get("cloud", {}).get("gateway_url", os.environ.get("GATEWAY_URL", "http://localhost:8080"))
+-    )
+-    a_key = os.environ.get("OPENROUTER_API_KEY", "")
++    global _component, _PROVIDER_INFO
++    provider = _resolve_provider_config()
++    _preflight_provider(provider)
++    _PROVIDER_INFO = {k: v for k, v in provider.items() if k != "api_key"}
++    g_url = provider["gateway_url"]
++    a_key = provider["api_key"]
+ 
+     if name == "chrollo":
+         from ragin.chrollo.classifier import ChrolloClassifier
+@@ -890,8 +1155,11 @@ def main() -> None:
+         format="%(asctime)s %(name)s %(levelname)s %(message)s",
+     )
+ 
+-    app = create_app(mode=args.mode, component=args.component)
+     bind_host = os.environ.get("RAGIN_BIND_HOST", "127.0.0.1")
++    # Static self-endpoint guard BEFORE the pipeline builds any HTTP client.
++    # Uses the actual listening port; exempts the unconfigured default.
++    _assert_provider_not_self(_resolve_provider_config(), bind_host, args.port)
++    app = create_app(mode=args.mode, component=args.component)
+     _validate_security_config()
+     ssl_context = build_server_context_from_env()
+     if os.environ.get("RAGIN_MTLS_REQUIRED", "0").strip().lower() in {"1", "true", "yes", "on"} and ssl_context is None:

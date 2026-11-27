@@ -1,0 +1,69 @@
+diff --git a/tests/integration/test_pipeline.py b/tests/integration/test_pipeline.py
+index 913fb0b..b24a41a 100755
+--- a/tests/integration/test_pipeline.py
++++ b/tests/integration/test_pipeline.py
+@@ -16,11 +16,64 @@ from ragin.don.models import (
+     ClassificationLabel,
+     SeverityLevel,
+     ThreatAnalysis,
++    IOC,
++    IOCType,
++    MITRETactic,
++    ThreatActor,
+ )
+ 
+ pytestmark = pytest.mark.integration
+ 
+ 
++@pytest.fixture
++def sample_classification_result() -> dict:
++    """Return a representative Chrollo classification payload for pipeline tests."""
++    return {
++        "classification": "suspicious",
++        "confidence": 0.87,
++        "features_used": ["session_entropy", "command_sequence", "tty_interaction"],
++    }
++
++
++@pytest.fixture
++def sample_session_log() -> list[dict]:
++    """Return a small synthetic session log used by pipeline tests."""
++    return [
++        {"event_type": "session_start", "timestamp": "2026-01-01T00:00:00Z", "source_ip": "10.0.0.1"},
++        {"event_type": "command", "timestamp": "2026-01-01T00:00:01Z", "command": "ls -la"},
++        {"event_type": "command", "timestamp": "2026-01-01T00:00:02Z", "command": "uname -a"},
++        {"event_type": "command", "timestamp": "2026-01-01T00:00:03Z", "command": "cat /etc/passwd"},
++        {"event_type": "session_end", "timestamp": "2026-01-01T00:00:04Z"},
++    ]
++
++
++@pytest.fixture
++def sample_threat_analysis() -> dict:
++    """Return a representative Don ThreatAnalysis payload for pipeline tests."""
++    return {
++        "analysis_id": "sample-ta",
++        "session_id": "sample-session",
++        "classification": ClassificationLabel.SUSPICIOUS,
++        "severity": SeverityLevel.HIGH,
++        "confidence": 0.85,
++        "tactics": [
++            MITRETactic(tactic_id="TA0006", tactic_name="Credential Access", confidence=0.8),
++        ],
++        "threat_actors": [
++            ThreatActor(name="Unknown", confidence=0.5),
++        ],
++        "iocs": [
++            IOC(type=IOCType.IP, value="192.168.1.100"),
++            IOC(type=IOCType.DOMAIN, value="evil.example.com"),
++        ],
++        "sophistication_score": 0.62,
++        "intel_documents": [],
++        "narrative": "Sample narrative",
++        "recommendations": ["Investigate credential access"],
++        "raw_features": {},
++    }
++
++
+ # ---------------------------------------------------------------------------
+ # Chrollo → Don Pipeline
+ # ---------------------------------------------------------------------------

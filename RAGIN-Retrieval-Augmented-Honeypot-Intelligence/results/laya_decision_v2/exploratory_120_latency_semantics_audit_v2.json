@@ -1,0 +1,17 @@
+{
+  "classification_timing_included": true,
+  "interleaving_explanation": "negative observed delta is compatible with warm-state and temporal scheduling effects; it is not a causal speedup estimate.",
+  "laya_component_latency": {
+    "boundary": "inside treatment total timer as classification stage",
+    "mean_ms": 1613.592
+  },
+  "model_initialization_included": "not separately isolated; shared lazy runtime state can warm across paired executions",
+  "observed_paired_e2e_latency_delta": {
+    "definition": "treatment total_time_ms minus baseline total_time_ms per matched case",
+    "mean_ms": -14.9809210197418
+  },
+  "paired_state": "same process-level run and shared runtime availability, with separate sessions and arm harnesses",
+  "schema": "ragin.laya_decision_v2.exploratory_120_latency_semantics_audit.v2",
+  "speedup_claim_allowed": false,
+  "timer_start_stop": "Harness._process_verified starts before attacker input and finalizes after commit/fallback; both arms use the same boundary."
+}

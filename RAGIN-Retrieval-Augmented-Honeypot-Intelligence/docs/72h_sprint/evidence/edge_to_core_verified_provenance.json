@@ -1,0 +1,161 @@
+{
+  "timestamp": 1791490503.0355318,
+  "session_id": "ses-66e33eaeb54d420e",
+  "command_status": 200,
+  "command_count": 1,
+  "response_text": "webapp@web-srv-01:~$ whoami\nwebapp",
+  "replay_status": 200,
+  "events": [
+    {
+      "event_type": "classification",
+      "payload": {
+        "skill_level": "novice",
+        "confidence": 0.9749,
+        "session_id": "7863ede3941f66100492af09fa4f72d3e28c804f27563c000990a8033cc7115a",
+        "features_used": [
+          "command_complexity",
+          "tool_usage_diversity",
+          "persistence_techniques",
+          "lateral_movement_indicators",
+          "time_between_commands",
+          "unique_commands_ratio",
+          "privilege_escalation_attempts",
+          "network_scan_detected",
+          "credential_access_attempts",
+          "custom_tool_usage"
+        ],
+        "feature_values": {
+          "command_complexity": 0.05,
+          "tool_usage_diversity": 1.0,
+          "persistence_techniques": 0.0,
+          "lateral_movement_indicators": 0.0,
+          "time_between_commands": 0.0,
+          "unique_commands_ratio": 1.0,
+          "privilege_escalation_attempts": 0.0,
+          "network_scan_detected": 0.0,
+          "credential_access_attempts": 0.0,
+          "custom_tool_usage": 0.0,
+          "phase_pos_recon": 1.0,
+          "phase_pos_scan": 0.0,
+          "phase_pos_exploit": 0.0,
+          "phase_pos_privesc": 0.0,
+          "phase_pos_persist": 0.0,
+          "phase_pos_lateral": 0.0,
+          "phase_pos_exfil": 0.0,
+          "timing_acceleration": 0.0,
+          "ngram_0": 0.0,
+          "ngram_1": 0.0
+        },
+        "error": ""
+      }
+    },
+    {
+      "event_type": "cti_lookup",
+      "payload": {
+        "analysis_id": "ab47445511d6a481",
+        "severity": "medium",
+        "classification": "suspicious",
+        "confidence": 0.5,
+        "sophistication_score": 0.0,
+        "threat_summary": "",
+        "recommendations": [],
+        "tactics": [
+          {
+            "id": "TA0007",
+            "name": "System Owner/User Discovery",
+            "confidence": 0.5
+          }
+        ],
+        "candidate_actors": [
+          {
+            "name": "Apt20",
+            "confidence": 0.2,
+            "known_ttps": [
+              "T1059",
+              "T1190",
+              "T1003",
+              "T1071",
+              "T1082"
+            ],
+            "basis": "tactic-heuristic"
+          },
+          {
+            "name": "Charming Kitten",
+            "confidence": 0.2,
+            "known_ttps": [
+              "T1059",
+              "T1003",
+              "T1566",
+              "T1071",
+              "T1018"
+            ],
+            "basis": "tactic-heuristic"
+          }
+        ],
+        "evasion_techniques": {},
+        "tools_used": {},
+        "credential_access": {
+          "user_enumeration": [
+            "whoami"
+          ]
+        },
+        "iocs": [],
+        "ttps_seen": [
+          "T1033"
+        ],
+        "extracted_techniques": [
+          "T1033"
+        ],
+        "actor_repertoire_ttps": [
+          "T1003",
+          "T1018",
+          "T1059",
+          "T1071",
+          "T1082",
+          "T1190",
+          "T1566"
+        ],
+        "error": ""
+      }
+    },
+    {
+      "event_type": "verification",
+      "payload": {
+        "passed": true,
+        "issues": [],
+        "confidence": 1.0,
+        "verifier": "FictionConsistencyVerifier",
+        "deterministic": true,
+        "accepted": true,
+        "serve_path": "GENERATED_VERIFIED",
+        "attempt": 1,
+        "candidate_sha256": "9d1799d0206e9e9b52e136d93f0719ddd7917d6aa81fb11cbe53e580694a00a4"
+      }
+    },
+    {
+      "event_type": "system_response",
+      "payload": {
+        "text": "webapp@web-srv-01:~$ whoami\nwebapp",
+        "persona_used": "novice",
+        "serve_path": "GENERATED_VERIFIED",
+        "approval": {
+          "approved": true,
+          "level": "auto",
+          "reason": "auto-approved (low risk)",
+          "decided_by": "gateway:auto",
+          "timestamp": "2026-10-08T20:15:03.011363+00:00"
+        },
+        "candidate_sha256": "9d1799d0206e9e9b52e136d93f0719ddd7917d6aa81fb11cbe53e580694a00a4"
+      }
+    },
+    {
+      "event_type": "metric",
+      "payload": {
+        "command": "whoami",
+        "processing_time_ms": 1086.6488720002963,
+        "persona_used": "novice",
+        "artifacts_count": 0
+      }
+    }
+  ]
+}

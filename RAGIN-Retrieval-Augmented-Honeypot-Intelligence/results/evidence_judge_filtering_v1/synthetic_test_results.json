@@ -1,0 +1,29 @@
+{
+  "benchmark_verifier_safety_tests": 131,
+  "commands": [
+    "python -m pytest -q tests/unit/test_evidence_judge.py tests/unit/test_evidence_judge_filtering.py tests/integration/test_substantive_runtime_integration_v1.py",
+    "python -m pytest -q tests/unit/test_benchmark.py tests/unit/test_verifier.py tests/unit/test_verifier_redteam.py"
+  ],
+  "coverage": [
+    "mixed relevant and irrelevant candidates",
+    "partial-only evidence",
+    "contradictory evidence",
+    "unknown provenance",
+    "overlapping/nonrelevant technique documents",
+    "empty filtered sets",
+    "legitimate sufficient evidence",
+    "benign and ambiguous commands",
+    "Gate fail-safe",
+    "disabled-mode baseline",
+    "policy-visible evidence IDs",
+    "verifier/HITL/accepted-only commit guards"
+  ],
+  "failed": 0,
+  "fixtures": "fresh synthetic fixtures only",
+  "focused_filter_tests": 17,
+  "historical_120_rerun": false,
+  "passed": 154,
+  "real_world_accuracy_claims": false,
+  "schema": "ragin.evidence_judge_filtering.synthetic_test_results.v1",
+  "substantive_integration_tests": 7
+}

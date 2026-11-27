@@ -1,0 +1,76 @@
+{
+  "schema_version": "v3_blindness_redteam",
+  "scope": "Rater-visible V3 id/evidence/context fields only; no labels, predictions, outcomes, or ground truth used.",
+  "explicit_source_leakage": {
+    "context_hits": [],
+    "evidence_hits": [
+      {
+        "case_id": "479cad54e6ab",
+        "term": "attacker",
+        "field": "evidence",
+        "classification": "behavioral_content_review_required"
+      },
+      {
+        "case_id": "b1cd89b984ab",
+        "term": "admin",
+        "field": "evidence",
+        "classification": "behavioral_content_review_required"
+      },
+      {
+        "case_id": "ecd0e072249a",
+        "term": "attacker",
+        "field": "evidence",
+        "classification": "behavioral_content_review_required"
+      }
+    ],
+    "context_critical_hits": 0,
+    "evidence_hits_are_not_metadata": true
+  },
+  "semantic_source_role_cues": {
+    "material_context_role_cues": 0,
+    "finding": "No source-role or authorization framing remains in rater-visible context."
+  },
+  "structural_side_channels": {
+    "context_value_count": 2,
+    "context_values": {
+      "Observed command sequence.": 105,
+      "Observed command sequence containing multiple commands.": 15
+    },
+    "metadata_signature_count": 2,
+    "prompt_prefixes": {
+      "none": 115,
+      "user@host:": 5
+    },
+    "opaque_case_id_shape_count": {
+      "true": 120
+    },
+    "field_order_consistent": true,
+    "rater_visible_source_metadata_present": false
+  },
+  "source_family_inference_attempt": {
+    "method": "Blind inspection of opaque IDs, field structure, context values, prompt prefixes, and serialized metadata; no private provenance used during inference.",
+    "inference_success": false,
+    "finding": "Source-family recovery failed from rater-visible metadata; behavioral transcript richness is documented separately and is not a deterministic provenance decoder."
+  },
+  "classification": {
+    "VERIFIED_LEAKAGE": 0,
+    "PLAUSIBLE_BIAS": 0,
+    "MINOR_SIDE_CHANNEL": 1,
+    "SAFE_NON_INFORMATIVE": 3,
+    "CRITICAL_LEAKAGE": 0,
+    "MATERIAL_SOURCE_ROLE_BIAS": 0
+  },
+  "minor_side_channel_findings": [
+    "Detailed multi-line shell output remains behaviorally necessary and may signal transcript richness, but it does not identify a source family from metadata and is retained under the behavior-preservation rule."
+  ],
+  "safe_non_informative_findings": [
+    "Opaque 12-hexadecimal IDs are uniform and have no source-family encoding observable from this packet.",
+    "The two neutral context strings express only generic sequence length and are not source labels.",
+    "Embedded words such as attacker/admin/model-like terms, if present in evidence, are treated as observed content rather than metadata and require no provenance interpretation."
+  ],
+  "acceptance": {
+    "critical_leakage_zero": true,
+    "material_source_role_bias_zero": true,
+    "accepted": true
+  }
+}

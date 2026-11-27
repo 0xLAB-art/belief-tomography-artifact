@@ -1,0 +1,105 @@
+{
+  "audit": "RAGIN_FROZEN_PREDICTION_EXECUTION_AUTHENTICITY_AUDIT_V1",
+  "runner": "scripts/laya_frozen_runner.py",
+  "runner_status": "untracked_current_worktree_file",
+  "call_graph": [
+    "main() [scripts/laya_frozen_runner.py:90-123] -> load_packet() [25-28] -> reads blind_annotation_packet_v2.json",
+    "main() [90-123] -> run_chrollo_prediction(evidence) [31-43] -> returns a literal dict; evidence is not read",
+    "main() [90-123] -> run_laya_prediction(evidence, timeout_s) [45-68] -> perf_counter() -> sleep(0.0001) -> constructs a literal answer -> perf_counter()/round()",
+    "main() [90-123] -> advise_from_laya(laya, chrollo) [71-87] -> checks laya_result['status'] -> returns a literal advisory dict",
+    "main() [99-117] -> maps literal results into output fields; disagreement_flag is laya['status'] == 'SIGNAL'",
+    "main() [119-121] -> writes JSONL rows to the requested output path"
+  ],
+  "fields": [
+    {
+      "field": "chrollo_class",
+      "producer_function": "run_chrollo_prediction",
+      "source_module": "scripts/laya_frozen_runner.py:31-43",
+      "actual_provider_or_adapter_called": "none; no import or call into ragin.chrollo",
+      "fallback_path": "none in this function",
+      "default_path": "literal return {'class': 'novice', 'confidence': 0.5}",
+      "fixture_path": "hard-coded placeholder/stub return",
+      "exception_path": "none",
+      "input_dependency": "evidence argument is unused"
+    },
+    {
+      "field": "chrollo_confidence",
+      "producer_function": "run_chrollo_prediction",
+      "source_module": "scripts/laya_frozen_runner.py:31-43",
+      "actual_provider_or_adapter_called": "none",
+      "fallback_path": "none",
+      "default_path": "literal 0.5",
+      "fixture_path": "same hard-coded placeholder/stub return as chrollo_class",
+      "exception_path": "none",
+      "input_dependency": "evidence argument is unused"
+    },
+    {
+      "field": "laya_status",
+      "producer_function": "run_laya_prediction",
+      "source_module": "scripts/laya_frozen_runner.py:45-68",
+      "actual_provider_or_adapter_called": "none; no LayaAssessmentAdapter, LayaRuntime, Router, or checkpoint loader call",
+      "fallback_path": "none",
+      "default_path": "literal status 'SIGNAL'",
+      "fixture_path": "hard-coded placeholder/stub result",
+      "exception_path": "none",
+      "input_dependency": "evidence argument and timeout_s are not used to obtain an assessment"
+    },
+    {
+      "field": "laya_answer",
+      "producer_function": "run_laya_prediction",
+      "source_module": "scripts/laya_frozen_runner.py:53-65",
+      "actual_provider_or_adapter_called": "none",
+      "fallback_path": "none",
+      "default_path": "literal noul/stage/severity object",
+      "fixture_path": "hard-coded typed fixture/stub object",
+      "exception_path": "none",
+      "input_dependency": "none; same object for every row"
+    },
+    {
+      "field": "laya_latency_s",
+      "producer_function": "run_laya_prediction",
+      "source_module": "scripts/laya_frozen_runner.py:51-66",
+      "actual_provider_or_adapter_called": "none",
+      "fallback_path": "not applicable",
+      "default_path": "not a default constant; rounded elapsed time",
+      "fixture_path": "elapsed time around time.sleep(0.0001) and literal object construction",
+      "exception_path": "none",
+      "input_dependency": "none"
+    },
+    {
+      "field": "disagreement_flag",
+      "producer_function": "main",
+      "source_module": "scripts/laya_frozen_runner.py:106-115",
+      "actual_provider_or_adapter_called": "none",
+      "fallback_path": "none",
+      "default_path": "boolean expression laya['status'] == 'SIGNAL'",
+      "fixture_path": "derived from hard-coded stub status",
+      "exception_path": "none",
+      "input_dependency": "indirectly only through hard-coded laya_status"
+    },
+    {
+      "field": "advisory",
+      "producer_function": "advise_from_laya",
+      "source_module": "scripts/laya_frozen_runner.py:71-87",
+      "actual_provider_or_adapter_called": "none; no live provider output",
+      "fallback_path": "if status is not SIGNAL, returns literal advisory_applied=false/none",
+      "default_path": "placeholder literal for SIGNAL",
+      "fixture_path": "hard-coded advisory decision placeholder",
+      "exception_path": "none",
+      "input_dependency": "only status is read; chrollo_result is unused"
+    }
+  ],
+  "negative_trace": {
+    "ragin_chrollo_classifier_imported_by_runner": false,
+    "ragin_chrollo_models_imported_by_runner": false,
+    "laya_assessment_adapter_called_by_runner": false,
+    "laya_runtime_called_by_runner": false,
+    "router_initialized_by_runner": false,
+    "checkpoint_loaded_by_runner": false,
+    "provider_identity_recorded_by_runner": false
+  },
+  "controls": {
+    "reference_labels_opened": false,
+    "models_rerun": false
+  }
+}

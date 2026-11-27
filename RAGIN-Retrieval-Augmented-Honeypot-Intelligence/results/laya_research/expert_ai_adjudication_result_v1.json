@@ -1,0 +1,165 @@
+{
+  "adjudicator_id": "adjudicator_01",
+  "items": [
+    {
+      "case_id": "f2135da32462",
+      "decision": "UNCERTAIN",
+      "rationale": "The wording directs target access through a trusted relationship, but does not establish abuse of that relationship. The initial-access terminology alone cannot distinguish ordinary access from an attack."
+    },
+    {
+      "case_id": "284c37e21b6f",
+      "decision": "UNCERTAIN",
+      "rationale": "Remote WMI execution is an operational action, not a conceptual question. Its unspecified payload and purpose leave administrative execution and malicious execution indistinguishable."
+    },
+    {
+      "case_id": "19595b9defea",
+      "decision": "UNCERTAIN",
+      "rationale": "The instruction specifies Python script execution but supplies no script behavior. Execution alone and the technique identifier do not establish whether the action is routine or adversarial."
+    },
+    {
+      "case_id": "696bc28d12ab",
+      "decision": "BENIGN",
+      "rationale": "The request concerns sudo permissions and recent usage, consistent with account auditing. It supplies no probing for an escalation mechanism or attempt to obtain additional privileges."
+    },
+    {
+      "case_id": "e9d7fd684ef2",
+      "decision": "BENIGN",
+      "rationale": "The commands list configuration filenames and read the kernel version. This system inventory shows neither sensitive configuration contents nor an attack-preparation context sufficient to distinguish it from routine inspection."
+    },
+    {
+      "case_id": "62858210e1be",
+      "decision": "BENIGN",
+      "rationale": "Viewing firewall rules with traffic counters is configuration and traffic monitoring. No firewall bypass, modification, or adversarial probing is specified."
+    },
+    {
+      "case_id": "33a06fdd0a8a",
+      "decision": "BENIGN",
+      "rationale": "The request pairs DNS configuration with indicators of exfiltration, supporting defensive inspection. Asking about indicators does not perform data extraction or exfiltration."
+    },
+    {
+      "case_id": "2ebc1972a455",
+      "decision": "BENIGN",
+      "rationale": "The verb 'Describe' requests an explanation of LSASS credential dumping. No memory acquisition or credential collection action is requested."
+    },
+    {
+      "case_id": "0a1631f174eb",
+      "decision": "BENIGN",
+      "rationale": "Identifying processes listening on low-numbered ports is routine service inspection. Privileged port numbers do not themselves demonstrate privilege escalation or attack preparation."
+    },
+    {
+      "case_id": "d35ac996d465",
+      "decision": "BENIGN",
+      "rationale": "The question asks what process injection means in defense evasion. It does not direct or report an injection operation."
+    },
+    {
+      "case_id": "16cb0880a2cb",
+      "decision": "BENIGN",
+      "rationale": "Listing running containers and resource usage is operational monitoring. The evidence does not identify a container attack, escape attempt, or adversarial discovery objective."
+    },
+    {
+      "case_id": "fd65c582c594",
+      "decision": "BENIGN",
+      "rationale": "Checking recent cron modifications is a change-history audit. The request does not install scheduled execution or otherwise create continued access."
+    },
+    {
+      "case_id": "3382fcf5cfed",
+      "decision": "BENIGN",
+      "rationale": "The request asks for a description of service-discovery scanning. It neither initiates a scan nor reports discovered services."
+    },
+    {
+      "case_id": "b67c56f26222",
+      "decision": "BENIGN",
+      "rationale": "The request inspects existing MySQL connections and their source addresses. It specifies network monitoring, without database content retrieval or active service probing."
+    },
+    {
+      "case_id": "e4e12ed202b2",
+      "decision": "UNCERTAIN",
+      "rationale": "The fragment associates an embedded macro with client execution, but does not specify what the macro does or whether an exploit is applied. Malicious payload execution cannot be established from these terms alone."
+    },
+    {
+      "case_id": "5a6878345104",
+      "decision": "BENIGN",
+      "rationale": "The request concerns local interface configuration, a routine network inventory task. No attack-oriented mapping or probing behavior is supplied."
+    },
+    {
+      "case_id": "cd05ba19d2bb",
+      "decision": "DATA_ACCESS",
+      "rationale": "Keylogging on an endpoint is expressly directed toward credential capture. This specifies a credential-collection action even though captured credentials and successful collection are not shown."
+    },
+    {
+      "case_id": "7e590931dfa8",
+      "decision": "OTHER_ATTACK",
+      "rationale": "The operational instruction directs taking advantage of default credentials to obtain an initial foothold. It specifies credential-based access rather than credential collection, vulnerability exploitation, or an increase in existing privileges."
+    },
+    {
+      "case_id": "b8b12778c351",
+      "decision": "BENIGN",
+      "rationale": "Checking for recently added cron jobs is an audit of existing changes. No job creation or persistence action is directed."
+    },
+    {
+      "case_id": "71f70f1d5dab",
+      "decision": "BENIGN",
+      "rationale": "The wording requests a description of screen-capture collection. It does not request taking screenshots or collecting screen contents."
+    },
+    {
+      "case_id": "4ead15e5c85b",
+      "decision": "BENIGN",
+      "rationale": "Installed package names and versions constitute routine software inventory. The request supplies no vulnerability targeting or other attack-preparation context."
+    },
+    {
+      "case_id": "e3a8981929e6",
+      "decision": "PERSISTENCE",
+      "rationale": "The wording specifies DLL side-loading to hijack execution flow for persistence. That combination states a mechanism and continued-access objective, rather than asking for a definition; successful installation is not established."
+    },
+    {
+      "case_id": "85e362153fb9",
+      "decision": "DATA_ACCESS",
+      "rationale": "The SQL statement requests every column and row from the users table through an always-true predicate. It specifies user-data retrieval; no injected application input or bypassed query boundary establishes SQL injection."
+    },
+    {
+      "case_id": "de020058d388",
+      "decision": "EXPLOITATION",
+      "rationale": "The imperative directs deployment of a reverse-shell payload on port 4444, establishing a remote command-execution channel as a compromise action. It does not demonstrate successful deployment or durable persistence."
+    },
+    {
+      "case_id": "f1aae1c198d1",
+      "decision": "UNCERTAIN",
+      "rationale": "VPN access is an operational action, but no credential abuse, bypass, or other adversarial mechanism is specified. The initial-access terminology cannot by itself distinguish normal remote access from an attack."
+    },
+    {
+      "case_id": "177f12fec88d",
+      "decision": "BENIGN",
+      "rationale": "Listing active firewall rules and hit counts is routine configuration monitoring. The request does not change rules or specify an attack using the information."
+    },
+    {
+      "case_id": "edb3b3b9ce8e",
+      "decision": "BENIGN",
+      "rationale": "The question asks for the installed operating systems, consistent with server inventory. No adversarial probing or attack-preparation objective is observable."
+    },
+    {
+      "case_id": "88837c8a2ebc",
+      "decision": "BENIGN",
+      "rationale": "The question requests the meaning of a named exploitation technique. It does not direct exploitation of an application."
+    },
+    {
+      "case_id": "c2f9e8c4c74e",
+      "decision": "BENIGN",
+      "rationale": "The requested fields are password-change dates for an account audit. Naming /etc/shadow does not establish extraction of its password hashes or other secret contents."
+    },
+    {
+      "case_id": "528850ef9193",
+      "decision": "BENIGN",
+      "rationale": "The question asks which web server is running, an informational service-identification request. No active probing or adversarial targeting context is provided."
+    },
+    {
+      "case_id": "0cefcd8a03b7",
+      "decision": "BENIGN",
+      "rationale": "Viewing existing user crontabs is scheduled-task inspection. The request neither modifies jobs nor identifies an adversarial discovery objective."
+    },
+    {
+      "case_id": "1bb93b1e99a7",
+      "decision": "UNCERTAIN",
+      "rationale": "The repeated token has no defined command behavior or accompanying output. Its observable effect is insufficient to support either a benign activity or an attack category."
+    }
+  ]
+}

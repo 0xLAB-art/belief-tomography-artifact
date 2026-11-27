@@ -1,0 +1,230 @@
+\section{Background and Threat Model}
+\label{sec:background}
+
+\subsection{Honeypots and the Fidelity--Safety Tension}
+\label{sec:tension}
+A honeypot is a resource with no production value whose only purpose is to
+be probed, attacked, and compromised~\cite{spitzner2002}. The literature
+classifies honeypots by interaction depth~\cite{lopez2024}. Low-interaction
+systems emulate a handful of protocols well enough to be scanned;
+medium-interaction systems accept sessions and expose a bounded command
+surface; high-interaction systems hand the attacker a real machine, with
+the containment cost that implies. Production deployments overwhelmingly
+favor low- and medium-interaction designs because they contain risk:
+a scripted trap cannot be pivoted through, and its worst-case disclosure
+is the script itself. Containment, however, is bought by scripting, and
+the deception is a finite automaton. A finite automaton cannot answer a
+question it was not compiled to answer, so an attacker who strays off the
+script, or simply probes from a class the author did not anticipate,
+learns nothing new and may learn the host is fake.
+
+Deception research gives the tension a formal shape: a deception succeeds
+when the attacker's belief about the system diverges, in a way the
+operator benefits from, from the system's reality, and formal
+deception frameworks treat signaling, belief manipulation, and the
+attacker's discrimination between real and fake as the quantities the
+deception must control~\cite{pawlick2021}. That framing exposes the
+catch-22
+that confines classical designs. A honeypot is valuable exactly insofar
+as the attacker believes it and engages with it, and engagement rewards
+richness: more services, more answers, more history. Richness, delivered
+by scripts, is where the risk lives, because every scripted answer is a
+hand-written commitment about a machine that does not exist, and an
+attacker who walks off the script collects a contradiction or a crash
+instead of a session. Classical practice manages this by keeping the
+fiction poor. The interaction-depth taxonomy states the trade as
+fidelity against safety; stated in the adversary's terms, it is a
+catch-22: the fiction must be rich to be believed and poor to be safe.
+
+Raising interaction depth through generative models inverts the trade.
+A generator can answer \emph{anything}, which is exactly the problem.
+First-generation generative honeypots demonstrate that an LLM can sustain
+a shell conversation, an LDAP directory, or an AI-agent lure convincingly
+enough to hold modern attackers~\cite{valeros2024,reworr2024,jimenez2025},
+and LLM-generated web deception~\cite{galah2024} extends the same idea to
+HTTP surfaces. The field has since moved from feasibility to state
+awareness: recent systems manage persistent state and validate generated
+responses against state constraints~\cite{li2026llmsshh}, add guardrails
+and state management across web and API surfaces~\cite{laragutierrez2026genpot},
+and price the design trilemma of flexibility, depth, and
+deception~\cite{wang2026honeygpt}, with a recent systematic review
+mapping the design space~\cite{bridges2026}. These systems answer an
+important question -- how to make the generator's output stay consistent
+and believable -- and we treat them as evidence the field has matured
+past the believability-only era. The question this paper addresses is
+the complementary one those systems do not pose: what is the
+\emph{security} status of a response in a deception system that serves
+it? For a security tool, wrongness takes three forms, and all three are
+silent failures. First, \emph{inconsistency}: the fiction drifts, and an
+attacker who cross-references two turns learns that the host is
+synthetic. Second, \emph{over-disclosure}: the model complies too well,
+emits credential material that was never intended to be served, or
+produces content that poisons downstream analytics. Third,
+\emph{unavailability}: the generator is a rented service that can
+refuse, stall, or vanish mid-session, and a deception endpoint that
+answers with a refusal has told the attacker something true. Prior
+systems mitigate the first form inside the generator's context window --
+state snapshots, constraint checks, guardrails -- but a validated
+response is still not a \emph{certified} one: no verdict is recorded,
+no fallback bounds what happens when validation fails, no gate decides
+whether high-stakes bait may be served, and the consistency machinery
+itself is rarely evaluated under adversarial pressure. The design in
+\S\ref{sec:design} treats all three failure forms as first-class
+constraints with enforcing mechanisms, not quality hopes, and prices
+every mechanism those constraints admit against cheaper certifiable
+alternatives.
+Resolving the catch-22, rather than trading within it, is the design
+problem this paper addresses: \S\ref{sec:design} decouples the realism
+of the fiction from the risk of the machinery that produces it, by
+making every generator output pass a check computed against a world the
+defender fully controls.
+
+\subsection{Threat Model}
+\label{sec:threatmodel}
+We consider an attacker who interacts with the honeypot over standard
+remote-access protocols (SSH today, HTTP and Telnet supported by the same
+machinery). The attacker may be unskilled (credential spraying, banner
+grabbing) or expert (hands-on-keyboard, staged tooling, lateral-movement
+reconnaissance); the behavioral difference between the two is what the
+profiler must recover. The attacker's goals are those of the CTI
+literature: initial access, credential harvest, privilege escalation, and
+exfiltration, observable as techniques in the \attck matrix. Sessions are
+attributed behaviorally, not cryptographically: the system may link
+reconnaissance in one session to credential use in another, but an
+attacker who rotates infrastructure presents as a new profile.
+
+The attacker's \emph{observation model} is the served response and
+nothing else. They cannot see the plan that produced it, the graph that
+constrained it, or the verdicts that preceded it. Within that constraint
+we assume arbitrary fingerprinting skill: the attacker may issue
+conflicting commands, re-query facts stated many turns earlier, compare
+notes across parallel sessions, and probe protocol edge cases
+specifically to test whether the host is synthetic. Inconsistency is
+therefore not a cosmetic defect but an information channel to the
+adversary, which is why G2 (below) requires a zero-contradiction
+condition rather than a low rate.
+
+Timing is the one channel this observation model leaks. The attacker
+measures only responses, but response latency is measurable: a
+session served end to end in tens of seconds (the live campaign's mean
+was ${\sim}44$~s, dominated by generative turns; \S\ref{sec:discussion})
+presents a host whose shell feels unlike a local one, the
+fallback's fast vetted answers have a signature of their own, and the
+human-in-the-loop gate adds an operator-latency pause of its own
+(\S\ref{sec:implementation}) precisely on the highest-stakes turns. The
+problem is not hypothetical: the serve-path provenance analysis of
+\S\ref{sec:evaluation} separates the LLM-served rows from the
+deterministic rows by latency alone at an 88--88\% split, which is
+exactly the separability an attacker could exploit. We treat
+latency homogenization as an open problem rather than a solved one; the
+deception properties this paper claims are those verifiable from
+response content alone.
+
+We do \emph{not} assume the attacker can compromise the honeypot's
+control plane, escape the container sandbox, observe traffic between
+honeypot components, or influence the retrieval corpus before a session
+begins. Physical access, insider threat, and compromise of the defender's
+workstation are out of scope.
+
+Finally, we assume the attacker may be \emph{adaptive}: they may probe
+systematically to map the fiction's boundaries, deliberately elicit
+refusals to fingerprint the generator, re-attack across sessions to test
+which facts persist, and seed inputs shaped to influence what the
+retrieval engine surfaces. The design does not assume the deception
+logic is secret; the fallback transcript library is assumed
+disclosable, and the fiction's single-scope deployment means an attacker
+who compromises one session's view learns one host, not the fleet. The
+per-session scoping of the fiction graph (\S\ref{sec:graph}) means
+cross-session facts -- including the observable difference between the
+deception policies served to different attacker classes -- lie outside
+the zero-contradiction guarantee, which is therefore strictly
+within-session (Prop.~\ref{prop:consistency}); an attacker comparing
+notes across sessions or probing the same fiction class across
+re-attacks is testing exactly this boundary, and we treat cross-session
+consistency as future work rather than a claim. What
+the system does rely on keeping secret is small: the canary registry,
+which must exist outside any view the attacker can reach, and the
+serving-time verdicts of \S\ref{sec:design}. An adaptive adversary is
+the reason the evaluation of \S\ref{sec:evaluation} measures the system
+under targeted adversarial re-query rather than benign traffic.
+
+We additionally consider the \emph{provider} as an involuntary third
+party. The honeypot's generative components run against an inference API
+whose safety alignment, rate limits, and availability are outside our
+control. Across this project's deployments we observed the full failure
+taxonomy firsthand: safety refusals of the deception task, budget
+exhaustion under alignment pressure (86.7\% of generated turns on one
+commercial provider), timeouts, transient network errors, and catalog
+churn, in which a listed model disappears from the provider's offering
+between one day and the next. A deployment must remain safe and useful
+through every row of that taxonomy; \S\ref{sec:design} accordingly treats
+the provider as an unreliable component, not a trusted oracle.
+
+Defenders operate the system and are assumed to act within policy. The human-in-the-loop
+gate exists precisely because some content classes (credential bait, for
+instance) should not be served without a human decision, even when the
+machinery would allow it.
+
+\subsection{Vocabulary}
+\label{sec:vocab}
+Five terms carry precise meanings throughout the paper. A \emph{deception
+plan} is the per-session specification the loop serves against: the facts
+to project, the bait artifacts to deploy, and the attacker model they are
+chosen for. The \emph{fiction graph} is the triple store binding every
+projected host fact (hostname, kernel, service versions, credentials) to
+one consistent world; \S\ref{sec:design} formalizes its consistency
+property. A response is \emph{verified} only if a serving-time check
+confirms every factual claim it makes against the graph; anything else
+that must be sent is served from the \emph{deterministic fallback}, a
+library of human-vetted transcripts. A \emph{honeytoken} is a deployed
+artifact (a credential, a configuration value) whose value is a
+canary-registered secret, so that any use of it elsewhere is attributable
+to the disclosure event; honeytokens as deliberate, trackable
+disclosures date to the earliest honeypot literature~\cite{spitzner2003}. \emph{TTP} denotes an ATT\&CK tactic or
+technique~\cite{roy2023}; extraction of TTPs from attacker behavior is
+the CTI product the system computes as a by-product of deceiving, and
+retrieval-augmented grounding~\cite{lewis2020} over curated CTI corpora,
+a technique adapted to security annotation in prior
+work~\cite{lekssays2025}, is what supplies that product its evidence base.
+
+\subsection{Design Goals}
+\label{sec:goals}
+The analysis above yields five goals. Each goal names the failure it
+exists to prevent, the mechanism that enforces it (\S\ref{sec:design}),
+and the measurement that falsifies it (\S\ref{sec:evaluation}):
+\begin{itemize}
+\item \textbf{G1 (Grounding).} Deception content should be conditioned on
+who the attacker is and on current threat intelligence, not on a static
+script. Prevents: irrelevant deception that no attacker class finds
+plausible. Enforced by: the profiler and hybrid retrieval engine.
+Measured by: the paired RAG-vs-no-RAG differential (RQ1).
+\item \textbf{G2 (Consistency).} The fiction must never contradict itself.
+Every artifact the attacker can observe (kernel version, listening ports,
+databases, credentials) must resolve to one set of facts. Prevents: the
+inconsistency channel of \S\ref{sec:tension}. Enforced by: the fiction
+graph and the serving-time verifier. Measured by: contradiction rate
+under adversarial re-query (RQ2).
+\item \textbf{G3 (Safety).} No unverified content reaches the wire, and
+dangerous content classes require explicit human approval. Prevents:
+over-disclosure. Enforced by: the verifier, canary registration, and the
+HITL gate. Measured by: verified-serve rate, danger-gate catches, and
+HITL audit coverage (RQ2).
+\item \textbf{G4 (Graceful degradation).} When generation, verification,
+or the provider fails, the system must fall back to deterministic vetted
+content rather than improvising. Prevents: unavailability of
+\S\ref{sec:tension} from becoming disclosure or refusal.
+Enforced by: the deterministic fallback path. Measured by: fallback
+correctness and the A5 equivalence check (RQ2).
+\item \textbf{G5 (Auditability).} Every accept, reject, and gate decision
+must leave a persisted record detailed enough to reconstruct the session
+after the fact. Prevents: unverifiable claims about the other four goals.
+Enforced by: the audit trail. Measured by: audit-log coverage and the
+replay determinism of \S\ref{sec:stability}.
+\end{itemize}
+
+One goal deserves a defense. G5 is not a logging feature; it makes the
+other four falsifiable. A verification gate that does not
+persist its rejections cannot be audited, only believed, and a deception
+system that cannot be audited has no place in a security operation. The
+evaluation of \S\ref{sec:evaluation} treats the audit trail as primary
+evidence rather than instrumentation.

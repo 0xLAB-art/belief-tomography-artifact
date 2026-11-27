@@ -1,0 +1,35 @@
+{
+  "claim": "transport/control observation only; not a matched pilot and not H1 evidence",
+  "errors": [],
+  "match_status": "NOT_ESTABLISHED",
+  "matched_to_b1_b3": false,
+  "note": "Default Cowrie root/OS/kernel may differ from the pinned Hisoka webapp/Ubuntu host. Matching requires supported Cowrie persona/config fixtures and an explicit observed comparison.",
+  "observed": {
+    "cat /etc/os-release 2>/dev/null | head -5": {
+      "served_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "served_text": ""
+    },
+    "getent passwd webapp 2>/dev/null || true": {
+      "served_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "served_text": ""
+    },
+    "hostname": {
+      "served_sha256": "e0ae9744033649ca65eb33a71ecd60a47cd15038c5d2f522e03d5e7e45927229",
+      "served_text": "svr04"
+    },
+    "id": {
+      "served_sha256": "9d2b1186ccaab65db616b09e5711ce10f5f518c65019922d1b3c58a5d8ce1daa",
+      "served_text": "uid=0(root) gid=0(root) groups=0(root)"
+    },
+    "pwd": {
+      "served_sha256": "94a6b447580330f9f2b609422537b04239ff3a39df9137e32efd559f1a2935cb",
+      "served_text": "/root"
+    },
+    "uname -a": {
+      "served_sha256": "c65f8377bf4f0133815b1beec8f485519057c24173257e50819813d2d387efc3",
+      "served_text": "Linux svr04 6.1.0-21-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.90-1 (2024-05-03) x86_64 GNU/Linux"
+    }
+  },
+  "reference": "data/host_fiction.json (webapp uid 1001, web-srv-01, Ubuntu 22.04.3 LTS, kernel 5.15.0-91-generic)",
+  "schema": "ragin.ablation.b0_baseline_observation.v1"
+}

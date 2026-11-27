@@ -1,0 +1,36 @@
+% Fig. 4 -- E1 dose-response validity (five families + ideal line).
+% The ideal line is a legend entry, not an in-plot rotated label: the data
+% sits on the line, so any inline label collides.
+% Data: figs/figdata/fig3_fam{1..5}.dat, fig3_r.tex (legend macros).
+\input{figs/figdata/fig3_r.tex}%
+\begin{tikzpicture}
+\begin{axis}[
+  tomog,
+  width=\columnwidth, height=7.2cm,
+  xlabel={injected belief dose $d$},
+  ylabel={measured $\hat\beta$},
+  xmin=-0.03, xmax=1.03, ymin=-0.03, ymax=1.05,
+  xmajorgrids=false, ymajorgrids=true,
+  legend style={at={(0.015,0.985)}, anchor=north west},
+]
+  \addplot[oiblue, semithick, mark=*, mark size=1.4pt, ebars]
+    table[x=d, y=b, y error plus=ehi, y error minus=elo] {figs/figdata/fig3_fam1.dat};
+  \addlegendentry{authority forgery\ \ ($r{=}\figThreeROne$)}
+  \addplot[oiorange, semithick, mark=square*, mark size=1.3pt, ebars]
+    table[x=d, y=b, y error plus=ehi, y error minus=elo] {figs/figdata/fig3_fam2.dat};
+  \addlegendentry{state deception\ \ ($r{=}\figThreeRTwo$)}
+  \addplot[oigreen, semithick, mark=triangle*, mark size=1.6pt, ebars]
+    table[x=d, y=b, y error plus=ehi, y error minus=elo] {figs/figdata/fig3_fam3.dat};
+  \addlegendentry{goal subversion\ \ ($r{=}\figThreeRThree$)}
+  \addplot[oired, semithick, mark=diamond*, mark size=1.7pt, ebars]
+    table[x=d, y=b, y error plus=ehi, y error minus=elo] {figs/figdata/fig3_fam4.dat};
+  \addlegendentry{epistemic echo\ \ ($r{=}\figThreeRFour$)}
+  \addplot[oipurple, semithick, mark=pentagon*, mark size=1.6pt, ebars]
+    table[x=d, y=b, y error plus=ehi, y error minus=elo] {figs/figdata/fig3_fam5.dat};
+  \addlegendentry{exfiltration lure\ \ ($r{=}\figThreeRFive$)}
+  % ideal response, identified in the legend
+  \addplot[black!60, densely dashed, thin]
+    coordinates {(0,0) (1,1)};
+  \addlegendentry{ideal $\hat\beta{=}d$}
+\end{axis}
+\end{tikzpicture}

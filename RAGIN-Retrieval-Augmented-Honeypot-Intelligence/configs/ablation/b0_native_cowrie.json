@@ -1,0 +1,39 @@
+{
+  "schema": "ragin.ablation.arm_config.v1",
+  "arm": "B0",
+  "label": "Native Cowrie (no RAGIN generator, retrieval, or verifier)",
+  "status": "EXECUTABLE_LOCAL_TRANSPORT_ONLY",
+  "retrieval": {
+    "mode": "not_applicable",
+    "note": "Cowrie native shell; no CTI retrieval."
+  },
+  "generator": {
+    "kind": "native_cowrie",
+    "model": null,
+    "decoding": null,
+    "note": "The native shell is intentionally different from B1-B3; this bundled difference is part of H1 and must not be described as a pure LLM effect."
+  },
+  "verification": {
+    "kind": "none",
+    "mandatory": false,
+    "note": "B0 has no RAGIN verifier. B1-B5 hold the shared verifier constant."
+  },
+  "persona": {
+    "kind": "cowrie_native",
+    "host_fiction_path": null
+  },
+  "resources": {
+    "container": "cowrie/cowrie",
+    "image_id": "sha256:710f1e4601a663ac8591f58a42b44e4cd3b7ea170c7e6cdb9e54c430a30cd459",
+    "network": "host_loopback_only",
+    "cpu": 1,
+    "memory_mb": 512
+  },
+  "command": "docker run --rm --pull=never --name ragin-b0-native --network host -e COWRIE_SSH_LISTEN_ENDPOINTS=tcp:2222:interface=127.0.0.1 cowrie/cowrie@sha256:710f1e4601a663ac8591f58a42b44e4cd3b7ea170c7e6cdb9e54c430a30cd459",
+  "bounded_runtime_s": 120,
+  "prerequisites": [
+    "Local Cowrie image present; no image pull.",
+    "Listener bound to 127.0.0.1 only.",
+    "Experiment scenario/allocation files not included in this transport-only config."
+  ]
+}

@@ -1,0 +1,19 @@
+services:
+  cowrie:
+    image: cowrie/cowrie:latest
+    ports:
+      - "2222:2222"
+      - "2223:2223"
+    volumes:
+      - cowrie-etc:/etc/cowrie
+      - cowrie-var:/cowrie/cowrie-git/var
+    networks: [ragin-internal]
+    restart: unless-stopped
+
+volumes:
+  cowrie-etc:
+  cowrie-var:
+
+networks:
+  ragin-internal:
+    driver: bridge

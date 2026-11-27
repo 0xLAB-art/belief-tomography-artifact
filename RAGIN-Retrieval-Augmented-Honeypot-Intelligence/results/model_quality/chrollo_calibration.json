@@ -1,0 +1,399 @@
+{
+  "generated_at": "2026-09-16T11:01:49.866875+00:00",
+  "model": "models/chrollo/rf_classifier.joblib",
+  "heldout": {
+    "n": 400,
+    "source": "data/training/test.jsonl"
+  },
+  "summary": {
+    "accuracy": 0.8875,
+    "mean_confidence": 0.8196,
+    "confidence_minus_accuracy": -0.0679,
+    "ece_15bin_equal_mass": 0.0706,
+    "mce": 0.2184,
+    "brier_multiclass": 0.1761,
+    "ece_platt_reference": 0.0391,
+    "platt_coefficients": {
+      "a": 1.42,
+      "b": 0.5113
+    },
+    "note": "Platt scaling fitted on training-split OOF predictions; reference only, not shipped."
+  },
+  "reliability_bins": [
+    {
+      "bin": 1,
+      "range": [
+        0.426,
+        0.5504
+      ],
+      "n": 27,
+      "mean_confidence": 0.5192,
+      "accuracy": 0.5185,
+      "wilson95": [
+        0.3399,
+        0.6926
+      ],
+      "gap": 0.0007
+    },
+    {
+      "bin": 2,
+      "range": [
+        0.5504,
+        0.618
+      ],
+      "n": 27,
+      "mean_confidence": 0.5791,
+      "accuracy": 0.6667,
+      "wilson95": [
+        0.4782,
+        0.8136
+      ],
+      "gap": -0.0875
+    },
+    {
+      "bin": 3,
+      "range": [
+        0.618,
+        0.6827
+      ],
+      "n": 26,
+      "mean_confidence": 0.6491,
+      "accuracy": 0.8077,
+      "wilson95": [
+        0.6212,
+        0.9149
+      ],
+      "gap": -0.1586
+    },
+    {
+      "bin": 4,
+      "range": [
+        0.6827,
+        0.723
+      ],
+      "n": 27,
+      "mean_confidence": 0.7002,
+      "accuracy": 0.8148,
+      "wilson95": [
+        0.633,
+        0.9182
+      ],
+      "gap": -0.1146
+    },
+    {
+      "bin": 5,
+      "range": [
+        0.723,
+        0.7655
+      ],
+      "n": 26,
+      "mean_confidence": 0.7431,
+      "accuracy": 0.9615,
+      "wilson95": [
+        0.8111,
+        0.9932
+      ],
+      "gap": -0.2184
+    },
+    {
+      "bin": 6,
+      "range": [
+        0.7655,
+        0.8099
+      ],
+      "n": 27,
+      "mean_confidence": 0.7869,
+      "accuracy": 0.8889,
+      "wilson95": [
+        0.7194,
+        0.9615
+      ],
+      "gap": -0.102
+    },
+    {
+      "bin": 7,
+      "range": [
+        0.8099,
+        0.8414
+      ],
+      "n": 27,
+      "mean_confidence": 0.8237,
+      "accuracy": 0.8148,
+      "wilson95": [
+        0.633,
+        0.9182
+      ],
+      "gap": 0.0089
+    },
+    {
+      "bin": 8,
+      "range": [
+        0.8414,
+        0.8761
+      ],
+      "n": 26,
+      "mean_confidence": 0.8586,
+      "accuracy": 0.9615,
+      "wilson95": [
+        0.8111,
+        0.9932
+      ],
+      "gap": -0.103
+    },
+    {
+      "bin": 9,
+      "range": [
+        0.8761,
+        0.8978
+      ],
+      "n": 27,
+      "mean_confidence": 0.8886,
+      "accuracy": 1.0,
+      "wilson95": [
+        0.8754,
+        1.0
+      ],
+      "gap": -0.1114
+    },
+    {
+      "bin": 10,
+      "range": [
+        0.8978,
+        0.9174
+      ],
+      "n": 26,
+      "mean_confidence": 0.907,
+      "accuracy": 0.9615,
+      "wilson95": [
+        0.8111,
+        0.9932
+      ],
+      "gap": -0.0545
+    },
+    {
+      "bin": 11,
+      "range": [
+        0.9174,
+        0.9418
+      ],
+      "n": 27,
+      "mean_confidence": 0.9307,
+      "accuracy": 1.0,
+      "wilson95": [
+        0.8754,
+        1.0
+      ],
+      "gap": -0.0693
+    },
+    {
+      "bin": 12,
+      "range": [
+        0.9418,
+        0.9636
+      ],
+      "n": 27,
+      "mean_confidence": 0.9525,
+      "accuracy": 0.963,
+      "wilson95": [
+        0.8172,
+        0.9934
+      ],
+      "gap": -0.0105
+    },
+    {
+      "bin": 13,
+      "range": [
+        0.9636,
+        0.9778
+      ],
+      "n": 26,
+      "mean_confidence": 0.9726,
+      "accuracy": 0.9615,
+      "wilson95": [
+        0.8111,
+        0.9932
+      ],
+      "gap": 0.011
+    },
+    {
+      "bin": 14,
+      "range": [
+        0.9778,
+        0.9937
+      ],
+      "n": 27,
+      "mean_confidence": 0.9866,
+      "accuracy": 1.0,
+      "wilson95": [
+        0.8754,
+        1.0
+      ],
+      "gap": -0.0134
+    },
+    {
+      "bin": 15,
+      "range": [
+        0.9937,
+        1.0
+      ],
+      "n": 27,
+      "mean_confidence": 0.9976,
+      "accuracy": 1.0,
+      "wilson95": [
+        0.8754,
+        1.0
+      ],
+      "gap": -0.0024
+    }
+  ],
+  "threshold_scan": [
+    {
+      "threshold": 0.5,
+      "n": 396,
+      "coverage": 0.99,
+      "accuracy": 0.8939,
+      "wilson95": [
+        0.8597,
+        0.9206
+      ],
+      "cross_tier_errors": 0
+    },
+    {
+      "threshold": 0.55,
+      "n": 373,
+      "coverage": 0.9325,
+      "accuracy": 0.9142,
+      "wilson95": [
+        0.8814,
+        0.9386
+      ],
+      "cross_tier_errors": 0
+    },
+    {
+      "threshold": 0.6,
+      "n": 351,
+      "coverage": 0.8775,
+      "accuracy": 0.9288,
+      "wilson95": [
+        0.897,
+        0.9513
+      ],
+      "cross_tier_errors": 0
+    },
+    {
+      "threshold": 0.65,
+      "n": 329,
+      "coverage": 0.8225,
+      "accuracy": 0.9453,
+      "wilson95": [
+        0.9152,
+        0.9651
+      ],
+      "cross_tier_errors": 0
+    },
+    {
+      "threshold": 0.7,
+      "n": 305,
+      "coverage": 0.7625,
+      "accuracy": 0.9443,
+      "wilson95": [
+        0.9126,
+        0.9649
+      ],
+      "cross_tier_errors": 0
+    },
+    {
+      "threshold": 0.75,
+      "n": 277,
+      "coverage": 0.6925,
+      "accuracy": 0.9567,
+      "wilson95": [
+        0.9258,
+        0.975
+      ],
+      "cross_tier_errors": 0
+    },
+    {
+      "threshold": 0.8,
+      "n": 245,
+      "coverage": 0.6125,
+      "accuracy": 0.9633,
+      "wilson95": [
+        0.9317,
+        0.9806
+      ],
+      "cross_tier_errors": 0
+    },
+    {
+      "threshold": 0.85,
+      "n": 206,
+      "coverage": 0.515,
+      "accuracy": 0.9806,
+      "wilson95": [
+        0.9511,
+        0.9924
+      ],
+      "cross_tier_errors": 0
+    },
+    {
+      "threshold": 0.9,
+      "n": 155,
+      "coverage": 0.3875,
+      "accuracy": 0.9871,
+      "wilson95": [
+        0.9542,
+        0.9965
+      ],
+      "cross_tier_errors": 0
+    },
+    {
+      "threshold": 0.95,
+      "n": 95,
+      "coverage": 0.2375,
+      "accuracy": 0.9895,
+      "wilson95": [
+        0.9428,
+        0.9981
+      ],
+      "cross_tier_errors": 0
+    },
+    {
+      "threshold": 1.0,
+      "n": 8,
+      "coverage": 0.02,
+      "accuracy": 1.0,
+      "wilson95": [
+        0.6756,
+        1.0
+      ],
+      "cross_tier_errors": 0
+    }
+  ],
+  "per_class": {
+    "novice": {
+      "n": 100,
+      "accuracy": 0.91,
+      "mean_confidence": 0.8594,
+      "mean_gap": -0.0506
+    },
+    "intermediate": {
+      "n": 100,
+      "accuracy": 0.89,
+      "mean_confidence": 0.8012,
+      "mean_gap": -0.0888
+    },
+    "expert": {
+      "n": 100,
+      "accuracy": 0.85,
+      "mean_confidence": 0.7769,
+      "mean_gap": -0.0731
+    },
+    "apt": {
+      "n": 100,
+      "accuracy": 0.9,
+      "mean_confidence": 0.8411,
+      "mean_gap": -0.0589
+    }
+  },
+  "plot": "results/model_quality/chrollo_calibration.png"
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "ragin.local_dense_probe.repro.invariant_check.v1",
+  "checks": {
+    "status": true,
+    "top_k": true,
+    "fallback_hash_mode": true,
+    "faiss_index_class": true,
+    "faiss_ntotal": true,
+    "dimension": true,
+    "embedding_matrix_sha256": true,
+    "embedding_matrix_shape": true,
+    "bm25_terms": true,
+    "blocked_connect_attempts": true
+  },
+  "rank0": {
+    "q1": {
+      "expected": {
+        "dense": "syn-011",
+        "bm25": "syn-011"
+      },
+      "observed": {
+        "dense": "syn-011",
+        "bm25": "syn-011"
+      },
+      "pass": true
+    },
+    "q2": {
+      "expected": {
+        "dense": "syn-007",
+        "bm25": "syn-007"
+      },
+      "observed": {
+        "dense": "syn-007",
+        "bm25": "syn-007"
+      },
+      "pass": true
+    },
+    "q3": {
+      "expected": {
+        "dense": "syn-003",
+        "bm25": "syn-003"
+      },
+      "observed": {
+        "dense": "syn-003",
+        "bm25": "syn-003"
+      },
+      "pass": true
+    },
+    "q4": {
+      "expected": {
+        "dense": "syn-010",
+        "bm25": "syn-010"
+      },
+      "observed": {
+        "dense": "syn-010",
+        "bm25": "syn-010"
+      },
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "note": "latencies/timings/provenance strings are not invariants"
+}

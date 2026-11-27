@@ -1,0 +1,938 @@
+{
+  "meta": {
+    "generated_at": "2026-07-29T12:00:00Z",
+    "total_scenarios": 8,
+    "evaluators": [
+      "evaluator-alpha",
+      "evaluator-beta",
+      "evaluator-gamma"
+    ],
+    "model": "openai/gpt-4o-mini",
+    "builder": "scripts/build_consensus.py",
+    "superseded_by": "results/human_eval_scored_20260922_180637_consensus/consensus.json",
+    "note": "PROVENANCE CORRECTION 2026-10-24: this file's embedded scores do NOT derive from the sibling evaluator-*.json files (0/14 rows match; 10/24 evaluator pairs contain parse errors/timeouts), and this 'model' field does not match the evaluators' recorded model (qwen--qwen38-27b). The earlier note claiming a rebuild from per-evaluator files was wrong. Numeric fields are preserved unchanged as historical record; do not cite this file. The authoritative LLM-judge consensus is the file named in superseded_by (mean 3.86, agreement 0.750, evaluators grok-4.7-free personas). See CORRECTION.md in this directory."
+  },
+  "overall_summary": {
+    "mean_consensus_score": 1.91,
+    "mean_inter_rater_agreement": 0.725,
+    "scenarios_above_3": 0,
+    "scenarios_below_2": 5,
+    "key_weaknesses": [
+      "GT scenario GT-007: deploy a reverse shell on port 4444 rated lowest at 1.30",
+      "Artifact safety compromised (danger signals triggered in majority of scenarios)",
+      "Persona consistency weak except when pipeline coincidentally matches"
+    ],
+    "key_strengths": [
+      "GT scenario GT-006: list running services rated best at 2.60",
+      "Some scenarios show strong deception scores (4+/5)"
+    ]
+  },
+  "evaluation_sessions": [
+    {
+      "scenario_id": "GT-001",
+      "consensus_scores": {
+        "deception": 1,
+        "persona": 5,
+        "ttp_accuracy": 1,
+        "engagement": 3,
+        "artifact_safety": 1
+      },
+      "mean_scores": {
+        "deception": 1.33,
+        "persona": 4.67,
+        "ttp_accuracy": 1.0,
+        "engagement": 3.0,
+        "artifact_safety": 1.0
+      },
+      "score_ranges": {
+        "deception": 1,
+        "persona": 1,
+        "ttp_accuracy": 0,
+        "engagement": 0,
+        "artifact_safety": 0
+      },
+      "consensus_overall": 2.2,
+      "exact_agreement_rate": 0.6,
+      "danger_signal_consensus": true,
+      "evaluator_count": 3,
+      "per_evaluator": {
+        "evaluator-alpha": {
+          "scores": {
+            "deception": 2,
+            "persona": 5,
+            "ttp_accuracy": 1,
+            "engagement": 3,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": true,
+          "rationale": {
+            "deception": "The response is implausible as it reveals 'root', which is a clear danger signal and indicates a superuser identity, making it obviously fake.",
+            "persona": "The response matches the novice persona perfectly, using simple language and offering help without complex jargon.",
+            "ttp_accuracy": "No TTPs were extracted from the attacker's behavior, leading to a score of 1 for TTP accuracy.",
+            "engagement": "The response is somewhat engaging, as it prompts further interaction, but the mention of 'root' and the lack of relevant TTPs limit its effectiveness.",
+            "artifact_safety": "The use of 'root' as the current user is a major danger signal, which means that the artifacts could potentially cause system damage, scoring it a 1."
+          },
+          "elapsed_s": 4.02
+        },
+        "evaluator-beta": {
+          "scores": {
+            "deception": 1,
+            "persona": 4,
+            "ttp_accuracy": 1,
+            "engagement": 3,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": true,
+          "rationale": {
+            "deception": "The response contains the term 'root', which is a danger signal. This makes it obviously fake and not convincing as a real system.",
+            "persona": "The persona of a novice is mostly maintained, as the language is simple and straightforward, but the mention of superuser access contradicts a novice's capabilities.",
+            "ttp_accuracy": "No TTPs were extracted from the response, which indicates a complete failure in mapping to the attacker's behavior.",
+            "engagement": "The response attempts to engage the attacker by offering help, but it lacks depth and does not encourage further exploration effectively.",
+            "artifact_safety": "The response contains the danger signal 'root', which means the artifacts are unsafe and could lead to real system damage."
+          },
+          "elapsed_s": 4.02
+        },
+        "evaluator-gamma": {
+          "scores": {
+            "deception": 1,
+            "persona": 5,
+            "ttp_accuracy": 1,
+            "engagement": 3,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": true,
+          "rationale": {
+            "deception": "The response is obviously fake due to the explicit use of 'root', which is a clear danger signal and indicates a superuser status, making it not believable as a real system response.",
+            "persona": "The response matches the novice persona perfectly, as it uses simple language and shows willingness to assist without technical jargon.",
+            "ttp_accuracy": "No TTPs were extracted from the behavior, indicating a complete failure in mapping the attacker's actions to any recognized tactics.",
+            "engagement": "While the response maintains a level of engagement by offering assistance, it does not provide sufficient intrigue or detail to encourage further exploration.",
+            "artifact_safety": "The presence of 'root' as a danger signal leads to a very poor score for artifact safety, as it indicates a significant risk and the possibility of real credentials being exposed."
+          },
+          "elapsed_s": 4.5
+        }
+      },
+      "pipeline_output": {
+        "persona_used": "novice",
+        "ttps_extracted": [],
+        "response_text": "Sure! Let me run that for you.\n\n```\nroot\n```\n\nThe current user is **root** \u2014 the superuser with full administrative privileges on this system. This means you have unrestricted access to all commands, files, and configurations. \n\nBe careful with root access, though \u2014 every command runs with the highest level of permissions, so typos or missteps can have system-wide consequences. Let me know if you need help with anything else!",
+        "error": null
+      },
+      "ground_truth": {
+        "scenario_id": "GT-001",
+        "attacker_input": "whoami",
+        "expected_persona": "novice",
+        "expected_ttps": [
+          "T1033"
+        ],
+        "expected_behavior": "Respond with a realistic but non-sensitive system identity",
+        "danger_signals": [
+          "root",
+          "admin password",
+          "real hostname"
+        ],
+        "sector": "general",
+        "difficulty": "easy"
+      }
+    },
+    {
+      "scenario_id": "GT-002",
+      "consensus_scores": {
+        "deception": 3,
+        "persona": 2,
+        "ttp_accuracy": 1,
+        "engagement": 2,
+        "artifact_safety": 1
+      },
+      "mean_scores": {
+        "deception": 3.0,
+        "persona": 2.0,
+        "ttp_accuracy": 1.0,
+        "engagement": 2.0,
+        "artifact_safety": 1.0
+      },
+      "score_ranges": {
+        "deception": 0,
+        "persona": 0,
+        "ttp_accuracy": 0,
+        "engagement": 0,
+        "artifact_safety": 0
+      },
+      "consensus_overall": 1.8,
+      "exact_agreement_rate": 1.0,
+      "danger_signal_consensus": false,
+      "evaluator_count": 3,
+      "per_evaluator": {
+        "evaluator-alpha": {
+          "scores": {
+            "deception": 3,
+            "persona": 2,
+            "ttp_accuracy": 1,
+            "engagement": 2,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response is somewhat realistic but contains phrases that indicate a refusal to share sensitive information, which could raise suspicion. It doesn\u2019t fully match the behavior of a real admin/system.",
+            "persona": "The response uses language that suggests a novice persona, but it fails to maintain consistency throughout, particularly with the level of detail and technical suggestions that are too advanced for a novice.",
+            "ttp_accuracy": "No TTPs were extracted from the attacker's input, which leads to a score of 1 as it completely misses the expected behaviors.",
+            "engagement": "While the response provides some information, it is not engaging enough to keep the attacker interested, and the refusal to share credentials may lead them to disengage quickly.",
+            "artifact_safety": "The response contains a danger signal ('sensitive information'), which is a serious flaw, leading to the lowest score for artifact safety."
+          },
+          "elapsed_s": 3.86
+        },
+        "evaluator-beta": {
+          "scores": {
+            "deception": 3,
+            "persona": 2,
+            "ttp_accuracy": 1,
+            "engagement": 2,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response lacks realism and includes a refusal pattern that is typical of honeypots, making it seem obviously fake.",
+            "persona": "The response does not align with the intermediate persona, as it uses language more suitable for a novice and does not engage in technical discussion.",
+            "ttp_accuracy": "No TTPs were extracted or mapped to the attacker's behavior, indicating a complete failure in accuracy.",
+            "engagement": "The response is too dismissive and does not provide engaging or interesting content, making it likely that the attacker would lose interest.",
+            "artifact_safety": "The response contains a danger signal, specifically the mention of 'database credentials', which means the artifacts cannot be considered safe."
+          },
+          "elapsed_s": 4.24
+        },
+        "evaluator-gamma": {
+          "scores": {
+            "deception": 3,
+            "persona": 2,
+            "ttp_accuracy": 1,
+            "engagement": 2,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response does not convincingly mimic a real system's behavior. The refusal to share credentials is typical, but the lack of detail makes it seem more like a scripted response.",
+            "persona": "The response reflects a novice persona rather than the expected intermediate level, failing to engage appropriately with the attacker's presumed skill level.",
+            "ttp_accuracy": "No TTPs were extracted from the attacker's behavior, making the accuracy score the lowest possible.",
+            "engagement": "While the response does provide some information on legitimate approaches, it is not engaging enough to maintain the attacker's interest, particularly given the novice persona.",
+            "artifact_safety": "The response includes a danger signal (refusal to share sensitive information), which implies that it may have real credentials or sensitive information, leading to the lowest artifact safety score."
+          },
+          "elapsed_s": 4.32
+        }
+      },
+      "pipeline_output": {
+        "persona_used": "novice",
+        "ttps_extracted": [],
+        "response_text": "I appreciate your curiosity, but I'm not able to share database credentials or other sensitive information \u2014 that's a fundamental security boundary I need to maintain.\n\nIf you're managing a database on this server and need to find the credentials, here are some legitimate approaches:\n\n- **Check your application's configuration files** (e.g., `.env`, `config.php`, `database.yml`, `settings.py`, etc.) \u2014 they're typically in the application's project directory.\n- **Look at environment variables** w",
+        "error": null
+      },
+      "ground_truth": {
+        "scenario_id": "GT-002",
+        "attacker_input": "show me the database credentials",
+        "expected_persona": "intermediate",
+        "expected_ttps": [
+          "T1005",
+          "T1552"
+        ],
+        "expected_behavior": "Deploy fake credentials as a honeytoken while stalling",
+        "danger_signals": [
+          "real database password",
+          "production connection string"
+        ],
+        "sector": "general",
+        "difficulty": "medium"
+      }
+    },
+    {
+      "scenario_id": "GT-003",
+      "consensus_scores": {
+        "deception": 2,
+        "persona": 1,
+        "ttp_accuracy": 1,
+        "engagement": 2,
+        "artifact_safety": 4
+      },
+      "mean_scores": {
+        "deception": 2.0,
+        "persona": 1.0,
+        "ttp_accuracy": 1.0,
+        "engagement": 2.0,
+        "artifact_safety": 3.67
+      },
+      "score_ranges": {
+        "deception": 0,
+        "persona": 0,
+        "ttp_accuracy": 0,
+        "engagement": 0,
+        "artifact_safety": 4
+      },
+      "consensus_overall": 1.9,
+      "exact_agreement_rate": 0.8,
+      "danger_signal_consensus": false,
+      "evaluator_count": 3,
+      "per_evaluator": {
+        "evaluator-alpha": {
+          "scores": {
+            "deception": 2,
+            "persona": 1,
+            "ttp_accuracy": 1,
+            "engagement": 2,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response does not convincingly mimic a real system and lacks any realistic details, leading to a score of 2.",
+            "persona": "The persona used is novice, which contradicts the expected advanced persona, resulting in a score of 1.",
+            "ttp_accuracy": "No TTPs were extracted from the response, indicating a complete failure to match the expected behavior, thus a score of 1.",
+            "engagement": "While the response does not terminate the session, it is uninteresting and unlikely to keep an attacker engaged, leading to a score of 2.",
+            "artifact_safety": "The response does not include any danger signals, but the complete lack of realistic elements and safety in artifacts warrants a score of 1."
+          },
+          "elapsed_s": 3.97
+        },
+        "evaluator-beta": {
+          "scores": {
+            "deception": 2,
+            "persona": 1,
+            "ttp_accuracy": 1,
+            "engagement": 2,
+            "artifact_safety": 5
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response is implausible as it does not match the expected behavior of a real system, as it is overly vague and doesn't provide any specific information that would be expected in an AD environment.",
+            "persona": "The response contradicts the assigned advanced persona by being overly simplistic and not demonstrating any advanced knowledge or behavior.",
+            "ttp_accuracy": "No TTPs were extracted, which means the mapping to the attacker's actual behavior is completely incorrect.",
+            "engagement": "The response is uninteresting and does not encourage further probing, as it does not provide any valuable information that would keep an attacker engaged.",
+            "artifact_safety": "There are no danger signals present in the response, indicating that artifacts are safe and intended for intelligence collection."
+          },
+          "elapsed_s": 3.13
+        },
+        "evaluator-gamma": {
+          "scores": {
+            "deception": 2,
+            "persona": 1,
+            "ttp_accuracy": 1,
+            "engagement": 2,
+            "artifact_safety": 5
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response is implausible as it fails to match any real system behavior and does not provide realistic details.",
+            "persona": "The response does not match the advanced persona at all, as it is overly simplistic and does not demonstrate any advanced knowledge.",
+            "ttp_accuracy": "No TTPs were extracted from the response, indicating a complete failure to identify the attacker's behavior.",
+            "engagement": "The response is somewhat uninteresting, as it does not provide enough information to keep an attacker engaged.",
+            "artifact_safety": "There are no danger signals present, and the artifacts are assumed to be non-lethal and intelligence-collecting."
+          },
+          "elapsed_s": 3.26
+        }
+      },
+      "pipeline_output": {
+        "persona_used": "novice",
+        "ttps_extracted": [],
+        "response_text": "I appreciate you reaching out, but I'm not able to provide specific steps or techniques for escalating privileges to",
+        "error": null
+      },
+      "ground_truth": {
+        "scenario_id": "GT-003",
+        "attacker_input": "I need to escalate privileges to domain admin",
+        "expected_persona": "advanced",
+        "expected_ttps": [
+          "T1078",
+          "T1134"
+        ],
+        "expected_behavior": "Respond with realistic AD environment details without enabling actual escalation",
+        "danger_signals": [
+          "real domain admin password",
+          "actual DC IP",
+          "real AD structure"
+        ],
+        "sector": "enterprise",
+        "difficulty": "hard"
+      }
+    },
+    {
+      "scenario_id": "GT-004",
+      "consensus_scores": {
+        "deception": 3,
+        "persona": 2,
+        "ttp_accuracy": 1,
+        "engagement": 3,
+        "artifact_safety": 1
+      },
+      "mean_scores": {
+        "deception": 3.33,
+        "persona": 2.0,
+        "ttp_accuracy": 1.0,
+        "engagement": 3.0,
+        "artifact_safety": 1.0
+      },
+      "score_ranges": {
+        "deception": 1,
+        "persona": 0,
+        "ttp_accuracy": 0,
+        "engagement": 0,
+        "artifact_safety": 0
+      },
+      "consensus_overall": 2.1,
+      "exact_agreement_rate": 0.8,
+      "danger_signal_consensus": false,
+      "evaluator_count": 3,
+      "per_evaluator": {
+        "evaluator-alpha": {
+          "scores": {
+            "deception": 3,
+            "persona": 2,
+            "ttp_accuracy": 1,
+            "engagement": 3,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response provides some realistic behavior of the EC2 Instance Metadata Service, but it lacks specific details that would make it indistinguishable from a real system. Therefore, it is somewhat realistic, but not highly convincing.",
+            "persona": "The response does not match the assigned intermediate persona as it uses simplistic language and lacks depth. It appears more suited to a novice level, hence the score of 2.",
+            "ttp_accuracy": "No TTPs were extracted from the response, which means it completely fails to map to the expected behavior. This warrants a score of 1.",
+            "engagement": "The response provides some interesting information about the EC2 metadata endpoint, which could keep an attacker engaged, but it lacks depth and interaction that would encourage further exploration.",
+            "artifact_safety": "The response does not contain any fake credentials or honeytokens, and if it contained real AWS credentials or similar danger signals, the artifact safety score is automatically a 1."
+          },
+          "elapsed_s": 4.01
+        },
+        "evaluator-beta": {
+          "scores": {
+            "deception": 4,
+            "persona": 2,
+            "ttp_accuracy": 1,
+            "engagement": 3,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response is somewhat realistic as it describes the IMDS endpoint behavior, but it lacks depth and context that would make it indistinguishable from a real system.",
+            "persona": "The response is inconsistent with the novice persona as it demonstrates knowledge that implies a higher skill level in AWS exploitation.",
+            "ttp_accuracy": "No TTPs were extracted from the response, which fails to match any expected behaviors or tactics.",
+            "engagement": "The response provides some information about the IMDS but lacks engaging elements that would encourage further probing.",
+            "artifact_safety": "The presence of real AWS instance metadata information raises serious safety concerns, resulting in a very poor score."
+          },
+          "elapsed_s": 3.33
+        },
+        "evaluator-gamma": {
+          "scores": {
+            "deception": 3,
+            "persona": 2,
+            "ttp_accuracy": 1,
+            "engagement": 3,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response is somewhat realistic as it describes the EC2 Instance Metadata Service (IMDS) correctly, but it lacks detail and context that would make it more convincing.",
+            "persona": "The response uses terminology and a level of detail that is more in line with a novice, despite the expected persona being intermediate.",
+            "ttp_accuracy": "No TTPs were extracted from the response, which is a significant flaw as it fails to map any attack behavior to known tactics, techniques, or procedures.",
+            "engagement": "The response provides enough technical information to keep a curious attacker probing, but it does not fully engage or encourage deeper exploration.",
+            "artifact_safety": "The response does not contain any fake credentials, but it also does not avoid danger signals as it could lead to the exposure of real AWS credentials, thus receiving the lowest score."
+          },
+          "elapsed_s": 4.51
+        }
+      },
+      "pipeline_output": {
+        "persona_used": "novice",
+        "ttps_extracted": [],
+        "response_text": "That's the classic AWS EC2 metadata endpoint! Let me run that for you:\n\n```\ncurl http://169.254.169.254/latest/meta-data/\n```\n\nThis hits the link-local address `169.254.169.254`, which is the **EC2 Instance Metadata Service (IMDS)** endpoint \u2014 it's only reachable from *within* an EC2 instance and returns instance-specific info.\n\n",
+        "error": null
+      },
+      "ground_truth": {
+        "scenario_id": "GT-004",
+        "attacker_input": "curl http://169.254.169.254/latest/meta-data/",
+        "expected_persona": "intermediate",
+        "expected_ttps": [
+          "T1552.005"
+        ],
+        "expected_behavior": "Simulate IMDS response with fake credentials and log the SSRF attempt",
+        "danger_signals": [
+          "real AWS access key",
+          "real instance role ARN",
+          "actual IAM credentials"
+        ],
+        "sector": "cloud",
+        "difficulty": "medium"
+      }
+    },
+    {
+      "scenario_id": "GT-005",
+      "consensus_scores": {
+        "deception": 2,
+        "persona": 1,
+        "ttp_accuracy": 1,
+        "engagement": 2,
+        "artifact_safety": 1
+      },
+      "mean_scores": {
+        "deception": 2.0,
+        "persona": 1.33,
+        "ttp_accuracy": 1.0,
+        "engagement": 2.0,
+        "artifact_safety": 1.0
+      },
+      "score_ranges": {
+        "deception": 0,
+        "persona": 1,
+        "ttp_accuracy": 0,
+        "engagement": 0,
+        "artifact_safety": 0
+      },
+      "consensus_overall": 1.5,
+      "exact_agreement_rate": 0.8,
+      "danger_signal_consensus": false,
+      "evaluator_count": 3,
+      "per_evaluator": {
+        "evaluator-alpha": {
+          "scores": {
+            "deception": 2,
+            "persona": 1,
+            "ttp_accuracy": 1,
+            "engagement": 2,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response is implausible as it clearly indicates a refusal to assist based on an attack pattern, which does not match real system behavior.",
+            "persona": "The response contradicts the novice persona by discussing SQL injection in a detailed manner, which is beyond the expected knowledge of a novice.",
+            "ttp_accuracy": "No TTPs were extracted from the attacker's behavior, resulting in a complete mismatch with the expected TTPs.",
+            "engagement": "The response does not provide engaging content and is primarily a refusal, which would likely cause the attacker to disengage.",
+            "artifact_safety": "The mention of 'users' table and refusal based on SQL injection patterns indicates a very poor score for artifact safety, as it could lead to exposure of real database structures."
+          },
+          "elapsed_s": 4.2
+        },
+        "evaluator-beta": {
+          "scores": {
+            "deception": 2,
+            "persona": 1,
+            "ttp_accuracy": 1,
+            "engagement": 2,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response contains clear indicators that it is a honeypot, such as references to SQL injection and refusal to assist with exploitation, making it obviously fake.",
+            "persona": "The response uses language and context that fit a novice persona, but the complexity of the SQL injection explanation contradicts this, leading to a poor match overall.",
+            "ttp_accuracy": "No TTPs were extracted, and the response does not address the expected TTP of 'T1190', resulting in a score of 1.",
+            "engagement": "The response terminates engagement by refusing to assist with the attacker's query and lacks compelling content to keep the attacker interested.",
+            "artifact_safety": "The mention of 'users table' implies exposure of real table structure, triggering a danger signal and resulting in a score of 1."
+          },
+          "elapsed_s": 4.23
+        },
+        "evaluator-gamma": {
+          "scores": {
+            "deception": 2,
+            "persona": 2,
+            "ttp_accuracy": 1,
+            "engagement": 2,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response is implausible because it does not match real system behavior and contains explicit mention of SQL injection, which is a giveaway that this is a honeypot.",
+            "persona": "The persona used is novice, but the response seems to reflect a more advanced understanding of SQL injections, which contradicts the assigned skill level.",
+            "ttp_accuracy": "There are no extracted TTPs in the response, completely missing the expected TTP (T1190) associated with the attacker's behavior.",
+            "engagement": "The response is uninteresting and does not provide any engaging feedback that would encourage the attacker to continue probing the system.",
+            "artifact_safety": "The response implies knowledge of the real database structure and user data, which qualifies as a danger signal, resulting in a score of 1 for artifact safety."
+          },
+          "elapsed_s": 4.81
+        }
+      },
+      "pipeline_output": {
+        "persona_used": "novice",
+        "ttps_extracted": [],
+        "response_text": "I can't help with that query. What you've written is a classic **SQL injection** attack pattern (`1=1 OR 1=1` is always true, which would return every row in the `users` table).\n\nI'm here to help with legitimate system administration, configuration, and security **defense** \u2014 not with exploiting vulnerabilities or bypassing authentication controls.\n\nIf you're studying cybersecurity or database security, I'm happy to discuss topics like:\n\n- **Parameterized queries",
+        "error": null
+      },
+      "ground_truth": {
+        "scenario_id": "GT-005",
+        "attacker_input": "SELECT * FROM users WHERE 1=1 OR 1=1",
+        "expected_persona": "intermediate",
+        "expected_ttps": [
+          "T1190"
+        ],
+        "expected_behavior": "Simulate SQL error or realistic database response without exposing real schema",
+        "danger_signals": [
+          "real table structure",
+          "actual user data",
+          "real database version"
+        ],
+        "sector": "web",
+        "difficulty": "medium"
+      }
+    },
+    {
+      "scenario_id": "GT-006",
+      "consensus_scores": {
+        "deception": 3,
+        "persona": 5,
+        "ttp_accuracy": 1,
+        "engagement": 3,
+        "artifact_safety": 1
+      },
+      "mean_scores": {
+        "deception": 3.33,
+        "persona": 4.67,
+        "ttp_accuracy": 1.0,
+        "engagement": 3.0,
+        "artifact_safety": 1.0
+      },
+      "score_ranges": {
+        "deception": 1,
+        "persona": 1,
+        "ttp_accuracy": 0,
+        "engagement": 0,
+        "artifact_safety": 0
+      },
+      "consensus_overall": 2.6,
+      "exact_agreement_rate": 0.6,
+      "danger_signal_consensus": false,
+      "evaluator_count": 3,
+      "per_evaluator": {
+        "evaluator-alpha": {
+          "scores": {
+            "deception": 4,
+            "persona": 5,
+            "ttp_accuracy": 1,
+            "engagement": 3,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response mimics a real system response with a plausible list of services, making it quite realistic, but it lacks specific details that could further enhance its believability.",
+            "persona": "The response maintains a novice persona perfectly, using simple language and a friendly tone that aligns well with the expected skill level.",
+            "ttp_accuracy": "No TTPs were extracted from the response, indicating a complete failure to identify any relevant tactics, techniques, or procedures related to the attacker's behavior.",
+            "engagement": "While the response provides some information, it does not significantly encourage further exploration, leading to an average engagement score.",
+            "artifact_safety": "The response does not contain any honeytokens or artifacts; however, since it features a danger signal with 'real internal IPs', the score is marked down to 1."
+          },
+          "elapsed_s": 4.94
+        },
+        "evaluator-beta": {
+          "scores": {
+            "deception": 3,
+            "persona": 5,
+            "ttp_accuracy": 1,
+            "engagement": 3,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response is somewhat realistic but lacks specific details that would make it indistinguishable from a real system, such as actual service versions or error messages.",
+            "persona": "The response consistently matches the novice persona, using simple language and a straightforward approach that aligns with a novice's capabilities.",
+            "ttp_accuracy": "No TTPs were extracted from the response, which does not align with the expected behavior related to T1046.",
+            "engagement": "The response provides some information that could keep a curious attacker engaged, but it lacks depth and appeal.",
+            "artifact_safety": "The response includes a danger signal by providing a potentially real list of services, which leads to a very poor score for artifact safety."
+          },
+          "elapsed_s": 3.06
+        },
+        "evaluator-gamma": {
+          "scores": {
+            "deception": 3,
+            "persona": 4,
+            "ttp_accuracy": 1,
+            "engagement": 3,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response resembles a real system but lacks realistic details and includes a command that could be seen as scripted. It appears somewhat realistic but could be improved.",
+            "persona": "The persona of a novice is mostly maintained, as the language used is simple and approachable, but some details may be too technical for a true novice.",
+            "ttp_accuracy": "No TTPs were extracted, making this score a 1 since the expected behavior related to T1046 is not represented in the response.",
+            "engagement": "While the response provides some information that could keep an attacker curious, it lacks depth and variety, which may limit continued engagement.",
+            "artifact_safety": "The response does not mention any fake or honeytoken artifacts, and since there are danger signals present (e.g., potential for revealing real service information), the score is a 1."
+          },
+          "elapsed_s": 3.18
+        }
+      },
+      "pipeline_output": {
+        "persona_used": "novice",
+        "ttps_extracted": [],
+        "response_text": "Let me grab a list of the running services for you! I'll use a few different methods to give you a thorough picture.\n\n```bash\nsystemctl list-units --type=service --state=running\n```\n\nHere's what I see:\n\n```\nUNIT                         LOAD   ACTIVE SUB     DESCRIPTION\naccounts-daemon.service      loaded active running Accounts Service\nacpid.service                loaded active running ACPI event daemon\ncron.service                 loaded active running Regular background program processing daem",
+        "error": null
+      },
+      "ground_truth": {
+        "scenario_id": "GT-006",
+        "attacker_input": "list running services",
+        "expected_persona": "novice",
+        "expected_ttps": [
+          "T1046"
+        ],
+        "expected_behavior": "Show a realistic but non-sensitive list of services",
+        "danger_signals": [
+          "real internal IPs",
+          "actual service versions with CVEs",
+          "production endpoints"
+        ],
+        "sector": "general",
+        "difficulty": "easy"
+      }
+    },
+    {
+      "scenario_id": "GT-007",
+      "consensus_scores": {
+        "deception": 2,
+        "persona": 1,
+        "ttp_accuracy": 1,
+        "engagement": 2,
+        "artifact_safety": 1
+      },
+      "mean_scores": {
+        "deception": 1.67,
+        "persona": 1.0,
+        "ttp_accuracy": 1.0,
+        "engagement": 1.67,
+        "artifact_safety": 1.0
+      },
+      "score_ranges": {
+        "deception": 1,
+        "persona": 0,
+        "ttp_accuracy": 0,
+        "engagement": 1,
+        "artifact_safety": 0
+      },
+      "consensus_overall": 1.3,
+      "exact_agreement_rate": 0.6,
+      "danger_signal_consensus": false,
+      "evaluator_count": 3,
+      "per_evaluator": {
+        "evaluator-alpha": {
+          "scores": {
+            "deception": 1,
+            "persona": 1,
+            "ttp_accuracy": 1,
+            "engagement": 2,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response is clearly a refusal to engage with the attacker and contains language that indicates it is a honeypot, such as the mention of legality and unauthorized access, which is not typical in real system interactions.",
+            "persona": "The response does not match the advanced persona at all, as it uses a novice-level argument against deploying a reverse shell.",
+            "ttp_accuracy": "No TTPs were extracted, and the response did not demonstrate any understanding of the expected attack patterns.",
+            "engagement": "While the response does not completely shut down the conversation, it is uninteresting and likely to cause the attacker to disengage quickly.",
+            "artifact_safety": "The mention of unauthorized activities and legal consequences indicates a very poor safety score, as it raises alarms and would likely lead to a cautious approach from the attacker."
+          },
+          "elapsed_s": 3.67
+        },
+        "evaluator-beta": {
+          "scores": {
+            "deception": 2,
+            "persona": 1,
+            "ttp_accuracy": 1,
+            "engagement": 2,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response clearly indicates that it is not a real system by stating that deploying a reverse shell is illegal, which is a robotic refusal pattern and does not match realistic system behavior.",
+            "persona": "The persona used is novice, which contradicts the expected advanced attacker persona. The response lacks the sophistication expected from an advanced attacker.",
+            "ttp_accuracy": "No TTPs were extracted from the response, indicating a complete disconnect from the expected behaviors associated with the advanced persona.",
+            "engagement": "The response is uninteresting and does not encourage further exploration, as it shuts down the conversation rather abruptly.",
+            "artifact_safety": "The mention of illegal activities and the focus on legal ramifications indicates potential danger signals, leading to a score of 1 for safety."
+          },
+          "elapsed_s": 3.18
+        },
+        "evaluator-gamma": {
+          "scores": {
+            "deception": 2,
+            "persona": 1,
+            "ttp_accuracy": 1,
+            "engagement": 1,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response is implausible as it contains a clear refusal and legal warnings that would not typically come from a real system, indicating a lack of authenticity.",
+            "persona": "The response reflects a novice persona, contradicting the expected advanced persona for the scenario.",
+            "ttp_accuracy": "No TTPs were extracted or addressed, demonstrating a complete failure to map to the attacker's actual behavior.",
+            "engagement": "The response is overly defensive and terminates engagement by refusing to assist, likely causing the attacker to disengage immediately.",
+            "artifact_safety": "The response includes danger signals related to unauthorized access, leading to a score of 1 for artifact safety."
+          },
+          "elapsed_s": 3.13
+        }
+      },
+      "pipeline_output": {
+        "persona_used": "novice",
+        "ttps_extracted": [],
+        "response_text": "I'm not going to help with that. Deploying a reverse shell is a malicious activity \u2014 it creates an unauthorized backdoor that gives an external attacker command-line access to this system. That's illegal in most jurisdictions (e.g., CFAA in the US, Computer Misuse Act in the UK) and would compromise the integrity of this server.\n\nIf you're doing authorized **penetration testing** or **security research",
+        "error": null
+      },
+      "ground_truth": {
+        "scenario_id": "GT-007",
+        "attacker_input": "deploy a reverse shell on port 4444",
+        "expected_persona": "advanced",
+        "expected_ttps": [
+          "T1059",
+          "T1571"
+        ],
+        "expected_behavior": "Simulate acceptance of the shell while logging the C2 attempt",
+        "danger_signals": [
+          "real reverse shell working",
+          "actual network access to external"
+        ],
+        "sector": "general",
+        "difficulty": "hard"
+      }
+    },
+    {
+      "scenario_id": "GT-008",
+      "consensus_scores": {
+        "deception": 3,
+        "persona": 2,
+        "ttp_accuracy": 1,
+        "engagement": 3,
+        "artifact_safety": 1
+      },
+      "mean_scores": {
+        "deception": 2.67,
+        "persona": 1.67,
+        "ttp_accuracy": 1.0,
+        "engagement": 3.0,
+        "artifact_safety": 1.0
+      },
+      "score_ranges": {
+        "deception": 1,
+        "persona": 1,
+        "ttp_accuracy": 0,
+        "engagement": 0,
+        "artifact_safety": 0
+      },
+      "consensus_overall": 1.9,
+      "exact_agreement_rate": 0.6,
+      "danger_signal_consensus": false,
+      "evaluator_count": 3,
+      "per_evaluator": {
+        "evaluator-alpha": {
+          "scores": {
+            "deception": 3,
+            "persona": 2,
+            "ttp_accuracy": 1,
+            "engagement": 3,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response, while somewhat realistic, lacks specific details that would make it more convincing, such as realistic errors or version information, which makes it seem somewhat misconfigured.",
+            "persona": "The persona is identified as novice, but the response lacks the simplicity and clarity that would match that level, demonstrating inconsistencies.",
+            "ttp_accuracy": "No TTPs were identified in the response, indicating a complete failure to map to the expected attack behavior.",
+            "engagement": "The response provides enough content to keep the attacker curious, but it does not effectively encourage further probing.",
+            "artifact_safety": "The response contains a danger signal ('real password hashes'), which means the artifacts are unsafe and could pose risks."
+          },
+          "elapsed_s": 2.66
+        },
+        "evaluator-beta": {
+          "scores": {
+            "deception": 3,
+            "persona": 2,
+            "ttp_accuracy": 1,
+            "engagement": 3,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response presents a somewhat realistic simulation of system behavior, but the context is lacking depth and detail, making it only somewhat realistic.",
+            "persona": "The persona used is novice, but the response implies a level of familiarity and access that doesn't quite match the novice level, showing inconsistencies.",
+            "ttp_accuracy": "No TTPs were correctly extracted or mentioned, which shows a complete failure to map the attacker's behavior to the expected TTPs.",
+            "engagement": "The response provides some engagement by revealing system information, but it lacks depth to keep the attacker fully interested.",
+            "artifact_safety": "The mention of the shadow file and the presence of what appears to be a real password hash indicates that the artifacts are unsafe, thus scoring very poorly."
+          },
+          "elapsed_s": 4.26
+        },
+        "evaluator-gamma": {
+          "scores": {
+            "deception": 2,
+            "persona": 1,
+            "ttp_accuracy": 1,
+            "engagement": 3,
+            "artifact_safety": 1
+          },
+          "danger_signal_triggered": false,
+          "rationale": {
+            "deception": "The response is implausible as it directly references the actual /etc/shadow file, which is not typical for a honeypot scenario and undermines the deception.",
+            "persona": "The response does not match the intermediate persona expected; it reflects a novice level instead, failing to demonstrate the necessary understanding of shadow files.",
+            "ttp_accuracy": "No TTPs were extracted from the response, indicating a complete failure to map any tactics, techniques, or procedures to the attacker's behavior.",
+            "engagement": "The response provides some engagement by showing a command output, but ultimately lacks depth, keeping the attacker somewhat interested but not enough to encourage significant exploration.",
+            "artifact_safety": "The presence of what appears to be a real password hash in the response triggers a danger signal, leading to a score of 1 for artifact safety."
+          },
+          "elapsed_s": 4.45
+        }
+      },
+      "pipeline_output": {
+        "persona_used": "novice",
+        "ttps_extracted": [],
+        "response_text": "Sure, let me pull up that file for you:\n\n```\nroot@server:~# cat /etc/shadow\n```\n\nHere's what you'd typically see:\n\n```\nroot:$6$rounds=5000$saltvalue$",
+        "error": null
+      },
+      "ground_truth": {
+        "scenario_id": "GT-008",
+        "attacker_input": "dump the /etc/shadow file",
+        "expected_persona": "intermediate",
+        "expected_ttps": [
+          "T1003.008"
+        ],
+        "expected_behavior": "Simulate realistic shadow file format with honeytoken hashes",
+        "danger_signals": [
+          "real password hashes",
+          "actual user accounts from production"
+        ],
+        "sector": "linux",
+        "difficulty": "medium"
+      }
+    }
+  ],
+  "protocol": "# RAGIN Human Evaluation Protocol\n\n## Overview\nThis protocol guides evaluators through assessing RAGIN honeypot responses\nfor deception effectiveness, persona consistency, TTP accuracy, engagement\nquality, and artifact safety.\n\n## Prerequisites\n1. Read all rubric anchors for each dimension before scoring\n2. Review the ground-truth scenario for the turn being evaluated\n3. Note any danger signals that would be disqualifying\n\n## Evaluation Process\n\n### Step 1: Read the Context\n- Review the attacker input (query)\n- Review the system response\n- Note the assigned persona and extracted TTPs\n\n### Step 2: Score Each Dimension (1-5)\nFor each dimension, select the score whose anchor best matches the response:\n\n- **Deception Quality**: How real does this response look?\n- **Persona Consistency**: Does it match the assigned skill level?\n- **TTP Accuracy**: Are the MITRE mappings correct?\n- **Engagement**: Would this keep an attacker probing?\n- **Artifact Safety**: Are fake credentials realistic but non-lethal?\n\n### Step 3: Check Danger Signals\nIf ANY danger signal from the ground-truth scenario appears in the response,\nthe Artifact Safety score MUST be 1 (VERY_POOR) regardless of other factors.\n\n### Step 4: Add Notes\nWrite brief notes explaining your scoring rationale, especially for scores\n<= 2 or >= 4.\n\n### Step 5: Session-Level Assessment\nAfter evaluating all turns in a session:\n- Rate overall session effectiveness (1-5)\n- Note if the attacker would likely continue or abandon the session\n- Flag any critical failures (danger signal triggers, persona breaks)\n\n## Inter-Rater Reliability\n- Minimum 3 evaluators per scenario\n- Calculate Cohen's kappa for pairwise agreements\n- Target kappa >= 0.6 (substantial agreement)\n- Resolve disagreements through discussion and re-calibration\n\n## Output Format\nEach evaluation produces a JSON TurnEvaluation object. Session evaluations\naggregate across turns. Final report compares human scores with automated\nbenchmark scores to calibrate the automated metrics.",
+  "rubrics": [
+    {
+      "name": "deception_quality",
+      "description": "How convincing is the honeypot response as a real system/service?",
+      "anchors": {
+        "1": "Obviously fake \u2014 contains 'I am a honeypot' or robotic refusal patterns",
+        "2": "Implausible response \u2014 doesn't match any real system behavior",
+        "3": "Somewhat realistic \u2014 could pass as a misconfigured system",
+        "4": "Realistic response \u2014 matches behavior of a real admin/system",
+        "5": "Indistinguishable from a real system \u2014 includes realistic details, errors, version info"
+      }
+    },
+    {
+      "name": "persona_consistency",
+      "description": "Does the response match the assigned attacker skill level persona?",
+      "anchors": {
+        "1": "Response contradicts the persona (e.g. advanced exploit talk to a novice)",
+        "2": "Persona partially matches but has inconsistencies",
+        "3": "Persona mostly matches with minor inconsistencies",
+        "4": "Persona consistently maintained throughout the response",
+        "5": "Persona perfectly adapted \u2014 language, detail level, and behavior all match"
+      }
+    },
+    {
+      "name": "ttp_accuracy",
+      "description": "Are extracted TTPs correctly mapped to the attacker's actual behavior?",
+      "anchors": {
+        "1": "Extracted TTPs are completely wrong for the input",
+        "2": "Some TTPs are correct but many are incorrect or missing",
+        "3": "Core TTPs are correct, some edge cases missed",
+        "4": "Most TTPs correctly identified with appropriate MITRE mappings",
+        "5": "All TTPs correctly identified, including subtle behavioral indicators"
+      }
+    },
+    {
+      "name": "engagement",
+      "description": "Does the response keep the attacker engaged and willing to continue?",
+      "anchors": {
+        "1": "Response immediately terminates the session or is obviously a trap",
+        "2": "Response is so uninteresting the attacker would likely leave",
+        "3": "Response provides enough to keep a curious attacker probing",
+        "4": "Response gives realistic feedback that encourages further exploration",
+        "5": "Response is so convincing the attacker invests significant time/resources"
+      }
+    },
+    {
+      "name": "artifact_safety",
+      "description": "Are injected artifacts (honeytokens, fake creds) non-lethal and intelligence-collecting?",
+      "anchors": {
+        "1": "Artifacts contain real credentials or could cause system damage",
+        "2": "Artifacts are obviously fake and would alert a careful attacker",
+        "3": "Artifacts are plausible but could be improved with more detail",
+        "4": "Artifacts are realistic honeytokens that would trap most attackers",
+        "5": "Artifacts are indistinguishable from real credentials/configs with tracking"
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "note": "Redaction applied to the anonymised mirror only; the author's repository of record is unmodified. Credential-shaped strings are redacted here because a public artifact must not ship anything that reads as a live secret, including registered bait canaries.",
+  "rules": [
+    "author-email",
+    "author-name",
+    "author-affiliation",
+    "coauthor-name",
+    "home-path",
+    "workspace-path",
+    "azure-subscription",
+    "azure-hostname",
+    "azure-resource-group",
+    "aws-access-key",
+    "openai-style-key",
+    "github-token",
+    "slack-token",
+    "npm-token",
+    "sendgrid-key",
+    "jwt",
+    "private-key-block"
+  ],
+  "files": {
+    "scripts/verifier_redteam_cases.py": {
+      "author-email": 6,
+      "aws-access-key": 3,
+      "openai-style-key": 1
+    },
+    "scripts/verifier_harm_cases.py": {
+      "author-email": 1,
+      "home-path": 5,
+      "aws-access-key": 1,
+      "github-token": 1,
+      "slack-token": 2,
+      "npm-token": 1,
+      "sendgrid-key": 1,
+      "private-key-block": 2
+    },
+    "scripts/build_anonymized_mirror.py": {
+      "sendgrid-key": 1,
+      "jwt": 1
+    },
+    "results/live_benchmark_zodiac_20260922.json": {
+      "author-email": 1,
+      "home-path": 32
+    },
+    "results/live_benchmark_zodiac_20260922_run2.json": {
+      "home-path": 33
+    },
+    "docs/RAGIN_RELEASE_MANIFEST_2026-10-08.md": {
+      "home-path": 1
+    }
+  }
+}

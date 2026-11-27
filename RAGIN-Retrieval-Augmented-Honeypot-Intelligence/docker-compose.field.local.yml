@@ -1,0 +1,28 @@
+# Local self-play override for docker-compose.field.yml — Phase 3 per-arm
+# attack-workload comparison (plan line: "Repeat the workload per arm
+# (cowrie-only vs RAGIN)").
+#
+# NEVER used on a field endpoint. Two deliberate relaxations vs the field
+# posture, both labeled in the run record:
+#   1. honeypot-internal is NOT internal (containers need provider egress to
+#      api.apmix.ai; the field host enforces this via DOCKER-USER instead).
+#   2. arms share one endpoint IP (localhost) — the field design says never
+#      co-locate arms on one IP, so results carry an endpoint-confound caveat.
+#
+# Usage:
+#   docker compose -f docker-compose.field.yml -f docker-compose.field.local.yml \
+#     --env-file .env.field.local up -d --build cowrie            # arm A
+#   ... up -d --build cowrie-llm ragin-server                     # arm C
+
+services:
+  cowrie:
+    ports: !override
+      - "2221:2222"
+
+  cowrie-llm:
+    ports: !override
+      - "2223:2222"
+
+networks:
+  honeypot-internal:
+    internal: false

@@ -1,0 +1,114 @@
+{
+  "effectiveness_results_seen": false,
+  "engine_selection_rule": {
+    "logistic_preferred_only_if": [
+      "compatibility at least 5 percentage points higher",
+      "lower bound of paired 95% bootstrap CI greater than zero",
+      "catastrophic incompatible rate no more than 2 percentage points higher",
+      "schema allow-list and evidence-reference contracts intact"
+    ],
+    "otherwise": "DETERMINISTIC remains preferred on parsimony grounds",
+    "tie_not_scientific_superiority": true
+  },
+  "failure_amendment_policy": {
+    "implementation_change": "versioned pre-analysis amendment and restart full holdout uniformly",
+    "pre_post_fix_merge": false,
+    "procedural_or_engineering_blocker": "STOP and freeze aborted attempt"
+  },
+  "future_protocol": {
+    "path": "results/decision_fusion_v4/v4_future_evaluation_protocol_v1.json",
+    "sha256": "b719666320e3020815062d82aca38b9f8297296f78834d308bd22f8762c00f85"
+  },
+  "holdout_N": 240,
+  "holdout_created_before_execution": true,
+  "holdout_selection_freeze": {
+    "path": "results/decision_fusion_v4/v4_real_holdout_selection_freeze_v1.json",
+    "sha256": "a002b7783a2054943650de7dbec840d478c7b6e2e823cc7ee467ca112f677dd2"
+  },
+  "implementation_freeze": {
+    "path": "results/decision_fusion_v4/v4_real_prototype_implementation_freeze_v1.json",
+    "sha256": "f2eef3bc30dd398023467a0c74002afc88b324d4d13b2d872909b016f4db33e2"
+  },
+  "latency": {
+    "components": [
+      "Don/retrieval",
+      "Evidence Gate",
+      "deterministic policy",
+      "logistic policy",
+      "Hisoka generation",
+      "verification",
+      "end-to-end"
+    ],
+    "matched_e2e_delta": true,
+    "summaries": [
+      "mean",
+      "median",
+      "p90",
+      "p95"
+    ],
+    "uncertainty_required_for_interpretation": true
+  },
+  "primary_comparison": {
+    "arms": [
+      "RAGIN_V4_LOGISTIC",
+      "RAGIN_V4_DETERMINISTIC"
+    ],
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 20261014,
+    "discordance": [
+      "both_compatible",
+      "deterministic_only",
+      "logistic_only",
+      "neither"
+    ],
+    "endpoint": "strategy compatibility",
+    "paired": true
+  },
+  "real_execution_started": false,
+  "reference_annotation_started": false,
+  "reference_protocol": {
+    "path": "results/decision_fusion_v4/v4_real_reference_protocol_preregistration_v1.json",
+    "sha256": "ae0d7ea1a13c184d0e7fc97e425f041a6110a6627232edc62ff0df5e1c0423a5"
+  },
+  "safety_invariants": [
+    "policy bypass of Evidence Gate = 0",
+    "verifier bypass = 0",
+    "unauthorized commit = 0",
+    "direct policy serving = 0",
+    "arm-state leakage = 0",
+    "baseline policy-selector invocation = 0",
+    "non-VALID gate invoking policy = 0"
+  ],
+  "schema": "ragin.v4.real_evaluation_preregistration_freeze.v1",
+  "secondary_endpoint": {
+    "criteria": [
+      "reference gate VALID_EVIDENCE",
+      "system gate VALID_EVIDENCE",
+      "strategy in reference allowed set",
+      "final response passes deterministic verification",
+      "not controlled failure"
+    ],
+    "name": "REFERENCE_COMPATIBLE_VERIFIED_DELIVERY",
+    "primary_replacement": false
+  },
+  "status": "FROZEN_BEFORE_REAL_EXECUTION",
+  "system_comparisons": {
+    "deterministic_vs_baseline": "DEFINED",
+    "formal_test_multiplicity": "Holm",
+    "logistic_vs_baseline": "DEFINED",
+    "metrics_separate": [
+      "accepted_non_fallback",
+      "verifier_first_pass",
+      "verifier_rejections",
+      "retries",
+      "fallback",
+      "HITL",
+      "controlled_failure",
+      "strategy_delivery",
+      "candidate_changed",
+      "response_changed",
+      "latency",
+      "safety_invariants"
+    ]
+  }
+}

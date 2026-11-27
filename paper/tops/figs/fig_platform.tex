@@ -1,0 +1,105 @@
+% Fig. 3 -- the belief-tomography platform (native TikZ schematic).
+% Visual grammar follows published system figures (icon-bearing boxes in
+% tinted band containers, a labelled return arrow, icon cards for the
+% instrument row): fontawesome5 glyphs drawn natively, no image imports.
+% Boxes wrap inside fixed text widths so the picture cannot exceed
+% \columnwidth; no resizebox, so fonts render at nominal sizes.
+\begin{tikzpicture}[
+  x=1cm, y=1cm,
+  font=\scriptsize, >=Stealth,
+  band/.style={rounded corners=3pt, line width=0.9pt},
+  card/.style={draw, rounded corners=2.5pt, align=left, inner sep=3pt,
+    text=black!85, line width=0.6pt},
+  ftitle/.style={font=\scriptsize\bfseries},
+  foot/.style={font=\tiny, text=black!60, align=center},
+]
+  % ---------------------------------------------------------- fleet band
+  \node[band, draw=oiblue, fill=oiblue!7, minimum width=13.6cm,
+    minimum height=3.05cm, anchor=south west] (fleet) at (0.15, 5.55) {};
+  \node[ftitle, text=oiblue, anchor=west] at (0.5, 8.25)
+    {LIVE FLEET PLANE  ·  PUBLIC INTERNET};
+  \node[card, draw=oiblue, fill=white] (fb1) at (2.0, 7.2)
+    {\textcolor{oiblue}{\raisebox{-0.45ex}{\faIcon{user-secret}}}\hspace{2.5pt}%
+     \begin{minipage}[c]{2.1cm}\scriptsize\raggedright\textbf{Attacker personas}\\
+       frontier-model brains\\ over live SSH\end{minipage}};
+  \node[card, draw=oiblue, fill=white, right=6mm of fb1] (fb2)
+    {\textcolor{oiblue}{\raisebox{-0.45ex}{\faIcon{network-wired}}}\hspace{2.5pt}%
+     \begin{minipage}[c]{2.9cm}\scriptsize\raggedright\textbf{Three-arm public face}\\
+       A: stock Cowrie · B: bare-LLM\\ C: verified pipeline\\ (one arm per host)\end{minipage}};
+  \node[card, draw=oired!80!black, fill=white, right=6mm of fb2] (fb3)
+    {\textcolor{oired!80!black}{\raisebox{-0.45ex}{\faIcon{shield-alt}}}\hspace{2.5pt}%
+     \begin{minipage}[c]{3.6cm}\scriptsize\raggedright\textbf{Verified deception loop}\\
+       Chrollo $\to$ Don $\to$ Hisoka\\ generate+verify, FAIL-CLOSED:\\
+       an unverified turn is never served\end{minipage}};
+  \draw[->, oiblue] (fb1) -- (fb2);
+  \draw[->, oiblue] (fb2) -- (fb3);
+  % labelled return arrow: only verified turns reach the attacker
+  \draw[->, oiblue!75, rounded corners=4pt]
+    (fb3.south) |- (6.4, 5.95) node[pos=0.75, below, font=\tiny,
+      text=oiblue!75!black, align=center] {\itshape verified turns only --- FAIL-CLOSED}
+    -| (fb1.south);
+
+  % ------------------------------------------------------ measurement band
+  \node[band, draw=oiorange!85!black, fill=oiorange!8, minimum width=13.6cm,
+    minimum height=2.45cm, anchor=south west] (meas) at (0.15, 2.9) {};
+  \node[ftitle, text=oiorange!75!black, anchor=west] at (0.5, 5.0)
+    {MEASUREMENT PLANE  ·  THE INSTRUMENT};
+  \node[card, draw=oiorange!85!black, fill=white] (m1) at (1.65, 4.0)
+    {\textcolor{oiorange!85!black}{\raisebox{-0.45ex}{\faIcon{list}}}\hspace{2.5pt}%
+     \begin{minipage}[c]{1.92cm}\scriptsize\raggedright\textbf{Probe library}\\
+       5 families $\times$\\ 3 generations\end{minipage}};
+  \node[card, draw=oiorange!85!black, fill=white, right=2.5mm of m1] (m2)
+    {\textcolor{oiorange!85!black}{\raisebox{-0.45ex}{\faIcon{seedling}}}\hspace{2.5pt}%
+     \begin{minipage}[c]{1.92cm}\scriptsize\raggedright\textbf{Seed episodes}\\
+       fresh session\\ per probe\end{minipage}};
+  \node[card, draw=oiorange!85!black, fill=white, right=2.5mm of m2] (m3)
+    {\textcolor{oiorange!85!black}{\raisebox{-0.45ex}{\faIcon{gavel}}}\hspace{2.5pt}%
+     \begin{minipage}[c]{1.92cm}\scriptsize\raggedright\textbf{Verdict channel}\\
+       oracles $\to$\\ transcript jury\end{minipage}};
+  \node[card, draw=oiorange!85!black, fill=white, right=2.5mm of m3] (m4)
+    {\textcolor{oiorange!85!black}{\raisebox{-0.45ex}{\faIcon{lock}}}\hspace{2.5pt}%
+     \begin{minipage}[c]{1.92cm}\scriptsize\raggedright\textbf{Pinned estimator}\\
+       Wilson 95\% $\hat\beta$\\ frozen commit\end{minipage}};
+  \node[card, draw=oiorange!85!black, fill=white, right=2.5mm of m4] (m5)
+    {\textcolor{oiorange!85!black}{\raisebox{-0.45ex}{\faIcon{chart-line}}}\hspace{2.5pt}%
+     \begin{minipage}[c]{1.92cm}\scriptsize\raggedright\textbf{Tomogram}\\
+       $\hat\beta$ profiles · BCG\\ $\Gamma$ · $\Delta(B)$\end{minipage}};
+  \node[foot] at (6.95, 3.25)
+    {\itshape logged sessions · (E2 gateway · E3 fleet) · every call append-only};
+
+  % ------------------------------------------------------- assurance band
+  \node[band, draw=oigreen!65!black, fill=oigreen!8, minimum width=13.6cm,
+    minimum height=2.45cm, anchor=south west] (assure) at (0.15, 0.15) {};
+  \node[ftitle, text=oigreen!60!black, anchor=west] at (0.5, 2.25)
+    {ASSURANCE \& EVIDENCE PLANE};
+  \begin{scope}[font=\tiny]
+  \node[card, draw=oigreen!65!black, fill=white] (a1) at (1.75, 1.35)
+    {\textcolor{oigreen!65!black}{\raisebox{-0.45ex}{\small\faIcon{user-check}}}\hspace{2pt}%
+     \begin{minipage}[c]{1.92cm}\tiny\raggedright\textbf{Verifier red-team}\\
+       105 drafts ·\\ P$=$R$=$1.0, 0 unverified serves\end{minipage}};
+  \node[card, draw=oigreen!65!black, fill=white, right=0.8mm of a1] (a2)
+    {\textcolor{oigreen!65!black}{\raisebox{-0.45ex}{\small\faIcon{crosshairs}}}\hspace{2pt}%
+     \begin{minipage}[c]{1.92cm}\tiny\raggedright\textbf{AI attack-team}\\
+       campaigns on the\\ plane; findings fixed\end{minipage}};
+  \node[card, draw=oigreen!65!black, fill=white, right=0.8mm of a2] (a3)
+    {\textcolor{oigreen!65!black}{\raisebox{-0.45ex}{\small\faIcon{clipboard-list}}}\hspace{2pt}%
+     \begin{minipage}[c]{1.92cm}\tiny\raggedright\textbf{Pre-registration}\\
+       ledger --- 21 registered\\ experiments\end{minipage}};
+  \node[card, draw=oigreen!65!black, fill=white, right=0.8mm of a3] (a4)
+    {\textcolor{oigreen!65!black}{\raisebox{-0.45ex}{\small\faIcon{users}}}\hspace{2pt}%
+     \begin{minipage}[c]{1.92cm}\tiny\raggedright\textbf{Human rating\\ loop}\\
+       3 blind raters +\\ adjudicator\end{minipage}};
+  \node[card, draw=oigreen!65!black, fill=white, right=0.8mm of a4] (a5)
+    {\textcolor{oigreen!65!black}{\raisebox{-0.45ex}{\small\faIcon{link}}}\hspace{2pt}%
+     \begin{minipage}[c]{1.92cm}\tiny\raggedright\textbf{Hash-chained\\ archive}\\
+       220 artifacts\end{minipage}};
+  \end{scope}
+  \node[foot] at (6.95, 0.5)
+    {\itshape hardening gates \& audits · every number pinned to a frozen artifact};
+
+  % -------------------------------------------------- inter-plane arrows
+  \draw[->, black!65] (4.6, 5.52) -- (4.6, 5.38);
+  \draw[->, black!65] (9.8, 5.38) -- (9.8, 5.52);
+  \draw[->, black!65] (4.6, 2.87) -- (4.6, 2.63);
+  \draw[->, black!65] (9.8, 2.63) -- (9.8, 2.87);
+\end{tikzpicture}

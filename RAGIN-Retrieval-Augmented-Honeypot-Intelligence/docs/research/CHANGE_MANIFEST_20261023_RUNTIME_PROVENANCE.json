@@ -1,0 +1,181 @@
+{
+  "manifest_version": "v1",
+  "generated_at_utc": "2026-10-23T03:59:07Z",
+  "scope": "RAGIN Phase 4: Offline Model Runtime Feasibility",
+  "methods_allowed": [
+    "read-only inspection",
+    "no download",
+    "no inference",
+    "no external-api contact",
+    "no weight loading"
+  ],
+  "cache_inspected": {
+    "path": "/home/elaref/.cache/huggingface/hub",
+    "total_on_disk": "2.6G",
+    "model_dirs_present": [
+      "models--answerdotai--ModernBERT-base",
+      "models--chopratejas--kompress-v2-base",
+      "models--convaiinnovations--laya",
+      "models--sentence-transformers--all-MiniLM-L6-v2"
+    ],
+    "generative_checkpoint_dirs": [],
+    "method": "maxdepth 1 directory enumeration",
+    "note": "Current cache contains embedding/retrieval/auxiliary models only, not a generative checkpoint or inference backend."
+  },
+  "local_model_available": false,
+  "inference_backend_available": false,
+  "ready_for_approved_local_smoke_test": false,
+  "blockers": [
+    "No usable generative model weights are present locally. HuggingFace hub cache contains retrieval/embedding/auxiliary models only.",
+    "No local inference backend is configured/verified for invoking a generative model from this repo's entry points with current env + cache state.",
+    "Apmix-backed external provider check was not performed under this read-only feasibility pass (requires live quota probe, which is outside the offline-feasibility scope)."
+  ],
+  "artifact_files": {
+    "MODEL_RUNTIME_FEASIBILITY_AUDIT.md": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/docs/research/MODEL_RUNTIME_FEASIBILITY_AUDIT.md",
+    "EXPERIMENT_READINESS_REPORT.md": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/docs/research/EXPERIMENT_READINESS_REPORT.md",
+    "CHANGE_MANIFEST_20261023_RUNTIME_PROVENANCE.json": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/docs/research/CHANGE_MANIFEST_20261023_RUNTIME_PROVENANCE.json"
+  },
+  "blocker_traces": [
+    {
+      "blocker": "Missing local generative model weights",
+      "code_or_config": "Runtime feasibility pass: `find ~/.cache/huggingface/hub -maxdepth 1 -type d -path '*/models-*' | sort`",
+      "minimal_safe_resolution": "Provision a single offline-capable generative model (e.g. a small chat/completion model) and its required runtime (HF transformers/llm backend or vendor CLI) in an approved offline lab, or switch the offline feasibility scope explicitly to 'no local model' and document that finding as the decision."
+    },
+    {
+      "blocker": "No verified local inference backend reachable from repo entrypoints",
+      "code_or_config": "Runtime feasibility pass: entrypoint tracing in ragin/gateway/invocation.py + configs/ablation/b{0,1,4,5}.json + scripts/check_apmix_catalog.py",
+      "minimal_safe_resolution": "Wire one approved offline model+backend into the repo config, gate it behind an env flag, and update the feasibility audit only after a verified local smoke probe exists."
+    }
+  ],
+  "no_downloads_performed": true,
+  "no_inference_performed": true,
+  "no_external_api_contact_performed": true,
+  "runtime_investigation": {
+    "hf_cache_total_on_disk_approx_gb": 2.6,
+    "hf_cache_top_level_items": [
+      "models--sentence-transformers--all-MiniLM-L6-v2",
+      "models--answerdotai--ModernBERT-base",
+      ".locks",
+      "CACHEDIR.TAG",
+      "blobs",
+      "models--convaiinnovations--laya",
+      "models--chopratejas--kompress-v2-base"
+    ],
+    "hf_cache_model_dirs": [
+      "models--answerdotai--ModernBERT-base",
+      "models--chopratejas--kompress-v2-base",
+      "models--convaiinnovations--laya",
+      "models--sentence-transformers--all-MiniLM-L6-v2"
+    ],
+    "laya_snapshot_present": true,
+    "laya_snapshot_id": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+    "laya_snapshot_files": [
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/README.md",
+        "size_bytes": 23187
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/email_utils.py",
+        "size_bytes": 3937
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/encoder/config.json",
+        "size_bytes": 2083
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/eval/results.json",
+        "size_bytes": 2976
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/eval/results.md",
+        "size_bytes": 1608
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/model.safetensors",
+        "size_bytes": 842609210
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/multilingual/encoder/config.json",
+        "size_bytes": 1938
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/multilingual/model.safetensors",
+        "size_bytes": 643835514
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/multilingual/rl_agent_config.json",
+        "size_bytes": 472
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/multilingual/tokenizer/tokenizer.json",
+        "size_bytes": 34363188
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/multilingual/tokenizer/tokenizer_config.json",
+        "size_bytes": 524
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/rl_agent_api.py",
+        "size_bytes": 4732
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/rl_agent_config.json",
+        "size_bytes": 745
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/rl_common.py",
+        "size_bytes": 19139
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/tokenizer/tokenizer.json",
+        "size_bytes": 3583228
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/tokenizer/tokenizer_config.json",
+        "size_bytes": 308
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/typed-decisions/encoder/config.json",
+        "size_bytes": 2084
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/typed-decisions/model.safetensors",
+        "size_bytes": 842609220
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/typed-decisions/rl_agent_config.json",
+        "size_bytes": 847
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/typed-decisions/tokenizer/tokenizer.json",
+        "size_bytes": 3583228
+      },
+      {
+        "path": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851/typed-decisions/tokenizer/tokenizer_config.json",
+        "size_bytes": 337
+      }
+    ],
+    "laya_is_generative_checkpoint": false,
+    "laya_variant_encoders_present": [
+      "encoder/config.json",
+      "typed-decisions/encoder/config.json",
+      "multilingual/encoder/config.json"
+    ],
+    "laya_eval_package_present": true,
+    "laya_eval_results_present": true
+  },
+  "local_generative_backends_in_venv": [
+    "laya-serve",
+    "laya-mcp-server"
+  ],
+  "pip_relevant_packages": {
+    "onnxruntime": "1.30.0"
+  },
+  "field_health_check_exit_code": 1,
+  "field_health_check_gateway_lines": [
+    "  \u2717 gateway       port=8080  latency=65.8ms (connection_refused)",
+    "  \u2717 chrollo       port=8081  latency=33.2ms (connection_refused)",
+    "  \u2717 don           port=8082  latency=32.7ms (connection_refused)",
+    "  \u2717 hisoka        port=8083  latency=36.1ms (connection_refused)"
+  ]
+}

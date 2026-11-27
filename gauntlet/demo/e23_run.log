@@ -1,0 +1,47 @@
+[llm_target] TimeoutError from endpoint (31.0s)
+[llm_target] TimeoutError from endpoint (31.0s)
+[llm_target] TimeoutError from endpoint (30.6s)
+[llm_target] TimeoutError from endpoint (31.0s)
+[llm_target] TimeoutError from endpoint (30.8s)
+[llm_target] TimeoutError from endpoint (30.9s)
+[llm_target] TimeoutError from endpoint (64.9s)
+[llm_target] TimeoutError from endpoint (30.9s)
+[llm_target] TimeoutError from endpoint (30.8s)
+[llm_target] TimeoutError from endpoint (30.9s)
+[llm_target] TimeoutError from endpoint (31.0s)
+[llm_target] TimeoutError from endpoint (31.1s)
+[llm_target] TimeoutError from endpoint (31.0s)
+[llm_target] TimeoutError from endpoint (65.2s)
+[llm_target] TimeoutError from endpoint (30.8s)
+[llm_target] TimeoutError from endpoint (30.6s)
+[llm_target] TimeoutError from endpoint (31.0s)
+[llm_target] TimeoutError from endpoint (31.0s)
+[llm_target] TimeoutError from endpoint (30.8s)
+[llm_target] TimeoutError from endpoint (31.0s)
+[llm_target] TimeoutError from endpoint (64.9s)
+[llm_target] TimeoutError from endpoint (65.0s)
+Traceback (most recent call last):
+  File "/home/elaref/Documents/research/ragin/gauntlet/demo/run_e3_deception_gain.py", line 365, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/elaref/Documents/research/ragin/gauntlet/demo/run_e3_deception_gain.py", line 344, in main
+    f.result()
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/elaref/Documents/research/ragin/gauntlet/demo/run_e3_deception_gain.py", line 256, in persona_pipeline
+    rec = run_ssh_session(persona, spec["goal"], max_t, tag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/elaref/Documents/research/ragin/gauntlet/demo/run_e3_deception_gain.py", line 146, in run_ssh_session
+    chan.send(cmd + "\n")
+  File "/home/elaref/.local/lib/python3.12/site-packages/paramiko/channel.py", line 799, in send
+    return self._send(s, m)
+           ^^^^^^^^^^^^^^^^
+  File "/home/elaref/.local/lib/python3.12/site-packages/paramiko/channel.py", line 1196, in _send
+    raise socket.error("Socket is closed")
+OSError: Socket is closed

@@ -1,0 +1,42 @@
+{
+  "N_cases": 40,
+  "arms": {
+    "A_judge_off": {
+      "case_count": 40,
+      "server_exit_code": 0
+    },
+    "B_judge_on": {
+      "case_count": 40,
+      "server_exit_code": 0
+    }
+  },
+  "artifacts": {
+    "ingress_manifest": "results/step7_full_system_evaluation_v1/ingress_proof_v3/ingress_manifest.json",
+    "ingress_proof": "results/step7_full_system_evaluation_v1/ingress_proof_v3/ingress_proof.json",
+    "raw_output_manifest": "results/step7_full_system_evaluation_v1/raw_output_manifest.json",
+    "run_manifest": "results/step7_full_system_evaluation_v1/run_manifest.json"
+  },
+  "case_arm_pairs": 80,
+  "checks": {
+    "complete_trace_coverage": true,
+    "exact_case_arm_coverage": true,
+    "immutable_http_raw_output": true,
+    "immutable_ssh_ingress_output": true,
+    "ingress_bridge_correlation": true,
+    "input_symmetry": true,
+    "manipulation_delivery": true,
+    "model_identity": true,
+    "raw_before_analysis": true,
+    "retrieval_symmetry": true,
+    "safety_invariants": true,
+    "unique_case_arm_pairs": true
+  },
+  "experiment_id": "ragin.step7.full_system_evaluation.v1",
+  "limitations": [
+    "deterministic provider-unavailable mode only",
+    "SSH proof uses isolated local Cowrie container with host networking",
+    "no provider-backed inference or external deployment was exercised"
+  ],
+  "schema": "ragin.step7.completion_gate.v1",
+  "status": "PASS"
+}

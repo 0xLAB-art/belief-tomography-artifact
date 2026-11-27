@@ -1,0 +1,198 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  PYTHON_VERSION: "3.12"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - run: pip install -e ".[test,dev]"
+      - run: ruff check ragin/ tests/
+      - run: ruff format --check ragin/ tests/
+
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - run: pip install -e ".[test,dev]"
+      - run: mypy ragin/ --ignore-missing-imports
+
+  artifact-integrity:
+    name: Research Artifact Integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install runtime + test deps
+        run: pip install -e ".[test]"
+
+      - name: Run artifact-consistency checker
+        # Fully offline: reads `results/*.json` only, no API keys, no
+        # inference, no network calls. Exit 1 on any pinned claim failure
+        # (paper rounding contract, count/schema invariant, missing artifact,
+        # cases field schema: offline artifact is a list; live artifacts are ints).
+        run: python scripts/verifier_redteam_check.py
+
+      - name: Run artifact-consistency regression tests
+        run: |
+          python -m pytest tests/unit/test_artifact_consistency.py -q
+
+      - name: Run security-evaluation oracle schema tests
+        # Pins the ground-truth oracle's schema, independent-label contract,
+        # category coverage, and synthetic-nature invariants. This is the
+        # offline gate for the new SEC.* evaluation dataset; it does not run
+        # any verifier against providers.
+        run: |
+          python -m pytest tests/unit/test_verifier_redteam_security_oracle.py -q
+
+      - name: Run verifier red-team regression locks
+        # Pins the 23 verifier-fix findings (V1-V23) and the harness scoring
+        # contract so the offline selectivity evidence cannot silently drift.
+        run: |
+          python -m pytest tests/unit/test_verifier_redteam.py -q
+
+      - name: Generate deterministic artifact manifest
+        # Records SHA-256 + sizes + checker version + repo state so the
+        # committed artifacts can be replayed and audited later. The manifest
+        # is emitted as an artifact, not committed; writing it into the tree
+        # here would gate every push on a generated file that CI is
+        # authoritative for.
+        run: |
+          python scripts/verifier_redteam_check.py --manifest-out results/verifier_artifacts_manifest.json
+
+      - name: Persist provenance metadata
+        run: |
+          python - <<'PY'
+          import json, os, platform, subprocess
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          head = subprocess.check_output(
+              ["git", "rev-parse", "HEAD"], text=True
+          ).strip()
+          branch = subprocess.check_output(
+              ["git", "rev-parse", "--abbrev-ref", "HEAD"], text=True
+          ).strip()
+          tree = subprocess.check_output(
+              ["git", "status", "--porcelain"], text=True
+          ).strip()
+          python = platform.python_version()
+
+          meta = {
+              "kind": "research_artifact_integrity_provenance",
+              "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+              "git_commit": head,
+              "git_branch": branch,
+              "is_dirty": bool(tree),
+              "git_status_lines": tree.splitlines() if tree else [],
+              "python_version": python,
+              "checker_script": "scripts/verifier_redteam_check.py",
+              "manifest_out": "results/verifier_artifacts_manifest.json",
+          }
+
+          Path("results").mkdir(exist_ok=True)
+          Path("results/verifier_integrity_provenance.json").write_text(
+              json.dumps(meta, indent=2) + "\n"
+          )
+          print(json.dumps(meta, indent=2))
+        env:
+          # No AWS creds, no LLM provider keys, no external inference.
+          CF_TOKEN: ""
+          OPENROUTER_API_KEY: ""
+
+      - name: Upload integrity artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: verifier-artifact-integrity
+          path: |
+            results/verifier_artifacts_manifest.json
+            results/verifier_integrity_provenance.json
+          retention-days: 90
+
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -e ".[test]"
+      - run: pytest tests/unit -v -n auto --tb=short --cov=ragin --cov-report=term-missing --cov-fail-under=75
+
+  integration:
+    runs-on: ubuntu-latest
+    env:
+      RAGIN_API_KEY: ci-dummy-key-not-used-by-assertions
+    steps:
+      - uses: actions/checkout@v4
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/lib/android \
+            /usr/share/swift /usr/local/.ghcup /usr/lib/jvm \
+            /opt/hostedtoolcache/CodeQL || true
+          sudo docker image prune -af || true
+          df -h /
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - run: pip install -e ".[test]"
+      - run: docker compose -f docker-compose.yml -f docker-compose.test.yml -f docker-compose.ci.yml up -d
+      - name: Diagnose stack (only on failure)
+        if: failure()
+        run: |
+          docker compose -f docker-compose.yml -f docker-compose.test.yml -f docker-compose.ci.yml ps -a
+          docker compose -f docker-compose.yml -f docker-compose.test.yml -f docker-compose.ci.yml logs --tail=80 gateway
+      - run: pytest tests/integration -v --tb=short
+      - run: docker compose down
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - run: pip install -e ".[test,dev]"
+      - run: bandit -r ragin/ -c pyproject.toml || true
+      - run: pytest tests/security -v --tb=short
+
+  paper-figures:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install TeX toolchain (standalone, tikz, pgfplots) and poppler
+        run: >-
+          sudo apt-get update
+          && sudo apt-get install -y --no-install-recommends
+          texlive-latex-base texlive-latex-recommended texlive-pictures
+          texlive-latex-extra poppler-utils
+      - run: pip install Pillow
+      - name: Fail on figure geometry regression (Appendix F)
+        run: python scripts/audit_figure_geometry.py

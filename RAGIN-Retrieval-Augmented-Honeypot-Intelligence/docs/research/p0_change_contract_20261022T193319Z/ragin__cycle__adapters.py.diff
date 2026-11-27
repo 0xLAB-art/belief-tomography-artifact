@@ -1,0 +1,87 @@
+--- a/ragin/cycle/adapters.py (Phase 0 working tree)
++++ b/ragin/cycle/adapters.py (current)
+@@ -294,7 +294,8 @@
+ 
+ def _extract_evidence(session_context: dict[str, Any]) -> dict[str, Any]:
+     commands: list[str] = []
+-    for inp in session_context.get("attacker_inputs", []):
++    raw_inputs = session_context.get("attacker_inputs")
++    for inp in raw_inputs if isinstance(raw_inputs, list) else []:
+         if isinstance(inp, dict):
+             commands.append(str(inp.get("command", inp.get("input", str(inp)))))
+         else:
+@@ -321,10 +322,16 @@
+         self._engine = engine
+ 
+     def analyze(self, attacker_input: str, session_context: dict[str, Any]) -> dict[str, Any]:
++        from ragin.cycle.classification import normalize_classification
+         from ragin.decision_fusion_v4.evidence_export import build_evidence_bundle, failure_evidence_bundle
+         from ragin.don.models import AnalysisRequest, ClassificationLabel
+ 
+-        classification_str = session_context.get("classification", {}).get("skill_level", "unknown")
++        # Historical/replayed contexts can carry a non-dict, null, or
++        # out-of-vocabulary classification. Normalize before any attribute
++        # access so a malformed payload yields "no verdict" instead of
++        # raising outside the try block (and never a fabricated skill level).
++        classification = normalize_classification(session_context.get("classification"))
++        classification_str = classification.get("skill_level", "unknown")
+         classification_map = {
+             "novice": ClassificationLabel.BENIGN,
+             "intermediate": ClassificationLabel.SUSPICIOUS,
+@@ -332,13 +339,16 @@
+             "expert": ClassificationLabel.MALICIOUS,
+         }
+         classification_label = classification_map.get(classification_str, ClassificationLabel.SUSPICIOUS)
+-        confidence = session_context.get("classification", {}).get("confidence", 0.5)
++        confidence = float(classification.get("confidence", 0.5))
+ 
+         raw_session_id = session_context.get("session_id", "unknown")
+         # AnalysisRequest.session_id must be alphanumeric (Pydantic validator)
+-        clean_session_id = "".join(c for c in raw_session_id if c.isalnum())[:128]
++        clean_session_id = "".join(c for c in str(raw_session_id) if c.isalnum())[:128]
++        if not clean_session_id:
++            clean_session_id = "unknown"
+ 
+-        features = dict(session_context.get("features", {}))
++        raw_features = session_context.get("features")
++        features = dict(raw_features) if isinstance(raw_features, dict) else {}
+         if attacker_input:
+             features.setdefault("attacker_input", attacker_input)
+ 
+@@ -349,15 +359,25 @@
+             features=features,
+         )
+ 
++        raw_inputs = session_context.get("attacker_inputs")
++        raw_responses = session_context.get("system_responses")
+         session_log = []
+-        for inp in session_context.get("attacker_inputs", []):
++        for inp in raw_inputs if isinstance(raw_inputs, list) else []:
+             session_log.append({"role": "attacker", "content": inp})
+-        for resp in session_context.get("system_responses", []):
++        for resp in raw_responses if isinstance(raw_responses, list) else []:
+             session_log.append({"role": "system", "content": resp})
+         if attacker_input:
+             session_log.append({"role": "attacker", "content": attacker_input})
+ 
+         evidence = _extract_evidence(session_context)
++        # Downstream evidence export also indexes classification as a mapping;
++        # hand it the normalized dict so a historical string/null payload does
++        # not raise after the analysis already succeeded.
++        safe_evidence_context = {
++            **session_context,
++            "classification": classification,
++            "features": features,
++        }
+ 
+         try:
+             result = self._engine.analyze(req, session_log)
+@@ -408,7 +428,7 @@
+             # This previously received the Don payload (whose "classification"
+             # is benign/suspicious/malicious), so skill_level always degraded to
+             # "unknown" and the evidence export disagreed with the CTI call.
+-            payload["evidence_bundle"] = build_evidence_bundle(result, session_context, attacker_input)
++            payload["evidence_bundle"] = build_evidence_bundle(result, safe_evidence_context, attacker_input)
+             return payload
+         except Exception as e:
+             logger.warning("Don analyze failed: %s", e)

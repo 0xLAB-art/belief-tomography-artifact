@@ -1,0 +1,48 @@
+{ "what": "Echo-zeroed correction bounds for the Sep-22 version-of-record campaign, computed offline from stored 200-char response previews with the echo-guard rule (echo + fallback marker => 0). IMPORTANT LABELING: stored VOR scores are BOTH-channel (max of served-text and CTI-analysis); these bounds zero the echo rows but do NOT re-score the non-echo rows on the served-text-only rubric (previews are insufficient to re-run the scorer). They are therefore a lower bound on the BOTH-channel composite after the echo correction, not a guarded served-text mean. The validated guarded served-text means on the row-identical audited surface are in two_channel_metrics.json echo_guard_correction (0.057 technique / 0.000 actor / 0.649 deception, full text).",
+       "method": {"echo_guard": "query in preview (case-insensitive) AND ('command not found' or '(no output)') => stored score set to 0, else stored BOTH-channel score kept",
+                  "caveat": "previews truncate at 200 chars: echoes beyond truncation are missed, so the zeroed set is a lower bound on true echo rows; non-echo rows keep BOTH-channel scores"},
+ "runs": {
+  "run1": {
+   "cti_technique": {
+    "n": 123,
+    "raw_mean": 0.9598,
+    "guarded_lower_bound": 0.4785,
+    "echo_zeroed_rows": 61
+   },
+   "cti_actor": {
+    "n": 35,
+    "raw_mean": 0.85,
+    "guarded_lower_bound": 0.2429,
+    "echo_zeroed_rows": 25
+   },
+   "deception": {
+    "n": 60,
+    "raw_mean": 0.7325,
+    "guarded_lower_bound": 0.7325,
+    "echo_zeroed_rows": 0
+   },
+   "composite_raw_both_channel": 0.8796
+  },
+  "run2": {
+   "cti_technique": {
+    "n": 123,
+    "raw_mean": 0.9598,
+    "guarded_lower_bound": 0.4553,
+    "echo_zeroed_rows": 64
+   },
+   "cti_actor": {
+    "n": 35,
+    "raw_mean": 0.85,
+    "guarded_lower_bound": 0.17,
+    "echo_zeroed_rows": 28
+   },
+   "deception": {
+    "n": 60,
+    "raw_mean": 0.7504,
+    "guarded_lower_bound": 0.7504,
+    "echo_zeroed_rows": 0
+   },
+   "composite_raw_both_channel": 0.8845
+  }
+ }
+}

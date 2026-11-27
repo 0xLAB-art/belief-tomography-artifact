@@ -1,0 +1,268 @@
+--- /dev/null
++++ b/docs/research/EXPERIMENT_READINESS_REPORT.md (current)
+@@ -0,0 +1,265 @@
++# EXPERIMENT READINESS REPORT — RAGIN causal ablation
++
++**Date:** 2026-10-22
++**Protocol:** `docs/research/CAUSAL_ABLATION_PROTOCOL.md` (design frozen v2)
++**Design freeze:** `docs/research/design_freeze_v1.json`
++**Provider spend this phase:** **$0** (no provider calls; no AWS, JEV, paid API, or model download)
++**Bottom line:** **B0 is locally executable as a native transport. B1, B2, and B3 have the required local code paths but remain blocked on the frozen generator. B4 and B5 are NOT READY.** No arm has been executed, and no B1–B3 result is measured.
++
++---
++
++## 1. Readiness by arm
++
++| Arm | Ready? | What exists | What is missing |
++|---|---|---|---|
++| **B0** native Cowrie | **YES (transport only)** | Local Cowrie image ID `sha256:710f1e46…a30cd459`; loopback binding verified; native config `configs/ablation/b0_native_cowrie.json` | Nothing for a local descriptive transport run. It is not a RAGIN arm. |
++| **B1** Cowrie + LLM, retrieval off | **NO (generator)** | Explicit `RAGIN_RAG_MODE=none`; no sparse/dense index is constructed or searched; shared mandatory verifier; config `b1_no_retrieval.json` | Frozen generator identity/prompt/price; codebook; allocation; host-fiction hash. No model is served. |
++| **B2** B1 + BM25 | **NO (generator)** | Explicit `RAGIN_RAG_MODE=bm25`; sparse-only construction; config `b2_bm25.json` | Same generator/codebook/allocation blockers. |
++| **B3** B1 + dense RAG | **NO (store + model + generator)** | Explicit `RAGIN_RAG_MODE=dense`; `DonAdapter(vector_store_path=…)` plumbing; exact-store/local-model fail-closed validation; dense-only path; config `b3_dense.json` | Exact `index.faiss` + `documents.json`, local embedding-model directory, generator, codebook, allocation. |
++| **B4** B3 + **rule-based decision** | **NOT READY** | Definition/config `b4_rule_decision.not_ready.json` | Frozen rule table and decision contract. B4 is **not** hybrid retrieval. |
++| **B5** B3 + fine-tuned Laya | **NOT READY** | Blockers recorded; config `b5_finetuned_laya.not_ready.json` | v12 checkpoint is not accepted by `LayaRuntime`; v12 emits `attack/stage/severity` while the runtime consumes `evidence_state/strategy/evidence_ref`. |
++
++The 32-session bounded pilot in the protocol has **not** been allocated or executed.
++
++---
++
++## 2. What changed in the code paths
++
++### 2.1 B1 retrieval-off is now an explicit mode
++
++`ThreatRAGEngine` accepts four explicit modes:
++
++| Mode | Construction | Search behavior |
++|---|---|---|
++| `none` | No `VectorStore`, no `IntelCorpus`, no index | `hybrid_search`, `search_threat_intel`, `keyword_search` return `[]` |
++| `bm25` | Sparse corpus only | BM25 only; no vector store |
++| `dense` | Exact persisted store only | Dense only; no BM25 call |
++| `hybrid` | Legacy default | Existing vector+BM25 RRF behavior |
++
++`offline`/`sparse` remain aliases for `bm25`, not for `none`. Structural tests in
++`tests/integration/test_ablation_retrieval_modes.py` use explicitly labelled
++fakes and confirm that `none` constructs no retriever and `dense` does not call
++BM25.
++
++### 2.2 B3 dense store is plumbed and fails closed
++
++- `DonAdapter` now accepts `vector_store_path` and passes it to
++  `ThreatRAGEngine`.
++- `RAGIN_RAG_MODE=dense` requires `RAGIN_VECTOR_STORE_PATH` (or the constructor
++  argument), an `index.faiss`, a `documents.json`, `faiss` +
++  `sentence-transformers`, and `RAGIN_EMBED_MODEL` pointing at a **local model
++  directory**. A missing prerequisite raises a configuration error; it does not
++  fall back to BM25.
++- The exact store and model remain absent. A real dense run is still
++  model/store-blocked.
++
++### 2.3 Retrieval provenance is observed, not static
++
++`ragin/decision_fusion_v4/evidence_export.py` no longer writes a literal
++`"hybrid"` backend when no command-aware trace exists. The bundle reports the
++engine's observed `effective_backend`, `requested_mode`, construction flags, and
++`backend_source`. An explicit `none` arm reports `retrieval_status =
++"DISABLED"` and `usable_successful_retrieval = false`; it is not mislabelled as
++a successful hybrid retrieval.
++
++### 2.4 Observability and verification boundaries
++
++- Each serving attempt now carries bounded, minimized candidate text. The
++  minimizer runs **before** truncation; raw-byte SHA-256 remains the independent
++  integrity value.
++- The per-turn METRIC trace carries bounded served text and an actual
++  `STRATEGY_UPDATE` event reference (`event_id`, event SHA-256, selected fields).
++  It is not inferred from a configured default.
++- Model identity remains truthful: unobserved generator identity is
++  `SOURCE_DEFAULT_NOT_OBSERVED` or `CONFIGURED_NOT_OBSERVED`, with
++  `runtime_model = null`. No template runtime is labelled as an observed model.
++- `FictionConsistencyVerifier` still does **not** require external evidence for
++  an arbitrary file/privilege claim. A characterization test records that a
++  plausible ungrounded `/etc/sudoers`-style response can pass. This is a
++  coverage boundary, not a grounding guarantee.
++- The `TimeoutError` regression is a **simulated raised exception**, not
++  wall-clock deadline enforcement. No deadline is established.
++
++### 2.5 Self-endpoint guard
++
++`_assert_provider_not_self` now applies at the CLI's actual listen port,
++including the built-in `http://localhost:8080` default. Its error message does
++not interpolate the URL, and provider URL logs/health payloads are stripped of
++userinfo and query tokens. The check remains static equality only: DNS aliases,
++container hostnames, and redirects are not detected. `create_app` callers with
++no actual port are not checked.
++
++---
++
++## 3. What is verified now
++
++### 3.1 Focused tests (raw exit codes preserved)
++
++| Command | Result | Exit |
++|---|---|---|
++| `pytest tests/integration/test_runtime_truth_p0_fixes.py tests/integration/test_ablation_retrieval_modes.py tests/integration/test_runtime_truth_p0.py tests/unit/test_verifier.py tests/unit/test_host_fiction.py tests/unit/test_host_fiction_wiring.py tests/unit/test_server_v2.py tests/unit/test_cycle.py tests/unit/test_metrics.py -q` | **232 passed** | 0 |
++| `pytest tests/security/test_task2_verified_serving.py tests/integration/test_pipeline.py -q` | **28 passed** | 0 |
++
++Total: **260 passed, 0 failed**. Environment: `HF_HUB_OFFLINE=1`,
++`TRANSFORMERS_OFFLINE=1`.
++
++The new or expanded coverage includes:
++
++- explicit `none`/`bm25`/`dense`/`hybrid` construction and search separation;
++- dense configuration failure for missing store/model;
++- observed retrieval backend in the evidence bundle;
++- redaction-before-truncation and credential/authorization forms;
++- bounded candidate/served text and decision-event references;
++- self-endpoint default collision plus credential-free error text;
++- ungrounded-claim coverage gap and simulated verifier timeout.
++
++### 3.2 Static gates
++
++| Gate | Result | vs prior Phase 0 baseline |
++|---|---|---|
++| `ruff check` on the 10 changed/new files | **All checks passed** | clean |
++| `ruff check ragin/ tests/` | **93 errors** | prior baseline 103; 10 fewer, no new in changed files |
++| `mypy ragin/ --ignore-missing-imports` | **25 errors in 8 files (132 checked)** | prior baseline 37 in 10 files; 12 fewer, no new in changed files |
++
++The remaining ruff/mypy findings are pre-existing (for example
++`restart_persistence.py` F821 and the `provider_transport.py`/`benchmark.py`
++typing issues). No pre-existing failure was hidden or suppressed.
++
++`graphify update .` was also run after the code changes. It completed with exit
++0 using AST-only extraction (no LLM/provider call) and rebuilt `graphify-out/`
++with 13,605 nodes, 27,331 edges, and 663 communities. It is not an experiment
++gate and its output is not a runtime claim.
++
++### 3.3 Observed loopback SSH trace (real transport)
++
++Final run: `docs/research/p0_loopback_trace_20261022T200948Z/`.
++
++| Item | Observed value |
++|---|---|
++| Result | **PASS** |
++| Run id | `20261022T200948Z-671386` |
++| Server / SSH ports | `60627` / `32885` (dynamic, 127.0.0.1) |
++| Listeners (`ss -ltn`) | `127.0.0.1:60627`, `127.0.0.1:32885` only |
++| Cowrie image | `sha256:710f1e4601a663ac8591f58a42b44e4cd3b7ea170c7e6cdb9e54c430a30cd459` |
++| Cowrie endpoint | `tcp:32885:interface=127.0.0.1` |
++| Terminal stdout | 305 bytes, sha256 `97877eea921f48d111013f95f67761bf17ec553c436a7a2be34fbd2806d41be4` |
++| Event counts | 3 `attacker_input`, 3 `system_response`, 3 `verification`, 3 `metric`, 3 `response_generate`, 3 `strategy_update` |
++| Verification | **3/3 passed**; all serves `GENERATED_VERIFIED` |
++| Candidate / verified / served hashes | **3/3 agree per turn** |
++| Terminal matching | **3/3** served texts found after their echo at distinct offsets: `36→44`, `95→99`, `212→222` |
++| HTTP bridge | **3/3** `POST /v1/chat/completions` with 200 |
++| Provider calls | **0** |
++| Generator | deterministic strategy runtime (`RAGIN_V4_SUBSTANTIVE_DETERMINISTIC`) |
++| LLM inference | **NOT ESTABLISHED** |
++| Dense retrieval | **NOT USED** (`RAGIN_RAG_MODE=none`) |
++
++The runner now writes a pre-launch manifest (`run_manifest.prelaunch.json`) with
++git HEAD, dirty state, source/config hashes, image ID, ports, command list, and
++environment policy **before** launch. The environment is built from an allow-list
++rather than `os.environ.copy()`, so inherited provider/cloud credentials and
++proxies are not passed to the server. The Cowrie container is started from the
++image ID, not the mutable tag.
++
++Prior runs are retained: `p0_loopback_trace_20261022T192721Z/` (PASS),
++`…192018Z` (PASS), and `…191828Z_FAILED` (retained failure). The new
++`…200948Z` run is the final run for this pass.
++
++**What the trace establishes:** real SSH transport from a real Cowrie container
++to `server_v2`, real request handling, real hash recomputation, real verifier
++passage, and verbatim delivery of the served bytes to the terminal, with exact
++3-command/3-event cardinality and observed decision-event references.
++
++**What it does not establish:** model inference, attacker engagement, suspicion
++dynamics, dense retrieval, or the effect of any arm.
++
++### 3.4 Egress and isolation boundary (honest statement)
++
++- All listeners were confirmed loopback-only.
++- The container used Docker host networking because the server is bound to
++  loopback only. Therefore a network-namespace egress block was **not**
++  applied. Hard egress blocking would require host firewall/namespace work and
++  is not claimed.
++- A shared `--network none` namespace was assessed but not used: the local
++  `ragin-python` image has no SSH client/sshpass, and the Cowrie image has no
++  `/bin/sh` or paramiko. Injecting host binaries would require loader/library
++  mounts; host firewall changes were out of bounds.
++- Isolation is application-level: provider disabled, every configured inference
++  endpoint points at a closed loopback port, deterministic runtime, proxy
++  variables cleared, `--pull=never`.
++- This prevents the trace from contacting a provider by configuration; it is
++  **not** a network sandbox.
++
++---
++
++## 4. Prerequisite checklist before the pilot
++
++| # | Prerequisite | Status |
++|---|---|---|
++| 1 | Frozen generator identity, decoding, seed, price | **MISSING** |
++| 2 | B1 retrieval-off path | **DONE** (`RAGIN_RAG_MODE=none`, structural tests) |
++| 3 | B3 exact store + hash + local embedding model + path plumbing | **PARTIAL**: plumbing/fail-closed done; store/model/hash missing |
++| 4 | Shared mandatory verifier source hash frozen | **DONE** |
++| 5 | Suspicion codebook + attacker prompts hashed | **MISSING** |
++| 6 | Allocation seed/sequence hashed before first session | **MISSING** (design defined) |
++| 7 | Budget cap + technical-failure stop rule | **MISSING** |
++| 8 | Blinding dry run | **MISSING** |
++| 9 | Holdout untouched until main-study addendum | **DONE** (no holdout used) |
++| 10 | Versioned B0–B3 configs + design freeze manifest | **DONE** (`configs/ablation/`, `design_freeze_v1.json`) |
++| 11 | B4 rule table/contract | **MISSING** (NOT READY) |
++| 12 | B5 checkpoint/v12 contract | **MISSING** (NOT READY) |
++
++The execution lock remains **INCOMPLETE** because items 1, 3 (store/model), 5,
++6, 7, 8, and the associated hashes are absent.
++
++---
++
++## 5. What is executable today
++
++| Comparison | Executable? | Note |
++|---|---|---|
++| B0 vs B1 / B2 / B3 | **NO** | frozen generator missing; B3 store/model missing |
++| B1 vs B2 | **NO** | frozen generator missing |
++| B2 vs B3 | **NO** | frozen generator and exact dense store/model missing |
++| B0 standalone (descriptive) | **YES** | loopback Cowrie; no RAGIN arm |
++| Deterministic integration trace | **YES** | executed at `…200948Z`; not an arm |
++| Retrieval-mode structural tests | **YES** | labelled fakes; no inference/download |
++| Verifier / fail-closed / hash tests | **YES** | 260 focused tests |
++
++This phase can truthfully claim **integration readiness of the serving,
++verification, retrieval-mode, and observability paths**, not **experimental
++readiness of the ablation**.
++
++---
++
++## 6. Spend and prohibited actions
++
++- Provider calls: **0**. Cost: **$0**.
++- Model downloads: **0**.
++- AWS / JEV / paid API / external experiment provider: **not used**.
++- Public binding: **not used**; all listeners loopback.
++- Training: **not run**.
++- Manuscript: **not edited**.
++- No commit, reset, stash, checkout, clean, or history rewrite.
++- No evidence deletion or rotation; `.gitignore` unchanged.
++
++---
++
++## 7. Go / no-go
++
++**Go for B0 only**, as a standalone descriptive baseline, if a local loopback run
++is approved.
++
++**No-go for B1–B3** until:
++
++1. a generator is frozen and served (or a local model is approved with a
++   recorded hardware cost);
++2. the B3 exact store, local embedding model, and hashes exist (the code path is
++   completed);
++3. the codebook, attacker prompts, allocation seed, and budget cap are frozen;
++4. the execution lock in `docs/research/design_freeze_v1.json` is complete.
++
++**No-go for B4** until the rule table/contract is frozen. **No-go for B5** until
++the checkpoint and v12 contract blockers are resolved.
++
++Any paid provider call or public listener requires explicit human approval and
++is outside this phase.

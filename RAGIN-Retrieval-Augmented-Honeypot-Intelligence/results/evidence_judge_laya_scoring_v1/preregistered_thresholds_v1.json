@@ -1,0 +1,53 @@
+{
+  "schema": "ragin.laya_scoring_preregistered_thresholds.v1",
+  "preregistered_at_utc": "2026-10-14T18:09:41Z",
+  "preregistration_statement": "All numeric gates in this file were fixed before any candidate-scorer model call. Gain gates are stated relative to the already-frozen deterministic comparator baseline, which was computed from frozen artifacts only. No candidate-scorer output existed or was observed when these thresholds were written.",
+  "comparator": {
+    "name": "EVIDENCE_JUDGE_V1 deterministic adapter",
+    "dev_input_source": "results/evidence_judge_paired_validation_v1/frozen_paired_inputs.json",
+    "dev_input_sha256": "5dc2717279a6003043bfd8c64c4b129e2ab31c36dfbf5aa04fa7a818462aa7ca",
+    "dev_arm_source": "results/evidence_judge_paired_validation_v1/matched_arm_results.json",
+    "dev_arm_sha256": "d94d5bc01510b4c3e0286641e69ef7ba25351e6613c3fe8c1591a15664ca56da",
+    "baseline": {
+      "candidate_exact_agreement": {"numerator": 51, "denominator": 66, "value": 0.7727272727272727},
+      "bundle_exact_agreement": {"numerator": 60, "denominator": 60, "value": 1.0},
+      "direct_support_false_rejection": {"numerator": 0, "denominator": 28, "value": 0.0}
+    },
+    "baseline_derivation": "Deterministic judge candidate labels crosswalked and compared with the fixture-derived oracle below; recomputed and asserted inside the evaluate phase."
+  },
+  "oracle_extension": {
+    "statement": "Fixture oracles are stored at case level (expected_sufficiency). Candidate-level expected labels are derived by the deterministic category rules below, fixed as part of this preregistration.",
+    "candidate_label_by_category": {
+      "direct_relevant": "DIRECT_SUPPORT",
+      "benign_administrative_behavior": "DIRECT_SUPPORT",
+      "multi_command_context": "DIRECT_SUPPORT",
+      "adjacent_insufficient": "PARTIAL",
+      "partial_support": "PARTIAL",
+      "irrelevant_retrieval_candidate": "IRRELEVANT",
+      "ambiguous_shell_command": "UNKNOWN",
+      "missing_provenance": "UNKNOWN",
+      "contradictory_documents": "SPECIAL_CONTRADICTORY",
+      "unsupported_behavior_claim": "SPECIAL_UNSUPPORTED"
+    },
+    "special_contradictory_rule": "Candidate doc_id ending in -CONTRADICTORY expects CONTRADICTORY; the other candidate of the same case expects DIRECT_SUPPORT.",
+    "special_unsupported_rule": "If any of the keywords credential or persist (case-insensitive) appears in the candidate title joined with its behavior tags, expect PARTIAL; otherwise expect IRRELEVANT.",
+    "bundle_label": "The stored case-level fixture_oracle.expected_sufficiency is the expected bundle label.",
+    "judge_label_crosswalk": {"SUPPORTED": "DIRECT_SUPPORT", "PARTIAL": "PARTIAL", "IRRELEVANT": "IRRELEVANT", "CONTRADICTORY": "CONTRADICTORY", "UNKNOWN": "UNKNOWN"}
+  },
+  "gates": {
+    "candidate_exact_agreement": {"min_count": 55, "denominator": 66, "min_value": 0.8333333333333334, "rationale": "baseline 51/66 plus at least 0.05 absolute gain"},
+    "bundle_exact_agreement": {"min_count": 59, "denominator": 60, "min_value": 0.9833333333333333, "rationale": "non-inferiority to the ceiling baseline 60/60 with margin of one case"},
+    "direct_support_false_rejection": {"max_count": 2, "denominator": 28, "max_rate": 0.1, "rationale": "acceptable false-rejection cost; non-DIRECT or UNKNOWN on an oracle-DIRECT_SUPPORT candidate counts as rejection; comparator baseline is 0"},
+    "ambiguous_candidate_unknown": {"min_count": 5, "denominator": 6},
+    "ambiguous_bundle_unknown": {"min_count": 5, "denominator": 6},
+    "missing_provenance_candidate_unknown": {"min_count": 5, "denominator": 6},
+    "natural_candidate_coverage": {"min_count": 49, "denominator": 54, "min_rate": 0.9, "scope": "all candidates outside ambiguous_shell_command and missing_provenance categories must be non-UNKNOWN"},
+    "schema_valid_batches": {"min_count": 3, "denominator": 3},
+    "field_error_rate": {"max_rate": 0.1, "denominator": 126, "max_count": 12, "scope": "validation errors over 66 candidate decisions plus 60 bundle decisions"},
+    "truncation_probe_candidate_unknown": {"min_count": 2, "denominator": 2},
+    "harness_selftests_required": ["malformed_output_normalizes_to_unknown", "simulated_timeout_normalizes_to_unknown"],
+    "latency_mean_amortized_s_per_case": {"max": 30.0},
+    "latency_per_call_wall_s": {"max": 900.0}
+  },
+  "pass_rule": "ALL gates must pass. Any failed gate archives the candidate scorer under the Step 4 branch exit: no scorer enters Step 6 and the paper continues on the validated deterministic/base system."
+}

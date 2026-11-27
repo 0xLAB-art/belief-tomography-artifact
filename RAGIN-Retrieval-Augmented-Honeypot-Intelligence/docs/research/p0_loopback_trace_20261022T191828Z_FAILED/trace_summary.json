@@ -1,0 +1,337 @@
+{
+  "bridge": {
+    "export_rows": 4,
+    "export_sha256": "16b9f2801038f81f9b448347ae29a30e07a7ba3737c3499fc803ff9be6b8938d",
+    "http_200_observed": true
+  },
+  "checks": {
+    "all_served_observed_in_terminal": false,
+    "bridge_http_200": true,
+    "cowrie_container_ran": true,
+    "metric_trace_present": true,
+    "required_event_types": true,
+    "server_loopback_only": true,
+    "ssh_loopback_only": true,
+    "terminal_has_answers": true,
+    "terminal_has_echo": true,
+    "terminal_has_prompt": true,
+    "verifier_passed_all": true
+  },
+  "container": {
+    "id": "eab3f2e52576076c9a22fa614df822fd2e0aa3ae37ef0df1d753f7779f5a33fb",
+    "image": "cowrie/cowrie:latest",
+    "image_id": "sha256:710f1e4601a663ac8591f58a42b44e4cd3b7ea170c7e6cdb9e54c430a30cd459",
+    "listen_endpoints": "tcp:38199:interface=127.0.0.1",
+    "name": "ragin-p0-loopback-597917-20261022T191828Z",
+    "network": "host",
+    "runtime_env_redacted": {
+      "ALL_PROXY": "",
+      "COWRIE_GROUP": "cowrie",
+      "COWRIE_HOME": "/cowrie",
+      "COWRIE_HONEYPOT_BACKEND": "llm",
+      "COWRIE_LLM_API_KEY": "[REDACTED]",
+      "COWRIE_LLM_DEBUG": "true",
+      "COWRIE_LLM_HOST": "http://127.0.0.1:46415",
+      "COWRIE_LLM_MAX_TOKENS": "[REDACTED]",
+      "COWRIE_LLM_MODEL": "ragin-local",
+      "COWRIE_LLM_PATH": "/v1/chat/completions",
+      "COWRIE_LLM_TEMPERATURE": "0",
+      "COWRIE_SSH_LISTEN_ENDPOINTS": "tcp:38199:interface=127.0.0.1",
+      "COWRIE_USER": "cowrie",
+      "HTTPS_PROXY": "",
+      "HTTP_PROXY": "",
+      "LANG": "C.UTF-8",
+      "PATH": "/cowrie/cowrie-env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "PYTHONPATH": "/cowrie/cowrie-git/src",
+      "PYTHONUNBUFFERED": "1",
+      "SSL_CERT_FILE": "/etc/ssl/certs/ca-certificates.crt",
+      "all_proxy": "",
+      "http_proxy": "",
+      "https_proxy": ""
+    }
+  },
+  "finished_utc": "20261022T191845Z",
+  "isolation": {
+    "egress_policy": {
+      "container_proxy_env": "cleared",
+      "inference_endpoint": "http://127.0.0.1:9 (closed loopback port)",
+      "limitation": "host networking is required to reach the loopback-only server; hard egress blocking would need host firewall changes and is not applied",
+      "network_namespace_egress_block": false,
+      "provider_enabled": false,
+      "runtime_mode": "RAGIN_V4_SUBSTANTIVE_DETERMINISTIC"
+    },
+    "server_bind": "127.0.0.1",
+    "server_listeners": [
+      "LISTEN 0      128                     127.0.0.1:46415      0.0.0.0:*"
+    ],
+    "server_loopback_only": true,
+    "ssh_listeners": [
+      "LISTEN 0      50                      127.0.0.1:38199      0.0.0.0:*"
+    ],
+    "ssh_loopback_only": true
+  },
+  "ports": {
+    "server": 46415,
+    "ssh": 38199
+  },
+  "provenance": {
+    "generator": "DETERMINISTIC_STRATEGY_RUNTIME",
+    "llm_inference": "NOT_ESTABLISHED",
+    "note": "Deterministic runtime output is not a model result and does not establish LLM inference.",
+    "provider_backed": false,
+    "serving": "REAL_SANDBOX_HARNESS_VERIFIER",
+    "transport": "REAL_SSH_COWRIE_TO_SERVER_V2"
+  },
+  "schema": "ragin.p0.loopback_ssh_trace.v1",
+  "session": {
+    "event_count": 33,
+    "event_types": [
+      "attacker_input",
+      "classification",
+      "cti_lookup",
+      "metric",
+      "response_generate",
+      "session_start",
+      "strategy_update",
+      "system_response",
+      "verification"
+    ],
+    "latest_trace": {
+      "arm": "RAGIN_V4_DETERMINISTIC",
+      "candidate_sha256": "51b13ca4dd9d6e3fad480896dc20473cb8da081d19c7bee784373a7bb8eabbdd",
+      "classification": {
+        "availability": "OBSERVED",
+        "confidence": 0.8975,
+        "skill_level": "novice"
+      },
+      "cost": {
+        "availability": "NOT_AVAILABLE",
+        "value": null
+      },
+      "decision": {
+        "selected_strategy": "baseline",
+        "serve_path": "GENERATED_VERIFIED",
+        "verification_passed": true
+      },
+      "evidence_refs": {
+        "availability": "OBSERVED_BUNDLE",
+        "backend": "hybrid",
+        "doc_ids": [
+          "relationship--9c2766b3-87ff-4ec7-9ff4-faa3d4572eb4",
+          "relationship--7b43c9ba-49bc-4966-a987-2f991d0f44a2",
+          "relationship--eb76155e-39de-4952-857b-bf53a1586810",
+          "relationship--fce88056-31db-43be-be76-fb1aaf076ed1",
+          "relationship--3922a8b2-5a5d-4822-be22-75f246d56fa4",
+          "relationship--60692cc5-ca97-4c1d-8011-8dbe111ca8f4",
+          "relationship--67e631d1-439f-4630-9662-8ea74ab10234",
+          "relationship--d7e049fb-ac90-4e93-8907-eca54ba04ebd",
+          "relationship--2447ac98-019d-40a9-8913-c97d6eb93d90",
+          "relationship--ea99ff52-af1e-49af-9cfe-b224c9a9eea4"
+        ],
+        "retrieval_status": "SUCCESS",
+        "ttps": []
+      },
+      "fallback": {
+        "occurred": true,
+        "reason": "invalid_evidence_gate"
+      },
+      "latency_ms": 170.928,
+      "model_identity": {
+        "availability": "SOURCE_DEFAULT_NOT_OBSERVED",
+        "value": "glm-5.3-flash-free"
+      },
+      "schema": "ragin.interaction_trace.v1",
+      "served_response_chars": 55,
+      "served_response_sha256": "51b13ca4dd9d6e3fad480896dc20473cb8da081d19c7bee784373a7bb8eabbdd",
+      "status": "ok",
+      "tokens": {
+        "availability": "NOT_AVAILABLE",
+        "completion_tokens": null,
+        "prompt_tokens": null
+      },
+      "verification": {
+        "passed": true,
+        "reason": [],
+        "reason_availability": "NO_ISSUES_REPORTED"
+      }
+    },
+    "metric_count": 4,
+    "served_matches": [
+      {
+        "event_id": "56a32af5d65c",
+        "observed_in_terminal": true,
+        "served_text_sha256": "9d1799d0206e9e9b52e136d93f0719ddd7917d6aa81fb11cbe53e580694a00a4",
+        "terminal_byte_offset": 44,
+        "wire_framing": "crlf",
+        "wire_sha256": "e6a5404048e6195d6bc21e04b16d4a4d1e7240a2e31bc36fb660bb750bfa3bec"
+      },
+      {
+        "event_id": "18c3762a4db9",
+        "observed_in_terminal": true,
+        "served_text_sha256": "07c19f5749fbf27b2d1bddec046a2edfd79a7cc7c552eb10bc30e321726e4a06",
+        "terminal_byte_offset": 99,
+        "wire_framing": "crlf",
+        "wire_sha256": "5ceac005caf8b5d62ed5ea064b46fa46885416de1306cdced0eaee078ab036fe"
+      },
+      {
+        "event_id": "38bee6548a48",
+        "observed_in_terminal": true,
+        "served_text_sha256": "3bbd2728041d286dd6bc3446fc9ad7f095179e72d662c5b6b2c63dda46e89210",
+        "terminal_byte_offset": 222,
+        "wire_framing": "crlf",
+        "wire_sha256": "3bbd2728041d286dd6bc3446fc9ad7f095179e72d662c5b6b2c63dda46e89210"
+      },
+      {
+        "event_id": "814359bad5cd",
+        "observed_in_terminal": false,
+        "served_text_sha256": "51b13ca4dd9d6e3fad480896dc20473cb8da081d19c7bee784373a7bb8eabbdd",
+        "terminal_byte_offset": null,
+        "wire_framing": null,
+        "wire_sha256": "51b13ca4dd9d6e3fad480896dc20473cb8da081d19c7bee784373a7bb8eabbdd"
+      }
+    ],
+    "serving_trace_sha256": "59def02b34c9758edab05c26a14651c634c3b44addf3066fec932e8b8b842d7c",
+    "session_files": [
+      "sessions/ses-8e868ab18eb44476.jsonl"
+    ],
+    "system_response_count": 4,
+    "verification_count": 4,
+    "verifications": [
+      {
+        "accepted": true,
+        "attempt": 1,
+        "candidate_sha256": "9d1799d0206e9e9b52e136d93f0719ddd7917d6aa81fb11cbe53e580694a00a4",
+        "commit_event": "accepted",
+        "commit_graph_after_sha256": "671c1c7639441521713a706247dfd73f42663590d790322385899e5b30f30c6f",
+        "commit_graph_before_sha256": "671c1c7639441521713a706247dfd73f42663590d790322385899e5b30f30c6f",
+        "commit_reason": "accepted",
+        "commit_state_effect": "no_op_state_unchanged",
+        "confidence": 1.0,
+        "deterministic": true,
+        "issues": [],
+        "passed": true,
+        "serve_path": "GENERATED_VERIFIED",
+        "served_response_chars": 34,
+        "served_response_sha256": "9d1799d0206e9e9b52e136d93f0719ddd7917d6aa81fb11cbe53e580694a00a4",
+        "verified_response_sha256": "9d1799d0206e9e9b52e136d93f0719ddd7917d6aa81fb11cbe53e580694a00a4",
+        "verifier": "FictionConsistencyVerifier"
+      },
+      {
+        "accepted": true,
+        "attempt": 1,
+        "candidate_sha256": "07c19f5749fbf27b2d1bddec046a2edfd79a7cc7c552eb10bc30e321726e4a06",
+        "commit_event": "accepted",
+        "commit_graph_after_sha256": "671c1c7639441521713a706247dfd73f42663590d790322385899e5b30f30c6f",
+        "commit_graph_before_sha256": "671c1c7639441521713a706247dfd73f42663590d790322385899e5b30f30c6f",
+        "commit_reason": "accepted",
+        "commit_state_effect": "no_op_state_unchanged",
+        "confidence": 1.0,
+        "deterministic": true,
+        "issues": [],
+        "passed": true,
+        "serve_path": "GENERATED_VERIFIED",
+        "served_response_chars": 96,
+        "served_response_sha256": "07c19f5749fbf27b2d1bddec046a2edfd79a7cc7c552eb10bc30e321726e4a06",
+        "verified_response_sha256": "07c19f5749fbf27b2d1bddec046a2edfd79a7cc7c552eb10bc30e321726e4a06",
+        "verifier": "FictionConsistencyVerifier"
+      },
+      {
+        "accepted": true,
+        "attempt": 1,
+        "candidate_sha256": "3bbd2728041d286dd6bc3446fc9ad7f095179e72d662c5b6b2c63dda46e89210",
+        "commit_event": "accepted",
+        "commit_graph_after_sha256": "671c1c7639441521713a706247dfd73f42663590d790322385899e5b30f30c6f",
+        "commit_graph_before_sha256": "671c1c7639441521713a706247dfd73f42663590d790322385899e5b30f30c6f",
+        "commit_reason": "accepted",
+        "commit_state_effect": "no_op_state_unchanged",
+        "confidence": 1.0,
+        "deterministic": true,
+        "issues": [],
+        "passed": true,
+        "serve_path": "GENERATED_VERIFIED",
+        "served_response_chars": 67,
+        "served_response_sha256": "3bbd2728041d286dd6bc3446fc9ad7f095179e72d662c5b6b2c63dda46e89210",
+        "verified_response_sha256": "3bbd2728041d286dd6bc3446fc9ad7f095179e72d662c5b6b2c63dda46e89210",
+        "verifier": "FictionConsistencyVerifier"
+      },
+      {
+        "accepted": true,
+        "attempt": 1,
+        "candidate_sha256": "51b13ca4dd9d6e3fad480896dc20473cb8da081d19c7bee784373a7bb8eabbdd",
+        "commit_event": "accepted",
+        "commit_graph_after_sha256": "671c1c7639441521713a706247dfd73f42663590d790322385899e5b30f30c6f",
+        "commit_graph_before_sha256": "671c1c7639441521713a706247dfd73f42663590d790322385899e5b30f30c6f",
+        "commit_reason": "accepted",
+        "commit_state_effect": "no_op_state_unchanged",
+        "confidence": 1.0,
+        "deterministic": true,
+        "issues": [],
+        "passed": true,
+        "serve_path": "GENERATED_VERIFIED",
+        "served_response_chars": 55,
+        "served_response_sha256": "51b13ca4dd9d6e3fad480896dc20473cb8da081d19c7bee784373a7bb8eabbdd",
+        "verified_response_sha256": "51b13ca4dd9d6e3fad480896dc20473cb8da081d19c7bee784373a7bb8eabbdd",
+        "verifier": "FictionConsistencyVerifier"
+      }
+    ]
+  },
+  "started_utc": "20261022T191828Z",
+  "status": "FAIL",
+  "terminal": {
+    "answer_frames": [
+      {
+        "bytes": 21,
+        "kind": "answer",
+        "line_index": 0,
+        "sha256": "53f164dec1504e51dc1082de102554b23f4a5ea85335928841123a10e88ba95a",
+        "text": "\u001b[4hWelcome to svr04"
+      },
+      {
+        "bytes": 7,
+        "kind": "answer",
+        "line_index": 3,
+        "sha256": "a5c30beb8ce719100ee031a0ce512acb4ae946b30a87397c8f2e39fa9147526a",
+        "text": "webapp"
+      },
+      {
+        "bytes": 73,
+        "kind": "answer",
+        "line_index": 6,
+        "sha256": "6f6185bf85f27ee9ea0a26ca696c0e0c1a5b7f0ac22404f982279d4487524601",
+        "text": "uid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)"
+      },
+      {
+        "bytes": 68,
+        "kind": "answer",
+        "line_index": 8,
+        "sha256": "95624e143291a0c05981f6a4e4295a5f533b686d0a3f216cbe22e8004d2e601c",
+        "text": "Linux web-srv-01 5.15.0-91-generic #167-Ubuntu SMP x86_64 GNU/Linux"
+      }
+    ],
+    "answer_texts": [
+      "\u001b[4hWelcome to svr04",
+      "webapp",
+      "uid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)",
+      "Linux web-srv-01 5.15.0-91-generic #167-Ubuntu SMP x86_64 GNU/Linux"
+    ],
+    "echo_frames": [],
+    "frame_counts": {
+      "answer": 4,
+      "blank": 1,
+      "prompt": 1,
+      "prompt_echo": 5
+    },
+    "prompt_frames": [
+      {
+        "bytes": 19,
+        "kind": "prompt",
+        "line_index": 9,
+        "sha256": "d201e5fdc56790b99d5c877765c20f674859bc83d001ad752856eebf2f079eeb",
+        "text": "root@svr04:/# exit"
+      }
+    ],
+    "stderr_sha256": "8c60c88e344168c904f7e5ee9a82db2eff79c7aabf5c64c52113ce8abd3e0e6d",
+    "stdout_bytes": 311,
+    "stdout_sha256": "23725cd15b901861276f9ec15732c2d056eb95733dc1bd05fccc8fff2defa7a3"
+  }
+}

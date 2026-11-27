@@ -1,0 +1,32 @@
+{
+  "observed_window_utc": "2026-10-09T03:25:00Z/2026-10-09T03:29:00Z",
+  "image": "cowrie/cowrie@sha256:710f1e4601a663ac8591f58a42b44e4cd3b7ea170c7e6cdb9e54c430a30cd459",
+  "network": {
+    "name": "ragin-cowrie-internal",
+    "driver": "bridge",
+    "internal": true,
+    "subnet": "172.29.0.0/29",
+    "container_ip": "172.29.0.2",
+    "host_forwarder": "127.0.0.1:2222 -> 172.29.0.2:2222"
+  },
+  "container_controls": {
+    "host_network": false,
+    "privileged": false,
+    "docker_socket_mount": false,
+    "readonly_root": true,
+    "no_new_privileges": true,
+    "cap_drop_all": true,
+    "memory_bytes": 402653184,
+    "cpu_limit": 0.5,
+    "pids_limit": 128,
+    "tmpfs_bytes": 67108864
+  },
+  "connectivity_tests": {
+    "approved_mtls_forwarder_172.29.0.1_18083": "PASS",
+    "host_ssh_172.31.35.203_22": "BLOCKED",
+    "ec2_metadata_169.254.169.254_80": "BLOCKED",
+    "internet_1.1.1.1_443": "BLOCKED"
+  },
+  "public_cowrie_listener": false,
+  "operator_ssh_and_ssm_preserved": true
+}

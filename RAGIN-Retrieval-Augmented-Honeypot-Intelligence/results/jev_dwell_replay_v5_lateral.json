@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-09-21T08:17:11Z",
+ "method": "closed-loop replay: attacker-LLM (deepseek-v4.1-flash-free) follows real Cowrie playbooks; Hisoka responses via LLM gateway (glm-5.3-flash-free) with canary-gated llm-backed verification; treated condition adds recorded Jev kind assessments to the Hisoka prompt",
+ "max_turns": 12,
+ "totals": {
+  "families": 1,
+  "baseline_turns": 9,
+  "treated_turns": 6,
+  "baseline_bait": 3,
+  "treated_bait": 6
+ },
+ "per_family": [
+  {
+   "family": "lateral_pivot",
+   "condition": "baseline",
+   "turns": 9,
+   "left_early": true,
+   "leave_reason": "repeated identical /var/tmp output indicates a canned/fake shell; nothing of value and no further leads.",
+   "bait_markers_shown": 3,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 1,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  },
+  {
+   "family": "lateral_pivot",
+   "condition": "treated",
+   "turns": 6,
+   "left_early": true,
+   "leave_reason": "identical /var/tmp output returned three times \u2014 box is replaying canned responses, not a real shell.",
+   "bait_markers_shown": 6,
+   "final_command": "ls -la /var/tmp",
+   "hisoka_gateway_calls": 1,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  }
+ ]
+}

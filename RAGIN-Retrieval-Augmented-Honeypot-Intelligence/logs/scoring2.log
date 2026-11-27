@@ -1,0 +1,94 @@
+[evaluator-alpha] Scoring GT-001... 92.7s  avg=2.8
+[evaluator-alpha] Scoring GT-002... 135.0s  avg=2.0
+[evaluator-alpha] Scoring GT-003... 88.4s  avg=3.4
+[evaluator-alpha] Scoring GT-004... FAIL (114.4s): Cannot parse LLM response as JSON:
+```json
+{
+  "deception_score": 3,
+  "persona_score": 4,
+  "ttp_accuracy_score": 2,
+  "engagement_score": 3,
+  "artifact_safety_score": 4,
+  "rationale": {
+    "deception": "The response mimics a real IMDS root metadata endpoint listing, which is plausible. However, it's missing critical entries like 'iam/', 'network/', 'public-ipv4', and 'public-hostname' that a real IMDS would return. An intermediate attacker would notice the absence of the 'iam/' path immediately, undermining the deception. It
+[evaluator-alpha] Scoring GT-005... FAIL (75.2s): Cannot parse LLM response as JSON:
+```json
+{
+  "deception_score": 4,
+  "persona_score": 4,
+  "ttp_accuracy_score": 2,
+  "engagement_score": 4,
+  "artifact_safety_score": 4,
+  "rationale": {
+    "deception": "The response is a well-formatted MySQL CLI-style table output with realistic column names (id, username, role, status, last_login, last_login_ip), service account naming conventions (svc_backup, svc_deploy, svc_metrics), internal IP addresses (10.0.2.x), and plausible timestamps. It convincingly mimics a misconfigured applica
+[evaluator-alpha] Scoring GT-006... 85.0s  avg=4.0
+[evaluator-alpha] Scoring GT-007... 94.5s  avg=2.8
+[evaluator-alpha] Scoring GT-008... FAIL (79.9s): Cannot parse LLM response as JSON:
+```json
+{
+  "deception_score": 4,
+  "persona_score": 3,
+  "ttp_accuracy_score": 2,
+  "engagement_score": 2,
+  "artifact_safety_score": 3,
+  "rationale": {
+    "deception": "The response 'cat: /etc/shadow: Permission denied' is exactly what a real Linux system would return when a non-privileged user attempts to read /etc/shadow. It's realistic and convincing as a genuine system error. However, it doesn't fulfill the expected behavior of simulating a shadow file format with honeytoken hashes, so w
+
+Saved 8 scenarios to results/human_eval_scored/evaluator-alpha.json
+[evaluator-beta] Scoring GT-001... 38.6s  avg=2.8
+[evaluator-beta] Scoring GT-002... 75.0s  avg=2.2
+[evaluator-beta] Scoring GT-003... 180.0s  avg=2.4
+[evaluator-beta] Scoring GT-004... 105.2s  avg=3.0
+[evaluator-beta] Scoring GT-005... FAIL (111.1s): Cannot parse LLM response as JSON:
+```json
+{
+  "deception_score": 4,
+  "persona_score": 4,
+  "ttp_accuracy_score": 2,
+  "engagement_score": 4,
+  "artifact_safety_score": 4,
+  "rationale": {
+    "deception": "The response is a well-formatted MySQL table dump with plausible service accounts (webapp, svc_backup, svc_deploy, svc_metrics), internal IPs (10.0.2.x), and realistic timestamps. The truncated row 4 adds a nice realism touch. It matches expected behavior of a realistic database response. Not a 5 because there's no SQL error 
+[evaluator-beta] Scoring GT-006... FAIL (601.7s): The read operation timed out
+[evaluator-beta] Scoring GT-007... FAIL (148.3s): Cannot parse LLM response as JSON:
+```json
+{
+  "deception_score": 3,
+  "persona_score": 3,
+  "ttp_accuracy_score": 2,
+  "engagement_score": 2,
+  "artifact_safety_score": 4,
+  "rationale": {
+    "deception": "The response is somewhat realistic as a system log showing a blocked outbound connection, with plausible hostname, user, and error messages. However, the expected behavior was to 'simulate acceptance of the shell while logging the C2 attempt.' Instead, the response shows a clear failure ('Network is unreachable', 'deployment 
+[evaluator-beta] Scoring GT-008... FAIL (101.8s): Cannot parse LLM response as JSON:
+```json
+{
+  "deception_score": 3,
+  "persona_score": 3,
+  "ttp_accuracy_score": 2,
+  "engagement_score": 2,
+  "artifact_safety_score": 3,
+  "rationale": {
+    "deception": "The response 'cat: /etc/shadow: Permission denied' is a realistic Linux error message that could pass as a real system. However, the expected behavior was to simulate a realistic shadow file format with honeytoken hashes. Instead of providing that, the system simply denied access, which while realistic, doesn't match the scen
+
+Saved 8 scenarios to results/human_eval_scored/evaluator-beta.json
+[evaluator-gamma] Scoring GT-001... 123.6s  avg=2.8
+[evaluator-gamma] Scoring GT-002... 92.9s  avg=1.4
+[evaluator-gamma] Scoring GT-003... 55.8s  avg=2.8
+[evaluator-gamma] Scoring GT-004... 54.0s  avg=3.0
+[evaluator-gamma] Scoring GT-005... FAIL (621.3s): The read operation timed out
+[evaluator-gamma] Scoring GT-006... FAIL (654.0s): The read operation timed out
+[evaluator-gamma] Scoring GT-007... 83.9s  avg=2.8
+[evaluator-gamma] Scoring GT-008... FAIL (80.7s): Cannot parse LLM response as JSON:
+```json
+{
+  "deception_score": 4,
+  "persona_score": 4,
+  "ttp_accuracy_score": 2,
+  "engagement_score": 2,
+  "artifact_safety_score": 3,
+  "rationale": {
+    "deception": "The response 'cat: /etc/shadow: Permission denied' is exactly what a real Linux system would output for a non-root user. It's realistic and matches actual system behavior. However, the scenario expected a simulated shadow file with honeytoken hashes, so while the response is convincing as a real system, it doesn't fulfill the
+
+Saved 8 scenarios to results/human_eval_scored/evaluator-gamma.json
+ALL_EVALUATORS_DONE

@@ -1,0 +1,34 @@
+# Secrets — never bake into images or build context
+.env
+.env.*
+!.env.example
+ssl/
+*.pem
+*.key
+
+# Results & models (large, not needed at runtime)
+results/
+paper/
+docs/
+data/vector_store_bench/
+_pre_scale_backup/
+*.jsonl.tmp*
+
+# Dev tooling
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+tests/
+# scripts/ ships in the field image (bare_llm_backend.py, smoke entrypoints)
+# — keep it out of BUILD artifacts only via the rules below
+llm-gateway/target/
+
+# Git & editors
+.git/
+.gitignore
+*.md
+!README.md

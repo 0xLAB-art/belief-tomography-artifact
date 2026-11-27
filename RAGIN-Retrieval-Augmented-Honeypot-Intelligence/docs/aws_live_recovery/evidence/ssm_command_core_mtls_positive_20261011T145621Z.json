@@ -1,0 +1,46 @@
+{
+    "Command": {
+        "CommandId": "fd16170a-ac56-4d76-96b1-8a35acfd9cca",
+        "DocumentName": "AWS-RunShellScript",
+        "DocumentVersion": "$DEFAULT",
+        "Comment": "RAGIN CORE positive mTLS probe loopback",
+        "ExpiresAfter": "2026-10-11T18:58:22.616000+03:00",
+        "Parameters": {
+            "commands": [
+                "set -euo pipefail\necho RUN\ndate -u\necho MKTEMP\nTMPDIR=$(mktemp -d)\necho TMPDIR=$TMPDIR\necho CERTFILES\nif [ -d /etc/ragin/tls ]; then\n  for f in /etc/ragin/tls/ca.crt /etc/ragin/tls/server.crt /etc/ragin/tls/server.key; do\n    if [ -f \"$f\" ]; then echo CERT_EXISTS=$f; fi\n  done\nfi\necho OPENSSL_SCLIENT_CORE_LOOPBACK\nif command -v openssl >/dev/null 2>&1; then\n  echo \"ATTEMPT_OPENSSL_S_CLIENT\"\n  if openssl s_client -connect 127.0.0.1:8443 \\\n    -CAfile /etc/ragin/tls/ca.crt \\\n    -cert /etc/ragin/tls/server.crt \\\n    -key /etc/ragin/tls/server.key \\\n    -verify_return_error \\\n    -brief -no_ign_eof < /dev/null > \"$TMPDIR/s_client_loopback.txt\" 2>&1; then\n    echo S_CLIENT_EXIT=0\n  else\n    echo S_CLIENT_EXIT=$?\n  fi\n  echo \"--- brief output head ---\"\n  head -n 80 \"$TMPDIR/s_client_loopback.txt\"\nelse\n  echo OPENSSL_NOT_PRESENT\nfi\necho DONE"
+            ]
+        },
+        "InstanceIds": [
+            "i-062a400b300f4f9e4"
+        ],
+        "Targets": [],
+        "RequestedDateTime": "2026-10-11T17:56:22.616000+03:00",
+        "Status": "Pending",
+        "StatusDetails": "Pending",
+        "OutputS3Region": "eu-north-1",
+        "OutputS3BucketName": "",
+        "OutputS3KeyPrefix": "",
+        "MaxConcurrency": "1",
+        "MaxErrors": "1",
+        "TargetCount": 1,
+        "CompletedCount": 0,
+        "ErrorCount": 0,
+        "DeliveryTimedOutCount": 0,
+        "ServiceRole": "",
+        "NotificationConfig": {
+            "NotificationArn": "",
+            "NotificationEvents": [],
+            "NotificationType": ""
+        },
+        "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "",
+            "CloudWatchOutputEnabled": false
+        },
+        "TimeoutSeconds": 120,
+        "AlarmConfiguration": {
+            "IgnorePollAlarmFailure": false,
+            "Alarms": []
+        },
+        "TriggeredAlarms": []
+    }
+}

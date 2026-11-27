@@ -1,0 +1,11 @@
+laya 0.4.2 | torch 2.14.0+cpu | python 3.12.3
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 384.83it/s]
+/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/.venv/lib/python3.12/site-packages/laya/router.py:999: RuntimeWarning: laya: this checkpoint ships invalid temperatures or values outside [0.5, 5]; using choice:11+=0.10058280825614929 -> 0.5. Treat confidence from the affected entries as uncalibrated.
+  return Agent(repo, **kwargs)
+first prediction (route+load+infer) ms: 26370.9
+warm-up answers: {"intent": {"type": "choice", "choice": "cleanup", "probabilities": {"recon": 0.0254, "persistence": 0.046, "credential_theft": 0.0051, "lateral_movement": 0.0092, "exfiltration": 0.0046, "exploitation": 0.0027, "cleanup": 0.7082, "benign_administration": 0.1987}, "confidence": 0.5618, "answer_confidence": 0.7082, "action": {"act_probability": 1.0}}, "malicious": {"type": "noul", "noul": 0.1008, "confidence": 0.8992, "answer_confidence": 0.8992, "action": {"act_probability": 1.0}}, "severity": {
+RSS KB after load: 2177084
+total inference time s: 220.3
+latency summary: {"n": 45, "mean_ms": 4895.659089644647, "p50_ms": 4871.13285495434, "p95_ms": 5900.4182570497505, "min_ms": 3797.268846014049, "max_ms": 6731.006073998287, "route_load_ms": 26370.861202012748, "rss_kb_after_load": 2177084}
+metrics: {"tp": 12, "fp": 2, "tn": 23, "fn": 8, "abstain": 0, "accuracy": 0.7777777777777778, "precision": 0.8571428571428571, "recall": 0.6, "brier": 0.1505124091111111}
+saved: /home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/laya_research/real_inference_cpu_pilot.jsonl

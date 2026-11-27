@@ -1,0 +1,143 @@
+{
+  "meta": {
+    "generated": "2026-11-05T23:24:20.155565Z",
+    "experiment": "IND-DEF gen-1 frontier, synthetic-arm slice (v0)",
+    "arm": "EPK kernel live on CORE (RAGIN_EPK_ENABLED=1, seeded world, v5-epk image)",
+    "attacker": "field_attack_driver_v2, gpt-6-astra, effort=low, via REDACTED_FLEET_HOST:2222",
+    "budget_log": "Q=turns recorded per session; D=1 host per session; S=1 (cross-session linking not yet exercised)",
+    "kernel_side": "136 screens, 0 denials, delta_plus events on kernel.version; CAVEAT: per-turn session rotation on the live path means within-session K_t accumulation is INACTIVE (W4.1 fix: EDGE bridge must send X-Session-Id); screens artifact = /app/results/epk_screens.jsonl on CORE",
+    "caveats": [
+      "synthetic-arm-only: no real-host arm in this run \u2014 detection rate is the measurable slice; full IND-DEF epsilon needs the paired real arm",
+      "n=9 sessions, free-tier attacker brains, two degraded-loop novice sessions excluded from the clean slice",
+      "VERDICT prompt is the attacker's own detection protocol (self-reported, behavioral evidence in transcript)"
+    ],
+    "sessions_total": 16,
+    "note": "FINAL gen-1: all five personas completed (16 sessions, two batches interleaving quota windows)",
+    "kernel": "EPK v6-epk live on CORE (RAGIN_EPK_ENABLED=1, identity-seeded world, session-continuity fix W4.1 late in batch)"
+  },
+  "per_persona": {
+    "apt_patient": {
+      "sessions": 2,
+      "clean_sessions": 2,
+      "turns": [
+        30,
+        30
+      ],
+      "dwell_s": [
+        1599.8,
+        1416.4
+      ],
+      "verdicts": [
+        "censored/no-verdict",
+        "censored/no-verdict"
+      ],
+      "detection_rate": 0.0,
+      "degraded_sessions": 0,
+      "budget_Q_max": 30
+    },
+    "credential_hunter": {
+      "sessions": 4,
+      "clean_sessions": 4,
+      "turns": [
+        25,
+        20,
+        25,
+        15
+      ],
+      "dwell_s": [
+        1997.2,
+        2108.0,
+        1647.7,
+        2173.6
+      ],
+      "verdicts": [
+        "censored/no-verdict",
+        "censored/no-verdict",
+        "censored/no-verdict",
+        "censored/no-verdict"
+      ],
+      "detection_rate": 0.0,
+      "degraded_sessions": 0,
+      "budget_Q_max": 25
+    },
+    "evasion_probe": {
+      "sessions": 4,
+      "clean_sessions": 4,
+      "turns": [
+        2,
+        3,
+        2,
+        2
+      ],
+      "dwell_s": [
+        61.6,
+        201.3,
+        54.9,
+        65.8
+      ],
+      "verdicts": [
+        "honeypot",
+        "honeypot",
+        "honeypot",
+        "honeypot"
+      ],
+      "detection_rate": 1.0,
+      "degraded_sessions": 0,
+      "budget_Q_max": 3
+    },
+    "novice_scriptkiddie": {
+      "sessions": 4,
+      "clean_sessions": 2,
+      "turns": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "dwell_s": [
+        271.6,
+        272.7,
+        182.5,
+        181.9
+      ],
+      "verdicts": [
+        "censored/no-verdict",
+        "censored/no-verdict",
+        "censored/no-verdict",
+        "censored/no-verdict"
+      ],
+      "detection_rate": 0.0,
+      "degraded_sessions": 2,
+      "budget_Q_max": 12
+    },
+    "recon_operator": {
+      "sessions": 2,
+      "clean_sessions": 2,
+      "turns": [
+        30,
+        13
+      ],
+      "dwell_s": [
+        1845.7,
+        2153.1
+      ],
+      "verdicts": [
+        "censored/no-verdict",
+        "censored/no-verdict"
+      ],
+      "detection_rate": 0.0,
+      "degraded_sessions": 0,
+      "budget_Q_max": 30
+    }
+  },
+  "frontier_slice": {
+    "credential_hunter": "0/4 detected across 15-25-turn sessions (dwell up to 36 min) \u2014 sustained credential-targeted attack fully held",
+    "recon_operator": "0/2 detected, incl. a full 30-turn sweep and a 36-min session",
+    "apt_patient": "0/2 detected \u2014 the patient APT persona ran BOTH sessions to the full 30-turn cap (27/24 min) inside the fiction, mission unclosed",
+    "novice_scriptkiddie": "0/4 detected (2 clean runs, turn-capped)",
+    "evasion_probe": "4/4 detected in 2-3 turns \u2014 purpose-built detector; detection vectors extracted (V1 fs-depth, V2 missing coreutils, V3 metadata coherence, V4 double-prompt[fixed])",
+    "gen1_epsilon_synthetic_arm": "epsilon = 0.0 for all four non-detector personas at every observed budget (12 clean sessions, up to 30 turns / 36 min); epsilon = 1.0 only for the purpose-built detector",
+    "next_gen_target": "gen-2 swarm armed with V1-V4 vectors: compress the evasion_probe boundary or name the kernel work that closes it (EPK-SYNTH system-tree coverage + binary-presence + metadata coherence)"
+  },
+  "next": "gen-1 completion (recon/apt personas + real-arm pairing) after quota; W4.1 session-continuity fix; gen-2 swarm trained on evasion_probe's detection vectors"
+}

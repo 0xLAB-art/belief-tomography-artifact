@@ -1,0 +1,148 @@
+{
+  "schema": "ragin.decision_fusion_v4.don_evidence_gate_audit.v1",
+  "status": "READ_ONLY_INTERFACE_AUDIT",
+  "subsystem": "EVIDENCE_GROUNDED_DECISION_FUSION",
+  "scope": {
+    "code_modified": false,
+    "v2_v3_artifacts_modified": false,
+    "prior_ragin_holdouts_accessed": false,
+    "full_v4_pipeline_implemented": false
+  },
+  "audited_interfaces": [
+    "ragin.cycle.adapters.DonAdapter.analyze",
+    "ragin.don.rag_engine.ThreatRAGEngine.analyze",
+    "ragin.don.rag_engine.ThreatRAGEngine.analyze_graph",
+    "ragin.don.rag_engine.ThreatRAGEngine.hybrid_search",
+    "ragin.don.graph.DonRAGGraph",
+    "ragin.don.models.IntelDocument",
+    "ragin.don.models.ThreatAnalysis",
+    "ragin.cycle.graph.DeceptionGraph"
+  ],
+  "current_shapes": {
+    "don_adapter_analyze_output": [
+      "analysis_id", "severity", "classification", "confidence", "sophistication_score",
+      "threat_summary", "recommendations", "tactics", "candidate_actors",
+      "evasion_techniques", "tools_used", "credential_access", "iocs", "ttps_seen",
+      "extracted_techniques", "actor_repertoire_ttps", "error"
+    ],
+    "native_threat_analysis": [
+      "analysis_id", "session_id", "classification", "severity", "confidence", "tactics",
+      "threat_actors", "iocs", "sophistication_score", "intel_documents", "recommendations",
+      "raw_features"
+    ],
+    "native_intel_document": [
+      "doc_id", "title", "content", "source", "published_date", "tags", "mitre_tactics",
+      "threat_actors", "score"
+    ],
+    "hybrid_hit_shape": [
+      "doc_id_or_id", "title", "content_or_text", "source", "score", "hybrid_score"
+    ],
+    "corrective_graph_result": [
+      "context", "relevant_docs", "sub_queries", "rounds", "degraded", "trace"
+    ],
+    "corrective_graph_internal_state": [
+      "documents", "grades", "best_sub_query", "coverage", "relevant_docs", "sufficient", "trace"
+    ]
+  },
+  "signals": [
+    {
+      "field": "hybrid_score",
+      "classification": "AVAILABLE_INTERNAL_NOT_EXPORTED",
+      "evidence": "ThreatRAGEngine.hybrid_search emits RRF hybrid_score; DonAdapter drops raw hits.",
+      "gate_use": "diagnostic/ranking only until exported with backend and score semantics"
+    },
+    {
+      "field": "score",
+      "classification": "UNRELIABLE_FOR_GATE",
+      "evidence": "Dense, BM25, LightRAG, and fallback paths use different score scales.",
+      "gate_use": "never use a cross-backend numeric threshold"
+    },
+    {
+      "field": "relevant_docs",
+      "classification": "AVAILABLE_INTERNAL_NOT_EXPORTED",
+      "evidence": "DonRAGGraph.GraphResult exposes relevant_docs; DonAdapter does not expose it.",
+      "gate_use": "required export as relevant_doc_ids plus document records"
+    },
+    {
+      "field": "relevance_grades",
+      "classification": "AVAILABLE_INTERNAL_NOT_EXPORTED",
+      "evidence": "DonRAGGraph keeps grades and applies GRADE_SCORE_THRESHOLD internally; grades may be LLM or heuristic.",
+      "gate_use": "retain as provenance/diagnostic metadata; do not invent a new learned confidence threshold"
+    },
+    {
+      "field": "retrieval_trace",
+      "classification": "AVAILABLE_INTERNAL_NOT_EXPORTED",
+      "evidence": "GraphResult.trace records decompose/retrieve/grade/check/compose events.",
+      "gate_use": "export bounded trace summary, not unbounded logs"
+    },
+    {
+      "field": "retrieval_errors",
+      "classification": "UNRELIABLE_FOR_GATE",
+      "evidence": "Graph retrieval exceptions are caught and converted to empty hits; DonAdapter.error conflates Don failures and retrieval failures.",
+      "gate_use": "requires explicit retrieval_status and bounded error_code"
+    },
+    {
+      "field": "number_of_documents",
+      "classification": "AVAILABLE_INTERNAL_NOT_EXPORTED",
+      "evidence": "Graph trace records n_docs/n_relevant; ThreatAnalysis contains only post-conversion intel_documents and DonAdapter drops them.",
+      "gate_use": "export retrieved_count and relevant_count"
+    },
+    {
+      "field": "provenance/source",
+      "classification": "UNRELIABLE_FOR_GATE",
+      "evidence": "source is present on corpus documents and IntelDocument, but no source registry or authenticity status is enforced.",
+      "gate_use": "source string is display metadata only; require a deterministic provenance_status field"
+    },
+    {
+      "field": "duplicate_retrieval",
+      "classification": "AVAILABLE_NOW",
+      "evidence": "Graph fusion keys by doc_id and increments sub_query_hits; duplicate IDs can be detected deterministically.",
+      "gate_use": "duplicate IDs are invalid evidence unless deduplicated with a stable document fingerprint"
+    },
+    {
+      "field": "contradictory_retrieval",
+      "classification": "NEW_REQUIRED_FIELD",
+      "evidence": "No current per-document contradiction/conflict status is exported by Don or the corrective graph.",
+      "gate_use": "deterministic conflict_status; unresolved conflict fails closed"
+    },
+    {
+      "field": "query_coverage",
+      "classification": "AVAILABLE_INTERNAL_NOT_EXPORTED",
+      "evidence": "DonRAGGraph computes coverage and sufficient using sub-query grades and original-query core terms.",
+      "gate_use": "export coverage summary from the corrective graph path"
+    },
+    {
+      "field": "sanitization_state",
+      "classification": "NEW_REQUIRED_FIELD",
+      "evidence": "_sanitize_for_llm exists and IntelDocument sanitizes content, but no per-document state says what was sanitized or whether the exact bundle was sanitized.",
+      "gate_use": "require SANITIZED for every policy-visible document"
+    }
+  ],
+  "minimal_new_fields": [
+    {
+      "field": "retrieval_status",
+      "type": "enum",
+      "values": ["SUCCESS", "FAILURE", "DEGRADED"],
+      "reason": "separate retrieval failure from generic Don errors"
+    },
+    {
+      "field": "provenance_status",
+      "type": "enum",
+      "values": ["VALID", "INVALID", "UNKNOWN"],
+      "reason": "source strings alone cannot establish corpus provenance"
+    },
+    {
+      "field": "sanitization_status",
+      "type": "enum",
+      "values": ["SANITIZED", "UNSANITIZED", "UNKNOWN"],
+      "reason": "make the policy-visible representation auditable"
+    },
+    {
+      "field": "conflict_status",
+      "type": "enum",
+      "values": ["NONE", "RESOLVED", "UNRESOLVED"],
+      "reason": "current Don does not expose contradiction state"
+    }
+  ],
+  "conclusion": "Don has enough internal retrieval structure to support a deterministic gate after a narrow export seam, but the current DonAdapter contract is insufficient for safe gate decisions. Numeric scores remain diagnostics, not universal quality thresholds."
+}

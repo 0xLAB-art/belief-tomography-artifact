@@ -1,0 +1,31 @@
+wrote phase3_route_handler_list.txt with 30 handlers
+load_config	def _load_config() -> dict[str, Any]:
+68	_field_export_dir	def _field_export_dir() -> Path:
+86	_messages_key	def _messages_key(messages: list) -> tuple:
+90	_resolve_bridge_session	def _resolve_bridge_session(messages: list) -> str | None:
+102	_remember_bridge_session	def _remember_bridge_session(messages: list, session_id: str) -> None:
+119	_request_authorized	def _request_authorized(request: web.Request) -> bool:
+132	_validate_security_config	def _validate_security_config() -> None:
+142	_session_token	def _session_token() -> str:
+146	_register_session	def _register_session(session_id: str) -> str:
+152	_session_authorized	def _session_authorized(request: web.Request, session_id: str, *, transcript_proof: bool = False) -> bool:
+163	auth_middleware	async def auth_middleware(request: web.Request, handler: Any) -> web.Response:
+172	mtls_middleware	async def mtls_middleware(request: web.Request, handler: Any) -> web.Response:
+190	timing_middleware	async def timing_middleware(request: web.Request, handler: Any) -> web.Response:
+201	session_create	async def session_create(request: web.Request) -> web.Response:
+226	session_command	async def session_command(request: web.Request) -> web.Response:
+272	session_wake	async def session_wake(request: web.Request) -> web.Response:
+303	session_context	async def session_context(request: web.Request) -> web.Response:
+320	session_replay	async def session_replay(request: web.Request) -> web.Response:
+350	openai_chat_completions	async def openai_chat_completions(request: web.Request) -> web.Response:
+466	_export_field_session	def _export_field_session(resp: Any) -> None:
+487	classify	async def classify(request: web.Request) -> web.Response:
+526	analyze	async def analyze(request: web.Request) -> web.Response:
+568	deceive	async def deceive(request: web.Request) -> web.Response:
+602	health	async def health(request: web.Request) -> web.Response:
+616	ready	async def ready(request: web.Request) -> web.Response:
+620	metrics	async def metrics(request: web.Request) -> web.Response:
+627	_init_pipeline	def _init_pipeline(gateway_url: str | None = None, api_key: str | None = None) -> None:
+665	_init_component	def _init_component(name: str) -> None:
+692	create_app	def create_app(mode: str = "pipeline", component: str | None = None) -> web.Application:
+729	main	def main() -> None:

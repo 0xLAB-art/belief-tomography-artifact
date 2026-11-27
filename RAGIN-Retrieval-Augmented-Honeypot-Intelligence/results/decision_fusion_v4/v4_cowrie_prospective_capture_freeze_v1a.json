@@ -1,0 +1,32 @@
+{
+  "schema": "ragin.cowrie.prospective_capture_freeze.v1a",
+  "amendment": "ADDITIVE_CRASH_RECOVERY_HARDENING_BEFORE_FIRST_ELIGIBLE_SESSION",
+  "supersedes_for_current_passive_use": "results/decision_fusion_v4/v4_cowrie_prospective_capture_freeze_v1.json",
+  "historical_freeze_preserved": true,
+  "frozen_at_utc": "2026-10-14T06:53:00Z",
+  "runtime_contract": {
+    "path": "results/decision_fusion_v4/v4_cowrie_runtime_contract_v1.json",
+    "sha256": "bb66218061975d4a54425ca98ce6c5003d5a9b367a83f698d6c5e6b05e162b50"
+  },
+  "implementation": {
+    "adapter": {"path": "ragin/capture_v4/cowrie.py", "sha256": "9148b2315ed55639f7e006c4ecd134564895a38c3ea1986774ef20b30a56d649"},
+    "passive_watcher": {"path": "scripts/v4_cowrie_capture_watch.py", "sha256": "1eca09700e57e78795e4c9136db4abc9344c760c972e767f9a847693d061ba18"},
+    "tests": {"path": "tests/unit/test_cowrie_capture.py", "sha256": "6697390784f821a3f679dc78e0bda790078b29b8f7ae493fcb3208242040dbfc"}
+  },
+  "test_results": {
+    "path": "results/decision_fusion_v4/v4_cowrie_capture_test_results_v1.json",
+    "sha256": "e65a2a551862f8f18692d5c6e08985fb02efaf096af367add669893324d7c82f"
+  },
+  "crash_recovery": {
+    "raw_sealed_before_manifest": "PASS",
+    "manifest_written_before_registry": "PASS",
+    "incomplete_or_tampered_artifacts": "FAIL_CLOSED",
+    "registry_append_last": true
+  },
+  "eligible_honeypot_sessions_before_freeze": 0,
+  "aws_changed": false,
+  "network_changed": false,
+  "v4_policy_execution": 0,
+  "reference_annotations": 0,
+  "effectiveness_seen": false
+}

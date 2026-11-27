@@ -1,0 +1,77 @@
+{
+  "schema": "ragin.field_attack.arm_comparison.v1",
+  "generated_at": "2026-10-26T15:26:57.111374+00:00",
+  "arms": {
+    "A_cowrie_only": {
+      "source": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/field_attack/sessions_armA_cowrie.jsonl",
+      "sessions_ok": 15,
+      "sessions_err": 0,
+      "turns_total": 186,
+      "turns_mean": 12.4,
+      "dwell_mean_s": 143.0,
+      "dwell_median_s": 110.0,
+      "commands_total": 186,
+      "output_chars_total": 49141,
+      "turn_latency_mean_s": 16.86,
+      "command_classes": {
+        "other": 46,
+        "recon": 104,
+        "credential_probe": 34,
+        "mutation_download": 2,
+        "evasion": 0
+      },
+      "sensitive_read_hits": {
+        "etc_shadow": 0,
+        "private_key": 12,
+        "env_file": 6,
+        "dbpass": 0,
+        "aws_access_key": 0
+      },
+      "sessions_per_persona": {
+        "novice_scriptkiddie": 3,
+        "recon_operator": 3,
+        "credential_hunter": 3,
+        "apt_patient": 3,
+        "evasion_probe": 3
+      }
+    },
+    "C_ragin": {
+      "source": "/home/elaref/Documents/research/ragin/RAGIN-Retrieval-Augmented-Honeypot-Intelligence/results/field_attack/sessions_armC_ragin.jsonl",
+      "sessions_ok": 15,
+      "sessions_err": 0,
+      "turns_total": 185,
+      "turns_mean": 12.33,
+      "dwell_mean_s": 105.0,
+      "dwell_median_s": 107.3,
+      "commands_total": 185,
+      "output_chars_total": 66575,
+      "turn_latency_mean_s": 8.17,
+      "command_classes": {
+        "other": 83,
+        "recon": 58,
+        "credential_probe": 43,
+        "mutation_download": 1,
+        "evasion": 0
+      },
+      "sensitive_read_hits": {
+        "etc_shadow": 6,
+        "private_key": 4,
+        "env_file": 22,
+        "dbpass": 44,
+        "aws_access_key": 22
+      },
+      "sessions_per_persona": {
+        "novice_scriptkiddie": 3,
+        "recon_operator": 3,
+        "credential_hunter": 3,
+        "apt_patient": 3,
+        "evasion_probe": 3
+      }
+    }
+  },
+  "caveats": [
+    "local self-play endpoints, never the live field IP (run provenance)",
+    "arms share one host IP: endpoint-confound caveat vs the field design",
+    "deception surfaces differ per arm by design; sensitive-read hit counts describe each arm's surface, not a controlled same-surface contrast"
+  ]
+}

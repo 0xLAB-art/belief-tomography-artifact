@@ -1,0 +1,622 @@
+{
+  "schema": "ragin.field_attack.arm_stats_v2.v1",
+  "generated_at": "2026-10-28T20:30:43.766640+00:00",
+  "preregistration": {
+    "path": "docs/ARM_AB_PREREGISTRATION_V2_2026-10-28.md",
+    "sha256": "1b714bb6959d1c794d85ac011eac5f46763014b5830e14d6ecc7336e9f78a2e1"
+  },
+  "inputs": {
+    "arm_a": {
+      "path": "results/field_attack/sessions_v2_armA.jsonl",
+      "sha256": "f3cd82bfdddf486ebc6316b5dc02c8f4eb1866314a4e562d013e8e9bee456feb"
+    },
+    "arm_c": {
+      "path": "results/field_attack/sessions_v2_armC.jsonl",
+      "sha256": "f00f498b0156cb98b80b7aaa950ed0af2722d974bf60afeb69493ddb23fde13e"
+    },
+    "sessions": {
+      "a": 20,
+      "c": 20
+    }
+  },
+  "coding": {
+    "read_bait": "(\\s|^)(cat|less|more|head|tail|grep|strings|xxd|cp|tar)\\b.*(\\.dbpass|\\.env\\b|id_rsa|authorized_keys|\\.ssh/|credentials|\\.aws/|config\\.json)",
+    "reuse": "(^\\s*ssh\\s|^\\s*scp\\s|mysql\\s|psql\\s|curl\\s+.*(-u|--user|-H\\s*['\\\"]?Authorization)|^\\s*aws\\s|export\\s+AWS_|boto3|redis-cli\\s+-a|ftp\\s)",
+    "sha256": "3945d721a373e8204b27754fd660947d2752150ece7a32d15436419b8b921264"
+  },
+  "bootstrap": {
+    "iterations": 10000,
+    "seed": 20261028,
+    "strata": "persona"
+  },
+  "primary": {
+    "endpoint": "turns_survived",
+    "horizon": 30,
+    "logrank": {
+      "observed_c": 4.0,
+      "expected_c": 3.957,
+      "chi2": 0.001,
+      "p": 0.9752089800338203
+    },
+    "p_holm": 1.0,
+    "significant_holm": false,
+    "turns_bootstrap": {
+      "diff": 4.149999999999999,
+      "ci95": [
+        1.1999999999999993,
+        7.149999999999999
+      ]
+    },
+    "restricted_mean_a": 24.65,
+    "restricted_mean_c": 24.6,
+    "km_a": [
+      {
+        "t": 0,
+        "survival": 1.0,
+        "at_risk": 20
+      },
+      {
+        "t": 2,
+        "survival": 0.95,
+        "at_risk": 20,
+        "events": 1,
+        "censored": 0
+      },
+      {
+        "t": 3,
+        "survival": 0.9,
+        "at_risk": 19,
+        "events": 1,
+        "censored": 0
+      },
+      {
+        "t": 4,
+        "survival": 0.8,
+        "at_risk": 18,
+        "events": 2,
+        "censored": 2
+      },
+      {
+        "t": 5,
+        "survival": 0.8,
+        "at_risk": 14,
+        "events": 0,
+        "censored": 1
+      },
+      {
+        "t": 11,
+        "survival": 0.8,
+        "at_risk": 13,
+        "events": 0,
+        "censored": 1
+      },
+      {
+        "t": 12,
+        "survival": 0.8,
+        "at_risk": 12,
+        "events": 0,
+        "censored": 4
+      },
+      {
+        "t": 18,
+        "survival": 0.8,
+        "at_risk": 8,
+        "events": 0,
+        "censored": 0
+      },
+      {
+        "t": 20,
+        "survival": 0.8,
+        "at_risk": 8,
+        "events": 0,
+        "censored": 1
+      },
+      {
+        "t": 25,
+        "survival": 0.8,
+        "at_risk": 7,
+        "events": 0,
+        "censored": 1
+      },
+      {
+        "t": 30,
+        "survival": 0.8,
+        "at_risk": 6,
+        "events": 0,
+        "censored": 6
+      }
+    ],
+    "km_c": [
+      {
+        "t": 0,
+        "survival": 1.0,
+        "at_risk": 20
+      },
+      {
+        "t": 2,
+        "survival": 0.95,
+        "at_risk": 20,
+        "events": 1,
+        "censored": 0
+      },
+      {
+        "t": 3,
+        "survival": 0.85,
+        "at_risk": 19,
+        "events": 2,
+        "censored": 0
+      },
+      {
+        "t": 4,
+        "survival": 0.8,
+        "at_risk": 17,
+        "events": 1,
+        "censored": 0
+      },
+      {
+        "t": 12,
+        "survival": 0.8,
+        "at_risk": 16,
+        "events": 0,
+        "censored": 4
+      },
+      {
+        "t": 18,
+        "survival": 0.8,
+        "at_risk": 12,
+        "events": 0,
+        "censored": 0
+      },
+      {
+        "t": 23,
+        "survival": 0.8,
+        "at_risk": 12,
+        "events": 0,
+        "censored": 1
+      },
+      {
+        "t": 25,
+        "survival": 0.8,
+        "at_risk": 11,
+        "events": 0,
+        "censored": 4
+      },
+      {
+        "t": 30,
+        "survival": 0.8,
+        "at_risk": 7,
+        "events": 0,
+        "censored": 7
+      }
+    ]
+  },
+  "secondary": {
+    "endpoint": "bait_capture",
+    "fisher": {
+      "table_c_a_true_false": [
+        [
+          0,
+          20
+        ],
+        [
+          0,
+          20
+        ]
+      ],
+      "odds_ratio": NaN,
+      "risk_c": 0.0,
+      "risk_a": 0.0,
+      "risk_diff": 0.0,
+      "p_raw": 1.0
+    },
+    "p_holm": 1.0,
+    "significant_holm": false
+  },
+  "exploratory": {
+    "endpoint": "surface_artifact_yield",
+    "status": "exploratory, not pre-registered: a property of the returned surface, not a treatment effect on attacker behaviour",
+    "patterns": {
+      "aws_access_key": "\\bAKIA[0-9A-Z]{16}\\b",
+      "aws_secret": "AWS_SECRET_ACCESS_KEY\\s*=\\s*\\S+",
+      "private_key": "-----BEGIN [A-Z ]*PRIVATE KEY-----",
+      "shadow_hash": "^root:\\$[0-9a-z]",
+      "db_password": "\\bDB_(PASSWORD|PASSWD|PASS)\\s*=\\s*\\S+",
+      "env_assignment": "^[A-Z][A-Z0-9_]{2,}=\\S+"
+    },
+    "sessions_with_artifact": {
+      "a": 0,
+      "c": 11
+    },
+    "difference": {
+      "risk_a": 0.0,
+      "risk_c": 0.55,
+      "diff": 0.55,
+      "ci95": [
+        0.35,
+        0.75
+      ]
+    },
+    "fisher_p": 0.00014530659691950015,
+    "by_pattern": {
+      "aws_access_key": {
+        "a": 0,
+        "c": 6
+      },
+      "aws_secret": {
+        "a": 0,
+        "c": 6
+      },
+      "private_key": {
+        "a": 0,
+        "c": 0
+      },
+      "shadow_hash": {
+        "a": 0,
+        "c": 0
+      },
+      "db_password": {
+        "a": 0,
+        "c": 0
+      },
+      "env_assignment": {
+        "a": 0,
+        "c": 11
+      }
+    }
+  },
+  "descriptive": {
+    "arm_a": {
+      "sessions": 20,
+      "censored": 16,
+      "turns_mean": 15.5,
+      "dwell_mean_s": 1116.46,
+      "server_s_mean": 4.8,
+      "think_s_mean": 124.85,
+      "bait_read": 2,
+      "bait_capture": 0,
+      "sessions_model_only": 20,
+      "turn_fallbacks": 0,
+      "sessions_with_artifact": 0
+    },
+    "arm_c": {
+      "sessions": 20,
+      "censored": 16,
+      "turns_mean": 19.65,
+      "dwell_mean_s": 1013.89,
+      "server_s_mean": 0.97,
+      "think_s_mean": 52.38,
+      "bait_read": 1,
+      "bait_capture": 0,
+      "sessions_model_only": 20,
+      "turn_fallbacks": 0,
+      "sessions_with_artifact": 11
+    }
+  },
+  "per_session": {
+    "arm_a": [
+      {
+        "persona": "apt_patient",
+        "run_id": 4,
+        "turns": 30,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "apt_patient",
+        "run_id": 2,
+        "turns": 30,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "apt_patient",
+        "run_id": 1,
+        "turns": 30,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "credential_hunter",
+        "run_id": 1,
+        "turns": 25,
+        "cap": 25,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "evasion_probe",
+        "run_id": 1,
+        "turns": 2,
+        "cap": 18,
+        "censored": false,
+        "bait_capture": false
+      },
+      {
+        "persona": "credential_hunter",
+        "run_id": 2,
+        "turns": 11,
+        "cap": 25,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "evasion_probe",
+        "run_id": 2,
+        "turns": 4,
+        "cap": 18,
+        "censored": false,
+        "bait_capture": false
+      },
+      {
+        "persona": "evasion_probe",
+        "run_id": 3,
+        "turns": 4,
+        "cap": 18,
+        "censored": false,
+        "bait_capture": false
+      },
+      {
+        "persona": "evasion_probe",
+        "run_id": 4,
+        "turns": 3,
+        "cap": 18,
+        "censored": false,
+        "bait_capture": false
+      },
+      {
+        "persona": "novice_scriptkiddie",
+        "run_id": 1,
+        "turns": 12,
+        "cap": 12,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "novice_scriptkiddie",
+        "run_id": 2,
+        "turns": 12,
+        "cap": 12,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "novice_scriptkiddie",
+        "run_id": 3,
+        "turns": 12,
+        "cap": 12,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "novice_scriptkiddie",
+        "run_id": 4,
+        "turns": 12,
+        "cap": 12,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "apt_patient",
+        "run_id": 3,
+        "turns": 30,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "recon_operator",
+        "run_id": 4,
+        "turns": 30,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "recon_operator",
+        "run_id": 1,
+        "turns": 30,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "credential_hunter",
+        "run_id": 3,
+        "turns": 20,
+        "cap": 25,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "credential_hunter",
+        "run_id": 4,
+        "turns": 4,
+        "cap": 25,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "recon_operator",
+        "run_id": 3,
+        "turns": 4,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "recon_operator",
+        "run_id": 2,
+        "turns": 5,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      }
+    ],
+    "arm_c": [
+      {
+        "persona": "apt_patient",
+        "run_id": 1,
+        "turns": 30,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "apt_patient",
+        "run_id": 2,
+        "turns": 30,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "apt_patient",
+        "run_id": 3,
+        "turns": 30,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "apt_patient",
+        "run_id": 4,
+        "turns": 30,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "credential_hunter",
+        "run_id": 1,
+        "turns": 25,
+        "cap": 25,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "evasion_probe",
+        "run_id": 1,
+        "turns": 3,
+        "cap": 18,
+        "censored": false,
+        "bait_capture": false
+      },
+      {
+        "persona": "credential_hunter",
+        "run_id": 2,
+        "turns": 25,
+        "cap": 25,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "evasion_probe",
+        "run_id": 2,
+        "turns": 4,
+        "cap": 18,
+        "censored": false,
+        "bait_capture": false
+      },
+      {
+        "persona": "evasion_probe",
+        "run_id": 3,
+        "turns": 3,
+        "cap": 18,
+        "censored": false,
+        "bait_capture": false
+      },
+      {
+        "persona": "credential_hunter",
+        "run_id": 3,
+        "turns": 25,
+        "cap": 25,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "evasion_probe",
+        "run_id": 4,
+        "turns": 2,
+        "cap": 18,
+        "censored": false,
+        "bait_capture": false
+      },
+      {
+        "persona": "credential_hunter",
+        "run_id": 4,
+        "turns": 25,
+        "cap": 25,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "novice_scriptkiddie",
+        "run_id": 1,
+        "turns": 12,
+        "cap": 12,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "novice_scriptkiddie",
+        "run_id": 2,
+        "turns": 12,
+        "cap": 12,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "novice_scriptkiddie",
+        "run_id": 3,
+        "turns": 12,
+        "cap": 12,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "novice_scriptkiddie",
+        "run_id": 4,
+        "turns": 12,
+        "cap": 12,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "recon_operator",
+        "run_id": 1,
+        "turns": 30,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "recon_operator",
+        "run_id": 3,
+        "turns": 30,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "recon_operator",
+        "run_id": 4,
+        "turns": 30,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      },
+      {
+        "persona": "recon_operator",
+        "run_id": 2,
+        "turns": 23,
+        "cap": 30,
+        "censored": true,
+        "bait_capture": false
+      }
+    ]
+  },
+  "decision_rule": "docs/ARM_AB_PREREGISTRATION_V2_2026-10-28.md \u00a7Decision rule"
+}

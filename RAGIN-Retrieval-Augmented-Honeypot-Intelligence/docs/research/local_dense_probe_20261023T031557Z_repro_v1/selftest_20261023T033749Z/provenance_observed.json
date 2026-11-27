@@ -1,0 +1,19 @@
+{
+  "source": "observed dense engine provenance from wrapper self-test run",
+  "observed_query_execution": "DENSE_QUERY_EXECUTED",
+  "encoder_binding": "LOCAL_ENCODER_RUNTIME_VERIFIED",
+  "encoder_binding_note": "sentence-transformers encoder was loaded from the configured local model directory and executed embedding inference for this dense query; no hash-fallback vectors were used",
+  "encoder_inference_claim": "OBSERVED_REAL_ENCODER_DENSE_QUERY",
+  "encoder_observed": {
+    "store_class": "VectorStore",
+    "store_initialized": true,
+    "embedder_loaded": true,
+    "embedder_class": "SentenceTransformer",
+    "dimension": 384,
+    "index_class": "IndexFlatIP",
+    "index_ntotal": 12,
+    "observability": "OBSERVED_REAL_ENCODER"
+  },
+  "embedding_matrix_sha256": "965b89eaa39aefb0a8c59abf1911682642646f6a2218178be2b3b550a2df089c",
+  "faiss_ntotal": 12
+}

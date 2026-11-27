@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-09-20T20:31:12Z",
+ "method": "closed-loop replay: attacker-LLM (deepseek-v4.1-flash-free) follows real Cowrie playbooks; Hisoka responses via LLM gateway (glm-5.3-flash-free) with canary-gated llm-backed verification; treated condition adds recorded Jev kind assessments to the Hisoka prompt",
+ "max_turns": 12,
+ "totals": {
+  "families": 1,
+  "baseline_turns": 6,
+  "treated_turns": 9,
+  "baseline_bait": 1,
+  "treated_bait": 0
+ },
+ "per_family": [
+  {
+   "family": "persistence_implant",
+   "condition": "baseline",
+   "turns": 6,
+   "left_early": true,
+   "leave_reason": "[attacker-llm-error: attacker LLM failed after 3 attempts: 502 Server Error: Bad Gateway for url: htt]",
+   "bait_markers_shown": 1,
+   "final_command": "find /opt/some_app -maxdepth 3 -type f -readable 2>/dev/null | head -50",
+   "hisoka_gateway_calls": 6,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": true
+  },
+  {
+   "family": "persistence_implant",
+   "condition": "treated",
+   "turns": 9,
+   "left_early": true,
+   "leave_reason": "repeated identical id output, redacted file reads, and an overtly labeled \"backdoor.service\" with a custom binary \u2014 this box is staged/bait, not a real foothold.",
+   "bait_markers_shown": 0,
+   "final_command": "cat /etc/systemd/system/backdoor.service",
+   "hisoka_gateway_calls": 9,
+   "hisoka_template_calls": 0,
+   "attacker_llm_error": false
+  }
+ ]
+}

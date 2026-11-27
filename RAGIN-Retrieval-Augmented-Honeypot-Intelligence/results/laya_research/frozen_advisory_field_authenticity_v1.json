@@ -1,0 +1,29 @@
+{
+  "audit": "RAGIN_FROZEN_PREDICTION_EXECUTION_AUTHENTICITY_AUDIT_V1",
+  "artifact": "results/laya_research/frozen_predictions.jsonl",
+  "observed_advisory": {
+    "count": 307,
+    "unique_objects": 1,
+    "object": {
+      "advisory_applied": true,
+      "advisory_effect": "flag_for_adjudication",
+      "note": "final combination rule must be frozen before C/D reporting"
+    }
+  },
+  "source_trace": {
+    "producer": "advise_from_laya",
+    "source": "scripts/laya_frozen_runner.py:71-87",
+    "placeholder_documentation": "docstring says a placeholder is included at lines 74-75; the function comment at lines 77-80 describes the placeholder behavior",
+    "live_adapter_output": false,
+    "provider_fields": false,
+    "model_id": false,
+    "checkpoint_identity": false,
+    "copied_fixture_data": false,
+    "synthetic_literal": true,
+    "default_decision_value": true,
+    "chrollo_result_used": false,
+    "status_used": true
+  },
+  "classification": "VERIFIED_FIXTURE_OR_STUB_OUTPUT",
+  "historical_binding_limitation": "The source-level advisory is verified as a literal placeholder in the current untracked runner; exact historical source identity is not established."
+}

@@ -1,0 +1,16 @@
+{
+  "observed_utc": "2026-10-08T20:18:25Z",
+  "environment": "AWS staging only; no public honeypot exposure",
+  "edge_listener": "127.0.0.1:2222",
+  "edge_frontend": "Cowrie 3.1.1",
+  "edge_to_core_transport": "EDGE loopback socat forwarder -> CORE mTLS listener",
+  "core_listener": "172.31.17.217:8443",
+  "input": "whoami",
+  "observed_response": "webapp@web-srv-01:~$ whoami\\nwebapp",
+  "core_bridge_status": 200,
+  "hisoka_provider_mode": "disabled-local-provider; unreachable local endpoint used to force safe fallback",
+  "fallback_observed_in_core_log": true,
+  "cowrie_command_event_observed": true,
+  "real_host_shell_reached": false,
+  "public_listener_opened": false
+}

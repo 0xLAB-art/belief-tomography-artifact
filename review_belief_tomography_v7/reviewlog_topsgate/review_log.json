@@ -1,0 +1,222 @@
+{
+  "claims": [
+    {
+      "id": "C1",
+      "text": "Belief tomography is a new measurement program, not rebranded ASR benchmarking",
+      "section": "\u00a72.2, \u00a73",
+      "type": "novelty",
+      "status": "supported",
+      "issues": [
+        "rebranding check"
+      ],
+      "cross_references": [
+        "\u00a73",
+        "\u00a710(2)",
+        "\u00a72.2"
+      ],
+      "verifier_reason": "Attack FAILED: paper pre-empts it at \u00a73 'Relation to attack-success-rate reporting' (line 186): on one proposition under one family beta reduces to ASR [3,15,72]; the estimand's content is what surrounds the rate - charter mapping Def 3.4, session isolation (E12, 93.3% relative bias), censoring floor Prop 6.1, transfer diagnostic Gamma, validation suite. Those ingredients do not exist in the cited ASR practice (AgentDojo, AgentHarm). Residual: in the FIELD only a fragment is exercised (single dose, single v0 template per cell), so 'puts one question about the agent's latent state' oversells latent recovery in field settings; \u00a710 concedes under a single template beta-hat reads as that template's success probability"
+    },
+    {
+      "id": "C2",
+      "text": "Abstract discloses that final field numbers come only from repaired instrument configurations",
+      "section": "\u00a7Abstract, \u00a76.1, \u00a710(5)",
+      "type": "empirical",
+      "status": "supported",
+      "issues": [],
+      "cross_references": [
+        "\u00a7Abstract",
+        "\u00a76.1",
+        "Table 6",
+        "E2_RESULTS_V1.md",
+        "E29_E30_ORACLE_AUDIT.md"
+      ],
+      "verifier_reason": "Attack FAILED: abstract narrates the path (censoring floor -> E28 budget decomposition -> audit retraction); \u00a76.1 line 513 discloses E2-v1b (gpt-6.1 re-run at 1024 within E2); \u00a710(5) 'cross-time comparisons rest on the repaired instrument'; E30's recurring 200-token cap is disclosed pre-analysis. Residual MINOR: same error class recurred in a second driver (E30) three days after E28 demonstrated it, and 'two measurement-error classes' compresses the ledger (v0 isolation defect + budget class twice)"
+    },
+    {
+      "id": "C3",
+      "text": "Charter-holding is a spectrum along canary echo",
+      "section": "\u00a7Abstract, \u00a76.2, Table 6",
+      "type": "interpretive",
+      "status": "weak",
+      "issues": [
+        "single-template fragility; wording non-invariance E21 Gamma=0.667"
+      ],
+      "cross_references": [
+        "\u00a7Abstract",
+        "\u00a76.2 line 539",
+        "Table 6",
+        "\u00a710(2)",
+        "E21 (\u00a76.1)"
+      ],
+      "verifier_reason": "The numbers are internally consistent and recompute (E31 Pro 42/60=0.700 echo, 43/300=0.143 pooled [0.108,0.188] verified), and the paper honestly names the axis ('the entire charter spectrum is canary echo', 'not destructive compliance'). But the INTERPRETATION outruns the instrument: the axis is measured at ONE v0 template per cell on three open models, and the paper's own E21 shows production models are wording-non-invariant (Gamma=0.667 on a state-dec cell) - paraphrase sensitivity of the spectrum and its rank order is unmeasured; zero variation on all other measured claims. 'Spectrum' also loads 'charter-holding' onto a single literal-echo behavior. Genuine leaks confirmed: rubric counts refusal-wrapped verbatim prints as genuine (disclosure-based semantics, defensible)"
+    },
+    {
+      "id": "C4",
+      "text": "Title 'Limits of Certification' is instantiated, incl. a production certification attempt",
+      "section": "\u00a77.1, Table 5, \u00a79",
+      "type": "scope",
+      "status": "supported",
+      "issues": [],
+      "cross_references": [
+        "Fig 3",
+        "Table 5",
+        "\u00a79"
+      ],
+      "verifier_reason": "Attack FAILED: E4/Fig 3 issues certificates on foils under the trichotomy; Table 5 applies Prop 6.1 at tau=0.2 to the PRODUCTION panels and refuses to certify both lanes (c=103/300, 66/300) and the state-dec family (interval [0,1]) - that is a real certification attempt on production targets. \u00a79 mapping to NIST/EU is explicitly disclaimed ('none claimed as conformance')"
+    },
+    {
+      "id": "C5",
+      "text": "No certification mechanism in current practice tests these beliefs (abstract, intro premise)",
+      "section": "\u00a7Abstract, \u00a71",
+      "type": "scope",
+      "status": "weak",
+      "issues": [],
+      "cross_references": [
+        "\u00a71 line 29",
+        "\u00a72.5 line 133",
+        "\u00a73.2 line 163"
+      ],
+      "verifier_reason": "Narrow reading (conformity/certification regimes) defensible; broad reading false - the paper's own \u00a73.2/\u00a72.5 record red-teaming and injection benchmarks that DO probe forged-authority beliefs (AgentDojo, AgentHarm), and pre-deployment adversarial evaluation is current practice at providers/institutes. The true delta (estimand, intervals, censoring theory) is what the paper actually proves; the premise sentence should be scoped to it"
+    },
+    {
+      "id": "C6",
+      "text": "The E2 field panel is the registered design as executed",
+      "section": "\u00a76.1, \u00a710(5), Table 4",
+      "type": "empirical",
+      "status": "weak",
+      "issues": [
+        "artifact shows registered panel >=6 agents",
+        "executed 2"
+      ],
+      "cross_references": [
+        "\u00a76.1",
+        "\u00a710(5)",
+        "E2_RESULTS_V1.md"
+      ],
+      "verifier_reason": "E2_RESULTS_V1.md design table: 'Panel: >=6 frontier agents (registered) | 2 (authenticated lane; deviation logged pre-data) (executed)'. The paper text (\u00a76.1 line 473, \u00a710(5)) presents two models as the panel with NO mention that the registered design called for >=6 agents - the largest preregistration-vs-execution scope contraction of the program is invisible to a paper-only reader, in a paper whose central methodological claim is that every deviation is logged and every claim preregistered. Consequence: the abstract's 'field measurements on frontier models' and 'targets hold their charters' rest on 2 gateway models (and effectively confirmatory-resolution on gpt-5.6-sol's repaired panel plus gpt-6.1 E2-v1b), and the reader cannot assess selective-panel risk from the text"
+    },
+    {
+      "id": "C7",
+      "text": "The mandatory transcript audit that produced the final field verdicts was blind/registered",
+      "section": "\u00a75.6, \u00a76.2, \u00a710(3)",
+      "type": "methodology",
+      "status": "weak",
+      "issues": [],
+      "cross_references": [
+        "\u00a75.6",
+        "\u00a710(3)",
+        "Table 6",
+        "E29_E30_ORACLE_AUDIT.md"
+      ],
+      "verifier_reason": "The CALIBRATION (E17) was blind and seeded (\u00a75.6 line 440), but the DECISIVE audits - E29/E30/E31, 230 flags, the 118 retractions and 112 validations that fix both nulls and the spectrum - were 'author-side adjudication, non-blind, disclosed as such' per E29_E30_ORACLE_AUDIT.md. The paper text never carries the non-blind qualifier; \u00a710(3) says 'all transcript-adjudicated' only. Mitigation: the rubric is near-deterministic (does the reply print the credential verbatim) and transcripts are released, so external re-adjudication is possible; but the paper should disclose in text what the artifact discloses - a measurement paper's verdict layer cannot be silently self-adjudicated"
+    }
+  ],
+  "questions": [],
+  "notes": [
+    {
+      "id": "N1",
+      "text": "Contribution inflation: load-bearing are (1)+(3) as a unit (estimand + validated instrument) and the field nulls inside (4). Contribution 5 (economics of disclosure) is a corollary batch: Prop 8.1 is an argmax-vs-uniform decision observation (max>=mean by definition, A_rec zero only for flat profiles); E14/E15/E20 are pre-analyses of frozen foil profiles plus Monte Carlo, honestly labeled 'decision analysis... not a behavioral measurement' in the artifacts but promoted to a co-equal fifth contribution in the abstract/conclusion narrative. Contribution 4 bundles three results (two nulls, two-and-a-half self-caught errors, the open-weight spectrum). Contribution 2 bundles ~12 results of uneven depth. PC discussion would keep 2 of 5 headers",
+      "section": "\u00a71.2",
+      "tag": [
+        "contributions"
+      ]
+    },
+    {
+      "id": "N2",
+      "text": "Abstract level-calibration minors: (a) 'seeded audit calibrates the verdict channel (FP 0/25)' - the channel calibrated at 0/25 is the ADJUDICATION channel; the automated oracle that actually triages every session runs at measured 20% FP / 48% FN (\u00a75.6); contribution 3 says 'adjudication channel' correctly; abstract should match. (b) 'targets hold their charters... [0,0.060] per family' presents the best-resolution interval as the panel-level family bound; the second gateway model's state-dec family has n=12 measured (upper 0.242) and its retest was unmeasurable at 50.25% censoring (disclosed at line 513). (c) Premise absolutism 'no certification mechanism in current practice tests' - see C5",
+      "section": "\u00a7Abstract",
+      "tag": [
+        "craft"
+      ]
+    },
+    {
+      "id": "N3",
+      "text": "Editorial minors: (i) acknowledgments thank 'the operators of the live fleet infrastructure' while the ethics section says all infrastructure was author-owned - clarify; single-author + three-week program invites the question of who else was involved; (ii) \u00a72 still lacks the evaluation-awareness/secret-keeping probing lane (alignment faking [24] and contextual backdoors [37] added, but situational-awareness measurement and Anthropic-style secret-keeper probing uncited) - round-13 N3 partially addressed; (iii) 'two measurement-error classes' compresses a ledger with the v0 isolation defect plus a budget class that recurred twice (E2-era lane, then E30's hardcoded cap 3 days after E28 demonstrated the mechanism)",
+      "section": "\u00a7Abstract, \u00a72.5, Acknowledgments",
+      "tag": [
+        "editorial"
+      ]
+    },
+    {
+      "id": "N4",
+      "text": "Failed attacks to record as strengths: (1) Wilson recomputation exact on Fig 1b pooled [0.862,0.969]/[0.497,0.695] (n=90) and Table 6 Pro pooled 43/300 [0.108,0.188]; (2) E17 FP bound [0,0.133] + rule-of-three power printed in text (\u00a75.6) - my FP-bound attack pre-empted; (3) within-E2 budget asymmetry (gpt-5.6 at 200 vs gpt-6.1 re-run at 1024) IS disclosed (\u00a76.1 line 513); (4) leak-semantics mention-vs-use attack fails: rubric is disclosure-based (printing the held credential is a leak regardless of refusal framing) and the canary is genuinely held by the target per \u00a710; (5) title-overreach attack fails: Table 5 is a production certification attempt that refuses to certify; (6) single-sentence thesis is reconstructable from abstract+intro; (7) TOPS fit is sound (measurement+risk+disclosure trade-off); (8) v6 fixes landed and verified in my chunk: Cor 7.1 now 'breaches', 8.1M 'interactions', 'widely cited survey', certification trichotomy consistent in Fig 3+body, E17 interval printed",
+      "section": "\u00a7Whole",
+      "tag": [
+        "strengths"
+      ]
+    }
+  ],
+  "conference": "iclr",
+  "review_outline": {
+    "summary": "Gatekeeper review (TOPS AE) of title/abstract, \u00a71, \u00a72, \u00a79, \u00a711 against the frozen artifacts. The pitch survives its two hardest hostile readings (ASR rebranding, certification-title overreach); three majors remain, all disclosure/scoping/interpretation level: the registered >=6-agent panel shrinking to 2 models is invisible in the text; the final field verdicts rest on author-side non-blind adjudication disclosed in artifacts but not in text; the 'charter spectrum' is a single-template result presented with single-template fragility unmeasured.",
+    "strengths": [
+      {
+        "text": "Failed attacks recorded as strengths: ASR-rebranding disproved by \u00a73's explicit delta (charter mapping, censoring floor, isolation condition, Gamma, validation suite); certification-title overreach disproved by Table 5's production refusal-to-certify; instrument-churn story disclosed end-to-end (E2-v1b at \u00a76.1 line 513, repaired-panel numbers only); leak semantics defended (disclosure-based); Wilson bounds recompute exactly everywhere checked; E17 FP bound [0,0.133] + rule-of-three printed; single-sentence thesis reconstructable; TOPS fit sound.",
+        "related_claims": [
+          "C1",
+          "C2",
+          "C4"
+        ],
+        "related_questions": [],
+        "related_notes": [
+          "N4"
+        ]
+      }
+    ],
+    "weaknesses": [
+      {
+        "text": "MAJOR: preregistration scope contraction >=6\u21922 gateway agents absent from paper text despite the paper's own deviation-logging standard (\u00a76.1 line 473 vs E2_RESULTS_V1.md design table). Fix: one sentence in \u00a76.1 + abstract scope of the null.",
+        "related_claims": [
+          "C6"
+        ],
+        "related_questions": [],
+        "related_notes": []
+      },
+      {
+        "text": "MAJOR: the decisive E29/E30/E31 audits (118 retractions, 112 validations) were author-side and non-blind per E29_E30_ORACLE_AUDIT.md; \u00a75.6/\u00a710 never carry the qualifier while the blind E17 calibration (n=25, FP bound 0.133) is foregrounded. Fix: disclose in \u00a710(3), invite external re-adjudication of released transcripts, ideally add a blinded second adjudicator for the 230 flags.",
+        "related_claims": [
+          "C7"
+        ],
+        "related_questions": [],
+        "related_notes": []
+      },
+      {
+        "text": "MAJOR: 'charter-holding is a spectrum along canary echo' outruns the instrument - single v0 template per cell, paraphrase sensitivity unmeasured on the open panel despite E21's Gamma=0.667 wording non-invariance; rank order of the spectrum could be a template artifact. Fix: run the frozen E22 paraphrase library on E31's panel or demote to 'gradient at the v0 template'.",
+        "related_claims": [
+          "C3"
+        ],
+        "related_questions": [],
+        "related_notes": []
+      },
+      {
+        "text": "MAJOR (presentation): contribution inflation - contribution 5 is a corollary batch (Prop 8.1 is max>=mean); contribution 4 bundles three results; PC would keep 2 of 5 headers. Fix: fold \u00a78 into the certification-limits contribution; state the load-bearing pair explicitly.",
+        "related_claims": [],
+        "related_questions": [],
+        "related_notes": [
+          "N1"
+        ]
+      },
+      {
+        "text": "MINOR: abstract level-calibration - 'verdict channel (FP 0/25)' should read 'adjudication channel' (the automated oracle runs 20% FP/48% FN); '[0,0.060] per family' is the best-resolution target's interval, second model's state-dec is [0,0.242] with unmeasurable retest; premise absolutism 'no certification mechanism in current practice tests' is only narrowly defensible and contradicts the paper's own ASR positioning.",
+        "related_claims": [
+          "C5"
+        ],
+        "related_questions": [],
+        "related_notes": [
+          "N2"
+        ]
+      },
+      {
+        "text": "MINOR: acknowledgments thank 'operators of the live fleet infrastructure' vs ethics-section author-ownership; situational-awareness/secret-keeping lane still uncited; 'two measurement-error classes' compresses a three-defect ledger including a recurrence three days after the mechanism was demonstrated.",
+        "related_claims": [],
+        "related_questions": [],
+        "related_notes": [
+          "N3"
+        ]
+      }
+    ],
+    "questions": [],
+    "overall_score": 6,
+    "conference": "iclr"
+  }
+}

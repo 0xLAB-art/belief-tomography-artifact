@@ -1,0 +1,112 @@
+{
+  "audit": "RAGIN_FROZEN_PREDICTION_EXECUTION_AUTHENTICITY_AUDIT_V1",
+  "search_scope": ["scripts/", "ragin/", "tests/", "results generation helpers", "docs/laya_integration/"],
+  "excluded_from_source_match_count": [
+    "results/laya_research/frozen_predictions.jsonl",
+    "results/laya_research/confirmatory_predictions_recovered_from_broad_pool_v1.jsonl"
+  ],
+  "observed_constants": [
+    {
+      "constant": "novice",
+      "observed_field": "chrollo_class",
+      "source_matches": [
+        "scripts/laya_frozen_runner.py:40 literal return",
+        "ragin/chrollo/models.py:18-20 enum label",
+        "ragin/cycle/adapters.py:133 fallback label (paired with confidence 0.0, not observed 0.5)"
+      ],
+      "selected_origin_for_named_runner": "HARDCODED_DEFAULT",
+      "classification": "STUB",
+      "reason": "The named runner returns the literal without constructing or calling Chrollo. The classifier enum and adapter fallback are separate code paths."
+    },
+    {
+      "constant": "0.5",
+      "observed_field": "chrollo_confidence and Laya answer probabilities/confidences",
+      "source_matches": [
+        "scripts/laya_frozen_runner.py:41,56-63 literal values",
+        "ragin/cycle/adapters.py:230 default confidence for Don input, not Chrollo output",
+        "tests/unit/test_optional_assessment.py:10-12 contains different fixture values and is not the frozen output producer"
+      ],
+      "selected_origin_for_named_runner": "HARDCODED_DEFAULT",
+      "classification": "STUB",
+      "reason": "The observed 0.5 values are literal values in the runner's Chrollo and Laya placeholder objects."
+    },
+    {
+      "constant": "SIGNAL",
+      "observed_field": "laya_status",
+      "source_matches": [
+        "scripts/laya_frozen_runner.py:54 literal status",
+        "ragin/decision/optional.py:11,73,91 real adapter contract",
+        "ragin/cycle/adapters.py:41-46 live mapper branch"
+      ],
+      "selected_origin_for_named_runner": "HARDCODED_DEFAULT",
+      "classification": "STUB",
+      "reason": "The runner sets SIGNAL without calling the adapter contract."
+    },
+    {
+      "constant": "noul",
+      "observed_field": "laya_answer.attack.type and attack.noul",
+      "source_matches": [
+        "scripts/laya_frozen_runner.py:56 literal attack object",
+        "ragin/decision/laya_runtime.py:188-205 real-provider mapping code",
+        "tests/unit/test_optional_assessment.py:10 fixture answer"
+      ],
+      "selected_origin_for_named_runner": "HARDCODED_DEFAULT",
+      "classification": "STUB",
+      "reason": "The runner constructs the typed object directly; no Laya answer is parsed."
+    },
+    {
+      "constant": "severity score 1",
+      "observed_field": "laya_answer.severity.score",
+      "source_matches": [
+        "scripts/laya_frozen_runner.py:60 literal score",
+        "ragin/decision/laya_runtime.py:212-224 real-provider mapping code",
+        "tests/unit/test_optional_assessment.py:11 fixture score is 2, not observed 1"
+      ],
+      "selected_origin_for_named_runner": "HARDCODED_DEFAULT",
+      "classification": "STUB",
+      "reason": "The observed score is written in the literal placeholder answer."
+    },
+    {
+      "constant": "recon",
+      "observed_field": "laya_answer.stage.choice",
+      "source_matches": [
+        "scripts/laya_frozen_runner.py:57 literal choice",
+        "ragin/decision/laya_runtime.py:60-75 question option/criteria definition"
+      ],
+      "selected_origin_for_named_runner": "HARDCODED_DEFAULT",
+      "classification": "STUB",
+      "reason": "The runner writes recon directly and never asks a Router to choose a stage."
+    },
+    {
+      "constant": "0.0001",
+      "observed_field": "laya_latency_s",
+      "source_matches": ["scripts/laya_frozen_runner.py:52 time.sleep(0.0001)"],
+      "selected_origin_for_named_runner": "FIXTURE",
+      "classification": "FIXTURE",
+      "reason": "The timer encloses a deliberate 100-microsecond sleep and literal object construction."
+    },
+    {
+      "constant": "0.0002",
+      "observed_field": "laya_latency_s",
+      "source_matches": [
+        "no exact 0.0002 source literal found in the inspected source/test/helper scope",
+        "scripts/laya_frozen_runner.py:66 round(time.perf_counter() - t0, 4)"
+      ],
+      "selected_origin_for_named_runner": "POSTPROCESSING_DEFAULT",
+      "classification": "FIXTURE",
+      "reason": "0.0002 is a rounded elapsed-time result from the stub timer, not a model latency constant."
+    }
+  ],
+  "literal_search_conclusion": {
+    "real_model_return_evidence_for_observed_frozen_constants": false,
+    "fixture_or_stub_evidence": true,
+    "hardcoded_default_evidence": true,
+    "fallback_evidence_for_observed_chrollo_pair": false,
+    "unknown_historical_binding": true,
+    "non_null_output_is_not_verified_real_inference": true
+  },
+  "controls": {
+    "reference_labels_opened": false,
+    "models_rerun": false
+  }
+}

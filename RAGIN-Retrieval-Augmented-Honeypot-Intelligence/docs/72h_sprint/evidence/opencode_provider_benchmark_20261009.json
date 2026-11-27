@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "observed_completion_utc": "2026-10-09T04:48:17Z",
+  "classification": "controlled_local_staging",
+  "provider": "OpenCode CLI via loopback bridge",
+  "model": "opencode/space-bunny-free",
+  "bridge": {
+    "script": "scripts/opencode_proxy.py",
+    "bind": "127.0.0.1:8731",
+    "tool_profile": "scripts/opencode_cli_bridge_safe_config.json",
+    "api_key_recorded": false
+  },
+  "command": ".venv/bin/python scripts/run_live_benchmark.py --limit 1 --engine graph --report results/overnight_20261009/opencode_provider_limit1.json",
+  "raw_report": {
+    "path": "results/overnight_20261009/opencode_provider_limit1.json",
+    "sha256": "17457c8cc8c98a8286bf3b28f83313aa16d7067e26fa03dfa679aced3c8fd140",
+    "elapsed_s": 90.35961330099963,
+    "total_sessions": 3,
+    "sessions_with_engagement": 3,
+    "errors": 0
+  },
+  "results": {
+    "cti_technique": {
+      "count": 1,
+      "passed": 1,
+      "score": 0.85,
+      "serve_path": "GENERATED_VERIFIED",
+      "latency_ms": 71910.03212200303
+    },
+    "cti_actor": {
+      "count": 1,
+      "passed": 1,
+      "score": 0.85,
+      "serve_path": "GENERATED_VERIFIED",
+      "latency_ms": 8916.474936006125
+    },
+    "persona": {
+      "count": 1,
+      "passed": 1,
+      "score": 0.8,
+      "serve_path": "TEMPLATE_FALLBACK_VERIFIED",
+      "latency_ms": 9516.096333012683
+    }
+  },
+  "metrics": {
+    "avg_response_time_ms": 30114.171295334625,
+    "deception_artifacts_deployed": 3,
+    "deception_artifacts_accessed": 0,
+    "ttps_detected": 1,
+    "ttps_detected_unique": 1
+  },
+  "source_hashes": {
+    "scripts/opencode_proxy.py": "db1c7e01378c10017fa44503beb117a0acbb20365d6cc5eda83ff79111ebceb6",
+    "scripts/opencode_cli_bridge_safe_config.json": "348059ab6b9ec19e94747aa494be5cdb1f717ba00c2d0b6f3989888c1742c40b"
+  },
+  "interpretation": [
+    "The two GENERATED_VERIFIED cases are provider-backed local staging observations through the selected bridge.",
+    "The persona case is fallback-only and is not counted as generated output.",
+    "Scores are benchmark/scorer outputs, not independent attacker labels or field-effectiveness evidence.",
+    "The temporary bridge was stopped after the run; no public listener or AWS resource was created."
+  ]
+}

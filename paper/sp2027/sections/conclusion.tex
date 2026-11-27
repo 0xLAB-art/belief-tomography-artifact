@@ -1,0 +1,84 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+Honeypots have spent two decades recording attacker behavior without
+reasoning about it, and the arrival of generative models promised to close
+that gap while opening a worse one: a deception tool whose product is
+unverified improvisation. This paper argued that the right unit of design
+is not the generator but the \emph{loop} around it. \system couples
+behavioral profiling, retrieval-grounded planning, a fiction graph, and
+serving-time verification into a cycle in which every response is either
+verified against the session's deception state or served from vetted
+deterministic content, with a human gate on the highest-stakes material
+and an audit trail over every decision.
+
+The evaluation supports the division of labor the architecture claims,
+and the escalation analysis prices it rung by rung. Retrieval grounding
+is the rung the system cannot lose: removing
+it costs $+0.154$ composite ($[+0.092, +0.221]$) under rubrics scored
+identically in both arms, and the raw detection count collapses to zero
+with it -- a structural dependence, reported as such
+(\S\ref{sec:rq1}) -- while leaving persona realism untouched, a null
+result the design predicts.
+The fiction graph and verifier maintain their properties under targeted
+adversarial pressure: zero contradictions across 45 re-queries, zero
+unverified serves across a 218-query live campaign, an induced-failure
+census showing the checks do reject, and an ablation
+battery in which each mechanism's removal costs the property it was added
+to provide. The deception holds a three-persona LLM-judge consensus of
+$3.86/5$ with
+$0.750$ exact agreement across personas of one judge model -- a
+within-model consistency measure rather than inter-annotator agreement,
+and not a human evaluation
+-- and two independent full campaigns reproduce the
+composite to $+0.005$ with the deterministic strata replicating exactly.
+At the top of the ladder, the result is a subtraction with a standing
+caveat: kind-awareness fixed 12/13 real-log assessments (against the
+deterministic floor's 0/13 on the same sessions) and lifted bait exposure
+by 125\%, added no measurable dwell time, and showed no marginal routing
+effect that the benchmark could resolve -- so it left the serving path,
+with the domain-shift gap the real-log study exposes named as the
+caveat on that removal.
+Each rung we retained paid for itself in its measured contribution, and
+the rung we removed is the result that carries furthest beyond this
+system -- bounded to the benchmark that measured it.
+
+The limits are stated with the same directness. The deployment hears no ambient
+internet; the judge shares a provider with the generator; and the
+availability of generative components is structurally hostage to provider
+quota and alignment posture, a constraint the fallback path absorbs but
+does not remove. None of these limits is hidden by the loop; all of them
+are measured by it. We release the scenario sets, the scoring harnesses,
+and every persisted artifact behind the numbers in this paper -- code,
+cloud stack, results, and the compiled paper itself -- at
+\url{https://github.com/0xzodiac/The-Intelligence-Ladder}, so that the
+claims can be replayed rather than believed.
+
+We see four directions as the most productive next steps. First, extending the fiction
+graph across sessions, so that the longitudinal attacker memory and the
+consistency machinery stop being separate systems and cross-session
+deception inherits cross-session verification. Second, broadening the verifier red-team
+evaluation: the released induced-failure harness now covers both
+strata -- 96 canonical cases at the deterministic stratum (precision
+and recall 1.000) and 497 live-LLM-authored drafts from two author
+models across seven iterative rounds (final precision 1.000 on both
+authors, recall 0.931/0.943, zero false positives) -- its 23
+distinct verifier findings, including three live false-positive
+roots, are fixed and regression-locked, and the harnesses themselves
+are the deliverable: a sequenced third-author plan (different model
+family, documented budget and falsifiable expected deltas) ships with
+the artifacts so the next iteration is an execution, not a design
+exercise. Multiturn injection chains and a sampled manual audit of
+campaign-scale TTP extractions remain open. Third, field evaluation on
+internet-reachable deployments, where the ambient-traffic axis this
+testbed excludes by scope choice becomes measurable, and the steering
+hypothesis, better bait, measurable attacker dwell, can be tested against
+adversaries who did not consent to be studied; the same field cycle
+should add an external-baseline comparison (vanilla Cowrie, an
+unverified LLM honeypot) on shared metrics and a small human-rater
+study over the released transcripts. Fourth, treating the ladder
+audit as an ongoing protocol: as the deterministic machinery matures,
+each intelligent rung should be re-priced against its cheapest
+certifiable competitor, and the loop should shrink accordingly. The
+system this paper releases is one where that audit has already run once,
+and the serving path is smaller because of it.

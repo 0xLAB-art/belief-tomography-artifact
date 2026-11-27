@@ -1,0 +1,12 @@
+{
+  "schema": "ragin.laya_decision_v2.decision_seam_design.v1",
+  "version": "LAYA_DECISION_MODEL_V2",
+  "selected_seam": "pre_generation_response_strategy_selection",
+  "location": "ragin.cycle.adapters.ChrolloAdapter.classify -> classification.laya_decision -> Harness._strict_candidate -> Hisoka context",
+  "why_this_seam": "The existing workflow already passes classification context into Hisoka before generation and already has a bounded behavioral-strategy reader. This makes one explicit treatment-only branch measurable without changing Chrollo persona classification, Don retrieval, verification, authorization, HITL, serving, or commit semantics.",
+  "treatment_effect": "LayaDecisionPolicy writes selected_response_strategy and selected_workflow_branch into a provenance-bearing classification decision; Hisoka consumes only that context to select strategy guidance.",
+  "baseline_effect": "When Laya is disabled or unavailable, no Laya decision is attached and the pre-existing Hisoka context is unchanged.",
+  "allowed_outputs": ["response_strategy_context", "decision_path_metadata"],
+  "forbidden_outputs": ["verifier_bypass", "authorization_change", "direct_response_serving", "accepted_state_commit", "fiction_verifier_outcome"],
+  "measurable_downstream_fields": ["decision_path_distribution", "response_strategy_distribution", "accepted_non_fallback_response_rate", "generation_retry_count", "end_to_end_latency"]
+}

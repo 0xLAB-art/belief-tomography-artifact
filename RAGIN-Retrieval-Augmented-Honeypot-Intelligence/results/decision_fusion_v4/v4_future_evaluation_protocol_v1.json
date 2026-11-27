@@ -1,0 +1,90 @@
+{
+  "schema": "ragin.decision_fusion_v4.future_evaluation_protocol.v1",
+  "status": "DEFINED_NOT_EXECUTED",
+  "arms": [
+    "RAGIN_BASELINE",
+    "RAGIN_V4_DETERMINISTIC",
+    "RAGIN_V4_LOGISTIC"
+  ],
+  "holdout_requirements": {
+    "new_real_holdout_created": false,
+    "disjoint_from_exploratory_120": true,
+    "disjoint_from_primary_169": true,
+    "disjoint_from_v4_synthetic_sets": true,
+    "session_group_deduplication": true,
+    "no_training_on_holdout": true,
+    "reference_labels_after_raw_output_freeze": true,
+    "no_tuning_after_execution_begins": true
+  },
+  "matched_execution": {
+    "shared_inputs": [
+      "raw_input",
+      "session_context",
+      "don_corpus",
+      "retrieval_result",
+      "hisoka_provider",
+      "verifier",
+      "hitl_configuration",
+      "retry_budget",
+      "deterministic_settings"
+    ],
+    "mutable_state_reset_between_arms": true,
+    "post_gate_difference": "policy_selector_only"
+  },
+  "blind_reference": {
+    "annotators_blinded_to": [
+      "arm",
+      "policy_output",
+      "logistic_prediction",
+      "deterministic_prediction",
+      "hisoka_response",
+      "verifier_result"
+    ],
+    "tasks": [
+      "evidence_gate_state",
+      "acceptable_response_strategy_set",
+      "supporting_evidence_ids_where_defensible"
+    ],
+    "uncertain_label_allowed": true,
+    "strategy_label_type": "ALLOWED_STRATEGY_SET",
+    "single_strategy_forcing": false
+  },
+  "metrics": {
+    "evidence_gate": [
+      "valid_invalid_alignment",
+      "fail_safe_recall",
+      "invalid_evidence_pass_through"
+    ],
+    "policy_reference_valid_cases": [
+      "strategy_compatibility",
+      "catastrophic_incompatible_strategy_rate",
+      "supporting_evidence_compatibility"
+    ],
+    "system_workflow": [
+      "accepted_non_fallback",
+      "verifier_first_pass",
+      "rejections",
+      "retries",
+      "fallback",
+      "hitl",
+      "controlled_failure",
+      "strategy_delivery",
+      "candidate_response_change",
+      "latency",
+      "safety_invariants"
+    ],
+    "engagement_claim": "not_identified_without_separate_valid_engagement_endpoint"
+  },
+  "comparisons": {
+    "primary": "RAGIN_V4_LOGISTIC vs RAGIN_V4_DETERMINISTIC on strategy compatibility among reference-valid cases",
+    "paired_difference": true,
+    "confidence_interval": "95% paired bootstrap CI",
+    "catastrophic_rate_reported": true,
+    "system_comparisons": [
+      "RAGIN_V4_DETERMINISTIC vs RAGIN_BASELINE",
+      "RAGIN_V4_LOGISTIC vs RAGIN_BASELINE"
+    ],
+    "multiplicity_control": "Holm correction across the two baseline comparisons if formal tests are used",
+    "latency_reported_separately": true
+  }
+}

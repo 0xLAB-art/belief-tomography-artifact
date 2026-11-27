@@ -1,0 +1,59 @@
+{
+  "schema": "ragin.v4.hf2024.retrospective_preflight.v1",
+  "status": "BLOCKED_BEFORE_RAW_EXECUTION",
+  "source_audit": {
+    "path": "results/decision_fusion_v4/v4_hf2024_retrospective_source_audit_v1.json",
+    "sha256": "7f863cf55d6a2cb75264e6d451bd3522ea60d6b1ce7335faaea8a1e722bf96d5",
+    "files_verified": true,
+    "eligible_observational_units": 6658,
+    "holdout_N": 240
+  },
+  "protocol": {
+    "path": "results/decision_fusion_v4/v4_hf2024_retrospective_protocol_v1.json",
+    "sha256": "3bc0b45624ea76fc0c76b2a6e4c737e3a787e0c2c8664a3262002eff251f1218",
+    "frozen_before_execution": true
+  },
+  "holdout": {
+    "path": "results/decision_fusion_v4/v4_hf2024_retrospective_holdout_freeze_v1a.json",
+    "sha256": "ee47336121f45a50259ac54bce84ea59ebb2ecdb5cd0b6f507690a7f346d435e",
+    "N": 240,
+    "frozen_before_execution": true,
+    "separator_encoding_correction": "v1a corrected the pre-execution v1 literal \\0 encoding to actual NUL bytes; v1 preserved",
+    "labels_or_outputs_seen": false
+  },
+  "v4_preflight": {
+    "implementation_freeze_sha256": "f2eef3bc30dd398023467a0c74002afc88b324d4d13b2d872909b016f4db33e2",
+    "future_protocol_sha256": "b719666320e3020815062d82aca38b9f8297296f78834d308bd22f8762c00f85",
+    "logistic_model_sha256": "4056337ad6a41132a73a89fc0ef3b18cf41b10086bb0f25f7e6fc953bbd0a6a8",
+    "runtime_hashes_match": true,
+    "chrollo_loaded": true,
+    "don_mode": "offline_bm25",
+    "don_indexed_documents": 25397,
+    "logistic_loaded": true,
+    "all_three_graphs_built": true,
+    "hisoka_constructed": true,
+    "verifier_constructed": true,
+    "hitl_constructed": true,
+    "frozen_v4_tests": "48 passed",
+    "attacker_commands_executed": false
+  },
+  "reference_provider_gate": {
+    "authorized_nonpaid_local_provider_available": false,
+    "ollama_inventory": "cloud-only model tags; no local weights",
+    "reference_model_identity_frozen": false,
+    "reference_prompt_frozen": false,
+    "reason": "No authorized non-paid locally runnable blinded reference provider is available. Cloud-only Ollama entries and the Codex gateway were not used."
+  },
+  "execution": {
+    "RAGIN_BASELINE": 0,
+    "RAGIN_V4_DETERMINISTIC": 0,
+    "RAGIN_V4_LOGISTIC": 0,
+    "raw_arm_case_records": 0,
+    "reference_annotations": 0,
+    "effectiveness_metrics": 0,
+    "prospective_admin_cases_merged": false,
+    "old_laya_120_reused": false,
+    "old_laya_169_reused": false
+  },
+  "next_required_change": "Provide or authorize a non-paid locally runnable blinded reference model/provider and freeze its identity and prompt before raw execution."
+}

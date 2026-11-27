@@ -1,0 +1,104 @@
+{
+  "schema": "ragin.v4.live_capture_infrastructure_audit.v1",
+  "audit_mode": "READ_ONLY",
+  "aws_live_state": "UNKNOWN_AWS_SESSION_EXPIRED",
+  "aws_cli": "/home/elaref/.local/bin/aws",
+  "last_documented_inventory": "2026-10-11",
+  "authoritative_freezes": {
+    "readiness_freeze": {
+      "path": "results/decision_fusion_v4/v4_prospective_capture_readiness_freeze_v1.json",
+      "sha256": "28f6a8a202dfce6fa6c43c0adc27d4dc90d58031e56a084a09daabb0c6204561",
+      "verified": true
+    },
+    "acquisition_start": {
+      "path": "results/decision_fusion_v4/v4_prospective_acquisition_start_v1.json",
+      "sha256": "0b8f22101e43ff401c48532ef04e1a0d80e8b87505a8d476299f92c157b58653",
+      "verified": true
+    }
+  },
+  "edge": {
+    "last_documented_instance": "i-05bc6aab0bd4260a7",
+    "state": "running_at_last_documented_read",
+    "type": "t3.micro",
+    "private_ip": "172.31.35.203",
+    "public_ip": "REDACTED_FLEET_HOST",
+    "subnet": "subnet-04d02e21747154d7a",
+    "security_group": "sg-077b8f78668f4f646",
+    "ssm": "Online_at_last_documented_read",
+    "current_live_state": "UNKNOWN",
+    "cowrie_process": "twistd observed at last documented read",
+    "cowrie_bind": "0.0.0.0:2222 inside Cowrie configuration, forwarded through loopback/socat",
+    "public_listeners_at_last_read": ["0.0.0.0:22 ordinary sshd", "127.0.0.1:2222 Cowrie socat", "172.29.0.1:18083 mTLS socat"],
+    "public_cowrie_status": "NOT_ESTABLISHED",
+    "operator_ssh_conflict": true,
+    "root_storage_last_documented": "20 GiB, encryption not verified as enabled"
+  },
+  "core": {
+    "last_documented_instance": "i-062a400b300f4f9e4",
+    "state": "running_at_last_documented_read",
+    "type": "m7i-flex.large",
+    "private_ip": "172.31.17.217",
+    "public_ip": "REDACTED_FLEET_HOST",
+    "subnet": "subnet-0f8d7698fde97f83b",
+    "security_group": "sg-03486d70769d21e4e",
+    "ssm": "Online_at_last_documented_read",
+    "current_live_state": "UNKNOWN",
+    "public_required_for_capture": false,
+    "note": "Capture-only controlled Cowrie collection should not depend on CORE; CORE public placement remains a separate unresolved architecture issue"
+  },
+  "network": {
+    "vpc": "vpc-044a70ed680faff8b / 172.31.0.0/16",
+    "private_subnet_available": "subnet-07fae34b3db734bb2 / 172.31.48.0/20",
+    "private_route_table": "rtb-04bf376f929483d4c local-only",
+    "internet_gateway": "attached to VPC; EDGE and CORE last documented in public subnets",
+    "default_nacl": "allow-all at last documented read",
+    "eic_endpoint": "eice-023d2c69cb6690c48 at last documented read",
+    "core_public_required": "NO"
+  },
+  "security_groups_last_documented": {
+    "edge_inbound": ["tcp/22 from EIC management SG", "tcp/22 from operator /32"],
+    "edge_public_honeypot_ingress": "not present",
+    "edge_egress": "all protocols to 0.0.0.0/0",
+    "core_egress": "all protocols to 0.0.0.0/0",
+    "core_temporary_8443_rule": "tcp/8443 from EDGE private IP /32"
+  },
+  "egress_safety": {
+    "metadata_169_254_169_254": "not independently live-verified; must be explicitly blocked before exposure",
+    "private_vpc_ranges": "not restricted by current documented SG/NACL state",
+    "core_ports": "not restricted by current documented EDGE egress state",
+    "unrestricted_outbound": true,
+    "flow_logs": "not configured in last documented audit",
+    "durable_protected_audit": "not verified",
+    "required_design": "isolated Cowrie network namespace/container with default-deny NEW egress, explicit metadata/private-range blocks, and no CORE bridge for capture-only mode"
+  },
+  "capture_v4_integration": {
+    "manifest_library_present": true,
+    "registry_present": true,
+    "native_cowrie_session_hook": false,
+    "immutable_per_session_raw_segmentation": false,
+    "automatic_manifest_creation_on_close": false,
+    "automatic_lineage_verification": false,
+    "current_cowrie_jsonlog": "/cowrie/cowrie-git/var/log/cowrie/cowrie.json",
+    "required_sequence": ["native Cowrie session", "immutable per-session raw segment", "capture manifest", "raw SHA256", "privacy transform", "canonical record", "lineage verification", "append-only registry"],
+    "missing_hooks": ["session-close extractor", "atomic manifest writer", "raw-segment sealing", "capture_v4 finalizer integration", "registry checkpoint verifier", "rotation/crash recovery adapter"]
+  },
+  "failure_handling": {
+    "log_rotation": "current session-boundary recovery not verified",
+    "reboot_restart": "current capture continuity not verified",
+    "partial_session": "must be ineligible unless deterministic recovery from immutable raw succeeds",
+    "interrupted_manifest_write": "must use temp file, fsync, atomic rename; otherwise ineligible",
+    "disk_full": "must stop accepting eligible sessions and preserve failure audit; no fail-open",
+    "certificate_or_core_failure": "capture-only mode should not require CORE"
+  },
+  "storage": {
+    "last_documented_edge_root": "20 GiB",
+    "planning_envelope": "approximately 8-12 GiB for 520 attempted sessions at 10 MiB raw/session plus manifests/canonical/registry/rotation overhead",
+    "reserve_rule": "do not begin or continue collection if projected free space falls below 8 GiB",
+    "capacity_status": "UNKNOWN_LIVE_FREE_SPACE"
+  },
+  "decision": "BLOCKED_FOR_LIVE_CAPTURE",
+  "no_changes_made": true,
+  "no_public_port_opened": true,
+  "no_real_acquisition_started": true,
+  "no_v4_policy_executed": true
+}

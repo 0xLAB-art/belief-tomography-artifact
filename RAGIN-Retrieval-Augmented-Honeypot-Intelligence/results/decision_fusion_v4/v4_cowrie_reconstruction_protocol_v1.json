@@ -1,0 +1,28 @@
+{
+  "eligibility": [
+    "native session identifier",
+    "raw timestamped events",
+    "stable ordering",
+    "source file identity and SHA256",
+    "documented controlled-honeypot origin"
+  ],
+  "exclusions": [
+    "no semantic or attack-class selection",
+    "no V4 output inspection",
+    "no policy execution"
+  ],
+  "frozen_before_candidate_construction": true,
+  "schema": "ragin.v4.cowrie_reconstruction_protocol.v1",
+  "selected_turn_rule": "final non-empty cowrie.command.input in deterministic timestamp, source-file, line-number order",
+  "source": "data/cowrie_logs",
+  "source_files": {
+    "data/cowrie_logs/bridge.log": "1d53300cf968eaabea0ccc1ad9e14b83278569eca4dc9cb4136dacffcf3d86d8",
+    "data/cowrie_logs/cowrie.json": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "data/cowrie_logs/cowrie.json.1": "97d6f3afdc59a25d51bd306cb85d7c06975a8ff4f98acbad08ff2ed65a8ed60c",
+    "data/cowrie_logs/cowrie.json.2.gz": "4b58a864ee2d9d8b0adf1415b6697fe91263df34966f07b3d8a77905a34bfd6a",
+    "data/cowrie_logs/cowrie.json.2026-07-28": "ecc3778c16816929dddc09dff572bbf92ad8fe90f4ae2c081699fd6044ca62dd",
+    "data/cowrie_logs/cowrie.json.2026-07-31": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "data/cowrie_logs/cowrie.json.3.gz": "f4c621d9ec1ce36c60981fac044f883f03bee3dec101d953561c746c86d8bb9b"
+  },
+  "unit": "one native Cowrie session identifier per candidate"
+}

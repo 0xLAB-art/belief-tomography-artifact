@@ -1,0 +1,47 @@
+{
+  "schema": "ragin.laya_decision_v2.current_path_audit.v1",
+  "created_at": "2026-10-13",
+  "classification": "REAL_LAYA_ADVISORY_ONLY",
+  "runtime_path": {
+    "entrypoint": "ragin.server_v2:session_command",
+    "call_graph": [
+      "ragin.server_v2:session_command:322-346",
+      "ragin.cycle.sandbox:Sandbox.handle_command:112-119",
+      "ragin.cycle.sandbox:Sandbox._handle_command_unlocked:166-169",
+      "ragin.cycle.harness:Harness.process:824-830",
+      "ragin.cycle.harness:Harness._process_verified:401-417",
+      "ragin.cycle.adapters:ChrolloAdapter.classify:69-129",
+      "ragin.cycle.adapters:laya_assessment_mapper:19-60",
+      "ragin.decision.laya_runtime:LayaRuntime.infer:174-186",
+      "ragin.cycle.harness:Harness._run_cti_lookup:555-570",
+      "ragin.cycle.harness:Harness._strict_candidate:271-290",
+      "ragin.cycle.harness:Harness._strict_verify:292-305",
+      "ragin.cycle.harness:Harness._strict_commit:321-399",
+      "ragin.graph.host_fiction:HostFictionVerifier.verify:125-149"
+    ],
+    "pipeline_initialization": "ragin.server_v2:_init_pipeline:780-796",
+    "mandatory_verification": true
+  },
+  "laya": {
+    "initialized": "lazy_on_first_inference",
+    "invoked_when_enabled": true,
+    "output_location": "classification.laya_assessment",
+    "current_effect": "advisory_metadata_and_latency_only",
+    "changes_workflow_branch_today": false,
+    "existing_reader": "ragin.hisoka.deception:_jev_signal_from_context:2214-2249",
+    "reader_accepts_laya_assessment": false
+  },
+  "safety_invariants": {
+    "deterministic_fiction_verifier_authoritative": true,
+    "host_fiction_verifier_authoritative": true,
+    "authorization_authoritative": true,
+    "hitl_authoritative": true,
+    "accepted_only_state_commit": true,
+    "direct_serving_from_laya": false
+  },
+  "historical_boundary": {
+    "historical_freezes_modified": false,
+    "case_level_reference_labels_inspected": false,
+    "historical_fixture_predictions_used": false
+  }
+}

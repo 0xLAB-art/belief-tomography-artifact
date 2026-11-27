@@ -1,0 +1,464 @@
+{
+  "bridge": {
+    "export_rows": 3,
+    "export_sha256": "3eee952b8cab593243f4d3e036e316c9dca6fdfb1cb926afe5ce84575e5fa578",
+    "http_200_count": 3,
+    "http_200_observed": true
+  },
+  "checks": {
+    "all_turns_consistent": true,
+    "bridge_http_200": true,
+    "cowrie_container_ran": true,
+    "exact_three_decisions": true,
+    "exact_three_generations": true,
+    "exact_three_inputs": true,
+    "exact_three_metrics": true,
+    "exact_three_responses": true,
+    "exact_three_verifications": true,
+    "no_runner_error": true,
+    "required_event_types": true,
+    "server_loopback_only": true,
+    "ssh_loopback_only": true,
+    "terminal_has_answers": true,
+    "terminal_has_echo": true,
+    "terminal_has_prompt": true,
+    "terminal_offsets_distinct_after_echo": true
+  },
+  "container": {
+    "id": "9d6a94fe713cd148046e58570a2a564937c9225c1542391c731712c3e9e47716",
+    "image": "cowrie/cowrie:latest",
+    "image_id": "sha256:710f1e4601a663ac8591f58a42b44e4cd3b7ea170c7e6cdb9e54c430a30cd459",
+    "listen_endpoints": "tcp:36443:interface=127.0.0.1",
+    "name": "ragin-p0-loopback-657755-20261022T200017Z",
+    "network": "host",
+    "runtime_env_redacted": {
+      "ALL_PROXY": "",
+      "COWRIE_GROUP": "cowrie",
+      "COWRIE_HOME": "/cowrie",
+      "COWRIE_HONEYPOT_BACKEND": "llm",
+      "COWRIE_LLM_API_KEY": "[REDACTED]",
+      "COWRIE_LLM_DEBUG": "true",
+      "COWRIE_LLM_HOST": "http://127.0.0.1:57677",
+      "COWRIE_LLM_MAX_TOKENS": "[REDACTED]",
+      "COWRIE_LLM_MODEL": "ragin-local",
+      "COWRIE_LLM_PATH": "/v1/chat/completions",
+      "COWRIE_LLM_TEMPERATURE": "0",
+      "COWRIE_SSH_LISTEN_ENDPOINTS": "tcp:36443:interface=127.0.0.1",
+      "COWRIE_USER": "cowrie",
+      "HTTPS_PROXY": "",
+      "HTTP_PROXY": "",
+      "LANG": "C.UTF-8",
+      "PATH": "/cowrie/cowrie-env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "PYTHONPATH": "/cowrie/cowrie-git/src",
+      "PYTHONUNBUFFERED": "1",
+      "SSL_CERT_FILE": "/etc/ssl/certs/ca-certificates.crt",
+      "all_proxy": "",
+      "http_proxy": "",
+      "https_proxy": ""
+    }
+  },
+  "egress": {
+    "host_network": true,
+    "limitation": "Docker host networking is used for loopback-only listeners; hard egress blocking would require host firewall/namespace work and is not claimed.",
+    "netns_attempt": "NOT_USED; exact blocker in trace_summary.isolation.netns",
+    "network_namespace_egress_block": false
+  },
+  "finished_utc": "20261022T200035Z",
+  "isolation": {
+    "egress_policy": {
+      "container_proxy_env": "cleared",
+      "inference_endpoint": "http://127.0.0.1:9 (closed loopback port)",
+      "limitation": "Docker host networking is used for loopback-only listeners; hard egress blocking would require host firewall/namespace work and is not claimed.",
+      "network_namespace_egress_block": false,
+      "provider_enabled": false,
+      "runtime_mode": "RAGIN_V4_SUBSTANTIVE_DETERMINISTIC"
+    },
+    "netns": {
+      "blocker": "ragin-python image lacks SSH/sshpass; Cowrie image has no /bin/sh or paramiko. A shared --network none namespace would require injecting host binaries plus loader/library mounts; host firewall changes were out of bounds.",
+      "used": false
+    },
+    "server_bind": "127.0.0.1",
+    "server_listeners": [
+      "LISTEN 0      128                     127.0.0.1:57677      0.0.0.0:*"
+    ],
+    "server_loopback_only": true,
+    "ssh_listeners": [
+      "LISTEN 0      50                      127.0.0.1:36443      0.0.0.0:*"
+    ],
+    "ssh_loopback_only": true
+  },
+  "ports": {
+    "server": 57677,
+    "ssh": 36443
+  },
+  "provenance": {
+    "generator": "DETERMINISTIC_STRATEGY_RUNTIME",
+    "llm_inference": "NOT_ESTABLISHED",
+    "note": "Deterministic runtime output is not a model result and does not establish LLM inference.",
+    "provider_backed": false,
+    "retrieval": "RAGIN_RAG_MODE=none (no dense/sparse index)",
+    "serving": "REAL_SANDBOX_HARNESS_VERIFIER",
+    "transport": "REAL_SSH_COWRIE_TO_SERVER_V2"
+  },
+  "run_id": "20261022T200017Z-657755",
+  "schema": "ragin.p0.loopback_ssh_trace.v1",
+  "session": {
+    "attacker_input_count": 3,
+    "event_count": 25,
+    "event_types": [
+      "attacker_input",
+      "classification",
+      "cti_lookup",
+      "metric",
+      "response_generate",
+      "session_start",
+      "strategy_update",
+      "system_response",
+      "verification"
+    ],
+    "latest_trace": {
+      "arm": "RAGIN_V4_DETERMINISTIC",
+      "candidate_sha256": "3bbd2728041d286dd6bc3446fc9ad7f095179e72d662c5b6b2c63dda46e89210",
+      "classification": {
+        "availability": "OBSERVED",
+        "confidence": 0.936,
+        "skill_level": "novice"
+      },
+      "cost": {
+        "availability": "NOT_AVAILABLE",
+        "value": null
+      },
+      "decision": {
+        "availability": "OBSERVED_EVENT_REFERENCE",
+        "event_id": "80b28cf39d26",
+        "event_sha256": "12dc3f6059948b5934b090230b14a83b92478038811435560a52fcab16d036b1",
+        "selected": {
+          "arm": "RAGIN_V4_DETERMINISTIC",
+          "fallback_reason": "evidence_gate_fallback",
+          "gate_reason": "unknown_retrieval_status",
+          "gate_state": "RETRIEVAL_FAILURE",
+          "policy_reason_code": "gate_not_valid",
+          "policy_version": "deterministic_v1",
+          "selected_response_strategy": "baseline",
+          "supporting_evidence_refs": []
+        },
+        "selected_strategy": "baseline",
+        "serve_path": "GENERATED_VERIFIED",
+        "verification_passed": true
+      },
+      "evidence_refs": {
+        "availability": "OBSERVED_BUNDLE",
+        "backend": "none",
+        "doc_ids": [],
+        "retrieval_status": "DISABLED",
+        "ttps": []
+      },
+      "fallback": {
+        "occurred": true,
+        "reason": "invalid_evidence_gate"
+      },
+      "latency_ms": 153.093,
+      "model_identity": {
+        "availability": "SOURCE_DEFAULT_NOT_OBSERVED",
+        "runtime_model": null,
+        "runtime_model_availability": "NOT_OBSERVED",
+        "value": "glm-5.3-flash-free"
+      },
+      "schema": "ragin.interaction_trace.v1",
+      "served_response_chars": 67,
+      "served_response_sha256": "3bbd2728041d286dd6bc3446fc9ad7f095179e72d662c5b6b2c63dda46e89210",
+      "served_text": "Linux web-srv-01 5.15.0-91-generic #167-Ubuntu SMP x86_64 GNU/Linux",
+      "served_text_availability": "REDACTED_MINIMIZED",
+      "served_text_chars": 67,
+      "served_text_truncated": false,
+      "status": "ok",
+      "tokens": {
+        "availability": "NOT_AVAILABLE",
+        "completion_tokens": null,
+        "prompt_tokens": null
+      },
+      "verification": {
+        "passed": true,
+        "reason": [],
+        "reason_availability": "NO_ISSUES_REPORTED"
+      }
+    },
+    "metric_count": 3,
+    "parse_errors": [],
+    "response_generate_count": 3,
+    "serving_trace_sha256": "3d19a3f91eacc3f7a6758d0253fc1e0e9e8954ad3f246d39ed848eb5174042c9",
+    "session_file": "sessions/ses-f1b572d1cab840e7.jsonl",
+    "strategy_update_count": 3,
+    "system_response_count": 3,
+    "turn_checks": [
+      {
+        "checks": {
+          "candidate_hash_agrees": true,
+          "command_matches": true,
+          "decision_event_ref": true,
+          "response_has_text": true,
+          "served_hash_agrees": true,
+          "terminal_after_echo": true,
+          "terminal_text_hash_agrees": true,
+          "verification_passed": true
+        },
+        "command": "whoami",
+        "event_ids": {
+          "input": "710da210d3af",
+          "metric": "6f8d48642a84",
+          "response": "d12e5efa8362",
+          "response_generate": "5fd1383d53e6",
+          "strategy_update": "182f8cf6edcd",
+          "verification": "74c3def71ec7"
+        },
+        "hashes": {
+          "candidate": "9d1799d0206e9e9b52e136d93f0719ddd7917d6aa81fb11cbe53e580694a00a4",
+          "served": "9d1799d0206e9e9b52e136d93f0719ddd7917d6aa81fb11cbe53e580694a00a4",
+          "terminal_wire": "e6a5404048e6195d6bc21e04b16d4a4d1e7240a2e31bc36fb660bb750bfa3bec"
+        },
+        "terminal_offsets": {
+          "answer": 44,
+          "answer_end": 79,
+          "echo": 36,
+          "echo_end": 42
+        },
+        "turn": 0
+      },
+      {
+        "checks": {
+          "candidate_hash_agrees": true,
+          "command_matches": true,
+          "decision_event_ref": true,
+          "response_has_text": true,
+          "served_hash_agrees": true,
+          "terminal_after_echo": true,
+          "terminal_text_hash_agrees": true,
+          "verification_passed": true
+        },
+        "command": "id",
+        "event_ids": {
+          "input": "aa9950bbdb6b",
+          "metric": "9e185bbe8c13",
+          "response": "29e98b0f12c5",
+          "response_generate": "aa10dcfe905c",
+          "strategy_update": "1a774b06199d",
+          "verification": "18211af45731"
+        },
+        "hashes": {
+          "candidate": "07c19f5749fbf27b2d1bddec046a2edfd79a7cc7c552eb10bc30e321726e4a06",
+          "served": "07c19f5749fbf27b2d1bddec046a2edfd79a7cc7c552eb10bc30e321726e4a06",
+          "terminal_wire": "5ceac005caf8b5d62ed5ea064b46fa46885416de1306cdced0eaee078ab036fe"
+        },
+        "terminal_offsets": {
+          "answer": 99,
+          "answer_end": 196,
+          "echo": 95,
+          "echo_end": 97
+        },
+        "turn": 1
+      },
+      {
+        "checks": {
+          "candidate_hash_agrees": true,
+          "command_matches": true,
+          "decision_event_ref": true,
+          "response_has_text": true,
+          "served_hash_agrees": true,
+          "terminal_after_echo": true,
+          "terminal_text_hash_agrees": true,
+          "verification_passed": true
+        },
+        "command": "uname -a",
+        "event_ids": {
+          "input": "fddaafff9724",
+          "metric": "03bbce25ecf5",
+          "response": "3d343be3048f",
+          "response_generate": "c4bf890d1e6a",
+          "strategy_update": "80b28cf39d26",
+          "verification": "9a47f5a00cfb"
+        },
+        "hashes": {
+          "candidate": "3bbd2728041d286dd6bc3446fc9ad7f095179e72d662c5b6b2c63dda46e89210",
+          "served": "3bbd2728041d286dd6bc3446fc9ad7f095179e72d662c5b6b2c63dda46e89210",
+          "terminal_wire": "3bbd2728041d286dd6bc3446fc9ad7f095179e72d662c5b6b2c63dda46e89210"
+        },
+        "terminal_offsets": {
+          "answer": 222,
+          "answer_end": 289,
+          "echo": 212,
+          "echo_end": 220
+        },
+        "turn": 2
+      }
+    ],
+    "verification_count": 3
+  },
+  "started_utc": "20261022T200017Z",
+  "status": "PASS",
+  "terminal": {
+    "answer_frames": [
+      {
+        "bytes": 21,
+        "kind": "answer",
+        "line_index": 0,
+        "sha256": "53f164dec1504e51dc1082de102554b23f4a5ea85335928841123a10e88ba95a",
+        "text": "\u001b[4hWelcome to svr04"
+      },
+      {
+        "bytes": 7,
+        "kind": "answer",
+        "line_index": 3,
+        "sha256": "a5c30beb8ce719100ee031a0ce512acb4ae946b30a87397c8f2e39fa9147526a",
+        "text": "webapp"
+      },
+      {
+        "bytes": 73,
+        "kind": "answer",
+        "line_index": 6,
+        "sha256": "6f6185bf85f27ee9ea0a26ca696c0e0c1a5b7f0ac22404f982279d4487524601",
+        "text": "uid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)"
+      },
+      {
+        "bytes": 68,
+        "kind": "answer",
+        "line_index": 8,
+        "sha256": "95624e143291a0c05981f6a4e4295a5f533b686d0a3f216cbe22e8004d2e601c",
+        "text": "Linux web-srv-01 5.15.0-91-generic #167-Ubuntu SMP x86_64 GNU/Linux"
+      }
+    ],
+    "answer_texts": [
+      "\u001b[4hWelcome to svr04",
+      "webapp",
+      "uid=1001(webapp) gid=1001(webapp) groups=1001(webapp),4(adm),999(docker)",
+      "Linux web-srv-01 5.15.0-91-generic #167-Ubuntu SMP x86_64 GNU/Linux"
+    ],
+    "echo_frames": [
+      {
+        "bytes": 21,
+        "kind": "prompt_echo",
+        "line_index": 1,
+        "sha256": "7498c554fb5fe4c9fda849fe442eda5fd7fcba5e552f96c03630d0e8b3a1dc73",
+        "text": "root@svr04:/# whoami"
+      },
+      {
+        "bytes": 28,
+        "kind": "prompt_echo",
+        "line_index": 2,
+        "sha256": "544242725a6841248b5d28d8d336c1c3f194fd995cbb21c1e235424d55f1ddd0",
+        "text": "webapp@web-srv-01:~$ whoami"
+      },
+      {
+        "bytes": 17,
+        "kind": "prompt_echo",
+        "line_index": 4,
+        "sha256": "394f239ae28938b2854cc87db517f11c4cf18644eb24c4ddf723dcd683ec477d",
+        "text": "root@svr04:/# id"
+      },
+      {
+        "bytes": 24,
+        "kind": "prompt_echo",
+        "line_index": 5,
+        "sha256": "3fee589ff45655b912d3683f583cc9e03791de0c6f32f48cd1e7d5c83d45a82c",
+        "text": "webapp@web-srv-01:~$ id"
+      },
+      {
+        "bytes": 23,
+        "kind": "prompt_echo",
+        "line_index": 7,
+        "sha256": "ddb67f747beafe71a171d436c77466c61e03fdd5f30ad47f1294c087a9b8d47d",
+        "text": "root@svr04:/# uname -a"
+      }
+    ],
+    "frame_counts": {
+      "answer": 4,
+      "prompt": 1,
+      "prompt_echo": 5
+    },
+    "match_error": null,
+    "prompt_frames": [
+      {
+        "bytes": 21,
+        "kind": "prompt_echo",
+        "line_index": 1,
+        "sha256": "7498c554fb5fe4c9fda849fe442eda5fd7fcba5e552f96c03630d0e8b3a1dc73",
+        "text": "root@svr04:/# whoami"
+      },
+      {
+        "bytes": 28,
+        "kind": "prompt_echo",
+        "line_index": 2,
+        "sha256": "544242725a6841248b5d28d8d336c1c3f194fd995cbb21c1e235424d55f1ddd0",
+        "text": "webapp@web-srv-01:~$ whoami"
+      },
+      {
+        "bytes": 17,
+        "kind": "prompt_echo",
+        "line_index": 4,
+        "sha256": "394f239ae28938b2854cc87db517f11c4cf18644eb24c4ddf723dcd683ec477d",
+        "text": "root@svr04:/# id"
+      },
+      {
+        "bytes": 24,
+        "kind": "prompt_echo",
+        "line_index": 5,
+        "sha256": "3fee589ff45655b912d3683f583cc9e03791de0c6f32f48cd1e7d5c83d45a82c",
+        "text": "webapp@web-srv-01:~$ id"
+      },
+      {
+        "bytes": 23,
+        "kind": "prompt_echo",
+        "line_index": 7,
+        "sha256": "ddb67f747beafe71a171d436c77466c61e03fdd5f30ad47f1294c087a9b8d47d",
+        "text": "root@svr04:/# uname -a"
+      },
+      {
+        "bytes": 14,
+        "kind": "prompt",
+        "line_index": 9,
+        "sha256": "b1c3f5bf042f39a996f17c12e2510ebaaccb3a6dd9df66641c2425dd90c6ffa0",
+        "text": "root@svr04:/# "
+      }
+    ],
+    "stderr_sha256": "c23c146b58c0ebaf492631709945e80d8de709ecd78c6bcffd4de2fcf8434b7e",
+    "stdout_bytes": 305,
+    "stdout_sha256": "97877eea921f48d111013f95f67761bf17ec553c436a7a2be34fbd2806d41be4",
+    "turn_matches": [
+      {
+        "answer_end": 79,
+        "answer_offset": 44,
+        "command": "whoami",
+        "echo_end": 42,
+        "echo_offset": 36,
+        "observed_after_echo": true,
+        "served_text_sha256": "9d1799d0206e9e9b52e136d93f0719ddd7917d6aa81fb11cbe53e580694a00a4",
+        "turn": 0,
+        "wire_framing": "crlf",
+        "wire_sha256": "e6a5404048e6195d6bc21e04b16d4a4d1e7240a2e31bc36fb660bb750bfa3bec"
+      },
+      {
+        "answer_end": 196,
+        "answer_offset": 99,
+        "command": "id",
+        "echo_end": 97,
+        "echo_offset": 95,
+        "observed_after_echo": true,
+        "served_text_sha256": "07c19f5749fbf27b2d1bddec046a2edfd79a7cc7c552eb10bc30e321726e4a06",
+        "turn": 1,
+        "wire_framing": "crlf",
+        "wire_sha256": "5ceac005caf8b5d62ed5ea064b46fa46885416de1306cdced0eaee078ab036fe"
+      },
+      {
+        "answer_end": 289,
+        "answer_offset": 222,
+        "command": "uname -a",
+        "echo_end": 220,
+        "echo_offset": 212,
+        "observed_after_echo": true,
+        "served_text_sha256": "3bbd2728041d286dd6bc3446fc9ad7f095179e72d662c5b6b2c63dda46e89210",
+        "turn": 2,
+        "wire_framing": "lf",
+        "wire_sha256": "3bbd2728041d286dd6bc3446fc9ad7f095179e72d662c5b6b2c63dda46e89210"
+      }
+    ]
+  }
+}

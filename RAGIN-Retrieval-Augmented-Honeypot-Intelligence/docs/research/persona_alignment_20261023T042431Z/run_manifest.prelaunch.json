@@ -1,0 +1,108 @@
+{
+  "bounded_sequence": {
+    "command_limit_per_session": 6,
+    "commands": [
+      "whoami",
+      "id",
+      "uname -a",
+      "hostname",
+      "cat /etc/os-release"
+    ],
+    "commands_per_session": 5,
+    "sessions": 2
+  },
+  "created_utc": "20261023T042431Z",
+  "fixtures": {
+    "built_bundle": {
+      "base_pickle_sha256": "c54b9d6d550db961fb003cd94760918e2dce36d87632b3cfcb1205665731f941",
+      "bundle": "docs/research/persona_alignment_20261023T042431Z/bundle",
+      "derived_pickle_sha256": "75fa72746b1858f2e4d2fa11f160b1513288d7df649b3f33dd3eb36ca871ee24",
+      "files_sha256": {
+        "bundle/etc/cowrie.cfg": "f1292fe7a7a7497dc976bc8abf10bfb177270e7b7f15c8192b3db8c3206ef09b",
+        "bundle/etc/userdb.txt": "95b8a79f3d1ebad80df3d2a749f92409aaccb2ed7a6adce6a8d73f17d2720841",
+        "bundle/fs.pickle": "75fa72746b1858f2e4d2fa11f160b1513288d7df649b3f33dd3eb36ca871ee24",
+        "bundle/honeyfs/etc/group": "9374e1d49c86e0a6261f1e15b6ebdb54a5803afd8a9dc7d490eda73be0ee3dbc",
+        "bundle/honeyfs/etc/hostname": "277db654f39be7df63a0a38a4dae1082c3234009eaf21193235d7ffdf81d70c6",
+        "bundle/honeyfs/etc/issue": "390d201070199589b07b0905f26cde3547258269eca4e21c517a7c7c12504aef",
+        "bundle/honeyfs/etc/issue.net": "c7fdd8913bd13b781c2c533b58f437f9d419c3051c2b69960cb6c9b00ed09e6a",
+        "bundle/honeyfs/etc/motd": "4ddfb183fa0c85f69eab65f14f2bd6ec4cc0e18e6099b6a997e797967648b019",
+        "bundle/honeyfs/etc/passwd": "c8f3ab93cdc683f06d43fe3f85e831b3308547941167930737e3c6e7c97e7eac",
+        "bundle/honeyfs/usr/lib/os-release": "d1d2ac1f2293596ddcb88dc4ceb494bde658718e36954b5bec729a1fdc779ba0",
+        "host_fiction.preflight.json": "bcb27951e16ee79461deae18d94124fdd9620b950f64a1e4be1dee0570f7e916"
+      }
+    },
+    "cowrie_cfg_sha256": "f1292fe7a7a7497dc976bc8abf10bfb177270e7b7f15c8192b3db8c3206ef09b",
+    "honeyfs": {
+      "cowrie/honeyfs/etc/group": "9374e1d49c86e0a6261f1e15b6ebdb54a5803afd8a9dc7d490eda73be0ee3dbc",
+      "cowrie/honeyfs/etc/hostname": "277db654f39be7df63a0a38a4dae1082c3234009eaf21193235d7ffdf81d70c6",
+      "cowrie/honeyfs/etc/issue": "390d201070199589b07b0905f26cde3547258269eca4e21c517a7c7c12504aef",
+      "cowrie/honeyfs/etc/issue.net": "c7fdd8913bd13b781c2c533b58f437f9d419c3051c2b69960cb6c9b00ed09e6a",
+      "cowrie/honeyfs/etc/motd": "4ddfb183fa0c85f69eab65f14f2bd6ec4cc0e18e6099b6a997e797967648b019",
+      "cowrie/honeyfs/etc/passwd": "c8f3ab93cdc683f06d43fe3f85e831b3308547941167930737e3c6e7c97e7eac",
+      "cowrie/honeyfs/usr/lib/os-release": "d1d2ac1f2293596ddcb88dc4ceb494bde658718e36954b5bec729a1fdc779ba0"
+    },
+    "persona_json_sha256": "3fb16280056b1b90a88e0625d84ff89a5a08b74bae325d76360aed846f87bbae",
+    "userdb_sha256": "95b8a79f3d1ebad80df3d2a749f92409aaccb2ed7a6adce6a8d73f17d2720841"
+  },
+  "git": {
+    "dirty": true,
+    "head": "7d8a32aded7f4d168015aaa7f648f3367d3edad1",
+    "status_line_count": 3068,
+    "status_sha256": "d1ecbbf7b3ca191b846cdfe34c08b9ea7a46fbb214663f0e2524c40dc1521d57"
+  },
+  "image": {
+    "cmd": [
+      "/cowrie/cowrie-env/bin/twistd",
+      "-n",
+      "--umask=0022",
+      "--pidfile=",
+      "--logger",
+      "cowrie.python.logfile.stdoutLogger",
+      "cowrie"
+    ],
+    "entrypoint": [
+      "/cowrie/cowrie-env/bin/python3"
+    ],
+    "id": "sha256:710f1e4601a663ac8591f58a42b44e4cd3b7ea170c7e6cdb9e54c430a30cd459",
+    "labels": {
+      "org.opencontainers.image.authors": "Michel Oosterhof <michel@oosterhof.net>",
+      "org.opencontainers.image.base.name": "gcr.io/distroless/python3-debian13",
+      "org.opencontainers.image.created": "2026-10-05T03:57:32.850Z",
+      "org.opencontainers.image.description": "Cowrie SSH/Telnet Honeypot https://docs.cowrie.org/",
+      "org.opencontainers.image.documentation": "https://docs.cowrie.org",
+      "org.opencontainers.image.licenses": "NOASSERTION",
+      "org.opencontainers.image.revision": "c17c9b73d6af0972334ea1e90b20d974cb24eeca",
+      "org.opencontainers.image.source": "https://github.com/cowrie/cowrie",
+      "org.opencontainers.image.title": "cowrie",
+      "org.opencontainers.image.url": "https://github.com/cowrie/cowrie",
+      "org.opencontainers.image.vendor": "Cowrie",
+      "org.opencontainers.image.version": "v3.1.1"
+    },
+    "name": "cowrie/cowrie:latest",
+    "user": "999:999"
+  },
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "ports": {
+    "native_ssh": 49469,
+    "native_telnet": 33197,
+    "ragin_ssh": 38377,
+    "ragin_telnet": 56233,
+    "server": 50673
+  },
+  "provenance": {
+    "llm_inference": "NOT_ESTABLISHED",
+    "native": "COWRIE_V3_1_1_UNMODIFIED_HANDLERS",
+    "note": "Deterministic output is not a model result.",
+    "provider_backed": false,
+    "ragin": "DETERMINISTIC_STRATEGY_RUNTIME_STRICT_VERIFIER",
+    "transport": "REAL_SSH_LOOPBACK"
+  },
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "run_id": "20261023T042431Z-1216242",
+  "schema": "ragin.persona_alignment.proof.v1",
+  "script_sha256": "7a084892fcc4eca998622315080c64e826153db1b5071c983ef32859a39f2830",
+  "verification_policy": {
+    "native_profile": "none (native shell, no RAGIN verifier)",
+    "ragin_profile": "research_strict_v1"
+  }
+}

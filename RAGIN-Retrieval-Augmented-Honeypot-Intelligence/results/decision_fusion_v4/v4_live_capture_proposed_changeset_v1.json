@@ -1,0 +1,48 @@
+{
+  "schema": "ragin.v4.live_capture_proposed_changeset.v1",
+  "status": "DESIGN_ONLY_NOT_EXECUTED",
+  "core_public_required": false,
+  "changes": [
+    {
+      "component": "EDGE public SSH surface",
+      "current_state": "last documented public TCP/22 listener is ordinary sshd; Cowrie is loopback/forwarded on 2222; EDGE SG has no 0.0.0.0/0 honeypot ingress",
+      "proposed_state": "move operator management to verified EIC/Tailscale-only path, stop public sshd binding, bind isolated Cowrie to public TCP/22, add only TCP/22 from 0.0.0.0/0 to EDGE SG",
+      "security_rationale": "prevents public operator SSH and Cowrie port conflict; preserves one public honeypot surface",
+      "estimated_cost_impact": "no new AWS resource; variable transfer remains UNKNOWN",
+      "rollback": "remove public SG rule, restore operator SSH binding through management path, restore Cowrie loopback mapping"
+    },
+    {
+      "component": "EDGE Cowrie isolation and egress",
+      "current_state": "last documented host Cowrie/socat deployment; EDGE SG egress all protocols to 0.0.0.0/0; restrictive egress not live-verified",
+      "proposed_state": "run Cowrie in isolated container/network namespace; default-deny NEW egress; explicit blocks for 169.254.169.254, private VPC ranges, CORE/control/operator services; no CORE bridge for capture-only mode",
+      "security_rationale": "prevents honeypot pivot and metadata/private-network access",
+      "estimated_cost_impact": "no new AWS resource",
+      "rollback": "stop isolated service and restore prior staged configuration only after exposure is removed"
+    },
+    {
+      "component": "capture_v4 session finalizer",
+      "current_state": "capture_v4 library/CLI exists but no Cowrie native session-close hook or per-session raw segmentation",
+      "proposed_state": "add a sidecar/finalizer that atomically seals one native-session raw segment, writes and verifies manifest, applies privacy, derives canonical record, verifies lineage, then appends registry",
+      "security_rationale": "provenance is created before evaluation and failure is ineligible rather than repaired by inference",
+      "estimated_cost_impact": "local CPU/storage only",
+      "rollback": "disable finalizer and keep public exposure closed; do not accept eligible sessions during rollback"
+    },
+    {
+      "component": "rotation/crash/disk-full handling",
+      "current_state": "session-boundary recovery, atomic manifest recovery, and disk-full behavior not verified",
+      "proposed_state": "atomic temp+fsync+rename manifests, restart recovery from immutable raw segments, explicit ineligible records for partial/corrupt sessions, free-space guard and bounded rotation",
+      "security_rationale": "prevents incomplete or corrupted captures entering the pool",
+      "estimated_cost_impact": "no new AWS resource",
+      "rollback": "stop acquisition and preserve failed audit trail"
+    },
+    {
+      "component": "AWS/VPC/CORE",
+      "current_state": "CORE was last documented in public subnet; current live state unknown; private subnet/EIC exist but private survivability is not proven",
+      "proposed_state": "no CORE or VPC change for capture-only mode; defer private CORE migration to separate approved change",
+      "security_rationale": "reduces scope and avoids coupling capture provenance to decision serving",
+      "estimated_cost_impact": "zero incremental for capture-only design",
+      "rollback": "none required because no change proposed"
+    }
+  ],
+  "approval_required_before_execution": ["public EDGE exposure", "operator SSH migration", "EDGE egress policy", "collector/finalizer deployment", "any AWS security-group or host-firewall change", "estimated variable cost acceptance"]
+}

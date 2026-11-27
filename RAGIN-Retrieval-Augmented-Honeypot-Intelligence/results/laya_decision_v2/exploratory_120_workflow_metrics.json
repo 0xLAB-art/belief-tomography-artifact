@@ -1,0 +1,160 @@
+{
+  "arms": {
+    "RAGIN_BASELINE": {
+      "HITL_escalation_rate": {
+        "attempted_n": 120,
+        "denominator": 120,
+        "evaluable_n": 120,
+        "numerator": 2,
+        "rate": 0.016666666666666666
+      },
+      "accepted_non_fallback_response_rate": {
+        "attempted_n": 120,
+        "denominator": 120,
+        "evaluable_n": 120,
+        "numerator": 113,
+        "rate": 0.9416666666666667
+      },
+      "decision_path_distribution": {
+        "BASELINE_NO_LAYA": 120
+      },
+      "end_to_end_latency": {
+        "attempted_n": 120,
+        "evaluable_n": 120,
+        "mean_ms": 1764.8914646541623,
+        "median_ms": 1362.9196574911475
+      },
+      "fallback_rate": {
+        "attempted_n": 120,
+        "denominator": 120,
+        "evaluable_n": 120,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "fiction_consistency_rejection_rate": {
+        "attempted_n": 120,
+        "denominator": 120,
+        "evaluable_n": 120,
+        "numerator": 2,
+        "rate": 0.016666666666666666
+      },
+      "final_controlled_failure_rate": {
+        "attempted_n": 120,
+        "denominator": 120,
+        "evaluable_n": 120,
+        "numerator": 7,
+        "rate": 0.058333333333333334
+      },
+      "generation_retry_count": {
+        "attempted_n": 120,
+        "evaluable_n": 120,
+        "mean": 0.08333333333333333,
+        "total": 10
+      },
+      "host_fiction_rejection_rate": {
+        "attempted_n": 120,
+        "denominator": 120,
+        "evaluable_n": 120,
+        "numerator": 3,
+        "rate": 0.025
+      },
+      "response_strategy_distribution": {
+        "baseline": 120
+      },
+      "total_verifier_rejection_count": 17,
+      "verifier_first_pass_acceptance_rate": {
+        "attempted_n": 120,
+        "denominator": 120,
+        "evaluable_n": 120,
+        "numerator": 113,
+        "rate": 0.9416666666666667
+      }
+    },
+    "RAGIN_LAYA_DECISION": {
+      "HITL_escalation_rate": {
+        "attempted_n": 120,
+        "denominator": 120,
+        "evaluable_n": 120,
+        "numerator": 2,
+        "rate": 0.016666666666666666
+      },
+      "Laya_incremental_latency": {
+        "attempted_n": 120,
+        "definition": "per-case real Laya infer component; paired end-to-end delta is reported separately",
+        "evaluable_n": 120,
+        "mean_ms": 1613.592
+      },
+      "accepted_non_fallback_response_rate": {
+        "attempted_n": 120,
+        "denominator": 120,
+        "evaluable_n": 120,
+        "numerator": 113,
+        "rate": 0.9416666666666667
+      },
+      "decision_path_distribution": {
+        "LAYA_ATTACK_STRATEGY": 24,
+        "LAYA_NON_ATTACK_STRATEGY": 96
+      },
+      "end_to_end_latency": {
+        "attempted_n": 120,
+        "evaluable_n": 120,
+        "mean_ms": 1749.9105436344205,
+        "median_ms": 1362.9338144965004
+      },
+      "fallback_rate": {
+        "attempted_n": 120,
+        "denominator": 120,
+        "evaluable_n": 120,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "fiction_consistency_rejection_rate": {
+        "attempted_n": 120,
+        "denominator": 120,
+        "evaluable_n": 120,
+        "numerator": 2,
+        "rate": 0.016666666666666666
+      },
+      "final_controlled_failure_rate": {
+        "attempted_n": 120,
+        "denominator": 120,
+        "evaluable_n": 120,
+        "numerator": 7,
+        "rate": 0.058333333333333334
+      },
+      "generation_retry_count": {
+        "attempted_n": 120,
+        "evaluable_n": 120,
+        "mean": 0.08333333333333333,
+        "total": 10
+      },
+      "host_fiction_rejection_rate": {
+        "attempted_n": 120,
+        "denominator": 120,
+        "evaluable_n": 120,
+        "numerator": 3,
+        "rate": 0.025
+      },
+      "response_strategy_distribution": {
+        "fake_success_and_return_visits": 22,
+        "low_intensity_administration": 96,
+        "steer_to_honeytoken_credentials": 2
+      },
+      "total_verifier_rejection_count": 17,
+      "verifier_first_pass_acceptance_rate": {
+        "attempted_n": 120,
+        "denominator": 120,
+        "evaluable_n": 120,
+        "numerator": 113,
+        "rate": 0.9416666666666667
+      }
+    }
+  },
+  "primary": "accepted_non_fallback_response_rate",
+  "provider_determinism": {
+    "available": true,
+    "mode": "local deterministic template/fast-path; no external generation provider",
+    "perfect_counterfactual_replica_claim": false
+  },
+  "schema": "ragin.laya_decision_v2.exploratory_120_workflow_metrics.v1"
+}

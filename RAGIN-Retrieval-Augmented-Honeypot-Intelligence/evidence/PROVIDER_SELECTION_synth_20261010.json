@@ -1,0 +1,11 @@
+{
+  "kind": "SYNTHETIC_WIRE_E2E",
+  "decision": "deterministic_mocked_provider",
+  "reason": "Per master prompt, real SSH wire proof must come first and must not depend on paid/remote providers. The OpenCode CLI bridge existed but its free-model availability is not guaranteed and is a Phase C concern; for the synthetic SSH wire milestone we deliberately use a deterministic loopback mock so the verifier artifact is stable, reproducible, and PROMPT_TEMPLATE_VERIFIED.",
+  "mock_provider": "services/mock_provider.py",
+  "mock_bind": "127.0.0.1:8731",
+  "mock_model": "opencode/space-bunny-free",
+  "mock_auth": "Bearer dummy-mock-key",
+  "note": "OpenCode bridge components present but intentionally NOT used for this milestone: scripts/opencode_proxy.py, scripts/opencode_cli_bridge_safe_config.json, /home/elaref/.opencode/bin/opencode. Phase C will decide whether a real free provider is available.",
+  "recorded_at": "2026-10-10T08:12:00Z"
+}
