@@ -5,7 +5,7 @@ was retired void before registration or data (hence the gap), E1b and T3 are
 sub-protocols inside the E1 and allocation-benchmark slots, and E2-v0 is the
 superseded run that E2-v1 replaced after the session-isolation fix. The
 full table — all thirty slots with layer, registration status, and outcome —
-is **Supplement Table S1** (`paper/tdsc_tomo/supplement.pdf`), with
+is **Supplement Table S1** of the submitted manuscript, with
 per-experiment registration timing in Supplement Table S2.
 
 ## Layers at a glance

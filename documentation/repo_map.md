@@ -17,13 +17,16 @@ Five layers. Paths are relative to the repository root.
 | `docs/innovation/` | Program record: execution log, lit-scan, paper plan, collision scan, venue decision |
 | `data/field/ragin/`, `data/sessions/` | Frozen live-field snapshot (13 + 11 records) |
 
-## 2 · Manuscripts
+## 2 · Manuscript
+
+The manuscript itself is **not hosted in this repository** — reviewers receive
+it through IEEE. Validation does not require it: the ledger quotes every claim
+verbatim. What is kept:
 
 | Path | Contents |
 |---|---|
-| `paper/tdsc_tomo/` | IEEE TDSC manuscript + supplement — source, PDFs (13 pp / 22 pp), sections, figure plates |
-| `paper/tops/` | ACM TOPS mirror — source, PDF, TikZ figures, `figdata/` (20 pinned `.dat` files) |
-| `paper/sp2027/`, `paper/tdsc/`, `paper/figures/` | Platform-paper builds and figures |
+| `paper/tops/figs/figdata/` | The 20 figure-data `.dat` files pinned by the frozen manifest |
+| `paper/tops/figs/*.tex`, `make_tikz_data.py` | TikZ figure sources and their generator |
 
 ## 3 · The platform (complete mirror)
 
@@ -51,7 +54,6 @@ Pulled over AWS SSM the same day as the freeze; see
 |---|---|
 | `egm_review/` | Seven-reviewer audit (151 findings, disposition) |
 | `review_belief_tomography_v6/`, `v7/`, `review_main/`, `review_rebuild_2026-11-21/` | Adversarial review rounds that shaped the manuscript |
-| `docs/paper/belief_tomography/tops_submission/` | Submitted TOPS package snapshot |
 
 ## Infrastructure
 

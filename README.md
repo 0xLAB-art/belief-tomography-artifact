@@ -32,8 +32,8 @@
 |---|---|
 | **Registered experiments** | 30 (E1–E31 registry; E24 retired void before registration) |
 | **Frozen deposit** | 395 files, SHA-256 manifest, byte-exact verification |
-| **Full deposit** | 46,775 files · ~1.2 GB · every file hash-pinned |
-| **Manuscripts** | IEEE TDSC 13 pp + 22 pp supplement · ACM TOPS mirror 45 pp — both compile from this repo |
+| **Full deposit** | 395 + 46,501 hash-pinned files · ~1.2 GB |
+| **Manuscript** | Not hosted here — distributed via IEEE (single file per submission); the ledger quotes every claim, so validation needs no manuscript copy |
 | **Live-fleet data** | 15,409 served sessions · 15,404 field records · 42,076 pre-NAT connections · full Cowrie logs (2026-10-08 → 11-27) |
 | **Headline audit** | 230 oracle flags adjudicated: 118 refusal-quote FPs + 112 genuine canary echoes · blinded re-audit κ = 0.96 |
 
@@ -42,7 +42,7 @@
 ```bash
 git clone https://github.com/0xLAB-art/belief-tomography-artifact.git
 cd belief-tomography-artifact
-./verify.sh                    # → 395 frozen + 46,772 supplementary files OK
+./verify.sh                    # → 395 frozen + 46,501 supplementary files OK
 bash checks/quick_counts.sh    # → reproduces the 230-flag audit + censoring table
 ```
 
@@ -53,7 +53,7 @@ flowchart LR
     A["Claim in the paper"] --> B["CLAIMS_EVIDENCE_LEDGER row"]
     B --> C["Artifact path in this repo"]
     C --> D["SHA-256 manifest entry"]
-    D --> E["verify.sh: 395 + 46,772 OK"]
+    D --> E["verify.sh: 395 + 46,501 OK"]
 ```
 
 **The two instruments:**
@@ -101,13 +101,16 @@ HMAC, key unpublished); operator/fleet addresses → `REDACTED_*`. See
 </details>
 
 <details>
-<summary><b>2 · Manuscripts</b></summary>
+<summary><b>2 · Manuscript</b></summary>
+
+The manuscript itself is **not hosted in this repository** — reviewers receive
+it through IEEE. Validation does not require it: the
+[claims–evidence ledger](guide.md) quotes every claim verbatim. What is kept:
 
 | Path | Contents |
 |---|---|
-| `paper/tdsc_tomo/` | IEEE TDSC manuscript + supplement — source, PDFs (13 pp / 22 pp), sections, figure plates |
-| `paper/tops/` | ACM TOPS mirror — source, PDF, TikZ figures, `figdata/` (20 pinned `.dat` files) |
-| `paper/sp2027/`, `paper/tdsc/`, `paper/figures/` | Platform-paper builds and figures |
+| `paper/tops/figs/figdata/` | The 20 figure-data `.dat` files pinned by the frozen manifest |
+| `paper/tops/figs/*.tex`, `make_tikz_data.py` | TikZ figure sources and their generator |
 
 </details>
 
@@ -131,7 +134,6 @@ HMAC, key unpublished); operator/fleet addresses → `REDACTED_*`. See
 |---|---|
 | `egm_review/` | Seven-reviewer audit (151 findings, disposition) |
 | `review_belief_tomography_v6/`, `v7/`, `review_main/`, `review_rebuild_2026-11-21/` | Adversarial review rounds that shaped the manuscript |
-| `docs/paper/belief_tomography/tops_submission/` | Submitted TOPS package snapshot |
 
 </details>
 
@@ -140,7 +142,7 @@ HMAC, key unpublished); operator/fleet addresses → `REDACTED_*`. See
 
 | File | Purpose |
 |---|---|
-| `verify.sh` | Checks both manifests (395 + 46,772) |
+| `verify.sh` | Checks both manifests (395 + 46,767) |
 | `checks/quick_counts.sh` | Asserts the 230-flag decomposition and blocked-turn table |
 | `REDACTIONS.md` | Every substitution with original/public hashes |
 | `CITATION.cff` | Citation metadata |
@@ -200,10 +202,10 @@ MiniMax 24 blocked turns — Table VI and §Limitations censoring fractions.
 <details>
 <summary><b>🏗️ Reproduce builds &amp; figures</b></summary>
 
-- `paper/tdsc_tomo/main.tex` (+ `sections/`, `references.tex`), `pdflatex`
-  twice → 13 pp · supplement → 22 pp. Verified from this deposit.
-- `paper/tops/main.tex` → 45 pp. Verified.
-- `paper/tops/figs/make_tikz_data.py` regenerates the pinned `.dat` files;
+- The manuscript is **not hosted here** (distributed via IEEE), so no LaTeX
+  build is included.
+- `paper/tops/figs/make_tikz_data.py` regenerates the 20 pinned `.dat` files
+  in `paper/tops/figs/figdata/` from the frozen deposit;
   `docs/paper/belief_tomography/figures/make_figures.py` regenerates F1–F9.
 - Python 3.11+ (stdlib + `jq`) for the checks.
 

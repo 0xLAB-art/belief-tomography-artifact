@@ -16,8 +16,8 @@ NOTICE-file mechanism for attribution.
 
     - **Code** (`gauntlet/`, `ragin/`, `scripts/`, `checks/`, gateway): Apache 2.0
     - **Data, transcripts, figure data, documentation**: Apache 2.0
-    - **Manuscript PDFs**: the author's submission copies (retain their own
-      submission copyright line; cited and shared here for review purposes)
+    - **The manuscript itself is not hosted here** — reviewers receive it
+      through IEEE
 
 ## Citation
 
