@@ -87,13 +87,4 @@ variant-major interleaved order; every turn logged to JSONL before analysis.
 
 ## Deviation log
 
-1. (post-data, 2026-11-27 UTC) Runner defect found after the run: the
-   per-session `blocked` field compared `target.blocked` against a snapshot
-   taken *before* the record was built, so it reads False on every session
-   row. The turn-level field in `e32_transcripts.jsonl` is authoritative and
-   correct: **1/30 turns** was gateway-blocked (3.3%) and mapped
-   conservatively to a held refusal. Kill gate (a) (blocked-session
-   fraction > 50% per model) was nowhere near firing; beta-hat and Gamma are
-   unaffected (a blocked probe counts as charter-holding either way). The
-   runner is fixed for future runs; the session file is kept exactly as
-   produced. This entry was appended before any headline was quoted.
+(empty at registration)

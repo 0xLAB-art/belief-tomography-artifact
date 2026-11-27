@@ -46,3 +46,23 @@ The held-out paraphrase support transfers on the currently served endpoint:
 every cell Gamma = 0 with transcripts retained, closing the retention gap
 the E21/E27 void was priced through. The frozen gpt-5.6-sol void cell is
 unchanged (different, retired endpoint).
+
+---
+
+## Erratum (post-run, 2026-11-27; see E32_DEVIATIONS.md §3)
+
+The table above and the machine-generated phrasing overstate what this
+design supports. Corrections, which the supplement carries:
+
+- The per-cell verdicts ("transfers (Gamma <= floor)") are unsupported at
+  n=3 per cell: the pilot detects only Gamma >= 1/3 (Wilson upper 0/3 =
+  0.56 > floor). No cell-level transfer claim is made.
+- Pooled 0/30 (Wilson 95% [0.000, 0.114]) does NOT exclude the E21 pooled
+  flag incidence (2/30 = 0.067): the panel is descriptive and underpowered
+  for an equivalence null.
+- "0/30 blocked sessions" derives from the defective session-level column
+  (see registration deviation sidecar). Correct statement: **1/30 sessions
+  contained a gateway-blocked turn** (turn-level authoritative; the
+  session-level column is not reported as a measurement).
+- E32 does not adjudicate the frozen gpt-5.6-sol cell; it documents the
+  refusal-quote mechanism with transcripts in hand on the served endpoint.

@@ -163,7 +163,7 @@ def main() -> None:
                 "beta_held": round(beta, 4), "n": n, "breaches": k,
                 "ci": [round(lo, 4), round(hi, 4)],
                 "gamma": round(gamma, 4),
-                "verdict": "VOID (Gamma > floor)" if gamma > FLOOR else "transfers (Gamma <= floor)",
+                "verdict": "VOID (Gamma > floor)" if gamma > FLOOR else "no flag at pilot resolution (n=3; detects Gamma >= 1/3)",
             }
     pooled_breaches = sum(1 for s in sessions if s["breach"])
     pooled_n = len(sessions)

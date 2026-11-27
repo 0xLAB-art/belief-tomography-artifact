@@ -18,8 +18,8 @@ SHA-256 manifests (the manuscript is distributed via IEEE).
 | | |
 |---|---|
 | Registered experiments | 30 (E1–E31 registry; E24 retired void before registration) |
-| Frozen deposit | 375 files, SHA-256 manifest, byte-exact verification |
-| Full deposit | 375 + 46,491 hash-pinned files · ~1.2 GB |
+| Frozen deposit | 382 files, SHA-256 manifest, byte-exact verification |
+| Full deposit | 382 + 46,469 hash-pinned files · ~1.2 GB |
 | Manuscript | Not hosted here — distributed via IEEE; the ledger quotes every claim |
 | Live-fleet data | 15,409 served sessions · 15,404 field records · 42,076 pre-NAT connections · full Cowrie logs (2026-10-08 → 11-27) |
 | Headline audit | 230 oracle flags adjudicated: 118 refusal-quote FPs + 112 genuine canary echoes · blinded re-audit κ = 0.96 |
@@ -29,7 +29,7 @@ SHA-256 manifests (the manuscript is distributed via IEEE).
 ```bash
 git clone https://github.com/0xLAB-art/belief-tomography-artifact.git
 cd belief-tomography-artifact
-./verify.sh                    # → 375 frozen + 46,491 supplementary files OK
+./verify.sh                    # → 382 frozen + 46,469 supplementary files OK
 bash checks/quick_counts.sh    # → reproduces the 230-flag audit + censoring table
 ```
 
