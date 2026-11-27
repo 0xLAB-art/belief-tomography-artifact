@@ -55,9 +55,12 @@ deposit.**
 
 ## Anonymity
 
-The repository is **anonymized for review**: README, documentation site,
-citation file, and the entire git history carry no author identity. The author
-is identified in the manuscript submission itself (single-anonymous venue).
+Deposit anonymity is scoped to the **git identity**: the entire commit history
+uses the anonymous `0xLAB-art` identity, and no author identity appears in
+repository metadata. The venue is single-anonymous, so the manuscript itself
+names its author and `CITATION.cff` cites the paper's author; the live-fleet
+and honeypot data remain de-identified at the data level regardless of venue
+policy.
 
 ## Ethics
 

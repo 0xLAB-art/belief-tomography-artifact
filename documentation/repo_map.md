@@ -60,5 +60,5 @@ Pulled over AWS SSM the same day as the freeze; see
 | `verify.sh` | Checks both manifests |
 | `checks/quick_counts.sh` | Asserts the 230-flag decomposition and blocked-turn table |
 | `REDACTIONS.md` | Every substitution with original/public hashes |
-| `CITATION.cff` | Citation metadata (author identity withheld) |
+| `CITATION.cff` | Citation metadata (paper author; anonymous commit identity) |
 | `mkdocs.yml` + `documentation/` | Source of this documentation site |

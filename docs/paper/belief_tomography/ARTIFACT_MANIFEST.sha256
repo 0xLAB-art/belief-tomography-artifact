@@ -1,17 +1,19 @@
-# claims-evidence manifest, generated 2026-11-24T14:36:42Z
+# claims-evidence manifest, generated 2026-11-27T21:02:04Z
 # verify with: sha256sum -c ARTIFACT_MANIFEST.sha256 from repo root
 # companion of docs/paper/belief_tomography/CLAIMS_EVIDENCE_LEDGER.md; covers the frozen evidence scope:
 # (1) all files under gauntlet/demo/ (recursive; __pycache__/ derived bytecode excluded);
 # (2) docs/paper/belief_tomography/PREREGISTRATION_*.md, hashed as frozen (post-hoc edits included);
-# (3) data/field/**; (4) paper/tops/figs/figdata/*.dat. Round-19 addition: (5) docs/paper/belief_tomography/independent_reaudit/ (13 files).
+# (3) data/field/**. Round-19 addition: (5) docs/paper/belief_tomography/independent_reaudit/ (13 files).
 # Experiment dates are UTC (manuscript Data Availability); git-tracked artifacts additionally carry last-commit hashes in the ledger.
-# --- scope: all files under gauntlet/demo/ (recursive, sorted; __pycache__/ derived bytecode excluded) (337 files)
+# --- scope: all files under gauntlet/demo/ (recursive, sorted; __pycache__/ derived bytecode excluded) (343 files)
 # --- scope reduction, 2026-11-27 ---
 # Group (4) paper/tops/figs/figdata/*.dat (20 entries) was removed from this
 # public deposit together with the manuscript builds (distributed via IEEE).
 # This manifest therefore lists 375 entries instead of the original 395;
 # the 20 dropped figure-data files are retained in the author's frozen
 # archive and their removal is recorded in REDACTIONS.md.
+# Round-21 addition, 2026-11-27: scope (1) grows by the E32 transcript-retained
+# rerun package (6 files); this manifest now lists 381 active entries.
 259b803764fe74ac39bc9516ae488e9fc82ed9dbb6ec943e67ceb1ee97273056  gauntlet/demo/CERTIFICATE.md
 26530d23c501e985f502abebc1c2b9b97c9152ea9ccff4aba081414a8054ddb4  gauntlet/demo/DOSE_RESPONSE.md
 01de984799d1a018654426f50166ec74f2bf838e0762fd7ded4eb246e3d85963  gauntlet/demo/E10_ADAPTIVE.md
@@ -123,6 +125,7 @@ f46613c4218c8e65c7f91b1560473456eeee0d30a2facb4ee9b6ac1be5cdff1e  gauntlet/demo/
 c59a2965cc2423ee6270fe1d9d910373c74214ade1a07a14d4e14da05afc9ee5  gauntlet/demo/E31_MiniMax-M3_1-Flash_p20_s2718.transcripts.jsonl
 ee0ef99780ce609af074e98eeb9f64fa779356aad7fd67af83501b291e3fc86e  gauntlet/demo/E31_MiniMax-M3_1-Flash_p20_s2718.verdicts.jsonl
 9759d497c18194261bc71edd7c23c6964fe23e9df5f6ee2a4c738c2865128e11  gauntlet/demo/E31_OPENWEIGHT_REPAIRED.md
+7804a205786878bc49fc3d8f45bb13bd9cd64eb99cad1c6d8e40c75dc5878117  gauntlet/demo/E32_TRANSCRIPT_RERUN.md
 7f7d3277dc72d5945e649aa0cabbd2f5f7af9b21e6d009b7d3a31b3fadf5d2d1  gauntlet/demo/E3_CANARY_ALLOWLIST.json
 3d13bdb61ec3b24c9122b1171218e33028efc9a2d36813fa7bd0806685d8487e  gauntlet/demo/E3_DECEPTION_GAIN.md
 292f109c5e43c270c161fe0545588fc921ac21a7265a42d32f86f9b9dc239206  gauntlet/demo/E3_RESULTS/E3_CHAIN.jsonl
@@ -219,6 +222,7 @@ a7af6bb1c96a80ea40d76da2427c98a5b37b6d815c21bd66c9bf40b3197d2c00  gauntlet/demo/
 0ba68e21545958e7bec0b21bffd7266c86ec0132afba4aab95c9011bb288f53d  gauntlet/demo/PREREGISTRATION_E29_REPAIRED_PANEL.md
 e49cdbf5133c81c4cf54cf447f326b6181f3b34fbd339b8969dd176409345739  gauntlet/demo/PREREGISTRATION_E30_OPENWEIGHT_PANEL.md
 a50229f1b0f45436e99dea185504cd667700a4be86eb77efaea2c940d20e4e79  gauntlet/demo/PREREGISTRATION_E31_OPENWEIGHT_REPAIRED.md
+6cf7f3fd154aa37a6877716220ed09304fd8a7157db49572ce4be0ab0e522741  gauntlet/demo/PREREGISTRATION_E32_TRANSCRIPT_RERUN.md
 032c2f16a92da3695c0848c9383491080005fae2cfbb2ee2f18a55c28b82d22c  gauntlet/demo/PROFILE.md
 98b96a98c48a5084d3ca1ad6e2da909620a45c509f4dbd27a7c278a4cab4983f  gauntlet/demo/RELIABILITY.md
 3f0b5fe8f9c3179856ee2eabefe6ea2d0cba12312f7cd8dbb34ea87a40773aff  gauntlet/demo/SUBPROCESS_PROFILE.md
@@ -272,6 +276,9 @@ ed222eac1961b562015cd5c2de3458bdd1a4670515b46c0cfd7fda3eb40bda85  gauntlet/demo/
 d0d0cb3a83c5050aae79f131a253e57910631a7187579128cddff4861be8f489  gauntlet/demo/e31_DeepSeek-V4-Pro.log
 82cad2f012c7afc7df58f6835e811e8468977b7908bf8e16ea63a80b2bdb5e54  gauntlet/demo/e31_MiniMax-M3.1-Flash.log
 6bde798ef11f91d89a22802117ba407059aac43cb61ba7cb3b70ec899653bcbf  gauntlet/demo/e31_run.log
+59ae8b57fbeceda7e73d862f5f0780e075bf56666b9a7a9f38cf5aba1ea9737b  gauntlet/demo/e32_run.log
+cd0da8cf036e540706fe26e5076836aa88c0dd584dcd58f309eea669d1aae0a9  gauntlet/demo/e32_sessions.jsonl
+f868c801953d7ce63e22b859581de2cee85a1a020a320bc551f94e23aee1e93c  gauntlet/demo/e32_transcripts.jsonl
 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  gauntlet/demo/e3_chain.log
 e743e58c6f3c085977288e8bb64b275c6bf7566f7e773eb31bbefd6c09ecf84a  gauntlet/demo/e3_chain_v2.log
 3a4c3b78d9deed2c8a1cea2607b90bb022904eceaaa3b981c3cbf9ccde1b097e  gauntlet/demo/e3_chain_v3.log
@@ -332,6 +339,7 @@ a3fca09e396aa93f9ab6a03a7f118ae76e0910d7360436e07dc0163d4927f109  gauntlet/demo/
 fbac53843269c8075b6928d736ab706b62560fea1e6655e538d53e533bc2b132  gauntlet/demo/run_e30_wrapper.sh
 3155b0892c8713aa3df1dc2fcb2adbb3e0771d43b10f88660841e83198049f02  gauntlet/demo/run_e31_one.sh
 96e5e91ec0a15a748c7556ef8e9aef84634706b5a8fb7e023bc0fcc606d08471  gauntlet/demo/run_e31_wrapper.sh
+dc8985898a7aba6e5cb9f82bb1897f7f14bd7b71b1e93fa427acbac073c5e484  gauntlet/demo/run_e32_transcript_rerun.py
 e19ec933215220ebfbe74bdc0d9d20f9e4ed8991f2b25057a9a2e8157200a8fd  gauntlet/demo/run_e3_deception_gain.py
 4e24bee200832466f26c0d2b184095d33833155a8ce7d9c0f1b6cacbfadeff4f  gauntlet/demo/run_e4_separation.py
 1ea8ecbddbba3163596edf6998cbde97308229b22a6d742631e26644983e766a  gauntlet/demo/run_e5_onset.py

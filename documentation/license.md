@@ -21,7 +21,8 @@ NOTICE-file mechanism for attribution.
 
 ## Citation
 
-`CITATION.cff` at the repository root (author identity withheld for review):
+`CITATION.cff` at the repository root (author named per the single-anonymous
+venue; the deposit's commit identity is the anonymous `0xLAB-art` org):
 
 ```bash
 git clone https://github.com/0xLAB-art/belief-tomography-artifact.git

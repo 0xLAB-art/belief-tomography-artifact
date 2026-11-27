@@ -4,18 +4,18 @@
 
 ### Complete Research Artifact Repository
 
-**Measuring the Belief–Claim Gap: Active Black-Box Tomography of Autonomous Agents and the Limits of Certification**
+**Measuring the Belief–Claim Gap: Disentangling Autonomous-Agent Beliefs from Security Certification**
 
-**Anonymous Author(s)** · identity withheld for review · *IEEE Transactions on Dependable and Secure Computing — submitted 2026*
+**Author-visible manuscript** · IEEE TDSC single-anonymous review (the paper names its author; deposit commits use the anonymous `0xLAB-art` identity) · *submitted 2026*
 
 [![Venue](https://img.shields.io/badge/venue-IEEE_TDSC-blue)](https://www.computer.org/csdl/journal/tq)
 [![License](https://img.shields.io/badge/license-Apache_2.0-green.svg)](LICENSE)
-[![Manifests](https://img.shields.io/badge/SHA--256_pinned-375_%2B_46_491_files-brightgreen)](docs/paper/belief_tomography/ARTIFACT_MANIFEST.sha256)
+[![Manifests](https://img.shields.io/badge/SHA--256_pinned-381_%2B_46_469_files-brightgreen)](docs/paper/belief_tomography/ARTIFACT_MANIFEST.sha256)
 [![Repo size](https://img.shields.io/github/repo-size/0xLAB-art/belief-tomography-artifact)](#)
 [![Last commit](https://img.shields.io/github/last-commit/0xLAB-art/belief-tomography-artifact/main)](#)
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](#)
 [![Experiments](https://img.shields.io/badge/registered_experiments-30-9cf)](#)
-[![Anonymized](https://img.shields.io/badge/repository-anonymized_for_review-orange)](#)
+[![Review](https://img.shields.io/badge/review-single_anonymous%2C_author_visible-orange)](#)
 
 📘 **[Documentation site](https://0xlab-art.github.io/belief-tomography-artifact/)** ·
 🗺️ [Repository map](#-repository-map) ·
@@ -30,9 +30,9 @@
 
 | | |
 |---|---|
-| **Registered experiments** | 30 (E1–E31 registry; E24 retired void before registration) |
-| **Frozen deposit** | 375 files, SHA-256 manifest, byte-exact verification |
-| **Full deposit** | 375 + 46,491 hash-pinned files · ~1.2 GB |
+| **Registered experiments** | 31 (frozen 30-experiment program E1–E31, 24/6 confirmatory–exploratory + post-freeze robustness rerun E32; E24 retired void before registration) |
+| **Frozen deposit** | 381 files, SHA-256 manifest, byte-exact verification |
+| **Full deposit** | 381 + 46,469 hash-pinned files · ~1.2 GB |
 | **Manuscript** | Not hosted here — distributed via IEEE (single file per submission); the ledger quotes every claim, so validation needs no manuscript copy |
 | **Live-fleet data** | 15,409 served sessions · 15,404 field records · 42,076 pre-NAT connections · full Cowrie logs (2026-10-08 → 11-27) |
 | **Headline audit** | 230 oracle flags adjudicated: 118 refusal-quote FPs + 112 genuine canary echoes · blinded re-audit κ = 0.96 |
@@ -144,7 +144,7 @@ scope reduction.
 | `checks/quick_counts.sh` | Asserts the 230-flag decomposition and blocked-turn table |
 | `REDACTIONS.md` | Every substitution with original/public hashes |
 | `CITATION.cff` | Citation metadata |
-| `LICENSE` / `LICENSE-DATA` | MIT (code) / CC BY 4.0 (data, text) |
+| `LICENSE` | Apache-2.0 (entire repository — code, data, text, figures) |
 
 </details>
 
@@ -277,5 +277,6 @@ documentation — is released under the **Apache License, Version 2.0**
 ## 📮 Contact
 
 For questions about this artifact during review, contact the corresponding
-author through the journal's submission system (identity withheld here).
+author through the journal's submission system (single-anonymous review; the
+deposit's commit identity is the anonymous `0xLAB-art` organization).
 

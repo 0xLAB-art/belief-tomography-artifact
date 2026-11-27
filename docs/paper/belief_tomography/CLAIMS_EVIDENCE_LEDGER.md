@@ -1,8 +1,15 @@
 # Claims–Evidence Ledger — Belief Tomography (IEEE TDSC submission)
 
-**Artifact-repository ledger for the manuscript "Measuring the Belief–Claim Gap: Active Black-Box Tomography of Autonomous Agents and the Limits of Certification" (IEEE TDSC build `paper/tdsc_tomo/`, section files revised 2026-11-27; ACM TOPS mirror at `paper/tops/`).**
+**Artifact-repository ledger for the manuscript "Measuring the Belief–Claim Gap: Disentangling Autonomous-Agent Beliefs from Security Certification" (IEEE TDSC build `paper/tdsc_tomo/`, section files revised 2026-11-27; ACM TOPS mirror at `paper/tops/`).**
 
-**Generated:** 2026-11-24 UTC; revised 2026-11-27 (Round 19). **Companion manifest:** `ARTIFACT_MANIFEST.sha256` (same directory), 382 SHA–256 entries plus the Round-19 re-audit package (13 files); verification line `sha256sum -c ARTIFACT_MANIFEST.sha256` from repository root.
+**Generated:** 2026-11-24 UTC; revised 2026-11-27 (Round 21). **Companion manifest:** `ARTIFACT_MANIFEST.sha256` (same directory), 381 SHA–256 entries (375 frozen + the Round-21 E32 package); verification line `sha256sum -c ARTIFACT_MANIFEST.sha256` from repository root.
+
+## Round-21 additions (2026-11-27)
+
+An external referee report on the TDSC build challenged the strongest disclosed gap — the E21/E27 held-out paraphrase flags priced through a family-level bridge because their replies were not transcript-retained — and a consistency sweep of the deposit metadata followed. Two changes:
+
+1. **E32 — transcript-retained successor-endpoint re-measurement (evidence added).** The frozen E21 grid (2 models × 5 families × 3 held-out paraphrases, gen-2, seed 2718) was re-run with every turn retained verbatim, registered before data (`gauntlet/demo/PREREGISTRATION_E32_TRANSCRIPT_RERUN.md`; the registered header date precedes all data; the prereg's post-data deviation-log append is disclosed in the registration file and in the supplement's registration-timing table). The E2-era catalog names (`gpt-5.6-sol`, `gpt-6.1-sol`) were retired from the gateway between E29 and E32; `/v1/models` under the same key at registration listed `gpt-6.2-sol` and `gpt-6.2-astra`, both health-checked before registration. Result: **0/30 breaches, 0/30 blocked sessions (1/30 turns gateway-blocked, mapped conservatively), pooled β̂ = 0.000 [0.000, 0.114] against the 0.067 floor — every cell transfers, with the transcripts on disk** (`gauntlet/demo/e32_sessions.jsonl`, `e32_transcripts.jsonl`, `E32_TRANSCRIPT_RERUN.md`, `run_e32_transcript_rerun.py`, `e32_run.log`). The frozen gpt-5.6-sol void cell is unchanged (different, retired endpoint). The supplement gains the "Transcript-retained closure (E32)" paragraph, a limitations pointer, and a registration-timing row. One runner defect (the session-level `blocked` column reads False; the turn-level transcript field is authoritative: 1/30) is disclosed in the registration deviation log; no number is affected.
+2. **Deposit metadata sync (no claim changes).** README, documentation site, `CITATION.cff`, and `mkdocs.yml` aligned with the manuscript: the paper title updated to the TDSC build's current title; the license table corrected to Apache-2.0 whole-repository (the MIT/CC-BY row named files that do not exist in the deposit); the review framing corrected to single-anonymous author-visible manuscript with anonymous `0xLAB-art` commit identity; stale "manuscript builds" references and the supplementary count corrected to 46,469 entries.
 
 ## Round-19 additions (2026-11-27)
 

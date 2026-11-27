@@ -2,15 +2,16 @@
 
 Complete research artifact repository for the manuscript
 
-> **Measuring the Belief–Claim Gap: Active Black-Box Tomography of Autonomous Agents and the Limits of Certification**
+> **Measuring the Belief–Claim Gap: Disentangling Autonomous-Agent Beliefs from Security Certification**
 >
 > IEEE Transactions on Dependable and Secure Computing — submitted 2026.
-> Author identity withheld for review (single-anonymous submission).
+> Single-anonymous review: the manuscript names its author; deposit commits
+> use the anonymous `0xLAB-art` identity.
 
 This repository is the **complete, self-contained deposit**: the frozen
-experiment record, both manuscript builds, the full measurement-platform
-mirror, and the **live-fleet honeypot data itself** — every file hash-pinned
-by two SHA-256 manifests.
+experiment record, the full measurement-platform mirror, and the
+**live-fleet honeypot data itself** — every file hash-pinned by two
+SHA-256 manifests (the manuscript is distributed via IEEE).
 
 ## At a glance
 
