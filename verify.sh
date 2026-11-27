@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 
 MANIFEST="docs/paper/belief_tomography/ARTIFACT_MANIFEST.sha256"
 SUPPLEMENT="SUPPLEMENTARY_ASSETS.sha256"
-EXPECTED=382
+EXPECTED=384
 
 if [[ ! -f "$MANIFEST" ]]; then
   echo "ERROR: manifest not found: $MANIFEST" >&2

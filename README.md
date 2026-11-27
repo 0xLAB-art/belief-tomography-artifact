@@ -10,7 +10,7 @@
 
 [![Venue](https://img.shields.io/badge/venue-IEEE_TDSC-blue)](https://www.computer.org/csdl/journal/tq)
 [![License](https://img.shields.io/badge/license-Apache_2.0-green.svg)](LICENSE)
-[![Manifests](https://img.shields.io/badge/SHA--256_pinned-382_%2B_46_469_files-brightgreen)](docs/paper/belief_tomography/ARTIFACT_MANIFEST.sha256)
+[![Manifests](https://img.shields.io/badge/SHA--256_pinned-384_%2B_46_469_files-brightgreen)](docs/paper/belief_tomography/ARTIFACT_MANIFEST.sha256)
 [![Repo size](https://img.shields.io/github/repo-size/0xLAB-art/belief-tomography-artifact)](#)
 [![Last commit](https://img.shields.io/github/last-commit/0xLAB-art/belief-tomography-artifact/main)](#)
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](#)
@@ -31,8 +31,8 @@
 | | |
 |---|---|
 | **Registered experiments** | 31 (frozen 30-experiment program E1–E31, 24/6 confirmatory–exploratory + post-freeze robustness rerun E32; E24 retired void before registration) |
-| **Frozen deposit** | 382 files, SHA-256 manifest, byte-exact verification |
-| **Full deposit** | 382 + 46,469 hash-pinned files · ~1.2 GB |
+| **Frozen deposit** | 384 files, SHA-256 manifest, byte-exact verification |
+| **Full deposit** | 384 + 46,469 hash-pinned files · ~1.2 GB |
 | **Manuscript** | Not hosted here — distributed via IEEE (single file per submission); the ledger quotes every claim, so validation needs no manuscript copy |
 | **Live-fleet data** | 15,409 served sessions · 15,404 field records · 42,076 pre-NAT connections · full Cowrie logs (2026-10-08 → 11-27) |
 | **Headline audit** | 230 oracle flags adjudicated: 118 refusal-quote FPs + 112 genuine canary echoes · blinded re-audit κ = 0.96 |
@@ -42,7 +42,7 @@
 ```bash
 git clone https://github.com/0xLAB-art/belief-tomography-artifact.git
 cd belief-tomography-artifact
-./verify.sh                    # → 382 frozen + 46,469 supplementary files OK
+./verify.sh                    # → 384 frozen + 46,469 supplementary files OK
 bash checks/quick_counts.sh    # → reproduces the 230-flag audit + censoring table
 ```
 
@@ -53,7 +53,7 @@ flowchart LR
     A["Claim in the paper"] --> B["CLAIMS_EVIDENCE_LEDGER row"]
     B --> C["Artifact path in this repo"]
     C --> D["SHA-256 manifest entry"]
-    D --> E["verify.sh: 382 + 46,469 OK"]
+    D --> E["verify.sh: 384 + 46,469 OK"]
 ```
 
 **The two instruments:**
@@ -90,7 +90,7 @@ HMAC, key unpublished); operator/fleet addresses → `REDACTED_*`. See
 | `gauntlet/demo/` | Frozen experiment deposit: E1–E31 results, transcripts, verdicts, run logs, E21–E31 registrations, E3 grids, drivers |
 | `gauntlet/gauntlet/` | Frozen instrument/estimator code (`tomograph.py`, `verdict.py`, generator, world, policies, certificate, harness) — the `8ceb6e0` estimator pin |
 | `docs/paper/belief_tomography/CLAIMS_EVIDENCE_LEDGER.md` | Claim → artifact map with the registration-integrity status note |
-| `docs/paper/belief_tomography/ARTIFACT_MANIFEST.sha256` | 382-entry frozen manifest (incl. the re-audit + E32 packages) |
+| `docs/paper/belief_tomography/ARTIFACT_MANIFEST.sha256` | 384-entry frozen manifest (incl. the re-audit + E32 packages) |
 | `docs/paper/belief_tomography/PREREGISTRATION_*.md` | Day-0 registrations (E10–E20) · `RESEARCH_PROGRAM_V2.md` |
 | `docs/paper/belief_tomography/independent_reaudit/` | Blinded re-adjudication: 3 coders, 46-item stratified sample, κ = 0.96 |
 | `docs/paper/belief_tomography/figures/` | F1–F9 sources + `anthro/` plates + `make_figures.py` |
@@ -140,7 +140,7 @@ scope reduction.
 
 | File | Purpose |
 |---|---|
-| `verify.sh` | Checks both manifests (382 + 46,469) |
+| `verify.sh` | Checks both manifests (384 + 46,469) |
 | `checks/quick_counts.sh` | Asserts the 230-flag decomposition and blocked-turn table |
 | `REDACTIONS.md` | Every substitution with original/public hashes |
 | `CITATION.cff` | Citation metadata |

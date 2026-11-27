@@ -49,3 +49,17 @@ served endpoint; it is not a powered equivalence null and does not
 adjudicate the frozen gpt-5.6-sol cell (retired endpoint). The erratum is
 appended to `E32_TRANSCRIPT_RERUN.md`, and the supplement's E32 paragraph
 carries the corrected wording.
+
+## 4. Trust-model completion (same day, after external audit)
+
+Both this sidecar and the registered preregistration are now anchored with
+OpenTimestamps (`PREREGISTRATION_E32_TRANSCRIPT_RERUN.md.ots`,
+`E32_DEVIATIONS.md.ots`; pending Bitcoin confirmation, refreshable with
+`ots upgrade`). A stamp proves the exact bytes existed by the stamp date;
+it cannot retroactively prove creation order, so E32's before-data claim
+rests on the timeline in §1 (the prereg's local mtime was compromised by
+the §1 editing mistake). **Program convention from now on:** every new
+registration receives its `.ots` stamp at registration time, before any
+data exists, so "before data" becomes independently verifiable without
+reliance on local mtimes; stamps added later to older registrations anchor
+the frozen bytes as they stand and never rewrite their history.
