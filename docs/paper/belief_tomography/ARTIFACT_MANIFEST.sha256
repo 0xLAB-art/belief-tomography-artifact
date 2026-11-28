@@ -1,11 +1,11 @@
-# claims-evidence manifest, generated 2026-11-27T22:42:57Z
+# claims-evidence manifest, generated 2026-11-28T05:58:01Z
 # verify with: sha256sum -c ARTIFACT_MANIFEST.sha256 from repo root
 # companion of docs/paper/belief_tomography/CLAIMS_EVIDENCE_LEDGER.md; covers the frozen evidence scope:
 # (1) all files under gauntlet/demo/ (recursive; __pycache__/ derived bytecode excluded);
 # (2) docs/paper/belief_tomography/PREREGISTRATION_*.md, hashed as frozen (post-hoc edits included);
 # (3) data/field/**. Round-19 addition: (5) docs/paper/belief_tomography/independent_reaudit/ (13 files).
 # Experiment dates are UTC (manuscript Data Availability); git-tracked artifacts additionally carry last-commit hashes in the ledger.
-# --- scope: all files under gauntlet/demo/ (recursive, sorted; __pycache__/ derived bytecode excluded) (357 files)
+# --- scope: all files under gauntlet/demo/ (recursive, sorted; __pycache__/ derived bytecode excluded) (361 files)
 # --- scope reduction, 2026-11-27 ---
 # Group (4) paper/tops/figs/figdata/*.dat (20 entries) was removed from this
 # public deposit together with the manuscript builds (distributed via IEEE).
@@ -13,14 +13,18 @@
 # the 20 dropped figure-data files are retained in the author's frozen
 # archive and their removal is recorded in REDACTIONS.md.
 # Round-21 addition, 2026-11-27: scope (1) grows by the E32 transcript-retained
-# rerun package (now 9 files incl. the dated deviation sidecar);
+# rerun package (9 files incl. the dated deviation sidecar);
 # Round-21 completion, 2026-11-28: +11 OpenTimestamps proofs for the gauntlet/demo
-# registration files (the 12 docs/paper/belief_tomography/*.ots proofs live in the
-# supplementary manifest); 395 active entries. The E32 preregistration is pinned
+# registration files (12 docs/paper/belief_tomography/*.ots proofs in the
+# supplementary manifest); 399 active entries. The E32 preregistration is pinned
 # at its REGISTERED bytes (sha256 e082633d43d53f0d614dcbbbaef56fa29bd0350358566ba8e0e327aba1ad5ed1),
 # restored byte-exact after a post-data editing mistake and externally
 # timestamped — deviations live in the sidecar, never in the registration
 # file. See E32_DEVIATIONS.md.
+# Round-21 creative-resolution round, 2026-11-28: +4 hash-stamped analyses
+# (VOID_CELL_BRIDGE_ANALYSIS, SPLIT_ROBUSTNESS_NOTE, SERVING_FINGERPRINTS,
+# PREREGISTRATION_E33_HUMAN_BLIND) closing the declared-unclosable items to
+# their honest maximum; 399 entries.
 259b803764fe74ac39bc9516ae488e9fc82ed9dbb6ec943e67ceb1ee97273056  gauntlet/demo/CERTIFICATE.md
 26530d23c501e985f502abebc1c2b9b97c9152ea9ccff4aba081414a8054ddb4  gauntlet/demo/DOSE_RESPONSE.md
 01de984799d1a018654426f50166ec74f2bf838e0762fd7ded4eb246e3d85963  gauntlet/demo/E10_ADAPTIVE.md
@@ -244,9 +248,13 @@ a50229f1b0f45436e99dea185504cd667700a4be86eb77efaea2c940d20e4e79  gauntlet/demo/
 64d1d209e4573596c2c24e3dcde558456646e170ce8af7bc8c9987af1bbae5d1  gauntlet/demo/PREREGISTRATION_E31_OPENWEIGHT_REPAIRED.md.ots
 e082633d43d53f0d614dcbbbaef56fa29bd0350358566ba8e0e327aba1ad5ed1  gauntlet/demo/PREREGISTRATION_E32_TRANSCRIPT_RERUN.md
 a76972d60a8a32d810d1bd775d9131d1d9b72260c8cfe7667f259f9558aa3396  gauntlet/demo/PREREGISTRATION_E32_TRANSCRIPT_RERUN.md.ots
+1487632188ded6615e70ac5608b6fc1abd746d49d9df36ad1dca99e41690560a  gauntlet/demo/PREREGISTRATION_E33_HUMAN_BLIND.md.ots
 032c2f16a92da3695c0848c9383491080005fae2cfbb2ee2f18a55c28b82d22c  gauntlet/demo/PROFILE.md
 98b96a98c48a5084d3ca1ad6e2da909620a45c509f4dbd27a7c278a4cab4983f  gauntlet/demo/RELIABILITY.md
+4f6c3517a09aa1b489c4a202f75c4ea214fc6918ae570303d788ea1c4e98de76  gauntlet/demo/SERVING_FINGERPRINTS.md.ots
+66345d5f898cef8003193b7b6371379ef5cc0b6ff6ef23cece177872a5796991  gauntlet/demo/SPLIT_ROBUSTNESS_NOTE.md.ots
 3f0b5fe8f9c3179856ee2eabefe6ea2d0cba12312f7cd8dbb34ea87a40773aff  gauntlet/demo/SUBPROCESS_PROFILE.md
+6850365ba48f5c4039418b1ef9fe74da0aa487764a4a3561b8a6fe80fedec11c  gauntlet/demo/VOID_CELL_BRIDGE_ANALYSIS.md.ots
 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  gauntlet/demo/__init__.py
 d6a54661888b5a352a0f5278560d905b4fd0024c6e99f539f5a93516ad081ea2  gauntlet/demo/analyze_e2v1.py
 64e22d572cdd7a18ad3453db2c9f6a19d1de3b442b32ae68fddae39f11deca23  gauntlet/demo/analyze_e3.py
